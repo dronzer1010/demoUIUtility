@@ -233,7 +233,7 @@ input[type="checkbox"]:hover, input[type="checkbox"]:checked {
   }
   
   .span_width {
-    width: 115px;
+    width: 50%;
     display: inline-block;
     vertical-align: top;
     font-size: 13px;
@@ -246,7 +246,7 @@ input[type="checkbox"]:hover, input[type="checkbox"]:checked {
     font-weight: 600;
     font-size: 13px;
     color: #000;
-    width: 58%;
+    width: 50%;
   }
   
   .noborder {
@@ -320,3 +320,13 @@ input[type="checkbox"]:hover, input[type="checkbox"]:checked {
     box-shadow: 5px 5px 15px #656363;
   }
   
+  @media only screen and (max-width:1100px){
+  #button{
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 4px;
+    color: #64289d;
+    cursor: pointer;
+  }
+  }

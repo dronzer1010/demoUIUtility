@@ -172,7 +172,7 @@
   }
   
   .span_width {
-    width: 44%;
+    width: 50%;
     display: inline-block;
     vertical-align: top;
     font-size: 13px;
@@ -185,7 +185,7 @@
     font-weight: 600;
     font-size: 13px;
     color: #000;
-    width: 56%;
+    width: 50%;
   }
   
   .noborder {

@@ -433,3 +433,17 @@ input[type="checkbox"]:checked {
   z-index: 0;
   right: 160px !important;
 }
+
+@media only screen and (max-width: 1100px) {
+  .stepwizard-row:before {
+    top: 14px !important;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 62% !important;
+    height: 1px;
+    background-color: #ccc;
+    z-index: 0;
+    right: 135px !important;
+  }
+  }
