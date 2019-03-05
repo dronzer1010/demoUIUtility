@@ -152,7 +152,7 @@ input::-webkit-calendar-picker-indicator {
     height: 170px;
 }
 .span_width {
-    width: 44%;
+    width: 50%;
     display: inline-block;
     vertical-align: top;
     font-size: 13px;
@@ -164,7 +164,7 @@ input::-webkit-calendar-picker-indicator {
     font-weight: 600;
     font-size: 13px;
     color: #000;
-    width: 56%;
+    width: 50%;
 }
 .noborder {
     border: none;

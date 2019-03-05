@@ -47,7 +47,7 @@ status: 1
 aproveddate: "28-02-2019",
 aprovedtime: "19:20:40",
 cardholder: "Annu",
-digits: "9865xxxx xxxx7909",
+digits: "9865 XXXX XXXX 7909",
 expirydate: "06/24",
 id: 206,
 initiatedby: "Mr. Naveen Lohiya",
