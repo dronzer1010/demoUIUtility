@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckerPaymentsComponent implements OnInit {
 
+  payments:any=[];
+  filterQuery = "";
+  rowsOnPage = 300;
+  sortBy = "email";
+  sortOrder = "asc";
+  billerlength:number=0;
+  noofrole="No billers available"
+  
   constructor() { }
 
   ngOnInit() {
+    this.payments=JSON.parse(localStorage.getItem('payments'));
+    console.log(this.payments)
   }
 
 }
