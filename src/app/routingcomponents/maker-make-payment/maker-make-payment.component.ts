@@ -7,11 +7,17 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./maker-make-payment.component.css']
 })
 export class MakerMakePaymentComponent implements OnInit {
+  select=false;
   billertype:boolean=true;
   billdetails:boolean=false;
   conf:boolean=false;
   success:boolean=false;
   reviewCard:boolean=false;
+  public checkedValueArray: any = [];
+  selectall:boolean=false;
+  public temp: any;
+  public cntChk: any;
+  public flag: any;
   display='none'; 
   states:any;
   paymentData : any={};
@@ -27,6 +33,7 @@ export class MakerMakePaymentComponent implements OnInit {
   dueDates=['21/03/2019' ,'23/03/2019' , '24/03/2019' , '28/03/2019' ,'25/03/2019','26/03/2019','30/03/2019']
   fetchingBill=false;
   public currentCard: any=0;
+  pendingPayments:any=[]
   approvedcard:any=[
     {approvedby: "Mr. K.V. HEBBAR",
     aproveddate: "28-02-2019",
@@ -182,12 +189,94 @@ export class MakerMakePaymentComponent implements OnInit {
     
   }
 
+
+  changeAll(pendingbillerpage): void {
+    
+    if(this.checkedValueArray.length==this.payments.length){
+    this.cntChk=1
+    }else{
+    this.checkedValueArray = [];
+    this.cntChk=0
+    }
+    console.log(this.selectall)
+    if (this.cntChk == 0) {
+      this.cntChk = 1;
+      this.temp = true;
+      this.selectall=true;
+      this.select=true;
+      for (var i = 0; i < pendingbillerpage.length; i++) {
+        this.checkedValueArray[i] = pendingbillerpage[i].id;
+      }
+      this.cntChk = 0;
+    }
+   
+    else {
+      this.cntChk = 0;
+      this.temp = false;
+      this.checkedValueArray = [];
+      this.select=false;
+    }
+    console.log(this.checkedValueArray)
+  }
+
+  change(id): void {
+    this.flag = 0;
+    for (var i = 0; i < this.checkedValueArray.length; i++) {
+      if (this.checkedValueArray[i] == id) {
+        this.checkedValueArray.splice(i, 1);
+        this.flag = 1;
+      }
+    }
+    if (this.flag == 0) {
+      this.checkedValueArray.push(id);
+     
+    }
+
+    if (this.checkedValueArray.length > 0) {
+      this.temp = true;
+      if(this.checkedValueArray.length<this.payments.length){
+        this.selectall=false
+      }else{
+        this.selectall=true;
+        this.cntChk = 1;
+      }
+      console.log(this.selectall)
+     
+    }
+    else {
+      this.temp = false;
+      if(this.checkedValueArray.length<this.payments.length){
+        this.selectall=false
+      }else{
+        this.selectall=true;
+      }
+      console.log(this.selectall)
+     
+    }
+    console.log(this.checkedValueArray)
+  }  
+
+
+
+
+
   cnfsend(){
     this.billdetails=false;
     this.conf=true;
     this.billertype=false;
    
     this.reviewCard=true;
+
+
+
+
+    for(var i=0;i<this.payments.length;i++){
+      for(var j=0;j<this.checkedValueArray.length;j++){
+        if(this.payments[i].id == this.checkedValueArray[j]){
+          this.pendingPayments.push(this.payments[i]);
+        }
+      }
+    }
   }
 
   succesadd(){
@@ -196,6 +285,17 @@ export class MakerMakePaymentComponent implements OnInit {
     this.conf=false;
     this.success=true;
     this.reviewCard=false;
+
+
+
+    var tempPendingPayments = this.pendingPayments.map((payment)=>{
+      var card = this.approvedcard[this.approvedcard.currentCard];
+      payment['status']='Pending';
+      payment['card']=card;
+      return payment;
+    });
+
+    localStorage.setItem('payments' , JSON.stringify(tempPendingPayments));
   }
 
   backbilltype(){

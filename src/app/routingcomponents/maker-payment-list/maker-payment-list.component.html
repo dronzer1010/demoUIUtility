@@ -122,7 +122,7 @@
 
             <div class="row" style="margin:0px;">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
-                <table id="main-table">
+                <table id="main-table" [mfData]="payments" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                   <thead>
                     <tr>
                       <td><input type="checkbox" name="vehicle1" value="Bike"></td>
@@ -135,13 +135,14 @@
                     </tr>
                   </thead>
                   <tbody>
+                    <ng-container *ngFor="let payment of mf.data; let i=index;">
                     <tr>
                       <td><input type="checkbox" name="vehicle1" value="Bike"></td>
-                      <td>Assam Power Distribution Company Ltd.</td>
-                      <td>Rs. 111126.37</td>
-                      <td>65478927</td>
-                      <td>30 <sup>th</sup></td>
-                      <td>Pending</td>
+                      <td>{{payment.bill.biller}}</td>
+                      <td>Rs. {{payment.amount}}</td>
+                      <td>{{payment.billnumber}}</td>
+                      <td>{{payment.duedate}}</td>
+                      <td>{{payment.status}}</td>
                       <td><img src="../../../assets/img/tb_downarrow.png" alt=""></td>
                     </tr>
                     <tr class="rowShow grayStrip" style="">
@@ -150,46 +151,40 @@
                           <h5>Biller Details</h5>
                           <div class="mb-1">
                             <div class="span_width">Short Name:</div>
-                            <div class="bold_span">APDCL</div>
+                            <div class="bold_span">{{payment.bill.shortname}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">GL/Expense Code: </div>
-                            <div class="bold_span">2456781</div>
+                            <div class="bold_span">{{payment.bill.expensecode}}</div>
                           </div>
-                          <div class="mb-1">
-                            <div class="span_width">Meter Reading:</div>
-                            <div class="bold_span">3565</div>
-                          </div>
+
                           <div class="mb-1">
                             <div class="span_width">Bill Date:</div>
-                            <div class="bold_span">10/12/2018</div>
+                            <div class="bold_span">{{payment.billdate}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Location:</div>
-                            <div class="bold_span">Guwahati</div>
+                            <div class="bold_span">{{payment.bill.state}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Consumer No:</div>
-                            <div class="bold_span">61000006056</div>
+                            <div class="bold_span">{{payment.bill.consumerno}}</div>
                           </div>
-                          <!-- <div>
-                            <div class="span_width">Ref No 2:</div>
-                            <div class="bold_span">358507</div>
-                          </div> -->
+      
                         </div>
                         <div class="tablediv">
                           <h5>Contact Details</h5>
                           <div class="mb-1">
                             <div class="span_width">Mobile No:</div>
-                            <div class="bold_span">+91 9876543210</div>
+                            <div class="bold_span">{{payment.bill.contact}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Address: </div>
-                            <div class="bold_span">A.T. Road Opp. Railway Gate No-1, Maligaon, Guwahati, Assam</div>
+                            <div class="bold_span">{{payment.bill.billaddress}}</div>
                           </div>
                           <div>
                             <div class="span_width">Email:</div>
-                            <div class="bold_span">maker@abclimited.com</div>
+                            <div class="bold_span">{{payment.bill.email}}</div>
                           </div>
                         </div>
                         <div class="tablediv noborder">
@@ -200,20 +195,13 @@
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Initiated by :</div>
-                            <div class="bold_span">Rajesh Arora</div>
+                            <div class="bold_span">{{payment.bill.initiatedby}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Initiated on : </div>
-                            <div class="bold_span">21/12/2018 | 14:29:00</div>
+                            <div class="bold_span">{{payment.bill.initiatedon}}</div>
                           </div>
-                          <!-- <div class="mb-1">
-                            <div class="span_width">Approver By:</div>
-                            <div class="bold_span">Rajesh Arora</div>
-                          </div>
-                          <div>
-                            <div class="span_width">Approved on : </div>
-                            <div class="bold_span">28/07/2018 | 12:00PM</div>
-                          </div> -->
+                     
                         </div>
                       </td>
                     </tr>
@@ -265,87 +253,7 @@
                           </div>
                         </div>
                       </div>
-                    <!-- <tr>
-                      <td><input type="checkbox" name="vehicle1" value="Bike"></td>
-                      <td>Reliance Jio</td>
-                      <td>Rs. 23,000</td>
-                      <td>9876543</td>
-                      <td>20 <sup>th</sup></td>
-                      <td>Pending</td>
-                      <td><img src="../../../assets/img/tb_downarrow.png" alt=""></td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" name="vehicle1" value="Bike"></td>
-                      <td>Tata Power</td>
-                      <td>Rs. 41,200</td>
-                      <td>4326890</td>
-                      <td>20 <sup>th</sup></td>
-                      <td>Pending</td>
-                      <td><img src="../../../assets/img/tb_downarrow.png" alt=""></td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" name="vehicle1" value="Bike"></td>
-                      <td>Bharat Gas</td>
-                      <td>Rs. 56,863</td>
-                      <td>9865321</td>
-                      <td>1 <sup>st</sup></td>
-                      <td>Pending</td>
-                      <td><img src="../../../assets/img/tb_downarrow.png" alt=""></td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" name="vehicle1" value="Bike"></td>
-                      <td>TATA AIG</td>
-                      <td>Rs. 56,987</td>
-                      <td>6543219</td>
-                      <td>20 <sup>th</sup></td>
-                      <td>Pending</td>
-                      <td><img src="../../../assets/img/tb_downarrow.png" alt=""></td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" name="vehicle1" value="Bike"></td>
-                      <td>Lower Vaitaran</td>
-                      <td>Rs. 47,500</td>
-                      <td>65478927</td>
-                      <td>20 <sup>th</sup></td>
-                      <td>Pending</td>
-                      <td><img src="../../../assets/img/tb_downarrow.png" alt=""></td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" name="vehicle1" value="Bike"></td>
-                      <td>Reliance Jio</td>
-                      <td>Rs. 23,000</td>
-                      <td>9876543</td>
-                      <td>20 <sup>th</sup></td>
-                      <td>Pending</td>
-                      <td><img src="../../../assets/img/tb_downarrow.png" alt=""></td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" name="vehicle1" value="Bike"></td>
-                      <td>Tata Power</td>
-                      <td>Rs. 41,200</td>
-                      <td>4326890</td>
-                      <td>20 <sup>th</sup></td>
-                      <td>Pending</td>
-                      <td><img src="../../../assets/img/tb_downarrow.png" alt=""></td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" name="vehicle1" value="Bike"></td>
-                      <td>Bharat Gas</td>
-                      <td>Rs. 56,863</td>
-                      <td>9865321</td>
-                      <td>1 <sup>st</sup></td>
-                      <td>Pending</td>
-                      <td><img src="../../../assets/img/tb_downarrow.png" alt=""></td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" name="vehicle1" value="Bike"></td>
-                      <td>TATA AIG</td>
-                      <td>Rs. 56,987</td>
-                      <td>6543219</td>
-                      <td>20 <sup>th</sup></td>
-                      <td>Pending</td>
-                      <td><img src="../../../assets/img/tb_downarrow.png" alt=""></td>
-                    </tr> -->
+                    </ng-container>
                   </tbody>
                 </table>
               </div>
