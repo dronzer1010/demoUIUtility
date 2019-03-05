@@ -25,14 +25,14 @@
             <div class="heading3"><span class="underline">Login</span> to manage all services</div>
             <div id="outer">
               <div id="inner">
-                <input type="text" class="username" placeholder="Username">
+                <input type="email" class="username" placeholder="Username" name="username" [(ngModel)]="username">
               </div>
               <div id="inner">
-                <input type="password" class="password" placeholder="Password">
+                <input type="password" class="password" placeholder="Password" name="password" [(ngModel)]="password">
               </div>
             </div>
             <div class="reg3"><input type="checkbox"><span class="spn1">Remember Me</span><span class="spn2">Forgot Password?</span></div>
-            <div class="login2"><button class="btn" type="submit" [routerLink]="['/otp']">Login</button></div>
+            <div class="login2"><button class="btn" type="submit" (click)="loginpost()">Login</button></div>
           </div>
         </form>
       </div>
