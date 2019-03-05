@@ -1,0 +1,159 @@
+<nav class="[ navbar ][ navbar-bootsnipp animate navbar-fixed-top]" role="navigation">
+  <div class="[ container-fluid ]">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="[ navbar-header ]">
+      <a class="[ navbar-brand ][ animate ]" [routerLink]="['/']">
+        <img src="assets/img/logo.png" />
+      </a>
+      <button type="button" class="[ navbar-toggle ]" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="[ sr-only ]">Toggle navigation</span>
+        <span class="[ icon-bar ]"></span>
+        <span class="[ icon-bar ]"></span>
+        <span class="[ icon-bar ]"></span>
+      </button>
+    </div>
+
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="[ collapse navbar-collapse ]" id="bs-example-navbar-collapse-1">
+      <ul class="[ nav navbar-nav ] customLeftMargin nav">
+        <li class="dash" [ngClass]="dashActive ? 'active' : ''" (click)="clickDash();clickDashEvent()"><a class="[ animate ]" [routerLink]="['/dashboard-maker']"><i
+              class="nav-ico-menu"> </i>Dashboard</a></li>
+
+        <li class="menu_sel"  [ngClass]="billActive ? 'active' : ''">
+          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="openbilldrop();clickBillEvent()">Bill </a>
+          <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displaybilldrop}">
+            <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/billerlist']">
+                <span> <img id="user" src="../../../assets/img/view-bills.png" /></span>
+                View Bill </a></li>
+            <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/unitary-biller']"><span>
+                  <img id="user" src="../../../assets/img/add-unitary-bills.png" /></span>
+                Add Unitary Bill </a></li>
+            <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/maker-biller-bulk']"><span>
+                  <img id="user" src="../../../assets/img/add-bulk.png" /></span>
+                Add Bulk Bill </a></li>
+          </ul>
+        </li>
+        <li class="menu_sel" [ngClass]="payActive ? 'active' : ''">
+          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="openpaydrop();clickPayEvent()">Payments </a>
+          <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displaypaydrop}">
+            <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/maker-payment-list']">
+                <span> <img id="user" src="../../../assets/img/view-payment.png" style="height:20px; width:25px;"/></span>
+                View Payments </a></li>
+            <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/make-payment']"><span>
+                  <img id="user" src="../../../assets/img/make-payment.png" style="height:16px; width:35px;"/></span>
+                Add Unitary Payment </a></li>
+                
+            <!-- <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()"><span> <img id="user"
+                    src="assets/img/user.png" /></span>
+                Add Bulk Payment </a></li> -->
+          </ul>
+        </li>
+
+        <!-- <li class="menu_sel {{activecard}}">
+          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="opencarddrop()">Cards </a>
+          <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displaycarddrop}">
+            <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()"> <span> <img src="../../../assets/img/credit-card.png" /></span>
+                View Cards </a></li>
+           
+          </ul>
+        </li> -->
+
+
+
+      </ul>
+      <ul class="[ nav navbar-nav navbar-right ]">
+
+
+
+        <li class="menu_sel notilink">
+          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">
+            <span>
+              <img src="../../../assets/img/notification.png" />
+            </span> <span class="badge badge-notify">3</span>
+          </a>
+          <ul class="[ dropdown-menu dropdown-menu3 ]" role="menu">
+            <li><a class="[ animate ]">
+                <h5>This is dummy text</h5>
+                <p>Lorem is simply dummy text of the printing and</p>
+              </a></li>
+            <li>
+              <a class="[ animate ]">
+                <h5>This is dummy text</h5>
+                <p>Lorem is simply dummy text of the printing and text of the printing and text of the printing andtext
+                  of the printing andtext of the printing and </p>
+              </a>
+            </li>
+            <li>
+              <a class="[ animate ]">
+                <h5>This is dummy text</h5>
+                <p>Lorem is simply dummy text of the printing and</p>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+
+        <li class="menu_sel profilink {{activeprofile}}">
+          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="openmyprofile()">
+            <span class="profile">
+              <img src="../../../assets/img/profile-pic.png" />
+            </span> <span>
+              <img src="../../../assets/img/forma-1.png" />
+            </span>
+          </a>
+          <ul class="[ dropdown-menu dropdown-menu4 ]" role="menu" [ngStyle]="{'display':displayprofile}">
+            <li>
+              <a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/dashboard-checker']">
+                <p>
+                  <span>
+                    <img id="user" src="../../../assets/img/user.png" />&nbsp;&nbsp;&nbsp;
+                  </span> Switch Role
+                </p>
+              </a>
+            </li>
+            <li>
+              <a class="[ animate ]" (click)="closealldrop()">
+                <p>
+                  <span>
+                    <img id="user" src="../../../assets/img/user.png" />&nbsp;&nbsp;&nbsp;
+                  </span> My Profile
+                </p>
+              </a>
+            </li>
+            <li>
+              <a class="[ animate ]" (click)="closealldrop()">
+                <p>
+                  <span>
+                    <img src="../../../assets/img/contact.png" />&nbsp;&nbsp;&nbsp;
+                  </span> Contact Us
+                </p>
+              </a>
+            </li>
+            <li>
+              <a class="[ animate ]" (click)="closealldrop()">
+                <p>
+                  <span>
+                    <img src="../../../assets/img/alarm-bell.png" />&nbsp;&nbsp;&nbsp;
+                  </span> Notification Settings
+                </p>
+              </a>
+            </li>
+            <li>
+              <a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/login']">
+                <p>
+                  <span>
+                    <img src="../../../assets/img/logout.png" />&nbsp;&nbsp;&nbsp;
+                  </span> Logout
+                </p>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+</nav>

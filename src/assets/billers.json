@@ -1,0 +1,71 @@
+[
+    {
+        "code": "MH",
+        "billers":[
+            {
+                "id":"1",
+                "name":"Maharashtra State Electricity Distribution Company Limited"
+            },
+            {
+                "id":"2",
+                "name":"Tata Power"
+            },
+            {
+                "id":"3",
+                "name":"Reliance Power"
+            }
+        ]
+    },
+    {
+        "code": "UP",
+        "billers":[
+            {
+                "id":"4",
+                "name":"Kanpur Electricity Supply Company Limited"
+            },
+            {
+                "id":"5",
+                "name":"Uttar Pradesh Power Corporation Limited"
+            },
+            {
+                "id":"6",
+                "name":"Reliance Power"
+            }
+        ]
+    },
+    {
+        "code": "TN",
+        "billers":[
+            {
+                "id":"7",
+                "name":"Tamil Nadu Generation and Distribution Corporation Limited"
+            },
+            {
+                "id":"8",
+                "name":"Maris Power Supply Company Pvt Ltd"
+            },
+            {
+                "id":"9",
+                "name":"Tamil Nadu Electricity Board"
+            }
+        ]
+    },
+    {
+        "code": "DL",
+        "billers":[
+            {
+                "id":"10",
+                "name":"Delhi Power Company Ltd"
+            },
+            {
+                "id":"11",
+                "name":"Tata Power Delhi Distribution Limited"
+            },
+            {
+                "id":"12",
+                "name":"REC Power Distribution Company Ltd"
+            }
+        ]
+    }
+
+]

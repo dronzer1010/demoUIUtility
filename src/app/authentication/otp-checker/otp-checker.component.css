@@ -1,0 +1,397 @@
+/* First Section of Login Page */
+.container-fluid {
+    background: url('../../../assets/img/aqua_login.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #heading2{
+    text-align: center;
+    font-size:20px;
+  }
+  .h-100 {
+    height: 100% !important;
+  }
+  
+  #heading {
+    margin-top: 10%;
+    text-align: center;
+    color: #533979;
+  }
+  
+  #heading1 {
+    color: black;
+    font-size: 20px;
+    margin-left: 28%;
+  }
+  
+  .aqua {
+    width: 60% !important;
+    margin-left: 19%;
+    margin-top: 6%;
+    background-color: white;
+    box-shadow: white;
+    position: relative;
+    height: 275px !important;
+  }
+  
+  #logo {
+    margin-left: 13%;
+    margin-top: 11%;
+    height: 28px;
+  }
+  
+  .card {
+    width: 26%;
+    margin: 2em auto;
+    background-color: #533979;
+    position: absolute;
+    left: 50%;
+    top: 22%;
+  }
+  
+  .card-body {
+    padding: 2.5rem !important;
+  }
+  
+  .heading2 {
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .underline:hover {
+    border-bottom: 2px solid #fff33b;
+  }
+  
+  input {
+    outline-style: none;
+    margin-bottom: 10%;
+    margin-left: 4%;
+    border: 0px;
+    border-bottom: 1px solid white;
+    position: relative;
+  
+  }
+  
+  ::placeholder {
+    color: #fff;
+  
+  }
+  
+  input.username {
+    background-image: url("../../../assets/img/usr.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding-left: 22px;
+    height: 16px;
+  }
+  
+  input.password {
+    background-image: url("../../../assets/img/pwd.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding-left: 22px;
+    height: 16px;
+  }
+  
+  input.largercheckbox {
+    width: 13px;
+    height: 12px;
+  }
+  
+  .sub-text2 {
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .reg2 {
+    color: white;
+    font-size: 13px;
+    text-align: center;
+    margin-top: 25px;
+  }
+  
+  .input-box,
+  .input-box1 {
+    border: 0px;
+    border-bottom: 1px solid white;
+    font-size: 13px;
+    outline-style: none;
+    width: 85%;
+    margin-left: 3%;
+  }
+  
+  .input-box1 {
+    margin-bottom: 30px;
+  }
+  
+  .input,
+  .login2,
+  .sub-text2 {
+    text-align: center;
+    color: white;
+  
+  }
+  
+  input {
+    background: #533979;
+    padding-left: 5px;
+  }
+  
+  img {
+    height: 15px;
+    width: 12%;
+  }
+  
+  p {
+    font-size: 22px;
+    color: #533979;
+    margin-left: 8%;
+    margin-top: 2%;
+  }
+  
+  .btn {
+    border-radius: 32px 32px 32px 32px;
+    background-color: #533979;
+    padding: 6px 22px;
+    font-size: 14px;
+    cursor: pointer;
+    border-color: #e7e7e7;
+    color: white;
+    float: left;
+    margin-top: 25%;
+  }
+  
+  #form {
+    width: 50%;
+    height: 22px;
+    margin-left: 40%;
+  }
+  
+  /* Second Section of Login Page */ 
+  .sec1 {
+    position: relative;
+  }
+  
+  #para {
+    color: white;
+    text-align: left;
+    font-size: 14px;
+  }
+  
+  .reg3 {
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+    color: white;
+  }
+
+  input[type=text] {
+    height: 20px;
+    width: 45px;
+    font-size: 14px;
+    text-align: center;    
+    text-decoration: none;
+    border: none;
+    border-bottom: 1px solid white;
+    outline-style: none;
+    color: white;
+    padding-left: 0px;
+}
+input[type=text]::-webkit-inner-spin-button,
+input[type=text]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+ 
+  
+  /* #partitioned {
+    padding-left: 15px;
+    letter-spacing: 42px;
+    border: 0;
+    background-image: linear-gradient(to left, white 70%, rgba(255, 255, 255, 0) 0%);
+    background-position: bottom;
+    background-size: 52px 1px;
+    background-repeat: repeat-x;
+    background-position-x: 35px;
+    width: 100% !important;
+    min-width: 220px;
+    color: white;
+  }
+  
+  #inner {
+    left: 0;
+    position: sticky;
+  } */
+  
+  #outer {
+    /* width: 190px; */
+    overflow: hidden
+  }
+  
+  .heading3 {
+    color: white;
+    font-size: 18px;
+    text-align: left;
+    margin-bottom: 30px;
+  }  
+  @media only screen and (max-width:1920px){
+    .card{
+    top:30%!important;
+    width: 22% !important;
+    left: 53%;
+    }
+    #heading1{
+    margin-left: 33%;
+    } 
+    input[type=text]{
+    width: 55px;
+    margin-left:0px !important;
+    } 
+    #codeBox2, #codeBox3, #codeBox4, #codeBox5{
+    margin-left:15px !important;
+    }
+    #para{
+    font-size: 15px;
+    } 
+    .btn{
+    margin: 10% 0px;
+    } 
+    #logo[_ngcontent-c1] {
+    margin-left: 11%;
+    margin-top: 9%;
+    height: 28px;
+    }
+    .aqua{
+    margin-top: 12%;
+    } 
+    }
+    @media only screen and (max-width:1570px){
+    .card{
+    top:34%!important;
+    width: 23% !important;
+    left: 53%;
+    }
+    #heading1{
+    margin-left: 33%;
+    } 
+    input[type=text]{
+    width: 40px;
+    margin-left:0px !important;
+    } 
+    #codeBox2, #codeBox3, #codeBox4, #codeBox5{
+    margin-left:15px !important;
+    }
+    #para{
+    font-size: 15px;
+    } 
+    .btn{
+    margin: 10% 0px;
+    } 
+    #logo[_ngcontent-c1] {
+    margin-left: 11%;
+    margin-top: 9%;
+    height: 28px;
+    }
+    .aqua{
+    margin-top: 12%;
+    } 
+    }
+    @media only screen and (max-width:1440px){
+      .card[_ngcontent-c1] {
+        top: 27%!important;
+        width: 26%!important;
+        left: 49%;
+    }
+    #heading1{
+    margin-left: 26%;
+    } 
+    .mt-4{
+    margin-top: 4.5rem;
+    } 
+    input[type=text]{
+    width: 45px;
+    margin-left:0px !important;
+    } 
+    #codeBox2, #codeBox3, #codeBox4, #codeBox5{
+    margin-left:10px !important;
+    }
+    #para{
+    font-size: 12px;
+    }
+    .btn{
+    margin: 14% 0px;
+    } 
+    .aqua{
+    margin-top: 10%;
+    }
+    }
+    @media only screen and (max-width:1370px){
+    .card{
+    top:27%!important;
+    width: 26%!important;
+    }
+    #heading1{
+    margin-left: 26%;
+    } 
+    .mt-4{
+    margin-top: 4.5rem;
+    } 
+    input[type=text]{
+    width: 43px;
+    margin-left:0px !important;
+    } 
+    #codeBox2, #codeBox3, #codeBox4, #codeBox5{
+    margin-left:10px !important;
+    }
+    #para{
+    font-size: 12px;
+    }
+    .btn{
+    margin: 14% 0px;
+    }
+    .aqua{
+    margin-top: 8%;
+    } 
+    #logo{
+    margin-left: 14%;
+    margin-top: 12%;
+    height: 28px;
+    } 
+    }
+    @media only screen and (max-width:1280px){
+    .card{
+    top:23%!important;
+    width: 26%!important;
+    left:50%;
+    }
+    #heading1{
+    margin-left: 26%;
+    } 
+    .mt-4{
+    margin-top: 4.5rem;
+    } 
+    input[type=text]{
+    width: 40px;
+    margin-left:0px !important;
+    }
+    #codeBox2, #codeBox3, #codeBox4, #codeBox5{
+    margin-left:10px !important;
+    } 
+    #para{
+    font-size: 12px;
+    }
+    .btn{
+    margin: 14% 0;
+    } 
+    #logo{
+    margin-left: 15%;
+    margin-top: 15%;
+    height: 28px;
+    }
+    }
+  

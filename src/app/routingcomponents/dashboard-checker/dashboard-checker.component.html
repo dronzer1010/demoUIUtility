@@ -1,0 +1,315 @@
+<app-headerchecker></app-headerchecker>
+<div class="row main-bg">
+  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+    <div class="row mt-4">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><span class="spanh1">Welcome Rajesh Arora</span><span class="spanh2">Assistant Manager-Accounts</span></div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Checker</div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <span class="spanh2">Make my Trip Pvt ltd</span>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-2" style="color:#8153ad;font-size:12px;">Last Session : 30
+        Jan 2018 | 12:08 AM</div>
+    </div>
+    <div class="row mb-4 mt-4">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="card">
+          <div class="card-body"><img src="../../../assets/img/main-graph.png" alt="" width="100%" class="graph"></div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="card">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h5>Request Status</h5>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 border1">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="round1">0</div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h6>Pending Payments</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" [routerLink]="['/checker-approve-payments']">
+                    <button class="card-button">Approve Payments <br> Now</button>
+                  </div>
+                </div>
+                <hr>
+                <div class="row mb-1">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <span class="span1">0</span>
+                    <span><img src="../../../assets/img/approved.png" alt="" style="vertical-align:1px"> Approved</span>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <span class="span1">0</span>
+                    <span><img src="../../../assets/img/rejected.png" alt="" style="vertical-align:1px"> Rejected</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="round2">{{billerlength}}</div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h6>Payment Billers</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" [routerLink]="['/pending-biller']">
+                    <button class="card-button">Approve Billers <br> Now</button>
+                  </div>
+                </div>
+                <hr>
+                <div class="row mb-1">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <span class="span1">0</span>
+                    <span><img src="../../../assets/img/approved.png" alt="" style="vertical-align:1px"> Approved</span>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <span class="span1">0</span>
+                    <span><img src="../../../assets/img/rejected.png" alt="" style="vertical-align:1px"> Rejected</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="card">
+
+            <!-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img class="d-block w-100" src="../../../assets/img/1.jpg" alt="First slide">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="../../../assets/img/2.jpg" alt="Second slide">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="../../../assets/img/1.jpg" alt="Third slide">
+                  </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div> -->
+
+
+
+
+
+          <div class="card-body">              
+            <div class="row main-card" >              
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                  <button class="btn-img1" (click)="goToPrevCard()" *ngIf="!!approvedcard && approvedcard.length > 1"><img style="vertical-align:2px;" alt="" src="../../../assets/img/left-arrow.png"></button>
+              </div>
+              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 main-cardbody" *ngIf="!!approvedcard && approvedcard.length > 1">
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 name">   
+                    <span class="spn4">{{approvedcard[currentCard].cardholder}}</span>                 
+                  </div>
+                </div>
+                <div class="row number">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">{{approvedcard[currentCard].digits}}</div>
+                                     
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-12 spn1">                  
+                  VALID                  
+                  </div>
+                </div>
+                <div class="row bottom">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-12 spn2">
+                      <span class="spn2">UPTO </span>
+                      <span class="spn2">{{approvedcard[currentCard].expirydate}}</span>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 credit-limit">                  
+                    <!-- Credit Limit                   -->
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="progress">
+                          <!-- <div class="progress-bar progress-bar-success" role="progressbar" style="width:50%">
+                            <p class="p1">1.7 Cr</p>
+                            <p class="p2">2 Cr</p>
+                          </div> -->
+                        </div>
+                      </div>
+                    </div>
+                <!-- <div class="row">
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-success" role="progressbar" style="width:70%">
+                      <p style="margin-left:88%;">1.7 Cr</p>
+                    </div>
+                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width:30%">
+                      <p style="margin-left:80%;">2 Cr</p>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                  <button class="btn-img1"><img style="vertical-align:2px;"
+                    alt="" src="../../../assets/img/right-arrow.png" (click)="goToNextCard()" *ngIf="!!approvedcard && approvedcard.length > 1"></button>
+              </div>              
+            </div>          
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="card">
+          <div class="row" style="border-bottom: 1px solid #ededed;">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-2 mt-2">
+              <span class="title">Category-wise Spends</span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-2 mt-2 date">From &nbsp;<input type="text">
+              &nbsp;to&nbsp; <input type="text"></div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 text-center" style="position:relative;margin-top: 6%;">
+                <h3>1.45 Cr</h3>
+                <h6 class="spent">Total Spent</h6>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6"><img src="../../../assets/img/doughnut1.png" alt=""></div>
+            </div>
+            <div class="row">
+              <div class="col-lg-3 col-md-3 col-sm-3 col-sm-3"></div>
+              <div class="col-lg-9 col-md-9 col-sm-9 col-sm-9">
+                <span class="spn-red">.</span><span class="graph-ratio">Electricity</span>
+                <span class="spn-ocean">.</span><span class="graph-ratio">Telecom</span>
+                <span class="spn-blue">.</span><span class="graph-ratio">Gas</span>
+                <span class="spn-orange">.</span><span class="graph-ratio">Insurance</span>
+                <span class="spn-yellow">.</span><span class="graph-ratio">Water</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4">
+        <div class="card">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h5>Recent Payments</h5>
+            </div>
+          </div>
+          <div class="card-body">
+            <div style="border:1px solid #ededed">
+              <table>
+                <thead>
+                  <tr>
+                    <td>
+                      <div class="checkbox">
+                        <input type="checkbox" value="">
+                      </div>
+                    </td>
+                    <td>Utility Type</td>
+                    <td>Biller Name</td>
+                    <td>Amount</td>
+                    <td>Bill Number</td>
+                    <td>Due Date</td>
+                    <td>Status</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="checkbox">
+                        <input type="checkbox" value="">
+                      </div>
+                    </td>
+                    <td>Electricity</td>
+                    <td>Assam Power Distribution Company Ltd.</td>
+                    <td>Rs. 111126.37</td>
+                    <td>1234567890</td>
+                    <td>30/12/2018</td>
+                    <td>Pending with Approver</td>
+                  </tr>
+                  <!-- <tr>
+                    <td>
+                      <div class="checkbox">
+                        <input type="checkbox" value="">
+                      </div>
+                    </td>
+                    <td>Telecom</td>
+                    <td>Reliance JIO</td>
+                    <td>Rs. 15,000</td>
+                    <td>0987654321</td>
+                    <td>20<sup>th</sup></td>
+                    <td>Pending with Biller</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="checkbox">
+                        <input type="checkbox" value="">
+                      </div>
+                    </td>
+                    <td>Gas</td>
+                    <td>Bharat Gas</td>
+                    <td>Rs. 16,000</td>
+                    <td>4567890123</td>
+                    <td>20<sup>th</sup></td>
+                    <td>Rejected by Approver</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="checkbox">
+                        <input type="checkbox" value="">
+                      </div>
+                    </td>
+                    <td>Electricity</td>
+                    <td>Tata Power</td>
+                    <td>Rs. 20,000</td>
+                    <td>3210987654</td>
+                    <td>15<sup>th</sup></td>
+                    <td>Registered</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="checkbox">
+                        <input type="checkbox" value="">
+                      </div>
+                    </td>
+                    <td>Insurance</td>
+                    <td>AXIS</td>
+                    <td>Rs. 8,000</td>
+                    <td>8907654321</td>
+                    <td>01<sup>th</sup></td>
+                    <td>Registered by Biller</td>
+                  </tr> -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+</div>

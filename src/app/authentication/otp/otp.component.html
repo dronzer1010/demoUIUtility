@@ -1,0 +1,48 @@
+<div class="container-fluid h-100">
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-3"></div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+      <h3 id="heading"><strong>Welcome to Axis Utility Payments</strong></h3>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-12"></div>
+  </div>
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-3"></div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+      <div id="heading2"><strong>Your Utility bill payments made easy.</strong></div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-3"></div>
+  </div>
+  <div class="aqua">
+    <img id="logo" src="../../../assets/img/logo.png">
+    <p>Axis Utility Payments</p>
+  </div>
+  <div class="card sec">
+    <div class="card-body">
+      <div style="margin-right:0px;">
+        <form>
+          <div>
+            <div class="heading3"><span class="underline">Verify</span> your Mobile Number</div>
+            <div id="para">We have sent an OTP on your registered number.</div>
+            <div id="para">Please enter it below.</div>
+            <div class="mt-4" style="width:100%;">
+                <input id="codeBox1" #input1 type="text" maxlength="1" [appAutoTab]="input2"/>
+                <input id="codeBox2" #input2 type="text" maxlength="1" [appAutoTab]="input3"/>
+                <input id="codeBox3" #input3 type="text" maxlength="1" [appAutoTab]="input4"/>
+                <input id="codeBox4" #input4 type="text" maxlength="1" [appAutoTab]="input5"/> 
+                <input id="codeBox5" #input5 type="text" maxlength="1"/>             
+            </div>
+            </div>
+            <!-- <div id="outer">
+              <div id="inner">
+                <input id="partitioned" type="text" maxlength="5">
+              </div>
+            </div> -->
+            <div class="reg3">Resend OTP?</div>
+            <div class="login2"><button class="btn" type="submit" [routerLink]="['/dashboard-maker']">Verify</button></div>
+          </form>
+          </div>        
+      </div>
+    </div>
+  </div>
+

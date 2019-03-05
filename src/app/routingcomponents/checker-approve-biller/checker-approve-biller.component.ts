@@ -1,0 +1,174 @@
+import { Component, OnInit,Inject } from '@angular/core';
+//import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
+
+
+
+@Component({
+  selector: 'app-checker-approve-biller',
+  templateUrl: './checker-approve-biller.component.html',
+  styleUrls: ['./checker-approve-biller.component.css']
+})
+export class CheckerApproveBillerComponent implements OnInit {
+  select=false;
+  display='none';
+  pendingList:boolean=true;
+  approve:boolean=false;
+  reject:boolean=false; 
+  displaydownloadlist='none';
+  displayreason='none';
+  displaypaydetails='none';
+  billdata:any=[];
+  pendingbillers:any=[];
+  filterQuery = "";
+  rowsOnPage = 300;
+  sortBy = "email";
+  sortOrder = "asc";
+  billerlength:number=0;
+  public checkedValueArray: any = [];
+  public temp: any;
+  public cntChk: any;
+  public flag: any;
+  selectall:boolean=false;
+  selectallbiller:boolean=false;
+  noofrole="No billers available"
+  constructor() { }
+
+  
+  ngOnInit() {
+    // $(document).ready(function(){
+    //   $('#button').click(function(){
+      
+    // });
+    // });
+    this.billdata=JSON.parse(localStorage.getItem('billdetails'));
+    console.log(this.billdata)
+
+    this.pendingbillers = this.billdata.filter((data)=>data['status']=='Pending');
+    if(this.pendingbillers==null){
+      this.billerlength=0
+      this.noofrole="No billers available"
+    }else{
+      this.billerlength=this.pendingbillers.length;
+      if(this.billerlength>1){
+        this.noofrole="No of Billers:"
+      }else{
+        this.noofrole="No of Biller:"
+      }
+    }
+
+    
+   
+  }
+
+  changeAll(pendingbillerpage): void {
+    
+    if(this.checkedValueArray.length==this.pendingbillers.length){
+    this.cntChk=1
+    }else{
+    this.checkedValueArray = [];
+    this.cntChk=0
+    }
+    console.log(this.selectall)
+    if (this.cntChk == 0) {
+      this.cntChk = 1;
+      this.temp = true;
+      this.selectall=true;
+      this.select=true;
+      for (var i = 0; i < pendingbillerpage.length; i++) {
+        this.checkedValueArray[i] = pendingbillerpage[i].id;
+      }
+      this.cntChk = 0;
+    }
+   
+    else {
+      this.cntChk = 0;
+      this.temp = false;
+      this.checkedValueArray = [];
+      this.select=false;
+    }
+    console.log(this.checkedValueArray)
+  }
+
+  change(id): void {
+    this.flag = 0;
+    for (var i = 0; i < this.checkedValueArray.length; i++) {
+      if (this.checkedValueArray[i] == id) {
+        this.checkedValueArray.splice(i, 1);
+        this.flag = 1;
+      }
+    }
+    if (this.flag == 0) {
+      this.checkedValueArray.push(id);
+     
+    }
+
+    if (this.checkedValueArray.length > 0) {
+      this.temp = true;
+      if(this.checkedValueArray.length<this.pendingbillers.length){
+        this.selectall=false
+      }else{
+        this.selectall=true;
+        this.cntChk = 1;
+      }
+      console.log(this.selectall)
+     
+    }
+    else {
+      this.temp = false;
+      if(this.checkedValueArray.length<this.pendingbillers.length){
+        this.selectall=false
+      }else{
+        this.selectall=true;
+      }
+      console.log(this.selectall)
+     
+    }
+    console.log(this.checkedValueArray)
+  }
+  openModalDialog(){
+    this.display=''; //Set block css
+ }
+
+ closeModalDialog(){
+  this.display='block'; //set none css after close dialog
+ }
+ closeModalDialog2(){
+  this.displayreason='block';
+ }
+openModalDialog2(){
+this.displayreason='';
+}
+ approveBtn(){
+  
+  var bills =JSON.parse(localStorage.getItem('billdetails'));
+
+  for(var i=0;i<this.checkedValueArray.length;i++){
+    for(var j=0;j<bills.length;j++){
+
+
+      if(this.checkedValueArray[i]==parseInt(bills[j]['id'])){
+       
+        bills[j]['status']="Approved"
+      }
+    }
+  }
+  this.billdata=bills;
+  console.log(this.billdata)
+  localStorage.setItem('billdetails', JSON.stringify(this.billdata));
+  this.pendingList=false;
+  this.approve=true;
+  this.reject=false;
+
+
+
+}
+rejectBtn(){
+  this.pendingList=false;
+  this.approve=false;
+  this.reject=true;
+}
+  
+
+}
+

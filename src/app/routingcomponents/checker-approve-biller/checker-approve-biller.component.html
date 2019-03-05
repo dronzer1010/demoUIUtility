@@ -1,0 +1,356 @@
+<app-headerchecker></app-headerchecker>
+<div class="row h-100" style="background-color:#f4f4f4;">
+  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+    <div class="row" *ngIf="pendingList">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 heading">Pending Billers</div>
+    </div>
+    <div class="row" *ngIf="pendingList">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row" style="margin-bottom:20px;margin-right: -15px!important;">
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <img src="../../../assets/img/search-icon.png" width="5%;"> <input type="search" placeholder="Search for Location, Biller Type or Utility">
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
+                <input list="browsers" value="All Categories" id="datalist" style="margin-left:10px;">
+                <datalist id="browsers">
+                  <option value="Internet Explorer" selected>
+                  <option value="Firefox">
+                  <option value="Chrome">
+                  <option value="Opera">
+                  <option value="Safari">
+                </datalist>
+                <input list="date" id="datalist" value="This Month" style="margin-left:10px;">
+                <datalist id="date">
+                  <option value="This Month">
+                  <option value="This Week">
+                </datalist>
+                <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png"> Download File</button> -->
+                <a id="button" class="btn btn-primary btn-outline ResponsiveBtnWidth openModal" (click)="closeModalDialog()"
+                  style="margin-left: 10px;">Download
+                  File</a>
+                <div class="backdrop" [ngStyle]="{'display':display}"></div>
+                <!-- modal -->
+                <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+                  <!-- modal-dialog -->
+                  <div class="modal-dialog" role="document">
+                    <!-- modal-content -->
+                    <div class="modal-content">
+                      <!-- modal-header -->
+                      <div class="modal-header">
+                        Generate Customize Report<button type="button" class="close" aria-label="Close" (click)="openModalDialog()"><span
+                            aria-hidden="true">&times;</span></button>
+                        <!-- <h4 class="modal-title">Login</h4> -->
+                      </div>
+                      <!-- modal-body -->
+                      <div class="modal-body">
+                        <div class="row mb-4 text-left">
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <label for="" class="pop-input-text">Report Name :</label>
+                            <input type="text" class="pop-input" placeholder="Eg. Quarterly Report">
+                          </div>
+                        </div>
+                        <div class="row mb-4 text-left">
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <label for="">Select the field to create a report</label>
+                          </div>
+                        </div>
+                        <div class="row mb-2 text-left">
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Utility
+                              Type</span>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Reference
+                              Number</span>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <input type="checkbox" name="Bill" value="Bill"> <span class="spn-modal">Bill Date</span>
+                          </div>
+                        </div>
+                        <div class="row mb-2 text-left">
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Email</span>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Biller
+                              Type</span>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <input type="checkbox" name="Bill" value="Bill"> <span class="spn-modal">Short Name</span>
+                          </div>
+                        </div>
+                        <div class="row mb-2 text-left">
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Mobile
+                              Number</span>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Location</span>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <input type="checkbox" name="Bill" value="Bill"> <span class="spn-modal">Due Date</span>
+                          </div>
+                        </div>
+                        <div class="row mb-4 text-left">
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">GL/Expense
+                              Code</span>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Attachment</span>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+                        </div>
+                        <div class="row mb-4 text-left">
+                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"> From <input type="date" value="2018-08-26">
+                            To <input type="date"></div>
+                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
+                        </div>
+                        <div class="row text-left">
+                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button class="btn-ok" style="margin-right:10px;">OK</button></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:20px;margin-right: -15px!important;">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 txt">
+                    {{noofrole}} <strong>{{billerlength}}</strong>
+                  </div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right"><button class="btn1" style="margin-right:10px;"
+                  (click)="approveBtn()">Approve
+                  Biller</button>
+                <button class="btn2 ml-2" (click)="closeModalDialog2()">Reject Biller</button></div>
+            </div>
+            <div class="backdrop" [ngStyle]="{'display':displayreason}"></div>
+            <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayreason}">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    Comment<button type="button" class="close" aria-label="Close" (click)="openModalDialog2()"><span
+                        aria-hidden="true">&times;</span></button>
+                    <!-- <h4 class="modal-title">Login</h4> -->
+                  </div>
+                  <div class="modal-body">
+                    <div class="row mb-4 mb-4 mt-3">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label class="pop-input-text">Reject Reason : </label>&nbsp;
+                        <input type="text" class="pop-input" placeholder="Eg. Rs. 343">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"><button class="btn-ok" (click)="rejectBtn(); openModalDialog2()">OK</button></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin:0px;">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
+                <table id="main-table" [mfData]="pendingbillers" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                  <thead>
+                    <tr>
+                      <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(pendingbillers)"></td>
+                      <td>Sr. No.</td>
+                      <td>Utility Type <img src="../../../assets/img/Filter.png"></td>
+                      <td>Biller Name <img src="../../../assets/img/Filter.png"></td>
+                      
+                      <td>Bill Date <img src="../../../assets/img/Filter.png"></td>
+                      <td>Due Date <img src="../../../assets/img/Filter.png"></td>
+                      <td>Status <img src="../../../assets/img/Filter.png"></td>
+                      <td>&nbsp;</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <ng-container  *ngFor="let bill of mf.data; let i=index;">
+                    <tr>
+                      <td><input type="checkbox" name="submenu" [checked]="select" (change)="change(bill.id) "></td>
+                      <td>{{i+1}}</td>
+                      <td>{{bill.board}}</td>
+                      <td>{{bill.biller}}</td>
+                      <td>{{bill.billdate}}</td>
+                      <td>{{bill.duedate}}</td>
+                      <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': bill.status === 'Approved', 'Rejected': bill.status  === 'Rejected', 'Pending': bill.status  === 'Pending'}" role="button">{{bill.status}}</a></td>
+                      <td style="padding-left: 1%;"><img src="../../../assets/img/tb_downarrow.png" (click)="bill.collapsed=!bill.collapsed;"></td>
+                    </tr>
+                    <tr class="rowShow grayStrip" *ngIf="bill.collapsed">
+                      <td class="custmtd" colspan="8">
+                        <div class="tablediv">
+                          <h5>Biller Details</h5>
+                          <div class="mb-1">
+                            <div class="span_width">Short Name:</div>
+                            <div class="bold_span">{{bill.shortname}</div>
+                          </div>
+                          <div class="mb-1">
+                            <div class="span_width">GL/Expense Code: </div>
+                            <div class="bold_span">{{bill.expensecode}}</div>
+                          </div>
+                          <div class="mb-1">
+                            <div class="span_width">Meter Reading:</div>
+                            <div class="bold_span">{{bill.reading}}</div>
+                          </div>
+                          <div class="mb-1">
+                            <div class="span_width">Location</div>
+                            <div class="bold_span">{{bill.state}}</div>
+                          </div>
+                          <div>
+                            <div class="span_width">Consumer No.</div>
+                            <div class="bold_span">{{bill.consumerno}}</div>
+                          </div>
+                        </div>
+                        <div class="tablediv">
+                          <h5>Contact Details</h5>
+                          <div class="mb-1">
+                            <div class="span_width">Mobile No:</div>
+                            <div class="bold_span">{{bill.contact}}</div>
+                          </div>
+                          <div class="mb-1">
+                            <div class="span_width">Address: </div>
+                            <div class="bold_span">{{bill.billaddress}}</div>
+                          </div>
+                          <div>
+                            <div class="span_width">Email:</div>
+                            <div class="bold_span">{{bill.email}}</div>
+                          </div>
+                        </div>
+                        <div class="tablediv noborder">
+                          <h5>Other Details</h5>
+                          <div class="mb-1">
+                            <div class="span_width">File Name :</div>
+                            <div class="bold_span">{{billdata.uploadfilename}}</div>
+                          </div>
+                          <div class="mb-1">
+                            <div class="span_width">Initiated by :</div>
+                            <div class="bold_span">{{billdata.initiatedby}}</div>
+                          </div>
+                          <div class="mb-1">
+                            <div class="span_width">Initiated on : </div>
+                            <div class="bold_span">{{billdata.initiatedon}}</div>
+                          </div>
+                          <div class="mb-1">
+                            <div class="span_width">Approver By:</div>
+                            <div class="bold_span">{{billdata.initiatedby}}</div>
+                          </div>
+                          <div class="mb-1">
+                            <div class="span_width">Approved on : </div>
+                            <div class="bold_span">{{billdata.approvedon}}</div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="rowShow grayStrip" *ngIf="bill.collapsed">
+                      <td colspan="8"><span class="pull-right"><img src="../../../assets/img/Download.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <a data-toggle="modal" href="#myModal" id="openBtn"><img src="../../../assets/img/popup.png"></a></span></td>
+                    </tr>
+                </ng-container>
+                  </tbody>
+                  <tfoot>
+                      <tr>
+                          <td colspan="8">
+                              <mfBootstrapPaginator [rowsOnPageSet]="[10,25,50,100]"></mfBootstrapPaginator>
+                          </td>
+                      </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4" *ngIf="pendingList">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
+        <nav aria-label="Page navigation example" style="float:right;">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&lang;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&rang;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="row setup-content form_bg" id="approve" *ngIf="approve">
+      <div class="BorderBottom"></div>
+      <div class="col-md-12 text-center">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div>
+            <div class="clear30"></div>
+            <div class="clear20"></div>
+            <div class="clear20"></div>
+            <img src="../../../assets/img/done-tick.png">
+            <div class="clear20"></div>
+            <div class="clear20"></div>
+            <label class="successhedtxt">Biller have been approved</label>
+            <div class="clear20"></div>
+            <div class="clear20"></div>
+            <div class="col-xs-3 col-sm-3 col-md-3"></div>
+            <div class="col-xs-3 col-sm-3 col-md-3">
+              <a class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog" [routerLink]="['/checker-biller']">View
+                Billers</a>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-3">
+              <a class="btn btn-primary btn-outline Btn_Width2" [routerLink]="['/dashboard-checker']">Go to Dashboard</a>
+            </div>
+            <div class="clear30"></div>
+            <div class="clear20"></div>
+            <div class="clear20"></div>
+            <div class="col-xs-3 col-sm-3 col-md-3"></div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="row setup-content form_bg" id="reject" *ngIf="reject">
+      <div class="BorderBottom"></div>
+      <div class="col-md-12 text-center">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div>
+            <div class="clear30"></div>
+            <div class="clear20"></div>
+            <div class="clear20"></div>
+            <img src="../../../assets/img/wrong.png">
+            <div class="clear20"></div>
+            <div class="clear20"></div>
+            <label class="successhedtxt">Biller have been rejected</label>
+            <div class="clear20"></div>
+            <div class="clear20"></div>
+            <div class="col-xs-3 col-sm-3 col-md-3"></div>
+            <div class="col-xs-3 col-sm-3 col-md-3">
+              <a class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog" [routerLink]="['/checker-biller']">View
+                Billers</a>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-3">
+              <a class="btn btn-primary btn-outline Btn_Width2" [routerLink]="['/dashboard']">Go to Dashboard</a>
+            </div>
+            <div class="clear30"></div>
+            <div class="clear20"></div>
+            <div class="clear20"></div>
+            <div class="col-xs-3 col-sm-3 col-md-3"></div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+</div>

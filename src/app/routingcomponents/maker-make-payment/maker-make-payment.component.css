@@ -1,0 +1,1000 @@
+.pop-input-text {
+  display: block;
+  color: #807199;
+}
+
+.bottom_images{
+  height: 40px;
+}
+
+.pop-input {
+  border: 0px;
+  border-bottom: 1px solid #ccc;
+  font-size: 13px;
+  width: 95%;
+  margin-bottom: 25px;
+}
+
+.modal-header {
+  text-align: center;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.anchor-bill {
+  border: 1px solid #cccccc;
+  color: #737373;
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.btn-show {
+  border: 0px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #6e6e6e;
+  padding: 0px;
+  margin: 15px 0px;
+  background-color: white;
+}
+
+.div-label {
+  width: 40%;
+  float: left;
+  color: #807199;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  font-size: 13px;
+  margin: 5px 0px;
+}
+
+.div-data {
+  width: 60%;
+  float: left;
+  color: #6e6e6e;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  font-size: 13px;
+  margin: 5px 0px;
+}
+
+.big-circle1 {
+  width: 18px !important;
+  height: 18px !important;
+  padding: 6px 0px;
+  background-color: #533979;
+  border-color: #533979;
+  border-radius: 20px !important;
+}
+
+.btn-circle-big .tick2 {
+  display: block;
+  height: 12px !important;
+  width: 12px !important;
+  margin-left: 2px !important;
+}
+
+.detail_bill {
+  padding: 2% 4% !important;
+  padding-bottom: 1% !important;
+}
+
+.inputstyle {
+  border: 0px;
+  border-bottom: 1px solid #b7b7b7;
+  width: 100%;
+  font-size: 13.1px;
+  font-weight: 300;
+  color: #3f4245;
+}
+
+.inputstyle1 {
+  border: 0px;
+  border-bottom: 1px solid #b7b7b7;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 300;
+  color: #3f4245;
+}
+
+.inputstylerole {
+  border: 0px;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 300;
+  color: #3f4245;
+}
+
+.inputstyletitle {
+  border: 0px;
+  width: 100%;
+  font-size: 13px;
+  font-weight: 300;
+  color: #3f4245;
+}
+
+.preregtxt {
+  font-size: 12.4px;
+  font-weight: 300;
+  color: #3f4245;
+}
+
+.inpstyle {
+  cursor: pointer;
+  background: url('/assets/images/datepicker.png') no-repeat 100% 6px !important;
+  padding-bottom: 10px;
+}
+
+#dropdown1 .btn {
+  display: inline-block;
+  padding: 6px 12px 6px 0px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 0px;
+}
+
+#dropdown1 button.btn.btn-default.dropdown-toggle.btn_width {
+  border-bottom: 1px solid #b7b7b7;
+}
+
+#dropdown1 .btn-default.active,
+.btn-default:active,
+.open>.dropdown-toggle.btn-default,
+.btn-default:hover {
+  color: #333;
+  background-color: #ffffff;
+  border-color: #adadad;
+}
+
+#dropdown1 button.btn.btn-default.dropdown-toggle.btn_width {
+  width: 100%;
+}
+
+#dropdown1 span#search_concept {
+  margin-right: 88%;
+}
+
+.padln {
+  padding-left: 0px !important;
+}
+
+.padrn {
+  padding-right: 0px !important;
+}
+
+.mrgntopm {
+  margin-top: -10px;
+}
+
+span {
+  font-weight: 500;
+  color: #333;
+  vertical-align: -4px;
+}
+
+.span1 {
+  font-weight: 500;
+  color: #5c5c5c;
+  margin-left: 10px;
+  vertical-align: -4px;
+}
+
+strong {
+  font-weight: 500;
+}
+
+.modelWidthn {
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 0px;
+}
+
+.mybody2n {
+  padding: 50px 20px
+}
+
+.brdlft {
+  border-left: 1px solid #eee;
+}
+
+.chkselect {
+  background-color: #64289d;
+}
+
+.prevlghd {
+  font-size: 15.8px;
+  font-weight: 600;
+  color: #3f4245;
+}
+
+.buttonpad {
+  padding: 6px 25px !important;
+}
+
+.btnmargin {
+  margin-left: 2% !important;
+}
+
+.stepmrgnlft{
+  margin-left: 40px;
+}
+
+input[type="checkbox"] {
+
+  -webkit-appearance: initial;
+  width: 16px;
+  height: 16px;
+  background-color: #c7c7c7;
+  display: inline-block;
+  border-radius: 5px;
+  margin-right: 6px;
+  vertical-align: sub;
+  outline: none
+}
+
+input[type="checkbox"]:hover,
+input[type="checkbox"]:checked {
+  background: #64289d;
+}
+
+
+.contact-form .label {
+  margin-bottom: 20px;
+  position: absolute;
+  left: 0px !important;
+  padding-left: 0px !important;
+  bottom: 0;
+  font-size: 14px;
+  line-height: 26px;
+  font-weight: 400;
+  color: #533979;
+  cursor: text;
+  transition: -webkit-transform .2s ease-in-out;
+  transition: transform .2s ease-in-out;
+  transition: transform .2s ease-in-out, -webkit-transform .2s ease-in-out;
+}
+
+/* .tick2,.tick3,.tick4{
+    margin-top: -3px;
+    width: 10px;
+    height: 10px;
+    display: none;
+    margin-left: 3px;
+} */
+.inptxt {
+  font-size: 13.1px;
+  font-weight: 100;
+  line-height: 1.83;
+  color: #666666;
+}
+
+.preregtxt {
+  font-size: 12.4px;
+  font-weight: 300;
+  color: #666666;
+}
+
+.stepwizard-row2:before {
+  width: 63%;
+  right: 160px;
+}
+
+.inputstyle {
+  border: 0px;
+  border-bottom: 1px solid #b7b7b7;
+  width: 100%;
+}
+
+.inpstyle {
+  cursor: pointer;
+  background: url('/assets/images/datepicker.png') no-repeat 100% 6px !important;
+}
+
+#dropdown1 .btn {
+  display: inline-block;
+  padding: 6px 12px 6px 0px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 0px;
+}
+
+#dropdown1 button.btn.btn-default.dropdown-toggle.btn_width {
+  border-bottom: 1px solid #b7b7b7;
+}
+
+#dropdown1 .btn-default.active,
+.btn-default:active,
+.open>.dropdown-toggle.btn-default,
+.btn-default:hover {
+  color: #333;
+  background-color: #ffffff;
+  border-color: #adadad;
+}
+
+#dropdown1 button.btn.btn-default.dropdown-toggle.btn_width {
+  width: 100%;
+}
+
+#dropdown1 span#search_concept {
+  margin-right: 88%;
+}
+
+.padln {
+  padding-left: 0px !important;
+}
+
+.padrn {
+  padding-right: 0px !important;
+}
+
+.mrgntopm {
+  margin-top: -10px;
+}
+
+
+
+
+.modelWidthn {
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 0px;
+}
+
+.mybody2n {
+  padding: 50px 20px
+}
+
+.brdlft {
+  border-left: 1px solid #eee;
+}
+
+.chkselect {
+  background-color: #64289d;
+}
+
+.prevlghd {
+  font-size: 15.8px;
+  font-weight: 600;
+  color: #3f4245;
+}
+
+.buttonpad {
+  padding: 6px 25px !important;
+}
+
+.btnmargin {
+  margin-left: 4% !important;
+}
+
+input[type="checkbox"] {
+
+  -webkit-appearance: initial;
+  width: 16px;
+  height: 16px;
+  background-color: #c7c7c7;
+  display: inline-block;
+  border-radius: 5px;
+  margin-right: 6px;
+  vertical-align: sub;
+  outline: none
+}
+
+input[type="checkbox"]:hover,
+input[type="checkbox"]:checked {
+  background: #64289d;
+}
+
+.labpos {
+
+  padding-left: -10px !important;
+
+}
+
+.privilegeHead td {
+  text-align: center;
+}
+
+.privilegeData td {
+  padding-left: 35px !important;
+  border-right: 1px solid #d5d5d5;
+}
+
+.labelData {
+  padding: 2%;
+  font-size: 14px;
+  border-bottom: 1px solid #d5d5d5;
+  width: 100%;
+}
+
+.form-control {
+  box-shadow: none !important;
+  border-radius: 0px !important;
+  margin-top: 13px;
+}
+
+.stepwizard {
+  /* margin-top: 30px; */
+  display: table;
+  width: 80%;
+  position: relative;
+  margin: 15px 0;
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.top_back {
+  padding-left: 4% !important;
+  margin-top: 0% !important;
+}
+
+.stepwizard-row:before {
+  top: 14px !important;
+  bottom: 0;
+  position: absolute;
+  content: " ";
+  width: 62% !important;
+  height: 1px;
+  background-color: #ccc;
+  z-index: 0;
+  right: 150px !important;
+}
+
+.heading {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 30px;
+}
+
+input[type="search"] {
+  width: 92%;
+  border: 0px;
+  border-bottom: 1px solid #cfcfcf;
+  font-size: 10px;
+  outline-style: none;
+  color: #999;
+  padding: 0 10px;
+  margin-top: 15px;
+}
+
+.btn-1 {
+  width: 100%;
+  font-size: 13px;
+  border: 1px solid #f4f4f4;
+  border-radius: 3px;
+  padding: 15px 0px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.btn-1:hover {
+  background-color: #533979;
+  color: #fff;
+}
+
+.col-md-5th-1 {
+  width: 20% !important;
+}
+
+.table-border {
+  border: 1px solid #f4f4f4;
+  padding: 0px !important;
+  margin: 20px 0px;
+}
+
+#main-table {
+  border-spacing: 15px;
+}
+
+thead tr {
+  background-color: #fff !important;
+}
+
+table tr td:nth-child(1) {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+thead tr td {
+  font-size: 13px;
+  font-weight: bold;
+  height: 50px;
+}
+
+table tr:nth-child(odd) {
+  background-color: #fafafa;
+}
+
+.grayStrip {
+  background-color: #fafafa;
+  border: solid 1px #ebedf2;
+}
+
+tbody tr td {
+  font-size: 13px;
+  color: #7a7a7a;
+
+}
+
+table {
+  width: 100%;
+}
+
+.datalist {
+  width: 40px;
+  border: 0px;
+  border-bottom: 1px solid #cfcfcf !important;
+  text-align: center;
+}
+
+.spn {
+  color: #666;
+  vertical-align: unset !important;
+}
+
+input::-webkit-calendar-picker-indicator {
+  opacity: 100;
+}
+
+.pre-card {
+  float: left;
+  margin: 8px 0px;
+}
+
+.spn-card {
+  font-size: 11px !important;
+  padding: 0px 2px !important;
+  vertical-align: unset !important;
+}
+
+.card-button {
+  border: 1px solid #d6d6d6;
+  border-radius: 5px;
+  width: 100%
+}
+
+.btn-img1 {
+  border-radius: 20px;
+  position: absolute;
+  top: 50%;
+  margin-top: 30px;
+  height: 30px;
+  width: 30px;
+  border: 0px;
+}
+
+.main-card {
+  position: relative;
+}
+
+@media only screen and (max-width: 1920px) {
+  .main-cardbody {
+    background-image: url(../../../assets/img/new-cred-card.png);
+    color: #fff !important;
+    min-height: 270px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .spn1 {
+    display: block;
+    text-align: left;
+    font-size: 10px;
+    margin-top: 5px;
+    vertical-align: unset;
+    color: #fff;
+  }
+
+  .spn2 {
+    display: block;
+    text-align: left;
+    font-size: 10px;
+    margin-bottom: 5px;
+    vertical-align: unset;
+    color: #fff;
+  }
+
+  .spn3 {
+    display: block;
+    text-align: left;
+    margin-bottom: 3px;
+    font-size: 13px;
+    vertical-align: unset;
+    color: #fff;
+  }
+
+  .spn4 {
+    font-size: 15px;
+    vertical-align: unset;
+    color: #fff;
+  }
+
+  .card-no {
+    font-size: 20px;
+  }
+
+  .progress {
+    overflow: visible;
+    margin-bottom: 26px;
+    height: 6px;
+    border-radius: 6px;
+  }
+
+  .p1 {
+    margin-left: 50% !important;
+    width: 50px;
+    font-size: 13px;
+    margin-top: 7px;
+    display: inline;
+    position: absolute;
+  }
+
+  .p2 {
+    left: 235px !important;
+    width: 50px;
+    font-size: 13px;
+    margin-top: 7px;
+    display: inline;
+    position: absolute;
+  }
+
+  .spn-mrg {
+    margin: 10px 0px;
+  }
+
+  .btn-img {
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    margin-top: 70px;
+    height: 35px;
+    width: 35px;
+    border: 0px;
+  }
+
+  .border3 {
+    color: #8153ad;
+    font-weight: 600;
+    margin-bottom: 50px;
+    margin-top: 35px;
+  }
+
+  .main-graph {
+    height: 448px;
+  }
+
+  .graph-ratio {
+    font-size: 15px;
+    margin-right: 15px;
+  }
+}
+
+@media only screen and (max-width: 1440px) {
+  .main-cardbody {
+    background-image: url(../../../assets/img/new-cred-card.png);
+    color: #fff !important;
+    min-height: 240px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 40px;
+    margin-bottom: 0px;
+  }
+
+  .spn1 {
+    display: block;
+    text-align: left;
+    font-size: 10px;
+    margin-top: 10px;
+    vertical-align: unset;
+    color: #fff;
+  }
+
+  .spn2 {
+    display: block;
+    text-align: left;
+    font-size: 10px;
+    margin-bottom: 0px;
+    vertical-align: unset;
+    color: #fff;
+  }
+
+  .spn3 {
+    display: block;
+    text-align: left;
+    margin-bottom: 3px;
+    font-size: 13px;
+    vertical-align: unset;
+    color: #fff;
+  }
+
+  .spn4 {
+    font-size: 16px;
+    vertical-align: unset;
+    color: #fff;
+  }
+
+  .card-no {
+    font-size: 13px;
+  }
+
+  .progress {
+    overflow: visible;
+    margin-bottom: 26px;
+    height: 4px;
+    border-radius: 4px;
+  }
+
+  .p1 {
+    margin-left: 28% !important;
+    width: 50px;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+  .p2 {
+    left: 235px !important;
+    width: 50px;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+  .spn-mrg {
+    margin: 15px 0px;
+  }
+
+  .btn-img {
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    margin-top: 110px;
+    height: 35px;
+    width: 35px;
+  }
+
+  .border3 {
+    color: #8153ad;
+    font-weight: 600;
+    margin-bottom: 50px;
+    margin-top: 35px;
+  }
+
+  .main-graph {
+    height: 409px;
+  }
+
+  .graph-ratio {
+    font-size: 12px;
+    margin-right: 15px;
+  }
+}
+
+@media only screen and (max-width: 1370px) {
+  .main-cardbody {
+    background-image: url(../../../assets/img/new-cred-card.png);
+    color: #fff !important;
+    min-height: 240px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 40px;
+    margin-bottom: 0px;
+  }
+
+  .spn1 {
+    display: block;
+    text-align: left;
+    font-size: 10px;
+    margin-top: 10px;
+    vertical-align: unset;
+    color: #fff;
+  }
+
+  .spn2 {
+    display: block;
+    text-align: left;
+    font-size: 10px;
+    margin-bottom: 0px;
+    vertical-align: unset;
+    color: #fff;
+  }
+
+  .spn3 {
+    display: block;
+    text-align: left;
+    margin-bottom: 3px;
+    font-size: 13px;
+    vertical-align: unset;
+    color: #fff;
+  }
+
+  .spn4 {
+    font-size: 16px;
+    vertical-align: unset;
+    color: #fff;
+  }
+
+  .card-no {
+    font-size: 21px;
+  }
+
+  .progress {
+    overflow: visible;
+    margin-bottom: 26px;
+    height: 4px;
+    border-radius: 4px;
+  }
+
+  .p1 {
+    margin-left: 50% !important;
+    width: 50px;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+  .p2 {
+    left: 300px !important;
+    width: 50px;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+  .spn-mrg {
+    margin: 15px 0px;
+  }
+
+  .btn-img {
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    margin-top: 110px;
+    height: 35px;
+    width: 35px;
+  }
+
+  .border3 {
+    color: #8153ad;
+    font-weight: 600;
+    margin-bottom: 50px;
+    margin-top: 35px;
+  }
+
+  .main-graph {
+    height: 409px;
+  }
+
+  .graph-ratio {
+    font-size: 12px;
+    margin-right: 15px;
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .main-cardbody {
+    background-image: url(../../../assets/img/new-cred-card.png);
+    color: #fff !important;
+    min-height: 230px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 48px;
+    margin-bottom: 0px;
+  }
+
+  .spn1 {
+    display: block;
+    text-align: left;
+    font-size: 10px;
+    margin-top: 7px;
+    vertical-align: unset;
+    color: #fff;
+  }
+
+  .spn2 {
+    display: block;
+    text-align: left;
+    font-size: 10px;
+    margin-bottom: 5px;
+    vertical-align: unset;
+    color: #fff;
+  }
+
+  .spn3 {
+    display: block;
+    text-align: left;
+    margin-bottom: 3px;
+    font-size: 13px;
+    vertical-align: unset;
+    color: #fff;
+  }
+
+  .spn4 {
+    font-size: 16px;
+    vertical-align: unset;
+    color: #fff;
+  }
+
+  .card-no {
+    font-size: 21px;
+  }
+
+  .progress {
+    overflow: visible;
+    margin-bottom: 26px;
+    height: 4px;
+    border-radius: 4px;
+  }
+
+  .p1 {
+    margin-left: 50% !important;
+    width: 50px;
+    font-size: 12px;
+    margin-top: 5px;
+    position: absolute;
+    display: inline;
+  }
+
+  .p2 {
+    left: 230px !important;
+    width: 50px;
+    font-size: 12px;
+    margin-top: 5px;
+    position: absolute;
+    display: inline;
+  }
+
+  .spn-mrg {
+    margin: 10px 0px;
+  }
+
+  .btn-img {
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    margin-top: 110px;
+    height: 30px;
+    width: 30px;
+  }
+
+  .border3 {
+    color: #8153ad;
+    font-weight: 600;
+    margin-bottom: 50px;
+    margin-top: 35px;
+  }
+
+  .main-graph {
+    height: auto;
+  }
+
+  .graph-ratio {
+    font-size: 12px;
+    margin-right: 15px;
+  }
+}
