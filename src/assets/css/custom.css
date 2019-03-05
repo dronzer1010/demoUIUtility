@@ -2260,3 +2260,9 @@ path.highcharts-button-symbol,
   transform: none;
   text-anchor: middle;
 }
+
+
+.loading-svg{
+  max-width: 2%;
+  vertical-align: baseline;
+}
