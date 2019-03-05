@@ -3,67 +3,100 @@
         "code": "MH",
         "billers":[
             {
-                "id":"1",
-                "name":"Maharashtra State Electricity Distribution Company Limited"
+                "id":1,
+                "name":"Brihan mumbai electricity supply and transport undertaking (best undertaking)"
             },
             {
-                "id":"2",
-                "name":"Tata Power"
+                "id":2,
+                "name":"BSESR"
+            },
+           
+            {
+                "id":3,
+                "name":"Tata Power - Mumbai"
             },
             {
-                "id":"3",
-                "name":"Reliance Power"
+                "id":4,
+                "name":"Reliance Energy - Mumbai / Adani Electricity"
+            },
+            {
+                "id":5,
+                "name":"SNDL Nagpur"
+            },
+            {
+                "id":6,
+                "name":"Torrent Power Ltd."
             }
         ]
     },
     {
-        "code": "UP",
+        "code": "AP",
         "billers":[
             {
-                "id":"4",
-                "name":"Kanpur Electricity Supply Company Limited"
+                "id":7,
+                "name":"Eastern Power Distribution Company of Andhra Pradesh Ltd. (APEPDCL)"
             },
             {
-                "id":"5",
-                "name":"Uttar Pradesh Power Corporation Limited"
-            },
-            {
-                "id":"6",
-                "name":"Reliance Power"
+                "id":8,
+                "name":"southern power distribution company of a.p ltd (apspdcl)"
             }
         ]
     },
     {
-        "code": "TN",
+        "code": "KA",
         "billers":[
             {
-                "id":"7",
-                "name":"Tamil Nadu Generation and Distribution Corporation Limited"
+                "id":9,
+                "name":"bangalore electricity supply company ltd."
             },
             {
-                "id":"8",
-                "name":"Maris Power Supply Company Pvt Ltd"
+                "id":10,
+                "name":"Chamundeshwari electricity supply corporation ltd mysore"
             },
             {
-                "id":"9",
-                "name":"Tamil Nadu Electricity Board"
+                "id":11,
+                "name":"gulbarga electricity supply company limited (gescom)"
+            },
+            {
+                "id":12,
+                "name":"hubli electricity supply company ltd. (hescom)"
+            },
+            {
+                "id":13,
+                "name":"mangalore electricity supply company ltd. (mescom)"
             }
         ]
     },
     {
-        "code": "DL",
+        "code": "RJ",
         "billers":[
             {
-                "id":"10",
-                "name":"Delhi Power Company Ltd"
+                "id":14,
+                "name":"Ajmer vidyut vitran nigam limited (avvnl)"
             },
             {
-                "id":"11",
-                "name":"Tata Power Delhi Distribution Limited"
+                "id":15,
+                "name":"Bharatpur electricity services limited"
             },
             {
-                "id":"12",
-                "name":"REC Power Distribution Company Ltd"
+                "id":16,
+                "name":"Bikaner electricity supply limited"
+            },
+            {
+                "id":17,
+                "name":"Jaipur vidyut vitran nigam ltd. (jvvnl)"
+            },
+            {
+                "id":18,
+                "name":"Jodhpur vidyut vitran nigam limited (jdvvnl)"
+            },
+            {
+                "id":19,
+                "name":"Kota electricity distribution limited(kedl)"
+            },
+            {
+                "id":20,
+                "name":"TP ajmer distribution limited (tpadl)"
             }
         ]
     }

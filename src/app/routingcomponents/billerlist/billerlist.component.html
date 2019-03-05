@@ -152,8 +152,8 @@
                       <td>{{bill.board}}</td>
                       <td>{{bill.biller}}</td>
                      
-                      <td>{{bill.billdate}}</td>
-                      <td>{{bill.duedate}}</td>
+                      <td>{{bill.billdate | date:'dd-MM-yyyy'}}</td>
+                      <td>{{bill.duedate | date:'dd-MM-yyyy'}}</td>
                       <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': bill.status === 'Approved', 'Rejected': bill.status  === 'Rejected', 'Pending': bill.status  === 'Pending'}" role="button">{{bill.status}}</a></td>
                       <td style="padding-left: 1%;"><img src="../../../assets/img/tb_downarrow.png" alt=""  (click)="bill.collapsed=!bill.collapsed;"></td>
                     </tr>
@@ -209,23 +209,23 @@
                           <h5>Other Details</h5>
                           <div class="mb-1">
                             <div class="span_width">File Name :</div>
-                            <div class="bold_span">{{billdata.uploadfilename}}</div>
+                            <div class="bold_span">{{bill.uploadfilename}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Initiated by :</div>
-                            <div class="bold_span">{{billdata.initiatedby}}</div>
+                            <div class="bold_span">{{bill.initiatedby}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Initiated on : </div>
-                            <div class="bold_span">{{billdata.initiatedon}}</div>
+                            <div class="bold_span">{{bill.initiatedon | date:'dd-MM-yyyy hh:mm a'}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Approver By:</div>
-                            <div class="bold_span">{{billdata.initiatedby}}</div>
+                            <div class="bold_span">{{bill.approvedby}}</div>
                           </div>
                           <div>
                             <div class="span_width">Approved on : </div>
-                            <div class="bold_span">{{billdata.approvedon}}</div>
+                            <div class="bold_span">{{bill.approvedon | date:'dd-MM-yyyy hh:mm a'}}</div>
                           </div>
                         </div>
                       </td>
