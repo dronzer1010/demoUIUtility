@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-maker-biller-bulk',
   templateUrl: './maker-biller-bulk.component.html',
@@ -9,12 +9,38 @@ export class MakerBillerBulkComponent implements OnInit {
   billertype:boolean=true;
   billdetails:boolean=false;
   reviewfile:boolean=false;
+  billdata:any={};
+  states:any;
+  billers:any;
+  billerlist:any=[];
   conf:boolean=false;
   success:boolean=false;
   
-  constructor() { }
+  constructor(private httpService: HttpClient) { }
 
   ngOnInit() {
+    this.httpService.get('./assets/states.json').subscribe(
+      data=>{
+        this.states=data;
+      }
+    )
+  }
+
+  getBiller(stateid){
+  
+    this.httpService.get('./assets/billers.json').subscribe(
+      data=>{
+        this.billers=data;
+        for(var i=0;i<this.billers.length;i++){
+          if(this.billers[i]['code']==stateid){
+            this.billerlist=[];
+            this.billerlist=this.billers[i]['billers']
+          }
+        }
+        console.log(this.billerlist)
+       
+      }
+    )
   }
   billrdetails(){
     this.billdetails=true;
