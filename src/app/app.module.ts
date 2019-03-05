@@ -49,6 +49,7 @@ import { CheckerPaymentListComponent } from './routingcomponents/checker-payment
 import { MakerBillerListComponent } from './routingcomponents/maker-biller-list/maker-biller-list.component'
 
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { OtpapproveComponent } from './routingcomponents/otpapprove/otpapprove.component';
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     CheckerPaymentsComponent,
     AutoTabDirective,
     CheckerPaymentListComponent,
-    MakerBillerListComponent    
+    MakerBillerListComponent,
+    OtpapproveComponent    
    
   ],
   imports: [
