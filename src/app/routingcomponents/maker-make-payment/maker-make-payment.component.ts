@@ -289,7 +289,7 @@ export class MakerMakePaymentComponent implements OnInit {
 
 
     var tempPendingPayments = this.pendingPayments.map((payment)=>{
-      var card = this.approvedcard[this.approvedcard.currentCard];
+      var card = this.approvedcard[this.currentCard];
       payment['status']='Pending';
       payment['card']=card;
       return payment;
