@@ -162,21 +162,25 @@
                   <div class="clear20"></div>
                   <div class="clear20"></div>
                   <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12 padln">
-                    <select class="input-text js-input inptxt form-control" name="usertitle" required>
-                      <option value="Telecom" selected>Eg. Elecricity</option>
-                      <option value="Electricity">Electricity</option>
-                      <option value="Watar">Watar</option>
-                      <option value="Insurance">Insurance</option>
-                      <option value="Gas">Gas</option>
+                    <select class="input-text js-input inptxt form-control" name="usertitle" required [(ngModel)]="billdata.board" name="board">
+                      <option value="Electricity" selected>Elecricity</option>
+                     
                     </select>
                     <label class="label" for="usertitle">Select Type of Utility</label>
                   </div>
                   <div class="clear20"></div>
                   <div class="clear20"></div>
+                  <div class="col-xs-12 col-sm-12 col-md-12 padln">
+                    <select class="input-text js-input inptxt form-control" required [(ngModel)]="billdata.state" name="state" (change)="getBiller($event.target.value)">
+                      <option *ngFor="let state of states" value="{{state.code}}">{{state.name}}</option>
+                    </select>
+                    <label class="label" for="usertitle">Select State</label>
+                  </div>
+                  <div class="clear20"></div>
+                  <div class="clear20"></div>
                   <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12 padln">
-                    <select class="input-text js-input inptxt form-control" name="usertitle" required>
-                      <option value="Select" selected>Select Biller</option>
-                      <option value="SPDCL">Assam Power Distribution Company Ltd</option>                     
+                    <select class="input-text js-input inptxt form-control" [(ngModel)]="billdata.biller" name="biller" required>
+                      <option *ngFor="let bilr of billerlist" value="{{bilr.name}}">{{bilr.name}}</option>                     
                     </select>
                     <label class="label" for="usertitle">Select Biller</label>
                   </div>
@@ -224,7 +228,9 @@
                                 </span>
                             </label>
                             <div class="clear20"></div>
-                            <button class="btn bg-primary nextpay buttonpad" type="button" (click)="upldfile()">Click to Browse</button>
+                            <!-- <button class="btn bg-primary nextpay buttonpad" type="file" (click)="upldfile();onFileLoad($event)">Click to Browse</button> -->
+                            <input class="btn bg-primary nextpay buttonpad" type="file" [(ngModel)]="fileUpload" name="fileUpload" (change)="UploadFile($event)"
+                          accept=".csv" />
                         </form>
                     </div>
                 </div>
@@ -268,7 +274,7 @@
               </div>
               <div class="row" style="margin-top:15px; font-size:13px;">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                  Type of Utility : <span class="spn">Electricity</span>
+                  Type of Utility : <span class="spn">{{billdata.board}}</span>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
                   Show : <input list="browsers" value="100" class="datalist">
@@ -282,16 +288,21 @@
                 </div>
               </div>
               <div class="row" style="margin-top:15px; font-size:13px;">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    State : <span class="spn">{{billdata.state}}</span>
+                  </div>
+                </div>
+              <div class="row" style="margin-top:15px; font-size:13px;">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  Biller Name : <span class="spn">Assam Power Distribution Company Ltd</span>
+                  Biller Name : <span class="spn">{{billdata.biller}}</span>
                 </div>
               </div>
               <div class="row" style="margin-top:15px; font-size:13px;">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                  No. of Entries : <span class="spn">1</span>
+                  No. of Entries : <span class="spn">5</span>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-                  <button class="btn bg-primary nextpay buttonpad" type="button" (click)="revfile()" style="padding: 3px 25px!important;">Send
+                  <button class="btn bg-primary nextpay buttonpad" type="button" (click)="revfile();submitdata()" style="padding: 3px 25px!important;">Send
                     for Approval</button>
                 </div>
               </div>
@@ -301,7 +312,7 @@
                     <table id="main-table">
                       <thead>
                         <tr>
-                          <td><input name="vehicle1" type="checkbox" value="Bike"></td>
+                          <td><input name="vehicle1" type="checkbox" (click)="changeall()"></td>
                           <td>Consumer No &nbsp;</td>
                           <td>Location &nbsp;</td>
                           <td>Bill Date &nbsp;</td>
@@ -311,45 +322,230 @@
                       </thead>
                       <tbody>
                         <tr>
-                          <td><input name="vehicle1" type="checkbox" value="Bike"></td>
-                          <td>61000006056</td>
-                          <td>Guwahati</td>
-                          <td>10/12/2018</td>
-                          <td>30/12/2018</td>
-                          <td><img src="../../../assets/img/tb_downarrow.png"></td>
+                          <td><input name="vehicle1" type="checkbox" [checked]="selectall"></td>
+                          <td>110413000536</td>
+                          <td>RJ</td>
+                          <td>2019-03-05</td>
+                          <td>2019-03-10</td>
+                          <td><img src="../../../assets/img/tb_downarrow.png" (click)="collapse=!collapse"></td>
                         </tr>
-                        <!-- <tr>
-                          <td><input name="vehicle1" type="checkbox" value="Bike"></td>
-                          <td>1234567890</td>
-                          <td>Mumbai</td>
-                          <td>3 <sup>rd</sup></td>
-                          <td>20 <sup>th</sup></td>
-                          <td><img src="../../../assets/img/tb_downarrow.png"></td>
+                        <tr class="rowShow grayStrip" *ngIf="collapse">
+                          <td class="custmtd" colspan="6">
+                            <div class="tablediv">
+                              <h5>Biller Details</h5>
+                              <div class="mb-1">
+                                <div class="span_width">Short Name:</div>
+                                <div class="bold_span">AVVNL</div>
+                              </div>
+                              <div class="mb-1">
+                                <div class="span_width">GL/Expense Code: </div>
+                                <div class="bold_span">123/223455</div>
+                              </div>
+                             
+                            </div>
+                            <div class="tablediv">
+                              <h5>Contact Details</h5>
+                              <div class="mb-1">
+                                <div class="span_width">Mobile No:</div>
+                                <div class="bold_span">9897866565</div>
+                              </div>
+                              <div class="mb-1">
+                                <div class="span_width">Address: </div>
+                                <div class="bold_span">103 Cantt Road Ajmer</div>
+                              </div>
+                              <div>
+                                <div class="span_width">Email:</div>
+                                <div class="bold_span">kausal@mmt-grp.com</div>
+                              </div>
+                            </div>
+                            <div class="tablediv noborder">
+                                <div class="mb-1">
+                                    <div class="span_width">File Name :</div>
+                                    <div class="bold_span">billerbulkfile.csv</div>
+                                  </div>
+                              </div>
+                          </td>
                         </tr>
                         <tr>
-                          <td><input name="vehicle1" type="checkbox" value="Bike"></td>
-                          <td>1234567890</td>
-                          <td>Thane</td>
-                          <td>2 <sup>nd</sup></td>
-                          <td>20 <sup>th</sup></td>
-                          <td><img src="../../../assets/img/tb_downarrow.png"></td>
-                        </tr>
-                        <tr>
-                          <td><input name="vehicle1" type="checkbox" value="Bike"></td>
-                          <td>1234567890</td>
-                          <td>Nashik</td>
-                          <td>1 <sup>st</sup></td>
-                          <td>1 <sup>st</sup></td>
-                          <td><img src="../../../assets/img/tb_downarrow.png"></td>
-                        </tr>
-                        <tr>
-                          <td><input name="vehicle1" type="checkbox" value="Bike"></td>
-                          <td>1234567890</td>
-                          <td>Pune</td>
-                          <td>4 <sup>th</sup></td>
-                          <td>20 <sup>th</sup></td>
-                          <td><img src="../../../assets/img/tb_downarrow.png"></td>
-                        </tr> -->
+                            <td><input name="vehicle1" type="checkbox" [checked]="selectall"></td>
+                            <td>110413000345</td>
+                            <td>RJ</td>
+                            <td>2019-03-05</td>
+                            <td>2019-03-10</td>
+                            <td><img src="../../../assets/img/tb_downarrow.png" (click)="collapse1=!collapse1"></td>
+                          </tr>
+                          <tr class="rowShow grayStrip" *ngIf="collapse1">
+                            <td class="custmtd" colspan="6">
+                              <div class="tablediv">
+                                <h5>Biller Details</h5>
+                                <div class="mb-1">
+                                  <div class="span_width">Short Name:</div>
+                                  <div class="bold_span">AVVNL</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">GL/Expense Code: </div>
+                                  <div class="bold_span">123/343454</div>
+                                </div>
+                               
+                              </div>
+                              <div class="tablediv">
+                                <h5>Contact Details</h5>
+                                <div class="mb-1">
+                                  <div class="span_width">Mobile No:</div>
+                                  <div class="bold_span">9897866565</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Address: </div>
+                                  <div class="bold_span">103 Cantt Road Ajmer</div>
+                                </div>
+                                <div>
+                                  <div class="span_width">Email:</div>
+                                  <div class="bold_span">kausal@mmt-grp.com</div>
+                                </div>
+                              </div>
+                              <div class="tablediv noborder">
+                                  <div class="mb-1">
+                                      <div class="span_width">File Name :</div>
+                                      <div class="bold_span">billerbulkfile.csv</div>
+                                    </div>
+                                </div>
+                            </td>
+                          </tr>
+                          <tr>
+                              <td><input name="vehicle1" type="checkbox" [checked]="selectall"></td>
+                              <td>110413002334</td>
+                              <td>RJ</td>
+                              <td>2019-03-05</td>
+                              <td>2019-03-10</td>
+                              <td><img src="../../../assets/img/tb_downarrow.png" (click)="collapse2=!collapse2"></td>
+                            </tr>
+                            <tr class="rowShow grayStrip" *ngIf="collapse2">
+                              <td class="custmtd" colspan="6">
+                                <div class="tablediv">
+                                  <h5>Biller Details</h5>
+                                  <div class="mb-1">
+                                    <div class="span_width">Short Name:</div>
+                                    <div class="bold_span">AVVNL</div>
+                                  </div>
+                                  <div class="mb-1">
+                                    <div class="span_width">GL/Expense Code: </div>
+                                    <div class="bold_span">123/343243</div>
+                                  </div>
+                                 
+                                </div>
+                                <div class="tablediv">
+                                  <h5>Contact Details</h5>
+                                  <div class="mb-1">
+                                    <div class="span_width">Mobile No:</div>
+                                    <div class="bold_span">9897866565</div>
+                                  </div>
+                                  <div class="mb-1">
+                                    <div class="span_width">Address: </div>
+                                    <div class="bold_span">103 Cantt Road Ajmer</div>
+                                  </div>
+                                  <div>
+                                    <div class="span_width">Email:</div>
+                                    <div class="bold_span">kausal@mmt-grp.com</div>
+                                  </div>
+                                </div>
+                                <div class="tablediv noborder">
+                                    <div class="mb-1">
+                                        <div class="span_width">File Name :</div>
+                                        <div class="bold_span">billerbulkfile.csv</div>
+                                      </div>
+                                  </div>
+                              </td>
+                            </tr>
+                            <tr>
+                                <td><input name="vehicle1" type="checkbox" [checked]="selectall"></td>
+                                <td>110413004345</td>
+                                <td>RJ</td>
+                                <td>2019-03-05</td>
+                                <td>2019-03-10</td>
+                                <td><img src="../../../assets/img/tb_downarrow.png" (click)="collapse3=!collapse3"></td>
+                              </tr>
+                              <tr class="rowShow grayStrip" *ngIf="collapse3">
+                                <td class="custmtd" colspan="6">
+                                  <div class="tablediv">
+                                    <h5>Biller Details</h5>
+                                    <div class="mb-1">
+                                      <div class="span_width">Short Name:</div>
+                                      <div class="bold_span">AVVNL</div>
+                                    </div>
+                                    <div class="mb-1">
+                                      <div class="span_width">GL/Expense Code: </div>
+                                      <div class="bold_span">123/334355</div>
+                                    </div>
+                                   
+                                  </div>
+                                  <div class="tablediv">
+                                    <h5>Contact Details</h5>
+                                    <div class="mb-1">
+                                      <div class="span_width">Mobile No:</div>
+                                      <div class="bold_span">9897866565</div>
+                                    </div>
+                                    <div class="mb-1">
+                                      <div class="span_width">Address: </div>
+                                      <div class="bold_span">103 Cantt Road Ajmer</div>
+                                    </div>
+                                    <div>
+                                      <div class="span_width">Email:</div>
+                                      <div class="bold_span">kausal@mmt-grp.com</div>
+                                    </div>
+                                  </div>
+                                  <div class="tablediv noborder">
+                                      <div class="mb-1">
+                                          <div class="span_width">File Name :</div>
+                                          <div class="bold_span">billerbulkfile.csv</div>
+                                        </div>
+                                    </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                  <td><input name="vehicle1" type="checkbox" [checked]="selectall"></td>
+                                  <td>110413023445</td>
+                                  <td>RJ</td>
+                                  <td>2019-03-05</td>
+                                  <td>2019-03-10</td>
+                                  <td><img src="../../../assets/img/tb_downarrow.png" (click)="collapse4=!collapse4"></td>
+                                </tr>
+                                <tr class="rowShow grayStrip" *ngIf="collapse4">
+                                  <td class="custmtd" colspan="6">
+                                    <div class="tablediv">
+                                      <h5>Biller Details</h5>
+                                      <div class="mb-1">
+                                        <div class="span_width">Short Name:</div>
+                                        <div class="bold_span">AVVNL</div>
+                                      </div>
+                                      <div class="mb-1">
+                                        <div class="span_width">GL/Expense Code: </div>
+                                        <div class="bold_span">123/334343</div>
+                                      </div>
+                                     
+                                    </div>
+                                    <div class="tablediv">
+                                      <h5>Contact Details</h5>
+                                      <div class="mb-1">
+                                        <div class="span_width">Mobile No:</div>
+                                        <div class="bold_span">9897866565</div>
+                                      </div>
+                                      <div class="mb-1">
+                                        <div class="span_width">Address: </div>
+                                        <div class="bold_span">103 Cantt Road Ajmer</div>
+                                      </div>
+                                      <div>
+                                        <div class="span_width">Email:</div>
+                                        <div class="bold_span">kausal@mmt-grp.com</div>
+                                      </div>
+                                    </div>
+                                    <div class="tablediv noborder">
+                                        <div class="mb-1">
+                                            <div class="span_width">File Name :</div>
+                                            <div class="bold_span">billerbulkfile.csv</div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                </tr>
                       </tbody>
                     </table>
                   </div>
@@ -357,7 +553,7 @@
               </div>
             </div>
           </div>
-          <div class="row mt-4">
+          <!-- <div class="row mt-4">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
               <nav aria-label="Page navigation example" style="float:right;">
                 <ul class="pagination">
@@ -379,7 +575,7 @@
                 </ul>
               </nav>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
       </div>

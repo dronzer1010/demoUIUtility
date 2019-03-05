@@ -80,7 +80,8 @@ export class MakerBillerUnitaryComponent implements OnInit {
     console.log(this.billdata)
     this.billdata.status = "Pending";
     this.billdata.initiatedby = "Mr. Rajesh Arora"
-    this.billdata.initiatedon = new Date();
+    var d =new Date();
+    this.billdata.initiatedon = d.toLocaleString();
     this.billdata.uploadfilename = "Unitary"
     var billerData =[];
     billerData=JSON.parse(localStorage.getItem('billdetails'));

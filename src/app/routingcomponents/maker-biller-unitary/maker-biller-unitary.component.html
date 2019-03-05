@@ -125,7 +125,7 @@
                   <div class="clear20"></div>
                   <div class="clear20"></div>
                   <div class="col-xs-12 col-sm-12 col-md-12 padln">
-                    <select class="input-text js-input inptxt form-control" name="usertitle" required [(ngModel)]="billdata.board" name="board">
+                    <select class="input-text js-input inptxt form-control" required [(ngModel)]="billdata.board" name="board">
                       <option value="Electricity" selected>Electricity</option>
                     </select>
                     <label class="label" for="usertitle">Select Type of Utility</label>
@@ -133,7 +133,7 @@
                   <div class="clear20"></div>
                   <div class="clear20"></div>
                   <div class="col-xs-12 col-sm-12 col-md-12 padln">
-                    <select class="input-text js-input inptxt form-control" name="usertitle" required [(ngModel)]="billdata.state" name="state" (change)="getBiller($event.target.value)">
+                    <select class="input-text js-input inptxt form-control" required [(ngModel)]="billdata.state" name="state" (change)="getBiller($event.target.value)">
                       <option *ngFor="let state of states" value="{{state.code}}">{{state.name}}</option>
                     </select>
                     <label class="label" for="usertitle">Select State</label>
@@ -142,7 +142,7 @@
                   <div class="clear20"></div>
                 
                   <div class="col-xs-12 col-sm-12 col-md-12 padln">
-                    <select class="input-text js-input inptxt form-control" name="usertitle" required [(ngModel)]="billdata.biller" name="biller">
+                    <select class="input-text js-input inptxt form-control" required [(ngModel)]="billdata.biller" name="biller">
                       <option *ngFor="let bilr of billerlist" value="{{bilr.name}}">{{bilr.name}}</option>
                     </select>
                     <label class="label" for="usertitle">Select Biller</label>
