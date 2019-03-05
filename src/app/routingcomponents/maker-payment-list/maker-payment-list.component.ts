@@ -8,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 export class MakerPaymentListComponent implements OnInit {
   display='none';
   displayBillDetails='none';
+  noofrole="No billers available"
+  filterQuery = "";
+  rowsOnPage = 300;
+  sortBy = "email";
+  sortOrder = "asc";
+  payments : any =[]
   constructor() { }
 
   ngOnInit() {
+    this.payments=JSON.parse(localStorage.getItem('payments'));
   }
   openModalDialog(){
     this.display='';  //Set block css
