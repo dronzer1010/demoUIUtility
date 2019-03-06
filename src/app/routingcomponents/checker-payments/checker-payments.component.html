@@ -72,7 +72,7 @@
                       <td>Bill Number <img src="../../../assets/img/Filter.png" alt=""></td>
                       <td>Due Date <img src="../../../assets/img/Filter.png" alt=""></td>
                       <td>Status</td>
-                      <td>Payment Status</td>
+                      <!-- <td>Payment Status</td> -->
                       <td>&nbsp;</td>
                     </tr>
                   </thead>
@@ -81,12 +81,12 @@
                     <tr>
                         <td>{{i+1}}</td>
                       <td>{{payment.bill.biller}}</td>
-                      <td>Rs. {{payment.amount}}</td>
+                      <td>₹ {{payment.amount}}</td>
                       <td>{{payment.billnumber}}</td>
                       <td>{{payment.duedate}}</td>
                       <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.status}}</a></td>
-                      <td>{{payment.paymentstatus}}</td>
-                      <td><img src="../../../assets/img/tb_downarrow.png" alt="" (click)="payment.collapsed=!payment.collapsed;"></td>
+                      <!-- <td>{{payment.paymentstatus}}</td> -->
+                      <td style="padding:0px 5px;"><img src="../../../assets/img/tb_downarrow.png" alt="" (click)="payment.collapsed=!payment.collapsed;"></td>
                     </tr>
                     <tr class="rowShow grayStrip" style="" *ngIf="payment.collapsed">
                       <td class="custmtd" colspan="8">
@@ -106,9 +106,14 @@
                               <div class="bold_span">{{payment.billdate}}</div>
                             </div>
                             <div class="mb-1">
-                              <div class="span_width">Location</div>  <span> : </span> &nbsp;
-                              <div class="bold_span">{{payment.bill.state}}</div>
-                            </div>
+                                <div class="span_width">Location</div> <span> : </span> &nbsp;
+                                <div class="bold_span" *ngIf="payment.bill.state=='MH'" >Maharashtra</div>
+                                <div class="bold_span" *ngIf="payment.bill.state=='RJ'" >Rajasthan</div>
+                                <div class="bold_span" *ngIf="payment.bill.state=='KA'" >Karnataka</div>
+                                <div class="bold_span" *ngIf="payment.bill.state=='AP'" >Andhra Pradesh</div>
+                                <div class="bold_span" *ngIf="payment.bill.state=='GJ'" >Gujarat</div>
+                                <div class="bold_span" *ngIf="payment.bill.state=='DL'" >Delhi</div>
+                              </div>
                             <div class="mb-1">
                               <div class="span_width">Consumer No</div>  <span> : </span> &nbsp;
                               <div class="bold_span">{{payment.bill.consumerno}}</div>
@@ -156,9 +161,9 @@
                     </tr>
                     <tr class="rowShow grayStrip" style="" *ngIf="payment.collapsed">
                       <td colspan="8"><span class="pull-right"><a><img src="../../../assets/img/page.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <a data-toggle="modal" href="#myModal" id="openBtn"><img src="../../../assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+                         <a data-toggle="modal" href="#myModal" id="openBtn"><img src="../../../assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- <a
                             href=""><img src="../../../assets/img/edit.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a><img
-                              src="../../../assets/img/delete.png" alt=""></a></span></td>
+                              src="../../../assets/img/delete.png" alt=""></a>--> </span></td>
                     </tr>
                   </ng-container>
                   </tbody>
