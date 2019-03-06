@@ -60,7 +60,7 @@ export class MakerBillerBulkComponent implements OnInit {
     {
       "billaddress":"103 Cantt Road Ajmer",
       "billdate":"6th of every month",
-      "biller":"Ajmer vidyut vitran nigam limited (avvnl)",
+      "biller":"AVVNL Ajmer",
       "board":"Electricity",
       "consumerno":"110413002334",
       "contact":"9897866565",
@@ -76,7 +76,7 @@ export class MakerBillerBulkComponent implements OnInit {
     {
       "billaddress":"7655 Udyag Bhavan Hydrabad",
       "billdate":"6th of every month",
-      "biller":"Eastern Power Distribution Company of Andhra Pradesh Ltd.",
+      "biller":"APEPDCL",
       "board":"Electricity",
       "consumerno":"110413004345",
       "contact":"9897866565",
@@ -92,7 +92,7 @@ export class MakerBillerBulkComponent implements OnInit {
     {
       "billaddress":"119/27 Primsroad MG Road Bangalore",
       "billdate":"6th of every month",
-      "biller":"Bangalore electricity supply company ltd.",
+      "biller":"BESCOM",
       "board":"Electricity",
       "consumerno":"110413023445",
       "contact":"9897866565",

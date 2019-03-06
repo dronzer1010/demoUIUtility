@@ -52,9 +52,9 @@
                       <thead>
                         <tr>
                             <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(pendingPayments)"></td>
-                          <td>Bill Name <img src="../../../assets/img/Filter.png" alt=""></td>
+                          <td>Biller Name <img src="../../../assets/img/Filter.png" alt=""></td>
                           <td>Amount <img src="../../../assets/img/Filter.png" alt=""></td>
-                          <td>Bill Number <img src="../../../assets/img/Filter.png" alt=""></td>
+                          <td>Consumer Number <img src="../../../assets/img/Filter.png" alt=""></td>
                           <td>Due Date <img src="../../../assets/img/Filter.png" alt=""></td>
                           <td>Status</td>
                           <td>Payment Status</td>
@@ -67,7 +67,7 @@
                             <td><input type="checkbox" name="submenu" [checked]="select" (change)="change(payment.id) "></td>
                           <td>{{payment.bill.biller}}</td>
                           <td>Rs. {{payment.amount}}</td>
-                          <td>{{payment.billnumber}}</td>
+                          <td>{{payment.bill.consumerno}}</td>
                           <td>{{payment.duedate}}</td>
                           <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.status}}</a></td>
                           <td>{{payment.paymentstatus}}</td>
@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="mb-1">
                                   <div class="span_width">Consumer No</div>  <span> : </span> &nbsp;
-                                  <div class="bold_span">{{payment.bill.consumerno}}</div>
+                                  <div class="bold_span">{{payment.billnumber}}</div>
                                 </div>
                             </div>
                             <div class="tablediv">
