@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
 import{Router} from '@angular/router';
 @Component({
-  selector: 'app-otpapprove',
-  templateUrl: './otpapprove.component.html',
-  styleUrls: ['./otpapprove.component.css']
+  selector: 'app-otpapprove-payment',
+  templateUrl: './otpapprovepayment.component.html',
+  styleUrls: ['./otpapprovepayment.component.css']
 })
-export class OtpapproveComponent implements OnInit {
+export class OtpapprovePaymentComponent implements OnInit {
 
   constructor(private _location: Location , private router : Router) { }
 

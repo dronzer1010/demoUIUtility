@@ -49,7 +49,8 @@ import { CheckerPaymentListComponent } from './routingcomponents/checker-payment
 import { MakerBillerListComponent } from './routingcomponents/maker-biller-list/maker-biller-list.component'
 
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { OtpapproveComponent } from './routingcomponents/otpapprove/otpapprove.component';
+import { OtpapprovePaymentComponent } from './routingcomponents/otpapprovepayment/otpapprovepayment.component';
+import { OtpapproveBillerComponent } from './routingcomponents/otpapprovebiller/otpapprovebiller.component';
 import { ToastrModule } from 'ngx-toastr';
 
 
@@ -77,7 +78,8 @@ import { ToastrModule } from 'ngx-toastr';
     AutoTabDirective,
     CheckerPaymentListComponent,
     MakerBillerListComponent,
-    OtpapproveComponent    
+    OtpapprovePaymentComponent,
+    OtpapproveBillerComponent    
    
   ],
   imports: [

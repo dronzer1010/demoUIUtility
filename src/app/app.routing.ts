@@ -17,7 +17,8 @@ import { CheckerBillersComponent } from './routingcomponents/checker-billers/che
 import { CheckerPaymentsComponent } from './routingcomponents/checker-payments/checker-payments.component';
 import { CheckerPaymentListComponent } from './routingcomponents/checker-payment-list/checker-payment-list.component'
 import { MakerBillerListComponent } from './routingcomponents/maker-biller-list/maker-biller-list.component'
-import { OtpapproveComponent } from './routingcomponents/otpapprove/otpapprove.component';
+import { OtpapprovePaymentComponent } from './routingcomponents/otpapprovepayment/otpapprovepayment.component';
+import { OtpapproveBillerComponent } from './routingcomponents/otpapprovebiller/otpapprovebiller.component';
 
 const appRoutes: Routes = [ 
     {path:'pending-biller',component:CheckerApproveBillerComponent},
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
     {path:'dashboard-checker',component:DashboardCheckerComponent},                                                                                                              
     {path:'checker-payment-list',component:CheckerPaymentListComponent},
     {path:'maker-biller-list',component:MakerBillerListComponent},
-    {path:'otp-approve',component:OtpapproveComponent},
+    {path:'otp-approve-payment',component:OtpapprovePaymentComponent},
+    {path:'otp-approve-biller',component:OtpapproveBillerComponent},
 
     // otherwise redirect to home
     { path: '**', redirectTo: 'login' }
