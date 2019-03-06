@@ -1,0 +1,57 @@
+DASHBOARD:
+Axis bank ltd only - Done
+Change seeeion date and time - Done
+Date picker in category wise spends
+
+Unitary Biller:
+Bill date and due date format Change - Pending
+Approve msg: Bill has been submited for approval and notification has been sent - Done
+
+Pending Biller:
+Correction in email - Pending
+Type Seperator in initiated by - Pending
+Approve msg: the bill is approved and notification has been sent - Done
+
+Maker Biller Bulk:
+Add download template button - Done
+2nd window: Submit for approval - Done
+Approve msg: Bills r submitted for approval and notification has been sent - Done
+
+Billerlist:
+
+Pending Biller:
+Button: Approve Bill & Pending Bill - Done
+Add City name after biller short name
+Add name: Tata power, adani, torent gujrat, Bses rajdhani, bses yamuna, BEST Mumbai
+
+Payments Menu:
+Add Pending Payments
+
+Make payment:
+Add Bill Details <-> additionalDetails
+Add modal and show additional bill details
+Table spacing
+Highlight below card
+Card info should be in a single line
+Card Info <-> Card Approval Details
+Approve msg: The payments r submited for approval and notification has been sent
+
+Maker PAyment LIst:
+Location: Add full name
+Add Bill date before due date
+Biller name, consumer no, amount, bill date, due date, status
+Remove payment status
+
+Checker approve payment:
+No of bills <-> No of biller
+
+the payments are appproved and notifications has been sent
+
+Remove edit & delete in approve payments
+Add rupees symbol
+135*35
+
+OTP page: auto change of input
+Image loading issue
+Font-Family must be similar in complte project
+
