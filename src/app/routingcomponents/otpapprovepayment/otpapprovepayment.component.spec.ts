@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OtpapproveComponent } from './otpapprove.component';
+import { OtpapproveComponent } from './otpapprovepayment.component';
 
 describe('OtpapproveComponent', () => {
   let component: OtpapproveComponent;

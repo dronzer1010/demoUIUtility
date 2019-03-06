@@ -72,7 +72,7 @@ export class CheckerApprovePaymentsComponent implements OnInit {
   this.reject=false;
   
   localStorage.setItem('selectedPayments' , JSON.stringify(this.checkedValueArray));
-  this.router.navigate(['otp-approve'])
+  this.router.navigate(['otp-approve-payment'])
 
   // for(var i=0;i<this.checkedValueArray.length;i++){
   //   for(var j=0;j<this.payments.length;j++){

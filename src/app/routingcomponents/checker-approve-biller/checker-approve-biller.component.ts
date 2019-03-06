@@ -1,4 +1,5 @@
 import { Component, OnInit,Inject } from '@angular/core';
+import {Router , ActivatedRoute} from '@angular/router';
 //import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
@@ -32,15 +33,20 @@ export class CheckerApproveBillerComponent implements OnInit {
   selectall:boolean=false;
   selectallbiller:boolean=false;
   noofrole="No billers available"
-  constructor() { }
+  constructor(private router : Router , private aRouter : ActivatedRoute) { }
 
   
   ngOnInit() {
-    // $(document).ready(function(){
-    //   $('#button').click(function(){
-      
-    // });
-    // });
+    this.aRouter.queryParams
+    .filter(params => params.otp)
+    .subscribe(params => {
+      console.log(params);
+      if(params.otp && params.otp == 'success'){
+        this.pendingList=false;
+        this.approve=true;
+        this.reject=false;
+      }
+    });
     this.billdata=JSON.parse(localStorage.getItem('billdetails'));
     console.log(this.billdata)
 
@@ -143,27 +149,27 @@ this.displayreason='';
   
   var bills =JSON.parse(localStorage.getItem('billdetails'));
 
-  for(var i=0;i<this.checkedValueArray.length;i++){
-    for(var j=0;j<bills.length;j++){
+  // for(var i=0;i<this.checkedValueArray.length;i++){
+  //   for(var j=0;j<bills.length;j++){
 
 
-      if(this.checkedValueArray[i]==parseInt(bills[j]['id'])){
+  //     if(this.checkedValueArray[i]==parseInt(bills[j]['id'])){
        
-        bills[j]['status']="Approved"
-        bills[j]['approvedby']="Ms. Deepali Patekar"
-        var d =new Date();
-        bills[j]["approvedon"] = d.toLocaleString();
-      }
-    }
-  }
-  this.billdata=bills;
-  console.log(this.billdata)
-  localStorage.setItem('billdetails', JSON.stringify(this.billdata));
+  //       bills[j]['status']="Approved"
+  //       bills[j]['approvedby']="Ms. Deepali Patekar"
+  //       var d =new Date();
+  //       bills[j]["approvedon"] = d.toLocaleString();
+  //     }
+  //   }
+  // }
+  // this.billdata=bills;
+  // console.log(this.billdata)
+  // localStorage.setItem('billdetails', JSON.stringify(this.billdata));
   this.pendingList=false;
-  this.approve=true;
+  this.approve=false;
   this.reject=false;
-
-
+  localStorage.setItem('selectedBillers' , JSON.stringify(this.checkedValueArray));
+  this.router.navigate(['otp-approve-biller']);
 
 }
 rejectBtn(){
