@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
+import{Router} from '@angular/router';
 @Component({
   selector: 'app-otpapprove',
   templateUrl: './otpapprove.component.html',
@@ -7,13 +8,32 @@ import {Location} from '@angular/common';
 })
 export class OtpapproveComponent implements OnInit {
 
-  constructor(private _location: Location) { }
+  constructor(private _location: Location , private router : Router) { }
 
   ngOnInit() {
   }
 
   backClicked() {
     this._location.back();
+  }
+
+  verifyOtp(){
+    var payments = JSON.parse(localStorage.getItem('payments'));
+    var pendingPayments = JSON.parse(localStorage.getItem('selectedPayments'));
+
+    for(var i=0;i<pendingPayments.length;i++){
+      for(var j=0;j<payments.length;j++){
+        if(pendingPayments[i]==payments[j].id){
+          payments[j].status ="Approved";
+        }
+      }
+    }
+
+     localStorage.setItem('payments', JSON.stringify(payments));
+
+    this.router.navigate(['checker-approve-payments'], { queryParams: { otp: 'success' } })
+
+
   }
 
 }
