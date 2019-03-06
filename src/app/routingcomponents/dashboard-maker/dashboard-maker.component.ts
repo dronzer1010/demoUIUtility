@@ -48,7 +48,7 @@ export class DashboardMakerComponent implements OnInit {
   ngOnInit() {
     this.billdata=JSON.parse(localStorage.getItem('billdetails'));
     console.log(this.billdata)
-
+    if(this.billdata!=null){
     this.pendingbillers = this.billdata.filter((data)=>data['status']=='Pending');
     if(this.pendingbillers==null){
       this.billerlength=0
@@ -57,6 +57,9 @@ export class DashboardMakerComponent implements OnInit {
       this.billerlength=this.pendingbillers.length;
       
     }
+  }else{
+    this.billerlength=0
+  }
   }
 
   goToNextCard() {

@@ -150,6 +150,9 @@ this.displayreason='';
       if(this.checkedValueArray[i]==parseInt(bills[j]['id'])){
        
         bills[j]['status']="Approved"
+        bills[j]['approvedby']="Mr. Rajesh Arora"
+        var d =new Date();
+        bills[j]["approvedon"] = d.toLocaleString();
       }
     }
   }

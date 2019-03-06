@@ -187,16 +187,16 @@
                           <h5>Biller Details</h5>
                           <div class="mb-1">
                             <div class="span_width">Short Name:</div>
-                            <div class="bold_span">{{bill.shortname}</div>
+                            <div class="bold_span">{{bill.shortname}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">GL/Expense Code: </div>
                             <div class="bold_span">{{bill.expensecode}}</div>
                           </div>
-                          <div class="mb-1">
+                          <!-- <div class="mb-1">
                             <div class="span_width">Meter Reading:</div>
                             <div class="bold_span">{{bill.reading}}</div>
-                          </div>
+                          </div> -->
                           <div class="mb-1">
                             <div class="span_width">Location</div>
                             <div class="bold_span">{{bill.state}}</div>
@@ -225,23 +225,23 @@
                           <h5>Other Details</h5>
                           <div class="mb-1">
                             <div class="span_width">File Name :</div>
-                            <div class="bold_span">{{billdata.uploadfilename}}</div>
+                            <div class="bold_span">{{bill.uploadfilename}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Initiated by :</div>
-                            <div class="bold_span">{{billdata.initiatedby}}</div>
+                            <div class="bold_span">{{bill.initiatedby}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Initiated on : </div>
-                            <div class="bold_span">{{billdata.initiatedon}}</div>
+                            <div class="bold_span">{{bill.initiatedon | date:'dd-MM-yyyy hh:mm a'}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Approver By:</div>
-                            <div class="bold_span">{{billdata.initiatedby}}</div>
+                            <div class="bold_span">{{bill.approvedby}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Approved on : </div>
-                            <div class="bold_span">{{billdata.approvedon}}</div>
+                            <div class="bold_span">{{bill.approvedon | date:'dd-MM-yyyy hh:mm a'}}</div>
                           </div>
                         </div>
                       </td>
