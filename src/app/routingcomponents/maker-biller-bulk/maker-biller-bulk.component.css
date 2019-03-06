@@ -595,6 +595,7 @@ input[type="checkbox"]:checked {
   font-weight: 100;
   line-height: 1.83;
   color: #666666;
+  padding: 6px 0px;
 }
 
 .preregtxt {
