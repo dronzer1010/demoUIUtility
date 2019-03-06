@@ -1,9 +1,19 @@
+.roleheader{
+  padding-top: 10%;
+  color:#ccc0d4;
+  font-weight: bold;
+}
 @media only screen and (max-width: 1920px){ 
   .navbar-bootsnipp .navbar-nav>li:not(.dropdown-right)>.dropdown-menu {
     margin-left: -1px;
     right: auto;
     border-top: 5px solid #fff33b;
     background: #ffffff;
+  }
+  .roleheader{
+    padding-top: 10%;
+    color:#ccc0d4;
+    font-weight: bold;
   }
   
   .navbar-bootsnipp .navbar-nav>li>.dropdown-menu {
