@@ -214,7 +214,7 @@
                           <td><input name="submenu" type="checkbox" [checked]="select" (change)="change(payment.id) "></td>
                           <td>{{payment.bill.biller}}</td>
                           <td>{{payment.bill.consumerno}}</td>
-                          <td>{{(payment.amount)?payment.amount:"No Data"}}</td>
+                          <td>₹ {{(payment.amount)?payment.amount:"No Data"}}</td>
                           <td>{{(payment.billdate)?payment.billdate:"No Data"}}</td>
                           <td>{{(payment.duedate)?payment.duedate:"No Data"}}</td>
                           <td style="padding: 0 5px;"><img alt="" src="../../../assets/img/tb_downarrow.png" (click)="payment.collapsed=!payment.collapsed;"></td>
@@ -279,8 +279,7 @@
                             <span class="pull-right"><img style="cursor:pointer;" src="../../../assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                              
                             <a data-toggle="modal" href="#myModal" id="openBtn"><img src="../../../assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                              <a id="button" class="anchor-bill openModal" (click)="closeModalDialog()">Add Bill
-                                Details</a></span>
+                              <a id="button" class="anchor-bill openModal" (click)="closeModalDialog()">Additional Bill Details</a></span>
                               <span><button  *ngIf="!fetchingBill" (click)="fetchBill(payment.id)" class="anchor-bill">Fetch Bill</button> </span>
                               <span><a  *ngIf="fetchingBill" class="anchor-bill"><img src="../../../assets/img/loading.svg" class="loading-svg" /></a></span>
                               </td>
