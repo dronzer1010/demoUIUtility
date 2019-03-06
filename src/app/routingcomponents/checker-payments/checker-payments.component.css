@@ -272,3 +272,9 @@ input[type="checkbox"]:hover, input[type="checkbox"]:checked {
     box-shadow: 5px 5px 15px #656363;
   }
   
+  @media only screen and (max-width:1370px){
+  #button img {
+    width: 10%;
+    vertical-align: 0px;
+}
+  }

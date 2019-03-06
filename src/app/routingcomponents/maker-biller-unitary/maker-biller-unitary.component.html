@@ -357,46 +357,52 @@
                     <div class="col-xs-5 col-sm-5 col-md-5">
                       <label class="label" for="usertitle" style="position:relative"><strong>Type of Utility</strong></label>
                     </div>
-                    <div class="col-xs-7 col-sm-7 col-md-7">
-                      <span> : {{billdata.board}}</span>
+                    <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                      <span> {{billdata.board}}</span>
                     </div>
                     <div class="clear20"></div>
                     <div class="col-xs-5 col-sm-5 col-md-5">
                         <label class="label" for="usertitle" style="position:relative"><strong>State</strong></label>
                       </div>
-                      <div class="col-xs-7 col-sm-7 col-md-7">
-                        <span *ngIf="billdata.state=='MH'"> : Maharashtra</span>
-                        <span *ngIf="billdata.state=='AP'"> : Andhra Pradesh</span>
-                        <span *ngIf="billdata.state=='KA'"> : Karanataka</span>
-                        <span *ngIf="billdata.state=='RJ'"> : Rajasthan</span>
+                      <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                        <span *ngIf="billdata.state=='MH'"> Maharashtra</span>
+                        <span *ngIf="billdata.state=='AP'"> Andhra Pradesh</span>
+                        <span *ngIf="billdata.state=='KA'"> Karanataka</span>
+                        <span *ngIf="billdata.state=='RJ'"> Rajasthan</span>
                       </div>
                       <div class="clear20"></div>
                     <div class="col-xs-5 col-sm-5 col-md-5">
                       <label class="label" for="usertitle" style="position:relative"><strong>Biller Name</strong></label>
                     </div>
-                    <div class="col-xs-7 col-sm-7 col-md-7">
-                      <span> : {{billdata.biller}}</span>
+                    <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                      <span> {{billdata.biller}}</span>
                     </div>
                     <div class="clear20"></div>
                     <div class="col-xs-5 col-sm-5 col-md-5">
                       <label class="label" for="usertitle" style="position:relative"><strong>Consumer Number</strong></label>
                     </div>
-                    <div class="col-xs-7 col-sm-7 col-md-7">
-                      <span> : {{billdata.consumerno}}</span>
+                    <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                      <span> {{billdata.consumerno}}</span>
                     </div>
                     <div class="clear20"></div>
                     <div class="col-xs-5 col-sm-5 col-md-5">
                       <label class="label" for="usertitle" style="position:relative"><strong>Bill Date</strong></label>
                     </div>
-                    <div class="col-xs-7 col-sm-7 col-md-7">
-                       <span> : {{billdata.billdate | date:'dd-MM-yyyy'}}</span> <!--<span class="span1">of every month</span> -->
+                    <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                       <span> {{billdata.billdate | date:'dd-MM-yyyy'}}</span> <!--<span class="span1">of every month</span> -->
                     </div>
                     <div class="clear20"></div>
                     <div class="col-xs-5 col-sm-5 col-md-5">
                       <label class="label" for="usertitle" style="position:relative"><strong>Biller Address</strong></label>
                     </div>
-                    <div class="col-xs-7 col-sm-7 col-md-7">
-                      <span> : {{billdata.billaddress}}</span>
+                    <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                      <span> {{billdata.billaddress}}</span>
                     </div>
                     <div class="clear20"></div>
                     
@@ -430,44 +436,50 @@
                       <div class="col-xs-4 col-sm-4 col-md-4">
                           <label class="label" for="usertitle" style="position:relative"><strong>Email</strong></label>
                         </div>
-                        <div class="col-xs-8 col-sm-8 col-md-8">
-                          <span> : {{billdata.email}}</span>
+                        <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                        <div class="col-xs-7 col-sm-7 col-md-7">
+                          <span> {{billdata.email}}</span>
                         </div>
                         <div class="clear20"></div>
                         
                         <div class="col-xs-4 col-sm-4 col-md-4">
                         <label class="label" for="usertitle" style="position:relative"><strong>Short Name</strong></label>
                       </div>
-                      <div class="col-xs-8 col-sm-8 col-md-8">
-                        <span> : {{billdata.shortname}}</span>
+                      <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                      <div class="col-xs-7 col-sm-7 col-md-7">
+                        <span> {{billdata.shortname}}</span>
                       </div>
                       <div class="clear20"></div>
                       <div class="col-xs-4 col-sm-4 col-md-4">
                         <label class="label" for="usertitle" style="position:relative"><strong>GL/Expense Code</strong></label>
                       </div>
-                      <div class="col-xs-8 col-sm-8 col-md-8">
-                        <span> : {{billdata.expensecode}}</span>
+                      <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                      <div class="col-xs-7 col-sm-7 col-md-7">
+                        <span> {{billdata.expensecode}}</span>
                       </div>
                       <div class="clear20"></div>
                       <div class="col-xs-4 col-sm-4 col-md-4">
                         <label class="label" for="usertitle" style="position:relative"><strong>Due Date</strong></label>
                       </div>
-                      <div class="col-xs-8 col-sm-8 col-md-8">
-                        <span> : {{billdata.duedate | date:'dd-MM-yyyy'}}</span> <!--<span class="span1">of every month</span>-->
+                      <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                      <div class="col-xs-7 col-sm-7 col-md-7">
+                        <span> {{billdata.duedate | date:'dd-MM-yyyy'}}</span> <!--<span class="span1">of every month</span>-->
                       </div>
                       <div class="clear20"></div>
                       <div class="col-xs-4 col-sm-4 col-md-4">
                         <label class="label" for="usertitle" style="position:relative"><strong>Contact Number</strong></label>
                       </div>
-                      <div class="col-xs-8 col-sm-8 col-md-8">
-                        <span> : {{billdata.contact}}</span>
+                      <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                      <div class="col-xs-7 col-sm-7 col-md-7">
+                        <span> {{billdata.contact}}</span>
                       </div>
                       <div class="clear20"></div>
                       <div class="col-xs-4 col-sm-4 col-md-4">
                         <label class="label" for="usertitle" style="position:relative"><strong>Attachment</strong></label>
                       </div>
-                      <div class="col-xs-8 col-sm-8 col-md-8">
-                        <span> : None</span>
+                      <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                      <div class="col-xs-7 col-sm-7 col-md-7">
+                        <span> None</span>
                       </div>
                       <div class="clear20"></div>
                       <div class="clear20"></div>

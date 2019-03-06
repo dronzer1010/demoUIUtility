@@ -762,7 +762,7 @@ tbody tr td:last-child {
   }
 
   .card-no {
-    font-size: 21px;
+    font-size: 25px;
   }
 
   .progress {
@@ -813,6 +813,10 @@ tbody tr td:last-child {
   .graph-ratio {
     font-size: 12px;
     margin-right: 15px;
+  }
+
+  hr{
+    margin: 5px 0;
   }
 }
 

@@ -233,7 +233,7 @@ input[type="checkbox"]:hover, input[type="checkbox"]:checked {
   }
   
   .span_width {
-    width: 50%;
+    width: 40%;
     display: inline-block;
     vertical-align: top;
     font-size: 13px;
