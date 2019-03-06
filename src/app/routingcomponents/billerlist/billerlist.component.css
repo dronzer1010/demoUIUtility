@@ -215,7 +215,7 @@ img{
 }
 
 .span_width {
-  width: 50%;
+  width: 40%;
   display: inline-block;
   vertical-align: top;
   font-size: 13px;
@@ -228,7 +228,7 @@ img{
   font-weight: 600;
   font-size: 13px;
   color: #000;
-  width: 50%;
+  width: 45%;
 }
 
 .noborder {

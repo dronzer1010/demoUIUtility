@@ -18,7 +18,7 @@ export class DashboardMakerComponent implements OnInit {
     aproveddate: "28-02-2019",
     aprovedtime: "12:10:52",
     cardholder: "Test card",
-    digits: "4859 xxxx xxxx 0005",
+    digits: "4859 XXXX XXXX 0005",
     expirydate: "09/22",
     id: 1,
     initiatedby: "Mr. Naveen Lohiya",
