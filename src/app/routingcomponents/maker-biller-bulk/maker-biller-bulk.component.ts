@@ -43,7 +43,7 @@ export class MakerBillerBulkComponent implements OnInit {
 
     },
     {
-      "billaddress":"103 Cantt Road Ajmer",
+      "billaddress":"234 Adani Bhavan Goregaon East",
       "billdate":"6th of every month",
       "biller":"Adani Electricity",
       "board":"Electricity",
