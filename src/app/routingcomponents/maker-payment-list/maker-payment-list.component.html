@@ -129,7 +129,6 @@
                       <td>Bill Name <img src="../../../assets/img/Filter.png" alt=""></td>
                       <td>Consumer No <img src="../../../assets/img/Filter.png" alt=""></td>
                       <td>Amount <img src="../../../assets/img/Filter.png" alt=""></td>
-                      <td>Bill Number <img src="../../../assets/img/Filter.png" alt=""></td>
                       <td>Bill Date <img src="../../../assets/img/Filter.png" alt=""></td>
                       <td>Due Date <img src="../../../assets/img/Filter.png" alt=""></td>
                       <td>Status</td>
@@ -142,9 +141,8 @@
                     <tr>
                       <td>{{i+1}}</td>
                       <td>{{payment.bill.biller}}</td>
-                      <td>1234567</td>
+                      <td>{{payment.bill.consumerno}}</td>
                       <td>₹ {{payment.amount}}</td>
-                      <td>{{payment.billnumber}}</td>
                       <td>{{payment.billdate}}</td>
                       <td>{{payment.duedate}}</td>
                       <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.status}}</a></td>
@@ -178,8 +176,8 @@
                             <div class="bold_span" *ngIf="payment.bill.state=='DL'" >Delhi</div>
                           </div>
                           <div class="mb-1">
-                            <div class="span_width">Consumer No</div> <span> : </span> &nbsp;
-                            <div class="bold_span">{{payment.bill.consumerno}}</div>
+                            <div class="span_width">Bill No</div> <span> : </span> &nbsp;
+                            <div class="bold_span">{{payment.billnumber}}</div>
                           </div>
       
                         </div>

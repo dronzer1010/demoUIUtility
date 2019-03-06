@@ -217,7 +217,7 @@
                           <td>{{(payment.amount)?payment.amount:"No Data"}}</td>
                           <td>{{(payment.billdate)?payment.billdate:"No Data"}}</td>
                           <td>{{(payment.duedate)?payment.duedate:"No Data"}}</td>
-                          <td><img alt="" src="../../../assets/img/tb_downarrow.png" (click)="payment.collapsed=!payment.collapsed;"></td>
+                          <td style="padding: 0 5px;"><img alt="" src="../../../assets/img/tb_downarrow.png" (click)="payment.collapsed=!payment.collapsed;"></td>
                         </tr>
                         <tr class="rowShow grayStrip" style="" *ngIf="payment.collapsed">
                           <td class="custmtd" colspan="7">
@@ -294,7 +294,7 @@
                               <div class="modal-content">
                                 <!-- modal-header -->
                                 <div class="modal-header">
-                                  Add Bill Details<button type="button" class="close" aria-label="Close" (click)="openModalDialog()"><span
+                                  Additional Details<button type="button" class="close" aria-label="Close" (click)="openModalDialog()"><span
                                       aria-hidden="true">&times;</span></button>
                                   <!-- <h4 class="modal-title">Login</h4> -->
                                 </div>
@@ -346,10 +346,11 @@
               </div>
               <div class="row" id="">
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                  <button class="btn-img1"><img style="vertical-align:2px;" alt="" src="../../../assets/img/left-arrow.png"></button>
+                  <!-- <button class="btn-img1"><img style="vertical-align:2px;" alt="" src="../../../assets/img/left-arrow.png"></button>-->
                 </div>
           <ng-container *ngFor="let card of approvedcard">
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" (click)="getCardbyId(card)">
+                  <div class="card-active">
                   <button class="card-button">
                     <img src="../../../assets/img/precard.png" alt="" class="pre-card">
                     <div class="row">
@@ -360,12 +361,13 @@
                     <span></span>
                   </button>
                 </div>
+                </div>
               </ng-container>
                 
                 
                 
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                  <button class="btn-img1"><img style="vertical-align:2px;" alt="" src="../../../assets/img/right-arrow.png"></button>
+                  <!-- <button class="btn-img1"><img style="vertical-align:2px;" alt="" src="../../../assets/img/right-arrow.png"></button>-->
                 </div>
               </div>
               <div class="row">
@@ -412,29 +414,29 @@
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:40px;">
-                  <p style="font-weight: 500;font-size: 15px;">Card Information</p>
+                  <p style="font-weight: 500;font-size: 15px;">Card Approval Details</p>
                   <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-6">
                       <table>
                         <tr style="background-color: #ffff;">
-                          <td>Initiated By</td>
-                          <td>: {{approvedcard[currentCard].initiatedby }}</td>
+                            <div class="span_width" style="margin:5px 0px;">Initiated By</div>  <span class="no-vert"> : </span> &nbsp;
+                            <div class="bold_span" style="margin:5px 0px;"> {{approvedcard[currentCard].initiatedby }}</div>
                         </tr>
                         <tr style="background-color: #ffff;">
-                          <td>Initiated On</td>
-                          <td>: {{approvedcard[currentCard].initiateddate }} || {{approvedcard[currentCard].initiatedtime}}</td>
+                            <div class="span_width" style="margin:5px 0px;">Initiated On</div>  <span class="no-vert"> : </span> &nbsp;
+                            <div class="bold_span" style="margin:5px 0px;"> {{approvedcard[currentCard].initiateddate }} {{approvedcard[currentCard].initiatedtime}}</div>
                         </tr>
                       </table>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-6">
                       <table>
                         <tr style="background-color: #ffff;">
-                          <td>Approved By</td>
-                          <td>: {{approvedcard[currentCard].approvedby}}</td>
+                            <div class="span_width" style="margin:5px 0px;">Approved By</div>  <span class="no-vert"> : </span> &nbsp;
+                            <div class="bold_span" style="margin:5px 0px;">{{approvedcard[currentCard].approvedby}}</div>
                         </tr>
                         <tr style="background-color: #ffff;">
-                          <td>Approved On</td>
-                          <td>: {{approvedcard[currentCard].aproveddate }} || {{approvedcard[currentCard].aprovedtime}}</td>
+                            <div class="span_width" style="margin:5px 0px;">Approved On</div>  <span class="no-vert"> : </span> &nbsp;
+                            <div class="bold_span" style="margin:5px 0px;">{{approvedcard[currentCard].aproveddate }} {{approvedcard[currentCard].aprovedtime}}</div>
                         </tr>
                       </table>
                     </div>
