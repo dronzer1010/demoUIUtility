@@ -43,7 +43,7 @@ export class MakerBillerBulkComponent implements OnInit {
 
     },
     {
-      "billaddress":"103 Cantt Road Ajmer",
+      "billaddress":"234 Adani Bhavan Goregaon East",
       "billdate":"6th of every month",
       "biller":"Adani Electricity",
       "board":"Electricity",
@@ -87,6 +87,7 @@ export class MakerBillerBulkComponent implements OnInit {
       "expensecode":"123/334355",
       "status":"Pending",
       "initiatedby":"Ms. Deepali Patekar"
+      
     },
     {
       "billaddress":"119/27 Primsroad MG Road Bangalore",
@@ -200,8 +201,8 @@ export class MakerBillerBulkComponent implements OnInit {
         var d =new Date();
         this.bulkbill[i].initiatedon = d.toLocaleString();
         this.bulkbill[i].uploadfilename = "billerbulkfile.csv"
-        this.bulkbill[i].id=1;
-        billerData.push(this.bulkbill);
+        this.bulkbill[i].id=i;
+        billerData.push(this.bulkbill[i]);
 
       }
      }

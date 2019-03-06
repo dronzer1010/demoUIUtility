@@ -155,7 +155,7 @@
                       <td>{{bill.billdate}}</td>
                       <td>{{bill.duedate}}</td>
                       <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': bill.status === 'Approved', 'Rejected': bill.status  === 'Rejected', 'Pending': bill.status  === 'Pending'}" role="button">{{bill.status}}</a></td>
-                      <td style="padding-left: 1%;"><img src="../../../assets/img/tb_downarrow.png" alt=""  (click)="bill.collapsed=!bill.collapsed;"></td>
+                      <td style="padding:0 15px;"><img src="../../../assets/img/tb_downarrow.png" alt=""  (click)="bill.collapsed=!bill.collapsed;"></td>
                     </tr>
                     <tr class="rowShow grayStrip" style="" *ngIf="bill.collapsed">
                       <td class="custmtd" colspan="7">
@@ -229,6 +229,7 @@
                           <div>
                             <div class="span_width">Approved on</div>  <span> : </span> &nbsp;
                             <div class="bold_span">{{bill.approvedon | date:'dd-MM-yyyy hh:mm a'}}</div>
+                         
                           </div>
                         </div>
                       </td>
