@@ -27,20 +27,20 @@ export class MakerBillerBulkComponent implements OnInit {
   selectall:boolean=false;
   bulkbill:any=[
     {
-      "billaddress":"123 Pinnacle Business Park Andheri East",
+      "billaddress":"333/34 Dynna Business Park Marol Andheri Mumbai",
       "billdate":"6th of every month",
-      "biller":"Tata Power - Mumbai",
+      "biller":"BEST-Mumbai",
       "board":"Electricity",
-      "consumerno":"900000049819",
+      "consumerno":"34574364763",
       "contact":"9897866565",
       "duedate":"15th of every month",
       "email":"deepali.patekar@axisbank.com",
-      "shortname":"MHTATA",
+      "shortname":"BEST",
       "state":"MH",
       "expensecode":"123/223455",
       "status":"Pending",
-      "initiatedby":"Ms. Deepali Patekar"
-
+      "initiatedby":"Ms. Deepali Patekar",
+      "approvedby":"--"
     },
     {
       "billaddress":"234 Adani Bhavan Goregaon East",
@@ -55,54 +55,56 @@ export class MakerBillerBulkComponent implements OnInit {
       "state":"MH",
       "expensecode":"123/343454",
       "status":"Pending",
-      "initiatedby":"Ms. Deepali Patekar"
+      "initiatedby":"Ms. Deepali Patekar",
+      "approvedby":"--"
     },
     {
-      "billaddress":"103 Cantt Road Ajmer",
+      "billaddress":"45/11 Desai Road, Ahemdabad",
       "billdate":"6th of every month",
-      "biller":"AVVNL Ajmer",
+      "biller":"Torrent Power Ltd.-Ahmedabad",
       "board":"Electricity",
       "consumerno":"110413002334",
       "contact":"9897866565",
       "duedate":"15th of every month",
       "email":"deepali.patekar@axisbank.com",
-      "shortname":"AVVNL",
-      "state":"RJ",
+      "shortname":"TPLA",
+      "state":"GJ",
       "expensecode":"123/343243",
       "status":"Pending",
-      "initiatedby":"Ms. Deepali Patekar"
-     
+      "initiatedby":"Ms. Deepali Patekar",
+      "approvedby":"--"
     },
     {
-      "billaddress":"7655 Udyag Bhavan Hydrabad",
+      "billaddress":"Nehru Place, New Delhi, Delhi",
       "billdate":"6th of every month",
-      "biller":"APEPDCL",
+      "biller":"BSES Rajdhani-Delhi",
       "board":"Electricity",
       "consumerno":"110413004345",
       "contact":"9897866565",
       "duedate":"15th of every month",
       "email":"deepali.patekar@axisbank.com",
-      "shortname":"APEPDCL",
-      "state":"AP",
+      "shortname":"BSESR",
+      "state":"DL",
       "expensecode":"123/334355",
       "status":"Pending",
-      "initiatedby":"Ms. Deepali Patekar"
-      
+      "initiatedby":"Ms. Deepali Patekar",
+      "approvedby":"--"
     },
     {
-      "billaddress":"119/27 Primsroad MG Road Bangalore",
+      "billaddress":"Shakti Kiran Building,Karkardooma,Vishwas Nagar, New Delhi",
       "billdate":"6th of every month",
-      "biller":"BESCOM",
+      "biller":"BSES Yamuna-Delhi",
       "board":"Electricity",
       "consumerno":"110413023445",
       "contact":"9897866565",
       "duedate":"15th of every month",
       "email":"deepali.patekar@axisbank.com",
-      "shortname":"BESC",
-      "state":"KA",
+      "shortname":"BSESYD",
+      "state":"DL",
       "expensecode":"123/334343",
       "status":"Pending",
-      "initiatedby":"Ms. Deepali Patekar"
+      "initiatedby":"Ms. Deepali Patekar",
+      "approvedby":"--"
     }
   ]
   constructor(private httpService: HttpClient) { }

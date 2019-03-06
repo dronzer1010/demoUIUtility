@@ -76,11 +76,11 @@
             },
             {
                 "id":15,
-                "name":"Bharatpur electricity services limited"
+                "name":"Bharatpur electricity services limited-Bharatpur"
             },
             {
                 "id":16,
-                "name":"Bikaner electricity supply limited"
+                "name":"Bikaner electricity supply limited-Bikaner"
             },
             {
                 "id":17,
@@ -99,6 +99,28 @@
                 "name":"TP ajmer distribution limited (tpadl)"
             }
         ]
+    },
+    {
+        "code": "DL",
+        "billers":[
+            {
+                "id":21,
+                "name":"BSES Rajdhani-Delhi"
+            },
+            {
+                "id":22,
+                "name":"BSES Yamuna-Delhi"
+            }
+        ]
+    },
+    {
+        "code": "GJ",
+        "billers":[
+            {
+                "id":23,
+                "name":"Torrent Power Ltd.-Ahmedabad"
+            }
+        ] 
     }
 
 ]
