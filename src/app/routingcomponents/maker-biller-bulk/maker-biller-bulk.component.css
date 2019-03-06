@@ -5,6 +5,12 @@
 .padlft {
   padding-left: 40px;
 }
+.span_width{
+  width:42%;
+}
+.no-vert{
+  vertical-align: 0px;
+}
 .zin {
   position: relative;
   margin-bottom: -45px;
