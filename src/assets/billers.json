@@ -4,11 +4,11 @@
         "billers":[
             {
                 "id":1,
-                "name":"Brihan mumbai electricity supply and transport undertaking (best undertaking)"
+                "name":"BEST"
             },
             {
                 "id":2,
-                "name":"BSESR"
+                "name":"MSEDCL"
             },
            
             {
@@ -17,7 +17,7 @@
             },
             {
                 "id":4,
-                "name":"Reliance Energy - Mumbai / Adani Electricity"
+                "name":"Adani Electricity"
             },
             {
                 "id":5,
@@ -47,7 +47,7 @@
         "billers":[
             {
                 "id":9,
-                "name":"bangalore electricity supply company ltd."
+                "name":"Bangalore electricity supply company ltd."
             },
             {
                 "id":10,
@@ -55,15 +55,15 @@
             },
             {
                 "id":11,
-                "name":"gulbarga electricity supply company limited (gescom)"
+                "name":"Gulbarga electricity supply company limited (gescom)"
             },
             {
                 "id":12,
-                "name":"hubli electricity supply company ltd. (hescom)"
+                "name":"Hubli electricity supply company ltd. (hescom)"
             },
             {
                 "id":13,
-                "name":"mangalore electricity supply company ltd. (mescom)"
+                "name":"Mangalore electricity supply company ltd. (mescom)"
             }
         ]
     },

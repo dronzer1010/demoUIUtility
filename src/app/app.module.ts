@@ -50,6 +50,7 @@ import { MakerBillerListComponent } from './routingcomponents/maker-biller-list/
 
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OtpapproveComponent } from './routingcomponents/otpapprove/otpapprove.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -111,11 +112,12 @@ import { OtpapproveComponent } from './routingcomponents/otpapprove/otpapprove.c
     MatDialogModule,
     CarouselModule ,
     HttpClientModule,
-
-
+   
 MatNativeDateModule,
     
     DataTableModule,
+    ToastrModule.forRoot()
+
   ],
  
   providers: [],

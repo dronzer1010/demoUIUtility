@@ -15,14 +15,14 @@
               </div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-                <input list="browsers" value="All Categories" id="datalist" class="ml-2input">
+                <!-- <input list="browsers" value="All Categories" id="datalist" class="ml-2input">
                 <datalist id="browsers">
-                  <option value="Internet Explorer" selected>
+                  <option value="All Categories" selected>
                   <option value="Firefox">
                   <option value="Chrome">
                   <option value="Opera">
                   <option value="Safari">
-                </datalist>
+                </datalist> -->
                 <input list="date" id="datalist" value="This Month" class="ml-2input">
                 <datalist id="date">
                   <option value="This Month">
@@ -152,8 +152,8 @@
                       <td>{{bill.board}}</td>
                       <td>{{bill.biller}}</td>
                      
-                      <td>{{bill.billdate | date:'dd-MM-yyyy'}}</td>
-                      <td>{{bill.duedate | date:'dd-MM-yyyy'}}</td>
+                      <td>{{bill.billdate}}</td>
+                      <td>{{bill.duedate}}</td>
                       <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': bill.status === 'Approved', 'Rejected': bill.status  === 'Rejected', 'Pending': bill.status  === 'Pending'}" role="button">{{bill.status}}</a></td>
                       <td style="padding-left: 1%;"><img src="../../../assets/img/tb_downarrow.png" alt=""  (click)="bill.collapsed=!bill.collapsed;"></td>
                     </tr>
@@ -169,10 +169,10 @@
                             <div class="span_width">GL/Expense Code: </div>
                             <div class="bold_span">{{bill.expensecode}}</div>
                           </div>
-                          <div class="mb-1">
+                          <!-- <div class="mb-1">
                             <div class="span_width">Meter Reading:</div>
                             <div class="bold_span">{{bill.reading}}</div>
-                          </div>
+                          </div> -->
                           <!-- <div class="mb-1">
                             <div class="span_width">Bill Date:</div>
                             <div class="bold_span">10/12/2018</div>
@@ -220,7 +220,7 @@
                             <div class="bold_span">{{bill.initiatedon | date:'dd-MM-yyyy hh:mm a'}}</div>
                           </div>
                           <div class="mb-1">
-                            <div class="span_width">Approver By:</div>
+                            <div class="span_width">Approved by:</div>
                             <div class="bold_span">{{bill.approvedby}}</div>
                           </div>
                           <div>
@@ -232,7 +232,8 @@
                     </tr>
                     <tr class="rowShow grayStrip" style="" *ngIf="bill.collapsed">
                       <td colspan="7"><span class="pull-right"><img style="cursor:pointer;"src="../../../assets/img/Download.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <a data-toggle="modal" id="openBtn"><img src="../../../assets/img/popup.png"></a></span></td>
+                          <!-- <a data-toggle="modal" id="openBtn"><img src="../../../assets/img/edit.png"></a> -->
+                        </span></td>
                     </tr>
                   </ng-container>
                   </tbody>

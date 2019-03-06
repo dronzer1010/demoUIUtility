@@ -126,7 +126,10 @@
                   <div class="clear20"></div>
                   <div class="col-xs-12 col-sm-12 col-md-12 padln">
                     <select class="input-text js-input inptxt form-control" required [(ngModel)]="billdata.board" name="board">
-                      <option value="Electricity" selected>Electricity</option>
+                      <option value="" selected>Select Utility</option>
+                      <option value="Electricity">Electricity</option>
+                      <option value="Telecom" >Telecom</option>
+                      <option value="Gas">Gas</option>
                     </select>
                     <label class="label" for="usertitle">Select Type of Utility</label>
                   </div>
@@ -196,7 +199,40 @@
                     <div class="clear20"></div>
                     <div class="clear20"></div>
                     <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                      <input type="date" value="" class="input-text js-input inptxt form-control" name="billdate" [(ngModel)]="billdata.billdate" #name="ngModel">
+                      <!-- <input type="date" value="" class="input-text js-input inptxt form-control" name="billdate" [(ngModel)]="billdata.billdate" #name="ngModel"> -->
+                      <select class="input-text js-input inptxt form-control" required [(ngModel)]="billdata.billdate" name="billdate">
+                          <option value="1st of every month" >1st of every month</option>
+                          <option value="2nd of every month" >2nd of every month</option>
+                          <option value="3rd of every month" >3rd of every month</option>
+                          <option value="4th of every month" >4th of every month</option>
+                          <option value="5th of every month" >5th of every month</option>
+                          <option value="6th of every month" >6th of every month</option>
+                          <option value="7th of every month" >7th of every month</option>
+                          <option value="8th of every month" >8th of every month</option>
+                          <option value="9th of every month" >9th of every month</option>
+                          <option value="10th of every month" >10th of every month</option>
+                          <option value="11th of every month" >11th of every month</option>
+                          <option value="12th of every month" >12th of every month</option>
+                          <option value="13th of every month" >13th of every month</option>
+                          <option value="14th of every month" >14th of every month</option>
+                          <option value="15th of every month" >15th of every month</option>
+                          <option value="16th of every month" >16th of every month</option>
+                          <option value="17th of every month" >17th of every month</option>
+                          <option value="18th of every month" >18th of every month</option>
+                          <option value="19th of every month" >19th of every month</option>
+                          <option value="20th of every month" >20th of every month</option>
+                          <option value="21st of every month" >21st of every month</option>
+                          <option value="22nd of every month" >22nd of every month</option>
+                          <option value="23rd of every month" >23rd of every month</option>
+                          <option value="24th of every month" >24th of every month</option>
+                          <option value="25th of every month" >25th of every month</option>
+                          <option value="26th of every month" >26th of every month</option>
+                          <option value="27th of every month" >27th of every month</option>
+                          <option value="28th of every month" >28th of every month</option>
+                          <option value="29th of every month" >29th of every month</option>
+                          <option value="30th of every month" >30th of every month</option>
+                          <option value="31st of every month" >31st of every month</option>
+                        </select>
                       <label class="label" for="usertitle">Bill Date</label>
                     </div>
                     <div class="clear20"></div>
@@ -242,7 +278,40 @@
                     <div class="clear20"></div>
                     <div class="clear20"></div>
                     <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                      <input type="date" value="" class="input-text js-input inptxt form-control" name="duedate" [(ngModel)]="billdata.duedate" #name="ngModel">
+                      <!-- <input type="date" value="" class="input-text js-input inptxt form-control" name="duedate" [(ngModel)]="billdata.duedate" #name="ngModel"> -->
+                      <select class="input-text js-input inptxt form-control" required [(ngModel)]="billdata.duedate" name="duedate">
+                          <option value="1st of every month" >1st of every month</option>
+                          <option value="2nd of every month" >2nd of every month</option>
+                          <option value="3rd of every month" >3rd of every month</option>
+                          <option value="4th of every month" >4th of every month</option>
+                          <option value="5th of every month" >5th of every month</option>
+                          <option value="6th of every month" >6th of every month</option>
+                          <option value="7th of every month" >7th of every month</option>
+                          <option value="8th of every month" >8th of every month</option>
+                          <option value="9th of every month" >9th of every month</option>
+                          <option value="10th of every month" >10th of every month</option>
+                          <option value="11th of every month" >11th of every month</option>
+                          <option value="12th of every month" >12th of every month</option>
+                          <option value="13th of every month" >13th of every month</option>
+                          <option value="14th of every month" >14th of every month</option>
+                          <option value="15th of every month" >15th of every month</option>
+                          <option value="16th of every month" >16th of every month</option>
+                          <option value="17th of every month" >17th of every month</option>
+                          <option value="18th of every month" >18th of every month</option>
+                          <option value="19th of every month" >19th of every month</option>
+                          <option value="20th of every month" >20th of every month</option>
+                          <option value="21st of every month" >21st of every month</option>
+                          <option value="22nd of every month" >22nd of every month</option>
+                          <option value="23rd of every month" >23rd of every month</option>
+                          <option value="24th of every month" >24th of every month</option>
+                          <option value="25th of every month" >25th of every month</option>
+                          <option value="26th of every month" >26th of every month</option>
+                          <option value="27th of every month" >27th of every month</option>
+                          <option value="28th of every month" >28th of every month</option>
+                          <option value="29th of every month" >29th of every month</option>
+                          <option value="30th of every month" >30th of every month</option>
+                          <option value="31st of every month" >31st of every month</option>
+                        </select>
                       <label class="label" for="usertitle">Due Date</label>
                     </div>
                     <div class="clear20"></div>
@@ -294,7 +363,10 @@
                         <label class="label" for="usertitle" style="position:relative"><strong>State</strong></label>
                       </div>
                       <div class="col-xs-7 col-sm-7 col-md-7">
-                        <span> : {{billdata.state}}</span>
+                        <span *ngIf="billdata.state=='MH'"> : Maharashtra</span>
+                        <span *ngIf="billdata.state=='AP'"> : Andhra Pradesh</span>
+                        <span *ngIf="billdata.state=='KA'"> : Karanataka</span>
+                        <span *ngIf="billdata.state=='RJ'"> : Rajasthan</span>
                       </div>
                       <div class="clear20"></div>
                     <div class="col-xs-5 col-sm-5 col-md-5">
@@ -315,7 +387,7 @@
                       <label class="label" for="usertitle" style="position:relative"><strong>Bill Date</strong></label>
                     </div>
                     <div class="col-xs-7 col-sm-7 col-md-7">
-                       <span> : {{billdata.billdate}}</span> <!--<span class="span1">of every month</span> -->
+                       <span> : {{billdata.billdate | date:'dd-MM-yyyy'}}</span> <!--<span class="span1">of every month</span> -->
                     </div>
                     <div class="clear20"></div>
                     <div class="col-xs-5 col-sm-5 col-md-5">
@@ -353,46 +425,46 @@
                     <div class="lft_div">
                       <div class="clear20"></div>
                       <div class="clear20"></div>
-                      <div class="col-xs-5 col-sm-5 col-md-5">
+                      <div class="col-xs-4 col-sm-4 col-md-4">
                           <label class="label" for="usertitle" style="position:relative"><strong>Email</strong></label>
                         </div>
-                        <div class="col-xs-7 col-sm-7 col-md-7">
+                        <div class="col-xs-8 col-sm-8 col-md-8">
                           <span> : {{billdata.email}}</span>
                         </div>
                         <div class="clear20"></div>
                         
-                      <div class="col-xs-5 col-sm-5 col-md-5">
+                        <div class="col-xs-4 col-sm-4 col-md-4">
                         <label class="label" for="usertitle" style="position:relative"><strong>Short Name</strong></label>
                       </div>
-                      <div class="col-xs-7 col-sm-7 col-md-7">
+                      <div class="col-xs-8 col-sm-8 col-md-8">
                         <span> : {{billdata.shortname}}</span>
                       </div>
                       <div class="clear20"></div>
-                      <div class="col-xs-5 col-sm-5 col-md-5">
+                      <div class="col-xs-4 col-sm-4 col-md-4">
                         <label class="label" for="usertitle" style="position:relative"><strong>GL/Expense Code</strong></label>
                       </div>
-                      <div class="col-xs-7 col-sm-7 col-md-7">
+                      <div class="col-xs-8 col-sm-8 col-md-8">
                         <span> : {{billdata.expensecode}}</span>
                       </div>
                       <div class="clear20"></div>
-                      <div class="col-xs-5 col-sm-5 col-md-5">
+                      <div class="col-xs-4 col-sm-4 col-md-4">
                         <label class="label" for="usertitle" style="position:relative"><strong>Due Date</strong></label>
                       </div>
-                      <div class="col-xs-7 col-sm-7 col-md-7">
-                        <span> : {{billdata.duedate}}</span> <!--<span class="span1">of every month</span>-->
+                      <div class="col-xs-8 col-sm-8 col-md-8">
+                        <span> : {{billdata.duedate | date:'dd-MM-yyyy'}}</span> <!--<span class="span1">of every month</span>-->
                       </div>
                       <div class="clear20"></div>
-                      <div class="col-xs-5 col-sm-5 col-md-5">
+                      <div class="col-xs-4 col-sm-4 col-md-4">
                         <label class="label" for="usertitle" style="position:relative"><strong>Contact Number</strong></label>
                       </div>
-                      <div class="col-xs-7 col-sm-7 col-md-7">
+                      <div class="col-xs-8 col-sm-8 col-md-8">
                         <span> : {{billdata.contact}}</span>
                       </div>
                       <div class="clear20"></div>
-                      <div class="col-xs-5 col-sm-5 col-md-5">
+                      <div class="col-xs-4 col-sm-4 col-md-4">
                         <label class="label" for="usertitle" style="position:relative"><strong>Attachment</strong></label>
                       </div>
-                      <div class="col-xs-7 col-sm-7 col-md-7">
+                      <div class="col-xs-8 col-sm-8 col-md-8">
                         <span> : None</span>
                       </div>
                       <div class="clear20"></div>
