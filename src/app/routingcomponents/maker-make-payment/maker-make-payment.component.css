@@ -3,6 +3,14 @@
   color: #807199;
 }
 
+.span_width{
+  width: 42%;
+}
+
+.no-vert{
+  vertical-align: 0px;
+}
+
 .bottom_images{
   height: 40px;
 }
@@ -274,6 +282,7 @@ input[type="checkbox"]:checked {
   font-weight: 100;
   line-height: 1.83;
   color: #666666;
+  padding: 6px 0px;
 }
 
 .preregtxt {
@@ -564,7 +573,6 @@ input::-webkit-calendar-picker-indicator {
 }
 
 .pre-card {
-  float: left;
   margin: 8px 0px;
 }
 
@@ -577,7 +585,9 @@ input::-webkit-calendar-picker-indicator {
 .card-button {
   border: 1px solid #d6d6d6;
   border-radius: 5px;
-  width: 100%
+  width: 105%;
+  text-align:center;
+  margin-top: 15px;
 }
 
 .btn-img1 {

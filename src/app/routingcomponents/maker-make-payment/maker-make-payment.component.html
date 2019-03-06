@@ -243,16 +243,16 @@
                             <div class="tablediv">
                               <h5>Biller Details</h5>
                               <div class="mb-1">
-                                <div class="span_width">Short Name:</div>
+                                <div class="span_width">Short Name</div> <span class="no-vert"> : </span> &nbsp;
                                 <div class="bold_span">{{payment.bill.shortname}}</div>
                               </div>
                               <div class="mb-1">
-                                <div class="span_width">GL/Expense Code: </div>
+                                <div class="span_width">GL/Expense Code</div> <span class="no-vert"> : </span> &nbsp;
                                 <div class="bold_span">{{payment.bill.expensecode}}</div>
                               </div>
 
                               <div class="mb-1">
-                                <div class="span_width">Consumer No:</div>
+                                <div class="span_width">Consumer No</div> <span class="no-vert"> : </span> &nbsp;
                                 <div class="bold_span">{{payment.bill.consumerno}}</div>
                               </div>
                               <!-- <div>
@@ -263,30 +263,30 @@
                             <div class="tablediv">
                               <h5>Contact Details</h5>
                               <div class="mb-1">
-                                <div class="span_width">Mobile No:</div>
+                                <div class="span_width">Mobile No</div> <span class="no-vert"> : </span> &nbsp;
                                 <div class="bold_span">{{payment.bill.contact}}</div>
                               </div>
                               <div class="mb-1">
-                                <div class="span_width">Address: </div>
+                                <div class="span_width">Address</div> <span class="no-vert"> : </span> &nbsp;
                                 <div class="bold_span">{{payment.bill.billaddress}}</div>
                               </div>
                               <div>
-                                <div class="span_width">Email:</div>
+                                <div class="span_width">Email</div> <span class="no-vert"> : </span> &nbsp;
                                 <div class="bold_span">{{payment.bill.email}}</div>
                               </div>
                             </div>
                             <div class="tablediv noborder">
                               <h5>Other Details</h5>
                               <div class="mb-1">
-                                <div class="span_width">File Name :</div>
+                                <div class="span_width">File Name</div> <span class="no-vert"> : </span> &nbsp;
                                 <div class="bold_span">{{payment.bill.uploadfilename}}</div>
                               </div>
                               <div class="mb-1">
-                                <div class="span_width">Initiated by :</div>
+                                <div class="span_width">Initiated by</div> <span class="no-vert"> : </span> &nbsp;
                                 <div class="bold_span">{{payment.bill.initiatedby}}</div>
                               </div>
                               <div class="mb-1">
-                                <div class="span_width">Initiated on : </div>
+                                <div class="span_width">Initiated on</div> <span class="no-vert"> : </span> &nbsp;
                                 <div class="bold_span">{{payment.bill.initiatedon | date:'dd-MM-yyyy hh:mm a'}}</div>
                               </div>
                             </div>
@@ -342,9 +342,7 @@
                             </div>
                           </div>
                         </tr>
-                   
-
-                          </ng-container>
+                        </ng-container>
                       </tbody>
                     </table>
                   </div>
@@ -365,78 +363,34 @@
                   <h4 class="Top5Heading111">Select Card</h4>
                 </div>
               </div>
-              <div class="row" id="" style="display:none;">
+              <div class="row" id="">
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
                   <button class="btn-img1"><img style="vertical-align:2px;" alt="" src="../../../assets/img/left-arrow.png"></button>
                 </div>
+<ng-container *ngFor="let card of approvedcard">
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                   <button class="card-button">
                     <img src="../../../assets/img/precard.png" alt="" class="pre-card">
                     <div class="row">
-                      <span class="spn-card">4698</span>
-                      <span class="spn-card">XXXX</span>
-                      <span class="spn-card">XXXX</span>
-                      <span class="spn-card">4698</span>
+                      <div class="col-md-12">
+                      <span class="spn-card">{{card.digits}}</span>
+                    </div>
                     </div>
                     <span></span>
                   </button>
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                  <button class="card-button">
-                    <img src="../../../assets/img/precard.png" alt="" class="pre-card">
-                    <div class="row">
-                      <span class="spn-card">4698</span>
-                      <span class="spn-card">XXXX</span>
-                      <span class="spn-card">XXXX</span>
-                      <span class="spn-card">4698</span>
-                    </div>
-                    <span></span>
-                  </button>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                  <button class="card-button">
-                    <img src="../../../assets/img/precard.png" alt="" class="pre-card">
-                    <div class="row">
-                      <span class="spn-card">4698</span>
-                      <span class="spn-card">XXXX</span>
-                      <span class="spn-card">XXXX</span>
-                      <span class="spn-card">4698</span>
-                    </div>
-                    <span></span>
-                  </button>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                  <button class="card-button">
-                    <img src="../../../assets/img/precard.png" alt="" class="pre-card">
-                    <div class="row">
-                      <span class="spn-card">4698</span>
-                      <span class="spn-card">XXXX</span>
-                      <span class="spn-card">XXXX</span>
-                      <span class="spn-card">4698</span>
-                    </div>
-                    <span></span>
-                  </button>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                  <button class="card-button">
-                    <img src="../../../assets/img/precard.png" alt="" class="pre-card">
-                    <div class="row">
-                      <span class="spn-card">4698</span>
-                      <span class="spn-card">XXXX</span>
-                      <span class="spn-card">XXXX</span>
-                      <span class="spn-card">4698</span>
-                    </div>
-                    <span></span>
-                  </button>
-                </div>
+              </ng-container>
+                
+                
+                
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
                   <button class="btn-img1"><img style="vertical-align:2px;" alt="" src="../../../assets/img/right-arrow.png"></button>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 main-card">
-                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><button class="btn-img" (click)="goToPrevCard()" *ngIf="!!approvedcard && approvedcard.length > 1"><img style="vertical-align:2px;" alt="" src="../../../assets/img/left-arrow.png"></button></div>
-                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                  <!-- <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><button class="btn-img" (click)="goToPrevCard()" *ngIf="!!approvedcard && approvedcard.length > 1"><img style="vertical-align:2px;" alt="" src="../../../assets/img/left-arrow.png"></button></div> -->
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1"></div>
                   <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 main-cardbody">
                     <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 spn-mrg">
@@ -444,14 +398,12 @@
                       </div>
                     </div>
                     <div class="row card-no">
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">{{approvedcard[currentCard].digits}}</div>
-                     
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">{{approvedcard[currentCard].digits}}</div>                     
                     </div>
                     <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <span class="spn1">VALID</span>
                         <span class="spn2">UPTO {{approvedcard[currentCard].expirydate}}</span>
-                       
                       </div>
                     </div>
                     <div class="row">
@@ -465,11 +417,10 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="padding-left:0px;"><button class="btn-img"(click)="goToNextCard()" *ngIf="!!approvedcard && approvedcard.length > 1"><img style="vertical-align:2px;"
-                        alt="" src="../../../assets/img/right-arrow.png"></button></div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1"></div>
+                  <!-- <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="padding-left:0px;"><button class="btn-img"(click)="goToNextCard()" *ngIf="!!approvedcard && approvedcard.length > 1"><img style="vertical-align:2px;"
+                        alt="" src="../../../assets/img/right-arrow.png"></button></div> -->
                   <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="clear20"></div>
                     <!-- <div class="col-md-3 col-sm-3 top_back no-show2">
                       <h5 class="blu-color">
                         <a *ngIf="conf" class="sndback" (click)="backbilldetails()">
@@ -477,8 +428,6 @@
                       </h5>
                     </div>
                     <button class="btn bg-primary nextpay buttonpad" type="button" (click)="review()">Next</button> -->
-                    <div class="clear20"></div>
-                    <div class="clear20"></div>
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:40px;">
@@ -511,12 +460,21 @@
                   </div>
                 </div>
               </div>
+              <div class="col-md-3 col-sm-3 top_back no-show2 text-center" style="padding-left: 0%!important;">
+                <h5 class="blu-color">
+                  <a *ngIf="reviewCard" class="sndback" (click)="backbilldetails()">
+                    <img style="vertical-align: 3px;" src="../../../assets/img/left-arrow.png">Back</a>
+                </h5>
+              </div>
+              <button class="btn bg-primary nextpay buttonpad" type="button" (click)="succesadd()">Submit for
+                Approval</button>
+                <div class="clear20"></div>
             </div>
           </div>
         </div>
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
       </div>
-      <div class="row" style="margin-bottom:40px;">
+      <!-- <div class="row" style="margin-bottom:40px;">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
           <div class="row form_bg" id="" *ngIf="reviewCard">
@@ -584,7 +542,7 @@
           </div>
         </div>
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-      </div>
+      </div> -->
       <div class="row">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">

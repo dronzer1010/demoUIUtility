@@ -163,6 +163,7 @@ input::-webkit-calendar-picker-indicator {
 
 #button img {
   width: 10%;
+  vertical-align: -1px;
 }
 
 .txt {
@@ -236,7 +237,7 @@ img {
 }
 
 .span_width {
-  width: 50%;
+  width: 40%;
   display: inline-block;
   vertical-align: top;
   font-size: 13px;
