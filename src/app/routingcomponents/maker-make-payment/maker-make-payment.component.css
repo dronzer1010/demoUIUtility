@@ -468,11 +468,11 @@ input[type="checkbox"]:checked {
   bottom: 0;
   position: absolute;
   content: " ";
-  width: 62% !important;
+  width: 50% !important;
   height: 1px;
   background-color: #ccc;
   z-index: 0;
-  right: 150px !important;
+  right: 240px !important;
 }
 
 .heading {
@@ -852,7 +852,7 @@ input::-webkit-calendar-picker-indicator {
   }
 
   .card-no {
-    font-size: 21px;
+    font-size: 24px;
   }
 
   .progress {
