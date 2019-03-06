@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router , ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-checker-approve-payments',
   templateUrl: './checker-approve-payments.component.html',
@@ -27,9 +27,21 @@ export class CheckerApprovePaymentsComponent implements OnInit {
   public flag: any;
   select=false;
 
-  constructor() { }
+  constructor(private router:Router , private aRouter : ActivatedRoute) { }
 
   ngOnInit() {
+
+    this.aRouter.queryParams
+      .filter(params => params.otp)
+      .subscribe(params => {
+        console.log(params);
+        if(params.otp && params.otp == 'success'){
+          this.pendingList=false;
+          this.approve=true;
+          this.reject=false;
+        }
+      });
+
     this.payments=JSON.parse(localStorage.getItem('payments'));
     this.pendingPayments = this.payments.filter((payment)=>{
       return (payment.status == "Pending")
@@ -56,19 +68,21 @@ export class CheckerApprovePaymentsComponent implements OnInit {
 }
  approveBtn(){
   this.pendingList=false;
-  this.approve=true;
+  this.approve=false;
   this.reject=false;
+  
+  localStorage.setItem('selectedPayments' , JSON.stringify(this.checkedValueArray));
+  this.router.navigate(['otp-approve'])
 
+  // for(var i=0;i<this.checkedValueArray.length;i++){
+  //   for(var j=0;j<this.payments.length;j++){
+  //     if(this.checkedValueArray[i] ==  this.payments[j].id){
+  //       this.payments[j].status ="Approved"
+  //     }
+  //   }
 
-  for(var i=0;i<this.checkedValueArray.length;i++){
-    for(var j=0;j<this.payments.length;j++){
-      if(this.checkedValueArray[i] ==  this.payments[j].id){
-        this.payments[j].status ="Approved"
-      }
-    }
-
-    localStorage.setItem('payments' , JSON.stringify(this.payments));
-  }
+  //   localStorage.setItem('payments' , JSON.stringify(this.payments));
+  // }
 }
 rejectBtn(){
   this.pendingList=false;
