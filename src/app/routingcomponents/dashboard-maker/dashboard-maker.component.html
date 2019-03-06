@@ -154,7 +154,7 @@
   <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
   <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
     <div class="row mt-4 mb-4">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><span class="spanh1">Welcome Welcome Deepali Patekar</span><span class="spanh2">Senior Manager-Sales</span></div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><span class="spanh1">Welcome Deepali Patekar</span><span class="spanh2">Senior Manager-Sales</span></div>
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Maker</div>
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <span class="spanh2">Axis Bank Pvt Ltd</span>
@@ -213,51 +213,53 @@
           <div class="card-body">
             <div class="row">
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 border1">
-                <div class="row">
+                <div class="row" [routerLink]="['/maker-payment-list']">
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                    <div class="round1">0</div>
+                    <div class="round1">{{penpaylength}}</div>
                   </div>
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
                 </div>
-                <div class="row">
+                <div class="row" [routerLink]="['/maker-payment-list']">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <h6 style="margin-bottom:3px;">Pending Payments</h6>
+                    <h6 style="margin-bottom:3px;" *ngIf="penpaylength<=0 || penpaylength==1">Pending Payment</h6>
+                    <h6 style="margin-bottom:3px;" *ngIf="penpaylength>1">Pending Payments</h6>
                   </div>
                 </div>
                 <hr>
                 <div class="row mb-1">
-                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                    <span class="span1">0</span>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" [routerLink]="['/maker-payment-list']">
+                    <span class="span1">{{apprpaylength}}</span>
                     <span class="abc"><img style="vertical-align:0px;" src="../../../assets/img/approved.png" alt=""> Approved</span>
                   </div>
-                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                    <span class="span1">0</span>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" [routerLink]="['/maker-payment-list']">
+                    <span class="span1">{{rejpaylength}}</span>
                     <span class="abc"><img style="vertical-align:0px;" src="../../../assets/img/rejected.png" alt=""> Rejected</span>
                   </div>
                 </div>
               </div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <div class="row">
+                <div class="row" [routerLink]="['/billerlist']">
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <div class="round2">{{this.billerlength}}</div>
                   </div>
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
                 </div>
-                <div class="row">
+                <div class="row" [routerLink]="['/billerlist']">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <h6 style="margin-bottom:3px;">Pending Billers</h6>
+                    <h6 style="margin-bottom:3px;" *ngIf="billerlength<=0 || billerlength==1">Pending Bill</h6>
+                    <h6 style="margin-bottom:3px;"  *ngIf="billerlength>1">Pending Bills</h6>
                   </div>
                 </div>
                 <hr>
                 <div class="row mb-1">
-                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                    <span class="span1">0</span>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" [routerLink]="['/billerlist']">
+                    <span class="span1">{{apprbilllength}}</span>
                     <span class="abc"><img style="vertical-align:0px;" src="../../../assets/img/approved.png" alt=""> Approved</span>
                   </div>
-                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                    <span class="span1">0</span>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" [routerLink]="['/billerlist']">
+                    <span class="span1">{{rejbilllength}}</span>
                     <span class="abc"><img style="vertical-align:0px;" src="../../../assets/img/rejected.png" alt=""> Rejected</span>
                   </div>
                 </div>
@@ -347,7 +349,7 @@
         </div>
       </div>
     </div>
-    <div class="row" style="margin-bottom:2.7rem;">
+    <div class="row" style="margin-bottom:2.7rem;display:none;">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
           <div class="row" style="border-bottom: 1px solid #ededed;">
