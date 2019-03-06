@@ -11,6 +11,7 @@ export class MakerMakePaymentComponent implements OnInit {
   billertype:boolean=false;
   billdetails:boolean=true;
   conf:boolean=false;
+  currenCard :number=-1;
   success:boolean=false;
   reviewCard:boolean=false;
   cardHolder:string=""
@@ -20,6 +21,7 @@ export class MakerMakePaymentComponent implements OnInit {
   cardinitiatedon:string="";
   cardapprovedby:string="";
   cardapprovedon:string="";
+  selectedcard:any={}
   public checkedValueArray: any = [];
   selectall:boolean=false;
   public temp: any;
@@ -44,28 +46,28 @@ export class MakerMakePaymentComponent implements OnInit {
   pendingPayments:any=[]
   approvedcard:any=[
     {approvedby: "Mr. K.V. HEBBAR",
-    aproveddate: "28-02-2019",
+    aproveddate: "28-02-2019 12:10 PM",
     aprovedtime: "12:10:52",
     cardholder: "Test card",
     digits: "4859 XXXX XXXX 0005",
     expirydate: "09/22",
     id: 1,
     initiatedby: "Mr. Naveen Lohiya",
-    initiateddate: "28-02-2019",
+    initiateddate: "28-02-2019 12:09 PM",
     initiatedtime: "12:09:38",
     orgid: 73,
     regcmt: "",
     status: 1},
     {
       approvedby: "Mr. K.V. HEBBAR",
-  aproveddate: "28-02-2019",
+  aproveddate: "28-02-2019 19:17 PM",
   aprovedtime: "19:17:24",
   cardholder: "Test Card 1",
   digits: "4859 XXXX XXXX 0047",
   expirydate: "06/22",
   id: 2,
   initiatedby: "Mr. Naveen Lohiya",
-  initiateddate: "28-02-2019",
+  initiateddate: "28-02-2019 17:30 PM",
   initiatedtime: "17:30:29",
   orgid: 73,
   regcmt: "",
@@ -76,26 +78,45 @@ export class MakerMakePaymentComponent implements OnInit {
 
   ngOnInit() {
     this.billrdetails();
+    this.getActivecard()
   }
 
-  goToNextCard() {
-    if (this.approvedcard.length - 1 == this.currentCard) {
-      this.currentCard = 0;
+  getActivecard(){
+    this.currenCard=-1;
+    if(this.currenCard ==-1){
+      this.activeElement=1
+      this.getCardbyId(1);
     }
-    else {
-      this.currentCard++;
-    }
-  
+    this.cardHolder="Test card"
+    this.cardNumber="4859 XXXX XXXX 0005"
+    this.cardExpiry="09/22"
+    this.cardinitiatedby="Mr. Naveen Lohiya"
+    this.cardinitiatedon="28-02-2019 12:09 PM"
+    this.cardapprovedby="Mr. K.V. HEBBAR"
+    this.cardapprovedon="28-02-2019 12:10 PM"
+    
+    this.selectedcard=this.approvedcard[0]
+    console.log(this.selectedcard)
   }
+
+  // goToNextCard() {
+  //   if (this.approvedcard.length - 1 == this.currentCard) {
+  //     this.currentCard = 0;
+  //   }
+  //   else {
+  //     this.currentCard++;
+  //   }
   
-  goToPrevCard() {
-    if (this.currentCard == 0) {
-      this.currentCard = this.approvedcard.length - 1;
-    }
-    else {
-      this.currentCard--;
-    }
-  }
+  // }
+  
+  // goToPrevCard() {
+  //   if (this.currentCard == 0) {
+  //     this.currentCard = this.approvedcard.length - 1;
+  //   }
+  //   else {
+  //     this.currentCard--;
+  //   }
+  // }
 
   getBiller(stateid){
   
@@ -161,18 +182,20 @@ export class MakerMakePaymentComponent implements OnInit {
 
   getCardDetails(card:any){
     //console.log(card)
-    this.approvedcard[this.currentCard]=card
-    console.log(this.approvedcard[this.currentCard])
+    this.selectedcard=card;
+    //this.approvedcard[this.currentCard]=card
+    console.log(this.selectedcard)
     this.cardHolder=card['cardholder']
     this.cardNumber=card['digits']
     this.cardExpiry=card['expirydate']
     this.cardinitiatedby=card['initiatedby']
-    this.cardinitiatedon=card['initiateddate']+" "+card['initiatedtime']
+    this.cardinitiatedon=card['initiateddate']
     this.cardapprovedby=card['approvedby']
-    this.cardapprovedon=card['aproveddate']+" "+card['aprovedtime']
+    this.cardapprovedon=card['aproveddate']
   }
 
   getCardbyId(id:number){
+    console.log(id)
     this.activeElement = id;
   }
 
@@ -310,8 +333,8 @@ export class MakerMakePaymentComponent implements OnInit {
 
 
     var tempPendingPayments = this.pendingPayments.map((payment)=>{
-      var card = this.approvedcard[this.currentCard];
-      console.log(this.approvedcard[this.currentCard])
+      var card = this.selectedcard
+      console.log(card)
       payment['status']='Pending';
       payment['paymentstatus']='Pending';
       payment['card']=card;

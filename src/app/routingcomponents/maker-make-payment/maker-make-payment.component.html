@@ -171,7 +171,7 @@
               </div>
               <div class="row" style="margin-top:15px; font-size:13px;">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                  No of Entries : <span class="spn">1</span>
+                  No of Entries : <span class="spn">{{payments.length}}</span>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
                   Show : <input list="browsers" value="5" class="datalist">
@@ -300,24 +300,33 @@
                                 </div>
                                 <!-- modal-body -->
                                 <div class="modal-body">
-                                  <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                      <label for="" class="pop-input-text">Late Payment Charges</label>
-                                      <input type="text" class="pop-input" placeholder="Eg. ₹ 343">
-                                      <label for="" class="pop-input-text">Promt Payment Incentives</label>
-                                      <input type="text" class="pop-input" placeholder="Eg. MSEB">
+                                    <div class="row mb-2">
+                                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <label for="" style="color: #807199;font-size: 14px;">Late Payment Charges</label> <span> : </span> &nbsp;
+                                        <span style="font-size:14px">₹ 111146.37</span>
+                                      </div>
+                                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <label for="" style="color: #807199;font-size: 14px;">Meter Reading </label> <span> : </span> &nbsp;
+                                        <span style="font-size:14px">3565 Units</span>
+                                      </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                      <label for="" class="pop-input-text">Meter Reading</label>
-                                      <input type="text" class="pop-input" placeholder="Eg. 60">
-                                      <label for="" class="pop-input-text">Remarks</label>
-                                      <input type="text" class="pop-input" placeholder="Eg. Incentives Applicable">
+                                    <div class="row mb-4">
+                                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <label for="" style="color: #807199;font-size: 14px;">Promt Payment Incentives</label> <span> : </span> &nbsp;
+                                        <span style="font-size:14px">BEST</span>
+                                      </div>
+                                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <label for="" style="color: #807199;font-size: 14px;">Remarks</label> <span> : </span> &nbsp;
+                                        <span style="font-size:14px">Incentives Applicable</span>
+                                      </div>
                                     </div>
+                                    <!-- <div class="row">
+                                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button class="btn-ok" style="margin-right:10px;">OK</button></div>
+                                    </div> -->
                                   </div>
-                                </div>
                                 <!-- modal-footer -->
                                 <div class="modal-footer">
-                                  <button type="button" class="btn btn-default" (click)="closeModalDialog()">Close</button>
+                                  <button type="button" class="btn btn-default" (click)="openModalDialog()">Close</button>
                                 </div>
                               </div>
                             </div>
@@ -425,7 +434,7 @@
                         </tr>
                         <tr style="background-color: #ffff;">
                             <div class="span_width" style="margin:5px 0px;">Initiated On</div>  <span class="no-vert"> : </span> &nbsp;
-                            <div class="bold_span" style="margin:5px 0px;"> {{cardinitiatedon | date:'dd-MM-yyyy hh:mm a'}}</div>
+                            <div class="bold_span" style="margin:5px 0px;"> {{cardinitiatedon}}</div>
                         </tr>
                       </table>
                     </div>
@@ -437,7 +446,7 @@
                         </tr>
                         <tr style="background-color: #ffff;">
                             <div class="span_width" style="margin:5px 0px;">Approved On</div>  <span class="no-vert"> : </span> &nbsp;
-                            <div class="bold_span" style="margin:5px 0px;">{{cardapprovedon | date:'dd-MM-yyyy hh:mm a'}}</div>
+                            <div class="bold_span" style="margin:5px 0px;">{{cardapprovedon}}</div>
                         </tr>
                       </table>
                     </div>

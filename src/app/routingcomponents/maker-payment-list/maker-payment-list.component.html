@@ -15,14 +15,14 @@
               </div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-                <input list="browsers" value="All Categories" id="datalist" class="ml-2" style="width:30%;margin-left:10px;">
+                <!-- <input list="browsers" value="All Categories" id="datalist" class="ml-2" style="width:30%;margin-left:10px;">
                 <datalist id="browsers">
                   <option value="Internet Explorer" selected>
                   <option value="Firefox">
                   <option value="Chrome">
                   <option value="Opera">
                   <option value="Safari">
-                </datalist>
+                </datalist> -->
                 <input list="date" id="datalist" value="This Month" class="ml-2" style="width:30%;margin-left:10px;">
                 <datalist id="date">
                   <option value="This Month">
@@ -223,8 +223,8 @@
                     </tr>
                     <tr class="rowShow grayStrip" style="" *ngIf="payment.collapsed">
                       <td colspan="8"><span class="pull-right"><a (click)="closeModalDialog1()"><img src="../../../assets/img/page.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <a data-toggle="modal" href="#myModal" id="openBtn"><img src="../../../assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
-                            href=""><img src="../../../assets/img/edit.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a><img
+                          <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="../../../assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+                            href="javascript:void(0)"><img src="../../../assets/img/edit.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)"><img
                               src="../../../assets/img/delete.png" alt=""></a></span></td>
                     </tr>
                     <div class="backdrop" [ngStyle]="{'display':displayBillDetails}"></div>
