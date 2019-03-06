@@ -200,9 +200,9 @@
                       <thead>
                         <tr>
                           <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(payments)"></td>
-                          <td>Utility Type &nbsp;<img alt="" src="../../../assets/img/Filter.png"></td>
+                          <td>Biller &nbsp;<img alt="" src="../../../assets/img/Filter.png"></td>
+                          <td>Consumer No &nbsp;<img alt="" src="../../../assets/img/Filter.png"></td>
                           <td>Amount &nbsp;<img alt="" src="../../../assets/img/Filter.png"></td>
-                          <td>Bill Number &nbsp;<img alt="" src="../../../assets/img/Filter.png"></td>
                           <td>Bill Date &nbsp;<img alt="" src="../../../assets/img/Filter.png"></td>
                           <td>Due Date &nbsp;<img alt="" src="../../../assets/img/Filter.png"></td>
                           <td>&nbsp;</td>
@@ -212,9 +212,9 @@
                           <ng-container  *ngFor="let payment of mf.data; let i=index;">
                         <tr>
                           <td><input name="submenu" type="checkbox" [checked]="select" (change)="change(payment.id) "></td>
-                          <td>{{payment.bill.board}}</td>
+                          <td>{{payment.bill.biller}}</td>
+                          <td>{{payment.bill.consumerno}}</td>
                           <td>{{(payment.amount)?payment.amount:"No Data"}}</td>
-                          <td>{{(payment.billnumber)?payment.billnumber:"No Data"}}</td>
                           <td>{{(payment.billdate)?payment.billdate:"No Data"}}</td>
                           <td>{{(payment.duedate)?payment.duedate:"No Data"}}</td>
                           <td><img alt="" src="../../../assets/img/tb_downarrow.png" (click)="payment.collapsed=!payment.collapsed;"></td>
@@ -232,10 +232,10 @@
                                 <div class="bold_span">{{payment.bill.expensecode}}</div>
                               </div>
 
-                              <div class="mb-1">
+                              <!-- <div class="mb-1">
                                 <div class="span_width">Consumer No</div> <span class="no-vert"> : </span> &nbsp;
                                 <div class="bold_span">{{payment.bill.consumerno}}</div>
-                              </div>
+                              </div> -->
                               <!-- <div>
                                 <div class="span_width">Ref No 2:</div>
                                 <div class="bold_span">358507</div>

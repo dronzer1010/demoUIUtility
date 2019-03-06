@@ -34,11 +34,11 @@
         "billers":[
             {
                 "id":7,
-                "name":"Eastern Power Distribution Company of Andhra Pradesh Ltd. (APEPDCL)"
+                "name":"APEPDCL"
             },
             {
                 "id":8,
-                "name":"Southern power distribution company of a.p ltd (apspdcl)"
+                "name":"APSPDCL"
             }
         ]
     },
@@ -47,23 +47,23 @@
         "billers":[
             {
                 "id":9,
-                "name":"Bangalore electricity supply company ltd."
+                "name":"BESCOM"
             },
             {
                 "id":10,
-                "name":"Chamundeshwari electricity supply corporation ltd mysore"
+                "name":"CESO Ltd Mysore"
             },
             {
                 "id":11,
-                "name":"Gulbarga electricity supply company limited (gescom)"
+                "name":"GESCOM"
             },
             {
                 "id":12,
-                "name":"Hubli electricity supply company ltd. (hescom)"
+                "name":"HESCOM"
             },
             {
                 "id":13,
-                "name":"Mangalore electricity supply company ltd. (mescom)"
+                "name":"MESCOM"
             }
         ]
     },
@@ -72,7 +72,7 @@
         "billers":[
             {
                 "id":14,
-                "name":"Ajmer vidyut vitran nigam limited (avvnl)"
+                "name":"AVVNL Ajmer"
             },
             {
                 "id":15,
@@ -84,11 +84,11 @@
             },
             {
                 "id":17,
-                "name":"Jaipur vidyut vitran nigam ltd. (jvvnl)"
+                "name":"JVVNL Jaipur"
             },
             {
                 "id":18,
-                "name":"Jodhpur vidyut vitran nigam limited (jdvvnl)"
+                "name":"JDVVNL Jodhpur"
             },
             {
                 "id":19,
