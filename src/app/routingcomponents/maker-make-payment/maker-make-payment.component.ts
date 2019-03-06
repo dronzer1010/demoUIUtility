@@ -8,8 +8,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class MakerMakePaymentComponent implements OnInit {
   select=false;
-  billertype:boolean=true;
-  billdetails:boolean=false;
+  billertype:boolean=false;
+  billdetails:boolean=true;
   conf:boolean=false;
   success:boolean=false;
   reviewCard:boolean=false;
@@ -67,11 +67,7 @@ export class MakerMakePaymentComponent implements OnInit {
   constructor(private httpService: HttpClient) { }
 
   ngOnInit() {
-    this.httpService.get('./assets/states.json').subscribe(
-      data=>{
-        this.states=data;
-      }
-    )
+    this.billrdetails();
   }
 
   goToNextCard() {
@@ -124,7 +120,7 @@ export class MakerMakePaymentComponent implements OnInit {
     var allBills = JSON.parse(localStorage.getItem('billdetails'));
 
     this.bills = allBills.filter((bill)=>{
-      return (bill['status']=="Approved" && bill['biller']==this.paymentData['biller'] && bill['state']==this.paymentData['state'])
+      return (bill['status']=="Approved")
     })
 
     console.log(this.bills);
