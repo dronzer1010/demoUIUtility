@@ -27,81 +27,81 @@ export class MakerBillerBulkComponent implements OnInit {
   selectall:boolean=false;
   bulkbill:any=[
     {
-      "billaddress":"103 Cantt Road Ajmer",
-      "billdate":"2019-03-05",
-      "biller":"Ajmer vidyut vitran nigam limited (avvnl)",
+      "billaddress":"123 Pinnacle Business Park Andheri East",
+      "billdate":"6th of every month",
+      "biller":"Tata Power - Mumbai",
       "board":"Electricity",
-      "consumerno":"110413000536",
+      "consumerno":"900000049819",
       "contact":"9897866565",
-      "duedate":"2019-03-10",
-      "email":"kausal@mmt-grp.com",
-      "shortname":"AVVNL",
-      "state":"RJ",
+      "duedate":"15th of every month",
+      "email":"deepali.patekar@axisbank.com",
+      "shortname":"MHTATA",
+      "state":"MH",
       "expensecode":"123/223455",
       "status":"Pending",
-      "initiatedby":"Mr. Rajesh Arora"
+      "initiatedby":"Ms. Deepali Patekar"
 
     },
     {
       "billaddress":"103 Cantt Road Ajmer",
-      "billdate":"2019-03-05",
-      "biller":"Ajmer vidyut vitran nigam limited (avvnl)",
+      "billdate":"6th of every month",
+      "biller":"Adani Electricity",
       "board":"Electricity",
-      "consumerno":"110413000345",
+      "consumerno":"102096976",
       "contact":"9897866565",
-      "duedate":"2019-03-10",
-      "email":"kausal@mmt-grp.com",
-      "shortname":"AVVNL",
-      "state":"RJ",
+      "duedate":"15th of every month",
+      "email":"deepali.patekar@axisbank.com",
+      "shortname":"ADAN",
+      "state":"MH",
       "expensecode":"123/343454",
       "status":"Pending",
-      "initiatedby":"Mr. Rajesh Arora"
+      "initiatedby":"Ms. Deepali Patekar"
     },
     {
       "billaddress":"103 Cantt Road Ajmer",
-      "billdate":"2019-03-05",
+      "billdate":"6th of every month",
       "biller":"Ajmer vidyut vitran nigam limited (avvnl)",
       "board":"Electricity",
       "consumerno":"110413002334",
       "contact":"9897866565",
-      "duedate":"2019-03-10",
-      "email":"kausal@mmt-grp.com",
+      "duedate":"15th of every month",
+      "email":"deepali.patekar@axisbank.com",
       "shortname":"AVVNL",
       "state":"RJ",
       "expensecode":"123/343243",
       "status":"Pending",
-      "initiatedby":"Mr. Rajesh Arora"
+      "initiatedby":"Ms. Deepali Patekar"
      
     },
     {
-      "billaddress":"103 Cantt Road Ajmer",
-      "billdate":"2019-03-05",
-      "biller":"Ajmer vidyut vitran nigam limited (avvnl)",
+      "billaddress":"7655 Udyag Bhavan Hydrabad",
+      "billdate":"6th of every month",
+      "biller":"Eastern Power Distribution Company of Andhra Pradesh Ltd.",
       "board":"Electricity",
       "consumerno":"110413004345",
       "contact":"9897866565",
-      "duedate":"2019-03-10",
-      "email":"kausal@mmt-grp.com",
-      "shortname":"AVVNL",
-      "state":"RJ",
+      "duedate":"15th of every month",
+      "email":"deepali.patekar@axisbank.com",
+      "shortname":"APEPDCL",
+      "state":"AP",
       "expensecode":"123/334355",
       "status":"Pending",
-      "initiatedby":"Mr. Rajesh Arora"
+      "initiatedby":"Ms. Deepali Patekar"
     },
     {
-      "billaddress":"103 Cantt Road Ajmer",
-      "billdate":"2019-03-05",
-      "biller":"Ajmer vidyut vitran nigam limited (avvnl)",
+      "billaddress":"119/27 Primsroad MG Road Bangalore",
+      "billdate":"6th of every month",
+      "biller":"Bangalore electricity supply company ltd.",
       "board":"Electricity",
       "consumerno":"110413023445",
       "contact":"9897866565",
-      "duedate":"2019-03-10",
-      "email":"kausal@mmt-grp.com",
-      "shortname":"AVVNL",
-      "state":"RJ",
+      "duedate":"15th of every month",
+      "email":"deepali.patekar@axisbank.com",
+      "shortname":"BESC",
+      "state":"KA",
       "expensecode":"123/334343",
       "status":"Pending",
-      "initiatedby":"Mr. Rajesh Arora"
+      "initiatedby":"Ms. Deepali Patekar"
     }
   ]
   constructor(private httpService: HttpClient) { }
