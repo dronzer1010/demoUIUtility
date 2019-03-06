@@ -36,6 +36,7 @@ export class MakerMakePaymentComponent implements OnInit {
   rowsOnPage = 300;
   sortBy = "email";
   sortOrder = "asc";
+  activeElement :number;
   billDates=['6th of every month' ,'6th of every month' , '6th of every month' , '6th of every month' ,'6th of every month','6th of every month','6th of every month']
   dueDates=['15th of every month' ,'15th of every month' , '15th of every month' , '15th of every month' ,'15th of every month','15th of every month','15th of every month']
   fetchingBill=false;
@@ -158,9 +159,21 @@ export class MakerMakePaymentComponent implements OnInit {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
-  getCardById(card:any){
-    console.log(card)
+  getCardDetails(card:any){
+    //console.log(card)
+    this.approvedcard[this.currentCard]=card
+    console.log(this.approvedcard[this.currentCard])
+    this.cardHolder=card['cardholder']
+    this.cardNumber=card['4859 XXXX XXXX 0047']
+    this.cardExpiry=card['06/22']
+    this.cardinitiatedby=card['initiatedby']
+    this.cardinitiatedon=card['initiateddate']+" "+card['initiatedtime']
+    this.cardapprovedby=card['approvedby']
+    this.cardapprovedon=card['aproveddate']+" "+card['aprovedtime']
+  }
 
+  getCardbyId(id:number){
+    this.activeElement = id;
   }
 
 
@@ -298,6 +311,7 @@ export class MakerMakePaymentComponent implements OnInit {
 
     var tempPendingPayments = this.pendingPayments.map((payment)=>{
       var card = this.approvedcard[this.currentCard];
+      console.log(this.approvedcard[this.currentCard])
       payment['status']='Pending';
       payment['paymentstatus']='Pending';
       payment['card']=card;
