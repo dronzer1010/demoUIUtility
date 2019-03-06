@@ -350,8 +350,8 @@
                 </div>
           <ng-container *ngFor="let card of approvedcard">
 
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" (click)="getCardbyId(card)">
-                  <div class="card-active">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  (click)="getCardbyId(card.id);getCardDetails(card)">
+                  <div [ngClass]="card.id === activeElement ? 'card-active' : 'none'">
                   <button class="card-button">
                     <img src="../../../assets/img/precard.png" alt="" class="pre-card">
                     <div class="row">
@@ -378,16 +378,16 @@
                   <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 main-cardbody">
                     <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 spn-mrg">
-                        <span class="spn4">{{approvedcard[currentCard].cardholder}}</span>
+                        <span class="spn4">{{cardHolder}}</span>
                       </div>
                     </div>
                     <div class="row card-no">
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">{{approvedcard[currentCard].digits}}</div>                     
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">{{cardNumber}}</div>                     
                     </div>
                     <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <span class="spn1">VALID</span>
-                        <span class="spn2">UPTO {{approvedcard[currentCard].expirydate}}</span>
+                        <span class="spn2">UPTO {{cardExpiry}}</span>
                       </div>
                     </div>
                     <div class="row">
@@ -421,11 +421,11 @@
                       <table>
                         <tr style="background-color: #ffff;">
                             <div class="span_width" style="margin:5px 0px;">Initiated By</div>  <span class="no-vert"> : </span> &nbsp;
-                            <div class="bold_span" style="margin:5px 0px;"> {{approvedcard[currentCard].initiatedby }}</div>
+                            <div class="bold_span" style="margin:5px 0px;"> {{cardinitiatedby}}</div>
                         </tr>
                         <tr style="background-color: #ffff;">
                             <div class="span_width" style="margin:5px 0px;">Initiated On</div>  <span class="no-vert"> : </span> &nbsp;
-                            <div class="bold_span" style="margin:5px 0px;"> {{approvedcard[currentCard].initiateddate }} {{approvedcard[currentCard].initiatedtime}}</div>
+                            <div class="bold_span" style="margin:5px 0px;"> {{cardinitiatedon | date:'dd-MM-yyyy hh:mm a'}}</div>
                         </tr>
                       </table>
                     </div>
@@ -433,11 +433,11 @@
                       <table>
                         <tr style="background-color: #ffff;">
                             <div class="span_width" style="margin:5px 0px;">Approved By</div>  <span class="no-vert"> : </span> &nbsp;
-                            <div class="bold_span" style="margin:5px 0px;">{{approvedcard[currentCard].approvedby}}</div>
+                            <div class="bold_span" style="margin:5px 0px;">{{cardapprovedby}}</div>
                         </tr>
                         <tr style="background-color: #ffff;">
                             <div class="span_width" style="margin:5px 0px;">Approved On</div>  <span class="no-vert"> : </span> &nbsp;
-                            <div class="bold_span" style="margin:5px 0px;">{{approvedcard[currentCard].aproveddate }} {{approvedcard[currentCard].aprovedtime}}</div>
+                            <div class="bold_span" style="margin:5px 0px;">{{cardapprovedon | date:'dd-MM-yyyy hh:mm a'}}</div>
                         </tr>
                       </table>
                     </div>

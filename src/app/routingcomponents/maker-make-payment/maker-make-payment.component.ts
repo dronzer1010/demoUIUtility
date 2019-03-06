@@ -164,8 +164,8 @@ export class MakerMakePaymentComponent implements OnInit {
     this.approvedcard[this.currentCard]=card
     console.log(this.approvedcard[this.currentCard])
     this.cardHolder=card['cardholder']
-    this.cardNumber=card['4859 XXXX XXXX 0047']
-    this.cardExpiry=card['06/22']
+    this.cardNumber=card['digits']
+    this.cardExpiry=card['expirydate']
     this.cardinitiatedby=card['initiatedby']
     this.cardinitiatedon=card['initiateddate']+" "+card['initiatedtime']
     this.cardapprovedby=card['approvedby']
