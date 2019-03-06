@@ -236,7 +236,7 @@ input::-webkit-calendar-picker-indicator {
 }
 
 .span_width {
-  width: 50%;
+  width: 40%;
   display: inline-block;
   vertical-align: top;
   font-size: 13px;

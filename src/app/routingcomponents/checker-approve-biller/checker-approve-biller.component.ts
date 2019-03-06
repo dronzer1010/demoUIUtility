@@ -168,6 +168,7 @@ this.displayreason='';
   this.pendingList=false;
   this.approve=false;
   this.reject=false;
+  console.log(this.checkedValueArray)
   localStorage.setItem('selectedBillers' , JSON.stringify(this.checkedValueArray));
   this.router.navigate(['otp-approve-biller']);
 

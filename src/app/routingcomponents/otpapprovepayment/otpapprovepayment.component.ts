@@ -25,6 +25,10 @@ export class OtpapprovePaymentComponent implements OnInit {
       for(var j=0;j<payments.length;j++){
         if(pendingPayments[i]==payments[j].id){
           payments[j].status ="Approved";
+          payments[j].paymentstatus ="Card Debited";
+          payments[j].approvedby="Ms. Deepali Patekar"
+          var d =new Date();
+          payments[j].approvedon=d.toLocaleString();
         }
       }
     }

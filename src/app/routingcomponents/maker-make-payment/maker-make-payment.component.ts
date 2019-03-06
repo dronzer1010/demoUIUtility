@@ -13,6 +13,13 @@ export class MakerMakePaymentComponent implements OnInit {
   conf:boolean=false;
   success:boolean=false;
   reviewCard:boolean=false;
+  cardHolder:string=""
+  cardNumber:string="";
+  cardExpiry:string="";
+  cardinitiatedby:string="";
+  cardinitiatedon:string="";
+  cardapprovedby:string="";
+  cardapprovedon:string="";
   public checkedValueArray: any = [];
   selectall:boolean=false;
   public temp: any;
@@ -29,8 +36,8 @@ export class MakerMakePaymentComponent implements OnInit {
   rowsOnPage = 300;
   sortBy = "email";
   sortOrder = "asc";
-  billDates=['12/03/2019' ,'17/03/2019' , '07/03/2019' , '06/03/2019' ,'20/03/2019','11/03/2019','15/03/2019']
-  dueDates=['21/03/2019' ,'23/03/2019' , '24/03/2019' , '28/03/2019' ,'25/03/2019','26/03/2019','30/03/2019']
+  billDates=['6th of every month' ,'6th of every month' , '6th of every month' , '6th of every month' ,'6th of every month','6th of every month','6th of every month']
+  dueDates=['15th of every month' ,'15th of every month' , '15th of every month' , '15th of every month' ,'15th of every month','15th of every month','15th of every month']
   fetchingBill=false;
   public currentCard: any=0;
   pendingPayments:any=[]
@@ -149,6 +156,11 @@ export class MakerMakePaymentComponent implements OnInit {
 
   getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
+  }
+
+  getCardById(card:any){
+    console.log(card)
+
   }
 
 
@@ -287,6 +299,7 @@ export class MakerMakePaymentComponent implements OnInit {
     var tempPendingPayments = this.pendingPayments.map((payment)=>{
       var card = this.approvedcard[this.currentCard];
       payment['status']='Pending';
+      payment['paymentstatus']='Pending';
       payment['card']=card;
       return payment;
     });
