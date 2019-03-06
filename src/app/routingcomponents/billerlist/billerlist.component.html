@@ -178,8 +178,11 @@
                             <div class="bold_span">10/12/2018</div>
                           </div> -->
                           <div class="mb-1">
-                            <div class="span_width">Location</div>  <span> : </span> &nbsp;
-                            <div class="bold_span">{{bill.state}}</div>
+                            <div class="span_width">Location</div> <span> : </span> &nbsp;
+                            <div class="bold_span" *ngIf="bill.state=='MH'" >Maharashtra</div>
+                            <div class="bold_span" *ngIf="bill.state=='RJ'" >Rajasthan</div>
+                            <div class="bold_span" *ngIf="bill.state=='KA'" >Karnataka</div>
+                            <div class="bold_span" *ngIf="bill.state=='AP'" >Andhra Pradesh</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Consumer No</div>  <span> : </span> &nbsp;
