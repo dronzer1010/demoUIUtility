@@ -5,6 +5,12 @@
 .padlft {
   padding-left: 40px;
 }
+.span_width{
+  width:42%;
+}
+.no-vert{
+  vertical-align: 0px;
+}
 .zin {
   position: relative;
   margin-bottom: -45px;
@@ -595,6 +601,7 @@ input[type="checkbox"]:checked {
   font-weight: 100;
   line-height: 1.83;
   color: #666666;
+  padding: 6px 0px;
 }
 
 .preregtxt {
