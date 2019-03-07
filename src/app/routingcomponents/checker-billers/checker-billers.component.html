@@ -11,7 +11,7 @@
           <div class="card-body">
             <div class="row mb-3" style="margin-bottom:15px;">
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                <img src="../../../assets/img/search-icon.png" width="5%;"> <input type="search" placeholder="Search for Location, Biller Type or Utility">
+                <img src="assets/img/search-icon.png" width="5%;"> <input type="search" placeholder="Search for Location, Biller Type or Utility">
               </div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
@@ -135,12 +135,12 @@
                       <td>
                           Sr.No.
                        </td>
-                      <td>Utility Type <img src="../../../assets/img/Filter.png"></td>
-                      <td>Biller Name <img src="../../../assets/img/Filter.png"></td>
+                      <td>Utility Type <img src="assets/img/Filter.png"></td>
+                      <td>Biller Name <img src="assets/img/Filter.png"></td>
                      
-                      <td>Bill Date <img src="../../../assets/img/Filter.png"></td>
-                      <td>Due Date <img src="../../../assets/img/Filter.png"></td>
-                      <td>Status <img src="../../../assets/img/Filter.png"></td>
+                      <td>Bill Date <img src="assets/img/Filter.png"></td>
+                      <td>Due Date <img src="assets/img/Filter.png"></td>
+                      <td>Status <img src="assets/img/Filter.png"></td>
                       <td>&nbsp;</td>
                     </tr>
                   </thead>
@@ -153,7 +153,7 @@
                       <td>{{bill.billdate}}</td>
                       <td>{{bill.duedate}}</td>
                       <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': bill.status === 'Approved', 'Rejected': bill.status  === 'Rejected', 'Pending': bill.status  === 'Pending'}" role="button">{{bill.status}}</a></td>
-                      <td style="padding-left: 1%;"><img src="../../../assets/img/tb_downarrow.png" (click)="bill.collapsed=!bill.collapsed;"></td>
+                      <td style="padding-left: 1%;"><img src="assets/img/tb_downarrow.png" (click)="bill.collapsed=!bill.collapsed;"></td>
                     </tr>
                     <tr class="rowShow grayStrip" *ngIf="bill.collapsed">
                       <td class="custmtd" colspan="7">

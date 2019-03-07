@@ -52,6 +52,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OtpapprovePaymentComponent } from './routingcomponents/otpapprovepayment/otpapprovepayment.component';
 import { OtpapproveBillerComponent } from './routingcomponents/otpapprovebiller/otpapprovebiller.component';
 import { ToastrModule } from 'ngx-toastr';
+import { NgDatepickerModule } from 'ng2-datepicker';
 
 
 @NgModule({
@@ -118,7 +119,8 @@ import { ToastrModule } from 'ngx-toastr';
 MatNativeDateModule,
     
     DataTableModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgDatepickerModule
 
   ],
  

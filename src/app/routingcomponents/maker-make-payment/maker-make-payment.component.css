@@ -611,7 +611,7 @@ input::-webkit-calendar-picker-indicator {
 
 @media only screen and (max-width: 1920px) {
   .main-cardbody {
-    background-image: url(../../../assets/img/new-cred-card.png);
+    background-image: url("../../../assets/img/new-cred-card.png");
     color: #fff !important;
     min-height: 270px;
     background-size: contain;
@@ -715,7 +715,7 @@ input::-webkit-calendar-picker-indicator {
 
 @media only screen and (max-width: 1440px) {
   .main-cardbody {
-    background-image: url(../../../assets/img/new-cred-card.png);
+    background-image: url("../../../assets/img/new-cred-card.png");
     color: #fff !important;
     min-height: 240px;
     background-size: contain;
@@ -814,7 +814,7 @@ input::-webkit-calendar-picker-indicator {
 
 @media only screen and (max-width: 1370px) {
   .main-cardbody {
-    background-image: url(../../../assets/img/new-cred-card.png);
+    background-image: url("../../../assets/img/new-cred-card.png");
     color: #fff !important;
     min-height: 240px;
     background-size: contain;
@@ -913,7 +913,7 @@ input::-webkit-calendar-picker-indicator {
 
 @media only screen and (max-width: 1280px) {
   .main-cardbody {
-    background-image: url(../../../assets/img/new-cred-card.png);
+    background-image: url("../../../assets/img/new-cred-card.png");
     color: #fff !important;
     min-height: 230px;
     background-size: contain;

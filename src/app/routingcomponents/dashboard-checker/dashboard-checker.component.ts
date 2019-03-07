@@ -1,6 +1,8 @@
 import { Component, OnInit,ViewEncapsulation, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { OwlCarousel } from 'ngx-owl-carousel';
+import { DatepickerOptions } from 'ng2-datepicker';
+import * as frLocale from 'date-fns/locale/fr';
 
 
 @Component({
@@ -25,6 +27,8 @@ export class DashboardCheckerComponent implements OnInit {
   penpaylength:number=0;
   apprpaylength:number=0;
   rejpaylength:number=0
+  todate:any;
+  fromdate:any;
   public currentCard: any=0;
   approvedcard:any=[
     {approvedby: "Mr. K.V. HEBBAR",
