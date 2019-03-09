@@ -52,7 +52,7 @@
 
             <div class="stepwizard-step">
               <a class="btn bg-primary btn-circle-big" id="fifth">
-                <img class="img-responsive tick2" src="../../../assets/img/tick.png">
+                <img class="img-responsive tick2" src="assets/img/tick.png">
               </a>
               <h6 id="p2">Payment</h6>
             </div>
@@ -68,13 +68,13 @@
 
             <div class="stepwizard-step">
               <a class="btn bg-primary btn-circle-big" id="fifth">
-                <img class="img-responsive tick2" src="../../../assets/img/tick.png">
+                <img class="img-responsive tick2" src="assets/img/tick.png">
               </a>
               <h6 id="p2">Payment</h6>
             </div>
             <div class="stepwizard-step">
               <a class="btn bg-primary btn-circle-big" id="sixth">
-                <img class="img-responsive tick2" src="../../../assets/img/tick.png">
+                <img class="img-responsive tick2" src="assets/img/tick.png">
               </a>
               <h6 id="p3">Confirm & Send</h6>
             </div>
@@ -84,9 +84,9 @@
       <div class="col-md-2 col-sm-2 top_back no-show">
         <h5 class="blu-color">
           <a href="#" class="backBtnpay_sup">
-            <img src="../../../assets/img/left-arrow.png"> Back </a>
+            <img src="assets/img/left-arrow.png"> Back </a>
           <a class="sndback">
-            <img src="../../../assets/img/left-arrow.png"> Back </a>
+            <img src="assets/img/left-arrow.png"> Back </a>
         </h5>
       </div>
     </div>
@@ -201,11 +201,11 @@
                       <thead>
                         <tr>
                           <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(payments)"></td>
-                          <td>Biller &nbsp;<img alt="" src="../../../assets/img/Filter.png" style="vertical-align:2px;"></td>
-                          <td>Consumer No &nbsp;<img alt="" src="../../../assets/img/Filter.png" style="vertical-align:2px;"></td>
-                          <td>Amount &nbsp;<img alt="" src="../../../assets/img/Filter.png" style="vertical-align:2px;"></td>
-                          <td>Bill Date &nbsp;<img alt="" src="../../../assets/img/Filter.png" style="vertical-align:2px;"></td>
-                          <td>Due Date &nbsp;<img alt="" src="../../../assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td>Biller &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td>Consumer No &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td>Amount &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td>Bill Date &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td>Due Date &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td>&nbsp;</td>
                         </tr>
                       </thead>
@@ -218,7 +218,7 @@
                           <td>₹ {{(payment.amount)?payment.amount:"No Data"}}</td>
                           <td>{{(payment.billdate)?payment.billdate:"No Data"}}</td>
                           <td>{{(payment.duedate)?payment.duedate:"No Data"}}</td>
-                          <td style="padding: 0 5px;"><img alt="" src="../../../assets/img/tb_downarrow.png" (click)="payment.collapsed=!payment.collapsed;"></td>
+                          <td style="padding: 0 5px;"><img alt="" src="assets/img/tb_downarrow.png" (click)="payment.collapsed=!payment.collapsed;"></td>
                         </tr>
                         <tr class="rowShow grayStrip" style="" *ngIf="payment.collapsed">
                           <td class="custmtd" colspan="7">
@@ -277,12 +277,13 @@
                         <tr class="rowShow grayStrip bottom_images" *ngIf="payment.collapsed">
                           <td colspan="7">
                             
-                            <span class="pull-right"><img style="cursor:pointer;" src="../../../assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="pull-right"><img style="cursor:pointer;" src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                              
-                            <a data-toggle="modal" href="#myModal" id="openBtn"><img src="../../../assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                              <a id="button" class="anchor-bill openModal" (click)="closeModalDialog()">Additional Bill Details</a></span>
+                            <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              <a id="button" class="anchor-bill openModal" (click)="closeModalDialog()">Additional
+                                Details</a></span>
                               <span><button  *ngIf="!fetchingBill" (click)="fetchBill(payment.id)" class="anchor-bill">Fetch Bill</button> </span>
-                              <span><a  *ngIf="fetchingBill" class="anchor-bill"><img src="../../../assets/img/loading.svg" class="loading-svg" /></a></span>
+                              <span><a  *ngIf="fetchingBill" class="anchor-bill"><img src="assets/img/loading.svg" class="loading-svg" /></a></span>
                               </td>
                                 
                           <div class="backdrop" [ngStyle]="{'display':display}"></div>
@@ -313,7 +314,7 @@
                                     <div class="row mb-4">
                                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <label for="" style="color: #807199;font-size: 14px;">Promt Payment Incentives</label> <span> : </span> &nbsp;
-                                        <span style="font-size:14px">BEST</span>
+                                        <span style="font-size:14px">₹ 0.00</span>
                                       </div>
                                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <label for="" style="color: #807199;font-size: 14px;">Remarks</label> <span> : </span> &nbsp;
@@ -361,7 +362,7 @@
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  (click)="getCardbyId(card.id);getCardDetails(card)">
                   <div [ngClass]="card.id === activeElement ? 'card-active' : 'none'">
                   <button class="card-button">
-                    <img src="../../../assets/img/precard.png" alt="" class="pre-card">
+                    <img src="assets/img/precard.png" alt="" class="pre-card">
                     <div class="row">
                       <div class="col-md-12">
                       <span class="spn-card">{{card.digits}}</span>
@@ -452,7 +453,7 @@
               <div class="col-md-3 col-sm-3 top_back no-show2 text-center" style="padding-left: 0%!important;">
                 <h5 class="blu-color">
                   <a *ngIf="reviewCard" class="sndback" (click)="backbilldetails()">
-                    <img style="vertical-align: 3px;" src="../../../assets/img/left-arrow.png">Back</a>
+                    <img style="vertical-align: 3px;" src="assets/img/left-arrow.png">Back</a>
                 </h5>
               </div>
               <button class="btn bg-primary nextpay buttonpad" type="button" (click)="succesadd()">Submit for
@@ -595,7 +596,7 @@
                   <div class="col-md-3 col-sm-3 top_back no-show2">
                     <h5 class="blu-color">
                       <a *ngIf="conf" class="sndback" (click)="backbilldetails()">
-                        <img src="../../../assets/img/left-arrow.png">Back</a>
+                        <img src="assets/img/left-arrow.png">Back</a>
                     </h5>
                   </div>
                   <button class="btn bg-primary nextpay buttonpad" type="button" (click)="succesadd()">Send for
@@ -662,7 +663,7 @@
                   <div class="clear30"></div>
                   <div class="clear20"></div>
                   <div class="clear20"></div>
-                  <img src="../../../assets/img/done-tick.png" alt="">
+                  <img src="assets/img/done-tick.png" alt="">
                   <div class="clear20"></div>
                   <div class="clear20"></div>
                   <label class="successhedtxt">Payment has been submitted and sent for approval, Email notification has been sent.</label>

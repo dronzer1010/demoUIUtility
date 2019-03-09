@@ -24,13 +24,13 @@
           <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="openbilldrop();clickBillEvent()">Bill </a>
           <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displaybilldrop}">
             <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/billerlist']">
-                <span> <img id="user" src="../../../assets/img/view-bills.png" /></span>
+                <span> <img id="user" src="assets/img/view-bills.png" /></span>
                 View Bill </a></li>
             <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/unitary-biller']"><span>
-                  <img id="user" src="../../../assets/img/add-unitary-bills.png" /></span>
+                  <img id="user" src="assets/img/add-unitary-bills.png" /></span>
                 Add Unitary Bill </a></li>
             <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/maker-biller-bulk']"><span>
-                  <img id="user" src="../../../assets/img/add-bulk.png" /></span>
+                  <img id="user" src="assets/img/add-bulk.png" /></span>
                 Add Bulk Bill </a></li>
           </ul>
         </li>
@@ -38,11 +38,11 @@
           <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="openpaydrop();clickPayEvent()">Payments </a>
           <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displaypaydrop}">
             <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/maker-payment-list']">
-                <span> <img id="user" src="../../../assets/img/view-payment.png" style="height:20px; width:25px;"/></span>
+                <span> <img id="user" src="assets/img/view-payment.png" style="height:20px; width:25px;"/></span>
                 View Payments </a></li>
             <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/make-payment']"><span>
-                  <img id="user" src="../../../assets/img/make-payment.png" style="height:16px; width:35px;"/></span>
-                Pending Payments </a></li>
+                  <img id="user" src="assets/img/make-payment.png" style="height:16px; width:35px;"/></span>
+                Add Pending Payments </a></li>
                 
             <!-- <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()"><span> <img id="user"
                     src="assets/img/user.png" /></span>
@@ -50,14 +50,14 @@
           </ul>
         </li>
 
-        <!-- <li class="menu_sel {{activecard}}">
-          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="opencarddrop()">Cards </a>
+        <li class="menu_sel" [ngClass]="cardActive ? 'active' : ''">
+          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="opencarddrop();clickCardEvent()">Cards </a>
           <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displaycarddrop}">
-            <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()"> <span> <img src="../../../assets/img/credit-card.png" /></span>
+            <li class="col-md-12 cust"><a class="[ animate ]" [routerLink]="['/cardview']" (click)="closealldrop()"> <span> <img src="../../../assets/img/credit-card.png" /></span>
                 View Cards </a></li>
            
           </ul>
-        </li> -->
+        </li>
 
 
 
@@ -69,7 +69,7 @@
         <li class="menu_sel notilink">
           <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">
             <span>
-              <img src="../../../assets/img/notification.png" />
+              <img src="assets/img/notification.png" />
             </span> <span class="badge badge-notify">3</span>
           </a>
           <ul class="[ dropdown-menu dropdown-menu3 ]" role="menu">
@@ -94,29 +94,29 @@
           </ul>
         </li>
 
-        <li class="menu_sel profilink {{activeprofile}}">
-          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="openmyprofile()">
+        <li class="menu_sel profilink" [ngClass]="notActive ? 'active' : ''">
+          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="openmyprofile();clickNotEvent()">
             <span class="profile">
-              <img src="../../../assets/img/profile-pic.png" />
+              <img src="assets/img/profile-pic.png" />
             </span> <span>
-              <img src="../../../assets/img/forma-1.png" />
+              <img src="assets/img/forma-1.png" />
             </span>
           </a>
           <ul class="[ dropdown-menu dropdown-menu4 ]" role="menu" [ngStyle]="{'display':displayprofile}">
-            <li>
+            <!-- <li>
               <a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/dashboard-checker']">
                 <p>
                   <span>
-                    <img id="user" src="../../../assets/img/user.png" />&nbsp;&nbsp;&nbsp;
+                    <img id="user" src="assets/img/user.png" />&nbsp;&nbsp;&nbsp;
                   </span> Switch Role
                 </p>
               </a>
-            </li>
+            </li> -->
             <li>
-              <a class="[ animate ]" (click)="closealldrop()">
+              <a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/profile-maker']">
                 <p>
                   <span>
-                    <img id="user" src="../../../assets/img/user.png" />&nbsp;&nbsp;&nbsp;
+                    <img id="user" src="assets/img/user.png" />&nbsp;&nbsp;&nbsp;
                   </span> My Profile
                 </p>
               </a>
@@ -125,7 +125,7 @@
               <a class="[ animate ]" (click)="closealldrop()">
                 <p>
                   <span>
-                    <img src="../../../assets/img/contact.png" />&nbsp;&nbsp;&nbsp;
+                    <img src="assets/img/contact.png" />&nbsp;&nbsp;&nbsp;
                   </span> Contact Us
                 </p>
               </a>
@@ -134,16 +134,16 @@
               <a class="[ animate ]" (click)="closealldrop()">
                 <p>
                   <span>
-                    <img src="../../../assets/img/alarm-bell.png" />&nbsp;&nbsp;&nbsp;
+                    <img src="assets/img/alarm-bell.png" />&nbsp;&nbsp;&nbsp;
                   </span> Notification Settings
                 </p>
               </a>
             </li>
             <li>
-              <a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/login']">
+              <a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/landing']">
                 <p>
                   <span>
-                    <img src="../../../assets/img/logout.png" />&nbsp;&nbsp;&nbsp;
+                    <img src="assets/img/logout.png" />&nbsp;&nbsp;&nbsp;
                   </span> Logout
                 </p>
               </a>

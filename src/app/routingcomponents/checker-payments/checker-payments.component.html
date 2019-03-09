@@ -11,7 +11,7 @@
           <div class="card-body">
             <div class="row" style="margin-bottom:20px;">
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                <img src="../../../assets/img/search-icon.png" alt="" width="5%;"> <input type="search" placeholder="Search for Location, Biller Type or Utility">
+                <img src="assets/img/search-icon.png" alt="" width="5%;"> <input type="search" placeholder="Search for Location, Biller Type or Utility">
               </div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
@@ -30,7 +30,7 @@
                 </datalist>
                 <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png" alt=""> Download File</button> -->
                 <a id="button" class="btn btn-primary btn-outline ResponsiveBtnWidth openModal" (click)="closeModalDialog()"
-                  style="width:30%;margin-left:10px;"><img src="../../../assets/img/downloadlist.png" alt=""> Download
+                  style="width:30%;margin-left:10px;"><img src="assets/img/downloadlist.png" alt=""> Download
                   File</a>
                 <div class="backdrop" [ngStyle]="{'display':display}"></div>
                 <!-- modal -->
@@ -67,11 +67,11 @@
                         <td>
                             Sr.No.
                          </td>
-                      <td>Bill Name <img src="../../../assets/img/Filter.png" alt=""></td>
-                      <td>Consumer no.<img src="../../../assets/img/Filter.png" alt=""></td>
-                      <td>Amount <img src="../../../assets/img/Filter.png" alt=""></td>
-                      <td>Bill Date <img src="../../../assets/img/Filter.png" alt=""></td>
-                      <td>Due Date <img src="../../../assets/img/Filter.png" alt=""></td>
+                      <td>Bill Name <img src="assets/img/Filter.png" alt=""></td>
+                      <td>Consumer no.<img src="assets/img/Filter.png" alt=""></td>
+                      <td>Amount <img src="assets/img/Filter.png" alt=""></td>
+                      <td>Bill Date <img src="assets/img/Filter.png" alt=""></td>
+                      <td>Due Date <img src="assets/img/Filter.png" alt=""></td>
                       <td>Status</td>
                       <!-- <td>Payment Status</td> -->
                       <td>&nbsp;</td>
@@ -88,7 +88,7 @@
                       <td>{{payment.duedate}}</td>
                       <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.status}}</a></td>
                       <!-- <td>{{payment.paymentstatus}}</td> -->
-                      <td style="padding:0px 5px;"><img src="../../../assets/img/tb_downarrow.png" alt="" (click)="payment.collapsed=!payment.collapsed;"></td>
+                      <td style="padding:0px 5px;"><img src="assets/img/tb_downarrow.png" alt="" (click)="payment.collapsed=!payment.collapsed;"></td>
                     </tr>
                     <tr class="rowShow grayStrip" style="" *ngIf="payment.collapsed">
                       <td class="custmtd" colspan="8">
@@ -162,8 +162,8 @@
                       </td>
                     </tr>
                     <tr class="rowShow grayStrip" style="" *ngIf="payment.collapsed">
-                      <td colspan="8"><span class="pull-right"><a><img src="../../../assets/img/page.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                         <a data-toggle="modal" href="#myModal" id="openBtn"><img src="../../../assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- <a
+                      <td colspan="8"><span class="pull-right"><a><img src="assets/img/page.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                         <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- <a
                             href=""><img src="../../../assets/img/edit.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a><img
                               src="../../../assets/img/delete.png" alt=""></a>--> </span></td>
                     </tr>

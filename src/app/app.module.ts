@@ -52,6 +52,11 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OtpapprovePaymentComponent } from './routingcomponents/otpapprovepayment/otpapprovepayment.component';
 import { OtpapproveBillerComponent } from './routingcomponents/otpapprovebiller/otpapprovebiller.component';
 import { ToastrModule } from 'ngx-toastr';
+import { NgDatepickerModule } from 'ng2-datepicker';
+import { CardviewComponent } from './routingcomponents/cardview/cardview.component';
+import { CardviewCheckerComponent } from './routingcomponents/cardview-checker/cardview-checker.component';
+import { MyprofileMakerComponent } from './supportingcomponents/myprofile-maker/myprofile-maker.component';
+import { MyprofileCheckerComponent } from './supportingcomponents/myprofile-checker/myprofile-checker.component';
 
 
 @NgModule({
@@ -79,7 +84,11 @@ import { ToastrModule } from 'ngx-toastr';
     CheckerPaymentListComponent,
     MakerBillerListComponent,
     OtpapprovePaymentComponent,
-    OtpapproveBillerComponent    
+    OtpapproveBillerComponent,
+    CardviewComponent,
+    CardviewCheckerComponent,
+    MyprofileMakerComponent,
+    MyprofileCheckerComponent    
    
   ],
   imports: [
@@ -118,7 +127,8 @@ import { ToastrModule } from 'ngx-toastr';
 MatNativeDateModule,
     
     DataTableModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgDatepickerModule
 
   ],
  

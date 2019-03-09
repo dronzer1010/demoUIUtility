@@ -79,7 +79,7 @@ export class MakerBillerUnitaryComponent implements OnInit {
   submitbilldata(){
     console.log(this.billdata)
     this.billdata.status = "Pending";
-    this.billdata.initiatedby = "Ms. Deepali Patekar"
+    this.billdata.initiatedby = "Mr. Mukund javir"
     this.billdata.approvedby="--"
     this.billdata.approvedon="--"
     var d =new Date();

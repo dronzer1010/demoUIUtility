@@ -32,6 +32,11 @@ export class HeaderComponent implements OnInit {
       }else if(this.pathroute=='/billerlist' || this.pathroute=='/unitary-biller' || this.pathroute=='/maker-biller-bulk'){
         this.clickBillEvent()
       }
+      else if(this.pathroute=='/cardview'){
+        this.clickCardEvent()
+      }else if(this.pathroute=='/profile-maker'){
+this.clickNotEvent()
+      }
   
   });
   }
@@ -47,6 +52,7 @@ export class HeaderComponent implements OnInit {
     this.notActive=false;
     this.profActive=false;
     this.billActive=false;
+    this.cardActive=false;
   }
 
   clickPayEvent(){
@@ -57,6 +63,7 @@ export class HeaderComponent implements OnInit {
     this.quickActive=false;
     this.notActive=false;
     this.profActive=false;
+    this.cardActive=false;
 
   }
   clickBillEvent(){
@@ -67,6 +74,17 @@ export class HeaderComponent implements OnInit {
     this.quickActive=false;
     this.notActive=false;
     this.profActive=false;
+    this.cardActive=false;
+  }
+  clickCardEvent(){
+    this.dashActive=false;
+    this.payActive=false;
+    this.billActive=false;
+    this.faqActive=false;
+    this.quickActive=false;
+    this.notActive=false;
+    this.profActive=false;
+    this.cardActive=true;
   }
 
   
@@ -80,7 +98,7 @@ export class HeaderComponent implements OnInit {
     this.quickActive=true;
     this.notActive=false;
     this.profActive=false;
-  
+    this.cardActive=false;
   }
 
   clickNotEvent(){
@@ -90,7 +108,7 @@ export class HeaderComponent implements OnInit {
     this.quickActive=false;
     this.notActive=true;
     this.profActive=false;
-
+    this.cardActive=false;
   }
 
   openbilldrop(){

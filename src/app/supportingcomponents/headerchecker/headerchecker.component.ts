@@ -14,9 +14,10 @@ export class HeadercheckerComponent implements OnInit {
   displayprofile='none';
  
   dashActive:boolean=true;
-  cardActive:boolean=false;
+  //cardactive:boolean=false;
   payActive:boolean=false;
   billActive:boolean=false;
+  cardactive:boolean=false;
   faqActive:boolean=false;
   notActive:boolean=false;
   quickActive:boolean=false;
@@ -32,6 +33,11 @@ export class HeadercheckerComponent implements OnInit {
       }else if(this.pathroute=='/checker-biller' || this.pathroute=='/pending-biller'){
         this.clickBillEvent()
       }
+      else if(this.pathroute=='/cardview-checker'){
+        this.clickCardEvent()
+      }else if(this.pathroute=='/profile-maker'){
+        this.clickNotEvent()
+              }
   
   });
    }
@@ -53,6 +59,7 @@ export class HeadercheckerComponent implements OnInit {
     this.notActive=false;
     this.profActive=false;
     this.billActive=true;
+    this.cardactive=false;
   }
   clickDashEvent(){
     this.dashActive=true;
@@ -62,6 +69,7 @@ export class HeadercheckerComponent implements OnInit {
     this.notActive=false;
     this.profActive=false;
     this.billActive=false;
+    this.cardactive=false;
   }
 
   openpaydrop(){
@@ -80,6 +88,26 @@ export class HeadercheckerComponent implements OnInit {
     this.quickActive=false;
     this.notActive=false;
     this.profActive=false;
+    this.cardactive=false;
+  }
+  clickCardEvent(){
+    this.dashActive=false;
+    this.payActive=false;
+    this.billActive=false;
+    this.faqActive=false;
+    this.quickActive=false;
+    this.notActive=false;
+    this.profActive=false;
+    this.cardactive=true;
+  }
+  clickNotEvent(){
+    this.dashActive=false;
+    this.payActive=false;
+    this.billActive=false
+    this.quickActive=false;
+    this.notActive=true;
+    this.profActive=false;
+    this.cardactive=false;
   }
 
   opencarddrop(){
