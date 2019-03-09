@@ -15,7 +15,17 @@
 .modelvalue{
   font-size: 12px;
 }
-
+.databill{
+  width: 68%;
+  display: inline;
+  background-image: url('../../../assets/img/datepicker.png');
+  background-repeat: no-repeat;
+  background-position-y: 10px;
+  background-position-x: right;
+}
+input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
 /* .big-circle1 {
   width: 18px !important;
   height: 18px !important;
@@ -151,8 +161,8 @@ span {
 }
 
 .span1 {
-  font-weight: 500;
-  color: #5c5c5c;
+  font-weight: bold;
+  color: #533979;
   margin-left: 10px;
   vertical-align: -4px;
 }

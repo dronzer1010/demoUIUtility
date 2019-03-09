@@ -15,21 +15,21 @@
               </div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-                <!-- <input list="browsers" value="All Categories" id="datalist" class="ml-2input">
+                <input list="browsers" value="All Categories" id="datalist1" class="ml-2input" style="width:125px;">
                 <datalist id="browsers">
                   <option value="Internet Explorer" selected>
                   <option value="Firefox">
                   <option value="Chrome">
                   <option value="Opera">
                   <option value="Safari">
-                </datalist> -->
-                <input list="date" id="datalist" value="This Month" class="ml-2input">
+                </datalist>
+                <input list="date" id="datalist" value="This Month" class="ml-2input this-month" style="width:125px;">
                 <datalist id="date">
                   <option value="This Month">
                   <option value="This Week">
                 </datalist>
                 <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png"> Download File</button> -->
-                <a id="button" class="btn btn-primary btn-outline ResponsiveBtnWidth openModal" (click)="closeModalDialog()">Download
+                <a id="button" class="btn btn-primary btn-outline ResponsiveBtnWidth openModal" (click)="closeModalDialog()"> <img src="../../../assets/img/downloadlist.png" alt=""> Download
                   File</a>
                 <div class="backdrop" [ngStyle]="{'display':display}"></div>
                 <!-- modal -->
@@ -181,13 +181,13 @@
                               <div class="bold_span" *ngIf="bill.state=='DL'" >Delhi</div>
                             </div>
                           <div class="mb-1">
-                            <div class="span_width">Consumer No</div>  <span> : </span> &nbsp;
+                            <div class="span_width">Ref. No. 1</div>  <span> : </span> &nbsp;
                             <div class="bold_span">{{bill.consumerno}}</div>
                           </div>
-                          <!-- <div>
-                            <div class="span_width">Ref No 2</div>  <span> : </span> &nbsp;
+                          <div>
+                            <div class="span_width">Ref. No. 2</div>  <span> : </span> &nbsp;
                             <div class="bold_span">358507</div>
-                          </div> -->
+                          </div>
                         </div>
                         <div class="tablediv">
                           <h5>Contact Details</h5>
@@ -232,7 +232,7 @@
                     <tr class="rowShow grayStrip" *ngIf="bill.collapsed">
                       <td colspan="7">
                         <span class="pull-right">
-                          <!-- <img style="cursor:pointer;"src="../../../assets/img/Download.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                          <img style="cursor:pointer;"src="../../../assets/img/attach.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <!-- <a data-toggle="modal" href="#myModal" id="openBtn"><img src="../../../assets/img/popup.png"></a> -->
                         </span></td>
                     </tr>

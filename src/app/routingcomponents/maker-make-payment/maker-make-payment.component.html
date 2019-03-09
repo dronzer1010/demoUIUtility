@@ -187,7 +187,8 @@
               <div class="row" style="margin-top:15px; font-size:13px;">
                
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-left">
-                    <button class="btn bg-primary nextpay buttonpad" type="button" (click)="fetchAllBills()" style="padding: 3px 25px!important;">Fetch All Bills</button>
+                  Total Amount: ₹ 6345886
+                    <!-- <button class="btn bg-primary nextpay buttonpad" type="button" (click)="fetchAllBills()" style="padding: 3px 25px!important;">Fetch All Bills</button> -->
                   </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
                   <button class="btn bg-primary nextpay buttonpad" type="button" (click)="cnfsend()" style="padding: 3px 25px!important;">Next</button>
@@ -200,11 +201,11 @@
                       <thead>
                         <tr>
                           <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(payments)"></td>
-                          <td>Biller &nbsp;<img alt="" src="../../../assets/img/Filter.png"></td>
-                          <td>Consumer No &nbsp;<img alt="" src="../../../assets/img/Filter.png"></td>
-                          <td>Amount &nbsp;<img alt="" src="../../../assets/img/Filter.png"></td>
-                          <td>Bill Date &nbsp;<img alt="" src="../../../assets/img/Filter.png"></td>
-                          <td>Due Date &nbsp;<img alt="" src="../../../assets/img/Filter.png"></td>
+                          <td>Biller &nbsp;<img alt="" src="../../../assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td>Consumer No &nbsp;<img alt="" src="../../../assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td>Amount &nbsp;<img alt="" src="../../../assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td>Bill Date &nbsp;<img alt="" src="../../../assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td>Due Date &nbsp;<img alt="" src="../../../assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td>&nbsp;</td>
                         </tr>
                       </thead>
@@ -352,12 +353,11 @@
                   <h4 class="Top5Heading111">Select Card</h4>
                 </div>
               </div>
-              <div class="row" id="">
+              <div class="row" style="border-bottom:2px solid #f5f5f5">
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
                   <!-- <button class="btn-img1"><img style="vertical-align:2px;" alt="" src="../../../assets/img/left-arrow.png"></button>-->
                 </div>
-          <ng-container *ngFor="let card of approvedcard">
-
+                <ng-container *ngFor="let card of approvedcard">
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  (click)="getCardbyId(card.id);getCardDetails(card)">
                   <div [ngClass]="card.id === activeElement ? 'card-active' : 'none'">
                   <button class="card-button">
@@ -371,10 +371,7 @@
                   </button>
                 </div>
                 </div>
-              </ng-container>
-                
-                
-                
+              </ng-container>                
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
                   <!-- <button class="btn-img1"><img style="vertical-align:2px;" alt="" src="../../../assets/img/right-arrow.png"></button>-->
                 </div>

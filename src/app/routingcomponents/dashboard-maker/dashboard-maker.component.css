@@ -5,6 +5,10 @@ row {
   letter-spacing: 1px !important;
 }
 
+.checkbox{
+  margin-top:0px;
+}
+
 .aub, .abb, .mp{
   font-size:13px;
 }

@@ -104,7 +104,13 @@ table tr:nth-child(odd) {
 thead tr {
   background-color: #fff !important;
 }
-
+.datepicker{
+  background-image: url('../../../assets/img/datepicker.png');
+  background-repeat: no-repeat;
+  background-position-x: 15px;
+  background-position-y: 4px;
+  padding-left: 45px!important;
+}
 tbody tr td {
   font-size: 13px;
   color: #7a7a7a;

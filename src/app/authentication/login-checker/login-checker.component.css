@@ -92,8 +92,9 @@
     margin-bottom: 30px;
   }
   
-  .underline:hover {
-    border-bottom: 2px solid #fff33b
+  .underline {
+    border-bottom: 2px solid #fff33b;
+    padding-bottom: 5px;
   }
   
   input {
