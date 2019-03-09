@@ -26,11 +26,11 @@
             <div id="para">We have sent an OTP on your registered number.</div>
             <div id="para">Please enter it below.</div>
             <div class="mt-4" style="width:100%;">
-                <input id="codeBox1" #input1 type="text" maxlength="1" [appAutoTab]="input2"/>
-                <input id="codeBox2" #input2 type="text" maxlength="1" [appAutoTab]="input3"/>
-                <input id="codeBox3" #input3 type="text" maxlength="1" [appAutoTab]="input4"/>
-                <input id="codeBox4" #input4 type="text" maxlength="1" [appAutoTab]="input5"/> 
-                <input id="codeBox5" #input5 type="text" maxlength="1"/>            
+              <input id="codeBox1" #input1 type="text" maxlength="1" [appAutoTab]="input2" name="otp1" [(ngModel)]="otp1"/>
+              <input id="codeBox2" #input2 type="text" maxlength="1" [appAutoTab]="input3" name="otp2" [(ngModel)]="otp2"/>
+              <input id="codeBox3" #input3 type="text" maxlength="1" [appAutoTab]="input4" name="otp3" [(ngModel)]="otp3"/>
+              <input id="codeBox4" #input4 type="text" maxlength="1" [appAutoTab]="input5" name="otp4" [(ngModel)]="otp4"/> 
+              <input id="codeBox5" #input5 type="text" maxlength="1" name="otp5" [(ngModel)]="otp5"/>             
             </div>
             </div>
             <!-- <div id="outer">
@@ -39,7 +39,7 @@
               </div>
             </div> -->
             <div class="reg3">Resend OTP?</div>
-            <div class="login2"><button class="btn" type="submit" [routerLink]="['/dashboard-checker']">Verify</button></div>
+            <div class="login2"><button class="btn" type="submit" (click)="loginotp()">Verify</button></div>
           </form>
           </div>        
       </div>

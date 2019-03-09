@@ -39,7 +39,7 @@ export class MakerBillerBulkComponent implements OnInit {
       "state":"MH",
       "expensecode":"123/223455",
       "status":"Pending",
-      "initiatedby":"Ms. Deepali Patekar",
+      "initiatedby":"Mr. Mukund Javir",
       "approvedby":"--"
     },
     {
@@ -55,7 +55,7 @@ export class MakerBillerBulkComponent implements OnInit {
       "state":"MH",
       "expensecode":"123/343454",
       "status":"Pending",
-      "initiatedby":"Ms. Deepali Patekar",
+      "initiatedby":"Mr. Mukund Javir",
       "approvedby":"--"
     },
     {
@@ -71,7 +71,7 @@ export class MakerBillerBulkComponent implements OnInit {
       "state":"GJ",
       "expensecode":"123/343243",
       "status":"Pending",
-      "initiatedby":"Ms. Deepali Patekar",
+      "initiatedby":"Mr. Mukund Javir",
       "approvedby":"--"
     },
     {
@@ -87,7 +87,7 @@ export class MakerBillerBulkComponent implements OnInit {
       "state":"DL",
       "expensecode":"123/334355",
       "status":"Pending",
-      "initiatedby":"Ms. Deepali Patekar",
+      "initiatedby":"Mr. Mukund Javir",
       "approvedby":"--"
     },
     {
@@ -103,7 +103,7 @@ export class MakerBillerBulkComponent implements OnInit {
       "state":"DL",
       "expensecode":"123/334343",
       "status":"Pending",
-      "initiatedby":"Ms. Deepali Patekar",
+      "initiatedby":"Mr. Mukund Javir",
       "approvedby":"--"
     }
   ]

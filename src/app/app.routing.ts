@@ -21,6 +21,8 @@ import { OtpapprovePaymentComponent } from './routingcomponents/otpapprovepaymen
 import { OtpapproveBillerComponent } from './routingcomponents/otpapprovebiller/otpapprovebiller.component';
 import { CardviewComponent } from './routingcomponents/cardview/cardview.component';
 import { CardviewCheckerComponent } from './routingcomponents/cardview-checker/cardview-checker.component';
+import { MyprofileMakerComponent } from './supportingcomponents/myprofile-maker/myprofile-maker.component';
+import { MyprofileCheckerComponent } from './supportingcomponents/myprofile-checker/myprofile-checker.component';
 
 const appRoutes: Routes = [ 
     {path:'pending-biller',component:CheckerApproveBillerComponent},
@@ -35,7 +37,7 @@ const appRoutes: Routes = [
     {path:'otp',component:OtpComponent},  
     {path:'login_checker',component:LoginCheckerComponent}, 
     {path:'otp_checker',component:OtpCheckerComponent},
-    {path:'landing',component:StartpageComponent},
+    {path:'',component:StartpageComponent},
     {path:'checker-biller',component:CheckerBillersComponent}, 
     {path:'checker-payments',component:CheckerPaymentsComponent},
     {path:'dashboard-checker',component:DashboardCheckerComponent},                                                                                                              
@@ -45,10 +47,12 @@ const appRoutes: Routes = [
     {path:'otp-approve-biller',component:OtpapproveBillerComponent},
     {path:'cardview',component:CardviewComponent},
     {path:'cardview-checker',component:CardviewCheckerComponent},
+    {path:'profile-maker',component:MyprofileMakerComponent},
+    {path:'profile-checker',component:MyprofileCheckerComponent},
 
 
     // otherwise redirect to home
-    { path: '**', redirectTo: 'login' }
+    { path: '**', redirectTo: '' }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

@@ -47,7 +47,7 @@ export class MakerMakePaymentComponent implements OnInit {
   approvedcard:any=[
     {approvedby: "Mr. K.V. HEBBAR",
     aproveddate: "28-02-2019 12:10 PM",
-    aprovedtime: "12:10:52",
+    aprovedtime: "12:10 PM",
     cardholder: "Test card",
     digits: "4859 XXXX XXXX 0005",
     expirydate: "09/22",
@@ -60,8 +60,8 @@ export class MakerMakePaymentComponent implements OnInit {
     status: 1},
     {
       approvedby: "Mr. K.V. HEBBAR",
-  aproveddate: "28-02-2019 19:17 PM",
-  aprovedtime: "19:17:24",
+  aproveddate: "28-02-2019 07:17 PM",
+  aprovedtime: "07:17 PM",
   cardholder: "Test Card 1",
   digits: "4859 XXXX XXXX 0047",
   expirydate: "06/22",
@@ -79,6 +79,7 @@ export class MakerMakePaymentComponent implements OnInit {
   ngOnInit() {
     this.billrdetails();
     this.getActivecard()
+    this.fetchAllBills()
   }
 
   getActivecard(){

@@ -1,0 +1,84 @@
+.notlabel {
+    font-family: Poppins;
+    font-size: 17.3px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: normal;
+    color: #533979;
+    margin: 30px 0px;
+}
+.pfcard {
+    background-color: #ffffff;
+    box-shadow: 0 0 8.5px 1.5px rgba(86, 79, 193, 0.1);
+    padding: 25px 50px;
+}
+
+.wordwrap{
+    word-wrap: break-word !important;
+    width: 75% !important;
+
+}
+
+.padln {
+    padding:0px;
+}
+.empdetw {
+    width:100%!important;
+}
+.mrgtp {
+    margin-top:10px;
+}
+.divwidth {
+    width:80%;
+}
+.notlabel {
+    font-family: Poppins;
+    font-size: 17.3px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: normal;
+    color: #533979;
+    margin:30px 0px;
+}
+.bordrlft {
+    border-left:1px solid #f0f4f5;
+}
+
+@media screen and (min-width: 1px) and (max-width: 768px) {
+
+    .bordrlft {
+        border-left: 0px;
+        margin-top: 20px;
+        padding: 0px !important;
+    }
+    .xspadln {
+        padding:0px;
+    }
+    .notlabel {
+        font-family: Poppins;
+        font-size: 17.3px;
+        font-weight: 500;
+        font-style: normal;
+        line-height: normal;
+        color: #533979;
+        margin:30px 20px;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 992px) {
+
+    .bordrsml {
+        border-left: 0px;
+        padding: 0px !important;
+    }
+    .xspadln {
+        padding: 0px;
+    }
+}
+
+.bdivtopmrgn{
+    margin-top: 25px;
+}
+
+.chkselect{
+    background-color: #64289d;
+}

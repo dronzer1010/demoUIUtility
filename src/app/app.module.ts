@@ -55,6 +55,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgDatepickerModule } from 'ng2-datepicker';
 import { CardviewComponent } from './routingcomponents/cardview/cardview.component';
 import { CardviewCheckerComponent } from './routingcomponents/cardview-checker/cardview-checker.component';
+import { MyprofileMakerComponent } from './supportingcomponents/myprofile-maker/myprofile-maker.component';
+import { MyprofileCheckerComponent } from './supportingcomponents/myprofile-checker/myprofile-checker.component';
 
 
 @NgModule({
@@ -84,7 +86,9 @@ import { CardviewCheckerComponent } from './routingcomponents/cardview-checker/c
     OtpapprovePaymentComponent,
     OtpapproveBillerComponent,
     CardviewComponent,
-    CardviewCheckerComponent    
+    CardviewCheckerComponent,
+    MyprofileMakerComponent,
+    MyprofileCheckerComponent    
    
   ],
   imports: [

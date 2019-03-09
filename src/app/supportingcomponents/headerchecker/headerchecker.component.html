@@ -90,8 +90,8 @@
           </ul>
         </li>
 
-        <li class="menu_sel profilink {{activeprofile}}">
-          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="openmyprofile()">
+        <li class="menu_sel profilink" [ngClass]="notActive ? 'active' : ''">
+          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="openmyprofile();clickNotEvent()">
             <span class="profile">
               <img src="assets/img/profile-pic.png" />
             </span> <span>
@@ -99,7 +99,7 @@
             </span>
           </a>
           <ul class="[ dropdown-menu dropdown-menu4 ]" role="menu" [ngStyle]="{'display':displayprofile}">
-              <li>
+              <!-- <li>
                   <a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/dashboard-maker']">
                     <p>
                       <span>
@@ -107,9 +107,9 @@
                       </span> Switch Role
                     </p>
                   </a>
-                </li>
-            <li>
-              <a class="[ animate ]" (click)="closealldrop()">
+                </li> -->
+            <li [ngClass]="notActive ? 'active' : ''">
+              <a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/profile-checker']">
                 <p>
                   <span>
                     <img id="user" src="assets/img/user.png" />&nbsp;&nbsp;&nbsp;
@@ -136,7 +136,7 @@
               </a>
             </li>
             <li>
-              <a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/login']">
+              <a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/landing']">
                 <p>
                   <span>
                     <img src="assets/img/logout.png" />&nbsp;&nbsp;&nbsp;

@@ -35,7 +35,9 @@ export class HeadercheckerComponent implements OnInit {
       }
       else if(this.pathroute=='/cardview-checker'){
         this.clickCardEvent()
-      }
+      }else if(this.pathroute=='/profile-maker'){
+        this.clickNotEvent()
+              }
   
   });
    }
@@ -97,6 +99,15 @@ export class HeadercheckerComponent implements OnInit {
     this.notActive=false;
     this.profActive=false;
     this.cardactive=true;
+  }
+  clickNotEvent(){
+    this.dashActive=false;
+    this.payActive=false;
+    this.billActive=false
+    this.quickActive=false;
+    this.notActive=true;
+    this.profActive=false;
+    this.cardactive=false;
   }
 
   opencarddrop(){

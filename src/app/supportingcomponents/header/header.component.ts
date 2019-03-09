@@ -32,6 +32,11 @@ export class HeaderComponent implements OnInit {
       }else if(this.pathroute=='/billerlist' || this.pathroute=='/unitary-biller' || this.pathroute=='/maker-biller-bulk'){
         this.clickBillEvent()
       }
+      else if(this.pathroute=='/cardview'){
+        this.clickCardEvent()
+      }else if(this.pathroute=='/profile-maker'){
+this.clickNotEvent()
+      }
   
   });
   }
