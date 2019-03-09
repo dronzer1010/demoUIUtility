@@ -1,0 +1,332 @@
+<app-headerchecker></app-headerchecker>
+<div class="container-fluid abc">
+  <div class="row">
+     <div class="col-md-12 tab text-center centra">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+           <button class="tablinks" [ngClass]="apprcrd?'active':''" id="mycard" (click)="apprcard()">APPROVED CARDS</button>
+           <!-- <button class="tablinks" [ngClass]="pencrd?'active':''" id="pendcard" (click)="pencard()">PENDING CARDS</button> -->
+           <button class="tablinks" [ngClass]="rejcrd?'active':''" id="rejctcard" (click)="rejcard()">REJECTED CARDS</button>
+        </div>
+        <div class="col-md-3 text-center bdivtopmrgn">
+           <div class="col-md-6"></div>
+           <div class="text-center col-sm-6">
+              <a *ngIf="isUnicard" [routerLink]="['/main/unitarycard']" class="btn btn-primary btn-outline ResponsiveBtnWidth topbtnpad activeapp">+ Add Card</a>
+           </div>
+        </div>
+     </div>
+     <div class="clear10"></div>
+     <div class="clear10"></div>
+     <div id="London" class="tabcontent" *ngIf="apprcrd">
+        <div class="container">
+           <div class="row">
+             <ng-container *ngFor="let approved of approvedcards">
+              <div class="col-sm-4 col-md-4 col-lg-4">
+                 <div class="col-sm-12 card-1">
+                    <div class="item bcolor">
+                       <div class="uk-card uk-light fontsize">
+                          <h4 class="uk-card-title hffont">{{approved.cardholder}}</h4>
+                          <h4 class="nofnt">{{approved.digits}}</h4>
+                          <p class="textsmall mrgnp">
+                             VALID
+                          </p>
+                          <p class="textsmall mrgnp textsmall1">
+                             UP TO {{approved.expirydate}}
+                          </p>
+                          <!--<div class="clear10"></div>-->
+                       </div>
+                    </div>
+                    <div class="clear10"></div>
+                    <div class="clear10"></div>
+                    <!-- <div class="col-sm-8 col-xs-6 text-left padnone">
+                       <label class="txtl">Total Credit Limit :</label>
+                       <label class="txtl">Available Credit :</label>
+                       <label class="txtl">Transactions this month :</label>
+                    </div>
+                    <div class="col-sm-4 col-xs-6 text-right padnone">
+                       <label class="rstxt">Rs.468800</label>
+                       <br>
+                       <label class="rstxt">Rs. 4688</label>
+                       <br>
+                       <label class="rstxt">80</label>
+                    </div> -->
+                    <div class="clear10"></div>
+                    <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12 padnone">
+                       <button class="collapsible" (click)="approved.selected=!approved.selected" style="text-decoration: underline;">{{(approved.selected)?"Hide Details":"View Details"}}</button>
+                       <div class="content" *ngIf="approved.selected">
+                         
+                        <!-- <div class="col-sm-5 col-xs-5 col-lg-5 col-md-5 text-left padnone txtl ">
+                             <label class="txtl">Initiated On :</label>
+                             <label class="txtl">Initiated At :</label>
+                             <label class="txtl">Initiated By :</label>
+                             <label class="txtl">Approved On :</label>
+                             <label class="txtl">Approved At :</label>
+                             <label class="txtl">Approved By :</label>
+                          </div>
+                          <div class="col-sm-7 col-xs-7 col-lg-7 col-md-7 text-right padnone">
+                             <label class="rstxt">{{approved.dateadded}}</label>
+                             <br>
+                             <label class="rstxt">{{approved.timeadded}}</label>
+                             <br>
+                             <label class="rstxt">{{approved.added}}</label>
+                             <br>
+                             <label class="rstxt">{{approved.dateapproved}}</label>
+                             <br>
+                             <label class="rstxt">{{approved.timeapproved}}</label>
+                             <br>
+                             <label class="rstxt">{{approved.approved}}</label>
+                          </div> -->
+
+                          <div class="row">
+                           <div class="col-sm-6 text-left">
+                               <label class="txtl">Initiated On :</label>
+                           </div>
+                           <div class="col-sm-6 text-right">
+                               <label class="rstxt">{{approved.initiateddate}}</label>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-sm-6 text-left">
+                               <label class="txtl">Initiated At :</label>
+                           </div>
+                           <div class="col-sm-6 text-right">
+                               <label class="rstxt">{{approved.initiatedtime}}</label>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-sm-6 text-left">
+                               <label class="txtl">Initiated By :</label>
+                           </div>
+                           <div class="col-sm-6 text-right">
+                               <label class="rstxt">{{approved.initiatedby}}</label>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-sm-6 text-left">
+                               <label class="txtl">Approved On :</label>
+                           </div>
+                           <div class="col-sm-6 text-right">
+                               <label class="rstxt">{{approved.aproveddate}}</label>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-sm-6 text-left">
+                               <label class="txtl">Approved At :</label>
+                           </div>
+                           <div class="col-sm-6 text-right">
+                               <label class="rstxt">{{approved.aprovedtime}}</label>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-sm-6 text-left">
+                               <label class="txtl">Approved By :</label>
+                           </div>
+                           <div class="col-sm-6 text-right">
+                               <label class="rstxt">{{approved.approvedby}}</label>
+                           </div>
+                       </div>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="clearfix"></div>
+              </div>
+            </ng-container>
+           </div>
+        </div>
+     </div>
+     <!-- <div id="Paris" class="tabcontent" *ngIf="pencrd">
+        <div class="container">
+           <div class="row">
+            <ng-container *ngFor="let pending of pendingcards">
+              <div class="col-sm-4">
+                 <div class="col-sm-12 card-2">
+                    <div class="item bcolor">
+                       <div class="uk-card uk-light fontsize">
+                          <h4 class="uk-card-title hffont">{{pending.cardholder}}</h4>
+                          <h4 class="nofnt">{{pending.digits}}</h4>
+                          <p class="textsmall mrgnp">
+                             VALID
+                          </p>
+                          <p class="textsmall mrgnp textsmall1">
+                             UP TO {{pending.expirydate}}
+                          </p>
+                        
+                       </div>
+                    </div>
+                    <div class="clear10"></div>
+                    <div class="clear10"></div>
+                   
+                    <div class="clear10"></div>
+                    <div class="col-sm-12 padnone">
+                       <button class="collapsible"  (click)="pending.selected=!pending.selected;" style="text-decoration: underline;">{{(pending.selected)?"Hide Details":"View Details"}}</button>
+                       <div class="content"  *ngIf="pending.selected">
+                         
+
+                          <div class="row">
+                           <div class="col-sm-6 text-left">
+                               <label class="txtl">Initiated On :</label>
+                           </div>
+                           <div class="col-sm-6 text-right">
+                               <label class="rstxt">{{pending.initiateddate}}</label>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-sm-6 text-left">
+                               <label class="txtl">Initiated At :</label>
+                           </div>
+                           <div class="col-sm-6 text-right">
+                               <label class="rstxt">{{pending.initiatedtime}}</label>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-sm-6 text-left">
+                               <label class="txtl">Initiated By :</label>
+                           </div>
+                           <div class="col-sm-6 text-right">
+                               <label class="rstxt">{{pending.initiatedby}}</label>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-sm-6 text-left">
+                               <label class="txtl">Approved On :</label>
+                           </div>
+                           <div class="col-sm-6 text-right">
+                               <label class="rstxt">{{pending.aproveddate}}</label>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-sm-6 text-left">
+                               <label class="txtl">Approved At :</label>
+                           </div>
+                           <div class="col-sm-6 text-right">
+                               <label class="rstxt">{{pending.aprovedtime}}</label>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-sm-6 text-left">
+                               <label class="txtl">Approved By :</label>
+                           </div>
+                           <div class="col-sm-6 text-right">
+                               <label class="rstxt">{{pending.approvedby}}</label>
+                           </div>
+                       </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+            </ng-container>
+           </div>
+        </div>
+     </div> -->
+     <div id="Tokyo" class="tabcontent" *ngIf="rejcrd">
+        <div class="container">
+           <div class="row">
+             <ng-container *ngFor="let rejected of rejectedcards">
+              <div class="col-sm-4">
+                 <div class="col-sm-12 card-1">
+                    <div class="item bcolor">
+                       <div class="uk-card        uk-light fontsize">
+                          <h4 class="uk-card-title hffont">{{rejected.cardholder}}</h4>
+                          <h4 class="nofnt">{{rejected.digits}}</h4>
+                          <p class="textsmall mrgnp">
+                             VALID
+                          </p>
+                          <p class="textsmall mrgnp textsmall1">
+                             UP TO {{rejected.expirydate}}
+                          </p>
+                          <!--<div class="clear10"></div>-->
+                       </div>
+                    </div>
+                    <div class="clear10"></div>
+                    <div class="clear10"></div>
+                    <div class="col-sm-12 nopad">
+                       <label class="rstxt">Comment:</label>
+                       <br>
+                       <p class="txtl text-justify">
+                          {{rejected.regcmt}}
+                       </p>
+                    </div>
+                    <div class="clear10"></div>
+                    <div class="col-sm-12 padnone">
+                       <button class="collapsible" (click)="rejected.selected=!rejected.selected" style="text-decoration: underline;">{{(rejected.selected)?"Hide Details":"View Details"}}</button>
+                       <div class="content" *ngIf="rejected.selected">
+                          <!-- <div class="col-sm-5 col-lg-5 col-md-5 col-xs-5 text-left padnone">
+                             <label class="txtl">Initiated On :</label>
+                             <label class="txtl">Initiated At :</label>
+                             <label class="txtl">Initiated By :</label>
+                             <label class="txtl">Rejected On :</label>
+                             <label class="txtl">Rejected At :</label>
+                             <label class="txtl">Rejected By :</label>
+                          </div>
+                          <div class="col-sm-7 col-lg-7 col-md-7 col-xs-7 text-right padnone">
+                             <label class="rstxt">{{rejected.dateadded}}</label>
+                             <br>
+                             <label class="rstxt">{{rejected.timeadded}}</label>
+                             <br>
+                             <label class="rstxt">{{rejected.added}}</label>
+                             <br>
+                             <label class="rstxt">{{rejected.dateapproved}}</label>
+                             <br>
+                             <label class="rstxt">{{rejected.timeapproved}}</label>
+                             <br>
+                             <label class="rstxt">{{rejected.approved}}</label>
+                          </div> -->
+
+                          <div class="row">
+                           <div class="col-sm-6 text-left">
+                               <label class="txtl">Initiated On :</label>
+                           </div>
+                           <div class="col-sm-6 text-right">
+                               <label class="rstxt">{{rejected.initiateddate}}</label>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-sm-6 text-left">
+                               <label class="txtl">Initiated At :</label>
+                           </div>
+                           <div class="col-sm-6 text-right">
+                               <label class="rstxt">{{rejected.initiatedtime}}</label>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-sm-6 text-left">
+                               <label class="txtl">Initiated By :</label>
+                           </div>
+                           <div class="col-sm-6 text-right">
+                               <label class="rstxt">{{rejected.initiatedby}}</label>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-sm-6 text-left">
+                               <label class="txtl">Rejected On :</label>
+                           </div>
+                           <div class="col-sm-6 text-right">
+                               <label class="rstxt">{{rejected.aproveddate}}</label>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-sm-6 text-left">
+                               <label class="txtl">Rejected At :</label>
+                           </div>
+                           <div class="col-sm-6 text-right">
+                               <label class="rstxt">{{rejected.aprovedtime}}</label>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div class="col-sm-6 text-left">
+                               <label class="txtl">Rejected By :</label>
+                           </div>
+                           <div class="col-sm-6 text-right">
+                               <label class="rstxt">{{rejected.approvedby}}</label>
+                           </div>
+                       </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+            </ng-container>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>

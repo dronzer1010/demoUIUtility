@@ -53,6 +53,8 @@ import { OtpapprovePaymentComponent } from './routingcomponents/otpapprovepaymen
 import { OtpapproveBillerComponent } from './routingcomponents/otpapprovebiller/otpapprovebiller.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgDatepickerModule } from 'ng2-datepicker';
+import { CardviewComponent } from './routingcomponents/cardview/cardview.component';
+import { CardviewCheckerComponent } from './routingcomponents/cardview-checker/cardview-checker.component';
 
 
 @NgModule({
@@ -80,7 +82,9 @@ import { NgDatepickerModule } from 'ng2-datepicker';
     CheckerPaymentListComponent,
     MakerBillerListComponent,
     OtpapprovePaymentComponent,
-    OtpapproveBillerComponent    
+    OtpapproveBillerComponent,
+    CardviewComponent,
+    CardviewCheckerComponent    
    
   ],
   imports: [

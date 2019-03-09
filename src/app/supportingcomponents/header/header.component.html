@@ -50,14 +50,14 @@
           </ul>
         </li>
 
-        <!-- <li class="menu_sel {{activecard}}">
-          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="opencarddrop()">Cards </a>
+        <li class="menu_sel" [ngClass]="cardActive ? 'active' : ''">
+          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="opencarddrop();clickCardEvent()">Cards </a>
           <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displaycarddrop}">
-            <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()"> <span> <img src="../../../assets/img/credit-card.png" /></span>
+            <li class="col-md-12 cust"><a class="[ animate ]" [routerLink]="['/cardview']" (click)="closealldrop()"> <span> <img src="../../../assets/img/credit-card.png" /></span>
                 View Cards </a></li>
            
           </ul>
-        </li> -->
+        </li>
 
 
 

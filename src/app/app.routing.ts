@@ -19,6 +19,8 @@ import { CheckerPaymentListComponent } from './routingcomponents/checker-payment
 import { MakerBillerListComponent } from './routingcomponents/maker-biller-list/maker-biller-list.component'
 import { OtpapprovePaymentComponent } from './routingcomponents/otpapprovepayment/otpapprovepayment.component';
 import { OtpapproveBillerComponent } from './routingcomponents/otpapprovebiller/otpapprovebiller.component';
+import { CardviewComponent } from './routingcomponents/cardview/cardview.component';
+import { CardviewCheckerComponent } from './routingcomponents/cardview-checker/cardview-checker.component';
 
 const appRoutes: Routes = [ 
     {path:'pending-biller',component:CheckerApproveBillerComponent},
@@ -41,6 +43,9 @@ const appRoutes: Routes = [
     {path:'maker-biller-list',component:MakerBillerListComponent},
     {path:'otp-approve-payment',component:OtpapprovePaymentComponent},
     {path:'otp-approve-biller',component:OtpapproveBillerComponent},
+    {path:'cardview',component:CardviewComponent},
+    {path:'cardview-checker',component:CardviewCheckerComponent},
+
 
     // otherwise redirect to home
     { path: '**', redirectTo: 'login' }
