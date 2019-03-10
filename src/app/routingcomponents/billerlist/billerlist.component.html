@@ -15,14 +15,14 @@
               </div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-                <!-- <input list="browsers" value="All Categories" id="datalist" class="ml-2input">
+                <input list="browsers" value="All Categories" id="datalist" class="ml-2input">
                 <datalist id="browsers">
                   <option value="All Categories" selected>
                   <option value="Firefox">
                   <option value="Chrome">
                   <option value="Opera">
                   <option value="Safari">
-                </datalist> -->
+                </datalist>
                 <input list="date" id="datalist" value="This Month" class="ml-2input this-month" style="width:125px;">
                 <datalist id="date">
                   <option value="This Month">
@@ -142,6 +142,7 @@
                       <td>Bill Date <img src="assets/img/Filter.png" alt=""></td>
                       <td>Due Date <img src="assets/img/Filter.png" alt=""></td>
                       <td>Status <img src="assets/img/Filter.png" alt=""></td>
+                      <td></td>
                       <td>&nbsp;</td>
                     </tr>
                   </thead>
@@ -155,10 +156,12 @@
                       <td>{{bill.billdate}}</td>
                       <td>{{bill.duedate}}</td>
                       <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': bill.status === 'Approved', 'Rejected': bill.status  === 'Rejected', 'Pending': bill.status  === 'Pending'}" role="button">{{bill.status}}</a></td>
+                      <td style="padding-left: 2%;"><a data-toggle="modal" id="openBtn"><img src="assets/img/delete.png"></a></td>
                       <td style="padding:0 15px;"><img src="assets/img/tb_downarrow.png" alt=""  (click)="bill.collapsed=!bill.collapsed;"></td>
+                      
                     </tr>
                     <tr class="rowShow grayStrip" style="" *ngIf="bill.collapsed">
-                      <td class="custmtd" colspan="7">
+                      <td class="custmtd" colspan="8">
                         <div class="tablediv">
                           <h5>Biller Details</h5>
                           <div class="mb-1">
@@ -237,9 +240,9 @@
                       </td>
                     </tr>
                     <tr class="rowShow grayStrip" style="" *ngIf="bill.collapsed">
-                      <td colspan="7"><span class="pull-right">
-                        <img style="cursor:pointer;"src="../../../assets/img/attach.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <a data-toggle="modal" id="openBtn"><img src="../../../assets/img/edit.png"></a>
+                      <td colspan="8"><span class="pull-right">
+                        <img style="cursor:pointer;"src="assets/img/attach.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <a data-toggle="modal" id="openBtn"><img src="assets/img/edit.png"></a>
                         </span></td>
                     </tr>
                   </ng-container>

@@ -25,13 +25,13 @@
           <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displaybilldrop}">
             <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/billerlist']">
                 <span> <img id="user" src="assets/img/view-bills.png" /></span>
-                View Bill </a></li>
+                View Bills </a></li>
             <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/unitary-biller']"><span>
                   <img id="user" src="assets/img/add-unitary-bills.png" /></span>
-                Add Unitary Bill </a></li>
+                Add Unitary </a></li>
             <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/maker-biller-bulk']"><span>
                   <img id="user" src="assets/img/add-bulk.png" /></span>
-                Add Bulk Bill </a></li>
+                Add Bulk </a></li>
           </ul>
         </li>
         <li class="menu_sel" [ngClass]="payActive ? 'active' : ''">
@@ -42,7 +42,7 @@
                 View Payments </a></li>
             <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/make-payment']"><span>
                   <img id="user" src="assets/img/make-payment.png" style="height:16px; width:35px;"/></span>
-                Add Pending Payments </a></li>
+                Make Payments </a></li>
                 
             <!-- <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()"><span> <img id="user"
                     src="assets/img/user.png" /></span>
@@ -53,7 +53,8 @@
         <li class="menu_sel" [ngClass]="cardActive ? 'active' : ''">
           <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="opencarddrop();clickCardEvent()">Cards </a>
           <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displaycarddrop}">
-            <li class="col-md-12 cust"><a class="[ animate ]" [routerLink]="['/cardview']" (click)="closealldrop()"> <span> <img src="../../../assets/img/credit-card.png" /></span>
+            <li class="col-md-12 cust"><a class="[ animate ]" [routerLink]="['/cardview']" (click)="closealldrop()"> 
+              <!-- <span> <img src="assets/img/credit-card.png" /></span> -->
                 View Cards </a></li>
            
           </ul>

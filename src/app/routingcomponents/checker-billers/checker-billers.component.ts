@@ -13,7 +13,7 @@ export class CheckerBillersComponent implements OnInit {
   sortBy = "email";
   sortOrder = "asc";
   billerlength:number=0;
-  noofrole="No billers available"
+  noofrole="No bills available"
   constructor() { }
 
   ngOnInit() {
@@ -21,13 +21,13 @@ export class CheckerBillersComponent implements OnInit {
     console.log(this.billdata)
     if(this.billdata==null){
       this.billerlength=0
-      this.noofrole="No billers available"
+      this.noofrole="No bills available"
     }else{
       this.billerlength=this.billdata.length;
       if(this.billerlength>1){
-        this.noofrole="No of Billers:"
+        this.noofrole="No of Bills:"
       }else{
-        this.noofrole="No of Biller:"
+        this.noofrole="No of Bill:"
       }
     }
   }

@@ -39,8 +39,8 @@ export class MakerMakePaymentComponent implements OnInit {
   sortBy = "email";
   sortOrder = "asc";
   activeElement :number;
-  billDates=['6th of every month' ,'6th of every month' , '6th of every month' , '6th of every month' ,'6th of every month','6th of every month','6th of every month']
-  dueDates=['15th of every month' ,'15th of every month' , '15th of every month' , '15th of every month' ,'15th of every month','15th of every month','15th of every month']
+  billDates=['6th' ,'6th' , '6th' , '6th' ,'6th','6th','6th']
+  dueDates=['15th' ,'15th' , '15th' , '15th' ,'15th','15th','15th']
   fetchingBill=false;
   public currentCard: any=0;
   pendingPayments:any=[]
