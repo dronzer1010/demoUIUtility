@@ -15,22 +15,22 @@
               </div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-                <!-- <input list="browsers" value="All Categories" id="datalist" style="margin-left:10px;">
+                <input list="browsers" value="All Categories" id="datalist" style="margin-left:10px; width: 125px; padding: 4px 5px 4px 15px;">
                 <datalist id="browsers">
                   <option value="Internet Explorer" selected>
                   <option value="Firefox">
                   <option value="Chrome">
                   <option value="Opera">
                   <option value="Safari">
-                </datalist> -->
-                <input list="date" id="datalist" value="This Month" style="margin-left:10px;">
+                </datalist>
+                <input list="date" id="datalist" value="This Month" class="datelist" style="margin-left:10px; width: 125px;">
                 <datalist id="date">
                   <option value="This Month">
                   <option value="This Week">
                 </datalist>
                 <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png" alt=""> Download File</button> -->
                 <a id="button" class="btn btn-primary btn-outline ResponsiveBtnWidth openModal" (click)="closeModalDialog3()"
-                  style="margin-left: 10px; border:1px solid #d9cee6;">Download
+                  style="margin-left: 10px; border:1px solid #d9cee6; "> <img src="../../../assets/img/downloadlist.png" alt=""> Download
                   File</a>
                 
               </div>
@@ -51,7 +51,7 @@
                   <table id="main-table" [mfData]="pendingPayments" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                       <thead>
                         <tr>
-                            <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(pendingPayments)"></td>
+                          <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(pendingPayments)"></td>
                           <td>Biller Name <img src="../../../utility/assets/img/Filter.png" alt=""></td>
                           <td>Consumer No <img src="../../../utility/assets/img/Filter.png" alt=""></td>
                           <td>Amount <img src="../../../utility/assets/img/Filter.png" alt=""></td>
@@ -65,7 +65,7 @@
                       <tbody>
                         <ng-container *ngFor="let payment of mf.data; let i=index;">
                         <tr>
-                            <td><input type="checkbox" name="submenu" [checked]="select" (change)="change(payment.id) "></td>
+                          <td><input type="checkbox" name="submenu" [checked]="select" (change)="change(payment.id) "></td>
                           <td>{{payment.bill.biller}}</td>
                           <td>{{payment.bill.consumerno}}</td>
                           <td>₹ {{payment.amount}}</td>
@@ -73,7 +73,7 @@
                           <td>{{payment.duedate}}</td>
                           <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.status}}</a></td>
                           <!-- <td>{{payment.paymentstatus}}</td> -->
-                          <td style="padding:0 5px;"><img src="../../../utility/assets/img/tb_downarrow.png" alt="" (click)="payment.collapsed=!payment.collapsed;"></td>
+                          <td style="padding:0px 10px;"><img src="assets/img/tb_downarrow.png" alt="" (click)="payment.collapsed=!payment.collapsed;"></td>
                         </tr>
                         <tr class="rowShow grayStrip" style="" *ngIf="payment.collapsed">
                           <td class="custmtd" colspan="8">
@@ -88,10 +88,10 @@
                                   <div class="bold_span">{{payment.bill.expensecode}}</div>
                                 </div>
       
-                                <div class="mb-1">
+                                <!-- <div class="mb-1">
                                   <div class="span_width">Bill Date</div>  <span> : </span> &nbsp;
                                   <div class="bold_span">{{payment.billdate}}</div>
-                                </div>
+                                </div> -->
                                 <div class="mb-1">
                                     <div class="span_width">Location</div> <span> : </span> &nbsp;
                                     <div class="bold_span" *ngIf="payment.bill.state=='MH'" >Maharashtra</div>
@@ -102,8 +102,12 @@
                                     <div class="bold_span" *ngIf="payment.bill.state=='DL'" >Delhi</div>
                                   </div>
                                 <div class="mb-1">
-                                  <div class="span_width">Bill No</div>  <span> : </span> &nbsp;
+                                  <div class="span_width">Ref. No. 1</div>  <span> : </span> &nbsp;
                                   <div class="bold_span">{{payment.billnumber}}</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Ref. No. 2</div>  <span> : </span> &nbsp;
+                                  <div class="bold_span">12345</div>
                                 </div>
                             </div>
                             <div class="tablediv">
@@ -147,8 +151,8 @@
                           </td>
                         </tr>
                         <tr class="rowShow grayStrip" style="" *ngIf="payment.collapsed">
-                          <td colspan="8"><span class="pull-right"><a><img src="../../../utility/assets/img/page.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                              <a data-toggle="modal" href="#myModal" id="openBtn"><img src="../../../utility/assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!--<a
+                          <td colspan="8"><span class="pull-right"><a><img src="assets/img/page.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!--<a
                                 href=""><img src="../../../assets/img/edit.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a><img
                                   src="../../../assets/img/delete.png" alt=""></a>--> </span></td>
                         </tr>
@@ -192,7 +196,7 @@
             <div class="clear30"></div>
             <div class="clear20"></div>
             <div class="clear20"></div>
-            <img src="../../../utility/assets/img/done-tick.png" alt="">
+            <img src="assets/img/done-tick.png" alt="">
             <div class="clear20"></div>
             <div class="clear20"></div>
             <label class="successhedtxt">The payments are appproved and notification has been sent.</label>

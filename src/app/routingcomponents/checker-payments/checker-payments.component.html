@@ -15,15 +15,15 @@
               </div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-                <!-- <input list="browsers" value="All Categories" id="datalist" class="ml-2" style="width:30%;margin-left:10px;">
+                <input list="browsers" value="All Categories" id="datalist" class="ml-2" style="margin-left:10px;width:125px;padding:4px 5px 4px 15px;">
                 <datalist id="browsers">
                   <option value="Internet Explorer" selected>
                   <option value="Firefox">
                   <option value="Chrome">
                   <option value="Opera">
                   <option value="Safari">
-                </datalist> -->
-                <input list="date" id="datalist" value="This Month" class="ml-2" style="width:30%;margin-left:10px;">
+                </datalist>
+                <input list="date" id="datalist" value="This Month" class="ml-2 datelist" style="margin-left:10px;width:125px">
                 <datalist id="date">
                   <option value="This Month">
                   <option value="This Week">
@@ -102,11 +102,6 @@
                               <div class="span_width">GL/Expense Code </div>  <span> : </span> &nbsp;
                               <div class="bold_span">{{payment.bill.expensecode}}</div>
                             </div>
-  
-                            <div class="mb-1">
-                              <div class="span_width">Bill Date</div>  <span> : </span> &nbsp;
-                              <div class="bold_span">{{payment.billdate}}</div>
-                            </div>
                             <div class="mb-1">
                                 <div class="span_width">Location</div> <span> : </span> &nbsp;
                                 <div class="bold_span" *ngIf="payment.bill.state=='MH'" >Maharashtra</div>
@@ -117,7 +112,11 @@
                                 <div class="bold_span" *ngIf="payment.bill.state=='DL'" >Delhi</div>
                               </div>
                             <div class="mb-1">
-                              <div class="span_width">Bill No</div>  <span> : </span> &nbsp;
+                              <div class="span_width">Ref. No. 1</div>  <span> : </span> &nbsp;
+                              <div class="bold_span">{{payment.billnumber}}</div>
+                            </div>
+                            <div class="mb-1">
+                              <div class="span_width">Ref. No. 2</div>  <span> : </span> &nbsp;
                               <div class="bold_span">{{payment.billnumber}}</div>
                             </div>
                         </div>

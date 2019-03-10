@@ -148,7 +148,7 @@ input::-webkit-calendar-picker-indicator {
 #datalist {
   border-radius: 20px;
   border: 1px solid #d9cee6;
-  padding: 4px 5px;
+  padding: 4px 5px 4px 30px;
   font-size: 11px;
   color: #64289d;
   outline-style: none;
@@ -167,6 +167,7 @@ input::-webkit-calendar-picker-indicator {
 
 #button img {
   width: 10%;
+  vertical-align: 4px;
 }
 
 .txt {
