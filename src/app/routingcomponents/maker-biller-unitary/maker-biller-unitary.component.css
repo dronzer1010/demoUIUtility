@@ -234,7 +234,8 @@ input[type="checkbox"]:checked {
   bottom: 0;
   font-size: 14px;
   line-height: 26px;
-  font-weight: 400;
+  font-weight: bold;
+  letter-spacing: 0.5px;
   color: #533979;
   cursor: text;
   transition: -webkit-transform .2s ease-in-out;
