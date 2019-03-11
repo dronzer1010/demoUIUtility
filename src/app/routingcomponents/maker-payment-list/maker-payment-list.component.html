@@ -144,7 +144,7 @@
                       <td>{{i+1}}</td>
                       <td>{{payment.bill.biller}}</td>
                       <td>{{payment.bill.consumerno}}</td>
-                      <td>₹ {{payment.amount}}</td>
+                      <td><i class="fa fa-inr"></i> {{payment.amount}}</td>
                       <td>{{payment.billdate}}</td>
                       <td>{{payment.duedate}}</td>
                       <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.status}}</a></td>

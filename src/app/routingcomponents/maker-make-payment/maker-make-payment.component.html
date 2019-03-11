@@ -215,7 +215,7 @@
                           <td><input name="submenu" type="checkbox" [checked]="select" (change)="change(payment.id) "></td>
                           <td>{{payment.bill.biller}}</td>
                           <td>{{payment.bill.consumerno}}</td>
-                          <td>₹ {{(payment.amount)?payment.amount:"No Data"}}</td>
+                          <td><i class="fa fa-inr"></i> {{(payment.amount)?payment.amount:"No Data"}}</td>
                           <td>{{(payment.billdate)?payment.billdate:"No Data"}}</td>
                           <td>{{(payment.duedate)?payment.duedate:"No Data"}}</td>
                           <td style="padding: 0 5px;"><img alt="" src="assets/img/tb_downarrow.png" (click)="payment.collapsed=!payment.collapsed;"></td>

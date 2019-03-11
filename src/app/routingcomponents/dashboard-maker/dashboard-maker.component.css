@@ -5,6 +5,15 @@ row {
   letter-spacing: 1px !important;
 }
 
+.rupee {
+  background-position:left;
+  width: 10px;
+  height: 14px;
+  background-image: url('http://i.stack.imgur.com/vJZ9m.png');
+  display:block;
+  background-repeat: no-repeat;
+}
+
 .checkbox{
   margin-top:0px;
 }
