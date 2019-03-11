@@ -35,7 +35,7 @@ export class HeadercheckerComponent implements OnInit {
       }
       else if(this.pathroute=='/cardview-checker'){
         this.clickCardEvent()
-      }else if(this.pathroute=='/profile-maker'){
+      }else if(this.pathroute=='/profile-checker'){
         this.clickNotEvent()
               }
   

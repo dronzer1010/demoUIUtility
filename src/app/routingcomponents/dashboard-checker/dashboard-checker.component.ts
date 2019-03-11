@@ -27,7 +27,13 @@ export class DashboardCheckerComponent implements OnInit {
   penpaylength:number=0;
   apprpaylength:number=0;
   rejpaylength:number=0
-  todate:any;
+  todate:Date = new Date();
+  settings = {
+    bigBanner: true,
+    timePicker: false,
+    format: 'dd-MM-yyyy',
+    defaultOpen: false
+}
   fromdate:any;
   public currentCard: any=0;
   approvedcard:any=[

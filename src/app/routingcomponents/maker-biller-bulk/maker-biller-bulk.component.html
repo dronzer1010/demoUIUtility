@@ -281,14 +281,14 @@
                   Type of Utility : <span class="spn">{{billdata.board}}</span>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-                  Show : <input list="browsers" value="100" class="datalist">
+                  <!-- Show : <input list="browsers" value="100" class="datalist">
                   <datalist id="browsers">
                     <option value="5">
                     <option value="10">
                     <option value="15">
                     <option value="20">
                     <option value="25">
-                  </datalist>
+                  </datalist> -->
                 </div>
               </div>
               <!-- <div class="row" style="margin-top:15px; font-size:13px;">
@@ -331,8 +331,8 @@
                           <td>BEST-Mumbai</td>
                           <td>34574364763</td>
                           <td>Maharashtra</td>
-                          <td>6th of every month</td>
-                          <td>15th of every month</td>
+                          <td>6th</td>
+                          <td>15th</td>
                           <td style="padding:0px 15px;"><img src="assets/img/tb_downarrow.png" (click)="collapse=!collapse"></td>
                         </tr>
                         <tr class="rowShow grayStrip" *ngIf="collapse">
@@ -388,13 +388,18 @@
                               </div>
                           </td>
                         </tr>
+                        <tr class="rowShow grayStrip" *ngIf="collapse">
+                          <td colspan="7"><span class="pull-right"><img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </span></td>
+                        </tr>
                         <tr>
                             <td><input name="vehicle1" type="checkbox" [checked]="selectall"></td>
                             <td>Adani Electricity</td>
                             <td>102096976</td>
                             <td>Maharashtra</td>
-                            <td>6th of every month</td>
-                          <td>15th of every month</td>
+                            <td>6th</td>
+                          <td>15th</td>
                             <td style="padding:0px 15px;"><img src="assets/img/tb_downarrow.png" (click)="collapse1=!collapse1"></td>
                           </tr>
                           <tr class="rowShow grayStrip" *ngIf="collapse1">
@@ -450,13 +455,18 @@
                                 </div>
                             </td>
                           </tr>
+                          <tr class="rowShow grayStrip" *ngIf="collapse1">
+                            <td colspan="7"><span class="pull-right"><img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              </span></td>
+                          </tr>
                           <tr>
                               <td><input name="vehicle1" type="checkbox" [checked]="selectall"></td>
                               <td>Torrent Power Ltd.-Ahmedabad</td>
                               <td>110413002334</td>
                               <td>Gujarat</td>
-                              <td>6th of every month</td>
-                              <td>15th of every month</td>
+                              <td>6th</td>
+                              <td>15th</td>
                               <td style="padding: 0px 15px;"><img src="assets/img/tb_downarrow.png" (click)="collapse2=!collapse2"></td>
                             </tr>
                             <tr class="rowShow grayStrip" *ngIf="collapse2">
@@ -512,13 +522,18 @@
                                   </div>
                               </td>
                             </tr>
+                            <tr class="rowShow grayStrip" *ngIf="collapse2">
+                              <td colspan="7"><span class="pull-right"><img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </span></td>
+                            </tr>
                             <tr>
                                 <td><input name="vehicle1" type="checkbox" [checked]="selectall"></td>
                                 <td>BSES Rajdhani-Delhi</td>
                                 <td>110413004345</td>
                                 <td>Delhi</td>
-                                <td>6th of every month</td>
-                                <td>15th of every month</td>
+                                <td>6th</td>
+                                <td>15th</td>
                                 <td style="padding: 0px 15px;"><img src="assets/img/tb_downarrow.png" (click)="collapse3=!collapse3"></td>
                               </tr>
                               <tr class="rowShow grayStrip" *ngIf="collapse3">
@@ -574,13 +589,18 @@
                                     </div>
                                 </td>
                               </tr>
+                              <tr class="rowShow grayStrip" *ngIf="collapse3">
+                                <td colspan="7"><span class="pull-right"><img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  </span></td>
+                              </tr>
                               <tr>
                                   <td><input name="vehicle1" type="checkbox" [checked]="selectall"></td>
                                   <td>BSES Yamuna-Delhi</td>
                                   <td>110413023445</td>
                                   <td>Delhi</td>
-                                  <td>6th of every month</td>
-                          <td>15th of every month</td>
+                                  <td>6th</td>
+                          <td>15th</td>
                                   <td style="padding: 0px 15px;"><img src="assets/img/tb_downarrow.png" (click)="collapse4=!collapse4"></td>
                                 </tr>
                                 <tr class="rowShow grayStrip" *ngIf="collapse4">
@@ -635,6 +655,11 @@
                                               </div>
                                       </div>
                                   </td>
+                                </tr>
+                                <tr class="rowShow grayStrip" *ngIf="collapse4">
+                                  <td colspan="7"><span class="pull-right"><img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </span></td>
                                 </tr>
                       </tbody>
                     </table>

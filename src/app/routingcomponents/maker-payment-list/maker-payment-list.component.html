@@ -164,10 +164,10 @@
                             <div class="bold_span">{{payment.bill.expensecode}}</div>
                           </div>
 
-                          <div class="mb-1">
+                          <!-- <div class="mb-1">
                             <div class="span_width">Bill Date</div> <span> : </span> &nbsp;
                             <div class="bold_span">{{payment.billdate}}</div>
-                          </div>
+                          </div> -->
                           <div class="mb-1">
                             <div class="span_width">Location</div> <span> : </span> &nbsp;
                             <div class="bold_span" *ngIf="payment.bill.state=='MH'" >Maharashtra</div>
@@ -246,7 +246,7 @@
                               <div class="row mb-2">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                   <label for="" style="color: #807199;font-size: 14px;">Late Payment Charges</label> <span> : </span> &nbsp;
-                                  <span style="font-size:14px">₹ 111146.37</span>
+                                  <span style="font-size:14px"><i class="fa fa-inr"></i> 111146.37</span>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                   <label for="" style="color: #807199;font-size: 14px;">Meter Reading </label> <span> : </span> &nbsp;
@@ -256,7 +256,7 @@
                               <div class="row mb-4">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                   <label for="" style="color: #807199;font-size: 14px;">Promt Payment Incentives</label> <span> : </span> &nbsp;
-                                  <span style="font-size:14px">₹ 0.00</span>
+                                  <span style="font-size:14px"><i class="fa fa-inr"></i> 0.00</span>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                   <label for="" style="color: #807199;font-size: 14px;">Remarks</label> <span> : </span> &nbsp;

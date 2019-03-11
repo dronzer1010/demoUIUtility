@@ -57,6 +57,8 @@ import { CardviewComponent } from './routingcomponents/cardview/cardview.compone
 import { CardviewCheckerComponent } from './routingcomponents/cardview-checker/cardview-checker.component';
 import { MyprofileMakerComponent } from './supportingcomponents/myprofile-maker/myprofile-maker.component';
 import { MyprofileCheckerComponent } from './supportingcomponents/myprofile-checker/myprofile-checker.component';
+import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
+
 
 
 @NgModule({
@@ -123,7 +125,7 @@ import { MyprofileCheckerComponent } from './supportingcomponents/myprofile-chec
     MatDialogModule,
     CarouselModule ,
     HttpClientModule,
-   
+    AngularDateTimePickerModule,
 MatNativeDateModule,
     
     DataTableModule,

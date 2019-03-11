@@ -32,7 +32,7 @@ export class CheckerApproveBillerComponent implements OnInit {
   public flag: any;
   selectall:boolean=false;
   selectallbiller:boolean=false;
-  noofrole="No billers available"
+  noofrole="No bills available"
   constructor(private router : Router , private aRouter : ActivatedRoute) { }
 
   
@@ -53,13 +53,13 @@ export class CheckerApproveBillerComponent implements OnInit {
     this.pendingbillers = this.billdata.filter((data)=>data['status']=='Pending');
     if(this.pendingbillers==null){
       this.billerlength=0
-      this.noofrole="No billers available"
+      this.noofrole="No bills available"
     }else{
       this.billerlength=this.pendingbillers.length;
       if(this.billerlength>1){
-        this.noofrole="No of Billers:"
+        this.noofrole="No of Bills:"
       }else{
-        this.noofrole="No of Biller:"
+        this.noofrole="No of Bill:"
       }
     }
 
