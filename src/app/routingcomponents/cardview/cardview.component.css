@@ -3,6 +3,9 @@
     font-weight: 300;
     color: #575962;
 }
+.background-fff{
+    background-color: #fff;
+}
 .rstxt {
     font-size: 14px;
     font-weight: 600;
@@ -22,7 +25,14 @@
     font-size: 15px;
     
 }
-
+.span_width{
+    width:39%;
+    vertical-align: unset;
+}
+.bold_span{
+    vertical-align: unset;
+    width: 48%;
+}
     .collapsible:after {
         /* content: '\View Details'; */
         color: #575962;

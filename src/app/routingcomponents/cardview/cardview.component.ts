@@ -36,7 +36,7 @@ regcmt: "",
 status: 2
   }];
   approvedcards:any=[
-    {approvedby: "Mr. K.V. HEBBAR",
+    {approvedby: "Mr. K.V. Hebbar",
     aproveddate: "28-02-2019",
     aprovedtime: "12:10 PM",
     cardholder: "Test card 5",
@@ -50,7 +50,7 @@ status: 2
     regcmt: "",
     status: 1},
     {
-      approvedby: "Mr. K.V. HEBBAR",
+      approvedby: "Mr. K.V. Hebbar",
   aproveddate: "28-02-2019",
   aprovedtime: "07:17 PM",
   cardholder: "Test Card 1",
@@ -66,7 +66,7 @@ status: 2
     }
   ];
   rejectedcards:any=[
-    {approvedby: "Mr. K.V. HEBBAR",
+    {approvedby: "Mr. K.V. Hebbar",
     aproveddate: "28-02-2019",
     aprovedtime: "04:23 PM",
     cardholder: "Test card 5",
@@ -80,7 +80,7 @@ status: 2
     regcmt: "Invalid Expiry",
     status: 0},
     {
-      approvedby: "Mr. K.V. HEBBAR",
+      approvedby: "Mr. K.V. Hebbar",
   aproveddate: "28-02-2019",
   aprovedtime: "08:17 PM",
   cardholder: "Test Card 1",

@@ -289,6 +289,32 @@ a.active:focus {
   padding-top: 3px !important;
 }
 
+.wc-date-container{
+  float: left!important;
+  display: inline!important;
+  width: 100%!important;
+  height: 27px!important;
+  border-radius: 15px!important;
+  border: 1px solid #ccc!important;
+  margin-bottom: 1px!important;
+  font-size: 10px!important;
+  font-weight: bold!important;
+  padding: 5px!important;
+  text-align: left!important;
+  cursor: pointer!important;
+  background: #fff!important;
+  line-height: 15px!important;
+}
+.wc-date-container > span{
+  color: #8153ad!important;
+}
+.wc-date-container > i{
+  color: #8153ad!important;
+  font-size: 13px!important;
+}
+.wc-date-popover{
+  left:-85%!important;
+}
 .leftpad {
   padding-left: 25px
 }

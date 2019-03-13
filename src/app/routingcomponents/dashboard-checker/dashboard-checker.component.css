@@ -13,7 +13,8 @@
 input[type="checkbox"] {
 
   -webkit-appearance: initial;
-  width: 16px;
+  width: 5px;
+  padding: 0px 7px;
   height: 16px;
   background-color: #c7c7c7;
   display: inline-block;

@@ -45,7 +45,7 @@ export class MakerMakePaymentComponent implements OnInit {
   public currentCard: any=0;
   pendingPayments:any=[]
   approvedcard:any=[
-    {approvedby: "Mr. K.V. HEBBAR",
+    {approvedby: "Mr. K.V. Hebbar",
     aproveddate: "28-02-2019 12:10 PM",
     aprovedtime: "12:10 PM",
     cardholder: "Test card",
@@ -59,7 +59,7 @@ export class MakerMakePaymentComponent implements OnInit {
     regcmt: "",
     status: 1},
     {
-      approvedby: "Mr. K.V. HEBBAR",
+      approvedby: "Mr. K.V. Hebbar",
   aproveddate: "28-02-2019 07:17 PM",
   aprovedtime: "07:17 PM",
   cardholder: "Test Card 1",
@@ -93,7 +93,7 @@ export class MakerMakePaymentComponent implements OnInit {
     this.cardExpiry="09/22"
     this.cardinitiatedby="Mr. Naveen Lohiya"
     this.cardinitiatedon="28-02-2019 12:09 PM"
-    this.cardapprovedby="Mr. K.V. HEBBAR"
+    this.cardapprovedby="Mr. K.V. Hebbar"
     this.cardapprovedon="28-02-2019 12:10 PM"
     
     this.selectedcard=this.approvedcard[0]
