@@ -35,13 +35,33 @@ otp:string="";
         timeOut:3000,
         positionClass:'toast-top-center'
         })
-    }else if(this.otp!='34123'){
+    }
+    else if(this.otp=='34123'){
+      localStorage.setItem('rolename', 'maker');
+      this.router.navigate(['/main/dashboard']);
+    }else if(this.otp=='32324'){
+      localStorage.setItem('rolename', 'checker');
+      this.router.navigate(['/main/dashboard']);
+    }else if(this.otp=='85444'){
+      localStorage.setItem('rolename', 'as');
+      this.router.navigate(['/main/dashboard']);
+    }else if(this.otp=='23343'){
+      localStorage.setItem('rolename', 'ccadmin');
+      this.router.navigate(['/main/dashboard']);
+    }else if(this.otp=='97655'){
+      localStorage.setItem('rolename', 'ccmaker');
+      this.router.navigate(['/main/dashboard']);
+    }else if(this.otp=='12234'){
+      localStorage.setItem('rolename', 'ccchecker');
+      this.router.navigate(['/main/dashboard']);
+    }else if(this.otp=='86543'){
+      localStorage.setItem('rolename', 'aschecker');
+      this.router.navigate(['/main/dashboard']);
+    }else{
       this.toastr.warning("Please Enter Correct OTP!","Alert",{
         timeOut:3000,
         positionClass:'toast-top-center'
         })
-    }else{
-      this.router.navigate(['/dashboard-maker']);
     }
     
   }

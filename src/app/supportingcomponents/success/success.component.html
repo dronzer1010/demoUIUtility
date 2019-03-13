@@ -1,0 +1,40 @@
+
+<div class="container pqr">
+  <div class="row">
+      <div _ngcontent-c4="" class="clear20"></div>
+
+      <div _ngcontent-c4="" class="clear20"></div>
+
+      <div _ngcontent-c4="" class="clear20"></div>
+  </div>
+  <div class="row">
+      <div class="row setup-content cust_width form_bg" id="step-7">
+          <div class="col-md-12 text-center ">
+              <img src="assets/images/done.png">
+              <div class="clearfix"></div>
+              <div class="clear20"></div>
+              
+              <label *ngIf="groupsuccess" class="successhedtxt">Group has been successfully added and sent for Approval</label>
+              <label *ngIf="cardsuccess" class="successhedtxt">Card has been successfully added and sent for Approval</label>
+              <label *ngIf="rulesuccess" class="successhedtxt">Rule has been successfully added and sent for Approval</label>
+              <label *ngIf="usersucess" class="successhedtxt">Users has been successfully added and sent for Approval</label>
+              <div class="clear20"></div>
+              <label *ngIf="groupsuccess" class="smrinstatustxt">You can view the summary and status of your request in the group page  </label>
+              <label *ngIf="cardsuccess" class="smrinstatustxt">You can view the summary and status of your request in the card page  </label>
+              <label *ngIf="rulesuccess" class="smrinstatustxt">You can view the summary and status of your request in the rule page  </label>
+              <label *ngIf="usersucess" class="smrinstatustxt">You can view the summary and status of your request in the user page  </label>
+              
+              <div class="col-md-12 col-sm-12 top-spac margin20">
+                 <a *ngIf="groupsuccess" [routerLink]="['/main/groupview']" class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Groups</a>
+                 <a *ngIf="cardsuccess" [routerLink]="['/main/cardview']" class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Cards</a>
+                 <a *ngIf="rulesuccess" [routerLink]="['/main/ruleview']"  class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Rules</a>
+                 <a *ngIf="usersucess" [routerLink]="['/main/userview']" class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Users</a>
+                
+                  <a [routerLink]="['/main/dashboard']" class="btn btn-primary btn-outline Btn_Width2">Go to Dashboard</a>
+              </div>
+
+          </div>
+      </div>
+  </div>
+
+</div>

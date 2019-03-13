@@ -58,6 +58,23 @@ import { CardviewCheckerComponent } from './routingcomponents/cardview-checker/c
 import { MyprofileMakerComponent } from './supportingcomponents/myprofile-maker/myprofile-maker.component';
 import { MyprofileCheckerComponent } from './supportingcomponents/myprofile-checker/myprofile-checker.component';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
+import { UserunitaryComponent } from './routingcomponents/userunitary/userunitary.component';
+import { CardunitaryComponent } from './routingcomponents/cardunitary/cardunitary.component';
+import { UserbulkComponent } from './routingcomponents/userbulk/userbulk.component';
+import { UnitarygroupComponent } from './routingcomponents/unitarygroup/unitarygroup.component';
+import { UnitaryruleComponent } from './routingcomponents/unitaryrule/unitaryrule.component';
+import { UserviewComponent } from './routingcomponents/userview/userview.component';
+import { GroupviewComponent } from './routingcomponents/groupview/groupview.component';
+import { RuleviewComponent } from './routingcomponents/ruleview/ruleview.component';
+import { AccountsetupComponent } from './routingcomponents/accountsetup/accountsetup.component';
+import { LoaderService } from './api/loader.service';
+import { SuccessComponent } from './supportingcomponents/success/success.component';
+import { UserhomeComponent } from './userhome/userhome.component';
+import { OrganisationComponent } from './routingcomponents/organisation/organisation.component';
+import { PendingusersComponent } from './routingcomponents/pendingusers/pendingusers.component';
+import { PendinggroupsComponent } from './routingcomponents/pendinggroups/pendinggroups.component';
+import { PendingrulesComponent } from './routingcomponents/pendingrules/pendingrules.component';
+import { PendingcardsComponent } from './routingcomponents/pendingcards/pendingcards.component';
 
 
 
@@ -90,7 +107,23 @@ import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
     CardviewComponent,
     CardviewCheckerComponent,
     MyprofileMakerComponent,
-    MyprofileCheckerComponent    
+    MyprofileCheckerComponent,
+    UserunitaryComponent,
+    CardunitaryComponent,
+    UserbulkComponent,
+    UnitarygroupComponent,
+    UnitaryruleComponent,
+    UserviewComponent,
+    GroupviewComponent,
+    RuleviewComponent,
+    AccountsetupComponent,
+    SuccessComponent,
+    UserhomeComponent,
+    OrganisationComponent,
+    PendingusersComponent,
+    PendinggroupsComponent,
+    PendingrulesComponent,
+    PendingcardsComponent    
    
   ],
   imports: [
@@ -134,7 +167,7 @@ MatNativeDateModule,
 
   ],
  
-  providers: [],
+  providers: [LoaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

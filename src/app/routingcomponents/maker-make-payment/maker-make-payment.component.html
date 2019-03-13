@@ -1,4 +1,4 @@
-<app-header></app-header>
+
 <div class="container ">
   <section class="content ">
     <div class="row">
@@ -361,8 +361,8 @@
                 <ng-container *ngFor="let card of approvedcard">
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  (click)="getCardbyId(card.id);getCardDetails(card)">
                   <div [ngClass]="card.id === activeElement ? 'card-active' : 'none'">
-                  <button class="card-button">
-                    <img src="assets/img/precard.png" alt="" class="pre-card">
+                  <button class="card-button" [ngClass]="card.id === activeElement ? 'activeBorder' : 'none'">
+                    <img [src]="card.id === activeElement ? 'assets/img/paycard.png' : 'assets/img/precard.png'"  alt="" class="pre-card">
                     <div class="row">
                       <div class="col-md-12">
                       <span class="spn-card">{{card.digits}}</span>
@@ -671,11 +671,11 @@
                   <div class="clear20"></div>
                   <div class="col-xs-3 col-sm-3 col-md-3"></div>
                   <div class="col-xs-3 col-sm-3 col-md-3">
-                    <a class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog" [routerLink]="['/maker-payment-list']">View
+                    <a class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog" [routerLink]="['/main/maker-payment-list']">View
                       Payments</a>
                   </div>
                   <div class="col-xs-3 col-sm-3 col-md-3">
-                    <a class="btn btn-primary btn-outline Btn_Width2" [routerLink]="['/dashboard-maker']">Go to Dashboard</a>
+                    <a class="btn btn-primary btn-outline Btn_Width2" [routerLink]="['/main/dashboard-maker']">Go to Dashboard</a>
                   </div>
                   <div class="clear30"></div>
                   <div class="clear20"></div>

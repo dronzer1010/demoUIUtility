@@ -34,6 +34,8 @@ export class DashboardCheckerComponent implements OnInit {
     format: 'dd-MM-yyyy',
     defaultOpen: false
 }
+
+rolename:any;
   fromdate:any;
   public currentCard: any=0;
   approvedcard:any=[
@@ -69,6 +71,8 @@ export class DashboardCheckerComponent implements OnInit {
   constructor(private httpService: HttpClient) { }
 
   ngOnInit() {
+    this.rolename=localStorage.getItem('rolename')
+    console.log(this.rolename)
     this.httpService.get('./assets/cards.json').subscribe(data=>{
       this.carddata=data;
       console.log(this.carddata)

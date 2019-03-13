@@ -23,35 +23,66 @@ import { CardviewComponent } from './routingcomponents/cardview/cardview.compone
 import { CardviewCheckerComponent } from './routingcomponents/cardview-checker/cardview-checker.component';
 import { MyprofileMakerComponent } from './supportingcomponents/myprofile-maker/myprofile-maker.component';
 import { MyprofileCheckerComponent } from './supportingcomponents/myprofile-checker/myprofile-checker.component';
+import { UserunitaryComponent } from './routingcomponents/userunitary/userunitary.component';
+import { CardunitaryComponent } from './routingcomponents/cardunitary/cardunitary.component';
+import { UserbulkComponent } from './routingcomponents/userbulk/userbulk.component';
+import { UnitarygroupComponent } from './routingcomponents/unitarygroup/unitarygroup.component';
+import { UnitaryruleComponent } from './routingcomponents/unitaryrule/unitaryrule.component';
+import { UserviewComponent } from './routingcomponents/userview/userview.component';
+import { GroupviewComponent } from './routingcomponents/groupview/groupview.component';
+import { RuleviewComponent } from './routingcomponents/ruleview/ruleview.component';
+import { AccountsetupComponent } from './routingcomponents/accountsetup/accountsetup.component';
+import { UserhomeComponent } from './userhome/userhome.component';
+import { OrganisationComponent } from './routingcomponents/organisation/organisation.component';
+import { PendingusersComponent } from './routingcomponents/pendingusers/pendingusers.component';
+import { PendinggroupsComponent } from './routingcomponents/pendinggroups/pendinggroups.component';
+import { PendingrulesComponent } from './routingcomponents/pendingrules/pendingrules.component';
+import { PendingcardsComponent } from './routingcomponents/pendingcards/pendingcards.component';
 
 const appRoutes: Routes = [ 
+    { path:'main',component:UserhomeComponent,
+    children:[
     {path:'pending-biller',component:CheckerApproveBillerComponent},
     {path:'unitary-biller',component:MakerBillerUnitaryComponent},
     {path:'billerlist',component:BillerlistComponent},
-    {path:'dashboard-maker',component:DashboardMakerComponent},
+    // {path:'dashboard-maker',component:DashboardMakerComponent},
     {path:'maker-payment-list',component:MakerPaymentListComponent},
     {path:'make-payment',component:MakerMakePaymentComponent},
     {path:'checker-approve-payments',component:CheckerApprovePaymentsComponent},
     {path:'maker-biller-bulk',component:MakerBillerBulkComponent},  
-    {path:'login',component:LoginComponent},  
-    {path:'otp',component:OtpComponent},  
-    {path:'login_checker',component:LoginCheckerComponent}, 
-    {path:'otp_checker',component:OtpCheckerComponent},
-    {path:'',component:StartpageComponent},
     {path:'checker-biller',component:CheckerBillersComponent}, 
     {path:'checker-payments',component:CheckerPaymentsComponent},
-    {path:'dashboard-checker',component:DashboardCheckerComponent},                                                                                                              
+    {path:'dashboard',component:DashboardCheckerComponent},                                                                                                              
     {path:'checker-payment-list',component:CheckerPaymentListComponent},
     {path:'maker-biller-list',component:MakerBillerListComponent},
     {path:'otp-approve-payment',component:OtpapprovePaymentComponent},
     {path:'otp-approve-biller',component:OtpapproveBillerComponent},
     {path:'cardview',component:CardviewComponent},
     {path:'cardview-checker',component:CardviewCheckerComponent},
-    {path:'profile-maker',component:MyprofileMakerComponent},
+    {path:'profile',component:MyprofileMakerComponent},
     {path:'profile-checker',component:MyprofileCheckerComponent},
-
+    {path:'userview',component:UserviewComponent},
+    {path:'unitary-user',component:UserunitaryComponent},
+    {path:'unitary-group',component:UnitarygroupComponent},
+    {path:'unitary-rule',component:UnitaryruleComponent},
+    {path:'groupview',component:GroupviewComponent},
+    {path:'ruleview',component:RuleviewComponent},
+    {path:'unitary-card',component:CardunitaryComponent},
+    {path:'firstlogin',component:AccountsetupComponent},
+    {path:'user-bulk',component:UserbulkComponent},
+    {path:'pending-user',component:PendingusersComponent},
+    {path:'pending-group',component:PendinggroupsComponent},
+    {path:'pending-rules',component:PendingrulesComponent},
+    {path:'organisation',component:OrganisationComponent},
+    {path:'pending-card',component:PendingcardsComponent}
+]},
 
     // otherwise redirect to home
+    {path:'',component:LoginComponent},  
+    {path:'otp',component:OtpComponent},  
+    {path:'login_checker',component:LoginCheckerComponent}, 
+    {path:'otp_checker',component:OtpCheckerComponent},
+    
     { path: '**', redirectTo: '' }
 ];
 

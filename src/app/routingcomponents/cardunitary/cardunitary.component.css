@@ -1,0 +1,101 @@
+.paracolor{
+    color: #fff;
+    font-size: 20px;
+}
+.blue-card{
+    background-image: url('../../../assets/img/new-cred-card.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    /* border-radius:10px; */
+}
+.divpaddr{
+    padding-right: 33px;
+}
+.divmrgnlft{
+    margin-left: 4%;
+}
+.divwidth{
+    width: 15%;
+    display:inline-block;
+    vertical-align: top;
+    margin:3px 4px 3px 0px;
+    align-content: center;
+}
+.inputstyle{
+    border: 0px;
+    border-bottom: 1px solid #fff;
+    width: 100%;
+    font-size: 13.1px;
+    font-weight: 300;
+    color: #fff;
+    }
+.calpos{
+    position: relative;
+}
+
+.blue-card > .contact-form .label{
+    background: rgba(0,0,0,0);
+    color: #fff;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.input-newstyle{
+    background: rgba(0,0,0,0)!important;
+    border-bottom: 1px solid #fff!important;
+    color: #fff;
+}
+
+.input-newstyle option{
+    background-color:#533979  !important;
+}
+.input-newstyle1{
+    background: rgba(0,0,0,0)!important;
+    border-bottom: 1px solid #fff!important;
+    color:#fff;
+}
+    .inputstyledot{
+        border: 0px;
+        border-bottom: 1px solid #fff;
+        width: 100%;
+        font-size: 13.1px;
+        font-weight: 300;
+        color: #fff;
+        background-color: rgba(0,0,0,0);
+        }
+
+
+    .padln{
+        padding-left: 0px!important;
+    }
+
+    .example1 {
+        cursor:pointer;
+        
+        
+    
+    }
+
+.inpstyle{
+    cursor:pointer;
+    background: url('/assets/img/datepicker.png') no-repeat 100% 6px!important;
+    padding-bottom: 10px;
+}
+
+.toptxt{
+    font-size: 17.3px;
+    font-weight: 600;
+    color: #2c2e30;
+}
+
+
+
+
+
+
+
+
+
+
+
+

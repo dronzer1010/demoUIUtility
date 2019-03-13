@@ -3,6 +3,10 @@
   color: #807199;
 }
 
+.activeBorder{
+  border: 2px solid #533979 !important;
+}
+
 .span_width{
   width: 42%;
 }
