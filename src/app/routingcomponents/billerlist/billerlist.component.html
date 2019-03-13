@@ -156,7 +156,7 @@
                       <td>{{bill.billdate}}</td>
                       <td>{{bill.duedate}}</td>
                       <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': bill.status === 'Approved', 'Rejected': bill.status  === 'Rejected', 'Pending': bill.status  === 'Pending'}" role="button">{{bill.status}}</a></td>
-                      <td style="padding-left: 2%;"><a data-toggle="modal" id="openBtn"><img src="assets/img/delete.png"></a></td>
+                      <td style="padding-left: 1%;"><a data-toggle="modal" id="openBtn"><img src="assets/img/delete.png"></a></td>
                       <td style="padding:0 15px;"><img src="assets/img/tb_downarrow.png" alt=""  (click)="bill.collapsed=!bill.collapsed;"></td>
                       
                     </tr>
@@ -239,7 +239,7 @@
                         </div>
                       </td>
                     </tr>
-                    <tr class="rowShow grayStrip" style="" *ngIf="bill.collapsed">
+                    <tr class="rowShow grayStrip" *ngIf="bill.collapsed">
                       <td colspan="8"><span class="pull-right">
                         <img style="cursor:pointer;"src="assets/img/attach.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <a data-toggle="modal" id="openBtn"><img src="assets/img/edit.png"></a>
@@ -249,7 +249,7 @@
                   </tbody>
                   <tfoot>
                     <tr>
-                        <td colspan="7">
+                        <td colspan="8">
                             <mfBootstrapPaginator [rowsOnPageSet]="[10,25,50,100]"></mfBootstrapPaginator>
                         </td>
                     </tr>

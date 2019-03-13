@@ -38,7 +38,6 @@
                    <li class="input-text-center">
                        <input type="radio" name="dateformatstatus" value="ThisMonth" [(ngModel)]="ThisMonth" (change)="getDateFormatData(ThisMonth)">This Month
                    </li>
-                   
 
                    <li class="divider"></li>
 
@@ -295,53 +294,53 @@
                           <div class="col-xs-4 col-md-4 col-sm-4 tablediv">
                              <h5>Employee Details</h5>
                              <div>
-                                <div class="span_width">Employee ID:</div>
+                                <div class="span_width">Employee ID</div><span> : </span>&nbsp;
                                 <div class="bold_span">{{user.empid}}</div>
                              </div>
                              <div *ngIf="isComplexOrg">
-                                <div *ngIf="user.group!='--'" class="span_width">Group: </div>
+                                <div *ngIf="user.group!='--'" class="span_width">Group</div><span *ngIf="user.group!='--'"> : </span>&nbsp;
                                 <div *ngIf="user.group!='--'" class="bold_span">{{user.group}}</div>
                              </div>
                              <div>
-                                <div class="span_width">Date of birth</div>
+                                <div class="span_width">Date of birth</div><span> : </span>&nbsp;
                                 <div class="bold_span">{{user.dob}}</div>
                              </div>
                           </div>
                           <div class="col-xs-4 col-md-4 col-sm-4 tablediv">
                              <h5>Contact Details</h5>
                              <div>
-                                <div class="span_width">Contact Number:</div>
+                                <div class="span_width">Contact Number</div><span> : </span>&nbsp;
                                 <div class="bold_span">{{user.mobileno}}</div>
                              </div>
                              <div>
-                                <div class="span_width">Landline No: </div>
+                                <div class="span_width">Landline No</div><span> : </span>&nbsp;
                                 <div class="bold_span">{{user.landlineno}}</div>
                              </div>
                              <div>
-                                <div class="span_width">Email Id:</div>
+                                <div class="span_width">Email Id</div><span> : </span>&nbsp;
                                 <div class="bold_span">{{user.email}}</div>
                              </div>
                           </div>
                           <div class="col-xs-4 col-md-4 col-sm-4 tablediv noborder">
                              <h5>Activity</h5>
                              <div>
-                                <div class="span_width">Uploaded in File :</div>
+                                <div class="span_width">Uploaded in File</div><span> : </span>&nbsp;
                                 <div class="bold_span">{{user.uploadfilename}}</div>
                              </div>
                              <div>
-                                <div class="span_width">Initiated on : </div>
+                                <div class="span_width">Initiated on</div><span> : </span>&nbsp;
                                 <div class="bold_span">{{user.initiateddate}} {{user.initiatedtime}}</div>
                              </div>
                              <div>
-                                <div class="span_width" >Initiated by:</div>
+                                <div class="span_width" >Initiated by</div><span> : </span>&nbsp;
                                 <div class="bold_span">{{user.initiatedby}}</div>
                              </div>
                              <div>
-                                <div class="span_width">Approved on : </div>
+                                <div class="span_width">Approved on</div><span> : </span>&nbsp;
                                 <div class="bold_span">{{user.approveddate}} {{user.approvedtime}}</div>
                              </div>
                              <div>
-                                <div class="span_width">Approved by:</div>
+                                <div class="span_width">Approved by:</div>&nbsp;
                                 <div class="bold_span">{{user.approvedby}}</div>
                              </div>
                           </div>

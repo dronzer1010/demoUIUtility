@@ -2,7 +2,9 @@
   background-color: #f4f4f4;
 }
 
-
+.wc-date-popover{
+  left:-85%!important;
+}
 
 .spent{
   font-size: 13px;

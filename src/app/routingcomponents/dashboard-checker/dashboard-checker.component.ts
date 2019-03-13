@@ -19,8 +19,8 @@ export class DashboardCheckerComponent implements OnInit {
   apprPaydata:any=[];
   rejPayData:any=[];
   pendingbillers:any=[];
- apprbillers:any=[];
- rejbillers:any=[];
+  apprbillers:any=[];
+  rejbillers:any=[];
   billerlength:number=0;
   apprbilllength:number=0;
   rejbilllength:number=0

@@ -129,7 +129,7 @@ input[type="checkbox"]:checked {
 .detail_bill {
   padding: 2% 4% !important;
   padding-bottom: 1% !important;
-  height: 420px !important;
+  height: 320px !important;
 }
 
 .inputstyle {
@@ -294,7 +294,7 @@ span {
 .table-border {
   border: 1px solid #f4f4f4;
   padding: 0px !important;
-  margin: 20px 0px;
+  margin: 0px 0px 20px;
 }
 
 thead tr {

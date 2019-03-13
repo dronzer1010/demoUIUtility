@@ -3,6 +3,9 @@ import{LoaderService} from '../../api/loader.service';
 import { Users } from '../../models/users';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr'
+import { DatepickerOptions } from 'ng2-datepicker';
+import * as frLocale from 'date-fns/locale/fr';
+
 @Component({
   selector: 'app-userunitary',
   templateUrl: './userunitary.component.html',
@@ -63,10 +66,17 @@ export class UserunitaryComponent implements OnInit {
   apprgrptab:boolean=false;
   apprruletab:boolean=false;
  //formatDate(value:string|number|Date,format:string, locale:string,timezone?:string):string;
- dateModel:string
- groups:any=[];
+  dateModel:string
+  groups:any=[];
   submitted = false;
   groupname:string;
+  date:Date = new Date();
+  settings = {
+    bigBanner: true,
+    timePicker: false,
+    format: 'dd-MM-yyyy',
+    defaultOpen: false
+}
 //   public myDatePickerOptions: IMyDpOptions = {
 //     // other options...
 //     dateFormat: 'dd-mm-yyyy',
@@ -75,6 +85,7 @@ export class UserunitaryComponent implements OnInit {
 
   ngOnInit() {
     this.loadAllGroups()
+    this.model['dob']=this.date;
   }
 
   gotostep2(){
