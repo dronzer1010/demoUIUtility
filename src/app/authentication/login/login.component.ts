@@ -38,16 +38,6 @@ password:string=""
           timeOut:3000,
           positionClass:'toast-top-center'
           })
-      }else if(this.username!="mukund.javir@axisbank.com"){
-        this.toastr.warning("Please Enter Correct username!","Alert",{
-          timeOut:3000,
-          positionClass:'toast-top-center'
-          })
-      }else if(this.password!="Jan@2019"){
-        this.toastr.warning("Please Enter Correct Password!","Alert",{
-          timeOut:3000,
-          positionClass:'toast-top-center'
-          })
       }else{
         this.router.navigate(['/otp']);
       }

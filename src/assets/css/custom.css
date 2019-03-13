@@ -221,7 +221,7 @@ body {
 }
 
 .datelist{
-  background-image: url('../../assets/img/datepicker.png');
+  background-image: url('/assets/img/datepicker.png');
   background-repeat: no-repeat;
   background-position-x: 10px;
   background-position-y: 4px;

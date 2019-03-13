@@ -1,0 +1,163 @@
+
+<div class="container xyz" id="lstpaymt">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+     <!-- Main content -->
+     <section class="content">
+        <div class="row">
+           <div _ngcontent-c4="" class="clear20"></div>
+           <div _ngcontent-c4="" class="clear20"></div>
+           <div _ngcontent-c4="" class="clear20"></div>
+        </div>
+        <div class="white-bg">
+           <h4 class="col-md-9 col-sm-6 col-xs-6 toptxt Top5Heading111 mrgnone">Fill the card details</h4>
+           <div class="clear"></div>
+           <div class="BorderBottom"></div>
+           <div class="clear"></div>
+           <div class="row">
+                 <div class="clear20"></div>
+                 <div class="clear20"></div>
+              <div class="col-md-12 col-sm-12 col-xs-12 divmrgnlft">
+                 <form (ngSubmit)="onSubmit()" #f="ngForm">
+                 <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12 blue-card">
+                    <div class="clear20"> </div>
+                    <input type="hidden" [(ngModel)]="cardData.id" name="id" value="{{cardData.id}}"/>
+                    <p class="paracolor">Card Number</p>
+                    <div class="col-xs-8 col-sm-8 col-md-8 padln">
+                       <div class="col-xs-3 col-sm-3 col-md-3 padln">
+                          <div id="par1" class=" divwidth text-left padln">
+                             <input class="inputstyledot" #input1 (input)="onInputEntry($event, input2)" [(ngModel)]="cardData.digits.digit1" name="digits.digit1" type="text" maxlength="1" #name="ngModel" required>
+                          </div>
+                          <div id="par1" class=" divwidth text-center padln">
+                             <input class="inputstyledot" #input2 (input)="onInputEntry($event, input3)" [(ngModel)]="cardData.digits.digit2" name="digits.digit2" type="text" maxlength="1" #name="ngModel" required>
+                          </div>
+                          <div id="par1" class="divwidth text-center padln">
+                             <input class="inputstyledot" #input3 (input)="onInputEntry($event, input4)" [(ngModel)]="cardData.digits.digit3" name="digits.digit3" type="text" maxlength="1" #name="ngModel" required>
+                          </div>
+                          <div class="divwidth text-center padln">
+                             <input class="inputstyledot" #input4 (input)="onInputEntry($event, input5)" [(ngModel)]="cardData.digits.digit4" name="digits.digit4" type="text" maxlength="1" #name="ngModel" required>
+                          </div>
+                       </div>
+                       <div class="col-xs-3 col-sm-3 col-md-3 padln">
+                          <div id="par1" class=" divwidth text-left padln ">
+                             <input class="inputstyledot" #input5 (input)="onInputEntry($event, input6)" [(ngModel)]="cardData.digits.digit5" name="digits.digit5" type="text" maxlength="1" #name="ngModel" required>
+                          </div>
+                          <div id="par1" class=" divwidth text-center padln">
+                             <input class="inputstyledot" #input6 (input)="onInputEntry($event, input7)" [(ngModel)]="cardData.digits.digit6" name="digits.digit6" type="text" maxlength="1" #name="ngModel" required>
+                          </div>
+                          <div id="par1" class="divwidth text-center padln">
+                             <input class="inputstyledot" #input7 (input)="onInputEntry($event, input8)" [(ngModel)]="cardData.digits.digit7" name="digits.digit7" type="text" maxlength="1" #name="ngModel" required>
+                          </div>
+                          <div class="divwidth text-center padln">
+                             <input class="inputstyledot" #input8 (input)="onInputEntry($event, input9)" [(ngModel)]="cardData.digits.digit8" name="digits.digit8" type="text" maxlength="1" #name="ngModel" required>
+                          </div>
+                       </div>
+                       <div class="col-xs-3 col-sm-3 col-md-3 padln">
+                          <div id="par1" class=" divwidth text-left padln ">
+                             <input class="inputstyledot" #input9 (input)="onInputEntry($event, input10)" [(ngModel)]="cardData.digits.digit9" name="cardno.digit9" type="text" maxlength="1" #name="ngModel" required>
+                          </div>
+                          <div id="par1" class=" divwidth text-center padln">
+                             <input class="inputstyledot" #input10 (input)="onInputEntry($event, input11)" [(ngModel)]="cardData.digits.digit10" name="digits.digit10" type="text" maxlength="1" #name="ngModel" required>
+                          </div>
+                          <div id="par1" class="divwidth text-center padln">
+                             <input class="inputstyledot" #input11 (input)="onInputEntry($event, input12)" [(ngModel)]="cardData.digits.digit11" name="digits.digit11" type="text" maxlength="1" #name="ngModel" required>
+                          </div>
+                          <div class="divwidth text-center padln">
+                             <input class="inputstyledot" #input12 (input)="onInputEntry($event, input13)" [(ngModel)]="cardData.digits.digit12" name="digits.digit12" type="text" maxlength="1" #name="ngModel" required>
+                          </div>
+                       </div>
+                       <div class="col-xs-3 col-sm-3 col-md-3 padln">
+                          <div id="par1" class=" divwidth text-left padln ">
+                             <input class="inputstyledot" #input13 (input)="onInputEntry($event, input14)" [(ngModel)]="cardData.digits.digit13" name="digits.digit13" type="text" maxlength="1" #name="ngModel" required>
+                          </div>
+                          <div id="par1" class=" divwidth text-center padln">
+                             <input class="inputstyledot" #input14 (input)="onInputEntry($event, input15)" [(ngModel)]="cardData.digits.digit14" name="digits.digit14" type="text" maxlength="1" #name="ngModel" required>
+                          </div>
+                          <div id="par1" class="divwidth text-center padln">
+                             <input class="inputstyledot" #input15 (input)="onInputEntry($event, input16)" [(ngModel)]="cardData.digits.digit15" name="digits.digit15" type="text" maxlength="1" #name="ngModel" required>
+                          </div>
+                          <div class="divwidth text-center padln">
+                             <input class="inputstyledot" #input16 [(ngModel)]="cardData.digits.digit16" name="digits.digit16" type="text" maxlength="1" #name="ngModel" required>
+                          </div>
+                       </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="clear20"></div>
+                    <div class="clear20"></div>
+                    <div class="contact-form col-xs-12 col-sm-10 col-md-10  padln">
+                       <input id="name" class="input-text js-input inptxt input-newstyle1" [(ngModel)]="cardData.cardholder" name="cardholder" type="text" #name="ngModel" required>
+                       <label class="label labpos" for="cardholder">Card Holder Name</label>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="clear20"></div>
+                    <div class="clear20"></div>
+                    <div class="contact-form col-xs-12 col-sm-10 col-md-10  padln">
+                       <div class="col-xs-6 col-md-6 col-sm-6 padln">
+                             <!-- <input id="name" class="input-text js-input inptxt" [(ngModel)]="cardData.expmon" name="expmon" type="text" #name="ngModel" required> -->
+                             <select class="input-text js-input inptxt input-newstyle"  [(ngModel)]="cardData.expmon" name="expmon" #name="ngModel" required>
+                                   <option value=""></option>
+                                   <option value="01">01</option>
+                                   <option value="02">02</option>
+                                   <option value="03">03</option>
+                                   <option value="04">04</option>
+                                   <option value="05">05</option>
+                                   <option value="06">06</option>
+                                   <option value="07">07</option>
+                                   <option value="08">08</option>
+                                   <option value="09">09</option>
+                                   <option value="10">10</option>
+                                   <option value="11">11</option>
+                                   <option value="12">12</option>
+                             </select>
+                             <label class="label labpos" for="expmon">Expiry Month</label>
+                       </div>
+                       <div class="col-xs-6 col-md-6 col-sm-6 padln">
+                             <!-- <input id="name" class="input-text js-input inptxt" [(ngModel)]="cardData.expyear" name="expyear" type="text" #name="ngModel" required> -->
+                             <select class="input-text js-input inptxt input-newstyle"  [(ngModel)]="cardData.expyear" name="expyear" #name="ngModel" required>
+                                   <option value=""></option>
+                                   <option value="2018">2018</option>
+                                   <option value="2019">2019</option>
+                                   <option value="2020">2020</option>
+                                   <option value="2021">2021</option>
+                                   <option value="2022">2022</option>
+                                   <option value="2023">2023</option>
+                                   <option value="2024">2024</option>
+                                   <option value="2025">2025</option>
+                                   <option value="2026">2026</option>
+                                   <option value="2027">2027</option>
+                                   <option value="2028">2028</option>
+                                   <option value="2029">2029</option>
+                                   <option value="2030">2030</option>
+                             </select>
+                             <label class="label labpos" for="expyear">Expiry Year</label> 
+                       </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="clear20"></div>
+                    <div class="clear20"></div>
+                 </div>
+                 <div class="col-md-6 col-sm-6 col-xs-12">
+                 </div>
+              </div>
+              <div class="row">
+                 <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="clear20"></div>
+                    <div class="clear20"></div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 padln">
+                       <button class="btn bg-primary mrtfi nextBtn btnw verify ruleNextBtn mrg0Auto nxtbbgcolor submit"
+                          type="submit" [disabled]="!f.form.valid">Submit for approval</button>
+                    </div>
+                    <div class="clear20"></div>
+                    <div class="clear20"></div>
+                 </div>
+                 <div class="col-md-6 col-sm-6 col-xs-12">
+                 </div>
+              </div>
+                 </form>
+              </div>
+           </div>
+        </div>
+     </section>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<app-header></app-header>
+<router-outlet>
+  <span *ngIf="showLoader" class="loading">
+  
+  </span>
+  <h3 *ngIf="showLoader" class="loadertext">
+  We are processing your request kindly do not refresh the page or do not press back button.
+  </h3>
+  </router-outlet>

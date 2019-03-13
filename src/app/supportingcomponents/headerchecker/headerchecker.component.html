@@ -49,9 +49,16 @@
         <li class="menu_sel" [ngClass]="cardactive ? 'active' : ''">
           <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="opencarddrop();clickCardEvent()">Cards </a>
           <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displaycarddrop}">
-            <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/cardview-checker']"> <span> <img src="../../../assets/img/credit-card.png" /></span>
+            <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/cardview-checker']"> 
+              <span> <img src="assets/img/precard.png" /></span>
                 View Cards </a></li>
-           
+                <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/pending-cards']"> 
+                <span> <img src="assets/img/precard.png" /></span>
+                  Pending Cards </a></li>
+                  <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/unitary-card']"> 
+                    <span> <img src="assets/img/precard.png" /></span>
+                      Unitary Card </a>
+                  </li>
           </ul>
         </li>
 
