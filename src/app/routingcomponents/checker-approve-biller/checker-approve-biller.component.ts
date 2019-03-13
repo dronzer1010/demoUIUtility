@@ -170,7 +170,7 @@ this.displayreason='';
   this.reject=false;
   console.log(this.checkedValueArray)
   localStorage.setItem('selectedBillers' , JSON.stringify(this.checkedValueArray));
-  this.router.navigate(['otp-approve-biller']);
+  this.router.navigate(['main/otp-approve-biller']);
 
 }
 rejectBtn(){

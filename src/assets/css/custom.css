@@ -289,6 +289,11 @@ a.active:focus {
   padding-top: 3px !important;
 }
 
+h5 {
+  font-size: 14px;
+  color: #000;
+}
+
 .wc-date-container{
   float: left!important;
   display: inline!important;
@@ -305,15 +310,22 @@ a.active:focus {
   background: #fff!important;
   line-height: 15px!important;
 }
-.wc-date-container > span{
+.wc-date-container > span, .cal-util > .ok, .calendar-days{
   color: #8153ad!important;
+}
+.selected-day > span{
+  color:#fff!important;
+  background-color: #8153ad!important;
+}
+.today > span{
+  border: 1px solid #8153ad!important
 }
 .wc-date-container > i{
   color: #8153ad!important;
   font-size: 13px!important;
 }
-.wc-date-popover{
-  left:-85%!important;
+.wc-banner, .wc-details, .year-title{
+  background-color: #8153ad!important;
 }
 .leftpad {
   padding-left: 25px
@@ -328,6 +340,7 @@ input[type=radio] {
   display: inline-block;
   vertical-align: top;
   font-size: 13px;
+  color: #000;
 }
 
 .dropdown-menu-right1 li a {
@@ -357,6 +370,7 @@ input[type=radio] {
   font-size: 13px;
   width: 50%;
   word-wrap: break-word;
+  color: #000;
 }
 
 .menu_sel a {

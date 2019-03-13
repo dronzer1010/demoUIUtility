@@ -174,14 +174,7 @@
                   No of Entries : <span class="spn">{{payments.length}}</span>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-                  <!-- Show : <input list="browsers" value="5" class="datalist">
-                  <datalist id="browsers">
-                    <option value="5">
-                    <option value="10">
-                    <option value="15">
-                    <option value="20">
-                    <option value="25">
-                  </datalist> -->
+                    No of Selected Entries : <span class="spn">4</span>
                 </div>
               </div>
               <div class="row" style="margin-top:15px; font-size:13px;">
@@ -202,10 +195,11 @@
                         <tr>
                           <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(payments)"></td>
                           <td>Biller &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
-                          <td>Consumer No &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td>Amount &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td>Bill Date &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td>Due Date &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td>Status &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td>Payment Status &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td>&nbsp;</td>
                         </tr>
                       </thead>
@@ -214,14 +208,15 @@
                         <tr>
                           <td><input name="submenu" type="checkbox" [checked]="select" (change)="change(payment.id) "></td>
                           <td>{{payment.bill.biller}}</td>
-                          <td>{{payment.bill.consumerno}}</td>
                           <td><i class="fa fa-inr"></i> {{(payment.amount)?payment.amount:"No Data"}}</td>
                           <td>{{(payment.billdate)?payment.billdate:"No Data"}}</td>
                           <td>{{(payment.duedate)?payment.duedate:"No Data"}}</td>
+                          <td><button class="pending-btn">Pending</button></td>
+                          <td style="color:#533979;font-weight:bold;">Inprocess</td>
                           <td style="padding: 0 5px;"><img alt="" src="assets/img/tb_downarrow.png" (click)="payment.collapsed=!payment.collapsed;"></td>
                         </tr>
-                        <tr class="rowShow grayStrip" style="" *ngIf="payment.collapsed">
-                          <td class="custmtd" colspan="7">
+                        <tr class="rowShow grayStrip" *ngIf="payment.collapsed">
+                          <td class="custmtd" colspan="8">
                             <div class="tablediv">
                               <h5>Biller Details</h5>
                               <div class="mb-1">
@@ -232,11 +227,10 @@
                                 <div class="span_width">GL/Expense Code</div> <span class="no-vert"> : </span> &nbsp;
                                 <div class="bold_span">{{payment.bill.expensecode}}</div>
                               </div>
-
-                              <!-- <div class="mb-1">
+                              <div class="mb-1">
                                 <div class="span_width">Consumer No</div> <span class="no-vert"> : </span> &nbsp;
                                 <div class="bold_span">{{payment.bill.consumerno}}</div>
-                              </div> -->
+                              </div>
                               <!-- <div>
                                 <div class="span_width">Ref No 2:</div>
                                 <div class="bold_span">358507</div>
@@ -275,17 +269,15 @@
                           </td>
                         </tr>
                         <tr class="rowShow grayStrip bottom_images" *ngIf="payment.collapsed">
-                          <td colspan="7">
-                            
+                          <td colspan="7">                            
                             <span class="pull-right"><img style="cursor:pointer;" src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                              
                             <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                              <a id="button" class="anchor-bill openModal" (click)="closeModalDialog()">Additional
+                              <a id="button" class="anchor-bill openModal" (click)="closeModalDialog()">Add
                                 Details</a></span>
                               <!-- <span><button  *ngIf="!fetchingBill" (click)="fetchBill(payment.id)" class="anchor-bill">Fetch Bill</button> </span>
                               <span><a  *ngIf="fetchingBill" class="anchor-bill"><img src="assets/img/loading.svg" class="loading-svg" /></a></span> -->
-                              </td>
-                                
+                              </td>                                
                           <div class="backdrop" [ngStyle]="{'display':display}"></div>
                           <!-- modal -->
                           <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
@@ -295,30 +287,30 @@
                               <div class="modal-content">
                                 <!-- modal-header -->
                                 <div class="modal-header">
-                                  Additional Details<button type="button" class="close" aria-label="Close" (click)="openModalDialog()"><span
+                                  Add Details<button type="button" class="close" aria-label="Close" (click)="openModalDialog()"><span
                                       aria-hidden="true">&times;</span></button>
                                   <!-- <h4 class="modal-title">Login</h4> -->
                                 </div>
                                 <!-- modal-body -->
                                 <div class="modal-body">
                                     <div class="row mb-2">
-                                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <label for="" style="color: #807199;font-size: 14px;">Late Payment Charges</label> <span> : </span> &nbsp;
-                                        <span style="font-size:14px"><i class="fa fa-inr"></i> 111146.37</span>
+                                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 data">
+                                        <label for="" style="color: #807199;font-size: 14px;">Late Payment Charges</label> <span style="vertical-align:0px"> : </span> &nbsp;
+                                        <span style="font-size:14px;vertical-align:0px"><input type="text" class="model-inputs"></span>
                                       </div>
-                                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <label for="" style="color: #807199;font-size: 14px;">Meter Reading </label> <span> : </span> &nbsp;
-                                        <span style="font-size:14px">3565 Units</span>
+                                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 data">
+                                        <label for="" style="color: #807199;font-size: 14px;">Meter Reading </label> <span style="vertical-align:0px"> : </span> &nbsp;
+                                        <span style="font-size:14px;vertical-align:0px"><input type="text" class="model-inputs"></span>
                                       </div>
                                     </div>
                                     <div class="row mb-4">
-                                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <label for="" style="color: #807199;font-size: 14px;">Promt Payment Incentives</label> <span> : </span> &nbsp;
-                                        <span style="font-size:14px"><i class="fa fa-inr"></i> 0.00</span>
+                                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 data">
+                                        <label for="" style="color: #807199;font-size: 14px;">Promt Payment Incentives</label> <span style="vertical-align:0px"> : </span> &nbsp;
+                                        <span style="font-size:14px;vertical-align:0px"><input type="text" class="model-inputs"></span>
                                       </div>
-                                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <label for="" style="color: #807199;font-size: 14px;">Remarks</label> <span> : </span> &nbsp;
-                                        <span style="font-size:14px">Incentives Applicable</span>
+                                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 data">
+                                        <label for="" style="color: #807199;font-size: 14px;">Remarks</label> <span style="vertical-align:0px"> : </span> &nbsp;
+                                        <span style="font-size:14px;vertical-align:0px"><input type="text" class="model-inputs"></span>
                                       </div>
                                     </div>
                                     <!-- <div class="row">
@@ -421,21 +413,33 @@
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:40px;">
-                  <p style="font-weight: 500;font-size: 15px;">Card Approval Details</p>
+                  <p style="font-weight: 500;font-size: 15px;">Payments Details</p>
                   <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-6 col-xs-6">
                       <table>
                         <tr style="background-color: #ffff;">
+                            <div class="span_width" style="margin:5px 0px;">No. of Payments Selected By</div>  <span class="no-vert"> : </span> &nbsp;
+                            <div class="bold_span" style="margin:3px 0px;">10</div>
+                        </tr>
+                        <tr style="background-color: #ffff;">
+                            <div class="span_width" style="margin:5px 0px;">Amount Payable</div>  <span class="no-vert"> : </span> &nbsp;
+                            <div class="bold_span" style="margin:3px 0px;"><i class="fa fa-inr"></i> 7655888</div>
+                        </tr>
+                        <tr style="background-color: #ffff;">
+                            <div class="span_width" style="margin:5px 0px;">Total Amount</div>  <span class="no-vert"> : </span> &nbsp;
+                            <div class="bold_span" style="margin:3px 0px;"><i class="fa fa-inr"></i> 543224778</div>
+                        </tr>
+                        <!-- <tr style="background-color: #ffff;">
                             <div class="span_width" style="margin:5px 0px;">Initiated By</div>  <span class="no-vert"> : </span> &nbsp;
                             <div class="bold_span" style="margin:5px 0px;"> {{cardinitiatedby}}</div>
                         </tr>
                         <tr style="background-color: #ffff;">
                             <div class="span_width" style="margin:5px 0px;">Initiated On</div>  <span class="no-vert"> : </span> &nbsp;
                             <div class="bold_span" style="margin:5px 0px;"> {{cardinitiatedon}}</div>
-                        </tr>
+                        </tr> -->
                       </table>
                     </div>
-                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-6">
+                    <!-- <div class="col-lg-12 col-md-12 col-sm-6 col-xs-6">
                       <table>
                         <tr style="background-color: #ffff;">
                             <div class="span_width" style="margin:5px 0px;">Approved By</div>  <span class="no-vert"> : </span> &nbsp;
@@ -446,7 +450,7 @@
                             <div class="bold_span" style="margin:5px 0px;">{{cardapprovedon}}</div>
                         </tr>
                       </table>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -473,8 +477,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-bottom: 1px solid #e9e9e9;">
                   <h4>Review Payment Details</h4>
                 </div>
-              </div>
-             
+              </div>             
               <ng-container *ngFor="let payment of pendingPayments">
                   <div class="row" style="padding: 0px 2%;">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -509,10 +512,7 @@
                           <div class="div-data">: {{payment.billnumber}}</div>
                         </div>
                       </div>
-              </ng-container>
-             
-            
-              
+              </ng-container>              
               <div class="col-xs-6 col-sm-6 col-md-6">
                 <div class="clear20"></div>
                 <div class="clear20"></div>
@@ -684,7 +684,6 @@
                 </div>
               </div>
               <div class="clearfix"></div>
-
             </div>
           </div>
         </div>

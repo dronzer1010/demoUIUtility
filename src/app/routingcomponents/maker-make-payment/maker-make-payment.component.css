@@ -3,8 +3,26 @@
   color: #807199;
 }
 
+.pending-btn{
+  color: #fff;
+  border-radius: 15px;
+  padding: 3px 10px;
+  background: #d8b219;
+  border:0px;
+}
+
 .activeBorder{
   border: 2px solid #533979 !important;
+}
+
+.data label{
+  width: 54%;
+}
+
+.model-inputs{
+  width:38%;
+  border-bottom: 1px solid #533979!important;
+  border: 0px;
 }
 
 .span_width{
