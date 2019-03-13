@@ -35,22 +35,22 @@ export class HeaderComponent implements OnInit {
       this.pathroute=location.path();
       if(this.pathroute=='/dashboard'){
         this.clickDashEvent()
-      }else if(this.pathroute=='/make-payment' || this.pathroute=='/maker-payment-list' || this.pathroute=='/checker-approve-payments' || this.pathroute=='/checker-approve-payments' || this.pathroute=='/otp-approve-payment'){
+      }else if(this.pathroute=='/main/make-payment' || this.pathroute=='/main/maker-payment-list' || this.pathroute=='/main/checker-approve-payments' || this.pathroute=='/main/checker-approve-payments' || this.pathroute=='/main/otp-approve-payment'){
         this.clickPayEvent();
-      }else if(this.pathroute=='/billerlist' || this.pathroute=='/unitary-biller' || this.pathroute=='/maker-biller-bulk' || this.pathroute=='/otp-approve-biller' || this.pathroute=='/pending-biller'){
+      }else if(this.pathroute=='/main/billerlist' || this.pathroute=='/main/unitary-biller' || this.pathroute=='/main/maker-biller-bulk' || this.pathroute=='/main/otp-approve-biller' || this.pathroute=='/main/pending-biller'){
         this.clickBillEvent()
       }
-      else if(this.pathroute=='/cardview' || this.pathroute=='/unitary-card' || this.pathroute=='/pending-card'){
+      else if(this.pathroute=='/main/cardview' || this.pathroute=='/unitary-card' || this.pathroute=='/main/pending-card'){
         this.clickCardEvent()
-      }else if(this.pathroute=='/userview' || this.pathroute=='/unitary-user' || this.pathroute=='/pending-user' || this.pathroute=='/user-bulk'){
+      }else if(this.pathroute=='/main/userview' || this.pathroute=='/unitary-user' || this.pathroute=='/main/pending-user' || this.pathroute=='/main/user-bulk'){
         this.clickUserEvent()
-      }else if(this.pathroute=='/groupview' || this.pathroute=='/unitary-group' || this.pathroute=='/pending-group'){
+      }else if(this.pathroute=='/main/groupview' || this.pathroute=='/main/unitary-group' || this.pathroute=='/main/pending-group'){
         this.clickGroupEvent()
-      }else if(this.pathroute=='/ruleview' || this.pathroute=='/unitary-rule' || this.pathroute=='/pending-rules'){
+      }else if(this.pathroute=='/main/ruleview' || this.pathroute=='/main/unitary-rule' || this.pathroute=='/main/pending-rules'){
         this.clickRuleEvent()
-      }else if(this.pathroute=='/organisation'){
+      }else if(this.pathroute=='/main/organisation'){
         this.clickOrgEvent()
-      }else if(this.pathroute=='/profile'){
+      }else if(this.pathroute=='/main/profile'){
 this.clickNotEvent()
       }
   

@@ -1,0 +1,333 @@
+/* Changes done by Vishal */
+input[type="date"]::before { 
+	content: attr(data-placeholder);
+	width: 100%;
+}
+input[type="date"]:focus::before,
+input[type="date"]:valid::before { display: none }
+/* <---------------------> */
+.tick2,.tick3,.tick4{
+    margin-top: -3px;
+    width: 10px;
+    height: 10px;
+    display: none;
+    margin-left: 3px;
+}
+
+.tickimg{
+    margin-top: -3px;
+    width: 10px;
+    height: 10px;
+    margin-left: 3px;
+}
+
+.tickimgn{
+    margin-top: -3px;
+    width: 10px;
+    height: 10px;
+    margin-left: 3px;
+    display: none;
+}
+.stepwizard-row2:before {
+    width: 66%;
+    right: 112px;
+}
+.inputstyle{
+    border: 0px;
+    border-bottom: 1px solid #b7b7b7;
+    width: 100%;
+    font-size: 13.1px;
+    font-weight: 300;
+    color: #3f4245;
+}
+.inputstyle1{
+    border: 0px;
+    border-bottom: 1px solid #b7b7b7;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 300;
+    color: #3f4245;
+}
+
+.inputstylerole{
+    border: 0px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 300;
+    color: #3f4245;
+}
+.inputstyletitle{
+    border: 0px;
+    width: 100%;
+    font-size: 13px;
+    font-weight: 300;
+    color: #3f4245;
+}
+.preregtxt{
+    font-size: 12.4px;
+  font-weight: 300;
+  color: #3f4245;
+}
+
+.inpstyle{
+    cursor:pointer;
+    background: url('/assets/img/datepicker.png') no-repeat 100% 6px!important;
+    padding-bottom: 10px;
+}
+
+#dropdown1 .btn {
+    display: inline-block;
+    padding: 6px 12px 6px 0px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: left;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    border:0px;
+}
+
+#dropdown1 button.btn.btn-default.dropdown-toggle.btn_width {
+    border-bottom: 1px solid #b7b7b7;
+}
+#dropdown1 .btn-default.active, .btn-default:active, .open > .dropdown-toggle.btn-default, .btn-default:hover {
+    color: #333;
+    background-color: #ffffff;
+    border-color: #adadad;
+}
+
+#dropdown1 button.btn.btn-default.dropdown-toggle.btn_width {
+    width: 100%;
+}
+#dropdown1 span#search_concept {
+    margin-right: 88%;
+}
+.padln{
+    padding-left: 0px!important;
+}
+.padrn{
+    padding-right: 0px!important;
+}
+.mrgntopm{
+    margin-top: -10px;
+}
+
+
+
+.modelWidthn {
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 0px;
+}
+
+.mybody2n{padding: 50px 20px}
+.brdlft{
+    border-left: 1px solid #eee;
+}
+.chkselect{
+    background-color: #64289d;
+}
+.prevlghd{
+    font-size: 15.8px;
+  font-weight: 600;
+  color: #3f4245;
+}
+.buttonpad{
+    padding: 6px 25px!important;
+}
+.btnmargin{
+    margin-left: 2%!important;
+}
+.stepmrgnlft{
+    margin-left: 22px;
+}
+input[type="checkbox"]{
+    
+    -webkit-appearance: initial;
+    width: 16px;
+    height: 16px;
+    background-color: #c7c7c7;
+    display: inline-block;
+    border-radius: 5px;
+    margin-right: 6px;
+    vertical-align: sub;
+    outline: none
+    
+}
+input[type="checkbox"]:hover, input[type="checkbox"]:checked {
+    background: #64289d;
+}
+
+.form-control-feedback {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    display: block;    
+    height: 34px;
+    width: 100%;
+    line-height: 90px;
+    text-align: left;
+    pointer-events: none;
+}
+
+.email{
+    color: red;
+}
+.contact-form .label {
+    margin-bottom: 20px;
+    position: absolute;
+    /* left: -10px!important; */
+    padding-left: 0px!important;
+    bottom: 0;
+    font-size: 14px;
+    line-height: 26px;
+    font-weight: 400;
+    color: #888;
+    cursor: text;
+    transition: -webkit-transform .2s ease-in-out;
+    transition: transform .2s ease-in-out;
+    transition: transform .2s ease-in-out, -webkit-transform .2s ease-in-out;
+}
+
+.tick2,.tick3,.tick4{
+    margin-top: -3px;
+    width: 10px;
+    height: 10px;
+    display: none;
+    margin-left: 3px;
+}
+.inptxt{
+    font-size: 13.1px;
+    font-weight: 500;
+    line-height: 1.83;
+    color: #3f4245;
+}
+.preregtxt{
+    font-size: 12.4px;
+  font-weight: 300;
+  color: #3f4245;
+}
+.stepwizard-row2:before {
+    width: 66%;
+    right: 112px;
+}
+.inputstyle{
+    border: 0px;
+    border-bottom: 1px solid #b7b7b7;
+    width: 100%;
+}
+.inpstyle{
+    cursor:pointer;
+    background: url('/assets/img/datepicker.png') no-repeat 100% 6px!important;
+}
+
+#dropdown1 .btn {
+    display: inline-block;
+    padding: 6px 12px 6px 0px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: left;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    border:0px;
+}
+
+#dropdown1 button.btn.btn-default.dropdown-toggle.btn_width {
+    border-bottom: 1px solid #b7b7b7;
+}
+#dropdown1 .btn-default.active, .btn-default:active, .open > .dropdown-toggle.btn-default, .btn-default:hover {
+    color: #333;
+    background-color: #ffffff;
+    border-color: #adadad;
+}
+
+#dropdown1 button.btn.btn-default.dropdown-toggle.btn_width {
+    width: 100%;
+}
+#dropdown1 span#search_concept {
+    margin-right: 88%;
+}
+.padln{
+    padding-left: 0px!important;
+}
+.padrn{
+    padding-right: 0px!important;
+}
+.mrgntopm{
+    margin-top: -10px;
+}
+
+
+
+.modelWidthn {
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 0px;
+}
+
+.mybody2n{padding: 50px 20px}
+.brdlft{
+    border-left: 1px solid #eee;
+}
+.chkselect{
+    background-color: #64289d;
+}
+.prevlghd{
+    font-size: 15.8px;
+  font-weight: 600;
+  color: #3f4245;
+}
+.buttonpad{
+    padding: 6px 25px!important;
+}
+.btnmargin{
+    margin-left: 4%!important;
+}
+input[type="checkbox"]{
+    
+    -webkit-appearance: initial;
+    width: 16px;
+    height: 16px;
+    background-color: #c7c7c7;
+    display: inline-block;
+    border-radius: 5px;
+    margin-right: 6px;
+    vertical-align: sub;
+    outline: none
+    
+}
+input[type="checkbox"]:hover, input[type="checkbox"]:checked {
+    background: #64289d;
+}
+.labpos{
+    
+    padding-left: -10px!important;    
+    
+}
+
+.privilegeHead td{
+    text-align: center;
+}
+.privilegeData td{
+   padding-left: 35px !important;
+   border-right: 1px solid #d5d5d5;
+}
+.labelData{
+    padding: 2%;
+    font-size: 14px;
+    border-bottom: 1px solid #d5d5d5;
+    width: 100%;
+}
+.form-control{
+    box-shadow: none !important;
+    border-radius: 0px !important;
+    padding: 6px 0px;
+}

@@ -1,3 +1,592 @@
-<p>
-  userunitary works!
-</p>
+
+<div class="container ">
+  <section class="content ">
+     <div class="col-md-2 col-sm-2 top_back no-show2">
+        <h5 class="blu-color" >
+           <a class="backBtnpay_sup" *ngIf="step2" (click)="gotostep1()">
+           <img src="assets/img/left-arrow.png">Back</a>
+           <a class="sndback" *ngIf="step3" (click)="gotostep2()">
+           <img src="assets/img/left-arrow.png">Back</a>
+        </h5>
+     </div>
+     <div class="col-md-10 col-sm-9">
+        <div class="stepwizard ">
+           <div class="stepwizard-row stepwizard-row2 setup-panel">
+              <div class="stepwizard-step">
+                 <a class="btn bg-primary btn-circle" id="fourth" *ngIf="step1">
+                 <img class="img-responsive tickimgn" src="assets/img/tick.png">
+                 </a>
+                 <a class="btn bg-primary btn-circle big-circle" id="fourth" *ngIf="step2 || step3">
+                  <img class="img-responsive tickimg" src="assets/img/tick.png">
+                  </a>
+                 <h6 class="blu-color stepmrgnlft" id="p1">User Details</h6>
+              </div>
+              <div class="stepwizard-step">
+                 <a class="btn bg-default btn-circle " id="fifth" *ngIf="step1">
+                 <img class="img-responsive tickimgn" src="assets/img/tick.png">
+                 </a>
+                 <a class="btn bg-primary btn-circle " id="fifth" *ngIf="step2">
+                  <img class="img-responsive tickimgn" src="assets/img/tick.png">
+                  </a>
+                 <a class="btn bg-primary btn-circle big-circle" id="fourth" *ngIf="step3">
+                  <img class="img-responsive tickimg" src="assets/img/tick.png">
+                  </a>
+                 <h6 id="p2">Set Privileges</h6>
+              </div>
+              <div class="stepwizard-step">
+                 <a class="btn bg-default btn-circle " id="sixth" *ngIf="step2 || step1">
+                 <img class="img-responsive tickimgn" src="assets/img/tick.png">
+                 </a>
+                 <a class="btn bg-primary btn-circle " id="sixth" *ngIf="step3">
+                  <img class="img-responsive tickimgn" src="assets/img/tick.png">
+                  </a>
+                  <a class="btn bg-default btn-circle big-circle" id="sixth" *ngIf="step4">
+                    <img class="img-responsive tickimg" src="assets/img/tick.png">
+                    </a>
+                 <h6 id="p3">Review Details</h6>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div class="col-md-2 col-sm-2 top_back no-show">
+        <h5 class="blu-color">
+           <a href="#" class="backBtnpay_sup">
+           <img src="assets/img/left-arrow.png"> Back </a>
+           <a class="sndback">
+           <img src="assets/img/left-arrow.png"> Back </a>
+        </h5>
+     </div>
+     <div class="clearfix"></div>
+     <form role="form" class="contact-form" (ngSubmit)="onSubmit()" #f="ngForm" >
+        <div class="col-md-12">
+           <div class="row setup-content form_bg" id="step-4" *ngIf="step1">
+              <h4 class="Top5Heading111 ">User details </h4>
+              <div class="BorderBottom"></div>
+              <div class="col-md-12 extra_padd">
+                 <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="lft_div">
+                       <div class="clear30"></div>
+                       <input type="hidden" [(ngModel)]="model.id" name="id" value="{{model.id}}"/>
+                       <input type="hidden" [(ngModel)]="model.uploadfilename" name="uploadfilename" value="Unitary"/>
+                       <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                          <input class="input-text js-input inptxt form-control" name="empid" [(ngModel)]="model.empid" #name="ngModel" type="text" trim required>
+                          <label class="label" for="empid">Employee ID</label>
+                       </div>
+                       <div class="clear20"></div>
+                       <div class="clear20"></div>
+                       <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                           <select class="input-text js-input inptxt form-control" name="usertitle" [(ngModel)]="model.usertitle" #name="ngModel" required>
+                               <option value="" selected></option>
+                              <option value="Mr.">Mr.</option>
+                              <option value="Ms.">Ms.</option>
+                              <option value="Mrs.">Mrs.</option>
+                            </select>
+                            <label class="label" for="usertitle">Title</label>
+                       </div>
+                       <div class="clear20"></div>
+                       <div class="clear20"></div>
+                       <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                          <div class="col-xs-6 col-md-6 col-sm-6 padln">
+                             <input type="text" class="input-text js-input inptxt form-control" id="firstname"
+                               [(ngModel)]="model.firstname" name="firstname"
+                               #name="ngModel" trim required>
+                               <label class="label" for="firstname">First Name</label>
+                          </div>
+                          <div class="col-xs-6 col-md-6 col-sm-6 padrn">
+                             <input type="text" class="input-text js-input inptxt form-control" id="lastname"
+                                 [(ngModel)]="model.lastname" name="lastname"
+                                 #name="ngModel" trim required>
+                                 <label class="label" for="lastname">Last Name</label> 
+                          </div>
+                       </div>
+                       <div class="clear20"></div>
+                       <div class="clear20"></div>
+                       <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                         <input type="text" class="input-text js-input inptxt form-control" id="department"
+                         [(ngModel)]="model.department" name="department"
+                         #name="ngModel" trim required>
+                         <label class="label" for="department">Department</label> 
+                       </div>
+                       <div class="clear20"></div>
+                       <div class="clear20"></div>
+                       <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                           <input type="text" class="input-text js-input inptxt form-control" id="designation"
+                           required
+                           [(ngModel)]="model.designation" name="designation"
+                           #name="ngModel" trim>
+                           <label class="label" for="designation">Designation</label>
+                       </div>
+                       <div class="clear20"></div>
+                       <div class="clear20"></div>
+                       <div class="col-xs-12 col-sm-12 col-md-12  padln" *ngIf="isComplexOrg">
+                         
+                         <select class="input-text js-input inptxt form-control"
+                         name="group" id="group"
+                         [(ngModel)]="model.groupids" #name="ngModel" (change)="getGroup(usergroups,model.groupids)">
+                         <option value="" selected></option>
+                         <option *ngFor ="let group of usergroups" value="{{group.id}}" selected>{{group.grpname}}</option>
+                         </select>
+                         <label class="label" for="group">Group</label>
+                      </div>
+                    </div>
+                 </div>
+                 <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="rgt_div">
+                       <div class="clear30"></div>
+                       <div class="col-xs-12 col-sm-12 col-md-12 padln">
+                           <input type="text" class="input-text js-input inptxt form-control" id="email" emailvalidator  [(ngModel)]="model.email" name="email" #email="ngModel" trim required>
+                           <label class="label" for="email">Email</label> 
+                           <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">  
+                             <span class="email" *ngIf="email.errors.required">Email is required</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                             <span class="email" *ngIf="email.errors.emailvalidator">Please provide a valid email address</span>  
+                           </div>                         
+                       </div>
+                       <div class="clear20"></div>
+                       <div class="clear20"></div>
+                       <div class="col-xs-12 col-sm-12 col-md-12 padln">
+                          <div class="">
+                             
+                             <input class="inpstyle input-text js-input inptxt form-control" name="dob" [(ngModel)]="model.dob" type="date" #name="ngModel" required>
+                             <label class="label" for="dob">Date of Birth</label>
+                          </div>
+                       </div>
+                       <div class="clear20"></div>
+                       <div class="clear20"></div>
+                       <div class="col-xs-12 col-sm-12 col-md-12 padln">
+                          <input type="text" class="input-text js-input inptxt form-control" id="mobileno"
+                           [(ngModel)]="model.mobileno" name="mobileno"
+                           #mobileno="ngModel" maxlength="10" required (keypress)="validateMobileNo($event)" trim>
+                           <label class="label" for="mobileno">Mobile Number</label>
+                           
+                       </div>
+                       <div class="clear20"></div>
+                       <div class="clear20"></div>
+                       <div class="col-xs-12 col-sm-12 col-md-12 padln">
+                           <input type="text" class="input-text js-input inptxt form-control" id="landlineno"
+                           [(ngModel)]="model.landlineno" name="landlineno"
+                           #name="ngModel" trim>
+                           <label class="label" for="landlineno">Landline Number</label>
+                       </div>
+                       <div class="clear20"></div>
+                       <div class="clear20"></div>
+                        <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                         
+                          <select class="input-text js-input inptxt form-control" name="role" id="role"
+                          [(ngModel)]="model.role" #name="ngModel" (change)="setDefaultPriv(model.role)">
+                             <option value="" selected></option>
+                            <option value="2">Authorised Signatory</option>
+                            <option value="3">Corporate Admin</option>
+                            <option value="4">Maker</option>
+                            <option value="6">Checker</option>
+                          </select>
+                          <label class="label" for="role">Role</label>
+                       </div>
+                       
+                    </div>
+                 </div>
+                 
+                 <div class="clearfix"></div>
+                 <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="clear20"></div>
+                    <div class="clear20"></div>
+                    <button class="btn bg-primary nextpay buttonpad" type="button" (click)="gotostep2()">Next</button>
+                    <div class="clear20"></div>
+                    <div class="clear20"></div>
+                 </div>
+              </div>
+           </div>
+           
+           <div class="row setup-content form_bg" id="step-5" *ngIf="step2">
+              <h4 class="Top5Heading111 ">Set User Privileges</h4>
+              <div class="BorderBottom"></div>
+              <div class="clear30"></div>
+              <div class="clear30"></div>
+              <div class="clearfix"></div>
+              <div class="table-responsive norespopad">
+                 <table class="table noborder">
+                    <tbody>
+                       <tr class="privilegeHead">
+                          <td>
+                           <h5 class="prevlghd">Billers</h5>
+                          </td>
+                          <td>
+                           <h5 class="prevlghd">Payments</h5> 
+                          </td>
+                          <td>
+                           <h5 class="prevlghd">Users</h5>
+                          </td>
+                          <td>
+                           <h5 class="prevlghd">Cards</h5>
+                          </td>
+                          <td *ngIf="isComplexOrg">
+                           <h5 class="prevlghd">Groups</h5>
+                          </td>
+                          <td *ngIf="isComplexOrg">
+                           <h5 class="prevlghd">Rules</h5>
+                          </td>
+                       </tr>
+                       <tr class="privilegeData">
+                         <td>
+                           <input type="checkbox" [checked]="viewbilltab" (change)="viewbilltab=!viewbilltab">
+                           <span class="preregtxt">View</span>
+                         </td>
+                         <td>
+                           <input type="checkbox" [checked]="viewpaytab" (change)="viewpaytab=!viewpaytab">
+                           <span class="preregtxt">View</span>
+                         </td>
+                         <td>
+                           <input type="checkbox" [checked]="viewusrtab" (change)="viewusrtab=!viewusrtab">
+                           <span class="preregtxt">View</span>
+                         </td>
+                         <td>
+                           <input type="checkbox" [checked]="viewcrdtab" (change)="viewcrdtab=!viewcrdtab">
+                           <span class="preregtxt">View</span>
+                         </td>
+                         <td *ngIf="isComplexOrg">
+                           <input type="checkbox" [checked]="viewgrptab" (change)="viewgrptab=!viewgrptab">
+                           <span class="preregtxt">View</span>
+                         </td>
+                         <td *ngIf="isComplexOrg">
+                           <input type="checkbox" [checked]="viewruletab" (change)="viewruletab=!viewruletab">
+                           <span class="preregtxt">View</span>
+                         </td>
+                       </tr>
+                       <tr class="privilegeData">
+                         <td>
+                           <input type="checkbox" [checked]="apprbilltab" (change)="apprbilltab=!apprbilltab">
+                           <span class="preregtxt">Approve</span>
+                         </td>
+                         <td>
+                           <input type="checkbox" [checked]="apprpaytab" (change)="apprpaytab=!apprpaytab">
+                           <span class="preregtxt">Approve</span>
+                         </td>
+                         <td>
+                           <input type="checkbox" [checked]="apprusrtab" (change)="apprusrtab=!apprusrtab">
+                           <span class="preregtxt">Approve</span>
+                         </td>
+                         <td>
+                           <input type="checkbox" [checked]="apprcrdtab" (change)="apprcrdtab=!apprcrdtab">
+                           <span class="preregtxt">Approve</span>
+                         </td>
+                         <td *ngIf="isComplexOrg">
+                           <input type="checkbox" [checked]="apprgrptab" (change)="apprgrptab=!apprgrptab">
+                           <span class="preregtxt">Approve</span>
+                         </td>
+                         <td *ngIf="isComplexOrg">
+                           <input type="checkbox" [checked]="apprruletab" (change)="apprruletab=!apprruletab">
+                           <span class="preregtxt">Approve</span>
+                         </td>
+                       </tr>
+                       <tr class="privilegeData">
+                         <td>
+                           <input type="checkbox" [checked]="unibilltab" (change)="unibilltab=!unibilltab">
+                           <span class="preregtxt">Add Unitary</span>
+                         </td>
+                         <td>
+                           <input type="checkbox" [checked]="unipaytab" (change)="unipaytab=!unipaytab">
+                           <span class="preregtxt">Add Unitary</span>
+                         </td>
+                         <td>
+                           <input type="checkbox" [checked]="uniusrtab" (change)="uniusrtab=!uniusrtab">
+                           <span class="preregtxt">Add Unitary</span>
+                         </td>
+                         <td>
+                           <input type="checkbox" [checked]="unicrdtab" (change)="unicrdtab=!unicrdtab">
+                           <span class="preregtxt">Add Unitary</span>
+                         </td>
+                         <td *ngIf="isComplexOrg">
+                           <input type="checkbox" [checked]="unigrptab" (change)="unigrptab=!unigrptab">
+                           <span class="preregtxt">Add Unitary</span>
+                         </td>
+                         <td *ngIf="isComplexOrg">
+                           <input type="checkbox" [checked]="uniruletab" (change)="uniruletab=!uniruletab">
+                           <span class="preregtxt">Add Unitary</span>
+                         </td>
+                       </tr>
+                       <tr class="privilegeData">
+                         <td>
+                           <input type="checkbox" [checked]="bulkbilltab" (change)="bulkbilltab=!bulkbilltab">
+                           <span class="preregtxt">Add Bulk</span>
+                         </td>
+                         <td>
+                           <!-- <input type="checkbox" [checked]="bulkpaytab" (change)="bulkpaytab=!bulkpaytab">
+                           <span class="preregtxt">Add Bulk</span> -->
+                         </td>
+                         <td>
+                           <input type="checkbox" [checked]="bulkusrtab" (change)="bulkusrtab=!bulkusrtab">
+                           <span class="preregtxt">Add Bulk</span>
+                         </td>
+                         
+                         <td>
+                          
+                         </td>
+                         <td>
+                           
+                         </td>
+                         <td>
+                           
+                         </td>
+                       </tr>
+                    </tbody>
+                 </table>
+              </div>
+
+              <div class="col-xs-12 col-sm-12 col-md-12 btnmargin">
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class="btn bg-primary buttonpad ntxpayment" type="button" (click)="getSelectedTabs();gotostep3()">Next</button>
+              </div>
+              <div class="clear20"></div>
+              <div class="clear20"></div>
+           </div>
+           <div class="row setup-content form_bg" id="step-6" *ngIf="step3">
+              <div class="">
+                 <div class="">
+                   <h4 class="Top5Heading111 ">Review details  </h4>
+                   <div class="BorderBottom"></div>
+                   <div class="col-md-12 extra_padd">
+                      <div class="col-xs-12 col-sm-6 col-md-6">
+                         <div class="lft_div">
+                            <div class="clear30"></div>
+                            <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                               <div class="label">Employee Id:</div>
+                               <div class="labelData">{{model.empid}}</div>
+                            </div>
+                            <div class="clear20"></div>
+                            <div class="clear20"></div>
+                            <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                               <div class="label">Employee Title & Name:</div>
+                               <div class="labelData">{{model.usertitle}} {{model.firstname}} {{model.lastname}}</div>
+                            </div>
+                            <div class="clear20"></div>
+                            <div class="clear20"></div>
+                            <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                               <div class="label">Employee Email:</div>
+                               <div class="labelData">{{model.email}}</div>
+                            </div>
+                            <div class="clear20"></div>
+                            <div class="clear20"></div>
+                            <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                               <div class="label">Employee Date of Birth:</div>
+                               <div class="labelData">{{model.dob}}</div>
+                            </div>
+                            <div class="clear20"></div>
+                            <div class="clear20"></div>
+                            <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                               <div class="label">Employee Mobile Number:</div>
+                               <div class="labelData">{{model.mobileno}}</div>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="col-xs-12 col-sm-6 col-md-6">
+                         <div class="rgt_div">
+                            <div class="clear30"></div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 padln">
+                               <div class="label">Employee Department:</div>
+                               <div class="labelData">{{model.department}}</div>
+                            </div>
+                            <div class="clear20"></div>
+                            <div class="clear20"></div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 padln">
+                               <div class="label">Employee Role:</div>
+                               <div class="labelData" *ngIf="model.role==2">Authorised Signatory</div>
+                               <div class="labelData" *ngIf="model.role==3">Corporate Admin</div>
+                               <div class="labelData" *ngIf="model.role==4">Maker</div>
+                               <div class="labelData" *ngIf="model.role==6">Checker</div>
+                               <div class="labelData" *ngIf="model.role==7">Supplier</div>
+                              
+                            </div>
+                            <div class="clear20"></div>
+                            <div class="clear20"></div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 padln">
+                               <div class="label">Employee Designation:</div>
+                               <div class="labelData">{{model.designation}}</div>
+                            </div>
+                            <div class="clear20"></div>
+                            <div class="clear20"></div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 padln">
+                               <div class="label">Employee Landline Number:</div>
+                               <div class="labelData">{{model.landlineno}}</div>
+                            </div>
+                            <div class="clear20"></div>
+                            <div class="clear20"></div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 padln" *ngIf="isComplexOrg">
+                             <div class="label" style="
+                             margin-bottom: 65px !important;
+                         ">Employee Group</div>
+                             <div class="labelData">{{groupname}}</div>
+                             <div class="clear20"></div>
+                            <div class="clear20"></div>
+                          </div>
+                         </div>
+                      </div>
+                      <div class="clearfix"></div>
+                   </div>
+                   <div class="clear20"></div>
+                   <div class="clear20"></div>
+                   <h4 class="Top5Heading111 "> Privileges</h4>
+                   <div class="BorderBottom"></div>
+                   <div class="clear30"></div>
+                   <div class="clear30"></div>
+                   <div class="clearfix"></div>
+                   <div class="table-responsive norespopad">
+                      <table class="table noborder">
+                         <tbody>
+                             <tr class="privilegeHead">
+                                <td>
+                                 <h5 class="prevlghd">Billers</h5>
+                                </td>
+                                <td>
+                                 <h5 class="prevlghd">Payments</h5> 
+                                </td>
+                                <td>
+                                 <h5 class="prevlghd">Users</h5>
+                                </td>
+                                <td>
+                                 <h5 class="prevlghd">Cards</h5>
+                                </td>
+                                <td *ngIf="isComplexOrg">
+                                 <h5 class="prevlghd">Groups</h5>
+                                </td>
+                                <td *ngIf="isComplexOrg">
+                                 <h5 class="prevlghd">Rules</h5>
+                                </td>
+                             </tr>
+                             <tr class="privilegeData">
+                               <td>
+                                 
+                                 <div *ngIf="!billview" class="place"></div>
+                                 <div *ngIf="billview" class="placeChecked"></div>
+                                 <span class="preregtxt">View</span>
+                               </td>
+                               <td>
+                                   <div *ngIf="!payview" class="place"></div>
+                                   <div *ngIf="payview" class="placeChecked"></div>
+                                 <span class="preregtxt">View</span>
+                               </td>
+                               <td>
+                                   <div *ngIf="!usrview" class="place"></div>
+                                   <div *ngIf="usrview" class="placeChecked"></div>
+                                 <span class="preregtxt">View</span>
+                               </td>
+                               <td>
+                                   <div *ngIf="!crdview" class="place"></div>
+                                   <div *ngIf="crdview" class="placeChecked"></div>
+                                 <span class="preregtxt">View</span>
+                               </td>
+                               <td *ngIf="isComplexOrg">
+                                   <div *ngIf="!grpview" class="place"></div>
+                                   <div *ngIf="grpview" class="placeChecked"></div>
+                                 <span class="preregtxt">View</span>
+                               </td>
+                               <td *ngIf="isComplexOrg">
+                                   <div *ngIf="!rulview" class="place"></div>
+                                   <div *ngIf="rulview" class="placeChecked"></div>
+                                 <span class="preregtxt">View</span>
+                               </td>
+                             </tr>
+                             <tr class="privilegeData">
+                               <td>
+                                   <div *ngIf="!billappr" class="place"></div>
+                                   <div *ngIf="billappr" class="placeChecked"></div>
+                                 <span class="preregtxt">Approve</span>
+                               </td>
+                               <td>
+                                   <div *ngIf="!payappr" class="place"></div>
+                                   <div *ngIf="payappr" class="placeChecked"></div>
+                                 <span class="preregtxt">Approve</span>
+                               </td>
+                               <td>
+                                   <div *ngIf="!usrappr" class="place"></div>
+                                   <div *ngIf="usrappr" class="placeChecked"></div>
+                                 <span class="preregtxt">Approve</span>
+                               </td>
+                               <td>
+                                   <div *ngIf="!crdappr" class="place"></div>
+                                   <div *ngIf="crdappr" class="placeChecked"></div>
+                                 <span class="preregtxt">Approve</span>
+                               </td>
+                               <td *ngIf="isComplexOrg">
+                                   <div *ngIf="!grpappr" class="place"></div>
+                                   <div *ngIf="grpappr" class="placeChecked"></div>
+                                 <span class="preregtxt">Approve</span>
+                               </td>
+                               <td *ngIf="isComplexOrg">
+                                   <div *ngIf="!rulappr" class="place"></div>
+                                   <div *ngIf="rulappr" class="placeChecked"></div>
+                                 <span class="preregtxt">Approve</span>
+                               </td>
+                             </tr>
+                             <tr class="privilegeData">
+                               <td>
+                                   <div *ngIf="!billuni" class="place"></div>
+                                   <div *ngIf="billuni" class="placeChecked"></div>
+                                 <span class="preregtxt">Add Unitary</span>
+                               </td>
+                               <td>
+                                   <div *ngIf="!payuni" class="place"></div>
+                                   <div *ngIf="payuni" class="placeChecked"></div>
+                                 <span class="preregtxt">Add Unitary</span>
+                               </td>
+                               <td>
+                                   <div *ngIf="!usruni" class="place"></div>
+                                   <div *ngIf="usruni" class="placeChecked"></div>
+                                 <span class="preregtxt">Add Unitary</span>
+                               </td>
+                               <td>
+                                   <div *ngIf="!crduni" class="place"></div>
+                                   <div *ngIf="crduni" class="placeChecked"></div>
+                                 <span class="preregtxt">Add Unitary</span>
+                               </td>
+                               <td *ngIf="isComplexOrg">
+                                   <div *ngIf="!grpuni" class="place"></div>
+                                   <div *ngIf="grpuni" class="placeChecked"></div>
+                                 <span class="preregtxt">Add Unitary</span>
+                               </td>
+                               <td *ngIf="isComplexOrg">
+                                   <div *ngIf="!ruluni" class="place"></div>
+                                   <div *ngIf="ruluni" class="placeChecked"></div>
+                                 <span class="preregtxt">Add Unitary</span>
+                               </td>
+                             </tr>
+                             <tr class="privilegeData">
+                               <td>
+                                   <div *ngIf="!billbulk" class="place"></div>
+                                   <div *ngIf="billbulk" class="placeChecked"></div>
+                                 <span class="preregtxt">Add Bulk</span>
+                               </td>
+                               <td>
+                                   <!-- <div *ngIf="!paybulk" class="place"></div>
+                                   <div *ngIf="paybulk" class="placeChecked"></div>
+                                 <span class="preregtxt">Add Bulk</span> -->
+                               </td>
+                               <td>
+                                   <div *ngIf="!usrbulk" class="place"></div>
+                                   <div *ngIf="usrbulk" class="placeChecked"></div>
+                                 <span class="preregtxt">Add Bulk</span>
+                               </td>
+                               <td>
+                                
+                               </td>
+                               <td>
+                                 
+                               </td>
+                               <td>
+                                 
+                               </td>
+                             </tr>
+                          </tbody>
+                      </table>
+                   </div>
+                    <div class="clearfix"></div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 btnmargin">
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class="btn bg-primary finalpay nxt2" type="submit">Send for approval</button>
+                    </div>
+                    <div class="clear20"></div>
+                    <div class="clear20"></div>
+                 </div>
+              </div>
+           </div>
+          
+        </div>
+     </form>
+  </section>
+</div>
