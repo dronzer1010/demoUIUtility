@@ -39,6 +39,11 @@ import { PendinggroupsComponent } from './routingcomponents/pendinggroups/pendin
 import { PendingrulesComponent } from './routingcomponents/pendingrules/pendingrules.component';
 import { PendingcardsComponent } from './routingcomponents/pendingcards/pendingcards.component';
 import { SuccessComponent } from './supportingcomponents/success/success.component';
+import { OtpuserComponent } from './routingcomponents/otpuser/otpuser.component';
+import { RejectmsgComponent } from './supportingcomponents/rejectmsg/rejectmsg.component';
+import { OtpCardComponent } from './routingcomponents/otp-card/otp-card.component';
+import { OtpRuleComponent } from './routingcomponents/otp-rule/otp-rule.component';
+import { OtpGroupComponent } from './routingcomponents/otp-group/otp-group.component';
 
 
 const appRoutes: Routes = [ 
@@ -77,7 +82,12 @@ const appRoutes: Routes = [
     {path:'pending-rules',component:PendingrulesComponent},
     {path:'organisation',component:OrganisationComponent},
     {path:'pending-card',component:PendingcardsComponent},
-    {path:'successmsg',component:SuccessComponent}
+    {path:'successmsg',component:SuccessComponent},
+    {path:'otp-user',component:OtpuserComponent},
+    {path:'otp-card',component:OtpCardComponent},
+    {path:'otp-group',component:OtpGroupComponent},
+    {path:'otp-rule',component:OtpRuleComponent},
+    {path:'rejectmsg',component:RejectmsgComponent}
 ]},
 
     // otherwise redirect to home

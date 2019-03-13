@@ -15,6 +15,10 @@ export class SuccessComponent implements OnInit {
   cardsuccess:boolean=false;
   usersucess:boolean=false;
   rulesuccess:boolean=false;
+  usrapprsuccess:boolean=false;
+  grpapprsuccess:boolean=false;
+  ruleapprsuccess:boolean=false;
+  crdapprsuccess:boolean=false;
   
   constructor(private router: Router,private activatedRoute: ActivatedRoute) { }
 
@@ -29,12 +33,24 @@ export class SuccessComponent implements OnInit {
       this.rulesuccess=true;
     }else if(this.params=='usersuccess'){
       this.usersucess=true;
+    }else if(this.params=='usrapprsuccess'){
+      this.usrapprsuccess=true;
+    }else if(this.params=='crdapprsuccess'){
+      this.crdapprsuccess=true;
+    }else if(this.params=='ruleapprsuccess'){
+      this.ruleapprsuccess=true;
+    }else if(this.params=='grpapprsuccess'){
+      this.grpapprsuccess=true;
     }
     else{
       this.groupsuccess=false;
       this.cardsuccess=false;
       this.rulesuccess=false;
       this.usersucess=false;
+      this.grpapprsuccess=false;
+      this.usrapprsuccess=false;
+      this.ruleapprsuccess=false;
+      this.crdapprsuccess=false;
      
     }
   }

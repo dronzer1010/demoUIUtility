@@ -40,13 +40,13 @@ export class HeaderComponent implements OnInit {
       }else if(this.pathroute=='/main/billerlist' || this.pathroute=='/main/unitary-biller' || this.pathroute=='/main/maker-biller-bulk' || this.pathroute=='/main/otp-approve-biller' || this.pathroute=='/main/pending-biller'){
         this.clickBillEvent()
       }
-      else if(this.pathroute=='/main/cardview' || this.pathroute=='/unitary-card' || this.pathroute=='/main/pending-card'){
+      else if(this.pathroute=='/main/cardview' || this.pathroute=='/unitary-card' || this.pathroute=='/main/pending-card' ||this.pathroute=='/main/cardview?msg=crdapprsuccess' ||this.pathroute=='/main/cardview?msg=cardsuccess'){
         this.clickCardEvent()
-      }else if(this.pathroute=='/main/userview' || this.pathroute=='/unitary-user' || this.pathroute=='/main/pending-user' || this.pathroute=='/main/user-bulk'){
+      }else if(this.pathroute=='/main/userview' || this.pathroute=='/unitary-user' || this.pathroute=='/main/pending-user' || this.pathroute=='/main/user-bulk' ||this.pathroute=='/main/userview?msg=usrapprsuccess' ||this.pathroute=='/main/userview?msg=usersuccess'){
         this.clickUserEvent()
-      }else if(this.pathroute=='/main/groupview' || this.pathroute=='/main/unitary-group' || this.pathroute=='/main/pending-group'){
+      }else if(this.pathroute=='/main/groupview' || this.pathroute=='/main/unitary-group' || this.pathroute=='/main/pending-group' ||this.pathroute=='/main/groupview?msg=grpapprsuccess' ||this.pathroute=='/main/groupview?msg=groupsuccess'){
         this.clickGroupEvent()
-      }else if(this.pathroute=='/main/ruleview' || this.pathroute=='/main/unitary-rule' || this.pathroute=='/main/pending-rules'){
+      }else if(this.pathroute=='/main/ruleview' || this.pathroute=='/main/unitary-rule' || this.pathroute=='/main/pending-rules' ||this.pathroute=='/main/ruleview?msg=ruleapprsuccess' ||this.pathroute=='/main/ruleview?msg=rulesuccess'){
         this.clickRuleEvent()
       }else if(this.pathroute=='/main/organisation'){
         this.clickOrgEvent()

@@ -1,3 +1,132 @@
-<p>
-  ruleview works!
-</p>
+
+<div class="row">
+  <div _ngcontent-c4="" class="clear20"></div>
+
+  <div _ngcontent-c4="" class="clear20"></div>
+</div>
+<div class="container ">
+  <div class="clearfix"></div>
+  <form (ngSubmit)="rulevalidation()" #f="ngForm">
+  <div id="rulevalid" *ngIf="step2" class="row mrg-none mainContainBox mrg-t30 mrg-b30">
+     <div class="col-xs-12">
+        <h3 class="Mheading">Rule Validator</h3>
+     </div>
+     <div class="BorderBottom col-xs-12 pdg-none"></div>
+     <div class="col-xs-12 col-md-3"></div>
+     <div class="col-xs-12 col-md-6 mrg0Auto text-center">
+        <div class="clear20"></div>
+        <div class="clear20"></div>
+        <p class="ruleHead">Enter the Amount</p>
+        <div id="selectAuto" class="col-md-offset-1 col-md-10 ">
+           <span class="datalist-arrow">
+              <input id="cbxCities" class="jqx-combobox-input" name="browsers" type=number placeholder="Enter the amount"  [(ngModel)]="amountdata.chkamt" >
+              
+           </span>
+           <!-- <span class="ComboError">This amount does not belong to this organisation
+           <i class="fa fa-exclamation-circle ComboErrorImg"></i>
+           </span> -->
+        </div>
+     </div>
+     <div class="col-xs-12 col-md-3"></div>
+     <div class="col-md-12">
+     <div class="form-field col x-50 text-center">
+     <button class="btn bg-primary nextBtn nxt2 ruleNextBtn mrg0Auto" type="submit">Next</button>
+     </div>
+     </div>
+     <div class="clear20"></div>
+     <div class="clear20"></div>
+     <div class="clear20"></div>
+     <div class="clear20"></div>
+     <div class="clear20"></div>
+     <div class="clear20"></div>
+     <div class="clear20"></div>
+  </div>
+</form>
+  <div class="clearfix"></div>
+    <div id="rulevalidlist" *ngIf="!step2" class="row mrg-none mainContainBox mrg-t30 mrg-b30">
+      <div class="col-xs-12">
+      <h3 class="Mheading">List of Rules</h3>
+      </div>
+      <div class="BorderBottom col-xs-12 pdg-none"></div>
+      <div id="listRule" class="col-xs-12 pdg-none MainContainer">
+        <div class="col-xs-12 mrg-t30">
+          <div class="col-sm-12 col-md-4">
+            <p class="amtBox">
+              Amount :
+              <span> Rs. {{ruleamount}}</span>
+            </p>
+          <div class="BorderBottom col-xs-12 pdg-none"></div>
+          </div>
+          <div class="col-xs-12 mrg-t30 mrg-b30">
+            <button class="btn bg-primary nextBtn nxt2nn ruleNextBtn mrg0Auto" type="button" (click)="back()" >Back</button>
+            <!-- <a  class="restText">
+              <i class="fa fa-repeat refresh"></i>
+              <span>Reset</span>
+            </a> -->
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table id="fold-table" class="table table-hover fold-table">
+            <thead>
+              <tr class="cust-color">
+              
+              <td>
+              <span class="">Rule category</span>
+              </td>
+              <td>
+              <span class="">Lower Limit</span>
+              </td>
+              <td>
+              <span class="">Upper Limit</span>
+              </td>
+              <td>
+              <span class="">Status</span>
+              </td>
+              <td></td>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let ruled of ruledata">
+              <tr class="view grayStrip" >
+               
+                <td>{{ruled.rule.rule_formula}}</td>
+                <td>{{ruled.rule.lower_limit}}</td>
+                <td>{{ruled.rule.upper_limit}}</td>
+                <td>
+                <a *ngIf="ruled.rule.status==1" href="javascript:void(0);" class="btn appoved" role="button">Approved</a>
+                </td>
+                <td >
+                <i class="fa fa-angle-down"  (click)="ruled.selected=!ruled.selected"></i>
+               
+                </td>
+              </tr>
+              <tr class="grayStrip" *ngIf="ruled.selected">
+                <td colspan="6">
+                  <ng-container *ngFor = " let rule_data of ruled.rule_data">
+                    <div class="col-md-6">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h5 styel="font-weight:bold;">{{rule_data.rule_heading}}</h5>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <ng-container *ngFor="let user of rule_data.users">
+                            <div class="col-md-6">
+                              <p>
+                                {{user}}
+                              </p>
+                            </div>
+                          </ng-container>
+                        </div>
+                    </div>
+                  </ng-container>
+                </td>
+              </tr>
+            </ng-container>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</div>

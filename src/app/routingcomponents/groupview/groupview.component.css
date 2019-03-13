@@ -1,0 +1,26 @@
+.ugctxt{
+    font-size: 13.9px;
+    font-weight: 600;
+    color: #2c2e30;
+}
+.lbltxt{
+    font-size: 12.5px;
+  font-weight: 300;
+  color: #3f4245;
+}
+.bold-txtn{
+    font-size: 15.8px;
+  font-weight: 600;
+  color: #3f4245;
+}
+.tbltxt{
+    font-size: 14.2px;
+  font-weight: 300;
+  color: #3f4245;
+}
+.table tbody tr td.custmtdn {
+  padding: 20px 20px;
+}
+.padlnon{
+  padding-left: 0px!important;
+}

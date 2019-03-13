@@ -1,0 +1,42 @@
+
+<div class="container pqr">
+  <div class="row">
+      <div _ngcontent-c4="" class="clear20"></div>
+
+      <div _ngcontent-c4="" class="clear20"></div>
+
+      <div _ngcontent-c4="" class="clear20"></div>
+  </div>
+  <div class="row">
+      <div class="row setup-content cust_width form_bg" id="step-7">
+          <div class="col-md-12 text-center ">
+              <img src="assets/img/wrong.png">
+              <div class="clearfix"></div>
+              <div class="clear20"></div>
+              
+              <label *ngIf="groupreject" class="successhedtxt">Group is rejected and notification has been sent</label>
+              <label *ngIf="cardreject" class="successhedtxt">Card is rejected and notification has been sent</label>
+              <label *ngIf="rulereject" class="successhedtxt">Rule is rejected and notification has been sent</label>
+              <label *ngIf="userreject" class="successhedtxt">User is rejected and notification has been sent</label>
+             
+              <div class="clear20"></div>
+              <label *ngIf="groupreject" class="smrinstatustxt">You can view the summary and status of your request in the group page  </label>
+              <label *ngIf="cardreject" class="smrinstatustxt">You can view the summary and status of your request in the card page  </label>
+              <label *ngIf="rulereject" class="smrinstatustxt">You can view the summary and status of your request in the rule page  </label>
+              <label *ngIf="userreject" class="smrinstatustxt">You can view the summary and status of your request in the user page  </label>
+             
+              
+              <div class="col-md-12 col-sm-12 top-spac margin20">
+                 <a *ngIf="groupreject" [routerLink]="['/main/groupview']" class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Groups</a>
+                 <a *ngIf="cardreject" [routerLink]="['/main/cardview']" class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Cards</a>
+                 <a *ngIf="rulereject" [routerLink]="['/main/ruleview']"  class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Rules</a>
+                 <a *ngIf="userreject" [routerLink]="['/main/userview']" class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Users</a>
+                
+                  <a [routerLink]="['/main/dashboard']" class="btn btn-primary btn-outline Btn_Width2">Go to Dashboard</a>
+              </div>
+
+          </div>
+      </div>
+  </div>
+
+</div>

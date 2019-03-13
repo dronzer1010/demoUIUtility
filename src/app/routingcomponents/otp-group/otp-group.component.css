@@ -1,0 +1,56 @@
+.cardfirst {
+    background-color: #ffffff;
+    box-shadow: 0 0 8.5px 1.5px rgba(86, 79, 193, 0.1);
+    margin: 0px 0px;
+}
+.pfont{
+    font-size: 14.2px!important;
+    color: #3f4245;
+    font-weight: 300!important;
+}
+.inputstyle{
+border: 0px;
+border-bottom: 1px solid #b7b7b7;
+width: 100%;
+padding-left: 16px;
+}
+.rsotp{
+    font-size: 13.1px;
+    font-weight: 300;
+    margin-right: 20px;
+    line-height: 2.83;
+   
+    color: #52178b;
+}
+.blu-coln{
+    color: #52178b;
+    font-size: 12.4px;
+}
+.pdlft{
+    padding-left: 100px;
+}
+.padln{
+    padding-left: 0px;
+}
+.radiomrgnl{
+    margin-left: 110px!important;
+  }
+  .radiomrgnr{
+    margin-left: 62px!important;
+  }
+  .tick {
+    margin-top: -5px;
+    width: 14px;
+    height: 12px;
+}
+.btnw{
+    padding: 6px 28px;
+  }
+
+  .divwidth{
+    width: 15%;
+    display:inline-block;
+    vertical-align: top;
+    margin:4px;
+    align-content: center;
+}

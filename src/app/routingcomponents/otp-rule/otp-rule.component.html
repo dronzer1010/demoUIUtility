@@ -1,0 +1,67 @@
+
+<div class="">
+  <div class="col-md-12">
+
+  </div>
+  <div class="">
+
+    <div class="col-md-12 col-sm-12 col-xs-12 cardfirst">
+      <div class="clear20"></div>
+      <div class="clear20"></div>
+      <div class="clear20"></div>
+      <div class="clear20"></div>
+      <div class="clear20"></div>
+      <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-12 text-center">
+        <div class="col-md-3 col-sm-3 col-xs-3 text-right">
+          <div class="clear10"></div>
+          <img src="assets/img/otp.png" />
+        </div>
+        <div class="col-md-9 col-sm-9 col-xs-9 text-left">
+          <h4>Verify your mobile</h4>
+          <p class="pfont">We have sent you an OTP, Please enter it below</p>
+        </div>
+        <div class="clear20"></div>
+        <div class="clear20"></div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class=" divwidth text-left padln">
+            <input class="inputstyle" [(ngModel)]="txt1" #input1 type="text" maxlength="1" [appAutoTab]="input2">
+          </div>
+          <div class=" divwidth text-center padln">
+            <input class="inputstyle" [(ngModel)]="txt2" #input2 type="text" maxlength="1" [appAutoTab]="input3">
+          </div>
+          <div class="divwidth text-center padln">
+            <input class="inputstyle" [(ngModel)]="txt3" #input3 type="text" maxlength="1" [appAutoTab]="input4">
+          </div>
+          <div class="divwidth text-center padln">
+            <input class="inputstyle" [(ngModel)]="txt4" #input4 type="text" maxlength="1" [appAutoTab]="input5">
+          </div>
+          <div class="divwidth text-center padln">
+            <input class="inputstyle" [(ngModel)]="txt5" #input5 type="text" maxlength="1">
+          </div>
+        </div>
+        <div class="clear20"></div>
+        <div class="col-md-12 col-sm-12 col-xs-12 text-right">
+          <p class="rsotp">Resend OTP ?</p>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+          <button class="btn bg-primary mrtfi nextBtn btnw verify ruleNextBtn mrg0Auto nxtbbgcolor" (click) = "gotoValidateOTP()" type="button">Verify</button>
+        </div>
+      </div>
+      <div class="col-md-12 col-xs-12 col-sm-12">
+
+        <h5 class="blu-color pdlft">
+
+          <a class="backBtnpay_sup otpbbtn otpback" (click)="backClicked()">
+
+     
+            <img src="assets/img/left-arrow.png"> Back </a>
+        </h5>
+
+      </div>
+      <div class="clear20"></div>
+      <div class="clear20"></div>
+      <div class="clear20"></div>
+      <div class="clear20"></div>
+    </div>
+  </div>
+</div>

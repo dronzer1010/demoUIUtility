@@ -77,6 +77,12 @@ import { PendingrulesComponent } from './routingcomponents/pendingrules/pendingr
 import { PendingcardsComponent } from './routingcomponents/pendingcards/pendingcards.component';
 import { ExcelService } from './excelservice/excel.service';
 import { DataFilterPipeUser } from './routingcomponents/userview/data-filter-user.pipe';
+import { OtpuserComponent } from './routingcomponents/otpuser/otpuser.component';
+import {AspendingusersFilterPipe} from './routingcomponents/pendingusers/Aspendingusers-filter.pipe';
+import { RejectmsgComponent } from './supportingcomponents/rejectmsg/rejectmsg.component';
+import { OtpCardComponent } from './routingcomponents/otp-card/otp-card.component';
+import { OtpRuleComponent } from './routingcomponents/otp-rule/otp-rule.component';
+import { OtpGroupComponent } from './routingcomponents/otp-group/otp-group.component';
 
 @NgModule({
   declarations: [
@@ -124,7 +130,13 @@ import { DataFilterPipeUser } from './routingcomponents/userview/data-filter-use
     PendinggroupsComponent,
     PendingrulesComponent,
     PendingcardsComponent ,
-    DataFilterPipeUser  
+    DataFilterPipeUser,
+    OtpuserComponent ,
+    AspendingusersFilterPipe,
+    RejectmsgComponent,
+    OtpCardComponent,
+    OtpRuleComponent,
+    OtpGroupComponent
    
   ],
   imports: [
