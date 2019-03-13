@@ -75,8 +75,8 @@ import { PendingusersComponent } from './routingcomponents/pendingusers/pendingu
 import { PendinggroupsComponent } from './routingcomponents/pendinggroups/pendinggroups.component';
 import { PendingrulesComponent } from './routingcomponents/pendingrules/pendingrules.component';
 import { PendingcardsComponent } from './routingcomponents/pendingcards/pendingcards.component';
-
-
+import { ExcelService } from './excelservice/excel.service';
+import { DataFilterPipeUser } from './routingcomponents/userview/data-filter-user.pipe';
 
 @NgModule({
   declarations: [
@@ -123,7 +123,8 @@ import { PendingcardsComponent } from './routingcomponents/pendingcards/pendingc
     PendingusersComponent,
     PendinggroupsComponent,
     PendingrulesComponent,
-    PendingcardsComponent    
+    PendingcardsComponent ,
+    DataFilterPipeUser  
    
   ],
   imports: [
@@ -167,7 +168,7 @@ MatNativeDateModule,
 
   ],
  
-  providers: [LoaderService],
+  providers: [LoaderService,ExcelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -148,10 +148,11 @@ export class MakerMakePaymentComponent implements OnInit {
     this.reviewCard=false;
 
     var allBills = JSON.parse(localStorage.getItem('billdetails'));
-
+if(allBills!=null){
     this.bills = allBills.filter((bill)=>{
       return (bill['status']=="Approved")
     })
+  }
 
     console.log(this.bills);
     this.payments = this.bills.map((bill)=>{

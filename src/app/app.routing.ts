@@ -38,6 +38,8 @@ import { PendingusersComponent } from './routingcomponents/pendingusers/pendingu
 import { PendinggroupsComponent } from './routingcomponents/pendinggroups/pendinggroups.component';
 import { PendingrulesComponent } from './routingcomponents/pendingrules/pendingrules.component';
 import { PendingcardsComponent } from './routingcomponents/pendingcards/pendingcards.component';
+import { SuccessComponent } from './supportingcomponents/success/success.component';
+
 
 const appRoutes: Routes = [ 
     { path:'main',component:UserhomeComponent,
@@ -74,7 +76,8 @@ const appRoutes: Routes = [
     {path:'pending-group',component:PendinggroupsComponent},
     {path:'pending-rules',component:PendingrulesComponent},
     {path:'organisation',component:OrganisationComponent},
-    {path:'pending-card',component:PendingcardsComponent}
+    {path:'pending-card',component:PendingcardsComponent},
+    {path:'successmsg',component:SuccessComponent}
 ]},
 
     // otherwise redirect to home

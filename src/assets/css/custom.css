@@ -364,7 +364,7 @@ input[type=radio] {
 }
 
 .CustomWidthOfMonth1 {
-  background: url('/assets/images/down-arrow.png') no-repeat 46px 11px !important;
+  background: url('/assets/img/down-arrow.png') no-repeat 46px 11px !important;
 }
 
 .marginbotttompage {
@@ -429,14 +429,14 @@ a.btn.Rejected {
 }
 
 .flash {
-  background: url('/assets/images/tb_downarrow.png') no-repeat 5px 6px;
+  background: url('/assets/img/tb_downarrow.png') no-repeat 5px 6px;
   color: #ffffff;
   width: 20px;
   cursor: pointer;
 }
 
 .flashOn {
-  background: url('/assets/images/tb_uparrow.png') no-repeat 5px 6px;
+  background: url('/assets/img/tb_uparrow.png') no-repeat 5px 6px;
   color: #ffffff;
   cursor: pointer;
 }
@@ -627,15 +627,15 @@ input.search_box {
 }
 
 .caret2 {
-  background: url('/assets/images/Filter.png') no-repeat 3px 0px
+  background: url('/assets/img/Filter.png') no-repeat 3px 0px
 }
 
 .droparrow {
-  background: url('/assets/images/droparrow.png') no-repeat 59px 15px
+  background: url('/assets/img/droparrow.png') no-repeat 59px 15px
 }
 
 .search {
-  background: url('/assets/images/search-icon.png') no-repeat 5px 10px
+  background: url('/assets/img/search-icon.png') no-repeat 5px 10px
 }
 
 .btn-group.open .dropdown-toggle {
@@ -735,7 +735,7 @@ input.search_box {
 }
 
 .bolda {
-  background: url('/assets/images/down-arrow.png') no-repeat 41px 11px;
+  background: url('/assets/img/down-arrow.png') no-repeat 41px 11px;
   font-size: 12px;
   padding: 8px;
   width: 86px;
@@ -757,7 +757,7 @@ input.search_box {
 }
 
 .bolda.bolda4 {
-  background: url('/assets/images/datepicker.png') no-repeat 38px 6px;
+  background: url('/assets/img/datepicker.png') no-repeat 38px 6px;
   display: inline-block;
   width: 63px;
   border: none;
@@ -768,7 +768,7 @@ input.search_box {
 
 .bolda,
 .bolda4 {
-  background: url('/assets/images/down-arrow.png') no-repeat 61px 6px;
+  background: url('/assets/img/down-arrow.png') no-repeat 61px 6px;
   font-size: 12px;
   padding: 8px;
   width: 86px;
