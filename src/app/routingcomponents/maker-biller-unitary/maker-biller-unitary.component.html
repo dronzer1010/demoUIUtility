@@ -126,7 +126,7 @@
                   <div class="clear20"></div>
                   <div class="col-xs-12 col-sm-12 col-md-12 padln">
                     <select class="input-text js-input inptxt form-control" required [(ngModel)]="billdata.board" name="board">
-                     
+
                       <option value="Electricity">Electricity</option>
                       <!-- <option value="Telecom" >Telecom</option>
                       <option value="Gas">Gas</option>
@@ -138,14 +138,15 @@
                   <div class="clear20"></div>
                   <div class="clear20"></div>
                   <div class="col-xs-12 col-sm-12 col-md-12 padln">
-                    <select class="input-text js-input inptxt form-control" required [(ngModel)]="billdata.state" name="state" (change)="getBiller($event.target.value)">
+                    <select class="input-text js-input inptxt form-control" required [(ngModel)]="billdata.state" name="state"
+                      (change)="getBiller($event.target.value)">
                       <option *ngFor="let state of states" value="{{state.code}}">{{state.name}}</option>
                     </select>
                     <label class="label" for="usertitle">Select State</label>
                   </div>
                   <div class="clear20"></div>
                   <div class="clear20"></div>
-                
+
                   <div class="col-xs-12 col-sm-12 col-md-12 padln">
                     <select class="input-text js-input inptxt form-control" required [(ngModel)]="billdata.biller" name="biller">
                       <option *ngFor="let bilr of billerlist" value="{{bilr.name}}">{{bilr.name}}</option>
@@ -183,65 +184,70 @@
                     <div class="clear20"></div>
                     <div class="clear20"></div>
                     <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                      <input type="text" value="" class="input-text js-input inptxt form-control" name="consumerno" [(ngModel)]="billdata.consumerno" #name="ngModel">
+                      <input type="text" value="" class="input-text js-input inptxt form-control" name="consumerno"
+                        [(ngModel)]="billdata.consumerno" #name="ngModel">
                       <label class="label" for="usertitle">Consumer No.</label>
                     </div>
                     <div class="clear20"></div>
                     <div class="clear20"></div>
                     <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                      <input type="text" value="" class="input-text js-input inptxt form-control" name="shortname" [(ngModel)]="billdata.shortname" #name="ngModel">
+                      <input type="text" value="" class="input-text js-input inptxt form-control" name="shortname"
+                        [(ngModel)]="billdata.shortname" #name="ngModel">
                       <label class="label" for="usertitle">Short Name</label>
                     </div>
                     <div class="clear20"></div>
                     <div class="clear20"></div>
                     <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                      <input type="text" value="" class="input-text js-input inptxt form-control" name="expensecode" [(ngModel)]="billdata.expensecode" #name="ngModel">
+                      <input type="text" value="" class="input-text js-input inptxt form-control" name="expensecode"
+                        [(ngModel)]="billdata.expensecode" #name="ngModel">
                       <label class="label" for="usertitle">GL/Expense Code</label>
                     </div>
                     <div class="clear20"></div>
                     <div class="clear20"></div>
                     <div class="col-xs-12 col-sm-12 col-md-12  padln">
                       <!-- <input type="date" value="" class="input-text js-input inptxt form-control" name="billdate" [(ngModel)]="billdata.billdate" #name="ngModel"> -->
-                      <input list="billdate" class="input-text js-input inptxt form-control databill" required [(ngModel)]="billdata.billdate" name="billdate"> &nbsp;&nbsp;of every month
+                      <input list="billdate" class="input-text js-input inptxt form-control databill" required
+                        [(ngModel)]="billdata.billdate" name="billdate"> &nbsp;&nbsp;of every month
                       <datalist id="billdate">
-                          <option value="1st" >1st</option>
-                          <option value="2nd" >2nd</option>
-                          <option value="3rd" >3rd</option>
-                          <option value="4th" >4th</option>
-                          <option value="5th" >5th</option>
-                          <option value="6th" >6th</option>
-                          <option value="7th" >7th</option>
-                          <option value="8th" >8th</option>
-                          <option value="9th" >9th</option>
-                          <option value="10th" >10th</option>
-                          <option value="11th" >11th</option>
-                          <option value="12th" >12th</option>
-                          <option value="13th" >13th</option>
-                          <option value="14th" >14th</option>
-                          <option value="15th" >15th</option>
-                          <option value="16th" >16th</option>
-                          <option value="17th" >17th</option>
-                          <option value="18th" >18th</option>
-                          <option value="19th" >19th</option>
-                          <option value="20th" >20th</option>
-                          <option value="21st" >21st</option>
-                          <option value="22nd" >22nd</option>
-                          <option value="23rd" >23rd</option>
-                          <option value="24th" >24th</option>
-                          <option value="25th" >25th</option>
-                          <option value="26th" >26th</option>
-                          <option value="27th" >27th</option>
-                          <option value="28th" >28th</option>
-                          <option value="29th" >29th</option>
-                          <option value="30th" >30th</option>
-                          <option value="31st" >31st</option>
+                        <option value="1st">1st</option>
+                        <option value="2nd">2nd</option>
+                        <option value="3rd">3rd</option>
+                        <option value="4th">4th</option>
+                        <option value="5th">5th</option>
+                        <option value="6th">6th</option>
+                        <option value="7th">7th</option>
+                        <option value="8th">8th</option>
+                        <option value="9th">9th</option>
+                        <option value="10th">10th</option>
+                        <option value="11th">11th</option>
+                        <option value="12th">12th</option>
+                        <option value="13th">13th</option>
+                        <option value="14th">14th</option>
+                        <option value="15th">15th</option>
+                        <option value="16th">16th</option>
+                        <option value="17th">17th</option>
+                        <option value="18th">18th</option>
+                        <option value="19th">19th</option>
+                        <option value="20th">20th</option>
+                        <option value="21st">21st</option>
+                        <option value="22nd">22nd</option>
+                        <option value="23rd">23rd</option>
+                        <option value="24th">24th</option>
+                        <option value="25th">25th</option>
+                        <option value="26th">26th</option>
+                        <option value="27th">27th</option>
+                        <option value="28th">28th</option>
+                        <option value="29th">29th</option>
+                        <option value="30th">30th</option>
+                        <option value="31st">31st</option>
                       </datalist>
                       <label class="label" for="usertitle">Bill Date</label>
                     </div>
                     <div class="clear20"></div>
                     <div class="clear20"></div>
                     <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                      <input type="text" value="" class="input-text js-input inptxt form-control" name="email" [(ngModel)]="billdata.email" #name="ngModel">
+                      <input type="text" value="" class="input-text js-input inptxt form-control" name="email"
+                        [(ngModel)]="billdata.email" #name="ngModel">
                       <label class="label" for="usertitle">Email</label>
                     </div>
                     <div class="clear20"></div>
@@ -282,52 +288,55 @@
                     <div class="clear20"></div>
                     <div class="col-xs-12 col-sm-12 col-md-12  padln">
                       <!-- <input type="date" value="" class="input-text js-input inptxt form-control" name="duedate" [(ngModel)]="billdata.duedate" #name="ngModel"> -->
-                      <input list="duedate" class="input-text js-input inptxt form-control databill" required [(ngModel)]="billdata.duedate" name="duedate"> &nbsp;&nbsp;of every month
+                      <input list="duedate" class="input-text js-input inptxt form-control databill" required
+                        [(ngModel)]="billdata.duedate" name="duedate"> &nbsp;&nbsp;of every month
                       <datalist id="duedate">
-                          <option value="1st" >1st</option>
-                          <option value="2nd" >2nd</option>
-                          <option value="3rd" >3rd</option>
-                          <option value="4th" >4th</option>
-                          <option value="5th" >5th</option>
-                          <option value="6th" >6th</option>
-                          <option value="7th" >7th</option>
-                          <option value="8th" >8th</option>
-                          <option value="9th" >9th</option>
-                          <option value="10th" >10th</option>
-                          <option value="11th" >11th</option>
-                          <option value="12th" >12th</option>
-                          <option value="13th" >13th</option>
-                          <option value="14th" >14th</option>
-                          <option value="15th" >15th</option>
-                          <option value="16th" >16th</option>
-                          <option value="17th" >17th</option>
-                          <option value="18th" >18th</option>
-                          <option value="19th" >19th</option>
-                          <option value="20th" >20th</option>
-                          <option value="21st" >21st</option>
-                          <option value="22nd" >22nd</option>
-                          <option value="23rd" >23rd</option>
-                          <option value="24th" >24th</option>
-                          <option value="25th" >25th</option>
-                          <option value="26th" >26th</option>
-                          <option value="27th" >27th</option>
-                          <option value="28th" >28th</option>
-                          <option value="29th" >29th</option>
-                          <option value="30th" >30th</option>
-                          <option value="31st" >31st</option>
-                        </datalist>
+                        <option value="1st">1st</option>
+                        <option value="2nd">2nd</option>
+                        <option value="3rd">3rd</option>
+                        <option value="4th">4th</option>
+                        <option value="5th">5th</option>
+                        <option value="6th">6th</option>
+                        <option value="7th">7th</option>
+                        <option value="8th">8th</option>
+                        <option value="9th">9th</option>
+                        <option value="10th">10th</option>
+                        <option value="11th">11th</option>
+                        <option value="12th">12th</option>
+                        <option value="13th">13th</option>
+                        <option value="14th">14th</option>
+                        <option value="15th">15th</option>
+                        <option value="16th">16th</option>
+                        <option value="17th">17th</option>
+                        <option value="18th">18th</option>
+                        <option value="19th">19th</option>
+                        <option value="20th">20th</option>
+                        <option value="21st">21st</option>
+                        <option value="22nd">22nd</option>
+                        <option value="23rd">23rd</option>
+                        <option value="24th">24th</option>
+                        <option value="25th">25th</option>
+                        <option value="26th">26th</option>
+                        <option value="27th">27th</option>
+                        <option value="28th">28th</option>
+                        <option value="29th">29th</option>
+                        <option value="30th">30th</option>
+                        <option value="31st">31st</option>
+                      </datalist>
                       <label class="label" for="usertitle">Due Date</label>
                     </div>
                     <div class="clear20"></div>
                     <div class="clear20"></div>
                     <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                      <input type="text" value="" class="input-text js-input inptxt form-control" name="billaddress" [(ngModel)]="billdata.billaddress" #name="ngModel">
+                      <input type="text" value="" class="input-text js-input inptxt form-control" name="billaddress"
+                        [(ngModel)]="billdata.billaddress" #name="ngModel">
                       <label class="label" for="usertitle">Biller Address</label>
                     </div>
                     <div class="clear20"></div>
                     <div class="clear20"></div>
                     <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                      <input type="phone" value="" class="input-text js-input inptxt form-control" name="contact" [(ngModel)]="billdata.contact" #name="ngModel">
+                      <input type="phone" value="" class="input-text js-input inptxt form-control" name="contact"
+                        [(ngModel)]="billdata.contact" #name="ngModel">
                       <label class="label" for="usertitle">Contact Number</label>
                     </div>
                     <div class="clear20"></div>
@@ -357,7 +366,8 @@
                     <div class="clear20"></div>
                     <div class="clear20"></div>
                     <div class="col-xs-5 col-sm-5 col-md-5">
-                      <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Type of Utility</strong></label>
+                      <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Type
+                          of Utility</strong></label>
                     </div>
                     <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                     <div class="col-xs-6 col-sm-6 col-md-6">
@@ -365,18 +375,19 @@
                     </div>
                     <div class="clear20"></div>
                     <div class="col-xs-5 col-sm-5 col-md-5">
-                        <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Location</strong></label>
-                      </div>
-                      <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
-                      <div class="col-xs-6 col-sm-6 col-md-6">
-                        <span *ngIf="billdata.state=='MH'"> Maharashtra</span>
-                        <span *ngIf="billdata.state=='AP'"> Andhra Pradesh</span>
-                        <span *ngIf="billdata.state=='KA'"> Karanataka</span>
-                        <span *ngIf="billdata.state=='RJ'"> Rajasthan</span>
-                      </div>
-                      <div class="clear20"></div>
+                      <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Location</strong></label>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                      <span *ngIf="billdata.state=='MH'"> Maharashtra</span>
+                      <span *ngIf="billdata.state=='AP'"> Andhra Pradesh</span>
+                      <span *ngIf="billdata.state=='KA'"> Karanataka</span>
+                      <span *ngIf="billdata.state=='RJ'"> Rajasthan</span>
+                    </div>
+                    <div class="clear20"></div>
                     <div class="col-xs-5 col-sm-5 col-md-5">
-                      <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Bill Name</strong></label>
+                      <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Bill
+                          Name</strong></label>
                     </div>
                     <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                     <div class="col-xs-6 col-sm-6 col-md-6">
@@ -384,7 +395,8 @@
                     </div>
                     <div class="clear20"></div>
                     <div class="col-xs-5 col-sm-5 col-md-5">
-                      <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Reference No.</strong></label>
+                      <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Reference
+                          No.</strong></label>
                     </div>
                     <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                     <div class="col-xs-6 col-sm-6 col-md-6">
@@ -392,22 +404,24 @@
                     </div>
                     <div class="clear20"></div>
                     <div class="col-xs-5 col-sm-5 col-md-5">
-                      <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Bill Date</strong></label>
+                      <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Bill
+                          Date</strong></label>
                     </div>
                     <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                     <div class="col-xs-6 col-sm-6 col-md-6">
-                       <span> {{billdata.billdate}}</span> <span class="span1">of every month</span>
+                      <span> {{billdata.billdate}}</span> <span class="span1">of every month</span>
                     </div>
                     <div class="clear20"></div>
                     <div class="col-xs-5 col-sm-5 col-md-5">
-                      <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Biller Address</strong></label>
+                      <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Biller
+                          Address</strong></label>
                     </div>
                     <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                     <div class="col-xs-6 col-sm-6 col-md-6">
                       <span> {{billdata.billaddress}}</span>
                     </div>
                     <div class="clear20"></div>
-                    
+
                     <div class="clear20"></div>
                   </div>
                 </div>
@@ -421,7 +435,8 @@
                         <img style="vertical-align: 3px;" src="assets/img/left-arrow.png">Back</a>
                     </h5>
                   </div>
-                  <button class="btn bg-primary nextpay buttonpad" type="button" (click)="succesadd();submitbilldata()">Submit for
+                  <button class="btn bg-primary nextpay buttonpad" type="button" (click)="succesadd();submitbilldata()">Submit
+                    for
                     Approval</button>
                   <div class="clear20"></div>
                   <div class="clear20"></div>
@@ -436,16 +451,17 @@
                       <div class="clear20"></div>
                       <div class="clear20"></div>
                       <div class="col-xs-4 col-sm-4 col-md-4">
-                          <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Email</strong></label>
-                        </div>
-                        <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
-                        <div class="col-xs-7 col-sm-7 col-md-7">
-                          <span> {{billdata.email}}</span>
-                        </div>
-                        <div class="clear20"></div>
-                        
-                        <div class="col-xs-4 col-sm-4 col-md-4">
-                        <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Short Name</strong></label>
+                        <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Email</strong></label>
+                      </div>
+                      <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                      <div class="col-xs-7 col-sm-7 col-md-7">
+                        <span> {{billdata.email}}</span>
+                      </div>
+                      <div class="clear20"></div>
+
+                      <div class="col-xs-4 col-sm-4 col-md-4">
+                        <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Short
+                            Name</strong></label>
                       </div>
                       <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                       <div class="col-xs-7 col-sm-7 col-md-7">
@@ -453,7 +469,8 @@
                       </div>
                       <div class="clear20"></div>
                       <div class="col-xs-4 col-sm-4 col-md-4">
-                        <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">GL/Expense Code</strong></label>
+                        <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">GL/Expense
+                            Code</strong></label>
                       </div>
                       <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                       <div class="col-xs-7 col-sm-7 col-md-7">
@@ -461,7 +478,8 @@
                       </div>
                       <div class="clear20"></div>
                       <div class="col-xs-4 col-sm-4 col-md-4">
-                        <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Due Date</strong></label>
+                        <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Due
+                            Date</strong></label>
                       </div>
                       <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                       <div class="col-xs-7 col-sm-7 col-md-7">
@@ -469,7 +487,8 @@
                       </div>
                       <div class="clear20"></div>
                       <div class="col-xs-4 col-sm-4 col-md-4">
-                        <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Contact Number</strong></label>
+                        <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Contact
+                            Number</strong></label>
                       </div>
                       <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                       <div class="col-xs-7 col-sm-7 col-md-7">
@@ -511,7 +530,8 @@
                       Bills</a>
                   </div>
                   <div class="col-xs-3 col-sm-3 col-md-3">
-                    <a class="btn btn-primary btn-outline Btn_Width2" [routerLink]="['/dashboard-maker']">Go to Dashboard</a>
+                    <a class="btn btn-primary btn-outline Btn_Width2" [routerLink]="['/dashboard-maker']">Go to
+                      Dashboard</a>
                   </div>
                   <div class="clear30"></div>
                   <div class="clear20"></div>
