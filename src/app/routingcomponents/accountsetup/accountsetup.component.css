@@ -11,6 +11,9 @@
 .nopad {
     padding: 0px !important;
 }
+.flashOn{
+    width: 20px;
+}
 .collapsible {
     background-color: #fff;
     color: #000;

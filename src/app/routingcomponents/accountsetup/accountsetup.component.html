@@ -9,7 +9,7 @@
       <div class="col-md-12 cardnot pad-card">
         <div class="row">
           <div class="col-md-12">
-            <label class="notlabel">Account Setup</label>
+            <label class="notlabel" style="font-family:Poppins-light!important;">Account Setup</label>
           </div>
         </div>
         <div class="row" style="margin-left:22%;" *ngIf="authmatrix=='Complex'">
@@ -126,7 +126,7 @@
         <div *ngIf="authentication == true">
           <div class="row auth">
             <div class="col-md-12">
-              <label class="notlabel">Account Authentication</label>
+              <label class="notlabel" style="font-family:Poppins-light!important;">Account Authentication</label>
             </div>
           </div>
           <p>Enter the authentication code which was mentioned in the welcome email</p>
@@ -157,7 +157,7 @@
         <div *ngIf="setnewpassword == true">
           <div class="row">
             <div class="col-md-12">
-              <label class="notlabel" style="margin-bottom: 10px;">Set New Password</label>
+              <label class="notlabel" style="margin-bottom: 10px;font-family:Poppins-light!important;">Set New Password</label>
             </div>
           </div>
           <div class="row">
@@ -185,7 +185,7 @@
         <div *ngIf="approveorg == true">
           <div class="row">
             <div class="col-md-12">
-              <label class="notlabel">Approve Organisation</label>
+              <label class="notlabel" style="font-family:Poppins-light!important;">Approve Organisation</label>
             </div>
           </div>
           <div class="row">
@@ -204,7 +204,7 @@
               <thead>
                 <tr class="cust-color">
                   <td>
-                    <span class="bold-txt">Organisation Name</span> &nbsp;&nbsp;&nbsp;
+                    <span class="bold-txt">Organisation Name</span>
                   </td>
                   <td>
                     <span class="bold-txt">Convenience Fee</span> &nbsp;&nbsp;&nbsp;
@@ -294,7 +294,7 @@
         <div *ngIf="approvethroughuser == true">
           <div class="row">
             <div class="col-md-12">
-              <label class="notlabel">Approve Users</label>
+              <label class="notlabel" style="font-family:Poppins-light!important;">Approve Users</label>
             </div>
           </div>
           <div class="row">
@@ -1027,7 +1027,6 @@
                 <thead>
                   <tr class="cust-color">
                     <td>
-                      &nbsp;&nbsp;&nbsp;&nbsp;
                       <div _ngcontent-c3="">
                         <input type="checkbox" name="mainmenu" (change)="changeAllrule(isSelectedRule)" [checked]="isAllSelectedRule">
                       </div>
@@ -1041,7 +1040,6 @@
                     <td>
                       <span class="bold-txtn">Upper Limit</span> &nbsp;&nbsp;&nbsp;
                     </td>
-                    <td></td>
                   </tr>
                 </thead>
                 <ng-container *ngFor="let rulepending of getPendingRulesdata let i=index">
@@ -1056,7 +1054,6 @@
                       <td>{{rulepending.ruleformula}}</td>
                       <td>{{rulepending.lwramount}}</td>
                       <td>{{rulepending.upramount}}</td>
-                      <td></td>
                     </tr>
                   </tbody>
                 </ng-container>
