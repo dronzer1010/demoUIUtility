@@ -1,3 +1,1091 @@
-<p>
-  accountsetup works!
-</p>
+<div class="container">
+  <div class="row logo-center">
+    <a _ngcontent-c2="" href="#">
+      <img _ngcontent-c2="" src="assets/img/logo.png">
+    </a>
+  </div>
+  <div class="row">
+    <div id="registrationtab" class="tabcontent nopad" style="display:block;">
+      <div class="col-md-12 cardnot pad-card">
+        <div class="row">
+          <div class="col-md-12">
+            <label class="notlabel">Account Setup</label>
+          </div>
+        </div>
+        <div class="row" style="margin-left:22%;" *ngIf="authmatrix=='Complex'">
+          <div class="col col-sm-2 col-md-2 col-xs-2 padding-none">
+            <span *ngIf="showsteponebutton" class="right-dot glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+              <i class="fa fa-check" aria-hidden="true"></i></span>
+            <span *ngIf="!showsteponebutton && !onAuthCode" class="dot glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+            </span>
+            <span *ngIf="onAuthCode" class="dot now glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+            </span>
+            <hr class="line" />
+            <p class="accountstepperheading1 restText">Account<br>Authentication</p>
+          </div>
+
+          <div class="col col-sm-2 col-md-2 col-xs-2 padding-none">
+            <span *ngIf="showstepsecondbutton" class="right-dot glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+              <i class="fa fa-check" aria-hidden="true"></i></span>
+            <span *ngIf="!showstepsecondbutton && !onSetPassword" class="dot glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+            </span>
+            <span *ngIf="onSetPassword" class="dot now glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+            </span>
+            <hr class="line" />
+            <p class="accountstepperheading1 restText">Set <br>New Password</p>
+          </div>
+
+          <div class="col col-sm-2 col-md-2 col-xs-2 padding-none">
+            <span *ngIf="showstepthirdbutton" class="right-dot glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+              <i class="fa fa-check" aria-hidden="true"></i></span>
+            <span *ngIf="!showstepthirdbutton && !onApprOrg" class="dot glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+            </span>
+            <span *ngIf="onApprOrg" class="dot now glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+            </span>
+            <hr class="line" />
+            <p class="accountstepperheading1 restText">Approve <br>Organisation</p>
+          </div>
+
+          <div *ngIf="authmatrix=='Complex'" class="col col-sm-2 col-md-2 col-xs-2 padding-none">
+              <span *ngIf="showstepfivebutton" class="right-dot glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+                <i class="fa fa-check" aria-hidden="true"></i></span>
+              <span *ngIf="!showstepfivebutton && !onApprGrp" class="dot glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+              </span>
+              <span *ngIf="onApprGrp" class="dot now glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+              </span>
+              <hr class="line" />
+              <p class="accountstepperheading1 restText">Approve <br>Groups</p>
+            </div>
+            <div *ngIf="authmatrix=='Complex'" class="col col-sm-2 col-md-2 col-xs-2 padding-none">
+                <span *ngIf="showstepsixbutton" class="right-dot glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+                  <i class="fa fa-check" aria-hidden="true"></i></span>
+                <span *ngIf="!showstepsixbutton && !onApprRule" class="dot glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+                </span>
+                <span *ngIf="onApprRule" class="dot now glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+                </span>
+                <hr class="line" />
+                <p class="accountstepperheading1 restText">Approve <br>Rules</p>
+              </div>
+
+          <div class="col col-sm-2 col-md-2 col-xs-2 padding-none">
+            <span *ngIf="showstepfourbutton" class="right-dot glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+              <i class="fa fa-check" aria-hidden="true"></i></span>
+            <span *ngIf="!showstepfourbutton && !onApprUsr" class="dot glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+            </span>
+            <span *ngIf="onApprUsr" class="dot now glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+            </span>
+            <hr class="hide-line"/>
+            <p class="accountstepperheading1 restText">Approve <br>Users</p>
+          </div>          
+        </div>
+        <div class="row" style="margin-left:22%;" *ngIf="authmatrix!='Complex'">
+            <div class="col col-sm-3 col-md-3 col-xs-3 padding-none">
+              <span *ngIf="showsteponebutton" class="right-dot glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+                <i class="fa fa-check" aria-hidden="true"></i></span>
+              <span *ngIf="!showsteponebutton && !onAuthCode" class="dot glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+              </span>
+              <span *ngIf="onAuthCode" class="dot now glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+              </span>
+              <hr class="line" />
+              <p class="accountstepperheading restText">Account Authentication</p>
+            </div>
+  
+            <div class="col col-sm-3 col-md-3 col-xs-3 padding-none">
+              <span *ngIf="showstepsecondbutton" class="right-dot glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+                <i class="fa fa-check" aria-hidden="true"></i></span>
+              <span *ngIf="!showstepsecondbutton && !onSetPassword" class="dot glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+              </span>
+              <span *ngIf="onSetPassword" class="dot now glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+              </span>
+              <hr class="line" />
+              <p class="accountstepperheading restText">Set New Password</p>
+            </div>
+  
+            <div class="col col-sm-3 col-md-3 col-xs-3 padding-none">
+              <span *ngIf="showstepthirdbutton" class="right-dot glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+                <i class="fa fa-check" aria-hidden="true"></i></span>
+              <span *ngIf="!showstepthirdbutton && !onApprOrg" class="dot glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+              </span>
+              <span *ngIf="onApprOrg" class="dot now glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+              </span>
+              <hr class="line" />
+              <p class="accountstepperheading restText">Approve Organisation</p>
+            </div>
+  
+            <div class="col col-sm-3 col-md-3 col-xs-3 padding-none">
+              <span *ngIf="showstepfourbutton" class="right-dot glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+                <i class="fa fa-check" aria-hidden="true"></i></span>
+              <span *ngIf="!showstepfourbutton && !onApprUsr" class="dot glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+              </span>
+              <span *ngIf="onApprUsr" class="dot now glyphicon glyphicon-bordered glyphicon-ring glyphicon-white">
+              </span>
+              <hr class="hide-line"/>
+              <p class="accountstepperheading restText">Approve Users</p>
+            </div>          
+          </div>
+        <div *ngIf="authentication == true">
+          <div class="row auth">
+            <div class="col-md-12">
+              <label class="notlabel">Account Authentication</label>
+            </div>
+          </div>
+          <p>Enter the authentication code which was mentioned in the welcome email</p>
+          <div class="row">
+            <div class="col-sm-12">
+              <input class="jqx-combobox-input ng-untouched ng-pristine ng-valid margin-btm-20" id="cbxCiti"
+                [(ngModel)]="authcode" placeholder="Enter the Authentication code">
+            </div>
+          </div>
+          <div class="row  margin-btm-20">
+            <div class="col-md-12">
+              <a _ngcontent-c3="" class="restText">
+                <i _ngcontent-c3="" class="fa fa-repeat refresh"></i>
+                <span>Resend Code </span>
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <div _ngcontent-c18="" class="col-md-12 col-sm-6 text-left  margin-btm-20">
+              <a _ngcontent-c18="" class="btn btn-primary btn-outline btnw ResponsiveBtnWidth" data-toggle="modal">Cancel</a>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <a _ngcontent-c18="">
+                <button _ngcontent-c18="" class="btn bg-primary borderradius" (click)="gotosetPassword()">Submit</button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="setnewpassword == true">
+          <div class="row">
+            <div class="col-md-12">
+              <label class="notlabel" style="margin-bottom: 10px;">Set New Password</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <input type="password" class="jqx-combobox-input ng-untouched ng-pristine ng-valid" id="cbxCiti"
+                [(ngModel)]="password" placeholder="Enter New Password">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <input type="password" class="jqx-combobox-input ng-untouched ng-pristine ng-valid" id="cbxCiti"
+                [(ngModel)]="confirmpassword" placeholder="Re-enter Password" style="margin-bottom: 40px;">
+            </div>
+          </div>
+          <div class="row">
+            <div _ngcontent-c18="" class="col-md-12 col-sm-6 text-left  margin-btm-20">
+              <a _ngcontent-c18="" class="btn btn-primary btn-outline btnw ResponsiveBtnWidth" data-toggle="modal">Cancel</a>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <a _ngcontent-c18="">
+                <button _ngcontent-c18="" class="btn bg-primary borderradius" (click)="gotoApproveOrg()">Submit</button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="approveorg == true">
+          <div class="row">
+            <div class="col-md-12">
+              <label class="notlabel">Approve Organisation</label>
+            </div>
+          </div>
+          <div class="row">
+            <div _ngcontent-c18="" class="col-md-12 col-sm-6 text-left  margin-btm-20">
+                <a _ngcontent-c18="">
+                    <button _ngcontent-c18="" class="btn bg-primary borderradius" (click)="gotoApproveUsers()">Approve</button>&nbsp;&nbsp;&nbsp;&nbsp;
+              <a _ngcontent-c18="" class="btn btn-primary btn-outline btnw ResponsiveBtnWidth" data-toggle="modal"
+                (click)="checkClick()">Reject</a>
+              
+              
+              </a>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr class="cust-color">
+                  <td>
+                    <span class="bold-txt">Organisation Name</span> &nbsp;&nbsp;&nbsp;
+                  </td>
+                  <td>
+                    <span class="bold-txt">Convenience Fee</span> &nbsp;&nbsp;&nbsp;
+                  </td>
+                  <td>
+                    <span class="bold-txt">Corporate GSTIN</span> &nbsp;&nbsp;&nbsp;
+                  </td>
+                  <td>
+                    <span class="bold-txt"> Authorization Matrix</span> &nbsp;&nbsp;&nbsp;
+                  </td>
+                  <td>&nbsp;</td>
+                </tr>
+              </thead>
+              <ng-container>
+                <tbody *ngFor="let org of organisation">
+                  <tr>
+                    <td>{{org.companyname}}</td>
+                    <td>{{org.convenience}}</td>
+                    <td>{{org.corpgstin}}</td>
+                    <td>{{org.auth}}</td>
+                    <td>
+                      <div [ngClass]="{'flashOn': org.collapsed, 'flash': !org.collapsed }" class="showhide" (click)="org.collapsed=!org.collapsed">
+                        <span class="showhide">+</span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="rowShow grayStrip" *ngIf="org.collapsed">
+                    <td colspan="6" class="custmtd">
+                      <div class="tablediv orgDetails">
+                        <span class="bold-txt">Organisation Details</span>
+                        <div>&nbsp;&nbsp;&nbsp;</div>
+                        <div>
+                          <div class="span_width">Address:</div>
+                          <div class="bold_span">{{org.address}}</div>
+                        </div>
+                        <div>
+                          <div class="span_width">Contact No:</div>
+                          <div class="bold_span">{{org.contact}}</div>
+                        </div>
+                      </div>
+                      <div class="tablediv orgDetails">
+                        <h5>&nbsp;&nbsp;&nbsp;</h5>
+                        <div>
+                          <div class="span_width">PAN:</div>
+                          <div class="bold_span">{{org.pan}}</div>
+                        </div>
+
+                        <div>
+                          <div class="span_width">Domain:</div>
+                          <div class="bold_span">{{org.domain}}</div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </ng-container>
+              <tfoot>
+                <tr>
+                  <td colspan="7">
+                    <mfBootstrapPaginator [rowsOnPageSet]="[10,20,50,100]"></mfBootstrapPaginator>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div id="payreport" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+              <!-- Modal content-->
+              <div class="modal-content modelWidth">
+                <div class="modal-header myheader">
+                  <button type="button" class="close close2" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Comment</h4>
+                </div>
+                <div class="modal-body mybody2">
+                  <div class="col-md-12 col-sm-12 col-xs-12 ">
+                    <textarea class="form-control popupborder" rows="5" placeholder="Reason for Rejection" [(ngModel)]="comment"></textarea>
+                  </div>
+                  <div class="clear10"></div>
+                  <!-- <a routerLink="../asgrouplist"> -->
+                  <button class="btn bg-primary btnw nextBtn" data-dismiss="modal" (click)="rejectOrgData()">Reject</button>
+                  <!-- </a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="approvethroughuser == true">
+          <div class="row">
+            <div class="col-md-12">
+              <label class="notlabel">Approve Users</label>
+            </div>
+          </div>
+          <div class="row">
+            <div _ngcontent-c18="" class="col-md-12 col-sm-6 text-left  margin-btm-20">
+                <a _ngcontent-c18="">
+                    <button _ngcontent-c18="" class="btn bg-primary borderradius" (click)="approvePendingUser()"  data-toggle="modal">Approve</button>
+                  </a>  &nbsp;&nbsp;&nbsp;&nbsp;
+              <a _ngcontent-c18="" class="btn btn-primary btn-outline btnw ResponsiveBtnWidth" (click)="rejectUser()">Reject</a>
+            
+              
+            </div>
+          </div>
+          <div class="table-responsive">
+            <!-- <table class="table table-hover table-striped" [mfData]="supplierDetails | dataFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage"
+                            [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder"> -->
+            <table class="table table-hover table-striped">
+              <!-- <table class="table table-hover table-striped"> -->
+              <thead>
+
+                <tr class="cust-color">
+                  <td>
+                    <div _ngcontent-c3="">
+                      <input type="checkbox" name="mainmenu" (change)="changeAll(isSelectedUser)" [checked]="isAllSelectedUser">
+                    </div>
+                  </td>
+                  <td>
+                    <span class="bold-txt">Name</span> &nbsp;&nbsp;&nbsp;
+                  </td>
+                  <td>
+                    <span class="bold-txt">Department</span> &nbsp;&nbsp;&nbsp;
+                 </td>
+                   <td>
+                    <span class="bold-txt">Designation</span> &nbsp;&nbsp;&nbsp;
+                  </td>
+                  <td>
+                    <span class="bold-txt">Role </span> &nbsp;&nbsp;&nbsp;
+                  </td>
+                  <td></td>
+                </tr>
+              </thead>
+              <ng-container>
+                <tbody *ngFor="let userdata of getPendingUsersdata ;let i = index">
+                  <tr>
+                    <td>
+                      <div _ngcontent-c3="">
+                        <input type="checkbox" name="submenu" (change)="change(userdata , i)" [checked]="isSelectedUser">
+                      </div>
+                    </td>
+                    <td>{{userdata.firstname}} {{userdata.lastname}}</td>
+                    <td>{{userdata.department}}</td>
+                    <td>{{userdata.designation}}</td>
+                    <td>{{userdata.rolename}}</td>
+                    <td>
+                      <div [ngClass]="{'flashOn': userdata.collapsed, 'flash': !userdata.collapsed }" class="showhide"
+                        (click)="userdata.collapsed=!userdata.collapsed">
+                        <span class="showhide">+</span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="rowShow grayStrip" *ngIf="userdata.collapsed">
+                    <td colspan="6" class="custmtd">
+                      <div class="tablediv orgDetails">
+                        <span class="bold-txt">User Details</span>
+                        <div>&nbsp;&nbsp;&nbsp;</div>
+                        <div>
+                          <div class="span_width">Employee ID:</div>
+                          <div class="bold_span">{{userdata.empid}}</div>
+                        </div>
+                        <div>
+                          <div class="span_width">Date Of Birth:</div>
+                          <div class="bold_span">{{userdata.dob}}</div>
+                        </div>
+                        <div *ngIf="userdata.grpname!='NA'">
+                          <div class="span_width">Group:</div>
+                          <div class="bold_span">{{userdata.grpname}}</div>
+                        </div>
+                      </div>
+                      <div class="tablediv orgDetails">
+                        <h5>&nbsp;&nbsp;&nbsp;</h5>
+                        <div>
+                          <div class="span_width">Mobile No:</div>
+                          <div class="bold_span">{{userdata.mobileno}}</div>
+                        </div>
+                        <div>
+                          <div class="span_width">Email ID:</div>
+                          <div class="bold_span">{{userdata.email}}</div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="rowShow grayStrip" *ngIf="userdata.collapsed">
+                    <td colspan="6" class="custmtd" style="padding: 10px 20px;">
+                      <span class="pull-right"> 
+                        <a data-toggle="modal" data-target="#Privileges" (click)="setPriv('pid=12;cid=12')">
+                        <img src="assets/img/str.png">&nbsp;&nbsp;&nbsp;</a>
+                        </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </ng-container>
+              <tfoot>
+                <tr>
+                  <td colspan="7">
+                    <mfBootstrapPaginator [rowsOnPageSet]="[10,20,50,100]"></mfBootstrapPaginator>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div id="logindetails" class="modal"  [ngStyle]="{'display':displayLoginModal}" role="dialog">
+              <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content modelWidth">
+                  <div class="modal-header myheader">
+                    <!-- <button type="button" class="close close2" data-dismiss="modal" (click)="gotodashboard()">&times;</button> -->
+                    <h4 class="modal-title"></h4>
+                    <div style="text-align:center;padding:2%;">
+                    <img src="assets/img/logo.png">
+                  </div>
+                  </div>
+                  <div class="modal-body mybody2">
+                    <div style="text-align:center;padding:2%;">
+                    <span>Your Login Id:</span><span style="font-weight:bold">{{useremail}}</span>
+                  </div>
+                    <div class="clear10"></div>
+                    <!-- <a routerLink="../asgrouplist"> -->
+                    <div style="text-align:center;padding:2%;">
+                      <input type="checkbox" [value]="checkValue" (change)="enableLoginbtn()"><a  class="style=color:blue;" data-target="#tncModal" (click)="OpenTnC()" data-toggle="modal">By clicking here, I accept all terms and conditions</a>
+                    </div>
+                    <div style="text-align:center;padding:2%;">
+                    <button class="btn bg-primary btnw nextBtn" data-dismiss="modal" (click)="gotodashboard()" [disabled]="enableLogin">Login</button>
+                    </div>
+                    <!-- </a> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="Privileges" class="modal" role="dialog" [ngStyle]="{'display':displayPrivmodal}">
+              <div class="modal-dialog modal-lg">
+                 <!-- Modal content-->
+                 <div class="modal-content modelWidthn">
+                    <div class="modal-header myheader">
+                       <button type="button" class="close close2" data-dismiss="modal" (click)="closePriv()" >&times;</button>
+                       <h4 class="modal-title">Set User Privileges </h4>
+                    </div>
+                    <div class="modal-body mybody2">
+                       <div class="table-responsive norespopad">
+                          <table class="table noborder">
+                             <tbody>
+                                <tr>
+                                   <td colspan="4" class="custmtd">
+                                      <div class="col-sm-3 col-md-3 col-xs-3">
+                                         <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <h5 class="prevlghd">Suppliers</h5>
+                                         </div>
+                                         <div class="clear20"></div>
+                                         <div class="col-md-1 col-sm-1 col-xs-1">
+                                            <div *ngIf="!isViewsup" class="place"></div>
+                                            <div *ngIf="isViewsup" class="place chkselect"></div>
+                                            <div class="clear10"></div>
+                                            <div *ngIf="!isApprsup" class="place"></div>
+                                            <div *ngIf="isApprsup" class="place chkselect"></div>
+                                            <div class="clear10"></div>
+                                            <div *ngIf="!isUnisup" class="place"></div>
+                                            <div *ngIf="isUnisup" class="place chkselect"></div>
+                                            <div class="clear10"></div>
+                                            <div *ngIf="!isBulksup" class="place"></div>
+                                            <div *ngIf="isBulksup" class="place chkselect"></div>
+                                            <div class="clear10"></div>
+                                         </div>
+                                         <div class="col-sm-9 col-md-9 col-xs-9">
+                                            View
+                                            <br>
+                                            <div class="clear10"></div>
+                                            Approve
+                                            <br>
+                                            <div class="clear10"></div>
+                                            Add Unitary
+                                            <br>
+                                            <div class="clear10"></div>
+                                            Add Bulk
+                                            <br>
+                                            <div class="clear10"></div>
+                                         </div>
+                                      </div>
+                                      <div class="col-sm-3 col-md-3 col-xs-3 brdlft">
+                                         <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <h5 class="prevlghd">Payment</h5>
+                                         </div>
+                                         <div class="clear20"></div>
+                                         <div class="col-md-1 col-sm-1 col-xs-1">
+                                            <div *ngIf="!isViewpay" class="place"></div>
+                                            <div *ngIf="isViewpay" class="place chkselect"></div>
+                                            <div class="clear10"></div>
+                                            <div *ngIf="!isApprpay" class="place"></div>
+                                            <div *ngIf="isApprpay" class="place chkselect"></div>
+                                            <div class="clear10"></div>
+                                            <div *ngIf="!isUnipay" class="place"></div>
+                                            <div *ngIf="isUnipay" class="place chkselect"></div>
+                                            <div class="clear10"></div>
+                                            <div *ngIf="!isBulkpay" class="place"></div>
+                                            <div *ngIf="isBulkpay" class="place chkselect"></div>
+                                            <div class="clear10"></div>
+                                         </div>
+                                         <div class="col-sm-9 col-md-9 col-xs-9">
+                                            View
+                                            <br>
+                                            <div class="clear10"></div>
+                                            Approve
+                                            <br>
+                                            <div class="clear10"></div>
+                                            Make Unitary
+                                            <br>
+                                            <div class="clear10"></div>
+                                            Make Bulk
+                                            <br>
+                                            <div class="clear10"></div>
+                                         </div>
+                                      </div>
+                                      <div class="col-sm-3 col-md-3 col-xs-3 brdlft">
+                                         <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <h5 class="prevlghd">Users</h5>
+                                         </div>
+                                         <div class="clear20"></div>
+                                         <div class="col-md-1 col-sm-1 col-xs-1">
+                                            <div *ngIf="!isViewuser" class="place"></div>
+                                            <div *ngIf="isViewuser" class="place chkselect"></div>
+                                            <div class="clear10"></div>
+                                            <div *ngIf="!isAppruser" class="place"></div>
+                                            <div *ngIf="isAppruser" class="place chkselect"></div>
+                                            <div class="clear10"></div>
+                                            <div *ngIf="!isUniuser" class="place"></div>
+                                            <div *ngIf="isUniuser" class="place chkselect"></div>
+                                            <div class="clear10"></div>
+                                            <div *ngIf="!isBulkuser" class="place"></div>
+                                            <div *ngIf="isBulkuser" class="place chkselect"></div>
+                                            <div class="clear10"></div>
+                                         </div>
+                                         <div class="col-sm-9 col-md-9 col-xs-9">
+                                            View
+                                            <br>
+                                            <div class="clear10"></div>
+                                            Approve
+                                            <br>
+                                            <div class="clear10"></div>
+                                            Add Unitary
+                                            <br>
+                                            <div class="clear10"></div>
+                                            Add Bulk
+                                            <br>
+                                            <div class="clear10"></div>
+                                         </div>
+                                      </div>
+                                      <div class="col-sm-3 col-md-3 col-xs-3 brdlft">
+                                         <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <h5 class="prevlghd">Cards</h5>
+                                         </div>
+                                         <div class="clear20"></div>
+                                         <div class="col-md-1 col-sm-1 col-xs-1">
+                                            <div *ngIf="!isViewcard" class="place"></div>
+                                            <div *ngIf="isViewcard" class="place chkselect"></div>
+                                            <div class="clear10"></div>
+                                            <div *ngIf="!isApprcard" class="place"></div>
+                                            <div *ngIf="isApprcard" class="place chkselect"></div>
+                                            <div class="clear10 "></div>
+                                            <div *ngIf="!isUnicard" class="place"></div>
+                                            <div *ngIf="isUnicard" class="place chkselect"></div>
+                                            <div class="clear10"></div>
+                                         </div>
+                                         <div class="col-sm-9 col-md-9 col-xs-9">
+                                            View
+                                            <br>
+                                            <div class="clear10"></div>
+                                            Approve
+                                            <br>
+                                            <div class="clear10"></div>
+                                            Add Unitary
+                                            <br>
+                                            <div class="clear10"></div>
+                                            <div class="clear10"></div>
+                                         </div>
+                                      </div>
+                                   </td>
+                                </tr>
+                             </tbody>
+                          </table>
+                       </div>
+                       <div class="clear10"></div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+            <div class="modal" id="tncModal" role="dialog"  [ngStyle]="{'display':displayTncmodal}">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="width:800px;">
+                        <div class="modal-header brand-logo" style="text-align: center;">
+                   
+                    <img class="" src="assets/img/logo.png" alt="logo" width="20%" (click)="closeTnc()">
+                        </div>
+                        <div class="modal-body" style="overflow:auto;height:500px;border:8px solid #474747;">
+                            <h3 style="text-align:center;"><b>TERMS & CONDITIONS</b></h3>
+                            <ol>
+                                <li>
+                                    GENERAL
+                                </li>
+                                <p>
+                                    <b>"Aquapay"</b> (hereinafter, the "Website/App") is owned and operated by <b>Aquapay Payment Technologies Private Limited</b>, (hereinafter referred to as "<b>Company</b>"), a private limited company incorporated under the Companies Act, 2013, having its registered office at 1, Springboard Business Hub Private Ltd B, 5th Floor
+                        Akruti Trade Centre MIDC, Andheri East Mumbai, Mumbai City, Maharashtra, India .
+                                </p>
+                                <p>
+                                    This document is an electronic record published in accordance with the provisions of the Information Technology (Intermediaries guidelines) Rules, 2011 that require publishing the Rules and Regulations, Privacy Policy and Terms of Service for access or usage of the Website/App and being generated by a computer system, it does not require any physical or digital signatures.
+                                </p>
+                                <p>
+                                    For the purpose of these Terms of Use, along with any amendments to the same, and wherever the context so requires
+                                </p>
+                                <p>
+                                    "<b>You</b>", "<b>Your</b>", "<b>Yourself</b>" or "<b>User</b>" shall mean and refer to the person visiting, accessing, browsing through and/or using the Website/App at any point in time and shall include the "<b>Clients/Customers</b>".
+                                </p>
+                                <p>
+                                    The term "<b>We</b>", "<b>Us</b>", "<b>Our</b>" shall mean and refer to the Website/App and/or the Company, depending on the context.
+                                </p>
+                                <p>
+                                    This Agreement shall cover your usage of the Website/App as a User.
+                                </p>
+                                <p>
+                                    The headings of each section in this Agreement are only for the purpose of organizing the various provisions under this Agreement in an orderly manner.
+                                </p>
+                                <p>
+                                    These headings shall not be used by either party to interpret the provisions contained under them in any manner. Further, the headings have no legal or contractual value.
+                                </p>
+                                <p>
+                                    We hold the sole right to modify the Terms of Service without prior permission from You or providing notice to You. The relationship creates on You a duty to periodically check the Terms of Service and stay updated on its requirements. If You continue to use the Website/App or avail any of its services without registration following such change, this is deemed as consent by You to the so amended policies. Your continued use of the Website/App is conditioned upon your compliance with the Terms of Service, including but not limited to compliance with the Terms of Service even after alterations, if any.
+                                </p>
+                                <li style="font-weight:bold;font-size:16px;">
+                                    SERVICE OVERVIEW
+                                </li>
+                                <p>
+                                    The Company is a fintech startup catering to corporate customer. Aquapay is an enterprise payment platform that enables corporates to use their Corporate Credit Cards for managing vendor payments. The Website/App shall provide corporates with a self-service platform wherein they can set their own authorization matrix and make payments to their vendors.
+                                </p>
+                                <li style="font-weight:bold;font-size:16px;">
+                                    REGISTRATION
+                                </li>
+                                <p>
+                                    To use the services provided on the Website/App, you shall register yourself on the Website/App. Registration shall be enabled for corporate customers and Users may only login once their registration is approved by the authorized signatory. To create an account, you need to provide your email id and choose a username and password. You must keep your account and registration details current and correct for communications related to your use of services on the Website/App.
+                                </p>
+                                <p>
+                                    Information collected about you is subject to the Privacy Policy of the Company, which may be read as part and parcel of these Terms of Use.
+                                </p>
+                                <p>
+                                    You are solely responsible for protecting the confidentiality of your username and password and any activity under the account will be deemed to have been done by you. In the event you provide us with false/inaccurate details or the Company has a reasonable ground to believe that false and inaccurate information has been furnished, we hold the right to permanently suspend your account.
+                                </p>
+                                <li style="font-weight:bold;font-size:16px;">
+                                    ELIGIBILITY
+                                </li>
+                                <p>
+                                    Services on the Site would be available pan India . Persons who are �??incompetent to contract�?� within the meaning of the Indian Contract Act, 1872 including minors, un-discharged insolvents etc. are not eligible to use the Site.
+                                </p>
+                                <p>
+                                    However, if you are a minor, i.e. under the age of 18 years and over the age of 13 years you may use the Site under the supervision of a parent or legal guardian who agrees to be bound by these Terms of Use. We reserve the right to terminate or refuse your registration, or refuse to permit access to the Site, if it is discovered or brought to its notice that you are a minor. 
+                                </p>
+                                <li style="font-weight:bold;font-size:16px;">
+                                    SECURITY
+                                </li>
+                                <p>
+                                    Transactions on the Website/App are secure and protected. Any information entered by the User when transacting on the Website/App is encrypted to protect the User against unintentional disclosure to third parties. The User�??s credit card information is not received, stored by or retained by the Company / Website/App in any manner. This information is supplied by the User directly to the relevant payment gateway which is authorized to handle the information provided, and is compliant with the regulations and requirements of various banks and institutions and payment franchisees that it is associated with.
+                                </p>
+                                <li style="font-weight:bold;font-size:16px;">
+                                    LICENSE AND ACCESS
+                                </li>
+                                <p>
+                                    The Company grants you no sub-license, whether limited or not, to access and make personal use of the Site, and not to download (other than page caching) or modify it or any portion of it, except with express written consent of the Company. You are not permitted any resale or commercial use of the Site or its contents; any collection and use of any product listings, descriptions, or prices; any derivative use of the Site or its contents; any downloading or copying of information for the benefit of another merchant; or any use of data mining, robots, or similar data gathering and extraction tools. Any portion of the Site may not be reproduced, duplicated, copied, sold, resold, visited, or otherwise exploited for any commercial purpose without express written consent of the Company. You may not frame or utilize framing techniques to enclose any trademark, logo, or other proprietary information (including images, text, page layout, or form) of the Website/App or of the Company and/or its affiliates without the express written consent of the Company. You may not use any meta tags or any other hidden text utilizing the Company name or trademarks without the express written consent of the Company. You shall not attempt to gain unauthorized access to any portion or feature of the Site, or any other systems or networks connected to the Site or to any server, computer, network, or to any of the services offered on or through the Site, by hacking, password mining or any other illegitimate means.
+                                </p>
+                                <p>
+                                    You hereby agree and undertake not to host, display, upload, modify, publish, transmit, update or share any information which:
+                                </p>
+                               
+                                    <ol>
+                                        <li>
+                                            belongs to another person and to which you do not have any right;
+                                        </li>
+                                        <li>
+                                            is grossly harmful, harassing, blasphemous, defamatory, obscene, pornographic, pedophilic, libelous, invasive of another privacy, hateful, or racially, ethnically objectionable, disparaging, relating or encouraging money laundering or gambling, or otherwise unlawful in any manner whatever; 
+                                        </li>
+                                        <li>
+                                            harms minors in any way;
+                                        </li>
+                                        <li>
+                                            infringes any patent, trademark, copyright or other proprietary/intellectual property rights;
+                                        </li>
+                                        <li>
+                                            violates any law for the time being in force;
+                                        </li>
+                                        <li>
+                                            deceives or misleads the addressee about the origin of such communicates any information which is grossly offensive or menacing in nature; 
+                                        </li>
+                                        <li>
+                                            impersonates another person;
+                                        </li>
+                                        <li>
+                                            contains software viruses or any other computer code, files or programs designed to interrupt, destroy or limit the functionality of any computer resource; 
+                                        </li>
+                                        <li>
+                                            threatens the unity, integrity, defense, security or sovereignty of India, friendly relations with foreign states, or public order or causes incitement to the commission of any cognizable offence or prevents investigation of any offence or is insulting any other nation; or 
+                                        </li>
+                                        <li>
+                                            is misleading or known to be false in any way.
+                                        </li>
+                                    </ol>
+                               
+                                <li style="font-weight:bold;font-size:16px;">
+                                    COMMUNICATION
+                                </li>
+                                <p>
+                                    By using this Website/App, it is deemed that you have consented to receiving calls, autodialed and/or pre-recorded message calls, e-mails, from Us at any time with the use of the telephone number and e-mail address that has been provided by you for the use of this Website/App which are subject to the Privacy Policy.
+                                </p>
+                                <p>
+                                    This includes contacting you through information received through other parties. The use of this Website/App is also your consent to receive SMS from Us at any time we deem fit. This consent to be contacted is for purposes that include and are not limited to clarification calls. The user can opt out from such communication and/or newsletters either by unsubscribing on the Website/App itself, and placing a request for unsubscribing by sending an email to support@aquapay.com .
+                                </p>
+                                <p>
+                                    The sharing of the information provided by you will be governed by the Privacy Policy.
+                                </p>
+                                <li style="font-weight:bold;font-size:16px;">
+                                    PAYMENT AND FEES
+                                </li>
+                                <p>
+                                    One or many of the following payment options are available on the Website/App:
+                                </p>
+                                
+                                    <ol type="a">
+                                        <li>ISG payment gateway</li>
+                                        <li>Axis bank IMPS and</li>
+                                        <li>Fund transfer services</li>
+                                    </ol>
+                               
+                                <p>
+                                    As prescribed by the financial institutions issuing the credit affiliated with Visa / Master Card, the User will be required to submit his/her 16-digit card number, card expiry date and 3-digit CVV number (usually on the reverse of the card) while making an online transaction. The User is hereby expressly made aware that his/her card statements will reflect that a payment has been made in favour of the Company.
+                                </p>
+                                <p>
+                                    In the event of a payment failure due to any network issues, Aquapay shall reinitiate the transaction on the basis of a confirmation email from Axis bank team which shall clarify that the transaction must be reinitiated since the card was not debited. 
+                                </p>
+                                <li style="font-weight:bold;font-size:16px;">
+                                    USER OBLIGATION
+                                </li>
+                                <p>
+                                    You are a restricted user of this Website/App.
+                                </p>
+                                
+                                    <ol type="a">
+                                        <li>
+                                            You are bound not to cut, copy, distribute, modify, recreate, reverse engineer, distribute, disseminate, post, publish or create derivative works from, transfer, or sell any information or software obtained from the Website/App. With our prior permission limited use may be allowed. For the remo val of doubt, it is clarified that unlimited or wholesale reproduction, copying of the content for commercial or non-commercial purposes and unwarranted modification of data and information within the content of the Website/App is not permitted.
+                                        </li>
+                                        <li>
+                                            You agree not to access (or attempt to access) the Website/App and/or the materials or Services by any means other than through the interface that is provided by the Website/App. The use of deep-link, robot, spider or other automatic device, program, algorithm or methodology, or any similar or equivalent manual process, to access, acquire, copy or monitor any portion of the Website/App or Content, or in any way reproduce or circumvent the navigational structure or presentation of the Website/App, materials or any Content, to obtain or attempt to obtain any materials, documents or information through any means not specifically made available through the Website/App.
+                                        </li>
+                                        <li>
+                                            <ol type="i">
+                                                <li>
+                                                    Abuse, harass, threaten, defame, disillusion, erode, abrogate, demean or otherwise violate the legal rights of others;
+                                                </li>
+                                                <li>
+                                                    Engage in any activity that interferes with or disrupts access to the Website/App or the Services (or the servers and networks which are connected to the Website/App);
+                                                </li>
+                                                <li>
+                                                    Impersonate any person or entity, or falsely state or otherwise misrepresent Your affiliation with a person or entity;
+                                                </li>
+                                                <li>
+                                                    Publish, post, disseminate, any information which is grossly harmful, harassing, blasphemous, defamatory, obscene, pornographic, pedophilic, libelous, invasive of another's privacy, hateful, or racially, ethnically objectionable, disparaging, relating or encouraging money laundering or gambling, or otherwise unlawful in any manner whatever; or unlawfully threatening or unlawfully harassing including but not limited to "indecent representation of women" within the meaning of the Indecent Representation of Women (Prohibition) Act, 1986;
+                                                </li>
+                                                <li>
+                                                    Post any file that infringes the copyright, patent or trademark of other legal entities;
+                                                </li>
+                                                <li>
+                                                    Upload or distribute files that contain viruses, corrupted files, or any other similar software or programs that may damage the operation of the Website/App or another's computer;
+                                                </li>
+                                                <li>
+                                                    Download any file posted by another user that you know, or reasonably should know, cannot be legally distributed in such manner;
+                                                </li>
+                                                <li>
+                                                    Probe, scan or test the vulnerability of the Website/App or any network connected to the Website/App, nor breach the security or authentication measures on the Website/App or any network connected to the Website/App. You may not reverse look-up, trace or seek to trace any information on any other user, of or visitor to, the Website/App, or any other customer of the Website/App, including any Website/App Account not owned by You, to its source, or exploit the Website/App or Service or information made available or offered by or through the Website/App, in any way whether or not the purpose is to reveal any information, including but not limited to personal identification information, other than Your own information, as provided for by the Website/App;
+                                                </li>
+                                                <li>
+                                                    Disrupt or interfere with the security of, or otherwise cause harm to, the Website/App, system resources, accounts, passwords, servers or networks connected to or accessible through the Website/App or any affiliated or linked sites;
+                                                </li>
+                                                <li>
+                                                    Collect or store data about other users in connection with the prohibited conduct and activities set forth in this Section;
+                                                </li>
+                                                <li>
+                                                    Use the Website/App or any material or Content for any purpose that is unlawful or prohibited by these Terms of Service, or to solicit the performance of any illegal activity or other activity which infringes the rights of this Website/App or other third parties;
+                                                </li>
+                                                <li>
+                                                    Violate any code of conduct or other guidelines, which may be applicable for or to any particular Service;
+                                                </li>
+                                                <li>
+                                                    Violate any applicable laws or regulations for the time being in force within or outside India;
+                                                </li>
+                                                <li>
+                                                    Violate the Terms of Service including but not limited to any applicable Additional Terms of the Website/App contained herein or elsewhere;
+                                                '</li>
+                                                <li>
+                                                    Threaten the unity, integrity, defense, security or sovereignty of India, friendly relations with foreign states, or public order or cause incitement to the commission of any cognizable offence or prevent  investigation of any offence or is insulting any other nation;
+                                                </li>
+                                                <li>
+                                                    Publish, post, disseminate information that is false, inaccurate or misleading; violate any applicable laws or regulations for the time being in force in or outside India;
+                                                </li>
+                                                <li>
+                                                    Directly or indirectly, offer, attempt to offer, trade or attempt to trade in any item, the dealing of which is prohibited or restricted in any manner under the provisions of any applicable law, rule, regulation or guideline for the time being in force;
+                                                </li>
+                                                <li>
+                                                    Create liability for Us or cause Us to lose (in whole or in part) the services of Our internet service provider ("ISPs") or other suppliers.
+                                                </li>
+                                            </ol>
+                                            We have no obligation to monitor the materials posted on the Website/App. We shall have the right to remove or edit any content that in its sole discretion violates, or is alleged to violate, any applicable law or either the spirit or letter of these Terms of Service. Notwithstanding this right, YOU REMAIN SOLELY RESPONSIBLE FOR THE CONTENT OF THE MATERIALS YOU POST ON THE WEBSITE/APP AND IN YOUR PRIVATE MESSAGES. In no event shall We assume or have any responsibility or liability for any Content posted or for any claims, damages or losses resulting from the use of Content and/or appearance of Content on the Website/App. You hereby represent and warrant that You have all necessary rights in and to all Content which You provide and all information it contains and that such Content shall not infringe any proprietary or other rights of third parties or contain
+                            any libelous, tortuous, or otherwise unlawful information.
+                                        </li>
+                                    </ol>
+                               
+                                <li style="font-weight:bold;font-size:16px;">
+                                    COPYRIGHT AND TRADEMARK
+                                </li>
+                                <p>
+                                    The Company, its suppliers and licensors expressly reserve all intellectual property rights in all text, programs, products, processes, technology, images, content and other materials which appear on the Site. Access to or use of the Site does not confer and should not be considered as conferring upon anyone any license to the Company or any third party�??s intellectual property rights. All rights, including copyright, in and to the Site are owned by or licensed to the Company. Any use of the Site or its contents, including copying or storing it or them in whole or part is prohibited without the permission of the Company. 
+                                </p>
+                                <p>
+                                    The names and logos and all related product and service names, design marks and slogans are the trademarks/service marks of the Company, its affiliates, its partners or its suppliers/service providers. All other marks are the property of their respective owners. No trademark or service mark license is granted in connection with the materials contained on the Site. Access to or use of the Site does not authorize anyone to use any name, logo or mark in any manner. 
+                                </p>
+                                <li style="font-weight:bold;font-size:16px;">
+                                    DISCLAIMER OF WARRANTIES AND LIABILITIES
+                                </li>
+                                <p>
+                                    YOU EXPRESSLY UNDERSTAND AND AGREE THAT, TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW:
+                                </p>
+                                <p>
+                                    THE WEBSITE/APP, SERVICES AND OTHER MATERIALS ARE PROVIDED BY THIS WEBSITE/APP IS ON AN "AS IS" BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS, IMPLIED, STATUTORY OR OTHERWISE, INCLUDING THE IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. WITHOUT LIMITING THE FOREGOING, WE MAKE NO WARRANTY THAT 
+                                </p>
+                                <ol type="a">
+                                    <li>
+                                        YOUR REQUIREMENTS WILL BE MET OR THAT SERVICES PROVIDED WILL BE UNINTERRUPTED, TIMELY, SECURE OR ERROR-FREE;
+                                    </li>
+                                    <li>
+                                        MATERIALS, INFORMATION AND RESULTS OBTAINED WILL BE EFFECTIVE, ACCURATE OR RELIABLE
+                                    </li>
+                                    <li>
+                                        ANY ERRORS OR DEFECTS IN THE WEBSITE/APP, SERVICES OR OTHER MATERIALS WILL BE CORRECTED.
+                                    </li>
+                                </ol>
+                                <p>
+                                    TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, WE WILL HAVE NO LIABILITY RELATED TO USER CONTENT ARISING UNDER INTELLECTUAL PROPERTY RIGHTS, LIBEL, PRIVACY, PUBLICITY, OBSCENITY OR OTHER LAWS. WE ALSO DISCLAIM ALL LIABILITY WITH RESPECT TO THE MISUSE, LOSS, MODIFICATION OR UNAVAILABILITY OF ANY USER CONTENT.
+                                </p>
+                                <p>
+                                    THE USER UNDERSTANDS AND AGREES THAT ANY MATERIAL OR DATA DOWNLOADED OR OTHERWISE OBTAINED THROUGH THE WEBSITE/APP IS DONE ENTIRELY AT HIS/HER OWN DISCRETION AND RISK AND HE/SHE WILL BE SOLELY RESPONSIBLE FOR ANY DAMAGE TO HIS/HER COMPUTER SYSTEMS OR LOSS OF DATA THAT RESULTS FROM THE DOWNLOAD OF SUCH MATERIAL OR DATA. WE ARE NOT RESPONSIBLE FOR ANY TYPOGRAPHICAL ERROR LEADING TO AN INVALID COUPON. WE ACCEPT NO LIABILITY FOR ANY ERRORS OR OMISSIONS, WITH RESPECT TO ANY INFORMATION PROVIDED TO YOU WHETHER ON BEHALF OF ITSELF OR THIRD PARTIES.
+                                </p>
+                                <p>
+                                    WE SHALL NOT BE RESPONSIBLE FOR THE RELEVANCE AND VALIDITY OF COMMENTS MADE BY THIRD PARTIES LIKE VENDORS, PUBLIC ON THE PLATFORM. THE CUSTOMER SHALL BE WHOLLY RESPONSIBLE FOR THE ACCURACY OF EMAIL, PHONE NUMBER, AND PERSONAL INFORMATION. FURTHER IN AWARDING POINTS THAT ARE REDEEMABLE FOR CASH, TO USERS WE ARE NOT RESPONSIBLE IF THE EVENT EXPIRES OR CHANGES OR IS REMOVED ALTOGETHER. 
+                                </p>
+                                <p>
+                                    WE SHALL NOT BE LIABLE FOR ANY THIRD PARTY PRODUCT OR SERVICES. THE ADVERTISEMENT AVAILABLE ON E-MAIL OR WEBSITE/APP WITH RESPECT TO THE THIRD PARTY WEBSITE/APP OR THE PRODUCTS AND SERVICES ARE FOR INFORMATION PURPOSE ONLY.
+                                </p>
+                                <p>
+                                    THE USER ACKNOWLEDGES THAT WE SHALL NOT BE LIABLE AND RESPONSIBLE FOR ACTS/OMISSIONS SUCH AS INCLUDING BUT NOT LIMITED TO WRONG EMAIL IDS CAPTURED IN CORPORATE REGISTRATION FORMAT, WRONG PRIVILEGES ASSIGNED BY CORPORATE TO USERS, USERS ASSIGNED TO WRONG GROUP, FILE FORMAT FILLED WRONG DETAILS, WRONG NUMBER CAPTURED FOR SMS, WRONG CONVENIENCE FEE CAPTURED, WRONG SUPPLIER CODE/NAME FOR SUPPLIER REGISTRATION, WRONG/NO GSTIN CAPTURED FOR BULK PAYMENT, CARD DETAILS WRONGLY CAPTURED, TRANSACTIONS WRONGLY SPLIT FOR PAYMENT FOR 6:30 PM BATCH, WRONG ROLE ASSIGNED FOR USERS, PAYMENT ADVISE NOT SELECTED FOR SUPPLIER, ERROR IN AUTHORIZATION MATRIX, WRONG PAYMENT TO SUPPLIER, PAYMENT TO WRONG INVOICE NUMBER AND PAYMENT TO WRONG SUPPLIER CODE.
+                                </p>
+                                <li style="font-weight:bold;font-size:16px;">
+                                    INDEMNIFICATION AND LIMITATION OF LIABILITY
+                                </li>
+                                <p>
+                                    YOU AGREE TO INDEMNIFY, DEFEND AND HOLD HARMLESS THIS WEBSITE/APP/COMPANY INCLUDING BUT NOT LIMITED TO ITS AFFILIATE VENDORS, AGENTS AND EMPLOYEES FROM AND AGAINST ANY AND ALL LOSSES, LIABILITIES, CLAIMS, DAMAGES, DEMANDS, COSTS AND EXPENSES (INCLUDING LEGAL FEES AND DISBURSEMENTS IN CONNECTION THEREWITH AND INTEREST CHARGEABLE THEREON) ASSERTED AGAINST OR INCURRED BY US THAT ARISE OUT OF, RESULT FROM, OR MAY BE PAYABLE BY VIRTUE OF, ANY BREACH OR NON-PERFORMANCE OF ANY REPRESENTATION, WARRANTY, COVENANT OR AGREEMENT MADE OR OBLIGATION TO BE PERFORMED BY YOU PURSUANT TO THESE TERMS OF SERVICE. FURTHER, YOU AGREE TO HOLD US HARMLESS AGAINST ANY CLAIMS MADE BY ANY THIRD PARTY DUE TO, OR ARISING OUT OF, OR IN CONNECTION WITH, YOUR USE OF THE WEBSITE/APP, ANY CLAIM THAT YOUR MATERIAL CAUSED DAMAGE TO A THIRD PARTY, YOUR VIOLATION OF THE TERMS OF SERVICE, OR YOUR VIOLATION OF ANY RIGHTS OF ANOTHER, INCLUDING ANY INTELLECTUAL PROPERTY RIGHTS.
+                                </p>
+                                <p>
+                                    IN NO EVENT SHALL WE, OUR OFFICERS, DIRECTORS, EMPLOYEES, PARTNERS, OR EXPERTS BE LIABLE TO YOU, THE VENDOR OR ANY THIRD PARTY FOR ANY SPECIAL, INCIDENTAL, INDIRECT, CONSEQUENTIAL OR PUNITIVE DAMAGES WHATSOEVER, INCLUDING THOSE RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER OR NOT FORESEEABLE OR WHETHER OR NOT WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES, OR BASED ON ANY THEORY OF LIABILITY, INCLUDING BREACH OF CONTRACT OR WARRANTY, NEGLIGENCE OR OTHER TORTIOUS ACTION, OR ANY OTHER CLAIM ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF OR ACCESS TO THE WEBSITE/APP, SERVICES OR MATERIALS.
+                                </p>
+                                <p>
+                                    THE LIMITATIONS AND EXCLUSIONS IN THIS SECTION APPLY TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW.
+                                </p>
+                                <li style="font-weight:bold;font-size:16px;">
+                                    TERMINATION
+                                </li>
+                                <p>
+                                    This User Agreement is effective unless and until terminated by either you or the Company. You may terminate this User Agreement at any time, provided that you discontinue any further use of the Website/App. The Company may terminate this User Agreement at any time and may do so immediately without notice, and accordingly deny you access to the Site.
+                                </p>
+                                <p>
+                                    Such termination will be without any liability to the Company. The Company right to any Comments and to be indemnified pursuant to the terms hereof, shall survive any termination of this User Agreement. Any such termination of the User Agreement shall not cancel your obligation to pay for product(s)/service(s) already ordered from the Site or affect any liability that may have arisen under the User Agreement prior to the date of termination. 
+                                </p>
+                                <li style="font-weight:bold;font-size:16px;">
+                                    DISPUTES AND JURISDICTION
+                                </li>
+                                <p>
+                                    All disputes involving but not limited to rights conferred, compensation, refunds, and other claims will be resolved through a two-step Alternate Dispute Resolution mechanism
+                                </p>
+                               
+                                    <ol type="a">
+                                        <li>
+                                            <b>Stage 1:</b> Mediation. In case of a dispute, the matter will first be attempted to be resolved by a sole mediator who is a neutral third party and will be selected at the mutual acceptance of a proposed mediator by
+                                            both parties. Both parties may raise a name for the sole mediator and in the case both parties accept the proposed name, the said person shall be appointed as sole mediator. In case the parties are not able to reach a consensus within two proposed mediators, the Company reserves the right to decide who the final mediator is. The decision of the mediator is not binding on both parties.
+                                        </li>
+                                        <li>
+                                            <b>Stage 2:</b> Arbitration. In case that mediation does not yield a result suitable or preferred by any one of the parties, arbitration may follow, the award of which is binding on both parties. The Arbitration Board shall comprise three members one appointed by each party and the third member to be nominated by the two appointed members by mutual consent. Arbitration shall be held at Mumbai, Maharashtra , India. The proceedings of arbitration shall be in the English language. The arbitrator's award shall be final and binding on the
+                                            Parties. If the dispute cannot be resolved by this two-step Alternate Dispute Resolution mechanism, it shall be referred to the courts at Mumbai, Maharashtra , India.
+                                        </li>
+                                    </ol>
+                               
+                                <li style="font-weight:bold;font-size:16px;">
+                                    PRIVACY
+                                </li>
+                                <p>
+                                    We encourage you to read the Privacy Policy and to use the information it contains to make informed decisions regarding Your personal information. Please also note that certain information, statements, data and content which You provide on the Website/App are likely to reveal Your gender, ethnic origin, nationality, age, and/or other personal information about You. You acknowledge and agree that your submission of such information is voluntary on Your part. Further, You acknowledge, consent and agree that we may access, preserve, and disclose information You provide to Us at any stage during Your use of the Website/App. Disclosures of information to Third Parties are further addressed in Our Privacy Policy.
+                                </p>
+                                <li style="font-weight:bold;font-size:16px;">
+                                    MISCELLANEOUS PROVISIONS
+                                </li>
+                               
+                                    <ol type="a">
+                                        <li>
+                                            <b><i>Entire Agreement:</i></b> The terms and conditions set forth in this Agreement and any additional or different terms expressly agreed by Client and Service vendor shall constitute the entire agreement and understanding of Client and Service vendor with respect to each Service Contract and shall cancel and supersede any other prior or contemporaneous discussions, agreements, representations, warranties, and/or other communications between them. Notwithstanding the foregoing, the Client and Service vendor shall always remain
+                                            subject to the terms of Our user Agreement.
+                                        </li>
+                                        <li>
+                                            <b><i>Waiver:</i></b> The failure of either party at any time to require performance of any provision of	this Agreement in no manner shall affect such party's right at a later time to enforce the same. No waiver by either party of any breach of this Agreement, whether by conduct or otherwise, in any one or more instances, shall be deemed to be, or construed as, a further or continuing waiver of any other such breach, or a waiver of any other breach of this Agreement.
+                                        </li>
+                                        <li>
+                                            <b><i>Severability:</i></b> If any provision of this Agreement shall to any extent be held invalid, illegal or unenforceable, the validity, legality and enforceability of the remaining provisions of this Agreement shall
+                                            enforceable to the fullest extent permitted by law. In such a case, this Agreement shall be reformed to the minimum extent necessary to correct any invalidity, illegality or unenforceability, while preserving to the maximum extent the rights and commercial expectations of the parties hereto, as expressed herein.
+                                        </li>
+                                    </ol>
+                              
+                                <li style="font-weight:bold;font-size:16px;">
+                                    CONTACT US
+                                </li>
+                                <p>
+                                    If you have any questions about this Agreement, the practices of, or your experience with the Service, you can e-mail us at support@aquapay.com .
+                                </p>
+                            </ol>
+                            <div style="text-align: center;">
+                            <button type="button" class="btn bg-primary btnw nextBtn" data-dismiss="modal">Ok</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="approvethroughgroup == true">
+          <div class="white-bg">
+            <h4 class="col-md-9 col-sm-6 col-xs-6 Top5Heading111 mrgnone">Approve Groups</h4>
+            <div class="form-group col-md-3 col-sm-6 col-xs-6 top-spac text-right right-spac">
+             
+            </div>
+            <div class="col-md-9 col-sm-7 text-left">
+              <!-- <div class="clear20"></div> -->
+              <a>
+                <button class="btn bg-primary borderradius" (click)="approvePendingGroup()">Approve</button>
+              </a>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <a class="btn btn-primary btn-outline btnw ResponsiveBtnWidth" data-toggle="modal" (click)="checkpendingClick()">Reject</a>
+            </div>
+            <div class="clear"></div>
+            <div class="table-responsive">
+              <table class="table table-hover table-striped">
+                <thead>
+                  <tr class="cust-color">
+                    <td>
+                      <div _ngcontent-c3="">
+                        <input type="checkbox" name="mainmenu" (change)="changeAllgroup(isSelectedGroup)" [checked]="isAllSelectedGroup">
+                      </div>
+                    </td>
+                    <td>
+                      <span class="bold-txtn">Group Name</span>
+                    </td>
+                    <td>
+                      <span class="bold-txtn">Lower Limit</span>
+                    </td>
+                    <td>
+                      <span class="bold-txtn">Upper Limit</span>
+                    </td>
+                  </tr>
+                </thead>
+                <ng-container *ngFor="let groupspending of getPendingGroupsdata let i=index">
+                  <tbody>
+                    <!-- <div > -->
+                    <tr>
+                      <td>
+                        <div _ngcontent-c3="">
+                          <input type="checkbox" name="submenu" (change)="changegroup(groupspending , i)" [checked]="isSelectedGroup">
+                        </div>
+                      </td>
+                      <td>{{groupspending.grpname}}</td>
+                      <td>{{groupspending.lwrlimit}}</td>
+                      <td>{{groupspending.uprlimit}}</td>
+                    </tr>                   
+                  </tbody>
+                </ng-container>
+              </table>
+            </div>
+          </div>
+          <div id="pendingreport" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+              <!-- Modal content-->
+              <div class="modal-content modelWidth">
+                <div class="modal-header myheader">
+                  <button type="button" class="close close2" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Comment</h4>
+                </div>
+                <div class="modal-body mybody2">
+                  <div class="col-md-12 col-sm-12 col-xs-12 ">
+                    <textarea class="form-control popupborder" rows="5" placeholder="Reason for Rejection" [(ngModel)]="comment"></textarea>
+                  </div>
+                  <div class="clear10"></div>
+                  <!-- <a routerLink="../asgrouplist"> -->
+                  <button class="btn bg-primary btnw nextBtn" data-dismiss="modal" (click)="rejectPendingGroup()">Reject</button>
+                  <!-- </a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="approvethroughrule == true">
+          <div class="white-bg">
+            <h4 class="col-md-9 col-sm-6 col-xs-6 Top5Heading111 mrgnone">Approve Rules</h4>
+            <div class="form-group col-md-3 col-sm-6 col-xs-6 top-spac text-right right-spac">
+              
+            </div>
+            <div class="col-md-9 col-sm-7 text-left">
+              <!-- <div class="clear20"></div> -->
+              <a>
+                <button class="btn bg-primary borderradius" (click)="approvependingRule()">Approve</button>
+              </a>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <a class="btn btn-primary btn-outline btnw ResponsiveBtnWidth" data-toggle="modal" (click)="checkpendingClick()">Reject</a>
+            </div>
+            <div class="clear"></div>
+            <div class="table-responsive">
+              <table class="table table-hover table-striped">
+                <thead>
+                  <tr class="cust-color">
+                    <td>
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <div _ngcontent-c3="">
+                        <input type="checkbox" name="mainmenu" (change)="changeAllrule(isSelectedRule)" [checked]="isAllSelectedRule">
+                      </div>
+                    </td>
+                    <td>
+                      <span class="bold-txtn">Rule Name</span> &nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                      <span class="bold-txtn">Lower Limit</span> &nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                      <span class="bold-txtn">Upper Limit</span> &nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td></td>
+                  </tr>
+                </thead>
+                <ng-container *ngFor="let rulepending of getPendingRulesdata let i=index">
+                  <tbody>
+                    <tr>
+                      <td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <div _ngcontent-c3="">
+                          <input type="checkbox" name="submenu" (change)="changerule(rulepending , i)" [checked]="isSelectedRule">
+                        </div>
+                      </td>
+                      <td>{{rulepending.ruleformula}}</td>
+                      <td>{{rulepending.lwramount}}</td>
+                      <td>{{rulepending.upramount}}</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </ng-container>
+              </table>
+            </div>
+          </div>
+          <div id="pendingreport" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+              <!-- Modal content-->
+              <div class="modal-content modelWidth">
+                <div class="modal-header myheader">
+                  <button type="button" class="close close2" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Comment</h4>
+                </div>
+                <div class="modal-body mybody2">
+                  <div class="col-md-12 col-sm-12 col-xs-12 ">
+                    <textarea class="form-control popupborder" rows="5" placeholder="Reason for Rejection" [(ngModel)]="comment"></textarea>
+                  </div>
+                  <div class="clear10"></div>
+                  <!-- <a routerLink="../asgrouplist"> -->
+                  <button class="btn bg-primary btnw nextBtn" data-dismiss="modal" (click)="rejectPendingGroup()">Reject</button>
+                  <!-- </a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

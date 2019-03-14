@@ -1,5 +1,36 @@
 
 <div class="row main-bg">
+    <div id="logindetails" class="modal" role="dialog" [ngStyle]="{'display':displayWelcomModal}">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content modelWidth modalContent">
+                
+                <div class="modal-body mybody2">
+                  
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                      <div style="text-align: center;padding: 4%;">
+                        <img src="assets/img/logo.png">
+                      </div>
+                       <div style="text-align: center;padding: 2%;color:#533979;font-weight: bold;font-size: 25px;">
+                         Welcome to AquaPay!
+                       </div>
+                       <div style="text-align: center;padding: 2%;font-weight: bold">
+                        {{username}}<br>
+                        Authorised Signatory
+                      </div>
+                    </div>
+                    <div class="clear10"></div>
+                    <!-- <a routerLink="../chpayment"> -->
+                      <div style="text-align: center;padding: 2%;">
+                    <button class="btn bg-primary btnw nextBtn" style="width:10%" data-dismiss="modal" (click)="closemodal()">Ok</button>
+                  </div>
+                    <!-- </a> -->
+                </div>
+            </div>
+
+        </div>
+    </div>
   <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
   <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
     <div class="row mt-4">

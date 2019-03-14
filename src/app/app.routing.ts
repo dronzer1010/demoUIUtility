@@ -75,7 +75,7 @@ const appRoutes: Routes = [
     {path:'groupview',component:GroupviewComponent},
     {path:'ruleview',component:RuleviewComponent},
     {path:'unitary-card',component:CardunitaryComponent},
-    {path:'firstlogin',component:AccountsetupComponent},
+    
     {path:'user-bulk',component:UserbulkComponent},
     {path:'pending-user',component:PendingusersComponent},
     {path:'pending-group',component:PendinggroupsComponent},
@@ -95,6 +95,7 @@ const appRoutes: Routes = [
     {path:'otp',component:OtpComponent},  
     {path:'login_checker',component:LoginCheckerComponent}, 
     {path:'otp_checker',component:OtpCheckerComponent},
+    {path:'firstlogin',component:AccountsetupComponent},
     
     { path: '**', redirectTo: '' }
 ];

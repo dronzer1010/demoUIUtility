@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { OwlCarousel } from 'ngx-owl-carousel';
 import { DatepickerOptions } from 'ng2-datepicker';
 import * as frLocale from 'date-fns/locale/fr';
+import { Router,ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -28,13 +29,15 @@ export class DashboardCheckerComponent implements OnInit {
   apprpaylength:number=0;
   rejpaylength:number=0
   todate:Date = new Date();
+  displayWelcomModal:string='none'
+  username:string="deepali.patekar@axisbank.com"
   settings = {
     bigBanner: true,
     timePicker: false,
     format: 'dd-MM-yyyy',
     defaultOpen: false
 }
-
+public params:string;
 rolename:any;
   fromdate:any;
   public currentCard: any=0;
@@ -68,11 +71,18 @@ rolename:any;
   status: 1
     }
   ]
-  constructor(private httpService: HttpClient) { }
+  constructor(private httpService: HttpClient,private router: Router,private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.rolename=localStorage.getItem('rolename')
+    this.params = this.activatedRoute.snapshot.queryParams["msg"];
     console.log(this.rolename)
+    if(this.params=='firstloginas'){
+   
+      this.displayWelcomModal='block'
+    
+    }
+   
     this.httpService.get('./assets/cards.json').subscribe(data=>{
       this.carddata=data;
       console.log(this.carddata)
@@ -134,6 +144,10 @@ rolename:any;
   fun() {
     this.owlElement.next([200])
     //duration 200ms
+}
+
+closemodal(){
+  this.displayWelcomModal='none'; 
 }
 
 goToNextCard() {
