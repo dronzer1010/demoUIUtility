@@ -293,6 +293,113 @@ h5 {
   font-size: 14px;
   color: #000;
 }
+/* Multiselect Dropdown */
+.multiselect-dropdown{
+  position: relative;
+  width: 30%!important;
+  font-size: 12px!important;
+  font-family: inherit;
+  background-image: url(../img/datepicker.png);
+  background-repeat: no-repeat;
+  background-position-x: 10px;
+  background-position-y: 4px;
+  display: inline-block!important;
+  margin-right:10px!important;
+}
+.multiselect-item-checkbox input[type=checkbox]:checked + div:before {
+  -webkit-animation: .2s ease-in borderscale;
+  animation: .2s ease-in borderscale;
+  background: #64289d!important;
+}
+.multiselect-dropdown .dropdown-btn .dropdown-down {
+  display: inline-block;
+  top: 10px;
+  width: 0;
+  height: 0;
+  border-top: 7px solid #64289d!important;
+  border-left: 4px solid transparent!important;
+  border-right: 4px solid transparent!important;
+}
+.multiselect-item-checkbox input[type=checkbox] + div:after{
+  left: 2px!important;
+}
+.multiselect-dropdown .dropdown-btn .dropdown-up
+{
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-bottom: 7px solid #64289d!important;
+  border-left: 4px solid transparent!important;
+  border-right: 4px solid transparent!important;
+}
+.multiselect-dropdown .dropdown-btn .selected-item {
+  border: unset!important;
+  margin-right: 4px;
+  background: unset!important;
+  padding: 0 0px 0 13px!important;
+  color: #fff;
+  border-radius: 2px;
+  float: left;
+}
+.multiselect-dropdown .dropdown-btn {
+  display: inline-block;
+  border: 1px solid #d9cee6!important;
+  width: 100%;
+  padding: 2px 15px!important;
+  margin-bottom: 0;
+  font-weight: 400;
+  line-height: 1.52857143;
+  text-align: center!important;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border-radius: 20px!important;
+}
+.dropdown-btn span{
+  color:#64289d!important;
+}
+.dropdown-list li {
+  padding: 6px 10px;
+  cursor: pointer;
+  text-align: left;
+  border-bottom: 1px solid lightgray;
+}
+.multiselect-item-checkbox[_ngcontent-c4] input[type=checkbox][_ngcontent-c4] + div[_ngcontent-c4]:before {
+  box-sizing: content-box;
+  content: '';
+  color: #64289d!important;
+  position: absolute;
+  top: 60%!important;
+  left: 0;
+  width: 10px!important;
+  height: 10px!important;
+  margin-top: -9px;
+  border: 2px solid gray!important;
+  text-align: center;
+  transition: all .4s ease;
+  border-radius: 4px;
+}
+.selected-item a{
+  color: red!important;
+}
+ng-multiselect-dropdown:nth-child(1) .multiselect-dropdown{
+  background: unset!important;
+  width: 28%!important;
+}
+ng-multiselect-dropdown:nth-child(3) .multiselect-dropdown{
+  background-image: url(../img/downloadlist.png);
+  background-repeat: no-repeat;
+  background-position-x: 10px;
+  background-position-y: 6px;
+  background-size: 11px;
+  margin-right:unset!important;
+  width: 33%!important;
+}
+.multiselect-item-checkbox input[type=checkbox]:checked + div:after{
+  content: unset!important;
+  border: 2px solid #8153ad!important;
+}
+/* Multiselect Dropdown CSS End*/
 
 .wc-date-container{
   float: left!important;
