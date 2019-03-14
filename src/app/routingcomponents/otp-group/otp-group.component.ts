@@ -60,6 +60,7 @@ export class OtpGroupComponent implements OnInit {
       //   }
       // });
       this.router.navigate(['/main/successmsg'],{queryParams:{msg:'grpapprsuccess'}});
+      this.loader.display(false);
     }
     else {
       this.loader.display(false);
