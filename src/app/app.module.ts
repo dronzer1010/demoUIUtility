@@ -47,7 +47,7 @@ import { CheckerPaymentsComponent } from './routingcomponents/checker-payments/c
 import {AutoTabDirective} from './directives/autotab.directive';
 import { CheckerPaymentListComponent } from './routingcomponents/checker-payment-list/checker-payment-list.component';
 import { MakerBillerListComponent } from './routingcomponents/maker-biller-list/maker-biller-list.component'
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OtpapprovePaymentComponent } from './routingcomponents/otpapprovepayment/otpapprovepayment.component';
 import { OtpapproveBillerComponent } from './routingcomponents/otpapprovebiller/otpapprovebiller.component';
@@ -172,8 +172,8 @@ import { OtpGroupComponent } from './routingcomponents/otp-group/otp-group.compo
     CarouselModule ,
     HttpClientModule,
     AngularDateTimePickerModule,
-MatNativeDateModule,
-    
+    MatNativeDateModule,
+    NgMultiSelectDropDownModule.forRoot(),
     DataTableModule,
     ToastrModule.forRoot(),
     NgDatepickerModule

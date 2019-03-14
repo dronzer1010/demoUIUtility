@@ -10,7 +10,12 @@ input[type="file"] {
 .extpad {
     padding: 0 2%;
 }
-
+.heading {
+    text-align: center;
+    color: #533979;
+    font-size: 20px;
+    margin: 20px 0px 0;
+}
 #file-drag {
     border-radius: 6px;
     background-color: #f2f6f7;
@@ -57,6 +62,7 @@ input[type="file"] {
 .stepwizard-row:before {
     width: 49%;
     right: 165px;
+    top:12px;
 }
 .tick,.tick2 {
     margin-top: -3px;
@@ -155,7 +161,9 @@ input[type="checkbox"]:hover, input[type="checkbox"]:checked {
     padding: 6px 21px;
     text-align: center;
 }
-
+.btn-circle{
+    padding: 6px 6px!important;
+}
 .tickimg{
     margin-top: -3px;
     width: 10px;
@@ -172,6 +180,6 @@ input[type="checkbox"]:hover, input[type="checkbox"]:checked {
 }
 
 .stepwizard-row2:before {
-    width: 66%;
-    right: 112px;
+    width: 50%;
+    right: 150px;
 }

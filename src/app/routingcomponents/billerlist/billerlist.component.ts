@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-billerlist',
@@ -14,6 +15,16 @@ export class BillerlistComponent implements OnInit {
   rowsOnPage = 300;
   sortBy = "email";
   sortOrder = "asc";
+  dropdownList = [];
+  dropdownCat = [];
+  dropdownDownload = [];
+  selectedItems = [];
+  selectedItems1 = [];
+  selectedItems2 = [];
+  dropdownSettings = {};
+  dropdownSettings1 = {};
+  dropdownSettings2 = {};
+
   constructor() { }
 
   ngOnInit() {
@@ -30,7 +41,56 @@ export class BillerlistComponent implements OnInit {
         this.noofrole="No of Bill:"
       }
     }
+
+    this.dropdownList = [
+      { item_id: 1, item_text: 'Today' },
+      { item_id: 2, item_text: 'This Week' },
+      { item_id: 3, item_text: 'This Month' },
+      { item_id: 4, item_text: 'This Year' }
+    ];
+    this.dropdownSettings1 = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: true
+    };
+    this.dropdownCat = [
+      { item_id: 1, item_text: 'Electricity' }
+    ];
+    this.dropdownSettings2 = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: true
+    };
+    this.dropdownDownload = [
+      { item_id: 1, item_text: 'Standard List' },
+      { item_id: 2, item_text: 'Customise List' }
+    ];
+   
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: true
+    };
   }
+  onItemSelect(item: any) {
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
+  }
+
   openModalDialog(){
     this.display=''; //Set block css
  }
