@@ -1,3 +1,140 @@
-<p>
-  pendingrules works!
-</p>
+
+<div class="container" id="lstpaymt">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+
+    <!-- Main content -->
+    <section class="content abc">
+      <div class="row">
+        <div _ngcontent-c4="" class="clear20"></div>
+        <div _ngcontent-c4="" class="clear20"></div>
+        <div _ngcontent-c4="" class="clear20"></div>
+      </div>
+      <div class="white-bg">
+        <h4 class="col-md-9 col-sm-6 col-xs-6 Top5Heading111 mrgnone">List of Rules</h4>
+        <div class="form-group col-md-3 col-sm-6 col-xs-6 top-spac text-right right-spac">
+
+        </div>
+        <div class="clear"></div>
+
+        <div class="BorderBottom"></div>
+        <div class="col-md-3 col-sm-5  top-spac">
+
+          <label class="nogselecttxt">No. of Rules Selected :</label>&nbsp;&nbsp;
+          <label class="nogselecttxtbold">{{this.checkedValueArray.length}}</label>
+
+        </div>
+        <div class="col-md-9 col-sm-7 text-left" *ngIf="!!pendingRules">
+          <div class="clear20"></div>
+          <a>
+            <button class="btn bg-primary borderradius" (click)="gotoOTP()">Approve</button>
+            <!--  -->
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <a class="btn btn-primary btn-outline btnw ResponsiveBtnWidth" data-toggle="modal" (click)="displayRejMod();">Reject</a>
+
+        </div>
+
+        <div class="clear"></div>
+        <div class="table-responsive">
+          <!-- <table class="table table-hover table-striped"> -->
+          <table class="table table-hover table-striped" [mfData]="pendingRules | dataFilter : filterQuery" #mf="mfDataTable"
+            [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+            <thead>
+
+              <tr class="cust-color">
+                <td>
+                  <div _ngcontent-c3="">
+                    <input type="checkbox" name="mainmenu" (change)="changeAll(pendingRules);selectAll();" [checked]="selectall" [(ngModel)]="selectedAll">
+                  </div>
+                </td>
+                <!-- <td class="tdwidth"></td> -->
+                <td>
+                  <span class="bold-txtn">Rule category</span> &nbsp;&nbsp;&nbsp;
+                </td>
+                <td>
+                  <span class="bold-txtn">Lower Limit</span> &nbsp;&nbsp;&nbsp;
+                </td>
+                <td>
+                  <span class="bold-txtn">Upper Limit</span> &nbsp;&nbsp;&nbsp;
+                </td>
+                <td>
+                  <span class="bold-txtn"> Status</span> &nbsp;&nbsp;&nbsp;
+                </td>
+                <!-- <td></td> -->
+              </tr>
+
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let rule of mf.data; let i=index;">
+                <tr>
+                  <td>
+                    <div _ngcontent-c3="">
+                      <input type="checkbox" name="submenu" (change)="change(rule.ruleid)" [(ngModel)]="rule.selected">
+                    </div>
+                  </td>
+                  <td>{{rule.ruleformula}}</td>
+                  <td>{{rule.lwramount}}</td>
+                  <td>{{rule.upramount}}</td>
+                  <td>
+                    <a class="btn" [ngClass]="{'appoved': rule.status === 1, 'Rejected': rule.status  === 0, 'Pending': rule.status  === 2}"
+                      role="button" *ngIf="rule.status==1">Approved </a>
+                    <a class="btn" [ngClass]="{'appoved': rule.status === 1, 'Rejected': rule.status  === 0, 'Pending': rule.status  === 2}"
+                      role="button" *ngIf="rule.status==0">Rejected</a>
+                    <a class="btn" [ngClass]="{'appoved': rule.status === 1, 'Rejected': rule.status  === 0, 'Pending': rule.status  === 2}"
+                      role="button" *ngIf="rule.status==2">Pending</a>
+                  </td>
+                  <!-- <td>
+                    <div [ngClass]="{'flashOn': rule.collapsed, 'flash': !rule.collapsed }" class="showhide" (click)="rule.collapsed=!rule.collapsed">
+                      <span class="showhide">+</span>
+                    </div>
+                  </td> -->
+                </tr>
+
+             
+              </ng-container>
+              
+
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+
+      <div id="payreport" class="modal" role="dialog" [ngStyle]="{'display':disRejMod}">
+        <div class="modal-dialog modal-lg">
+
+          <!-- Modal content-->
+          <div class="modal-content modelWidth">
+            <div class="modal-header myheader">
+              <button type="button" class="close close2" data-dismiss="modal" (click)="closeRejMod()">&times;</button>
+              <h4 class="modal-title">Comment</h4>
+            </div>
+            <div class="modal-body mybody2">
+
+              <div class="col-md-12 col-sm-12 col-xs-12 ">
+                <textarea class="form-control popupborder" rows="5" placeholder="Reason for Rejection" [(ngModel)]="comment"></textarea>
+              </div>
+              <div class="clear10"></div>
+              <!-- <a routerLink="./../asrulevalidation"> -->
+              <button class="btn bg-primary btnw nextBtn  rejectapp" data-dismiss="modal" (click)="rejectRuleById();closeRejMod()">Reject</button>
+              <!-- </a> -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <div class="" id="step-2">
+      <div class="clear20"></div>
+      <div class="clear20"></div>
+      <div class="clear20"></div>
+      <!-- <app-asapproveotp></app-asapproveotp> -->
+    </div>
+
+  </div>
+</div>
+
+
+<div class="clear20"></div>
+<div class="clear20"></div>

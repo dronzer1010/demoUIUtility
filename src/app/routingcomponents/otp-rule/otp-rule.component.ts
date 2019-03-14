@@ -60,6 +60,7 @@ export class OtpRuleComponent implements OnInit {
       //   }
       // });
       this.router.navigate(['/main/successmsg'],{queryParams:{msg:'ruleapprsuccess'}});
+      this.loader.display(false);
     }
     else {
       this.loader.display(false);

@@ -1,0 +1,90 @@
+.bg-primary {  
+    width: 10%;
+}
+.ugctxt{
+    font-size: 13.9px;
+    font-weight: 600;
+    color: #2c2e30;
+}
+.popupborder{
+    border: 1px solid #eee;
+    background-color: #eee;
+  
+  }
+.padlnon{
+    padding-left: 0px!important;
+}
+.tdwidth{
+width: 80px!important;
+vertical-align: top!important;
+}
+.lbltxt{
+    font-size: 12.5px;
+  font-weight: 300;
+  color: #3f4245;
+}
+.bold-txtn{
+    font-size: 15.8px;
+  font-weight: 600;
+  color: #3f4245;
+}
+.tbltxt{
+    font-size: 14.2px;
+  font-weight: 300;
+  color: #3f4245;
+}
+.nogselecttxt{
+    font-size: 16.2px!important;
+    padding-left: 10px!important;
+}
+.nogselecttxtbold{
+    font-size: 16.2px!important;
+    font-weight: 600!important;
+}
+.btnw{
+    padding: 6px 28px;
+}
+.nxt2n{width:auto;
+    padding: 6px 28px;
+}
+.bold-txtn{
+    font-size: 15.8px;
+  font-weight: 600;
+  color: #3f4245;
+}
+.divbrdrlft{
+    border-left: 1px solid #ccc!important;
+    padding-left: 40px;
+}
+.mrgntp{
+    margin-top: 20px;
+}
+.table tbody tr td.custmtdn {
+    padding: 20px 20px;
+}
+input[type="checkbox"]{
+    
+    -webkit-appearance: initial;
+    width: 16px;
+    height: 16px;
+    background-color: #c7c7c7;
+    display: inline-block;
+    border-radius: 5px;
+    margin-right: 6px;
+    vertical-align: sub;
+    outline: none
+    
+}
+input[type="checkbox"]:hover, input[type="checkbox"]:checked {
+    background: #64289d;
+}
+@media screen and (max-width: 768px) {
+    .divbrdrlftn{
+        border-left: 1px solid #ccc!important;
+        padding-left: 40px;
+    }
+    .mrgntp{
+        margin-top: 0px;
+    }
+}
+
