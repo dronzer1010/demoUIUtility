@@ -1,9 +1,7 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import {Router , ActivatedRoute} from '@angular/router';
 //import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-
-
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-checker-approve-biller',
@@ -32,7 +30,17 @@ export class CheckerApproveBillerComponent implements OnInit {
   public flag: any;
   selectall:boolean=false;
   selectallbiller:boolean=false;
+  dropdownList = [];
+  dropdownCat = [];
+  dropdownDownload = [];
+  selectedItems = [];
+  selectedItems1 = [];
+  selectedItems2 = [];
+  dropdownSettings = {};
+  dropdownSettings1 = {};
+  dropdownSettings2 = {};
   noofrole="No bills available"
+
   constructor(private router : Router , private aRouter : ActivatedRoute) { }
 
   
@@ -63,8 +71,47 @@ export class CheckerApproveBillerComponent implements OnInit {
       }
     }
 
-    
+    this.dropdownList = [
+      { item_id: 1, item_text: 'Today' },
+      { item_id: 2, item_text: 'This Week' },
+      { item_id: 3, item_text: 'This Month' },
+      { item_id: 4, item_text: 'This Year' }
+    ];
+    this.dropdownSettings1 = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: true
+    };
+    this.dropdownCat = [
+      { item_id: 1, item_text: 'Electricity' }
+    ];
+    this.dropdownSettings2 = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: true
+    };
+    this.dropdownDownload = [
+      { item_id: 1, item_text: 'Standard List' },
+      { item_id: 2, item_text: 'Customise List' }
+    ];
    
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: true
+    };
   }
 
   changeAll(pendingbillerpage): void {

@@ -15,24 +15,32 @@
               </div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-                <input list="browsers" value="All Categories" id="datalist" style="margin-left:10px; width: 125px; padding: 4px 5px 4px 15px;">
-                <datalist id="browsers">
-                  <option value="Internet Explorer" selected>
-                  <option value="Firefox">
-                  <option value="Chrome">
-                  <option value="Opera">
-                  <option value="Safari">
-                </datalist>
-                <input list="date" id="datalist" value="This Month" class="datelist" style="margin-left:10px; width: 125px;">
-                <datalist id="date">
-                  <option value="This Month">
-                  <option value="This Week">
-                </datalist>
+                  <ng-multiselect-dropdown
+                  [placeholder]="'All Categories'"
+                  [data]="dropdownCat"
+                  [(ngModel)]="selectedItems1"
+                  [settings]="dropdownSettings1"
+                  (onSelect)="onItemSelect($event)"
+                  [(ngClass)]="all-cat"
+                  (onSelectAll)="onSelectAll($event)">
+                </ng-multiselect-dropdown>
+                <ng-multiselect-dropdown
+                  [placeholder]="'This Month'"
+                  [data]="dropdownList"
+                  [(ngModel)]="selectedItems2"
+                  [settings]="dropdownSettings2"
+                  (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll($event)">
+                </ng-multiselect-dropdown>
                 <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png" alt=""> Download File</button> -->
-                <a id="button" class="btn btn-primary btn-outline ResponsiveBtnWidth openModal" (click)="closeModalDialog3()"
-                  style="margin-left: 10px; border:1px solid #d9cee6; "> <img src="../../../assets/img/downloadlist.png" alt=""> Download
-                  File</a>
-                
+                <ng-multiselect-dropdown
+                  [placeholder]="'Download List'"
+                  [data]="dropdownDownload"
+                  [(ngModel)]="selectedItems"
+                  [settings]="dropdownSettings"
+                  (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll($event)">
+                </ng-multiselect-dropdown>                
               </div>
             </div>
             <div class="row" style="margin-bottom:20px;margin-right: -15px!important;">
