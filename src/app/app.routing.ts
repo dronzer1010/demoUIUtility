@@ -44,6 +44,10 @@ import { RejectmsgComponent } from './supportingcomponents/rejectmsg/rejectmsg.c
 import { OtpCardComponent } from './routingcomponents/otp-card/otp-card.component';
 import { OtpRuleComponent } from './routingcomponents/otp-rule/otp-rule.component';
 import { OtpGroupComponent } from './routingcomponents/otp-group/otp-group.component';
+import { NotificationmatrixComponent } from './supportingcomponents/notificationmatrix/notificationmatrix.component'
+import { RepositoryComponent } from './supportingcomponents/repository/repository.component';
+import { SamplebillsComponent } from './supportingcomponents/samplebills/samplebills.component';
+import { TemplatesComponent } from './supportingcomponents/templates/templates.component'
 
 
 const appRoutes: Routes = [ 
@@ -87,7 +91,11 @@ const appRoutes: Routes = [
     {path:'otp-card',component:OtpCardComponent},
     {path:'otp-group',component:OtpGroupComponent},
     {path:'otp-rule',component:OtpRuleComponent},
-    {path:'rejectmsg',component:RejectmsgComponent}
+    {path:'rejectmsg',component:RejectmsgComponent},
+    {path:'notification',component:NotificationmatrixComponent},
+    {path:'repository',component:RepositoryComponent},
+    {path:'sample-bills',component:SamplebillsComponent},
+    {path:'templates',component:TemplatesComponent}
 ]},
 
     // otherwise redirect to home

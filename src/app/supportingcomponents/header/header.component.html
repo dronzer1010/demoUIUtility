@@ -25,16 +25,16 @@
                   <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="opennuser();clickUserEvent()">Users </a>
                   <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displayuserdrop}">
                     <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/userview']">
-                        <span> <img id="user" src="assets/img/view-bills.png" /></span>
+                        <span> <img id="user" src="assets/img/person.png" /></span>
                         View Users </a></li>
                     <li *ngIf="rolename=='ccadmin' || rolename=='ccchecker' || rolename=='ccmaker'" class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/unitary-user']"><span>
-                          <img id="user" src="assets/img/add-unitary-bills.png" /></span>
+                          <img id="user" src="assets/img/person.png" /></span>
                         Add Unitary </a></li>
                     <li *ngIf="rolename=='ccadmin' || rolename=='ccchecker' || rolename=='ccmaker'" class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/user-bulk']"><span>
-                          <img id="user" src="assets/img/add-bulk.png" /></span>
+                          <img id="user" src="assets/img/person.png" /></span>
                         Add Bulk </a></li>
                     <li *ngIf="rolename=='as' || rolename=='aschecker'" class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/pending-user']"><span>
-                        <img id="user" src="assets/img/add-unitary-bills.png" /></span>
+                        <img id="user" src="assets/img/person.png" /></span>
                       Pending Users </a></li>
                   </ul>
                 </li>
@@ -42,14 +42,14 @@
                     <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="opengroup();clickGroupEvent()">Groups </a>
                     <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displaygroupdrop}">
                       <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/groupview']">
-                          <span> <img id="user" src="assets/img/view-bills.png" /></span>
+                          <span> <img id="user" src="assets/img/group.png" /></span>
                           View Groups </a></li>
                       <li *ngIf="rolename=='ccadmin' || rolename=='ccchecker' || rolename=='ccmaker'" class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/unitary-group']"><span>
-                            <img id="user" src="assets/img/add-unitary-bills.png" /></span>
+                            <img id="user" src="assets/img/group.png" /></span>
                           Add Unitary </a></li>
                      
                       <li *ngIf="rolename=='as' || rolename=='aschecker'" class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/pending-group']"><span>
-                          <img id="user" src="assets/img/add-unitary-bills.png" /></span>
+                          <img id="user" src="assets/img/group.png" /></span>
                         Pending Groups </a></li>
                     </ul>
                   </li>
@@ -57,13 +57,13 @@
                       <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="openrule();clickRuleEvent()">Rules </a>
                       <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displayruledrop}">
                         <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/ruleview']">
-                            <span> <img id="user" src="assets/img/view-bills.png" /></span>
+                            <span> <img id="user" src="assets/img/gavel.png" /></span>
                             Rule Validator </a></li>
                         <li *ngIf="rolename=='ccadmin' || rolename=='ccchecker' || rolename=='ccmaker'" class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/unitary-rule']"><span>
-                              <img id="user" src="assets/img/add-unitary-bills.png" /></span>
+                              <img id="user" src="assets/img/gavelpng" /></span>
                             Add Unitary </a></li>
                         <li *ngIf="rolename=='as' || rolename=='aschecker'" class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/pending-rules']"><span>
-                              <img id="user" src="assets/img/add-bulk.png" /></span>
+                              <img id="user" src="assets/img/gavel.png" /></span>
                             Pending Rules </a></li>
                      
                       </ul>
@@ -109,13 +109,13 @@
           <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="opencarddrop();clickCardEvent()">Cards </a>
           <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displaycarddrop}">
             <li class="col-md-12 cust"><a class="[ animate ]" [routerLink]="['/main/cardview']" (click)="closealldrop()"> 
-              <span> <img src="assets/img/precard.png" /></span>
+              <span> <img src="assets/img/credit-card1.png" /></span>
                 View Cards </a></li>
                 <li *ngIf="rolename=='as' || rolename=='aschecker'" class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/pending-card']"> 
-                  <span> <img src="assets/img/precard.png" /></span>
+                  <span> <img src="assets/img/credit-card1.png" /></span>
                     Pending Cards </a></li>
                     <li *ngIf="rolename=='ccadmin' || rolename=='ccchecker' || rolename=='ccmaker'" class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/unitary-card']"> 
-                      <span> <img src="assets/img/precard.png" /></span>
+                      <span> <img src="assets/img/credit-card1.png" /></span>
                         Unitary Card </a>
                     </li>
            
@@ -197,11 +197,20 @@
               </a>
             </li>
             <li>
-              <a class="[ animate ]" (click)="closealldrop()">
+              <a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/notification']">
                 <p>
                   <span>
                     <img src="assets/img/alarm-bell.png" />&nbsp;&nbsp;&nbsp;
                   </span> Notification Settings
+                </p>
+              </a>
+            </li>
+            <li>
+              <a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/repository']">
+                <p>
+                  <span>
+                    <img src="assets/img/alarm-bell.png" />&nbsp;&nbsp;&nbsp;
+                  </span> Repository
                 </p>
               </a>
             </li>

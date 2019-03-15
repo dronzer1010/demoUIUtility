@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
         this.clickRuleEvent()
       }else if(this.pathroute=='/main/organisation'){
         this.clickOrgEvent()
-      }else if(this.pathroute=='/main/profile'){
+      }else if(this.pathroute=='/main/profile' || this.pathroute=='/main/repository' || this.pathroute=='/main/notification' || this.pathroute=='/main/sample-bills' || this.pathroute=='/main/templates'){
 this.clickNotEvent()
       }
   
