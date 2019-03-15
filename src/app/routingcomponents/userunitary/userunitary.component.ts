@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr'
 import { DatepickerOptions } from 'ng2-datepicker';
 import * as frLocale from 'date-fns/locale/fr';
-
+import { DatePipe } from '@angular/common'
 @Component({
   selector: 'app-userunitary',
   templateUrl: './userunitary.component.html',
@@ -13,6 +13,7 @@ import * as frLocale from 'date-fns/locale/fr';
 })
 export class UserunitaryComponent implements OnInit {
   model: any = {};
+  dateofbirth:any;
   step1:boolean=true;
   step2:boolean=false;
   step3:boolean=false;
@@ -81,7 +82,7 @@ export class UserunitaryComponent implements OnInit {
 //     // other options...
 //     dateFormat: 'dd-mm-yyyy',
 // };
-  constructor(private router: Router,private loaderService: LoaderService,private toastr: ToastrService) { }
+  constructor(private router: Router,private loaderService: LoaderService,private toastr: ToastrService,public datepipe: DatePipe) { }
 
   ngOnInit() {
     this.loadAllGroups()
@@ -424,6 +425,7 @@ userselectedtab(){
 
 
 onSubmit() {
+  this.model['dob']=this.datepipe.transform(this.model['dob'], 'yyyy-MM-dd');
   this.loaderService.display(true);
   let obj: any = {};
 

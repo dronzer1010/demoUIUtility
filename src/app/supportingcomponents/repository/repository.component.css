@@ -1,0 +1,15 @@
+button{
+    background-color: #C9BDE1;
+    color: #533979;
+    border: 0px;
+    padding: 69px 130px;
+    font-size: 50px;
+    border-radius: 10px;
+    margin: 20px;
+    font-weight: 500;
+    /* margin-top: 18%;  */
+}
+.logo{
+    margin-top: 12%;
+    margin-bottom: 5%;
+}

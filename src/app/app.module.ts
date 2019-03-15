@@ -83,6 +83,13 @@ import { RejectmsgComponent } from './supportingcomponents/rejectmsg/rejectmsg.c
 import { OtpCardComponent } from './routingcomponents/otp-card/otp-card.component';
 import { OtpRuleComponent } from './routingcomponents/otp-rule/otp-rule.component';
 import { OtpGroupComponent } from './routingcomponents/otp-group/otp-group.component';
+import { EmailValidator } from './directives/emailValidator.directive';
+import { NumberOnlyDirective } from './directives/numbers.directive';
+import { DatePipe } from '@angular/common';
+import { NotificationmatrixComponent } from './supportingcomponents/notificationmatrix/notificationmatrix.component';
+import { RepositoryComponent } from './supportingcomponents/repository/repository.component';
+import { SamplebillsComponent } from './supportingcomponents/samplebills/samplebills.component';
+import { TemplatesComponent } from './supportingcomponents/templates/templates.component'
 
 @NgModule({
   declarations: [
@@ -136,7 +143,13 @@ import { OtpGroupComponent } from './routingcomponents/otp-group/otp-group.compo
     RejectmsgComponent,
     OtpCardComponent,
     OtpRuleComponent,
-    OtpGroupComponent
+    OtpGroupComponent,
+    EmailValidator,
+    NumberOnlyDirective,
+    NotificationmatrixComponent,
+    RepositoryComponent,
+    SamplebillsComponent,
+    TemplatesComponent
    
   ],
   imports: [
@@ -180,7 +193,7 @@ import { OtpGroupComponent } from './routingcomponents/otp-group/otp-group.compo
 
   ],
  
-  providers: [LoaderService,ExcelService],
+  providers: [LoaderService,ExcelService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
