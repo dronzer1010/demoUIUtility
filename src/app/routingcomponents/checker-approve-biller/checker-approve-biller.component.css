@@ -13,15 +13,6 @@
   background-position-x: 10px;
   background-position-y: 4px;
 }
-.entry-table tr td{
-  height: 20px;
-  width: 25%;
-  text-align: center;
-}
-.entry-table tr:nth-child(1){
-  color:#533979;
-  font-weight: bold;
-}
 .pop-input{
   width: 50%;
   border: 0px;

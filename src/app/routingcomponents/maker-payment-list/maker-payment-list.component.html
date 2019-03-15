@@ -15,25 +15,32 @@
               </div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-                <input list="cat" value="All Categories" id="datalist" class="ml-2" style="width:30%;margin-left:10px;">
-                <datalist id="cat">
-                  <option value="All Categories">
-                  <option value="Electricity">
-                  <option value="Gas">
-                  <option value="Water">
-                  <option value="Telecom">
-                </datalist>
-                <input list="datetime" id="datalist" value="This Month" class="ml-2 datepicker" style="width:30%;margin-left:10px;">
-                <datalist id="datetime">
-                  <option value="Today">
-                  <option value="This Week">
-                  <option value="This Month">
-                  <option value="This Year">
-                </datalist>
+                  <ng-multiselect-dropdown
+                  [placeholder]="'All Categories'"
+                  [data]="dropdownCat"
+                  [(ngModel)]="selectedItems1"
+                  [settings]="dropdownSettings1"
+                  (onSelect)="onItemSelect($event)"
+                  [(ngClass)]="all-cat"
+                  (onSelectAll)="onSelectAll($event)">
+                </ng-multiselect-dropdown>
+                <ng-multiselect-dropdown
+                  [placeholder]="'This Month'"
+                  [data]="dropdownList"
+                  [(ngModel)]="selectedItems2"
+                  [settings]="dropdownSettings2"
+                  (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll($event)">
+                </ng-multiselect-dropdown>
                 <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png" alt=""> Download File</button> -->
-                <a id="button" class="btn btn-primary btn-outline ResponsiveBtnWidth openModal" (click)="closeModalDialog()"
-                  style="width:30%;margin-left:10px;"><img src="assets/img/downloadlist.png" alt=""> Download
-                  File</a>
+                <ng-multiselect-dropdown
+                  [placeholder]="'Download List'"
+                  [data]="dropdownDownload"
+                  [(ngModel)]="selectedItems"
+                  [settings]="dropdownSettings"
+                  (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll($event)">
+                </ng-multiselect-dropdown>
                 <div class="backdrop" [ngStyle]="{'display':display}"></div>
                 <!-- modal -->
                 <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
@@ -121,7 +128,12 @@
                 </div>
               </div>
             </div>
-
+            <div class="row mb-3" style="margin-bottom:15px;">
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 txt"> No of Payments: <strong>17</strong></div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right txt">Total Payments: <strong>17</strong></div>
+            </div>
             <div class="row" style="margin:0px;">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
                 <table id="main-table" [mfData]="payments" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
@@ -129,12 +141,11 @@
                     <tr>
                       <td>Sr.No.</td>
                       <td>Bill Name <img src="assets/img/Filter.png" alt=""></td>
-                      <td>Consumer No <img src="assets/img/Filter.png" alt=""></td>
                       <td>Amount <img src="assets/img/Filter.png" alt=""></td>
                       <td>Bill Date <img src="assets/img/Filter.png" alt=""></td>
                       <td>Due Date <img src="assets/img/Filter.png" alt=""></td>
-                      <td>Status</td>
-                      <!-- <td>Payment Status</td> -->
+                      <td>Status <img src="assets/img/Filter.png" alt=""></td>
+                      <td>Payment Status <img src="assets/img/Filter.png" alt=""></td>
                       <td>&nbsp;</td>
                     </tr>
                   </thead>
@@ -143,12 +154,11 @@
                     <tr>
                       <td>{{i+1}}</td>
                       <td>{{payment.bill.biller}}</td>
-                      <td>{{payment.bill.consumerno}}</td>
                       <td><i class="fa fa-inr"></i> {{payment.amount}}</td>
                       <td>{{payment.billdate}}</td>
                       <td>{{payment.duedate}}</td>
                       <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.status}}</a></td>
-                      <!-- <td>{{payment.paymentstatus}}</td> -->
+                      <td>{{payment.paymentstatus}}</td>
                       <td style="padding:0 5px;"><img src="assets/img/tb_downarrow.png" alt="" (click)="payment.collapsed=!payment.collapsed"></td>
                     </tr>
                     <tr class="rowShow grayStrip" style="" *ngIf="payment.collapsed">
@@ -163,7 +173,10 @@
                             <div class="span_width">GL/Expense Code</div> <span> : </span> &nbsp;
                             <div class="bold_span">{{payment.bill.expensecode}}</div>
                           </div>
-
+                          <div class="mb-1">
+                            <div class="span_width">Consumer No.</div> <span> : </span> &nbsp;
+                            <div class="bold_span">{{payment.bill.consumerno}}</div>
+                          </div>
                           <!-- <div class="mb-1">
                             <div class="span_width">Bill Date</div> <span> : </span> &nbsp;
                             <div class="bold_span">{{payment.billdate}}</div>

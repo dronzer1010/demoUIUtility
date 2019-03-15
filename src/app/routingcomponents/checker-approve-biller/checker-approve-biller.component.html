@@ -15,23 +15,32 @@
               </div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-                <input list="browsers" value="All Categories" id="datalist" style="margin-left:10px; padding: 4px 5px 4px 15px; width: 125px;">
-                <datalist id="browsers">
-                  <option value="Internet Explorer" selected>
-                  <option value="Firefox">
-                  <option value="Chrome">
-                  <option value="Opera">
-                  <option value="Safari">
-                </datalist>
-                <input list="date" id="datalist" class="this-month" value="This Month" style="margin-left:10px;width: 125px;">
-                <datalist id="date">
-                  <option value="This Month">
-                  <option value="This Week">
-                </datalist>
-                <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png"> Download File</button> -->
-                <a id="button" class="btn btn-primary btn-outline ResponsiveBtnWidth openModal" (click)="closeModalDialog()"
-                  style="margin-left: 10px;"> <img src="../../../assets/img/downloadlist.png" alt=""> Download
-                  File</a>
+                  <ng-multiselect-dropdown
+                  [placeholder]="'All Categories'"
+                  [data]="dropdownCat"
+                  [(ngModel)]="selectedItems1"
+                  [settings]="dropdownSettings1"
+                  (onSelect)="onItemSelect($event)"
+                  [(ngClass)]="all-cat"
+                  (onSelectAll)="onSelectAll($event)">
+                </ng-multiselect-dropdown>
+                <ng-multiselect-dropdown
+                  [placeholder]="'This Month'"
+                  [data]="dropdownList"
+                  [(ngModel)]="selectedItems2"
+                  [settings]="dropdownSettings2"
+                  (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll($event)">
+                </ng-multiselect-dropdown>
+                <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png" alt=""> Download File</button> -->
+                <ng-multiselect-dropdown
+                  [placeholder]="'Download List'"
+                  [data]="dropdownDownload"
+                  [(ngModel)]="selectedItems"
+                  [settings]="dropdownSettings"
+                  (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll($event)">
+                </ng-multiselect-dropdown>
                 <div class="backdrop" [ngStyle]="{'display':display}"></div>
                 <!-- modal -->
                 <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
@@ -120,23 +129,11 @@
               </div>
             </div>
             <div class="row" style="margin-bottom:20px;margin-right: -15px!important;">
-                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 txt">
-                    <table class="entry-table">
-                      <tr>
-                        <td>No. of Bills</td>
-                        <td>Total Amount</td>
-                        <td>No. of Selected Bills</td>
-                        <td>Amount Payable</td>
-                      </tr>
-                      <tr>
-                        <td>{{billerlength}}</td>
-                        <td><i class="fa fa-inr"></i> 7467482</td>
-                        <td>4</td>
-                        <td><i class="fa fa-inr"></i> 7467482</td>
-                      </tr>
-                    </table>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 txt">
+                    No of Bills : <strong>11</strong>
                   </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right"><button class="btn1" style="margin-right:10px;"
                   (click)="approveBtn()">Approve
                   Bill</button>

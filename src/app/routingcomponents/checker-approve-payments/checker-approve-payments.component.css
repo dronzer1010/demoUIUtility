@@ -23,6 +23,17 @@ input[type="checkbox"] {
   outline-style: none;
 }
 
+.entry-table tr td{
+  height: 20px;
+  width: 25%;
+  text-align: center;
+}
+
+.entry-table tr:nth-child(1){
+  color:#533979;
+  font-weight: bold;
+}
+
 .spn-modal {
   color: #333333;
   font-size: 13px;
