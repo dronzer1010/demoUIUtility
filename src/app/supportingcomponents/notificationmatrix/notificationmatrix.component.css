@@ -138,6 +138,7 @@ color: #52178b;
 
     .tabs .tab-pane {
         margin-left: 20px;
+        display: block;
     }
 
     .tabs h3 {

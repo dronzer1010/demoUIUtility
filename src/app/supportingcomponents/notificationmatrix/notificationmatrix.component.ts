@@ -881,6 +881,7 @@ console.log(this.currentUser)
     }
     this.enableMe = false;
     this.Showme = false;
+    console.log(obj)
     // this.asNotificationMatrixService.sendNotificationDetails(obj).then(resp => {
     //   this.myNotificationDetails = resp.data;
     // });
