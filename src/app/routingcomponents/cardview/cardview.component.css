@@ -18,7 +18,7 @@
     background-color: #fff;
     color: #000;
     cursor: pointer;
-    padding: 18px 18px 18px 0px;
+    padding: 0px 18px 10px 0px;
     border: none;
     text-align: left;
     outline: none;
@@ -71,6 +71,7 @@
     color: #ffffff;
     background-repeat: no-repeat;
     background-size: cover;
+    height:250px;
 }
 
 .cardnot {
@@ -88,12 +89,14 @@
     box-shadow: 0 0 8.5px 1.5px rgba(86, 79, 193, 0.1);
     padding: 40px 35px 20px 35px;
     margin: 10px 0px;
+    border-radius: 10px;
 }
 .card-2 {
     background-color: #ffffff;
     box-shadow: 0 0 8.5px 1.5px rgba(86, 79, 193, 0.1);
     padding: 40px 35px 20px 35px;
     margin: 10px 0px;
+    border-radius: 10px;
 }
 
 .fontsize h4 {
