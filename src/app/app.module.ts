@@ -89,7 +89,8 @@ import { DatePipe } from '@angular/common';
 import { NotificationmatrixComponent } from './supportingcomponents/notificationmatrix/notificationmatrix.component';
 import { RepositoryComponent } from './supportingcomponents/repository/repository.component';
 import { SamplebillsComponent } from './supportingcomponents/samplebills/samplebills.component';
-import { TemplatesComponent } from './supportingcomponents/templates/templates.component'
+import { TemplatesComponent } from './supportingcomponents/templates/templates.component';
+import { NewMakerBillerBulkComponent } from './routingcomponents/new-maker-biller-bulk/new-maker-biller-bulk.component';
 
 @NgModule({
   declarations: [
@@ -149,7 +150,8 @@ import { TemplatesComponent } from './supportingcomponents/templates/templates.c
     NotificationmatrixComponent,
     RepositoryComponent,
     SamplebillsComponent,
-    TemplatesComponent
+    TemplatesComponent,
+    NewMakerBillerBulkComponent
    
   ],
   imports: [

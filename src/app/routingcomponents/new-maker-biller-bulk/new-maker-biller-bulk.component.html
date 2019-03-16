@@ -1,0 +1,985 @@
+
+<div class="container">
+    <section class="content">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 heading">
+          Add Biller
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 top_back no-show2">
+          <!-- <h5 class="blu-color">
+            <a *ngIf="billdetails" class="backBtnpay_sup" (click)="backbilltype()">
+              <img src="../../../assets/img/left-arrow.png">Back</a>
+            <a *ngIf="conf" class="sndback" (click)="backbilldetails()">
+              <img src="../../../assets/img/left-arrow.png">Back</a>
+          </h5> -->
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+          <div class="stepwizard" *ngIf="billertype">
+            <div class="stepwizard-row stepwizard-row2 setup-panel">
+              <div class="stepwizard-step">
+                <a class="btn bg-primary btn-circle" id="fourth"></a>
+                <h6 class="blu-color stepmrgnlft" id="p1">Bill Type</h6>
+              </div>
+              <div class="stepwizard-step">
+                <a class="btn bg-default btn-circle" id="fifth"></a>
+                <h6 id="p2">Upload File</h6>
+              </div>
+              <div class="stepwizard-step">
+                <a class="btn bg-default btn-circle" id="sixth"></a>
+                <h6 id="p3">Review File</h6>
+              </div>
+              <div class="stepwizard-step">
+                <a class="btn bg-default btn-circle" id="sixth"></a>
+                <h6 id="p3">Confirm & Send</h6>
+              </div>
+            </div>
+          </div>
+          <div class="stepwizard" *ngIf="billdetails">
+            <div class="stepwizard-row stepwizard-row2 setup-panel">
+              <div class="stepwizard-step">
+                <a class="btn bg-primary btn-circle-big" id="fourth">
+                  <img class="img-responsive tick2" src="assets/img/tick.png">
+                </a>
+                <h6 class="blu-color stepmrgnlft" id="p1">Bill Type</h6>
+              </div>
+              <div class="stepwizard-step">
+                <a class="btn bg-primary btn-circle" id="fifth"></a>
+                <h6 id="p2">Upload File</h6>
+              </div>
+              <div class="stepwizard-step">
+                <a class="btn bg-default btn-circle" id="sixth"></a>
+                <h6 id="p3">Review File</h6>
+              </div>
+              <div class="stepwizard-step">
+                <a class="btn bg-default btn-circle" id="sixth"></a>
+                <h6 id="p3">Confirm & Send</h6>
+              </div>
+            </div>
+          </div>
+          <div class="stepwizard" *ngIf="reviewfile">
+            <div class="stepwizard-row stepwizard-row2 setup-panel">
+              <div class="stepwizard-step">
+                <a class="btn bg-primary btn-circle-big" id="fourth">
+                  <img class="img-responsive tick2" src="assets/img/tick.png">
+                </a>
+                <h6 class="blu-color stepmrgnlft" id="p1">Bill Type</h6>
+              </div>
+              <div class="stepwizard-step">
+                <a class="btn bg-primary btn-circle-big" id="fifth">
+                  <img class="img-responsive tick2" src="assets/img/tick.png">
+                </a>
+                <h6 id="p2">Upload File</h6>
+              </div>
+              <div class="stepwizard-step">
+                <a class="btn bg-primary btn-circle" id="sixth"></a>
+                <h6 id="p3">Review File</h6>
+              </div>
+              <div class="stepwizard-step">
+                <a class="btn bg-default btn-circle" id="sixth"></a>
+                <h6 id="p3">Confirm & Send</h6>
+              </div>
+            </div>
+          </div>
+          <div class="stepwizard" *ngIf="conf">
+            <div class="stepwizard-row stepwizard-row2 setup-panel">
+              <div class="stepwizard-step">
+                <a class="btn bg-primary btn-circle-big" id="fourth">
+                  <img class="img-responsive tick2" src="assets/img/tick.png">
+                </a>
+                <h6 class="blu-color stepmrgnlft" id="p1">Bill Type</h6>
+              </div>
+              <div class="stepwizard-step">
+                <a class="btn bg-primary btn-circle-big" id="fifth">
+                  <img class="img-responsive tick2" src="assets/img/tick.png">
+                </a>
+                <h6 id="p2">Upload File</h6>
+              </div>
+              <div class="stepwizard-step">
+                <a class="btn bg-primary btn-circle-big" id="sixth">
+                  <img class="img-responsive tick2" src="assets/img/tick.png">
+                </a>
+                <h6 id="p3">Review File</h6>
+              </div>
+              <div class="stepwizard-step">
+                <a class="btn bg-default btn-circle" id="sixth"></a>
+                <h6 id="p3">Confirm & Send</h6>
+              </div>
+            </div>
+          </div>
+          <div class="stepwizard" *ngIf="success">
+            <div class="stepwizard-row stepwizard-row2 setup-panel">
+              <div class="stepwizard-step">
+                <a class="btn bg-primary btn-circle-big" id="fourth">
+                  <img class="img-responsive tick2" src="assets/img/tick.png">
+                </a>
+                <h6 class="blu-color stepmrgnlft" id="p1">Bill Type</h6>
+              </div>
+              <div class="stepwizard-step">
+                <a class="btn bg-primary btn-circle-big" id="fifth">
+                  <img class="img-responsive tick2" src="assets/img/tick.png">
+                </a>
+                <h6 id="p2">Upload File</h6>
+              </div>
+              <div class="stepwizard-step">
+                <a class="btn bg-primary btn-circle-big" id="sixth">
+                  <img class="img-responsive tick2" src="assets/img/tick.png">
+                </a>
+                <h6 id="p3">Review File</h6>
+              </div>
+              <div class="stepwizard-step">
+                <a class="btn bg-primary btn-circle-big" id="sixth">
+                  <img class="img-responsive tick2" src="assets/img/tick.png">
+                </a>
+                <h6 id="p3">Confirm & Send</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-2 top_back no-show">
+          <h5 class="blu-color">
+            <a href="#" class="backBtnpay_sup">
+              <img src="assets/img/left-arrow.png"> Back </a>
+            <a class="sndback">
+              <img src="assets/img/left-arrow.png"> Back </a>
+          </h5>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <form role="form" class="contact-form">
+        <div class="row" *ngIf="billertype">
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <div class="row setup-content form_bg">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-bottom: 1px solid #e9e9e9;">
+                <h4 class="Top5Heading111 ">Select Bill Type</h4>
+              </div>
+              <div class="BorderBottom"></div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 extra_padd detail_bill">
+                
+                  
+                    <div class="col-lg-4 col-xs-4 col-sm-4 col-md-4 padln"></div>
+                    <div class="col-lg-4 col-xs-4 col-sm-4 col-md-4 padln">
+                      <select class="input-text js-input inptxt form-control" name="usertitle" required [(ngModel)]="billdata.board"
+                        name="board">
+                        <option value="Electricity" selected>Elecricity</option>
+                        <option value="Telecom">Telecom</option>
+                        <option value="Gas">Gas</option>
+                        <option value="Insurance">Insurance</option>
+                        <option value="Water">Water</option>
+  
+                      </select>
+                      <label class="label" for="usertitle">Select Type of Utility</label>
+                    </div>
+                    <div class="col-lg-4 col-xs-4 col-sm-4 col-md-4 padln"></div>
+                    <!-- <div class="clear20"></div>
+                    <div class="clear20"></div> -->
+                    <!-- <div class="col-xs-12 col-sm-12 col-md-12 padln">
+                      <select class="input-text js-input inptxt form-control" required [(ngModel)]="billdata.state" name="state" (change)="getBiller($event.target.value)">
+                        <option *ngFor="let state of states" value="{{state.code}}">{{state.name}}</option>
+                      </select>
+                      <label class="label" for="usertitle">Select State</label>
+                    </div> -->
+                    <!-- <div class="clear20"></div>
+                    <div class="clear20"></div>
+                    <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12 padln">
+                      <select class="input-text js-input inptxt form-control" [(ngModel)]="billdata.biller" name="biller" required>
+                        <option *ngFor="let bilr of billerlist" value="{{bilr.name}}">{{bilr.name}}</option>                     
+                      </select>
+                      <label class="label" for="usertitle">Select Biller</label>
+                    </div> -->
+                    <div class="clear20"></div>
+                    <div class="clear20"></div>
+                  
+                
+                <div class="clearfix"></div>
+                
+                <!-- <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="clear20"></div>
+                  <span class="download"><img id="download" (click)="billrdetails()" src="../../../assets/img/downloadlist.png">&nbsp;Download Template</span>
+                  <button class="btn bg-primary nextpay buttonpad" type="button" (click)="billrdetails()">Next</button>
+                  <div class="clear20"></div>
+                  <div class="clear20"></div>
+                </div> -->
+              </div>              
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+          <div class="row">
+              <div class="clear20"></div>
+              <div class="clear20"></div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center form_bg detail_bill1">
+              <ul>
+                <li>Reliance Energy - Mumbai, Maharashtra</li>
+                <li>SNDL - Nagpur, Maharashtra</li>
+                <li>North Bihar Power Distribution Co. Ltd (NBPDCL)	- Bihar</li>
+                <li>South Bihar Power Distribution - Bihar</li>
+                <li>Torrent Power Limited	- Gujarat</li>
+                <li>Torrent Power Limited	- Uttar Pradesh
+                  </li>
+                <li>Torrent Power Limited	- Maharashtra</li>
+                <li>NOIDA POWER COMPANY LTD (NPCL) - Uttar Pradesh</li>
+                <li>TATA POWER DELHI DISTRIBUTION LIMITED	- New Delhi</li>
+              </ul>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center form_bg detail_bill1">
+              <ul>
+                <li>BSES Rajdhani	- New Delhi</li>
+                <li>BSES Yamuna	- New Delhi</li>
+                <li>Calcutta Electric Supply Corporation (India) Limited - West Bengal</li>
+                <li>Madhya Pradesh Madhya Kshetra Vidyut Vitran Company Limited (MPCZ) - Madhya Pradesh</li>
+                <li>MP Poorv Kshetra Vidyut Vitaran-Jabalpur - Madhya Pradesh</li>
+                <li>TSSPDCL - Telangana</li>
+                <li>TATA POWER - MUMBAI, Maharashtra</li>
+                <li>MSEDCL - Maharashtra</li>
+                <li>NESCO Utility - Odisha</li>
+                <li>Kerala State Electricity Board Ltd (KSEB Ltd) - Kerala</li>
+              </ul> 
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center form_bg detail_bill1">
+              <ul>
+                <li>Kota Electricity Distribution Limited(KEDL)	Rajasthan</li>
+                <li>JAMSHEDPUR UTILITIES &SERVICES COMPANY LTD (JUSCO) - Jharkhand</li>
+                <li>Eastern Power Distribution Company of A.P. Ltd. - Andhra Pradesh</li>
+                <li>Northern Power Distribution Company Limited: Warrangal (TSNPDCL) - Telangana</li>
+                <li>Jodhpur Vidyut Vitran Nigam Limited (JDVVNL) - Rajasthan</li>
+                <li>Brihanmumbai Electricity Supply and Transport Undertaking (BEST Undertaking) - Maharashtra</li>
+                <li>Ajmer Vidyut Vitran Nigam Limited (AVVNL) - Rajasthan</li>
+                <li>Madhya Pradesh Paschim Kshetra Vidyut Vitaran Company Ltd. (MPPKVVCL) -	Madhya Pradesh</li>
+                <li>Southern Electricity Supply Company Of Odisha Limited (SOUTHCO) - Odisha</li>
+                <li>West Bengal State Electricity Distribution Company Limited (WBSEDCL) - West Bengal</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="clear20"></div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center"><button class="dwn-temp"> <img src="assets/img/downloadlist.png" alt=""> Download Template</button></div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center"><button class="dwn-temp"> <img src="assets/img/downloadlist.png" alt=""> Download Template</button></div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center"><button class="dwn-temp"> <img src="assets/img/downloadlist.png" alt=""> Download Template</button></div>
+          </div>
+          <div class="row">
+              <div class="clear20"></div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+                <input _ngcontent-c5="" accept=".csv" class="btn bg-primary nextpay buttonpad ng-untouched ng-pristine ng-valid" name="fileUpload" type="file" ng-reflect-name="fileUpload">
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+                <input _ngcontent-c5="" accept=".csv" class="btn bg-primary nextpay buttonpad ng-untouched ng-pristine ng-valid" name="fileUpload" type="file" ng-reflect-name="fileUpload">
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+                <input _ngcontent-c5="" accept=".csv" class="btn bg-primary nextpay buttonpad ng-untouched ng-pristine ng-valid" name="fileUpload" type="file" ng-reflect-name="fileUpload">
+              </div>
+            </div>
+        </div>
+
+        <div *ngIf="billdetails" class="row setup-content form_bg">
+          <div class="col-md-12 extra_padd">
+            <div class="col-xs-10 col-xs-offset-1 col-md-offset-3 col-sm-offset-2 col-sm-8 col-md-6 col-lg-offset-4 col-lg-4 text-center">
+              <div class=" row">
+                <div class="col-xs-12 col-sm-12 col-md-12 text-center nextpay dnddive" id="file-drag">
+                  <img class="file-upload" src="assets/img/file-upload.png">
+                  <form id="file-upload-form">
+                    <label for="file-upload">
+                      <span class="blu-color dndlabel">
+                        Drag n Drop file to Upload Template
+                      </span>
+                      <span class="blu-color chota">
+                        or
+                      </span>
+                    </label>
+                    <div class="clear20"></div>
+                    <!-- <button class="btn bg-primary nextpay buttonpad" type="file" (click)="upldfile();onFileLoad($event)">Click to Browse</button> -->
+                    <input class="btn bg-primary nextpay buttonpad" type="file" [(ngModel)]="fileUpload" name="fileUpload"
+                      (change)="UploadFile($event)" accept=".csv" />
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="clear20"></div>
+            <div class="clear20"></div>
+            <div class="clear20"></div>
+          </div>
+          <div class="clear20"></div>
+          <div class="clear20"></div>
+        </div>
+  
+  
+  
+  
+        <!-- <div class="card" style="height:257px !important;" *ngIf="billdetails">
+          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12"></div>
+          <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">          
+            <div style="background-color: white;" class="row ">
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12"></div>            
+              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 uploads" style="background-color:white;">
+                <img class="file-upload" src="../../../assets/img/file-upload.png">
+                <div id="p1">Drag & Drop file to Upload Template</div>
+                <p id="p2">or</p>
+                <button class="btn bg-primary nextpay buttonpad" type="button" (click)="upldfile()">Click to Browse</button>
+              </div>          
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12"></div>
+            </div>        
+          </div>
+          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12"></div>
+        </div> -->
+        <div class="row">
+          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+          <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10" *ngIf="reviewfile">
+            <div class="row form_bg">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-bottom: 1px solid #e9e9e9;">
+                    <h4 class="Top5Heading111">Review Uploaded File</h4>
+                  </div>
+                </div>
+                <div class="row" style="margin-top:15px; font-size:13px;">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    Type of Utility : <span class="spn">{{billdata.board}}</span>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
+                    Show : <input list="browsers" value="100" class="datalist">
+                    <datalist id="browsers">
+                      <option value="5">
+                      <option value="10">
+                      <option value="15">
+                      <option value="20">
+                      <option value="25">
+                    </datalist>
+                  </div>
+                </div>
+                <!-- <div class="row" style="margin-top:15px; font-size:13px;">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      State : <span class="spn">{{billdata.state}}</span>
+                    </div>
+                  </div>
+                <div class="row" style="margin-top:15px; font-size:13px;">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    Biller Name : <span class="spn">{{billdata.biller}}</span>
+                  </div>
+                </div> -->
+                <div class="row" style="margin-top:15px; font-size:13px;">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    No. of Entries : <span class="spn">5</span>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
+                    <button class="btn bg-primary nextpay buttonpad" type="button" (click)="revfile();submitdata()" style="padding: 3px 25px!important;">Submit
+                      for Approval</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
+                      <table id="main-table">
+                        <thead>
+                          <tr>
+                            <td><input name="vehicle1" type="checkbox" (click)="changeall()"></td>
+                            <td style="width:25%;">Biller Name</td>
+                            <td>Consumer No &nbsp;</td>
+                            <td>Location &nbsp;</td>
+                            <td>Bill Date &nbsp;</td>
+                            <td>Due Date &nbsp;</td>
+                            <td>&nbsp;</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><input name="vehicle1" type="checkbox" [checked]="selectall"></td>
+                            <td style="width:25%;">BEST-Mumbai</td>
+                            <td>34574364763</td>
+                            <td>Maharashtra</td>
+                            <td>6th</td>
+                            <td>15th</td>
+                            <td style="padding:0px 15px;"><img src="assets/img/tb_downarrow.png" (click)="collapse=!collapse"></td>
+                          </tr>
+                          <tr class="rowShow grayStrip" *ngIf="collapse">
+                            <td class="custmtd" colspan="7">
+                              <div class="tablediv">
+                                <h5>Biller Details</h5>
+                                <div class="mb-1">
+                                  <div class="span_width">Short Name</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">BEST</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">GL/Expense Code</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">123/223455</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Ref. No. 1</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">989601</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Ref. No. 2</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">358507</div>
+                                </div>
+                              </div>
+                              <div class="tablediv">
+                                <h5>Contact Details</h5>
+                                <div class="mb-1">
+                                  <div class="span_width">Mobile No</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">9897866565</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Address</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">333/34 Dynna Business Park Marol Andheri Mumbai</div>
+                                </div>
+                                <div>
+                                  <div class="span_width">Email</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">deepali.patekar@axisbank.com</div>
+                                </div>
+                              </div>
+                              <div class="tablediv noborder">
+                                <h5>Other Details</h5>
+                                <div class="mb-1">
+                                  <div class="span_width">File Name</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">billerbulkfile.csv</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Initiated by</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">--</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Initiated on</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">--</div>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="rowShow grayStrip" *ngIf="collapse">
+                            <td colspan="7"><span class="pull-right"><img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              </span></td>
+                          </tr>
+                          <tr>
+                            <td><input name="vehicle1" type="checkbox" [checked]="selectall"></td>
+                            <td style="width:25%;">Adani Electricity</td>
+                            <td>102096976</td>
+                            <td>Maharashtra</td>
+                            <td>6th</td>
+                            <td>15th</td>
+                            <td style="padding:0px 15px;"><img src="assets/img/tb_downarrow.png" (click)="collapse1=!collapse1"></td>
+                          </tr>
+                          <tr class="rowShow grayStrip" *ngIf="collapse1">
+                            <td class="custmtd" colspan="7">
+                              <div class="tablediv">
+                                <h5>Biller Details</h5>
+                                <div class="mb-1">
+                                  <div class="span_width">Short Name</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">ADAN</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">GL/Expense Code</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">123/343454</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Ref. No. 1</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">989601</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Ref. No. 2</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">358507</div>
+                                </div>
+                              </div>
+                              <div class="tablediv">
+                                <h5>Contact Details</h5>
+                                <div class="mb-1">
+                                  <div class="span_width">Mobile No</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">9897866565</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Address</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">234 Adani Bhavan Goregaon East</div>
+                                </div>
+                                <div>
+                                  <div class="span_width">Email</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">deepali.patekar@axisbank.com</div>
+                                </div>
+                              </div>
+                              <div class="tablediv noborder">
+                                <h5>Other Details</h5>
+                                <div class="mb-1">
+                                  <div class="span_width">File Name</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">billerbulkfile.csv</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Initiated by</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">--</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Initiated on</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">--</div>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="rowShow grayStrip" *ngIf="collapse1">
+                            <td colspan="7"><span class="pull-right"><img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              </span></td>
+                          </tr>
+                          <tr>
+                            <td><input name="vehicle1" type="checkbox" [checked]="selectall"></td>
+                            <td style="width:25%;">Torrent Power Ltd.-Ahmedabad</td>
+                            <td>110413002334</td>
+                            <td>Gujarat</td>
+                            <td>6th</td>
+                            <td>15th</td>
+                            <td style="padding: 0px 15px;"><img src="assets/img/tb_downarrow.png" (click)="collapse2=!collapse2"></td>
+                          </tr>
+                          <tr class="rowShow grayStrip" *ngIf="collapse2">
+                            <td class="custmtd" colspan="7">
+                              <div class="tablediv">
+                                <h5>Biller Details</h5>
+                                <div class="mb-1">
+                                  <div class="span_width">Short Name</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">TPLA</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">GL/Expense Code</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">123/343243</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Ref. No. 1</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">989601</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Ref. No. 2</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">358507</div>
+                                </div>
+                              </div>
+                              <div class="tablediv">
+                                <h5>Contact Details</h5>
+                                <div class="mb-1">
+                                  <div class="span_width">Mobile No</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">9897866565</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Address</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">45/11 Desai Road, Ahemdabad</div>
+                                </div>
+                                <div>
+                                  <div class="span_width">Email</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">deepali.patekar@axisbank.com</div>
+                                </div>
+                              </div>
+                              <div class="tablediv noborder">
+                                <h5>Other Details</h5>
+                                <div class="mb-1">
+                                  <div class="span_width">File Name</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">billerbulkfile.csv</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Initiated by</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">--</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Initiated on</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">--</div>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="rowShow grayStrip" *ngIf="collapse2">
+                            <td colspan="7"><span class="pull-right"><img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              </span></td>
+                          </tr>
+                          <tr>
+                            <td><input name="vehicle1" type="checkbox" [checked]="selectall"></td>
+                            <td style="width:25%;">BSES Rajdhani-Delhi</td>
+                            <td>110413004345</td>
+                            <td>Delhi</td>
+                            <td>6th</td>
+                            <td>15th</td>
+                            <td style="padding: 0px 15px;"><img src="assets/img/tb_downarrow.png" (click)="collapse3=!collapse3"></td>
+                          </tr>
+                          <tr class="rowShow grayStrip" *ngIf="collapse3">
+                            <td class="custmtd" colspan="7">
+                              <div class="tablediv">
+                                <h5>Biller Details</h5>
+                                <div class="mb-1">
+                                  <div class="span_width">Short Name</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">BSESR</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">GL/Expense Code</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">123/334355</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Ref. No. 1</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">989601</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Ref. No. 2</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">358507</div>
+                                </div>
+                              </div>
+                              <div class="tablediv">
+                                <h5>Contact Details</h5>
+                                <div class="mb-1">
+                                  <div class="span_width">Mobile No</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">9897866565</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Address</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">Nehru Place, New Delhi, Delhi</div>
+                                </div>
+                                <div>
+                                  <div class="span_width">Email</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">deepali.patekar@axisbank.com</div>
+                                </div>
+                              </div>
+                              <div class="tablediv noborder">
+                                <h5>Other Details</h5>
+                                <div class="mb-1">
+                                  <div class="span_width">File Name</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">billerbulkfile.csv</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Initiated by</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">--</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Initiated on</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">--</div>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="rowShow grayStrip" *ngIf="collapse3">
+                            <td colspan="7"><span class="pull-right"><img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              </span></td>
+                          </tr>
+                          <tr>
+                            <td><input name="vehicle1" type="checkbox" [checked]="selectall"></td>
+                            <td style="width:25%;">BSES Yamuna-Delhi</td>
+                            <td>110413023445</td>
+                            <td>Delhi</td>
+                            <td>6th</td>
+                            <td>15th</td>
+                            <td style="padding: 0px 15px;"><img src="assets/img/tb_downarrow.png" (click)="collapse4=!collapse4"></td>
+                          </tr>
+                          <tr class="rowShow grayStrip" *ngIf="collapse4">
+                            <td class="custmtd" colspan="7">
+                              <div class="tablediv">
+                                <h5>Biller Details</h5>
+                                <div class="mb-1">
+                                  <div class="span_width">Short Name</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">BSESYD</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">GL/Expense Code</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">123/334343</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Ref. No. 1</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">989601</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Ref. No. 2</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">358507</div>
+                                </div>
+                              </div>
+                              <div class="tablediv">
+                                <h5>Contact Details</h5>
+                                <div class="mb-1">
+                                  <div class="span_width">Mobile No</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">9897866565</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Address</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">Shakti Kiran Building,Karkardooma,Vishwas Nagar, New Delhi</div>
+                                </div>
+                                <div>
+                                  <div class="span_width">Email</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">deepali.patekar@axisbank.com</div>
+                                </div>
+                              </div>
+                              <div class="tablediv noborder">
+                                <h5>Other Details</h5>
+                                <div class="mb-1">
+                                  <div class="span_width">File Name</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">billerbulkfile.csv</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Initiated by</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">--</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Initiated on</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">--</div>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="rowShow grayStrip" *ngIf="collapse4">
+                            <td colspan="7"><span class="pull-right"><img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              </span></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="row mt-4">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
+                <nav aria-label="Page navigation example" style="float:right;">
+                  <ul class="pagination">
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Previous">
+                        <span style="vertical-align:0px;" aria-hidden="true">&lang;</span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Next">
+                        <span style="vertical-align:0px;" aria-hidden="true">&rang;</span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div> -->
+          </div>
+          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div class="row">
+          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+          <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10" *ngIf="conf">
+            <div class="row form_bg">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-bottom: 1px solid #e9e9e9;">
+                    <h4 class="Top5Heading111">Review Uploaded File</h4>
+                  </div>
+                </div>
+                <div class="row" style="margin-top:15px; font-size:13px;">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    Type of Utility : <span class="spn">Electricity</span>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
+                    Show : <input list="browsers" value="100" class="datalist">
+                    <datalist id="browsers">
+                      <option value="5">
+                      <option value="10">
+                      <option value="15">
+                      <option value="20">
+                      <option value="25">
+                    </datalist>
+                  </div>
+                </div>
+                <div class="row" style="margin-top:15px; font-size:13px;">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    Biller Name : <span class="spn">Assam Power Distribution Company Ltd</span>
+                  </div>
+                </div>
+                <div class="row" style="margin-top:15px; font-size:13px;">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    No. of Entries : <span class="spn">1</span>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
+                    <button class="btn bg-primary nextpay buttonpad" type="button" (click)="revup()" style="padding: 3px 25px!important;">Submit
+                      for Approval</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
+                      <table id="main-table">
+                        <thead>
+                          <tr>
+                            <td><input name="vehicle1" type="checkbox" value="Bike"></td>
+                            <td>Consumer No &nbsp;</td>
+                            <td>Location &nbsp;</td>
+                            <td>Bill Date &nbsp;</td>
+                            <td>Due Date &nbsp;</td>
+                            <td>&nbsp;</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><input name="vehicle1" type="checkbox" value="Bike"></td>
+                            <td>61000006056</td>
+                            <td>Guwahati</td>
+                            <td>10/12/2018</td>
+                            <td>30/12/2018</td>
+                            <td><img src="assets/img/tb_downarrow.png"></td>
+                          </tr>
+                          <tr class="rowShow grayStrip">
+                            <td class="custmtd" colspan="7">
+                              <div class="tablediv">
+                                <h5>Bill Details</h5>
+                                <div class="mb-1">
+                                  <div class="span_width">Short Name</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">APDCL</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">GL/Expense Code</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">2456781</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Consumer No</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">61000006056</div>
+                                </div>
+                                <!-- <div>
+                                  <div class="span_width">Ref No 2:</div>
+                                  <div class="bold_span">358507</div>
+                                </div> -->
+                              </div>
+                              <div class="tablediv">
+                                <h5>Contact Details</h5>
+                                <div class="mb-1">
+                                  <div class="span_width">Contact No</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">+91 9876543210</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Address</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">A.T. Road Opp. Railway Gate No-1, Maligaon, Guwahati, Assam</div>
+                                </div>
+                                <div>
+                                  <div class="span_width">Email</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">maker@abclimited.com</div>
+                                </div>
+                              </div>
+                              <div class="tablediv noborder">
+                                <h5>Other Details</h5>
+                                <div class="mb-1">
+                                  <div class="span_width">File Name</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">None</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Initiated by</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">Rajesh Arora</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Initiated on</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">21/12/2018 | 14:08PM</div>
+                                </div>
+                                <!-- <div class="mb-1">
+                                      <div class="span_width">Approved By:</div>
+                                      <div class="bold_span">Rajesh Arora</div>
+                                    </div>
+                                    <div>
+                                      <div class="span_width">Approved on : </div>
+                                      <div class="bold_span">28/07/2018 | 12:00PM</div>
+                                    </div> -->
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="rowShow grayStrip">
+                            <td colspan="7"><span class="pull-right"><img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              </span></td>
+                          </tr>
+                          <!-- <tr>
+                            <td><input name="vehicle1" type="checkbox" value="Bike"></td>
+                            <td>1234567890</td>
+                            <td>Mumbai</td>
+                            <td>3 <sup>rd</sup></td>
+                            <td>20 <sup>th</sup></td>
+                            <td><img src="../../../assets/img/tb_downarrow.png"></td>
+                          </tr>
+                          <tr>
+                            <td><input name="vehicle1" type="checkbox" value="Bike"></td>
+                            <td>1234567890</td>
+                            <td>Thane</td>
+                            <td>2 <sup>nd</sup></td>
+                            <td>20 <sup>th</sup></td>
+                            <td><img src="../../../assets/img/tb_downarrow.png"></td>
+                          </tr>
+                          <tr>
+                            <td><input name="vehicle1" type="checkbox" value="Bike"></td>
+                            <td>1234567890</td>
+                            <td>Nashik</td>
+                            <td>1 <sup>st</sup></td>
+                            <td>1 <sup>st</sup></td>
+                            <td><img src="../../../assets/img/tb_downarrow.png"></td>
+                          </tr>
+                          <tr>
+                            <td><input name="vehicle1" type="checkbox" value="Bike"></td>
+                            <td>1234567890</td>
+                            <td>Pune</td>
+                            <td>4 <sup>th</sup></td>
+                            <td>20 <sup>th</sup></td>
+                            <td><img src="../../../assets/img/tb_downarrow.png"></td>
+                          </tr> -->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
+                <nav aria-label="Page navigation example" style="float:right;">
+                  <ul class="pagination">
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Previous">
+                        <span style="vertical-align:0px;" aria-hidden="true">&lang;</span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Next">
+                        <span style="vertical-align:0px;" aria-hidden="true">&rang;</span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+        </div>
+        <div class="row">
+          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+          <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10" *ngIf="success">
+            <div class="row setup-content form_bg">
+              <div class="BorderBottom"></div>
+              <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12 text-center">
+                <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12">
+                  <div>
+                    <div class="clear30"></div>
+                    <div class="clear20"></div>
+                    <div class="clear20"></div>
+                    <img src="assets/img/done-tick.png">
+                    <div class="clear20"></div>
+                    <div class="clear20"></div>
+                    <label class="successhedtxt">Bills are submitted for approval and notification has been sent.</label>
+                    <div class="clear20"></div>
+                    <div class="clear20"></div>
+                    <div class="col-lg-3 col-xs-3 col-sm-3 col-md-3"></div>
+                    <div class="col-lg-3 col-xs-3 col-sm-3 col-md-3">
+                      <a class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog" [routerLink]="['/main/billerlist']">View
+                        Bills</a>
+                    </div>
+                    <div class="col-lg-3 col-xs-3 col-sm-3 col-md-3">
+                      <a class="btn btn-primary btn-outline Btn_Width2" [routerLink]="['/main/dashboard']">Go to Dashboard</a>
+                    </div>
+                    <div class="clear30"></div>
+                    <div class="clear20"></div>
+                    <div class="clear20"></div>
+                    <div class="col-lg-3 col-xs-3 col-sm-3 col-md-3"></div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+        </div>
+      </form>
+    </section>
+  </div>

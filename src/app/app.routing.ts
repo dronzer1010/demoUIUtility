@@ -48,11 +48,12 @@ import { NotificationmatrixComponent } from './supportingcomponents/notification
 import { RepositoryComponent } from './supportingcomponents/repository/repository.component';
 import { SamplebillsComponent } from './supportingcomponents/samplebills/samplebills.component';
 import { TemplatesComponent } from './supportingcomponents/templates/templates.component'
-
+import { NewMakerBillerBulkComponent } from './routingcomponents/new-maker-biller-bulk/new-maker-biller-bulk.component';
 
 const appRoutes: Routes = [ 
     { path:'main',component:UserhomeComponent,
     children:[
+    {path:'new-maker-biller-bulk',component:NewMakerBillerBulkComponent},   
     {path:'pending-biller',component:CheckerApproveBillerComponent},
     {path:'unitary-biller',component:MakerBillerUnitaryComponent},
     {path:'billerlist',component:BillerlistComponent},
