@@ -4,9 +4,9 @@
   </div>
   <div class="row">
       <div class="col-md-12 tab text-center centra">
-          <button class="tablinks tbfnt" id="registration" [ngClass]="registrationtab?'active':''" >REGISTRATION</button>
-          <button class="tablinks tbfnt" id="payment"  [ngClass]="paymenttab?'active':''">PAYMENTS</button>
-          <button class="tablinks tbfnt" id="login"  [ngClass]="logintab?'active':''">LOGIN</button>
+          <button class="tablinks tbfnt" id="registration" [ngClass]="registrationtab?'active':''"  (click)="clickRegTab()">REGISTRATION</button>
+          <button class="tablinks tbfnt" id="payment"  [ngClass]="paymenttab?'active':''" (click)="clickPayTab()">PAYMENTS</button>
+          <button class="tablinks tbfnt" id="login"  [ngClass]="logintab?'active':''" (click)="clickLoginTab()">LOGIN</button>
       </div>
       <div id="registrationtab" class="tabcontent nopad" *ngIf="registrationtab">
 
@@ -17,29 +17,27 @@
                       <div class="row">
                           <div class="col-xl-12 col-sm-2 col-md-2 padln">
                               <ul class="nav nav-pills nav-stacked flex-column">
-                                  <li>
-                                      <a href="#tab_a" data-toggle="pill">USER</a>
+                                  <li [ngClass]="usertab?'active':''" (click)="clickUserTab()">
+                                      <a data-toggle="pill">USER</a>
                                   </li>
-                                  <li>
-                                      <a href="#tab_b" data-toggle="pill">Cards</a>
+                                  <li [ngClass]="cardtab?'active':''" (click)="clickCardTab()">
+                                      <a data-toggle="pill">Cards</a>
                                   </li>
-                                  <li>
-                                      <a href="#tab_c" data-toggle="pill">Group</a>
+                                  <li [ngClass]="grouptab?'active':''" (click)="clickGroupTab()">
+                                      <a data-toggle="pill">Group</a>
                                   </li>
-                                  <li>
-                                      <a href="#tab_d" data-toggle="pill">Rules</a>
+                                  <li [ngClass]="ruletab?'active':''" (click)="clickRuleTab()">
+                                      <a data-toggle="pill">Rules</a>
                                   </li>
-                                  <li>
-                                      <a href="#tab_e" data-toggle="pill">Privileges</a>
-                                  </li>
-                                  <li>
-                                      <a href="#tab_f" data-toggle="pill">Billers</a>
+                                 
+                                  <li [ngClass]="billertab?'active':''" (click)="clickbillTab()">
+                                      <a data-toggle="pill">Billers</a>
                                   </li>
                               </ul>
                           </div>
                           <div class="col-xl-12 col-sm-8 col-md-8 padln">
                               <div class="tab-content">
-                                  <div class="tab-pane"  id="tab_a">
+                                  <div class="tab-pane"  id="tab_a" *ngIf="usertab">
                                       <div class="table-responsive">
                                           <table class="table text-center noborder">
                                               <thead>
@@ -98,7 +96,7 @@
 
                                   </div>
 
-                                  <div class="tab-pane" id="tab_b">
+                                  <div class="tab-pane" id="tab_b" *ngIf="cardtab">
                                       <div class="table-responsive">
                                           <table class="table text-center noborder">
                                               <thead>
@@ -155,7 +153,7 @@
                                       </div>
                                   </div>
 
-                                  <div class="tab-pane" id="tab_c">
+                                  <div class="tab-pane" id="tab_c" *ngIf="grouptab">
                                       <div class="table-responsive">
                                           <table class="table text-center noborder">
                                               <thead>
@@ -211,7 +209,7 @@
                                       </div>
 
                                   </div>
-                                  <div class="tab-pane" id="tab_d">
+                                  <div class="tab-pane" id="tab_d" *ngIf="ruletab">
                                       <div class="table-responsive">
                                           <table class="table text-center noborder">
                                               <thead>
@@ -267,7 +265,7 @@
                                       </div>
 
                                   </div>
-                                  <div class="tab-pane" id="tab_e">
+                                  <!-- <div class="tab-pane" id="tab_e">
 
                                       <div class="table-responsive">
                                           <table class="table text-center noborder">
@@ -322,8 +320,8 @@
                                               </tbody>
                                           </table>
                                       </div>
-                                  </div>
-                                  <div class="tab-pane" id="tab_f">
+                                  </div> -->
+                                  <div class="tab-pane" id="tab_f" *ngIf="billertab">
                                       <div class="table-responsive">
                                           <table class="table text-center noborder">
                                               <thead>
