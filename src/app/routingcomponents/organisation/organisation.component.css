@@ -1,0 +1,15 @@
+.span_widthn{
+    width: 35%;
+}
+.long_char{
+    width: 50%;
+}
+.bold_spann{
+    vertical-align: unset;
+}
+table{
+    width:100%;
+}
+.top-vert{
+    vertical-align: top;
+}
