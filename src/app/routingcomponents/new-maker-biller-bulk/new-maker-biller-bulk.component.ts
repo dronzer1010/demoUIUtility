@@ -24,6 +24,9 @@ export class NewMakerBillerBulkComponent implements OnInit {billertype:boolean=t
   collapse4:boolean=false;
   selectheadcheck:boolean=false;
   selectall:boolean=false;
+  showUploadFile:boolean=false; 
+  type2:boolean=false;
+  type3:boolean=false;
   bulkbill:any=[
     {
       "billaddress":"333/34 Dynna Business Park Marol Andheri Mumbai",
@@ -114,6 +117,24 @@ export class NewMakerBillerBulkComponent implements OnInit {billertype:boolean=t
         this.states=data;
       }
     )
+  }
+
+  showUpldView(){
+    this.showUploadFile=true;
+  }
+  twoparams(){
+    this.type2=false;
+    this.type3=false;
+  }
+
+  threeparams(){
+    this.type2=true;
+    this.type3=false;
+  }
+
+  fourparams(){
+    this.type2=false;
+    this.type3=true;
   }
 
   changeall(){

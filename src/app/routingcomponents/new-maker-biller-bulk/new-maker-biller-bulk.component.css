@@ -141,7 +141,7 @@
   .detail_bill {
     padding: 2% 4% !important;
     padding-bottom: 1% !important;
-    height: 100px !important;
+    height: 130px !important;
   }
   .detail_bill1 {
     padding: 2% 2% !important;
@@ -358,6 +358,7 @@
     font-size: 20px;
     font-weight: 500;
     margin-top: 30px;
+    padding-right: 50px;
   }
   
   .uploads{
@@ -822,11 +823,11 @@
     bottom: 0;
     position: absolute;
     content: " ";
-    width: 74% !important;
+    width: 64% !important;
     height: 1px;
     background-color: #ccc;
     z-index: 0;
-    right: 112px !important;
+    right: 147px !important;
   }
   
   @media only screen and (max-width: 1100px) {

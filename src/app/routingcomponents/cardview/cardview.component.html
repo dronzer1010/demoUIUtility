@@ -201,16 +201,16 @@
             <div class="container">
                 <div class="row">
                     <ng-container *ngFor="let rejected of rejectedcards">
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="col-sm-12 card-1">
                                 <div class="item bcolor">
                                     <div class="uk-card uk-light fontsize">
                                         <h4 class="uk-card-title hffont">{{rejected.cardholder}}</h4>
                                         <h4 class="nofnt">{{rejected.digits}}</h4>
-                                        <p class="textsmall mrgnp">
+                                        <p class="textsmall mrgnp" style="font-family:Poppins-Regular!important;">
                                             VALID
                                         </p>
-                                        <p class="textsmall mrgnp textsmall1">
+                                        <p class="textsmall mrgnp textsmall1" style="font-family:Poppins-Regular!important;">
                                             UP TO {{rejected.expirydate}}
                                         </p>
                                         <!--<div class="clear10"></div>-->

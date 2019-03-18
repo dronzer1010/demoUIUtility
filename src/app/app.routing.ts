@@ -53,7 +53,7 @@ import { NewMakerBillerBulkComponent } from './routingcomponents/new-maker-bille
 const appRoutes: Routes = [ 
     { path:'main',component:UserhomeComponent,
     children:[
-    {path:'new-maker-biller-bulk',component:NewMakerBillerBulkComponent},   
+    //{path:'new-maker-biller-bulk',component:NewMakerBillerBulkComponent},   
     {path:'pending-biller',component:CheckerApproveBillerComponent},
     {path:'unitary-biller',component:MakerBillerUnitaryComponent},
     {path:'billerlist',component:BillerlistComponent},
@@ -61,7 +61,8 @@ const appRoutes: Routes = [
     {path:'maker-payment-list',component:MakerPaymentListComponent},
     {path:'make-payment',component:MakerMakePaymentComponent},
     {path:'checker-approve-payments',component:CheckerApprovePaymentsComponent},
-    {path:'maker-biller-bulk',component:MakerBillerBulkComponent},  
+    //{path:'maker-biller-bulk',component:MakerBillerBulkComponent},  
+    {path:'maker-biller-bulk',component:NewMakerBillerBulkComponent}, 
     {path:'checker-biller',component:CheckerBillersComponent}, 
     {path:'checker-payments',component:CheckerPaymentsComponent},
     {path:'dashboard',component:DashboardCheckerComponent},                                                                                                              
