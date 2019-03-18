@@ -436,7 +436,7 @@ tbody tr td:last-child {
     margin-top: 85px;
   }
   }
-  @media only screen and (max-width:1370px){
+  @media only screen and (max-width:1380px){
     .p2{
       left: 295px!important;
     }
@@ -484,7 +484,7 @@ tbody tr td:last-child {
     left: 260px!important;
   }
   .graph{
-    height:330px;
+    height:326px;
   }
   .name{
     margin-top: 15px;
