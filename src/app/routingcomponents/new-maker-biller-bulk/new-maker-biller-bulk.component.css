@@ -92,9 +92,9 @@
     text-align: center;
   }
   
-  .buttonpad {
+  /* .buttonpad {
     padding: 6px 25px !important;
-  }
+  } */
   
   .buttonpad1 {
     padding: 2px 25px !important;
@@ -733,9 +733,9 @@
     color: #3f4245;
   }
   
-  .buttonpad {
+  /* .buttonpad {
     padding: 6px 25px !important;
-  }
+  } */
   
   .btnmargin {
     margin-left: 4% !important;

@@ -27,14 +27,30 @@
                             <div class="col-sm-12 card-1">
                                 <div class="item bcolor">
                                     <div class="uk-card uk-light fontsize">
-                                        <h4 class="uk-card-title hffont">{{approved.cardholder}}</h4>
-                                        <h4 class="nofnt">{{approved.digits}}</h4>
+                                        <div class="row bcolor1 mb-4">
+                                            <h3>Card Name</h3>   
+                                            <h6 class="nofnt">{{approved.cardholder}}</h6>
+                                        </div>
+                                        <div class="row bcolor1 mb-4">
+                                            <h3>Card Number</h3>
+                                            <h6 class="nofnt">{{approved.digits}}</h6>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6"><h3>Expiry Month</h3></div>
+                                            <div class="col-sm-6"><h3>Expiry Year</h3></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6 exp"><h6 class="nofnt">06</h6></div>
+                                            <div class="col-sm-6 exp"><h6 class="nofnt">2019</h6></div>
+                                        </div>
+                                        <!-- <h4 class="uk-card-title hffont"></h4>
+                                        <h4 class="nofnt"></h4>
                                         <p class="textsmall mrgnp" style="font-family:Poppins-Regular!important;">
                                             VALID
                                         </p>
                                         <p class="textsmall mrgnp textsmall1" style="font-family:Poppins-Regular!important;">
                                             UP TO {{approved.expirydate}}
-                                        </p>
+                                        </p> -->
                                         <!--<div class="clear10"></div>-->
                                     </div>
                                 </div>
@@ -205,14 +221,28 @@
                             <div class="col-sm-12 card-1">
                                 <div class="item bcolor">
                                     <div class="uk-card uk-light fontsize">
-                                        <h4 class="uk-card-title hffont">{{rejected.cardholder}}</h4>
-                                        <h4 class="nofnt">{{rejected.digits}}</h4>
-                                        <p class="textsmall mrgnp" style="font-family:Poppins-Regular!important;">
+                                        <div class="row bcolor1 mb-4">
+                                            <h3>Card Name</h3>   
+                                            <h6 class="nofnt">{{rejected.cardholder}}</h6>
+                                        </div>
+                                        <div class="row bcolor1 mb-4">
+                                            <h3>Card Number</h3>
+                                            <h6 class="nofnt">{{rejected.digits}}</h6>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6"><h3>Expiry Month</h3></div>
+                                            <div class="col-sm-6"><h3>Expiry Year</h3></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6 exp"><h6 class="nofnt">06</h6></div>
+                                            <div class="col-sm-6 exp"><h6 class="nofnt">2019</h6></div>
+                                        </div>
+                                        <!-- <p class="textsmall mrgnp" style="font-family:Poppins-Regular!important;">
                                             VALID
                                         </p>
                                         <p class="textsmall mrgnp textsmall1" style="font-family:Poppins-Regular!important;">
                                             UP TO {{rejected.expirydate}}
-                                        </p>
+                                        </p> -->
                                         <!--<div class="clear10"></div>-->
                                     </div>
                                 </div>

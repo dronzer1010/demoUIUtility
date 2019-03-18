@@ -1,3 +1,13 @@
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Poppins-light';
+    margin: 7px 0;
+}
+h3{
+    font-size: 19px;
+}
+.exp h6{
+    margin:0px 0px;
+}
 .txtl {
     font-size: 14px;
     font-weight: 300;
@@ -61,7 +71,7 @@
 .hffont {
     font-family: 'Poppins-Regular';
     padding-bottom:0px;
-    font-size: 18.2px!important;
+    font-size: 16px!important;
     font-weight: 300!important;
 }
 .bcolor {
@@ -73,7 +83,9 @@
     background-size: cover;
     height:250px;
 }
-
+.bcolor1{
+    padding: 0px 15px;
+}
 .cardnot {
     background-color: #ffffff;
     box-shadow: 0 0 8.5px 1.5px rgba(86, 79, 193, 0.1);
@@ -155,9 +167,9 @@ font-weight: 600;
 
 }
 .nofnt{
-    font-size: 22.5px!important;
+    font-size: 14px!important;
     font-weight: 300!important;
-
+    font-family: 'Poppins-light';
 }
 .bdivtopmrgn{
     margin-top: 25px;
