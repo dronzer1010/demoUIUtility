@@ -16,6 +16,7 @@ export class MakerBillerUnitaryComponent implements OnInit {
   billdetails:boolean=false;
   conf:boolean=false;
   success:boolean=false;
+  filename:string;
   constructor(private httpService: HttpClient) { }
 
   ngOnInit() {
@@ -24,6 +25,10 @@ export class MakerBillerUnitaryComponent implements OnInit {
         this.states=data;
       }
     )
+  }
+
+  UploadFile(file: HTMLInputElement){
+    this.filename = file.value;
   }
 
   getBiller(stateid){
