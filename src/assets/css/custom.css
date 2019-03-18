@@ -543,6 +543,9 @@ a.btn.Rejected {
   padding: 14px 0px 14px 3%;
   vertical-align: top;
   height: 100%!important;
+  -moz-height: 100%!important;
+  -webkit-height: 100%!important;
+  -o-height: 100%!important;
 }
 
 .table tbody tr td.custmtd {
