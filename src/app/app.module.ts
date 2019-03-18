@@ -12,7 +12,7 @@ import { DashboardCheckerComponent } from './routingcomponents/dashboard-checker
 import { CheckerApproveBillerComponent } from './routingcomponents/checker-approve-biller/checker-approve-biller.component';
 import {MatDialogModule} from '@angular/material/dialog';
 //import {  } from './routingcomponents/checker-approve-biller/checker-approve-biller.component';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http'; 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
@@ -91,6 +91,13 @@ import { RepositoryComponent } from './supportingcomponents/repository/repositor
 import { SamplebillsComponent } from './supportingcomponents/samplebills/samplebills.component';
 import { TemplatesComponent } from './supportingcomponents/templates/templates.component';
 import { NewMakerBillerBulkComponent } from './routingcomponents/new-maker-biller-bulk/new-maker-biller-bulk.component';
+import {AuthService} from './api/auth.service'
+import{UserserviceService} from './api/userservice.service'
+import{CardserviceService} from './api/cardservice.service'
+import{GroupserviceService} from './api/groupservice.service'
+import{RuleserviceService} from './api/ruleservice.service'
+import { AuthinterceptorService} from './api/authinterceptor.service'
+import { SetupserviceService} from './api/setupservice.service'
 
 @NgModule({
   declarations: [
@@ -195,7 +202,11 @@ import { NewMakerBillerBulkComponent } from './routingcomponents/new-maker-bille
 
   ],
  
-  providers: [LoaderService,ExcelService,DatePipe],
+  providers: [LoaderService,ExcelService,DatePipe,AuthService,UserserviceService,CardserviceService,GroupserviceService,RuleserviceService,SetupserviceService,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthinterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
