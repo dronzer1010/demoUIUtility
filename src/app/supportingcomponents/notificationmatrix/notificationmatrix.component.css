@@ -198,7 +198,6 @@ tabs li:hover {
 .tbhadfont {
     color: #575962;
     font-size: 16px;
-    font-weight: 600;
 }
 .table-responsive {
     overflow-x: unset;
@@ -280,7 +279,6 @@ tabs li:hover {
 }
 .save-rej-btnmargin{
     margin-top: -100px !important;
-    padding-right: 40px !important ; 
 }
 .set-login-save-btn{
     padding-bottom: 90px !important;

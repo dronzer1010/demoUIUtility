@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-      <label class="notlabel">Notification Matrix</label>
+      <label class="notlabel" style="font-family:poppins-light;">Notification Matrix</label>
   </div>
   <div class="row">
       <div class="col-md-12 tab text-center centra">
@@ -9,9 +9,7 @@
           <button class="tablinks tbfnt" id="login"  [ngClass]="logintab?'active':''" (click)="clickLoginTab()">LOGIN</button>
       </div>
       <div id="registrationtab" class="tabcontent nopad" *ngIf="registrationtab">
-
           <div class="col-MD-12 cardnot">
-
               <div id="conTab" class="tabs">
                   <div class="container">
                       <div class="row">
@@ -35,18 +33,17 @@
                                   </li>
                               </ul>
                           </div>
-                          <div class="col-xl-12 col-sm-8 col-md-8 padln">
+                          <div class="col-xl-12 col-sm-10 col-md-10 padln">
                               <div class="tab-content">
                                   <div class="tab-pane"  id="tab_a" *ngIf="usertab">
                                       <div class="table-responsive">
                                           <table class="table text-center noborder">
                                               <thead>
                                                   <tr class="tbhadfont">
-                                                      <th class="tdnobotbor"></th>
+                                                      <th class="text-center tbhadfont tdnobotbor">Actions</th>
                                                       <th class="text-center tbhadfont tdnobotbor">OTP</th>
                                                       <th class="text-center tbhadfont tdnobotbor">SMS</th>
                                                       <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th>
-
                                                   </tr>
                                               </thead>
                                               <tbody>
@@ -61,7 +58,6 @@
                                                       <td class="tdnotopbor">
                                                           <input type="checkbox" [checked]="regEmailUserPending" (change)="regEmailUserPending = !regEmailUserPending"  [disabled]="!enEmailUserPending"/>
                                                       </td>
-
                                                   </tr>
                                                   <tr>
                                                       <td class="tbhadfont tdnotopbor">Approve</td>
@@ -74,7 +70,6 @@
                                                       <td class="tdnotopbor">
                                                           <input type="checkbox" [checked]="regEmailUserApprove" (change)="regEmailUserApprove = !regEmailUserApprove" [disabled]="!enEmailUserApprove"/>
                                                       </td>
-
                                                   </tr>
                                                   <tr>
                                                       <td class="tbhadfont tdnotopbor">Reject</td>
@@ -87,25 +82,20 @@
                                                       <td class="tdnotopbor">
                                                           <input type="checkbox" [checked]="regEmailUserReject" (change)="regEmailUserReject = !regEmailUserReject" [disabled]="!enEmailUserReject"/>
                                                       </td>
-
                                                   </tr>
                                               </tbody>
                                           </table>
                                       </div>
-
-
                                   </div>
-
                                   <div class="tab-pane" id="tab_b" *ngIf="cardtab">
                                       <div class="table-responsive">
                                           <table class="table text-center noborder">
                                               <thead>
                                                   <tr class="tbhadfont">
-                                                      <th class="tdnobotbor"></th>
+                                                      <th class="text-center tbhadfont tdnobotbor">Actions</th>
                                                       <th class="text-center tbhadfont tdnobotbor">OTP</th>
                                                       <th class="text-center tbhadfont tdnobotbor">SMS</th>
                                                       <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th>
-
                                                   </tr>
                                               </thead>
                                               <tbody>
@@ -120,7 +110,6 @@
                                                       <td class="tdnotopbor">
                                                           <input type="checkbox" [checked]="regEmailCardPending" (change)="regEmailCardPending = !regEmailCardPending" [disabled]="!enEmailCardPending"/>
                                                       </td>
-
                                                   </tr>
                                                   <tr>
                                                       <td class="tbhadfont tdnotopbor">Approve</td>
@@ -133,7 +122,6 @@
                                                       <td class="tdnotopbor"> 
                                                           <input type="checkbox" [checked]="regEmailCardApprove" (change)="regEmailCardApprove = !regEmailCardApprove" [disabled]="!enEmailCardApprove"/>
                                                       </td>
-
                                                   </tr>
                                                   <tr>
                                                       <td class="tbhadfont tdnotopbor">Reject</td>
@@ -146,23 +134,20 @@
                                                       <td class="tdnotopbor">
                                                           <input type="checkbox" [checked]="regEmailCardReject" (change)="regEmailCardReject = !regEmailCardReject" [disabled]="!enEmailCardReject"/>
                                                       </td>
-
                                                   </tr>
                                               </tbody>
                                           </table>
                                       </div>
                                   </div>
-
                                   <div class="tab-pane" id="tab_c" *ngIf="grouptab">
                                       <div class="table-responsive">
                                           <table class="table text-center noborder">
                                               <thead>
                                                   <tr class="tbhadfont">
-                                                      <th class="tdnobotbor"></th>
+                                                      <th class="text-center tbhadfont tdnobotbor">Actions</th>
                                                       <th class="text-center tbhadfont tdnobotbor">OTP</th>
                                                       <th class="text-center tbhadfont tdnobotbor">SMS</th>
                                                       <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th>
-
                                                   </tr>
                                               </thead>
                                               <tbody>
@@ -177,7 +162,6 @@
                                                       <td class="tdnotopbor">
                                                           <input type="checkbox" [checked]="regEmailGroupPending" (change)="regEmailGroupPending = !regEmailGroupPending" [disabled]="!enEmailGroupPending"/>
                                                       </td>
-
                                                   </tr>
                                                   <tr>
                                                       <td class="tbhadfont tdnotopbor">Approve</td>
@@ -190,7 +174,6 @@
                                                       <td class="tdnotopbor">
                                                           <input type="checkbox" [checked]="regEmailGroupApprove" (change)="regEmailGroupApprove = !regEmailGroupApprove" [disabled]="!enEmailGroupApprove"/>
                                                       </td>
-
                                                   </tr>
                                                   <tr>
                                                       <td class="tbhadfont tdnotopbor">Reject</td>
@@ -207,18 +190,16 @@
                                               </tbody>
                                           </table>
                                       </div>
-
                                   </div>
                                   <div class="tab-pane" id="tab_d" *ngIf="ruletab">
                                       <div class="table-responsive">
                                           <table class="table text-center noborder">
                                               <thead>
                                                   <tr class="tbhadfont">
-                                                      <th class="tdnobotbor"></th>
+                                                      <th class="text-center tbhadfont tdnobotbor">Actions</th>
                                                       <th class="text-center tbhadfont tdnobotbor">OTP</th>
                                                       <th class="text-center tbhadfont tdnobotbor">SMS</th>
                                                       <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th>
-
                                                   </tr>
                                               </thead>
                                               <tbody>
@@ -233,7 +214,6 @@
                                                       <td class="tdnotopbor">
                                                           <input type="checkbox" [checked]="regEmailRulePending" (change)="regEmailRulePending = !regEmailRulePending" [disabled]="!enEmailRulePending"/>
                                                       </td>
-
                                                   </tr>
                                                   <tr>
                                                       <td class="tbhadfont tdnotopbor">Approve</td>
@@ -246,7 +226,6 @@
                                                       <td class="tdnotopbor">
                                                           <input type="checkbox" [checked]="regEmailRuleApprove" (change)="regEmailRuleApprove = !regEmailRuleApprove" [disabled]="!enEmailRuleApprove"/>
                                                       </td>
-
                                                   </tr>
                                                   <tr>
                                                       <td class="tbhadfont tdnotopbor">Reject</td>
@@ -263,7 +242,6 @@
                                               </tbody>
                                           </table>
                                       </div>
-
                                   </div>
                                   <!-- <div class="tab-pane" id="tab_e">
 
@@ -326,11 +304,10 @@
                                           <table class="table text-center noborder">
                                               <thead>
                                                   <tr class="tbhadfont">
-                                                      <th class="tdnobotbor"></th>
+                                                      <th class="text-center tbhadfont tdnobotbor">Actions</th>
                                                       <th class="text-center tbhadfont tdnobotbor">OTP</th>
                                                       <th class="text-center tbhadfont tdnobotbor">SMS</th>
                                                       <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th>
-
                                                   </tr>
                                               </thead>
                                               <tbody>
@@ -345,7 +322,6 @@
                                                       <td class="tdnotopbor">
                                                           <input type="checkbox" [checked]="regEmailSuppliersPending" (change)="regEmailSuppliersPending = !regEmailSuppliersPending" [disabled]="!enEmailSuppliersPending"/>
                                                       </td>
-
                                                   </tr>
                                                   <tr>
                                                       <td class="tbhadfont tdnotopbor">Approve</td>
@@ -358,7 +334,6 @@
                                                       <td class="tdnotopbor">
                                                           <input type="checkbox" [checked]="regEmailSuppliersApprove" (change)="regEmailSuppliersApprove = !regEmailSuppliersApprove" [disabled]="!enEmailSuppliersApprove"/>
                                                       </td>
-
                                                   </tr>
                                                   <tr>
                                                       <td class="tbhadfont tdnotopbor">Reject</td>
@@ -375,28 +350,19 @@
                                               </tbody>
                                           </table>
                                       </div>
-
                                   </div>
 
                       <!-- Payment checkboxes Added -->
-                      
-
-
-                                  
+                                                      
                               </div>
                           </div>
                       </div>
                   </div>
               </div>
-
-
-
           </div>
       </div>
       <div id="paymenttab" class="tabcontent nopad" *ngIf="paymenttab">
-
           <div class="col-MD-12 cardnot">
-
               <div id="conTab" class="tabs">
                   <div class="container">
                       <div class="row">
@@ -427,11 +393,10 @@
                                           <table class="table text-center noborder">
                                               <thead>
                                                   <tr class="tbhadfont">
-                                                      <th class="tdnobotbor"></th>
+                                                      <th class="text-center tbhadfont tdnobotbor">Actions</th>
                                                       <th class="text-center tbhadfont tdnobotbor">OTP</th>
                                                       <th class="text-center tbhadfont tdnobotbor">SMS</th>
                                                       <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th>
-
                                                   </tr>
                                               </thead>
                                               <tbody>
@@ -446,7 +411,6 @@
                                                       <td class="tdnotopbor">
                                                           <input type="checkbox" [checked]="regEmailPaymentPending" (change)="regEmailPaymentPending = !regEmailPaymentPending"  [disabled]="!enEmailPaymentPending"/>
                                                       </td>
-
                                                   </tr>
                                                   <tr>
                                                       <td class="tbhadfont tdnotopbor">Approve</td>
@@ -459,7 +423,6 @@
                                                       <td class="tdnotopbor">
                                                           <input type="checkbox" [checked]="regEmailPaymentApprove" (change)="regEmailPaymentApprove = !regEmailPaymentApprove" [disabled]="!enEmailPaymentApprove"/>
                                                       </td>
-
                                                   </tr>
                                                   <tr>
                                                       <td class="tbhadfont tdnotopbor">Reject</td>
@@ -472,34 +435,23 @@
                                                       <td class="tdnotopbor">
                                                           <input type="checkbox" [checked]="regEmailPaymentReject" (change)="regEmailPaymentReject = !regEmailPaymenReject" [disabled]="!enEmailPaymentReject"/>
                                                       </td>
-
                                                   </tr>
                                               </tbody>
                                           </table>
                                       </div>
-
-
                                   </div>
 
                       <!-- Payment checkboxes Added -->
-                      
-
-
-                                  
+                                                        
                               </div>
                           </div>
                       </div>
                   </div>
               </div>
-
-
-
           </div>
       </div>
       <div id="logintab" class="tabcontent nopad" *ngIf="logintab">
-
           <div class="col-MD-12 cardnot">
-
               <div id="conTab" class="tabs">
                   <div class="container">
                       <div class="row">
@@ -513,33 +465,31 @@
                                   <li><a href="#tab_f" data-toggle="pill">Suppliers</a></li>
                               </ul>
                           </div> -->
-                          <div class="col-xl-10 col-sm-10 col-md-10 padln">
+                          <div class="col-xl-12 col-sm-12 col-md-12 padln">
                               <div class="tab-content">
                                   <div class="tab-pane active" id="tab_a">
                                       <div class="table-responsive">
-                                          <table class="table text-center noborder">
+                                          <table class="table text-center noborder" align="center">
                                               <thead>
                                                   <tr class="tbhadfont">
-                                                      <th class="tdnobotbor"></th>
+                                                      <!-- <th class="tdnobotbor"></th> -->
                                                       <!-- <th class="text-center tbhadfont tdnobotbor">OTP</th> -->
-                                                      <th class="text-center tbhadfont tdnobotbor">OTP</th>
+                                                      <th class="text-center tbhadfont tdnobotbor" style="width:100%">OTP</th>
                                                       <!-- <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th> -->
-
                                                   </tr>
                                               </thead>
                                               <tbody>
                                                   <tr>
-                                                      <td class="tbhadfont tdnotopbor"></td>
+                                                      <!-- <td class="tbhadfont tdnotopbor"></td> -->
                                                       <!-- <td class="tdnotopbor set-login-save-btn">
                                                           <input type="checkbox" [checked]="regSmsLoginApprove" (change)="regSmsLoginApprove = !regSmsLoginApprove" [disabled]="!enableMe"/>
                                                       </td> -->
-                                                      <td class="tdnotopbor">
+                                                      <td class="tdnotopbor" style="width:100%">
                                                           <input type="checkbox" [checked]="regOtpLoginApprove" (change)="regOtpLoginApprove = !regOtpLoginApprove" [disabled]="!enableLogin"/> 
                                                       </td>
                                                       <!-- <td class="tdnotopbor">
                                                           <input type="checkbox" [checked]="regEmailLoginApprove" (change)="regEmailLoginApprove = !regEmailLoginApprove" [disabled]="!enableMe"/>
                                                       </td> -->
-
                                                   </tr>
                                                   <!-- <tr>
                                                       <td class="tbhadfont tdnotopbor">Approve</td>
@@ -564,16 +514,13 @@
                       </div>
                   </div>
               </div>
-
-
-
           </div>
       </div>
   </div>
   <div class="row save-rej-btnmargin">
-      <div class="col-md-7 col-lg-7 col-sm-7"></div>
-      <div class="col-md-5 col-lg-5 col-sm-5">
-          <table>
+      <!-- <div class="col-md-7 col-lg-7 col-sm-7"></div> -->
+      <div class="col-md-12 col-lg-12 col-sm-12 text-center">
+          <table align="center">
               <tr>
                       <td class="tdpad tdnotopbor save-rej-btnmargin" (click)="resetmatrixdata()">
                       <img src="assets/img/reset-matrix.png" /> &nbsp;
