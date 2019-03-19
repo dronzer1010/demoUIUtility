@@ -98,6 +98,7 @@ import{GroupserviceService} from './api/groupservice.service'
 import{RuleserviceService} from './api/ruleservice.service'
 import { AuthinterceptorService} from './api/authinterceptor.service'
 import { SetupserviceService} from './api/setupservice.service'
+import { LightboxModule } from 'ngx-lightbox';
 
 @NgModule({
   declarations: [
@@ -198,7 +199,8 @@ import { SetupserviceService} from './api/setupservice.service'
     NgMultiSelectDropDownModule.forRoot(),
     DataTableModule,
     ToastrModule.forRoot(),
-    NgDatepickerModule
+    NgDatepickerModule,
+    LightboxModule 
 
   ],
  

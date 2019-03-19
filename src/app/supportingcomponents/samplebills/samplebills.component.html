@@ -33,19 +33,25 @@
               <table class="table table-hover table-striped">
                  <thead>
                     <tr class="cust-color">
-                      
-                       <td>
-                          <span class="bold-txt">Name</span> &nbsp;
-                          </td>
+                       <td>Sr. No.</td>
+                      <td><span class="bold-txt">Name</span></td>
+                      <td> <span class="bold-txt">State</span></td>
                        <td>
                           <span class="bold-txt">View</span> 
                          </td>
+                         <td>
+                              <span class="bold-txt">Download</span> 
+                             </td>
                     </tr>
                  </thead>
                  <tbody>
-                    <tr>
-                       <td>Tata Power</td>
-                       <td>Image</td>
+                    <tr *ngFor="let image of _albums; let i=index">
+                     <td>{{i+1}}</td>
+                       <td>{{image.caption}}</td>
+                       <td>{{image.state}}</td>
+                       <td><img [src]="image.thumb" (click)="open(i)"/></td>
+                        <td><a [href]="image.src" target="_blank">Download Sample</a></td>
+                    
                     </tr>
                  </tbody>
               </table>

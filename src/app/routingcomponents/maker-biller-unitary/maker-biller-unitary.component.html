@@ -148,13 +148,20 @@
                   <div class="clear20"></div>
 
                   <div class="col-xs-12 col-sm-12 col-md-12 padln">
-                    <select class="input-text js-input inptxt form-control" required [(ngModel)]="billdata.biller" name="biller">
+                    <select class="input-text js-input inptxt form-control" (change)="showBillSample()" required [(ngModel)]="billdata.biller" name="biller">
                       <option *ngFor="let bilr of billerlist" value="{{bilr.name}}">{{bilr.name}}</option>
                     </select>
                     <label class="label" for="usertitle">Select Biller</label>
                   </div>
                   <div class="clear20"></div>
                   <div class="clear20"></div>
+                  <!-- <div class="col-xs-12 col-sm-12 col-md-12" *ngIf="showsamplebill">
+                     <div *ngFor="let image of samplebill;let i=index">
+                        <img [src]="image.thumb" (click)="open(i)" *ngIf="image.id==32"/>
+                     </div>
+                    </div>
+                    <div class="clear20" *ngIf="showsamplebill"></div>
+                    <div class="clear20" *ngIf="showsamplebill"></div> -->
                 </div>
               </div>
               <div class="clearfix"></div>
@@ -183,10 +190,16 @@
                   <div class="lft_div">
                     <div class="clear20"></div>
                     <div class="clear20"></div>
-                    <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                    <div class="col-xs-8 col-sm-8 col-md-8  padln">
                       <input type="text" value="" class="input-text js-input inptxt form-control" name="consumerno"
                         [(ngModel)]="billdata.consumerno" #name="ngModel">
                       <label class="label" for="usertitle">Consumer No.</label>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div *ngFor="let image of samplebill;let i=index">
+                            <!-- <img [src]="image.thumb" (click)="open(i)" *ngIf="image.id==32"/> -->
+                            <a (click)="open(i)" *ngIf="image.id==32">Show Sample Bill</a>
+                         </div>
                     </div>
                     <div class="clear20"></div>
                     <div class="clear20"></div>
