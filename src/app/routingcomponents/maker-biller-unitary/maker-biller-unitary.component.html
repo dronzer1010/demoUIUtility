@@ -190,15 +190,15 @@
                   <div class="lft_div">
                     <div class="clear20"></div>
                     <div class="clear20"></div>
-                    <div class="col-xs-8 col-sm-8 col-md-8  padln">
+                    <div class="col-xs-7 col-sm-7 col-md-7  padln">
                       <input type="text" value="" class="input-text js-input inptxt form-control" name="consumerno"
                         [(ngModel)]="billdata.consumerno" #name="ngModel">
                       <label class="label" for="usertitle">Consumer No.</label>
                     </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
+                    <div class="col-xs-5 col-sm-5 col-md-5" style="margin-top: 27px;">
                         <div *ngFor="let image of samplebill;let i=index">
                             <!-- <img [src]="image.thumb" (click)="open(i)" *ngIf="image.id==32"/> -->
-                            <a (click)="open(i)" *ngIf="image.id==32">Show Sample Bill</a>
+                            <a (click)="open(i)" *ngIf="image.id==32" style="color: #533979;">Show Sample Bill</a>
                          </div>
                     </div>
                     <div class="clear20"></div>
