@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Lightbox } from 'ngx-lightbox';
 
 @Component({
   selector: 'app-maker-biller-unitary',
@@ -17,7 +18,9 @@ export class MakerBillerUnitaryComponent implements OnInit {
   conf:boolean=false;
   success:boolean=false;
   filename:string;
-  constructor(private httpService: HttpClient) { }
+  samplebill:any=[];
+  showsamplebill:boolean=false;
+  constructor(private httpService: HttpClient,private _lightbox: Lightbox) { }
 
   ngOnInit() {
     this.httpService.get('./assets/states.json').subscribe(
@@ -25,6 +28,33 @@ export class MakerBillerUnitaryComponent implements OnInit {
         this.states=data;
       }
     )
+
+    
+  }
+
+  open(index:any): void {
+    // open lightbox
+    this._lightbox.open(this.samplebill,index);
+  }
+
+  close(): void {
+    // close lightbox programmatically
+    this._lightbox.close();
+  }
+
+  showBillSample(){
+
+    this.httpService.get('./assets/bills.json').subscribe(
+      data=>{
+       console.log(data)
+      
+        
+        this.samplebill=data;
+        this.showsamplebill=true;
+    
+      }
+    )
+   
   }
 
   UploadFile(file: HTMLInputElement){
