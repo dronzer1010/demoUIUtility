@@ -1,249 +1,321 @@
 <div class="container">
-  <div class="row">
-      <label class="notlabel" style="font-family:poppins-light;">Notification Matrix</label>
-  </div>
-  <div class="row">
-      <div class="col-md-12 tab text-center centra">
-          <button class="tablinks tbfnt" id="registration" [ngClass]="registrationtab?'active':''"  (click)="clickRegTab()">REGISTRATION</button>
-          <button class="tablinks tbfnt" id="payment"  [ngClass]="paymenttab?'active':''" (click)="clickPayTab()">PAYMENTS</button>
-          <button class="tablinks tbfnt" id="login"  [ngClass]="logintab?'active':''" (click)="clickLoginTab()">LOGIN</button>
-      </div>
-      <div id="registrationtab" class="tabcontent nopad" *ngIf="registrationtab">
-          <div class="col-MD-12 cardnot">
-              <div id="conTab" class="tabs">
-                  <div class="container">
-                      <div class="row">
-                          <div class="col-xl-12 col-sm-2 col-md-2 padln">
-                              <ul class="nav nav-pills nav-stacked flex-column">
-                                  <li [ngClass]="usertab?'active':''" (click)="clickUserTab()">
-                                      <a data-toggle="pill">USER</a>
-                                  </li>
-                                  <li [ngClass]="cardtab?'active':''" (click)="clickCardTab()">
-                                      <a data-toggle="pill">Cards</a>
-                                  </li>
-                                  <li [ngClass]="grouptab?'active':''" (click)="clickGroupTab()">
-                                      <a data-toggle="pill">Group</a>
-                                  </li>
-                                  <li [ngClass]="ruletab?'active':''" (click)="clickRuleTab()">
-                                      <a data-toggle="pill">Rules</a>
-                                  </li>
-                                 
-                                  <li [ngClass]="billertab?'active':''" (click)="clickbillTab()">
-                                      <a data-toggle="pill">Billers</a>
-                                  </li>
-                              </ul>
-                          </div>
-                          <div class="col-xl-12 col-sm-10 col-md-10 padln">
-                              <div class="tab-content">
-                                  <div class="tab-pane"  id="tab_a" *ngIf="usertab">
-                                      <div class="table-responsive">
-                                          <table class="table text-center noborder">
-                                              <thead>
-                                                  <tr class="tbhadfont">
-                                                      <th class="text-center tbhadfont tdnobotbor">Actions</th>
-                                                      <th class="text-center tbhadfont tdnobotbor">OTP</th>
-                                                      <th class="text-center tbhadfont tdnobotbor">SMS</th>
-                                                      <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th>
-                                                  </tr>
-                                              </thead>
-                                              <tbody>
-                                                  <tr>
-                                                      <td class="tbhadfont tdnotopbor">Pending</td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regOtpUserPending" (change)="regOtpUserPending = !regOtpUserPending" [disabled]="!enableMe"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regSmsUserPending" (change)="regSmsUserPending = !regSmsUserPending"  [disabled]="!enSmsUserPending"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regEmailUserPending" (change)="regEmailUserPending = !regEmailUserPending"  [disabled]="!enEmailUserPending"/>
-                                                      </td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td class="tbhadfont tdnotopbor">Approve</td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regOtpUserApprove" (change)="regOtpUserApprove = !regOtpUserApprove" [disabled]="!enOtpUserApprove"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regSmsUserApprove" (change)="regSmsUserApprove = !regSmsUserApprove" [disabled]="!enSmsUserApprove"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regEmailUserApprove" (change)="regEmailUserApprove = !regEmailUserApprove" [disabled]="!enEmailUserApprove"/>
-                                                      </td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td class="tbhadfont tdnotopbor">Reject</td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regOtpUserReject" (change)="regOtpUserReject = !regOtpUserReject" [disabled]="!enableMe"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regSmsUserReject" (change)="regSmsUserReject = !regSmsUserReject" [disabled]="!enSmsUserReject"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regEmailUserReject" (change)="regEmailUserReject = !regEmailUserReject" [disabled]="!enEmailUserReject"/>
-                                                      </td>
-                                                  </tr>
-                                              </tbody>
-                                          </table>
-                                      </div>
-                                  </div>
-                                  <div class="tab-pane" id="tab_b" *ngIf="cardtab">
-                                      <div class="table-responsive">
-                                          <table class="table text-center noborder">
-                                              <thead>
-                                                  <tr class="tbhadfont">
-                                                      <th class="text-center tbhadfont tdnobotbor">Actions</th>
-                                                      <th class="text-center tbhadfont tdnobotbor">OTP</th>
-                                                      <th class="text-center tbhadfont tdnobotbor">SMS</th>
-                                                      <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th>
-                                                  </tr>
-                                              </thead>
-                                              <tbody>
-                                                  <tr>
-                                                      <td class="tbhadfont tdnotopbor">Pending</td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regOtpCardPending" (change)="regOtpCardPending = !regOtpCardPending" [disabled]="!enableMe"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regSmsCardPending" (change)="regSmsCardPending = !regSmsCardPending" [disabled]="!enSmsCardPending"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regEmailCardPending" (change)="regEmailCardPending = !regEmailCardPending" [disabled]="!enEmailCardPending"/>
-                                                      </td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td class="tbhadfont tdnotopbor">Approve</td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regOtpCardApprove" (change)="regOtpCardApprove = !regOtpCardApprove" [disabled]="!enOtpCardApprove"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regSmsCardApprove" (change)="regSmsCardApprove = !regSmsCardApprove" [disabled]="!enSmsCardApprove"/>
-                                                      </td>
-                                                      <td class="tdnotopbor"> 
-                                                          <input type="checkbox" [checked]="regEmailCardApprove" (change)="regEmailCardApprove = !regEmailCardApprove" [disabled]="!enEmailCardApprove"/>
-                                                      </td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td class="tbhadfont tdnotopbor">Reject</td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regOtpCardReject" (change)="regOtpCardReject = !regOtpCardReject" [disabled]="!enableMe"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regSmsCardReject" (change)="regSmsCardReject = !regSmsCardReject" [disabled]="!enSmsCardReject"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regEmailCardReject" (change)="regEmailCardReject = !regEmailCardReject" [disabled]="!enEmailCardReject"/>
-                                                      </td>
-                                                  </tr>
-                                              </tbody>
-                                          </table>
-                                      </div>
-                                  </div>
-                                  <div class="tab-pane" id="tab_c" *ngIf="grouptab">
-                                      <div class="table-responsive">
-                                          <table class="table text-center noborder">
-                                              <thead>
-                                                  <tr class="tbhadfont">
-                                                      <th class="text-center tbhadfont tdnobotbor">Actions</th>
-                                                      <th class="text-center tbhadfont tdnobotbor">OTP</th>
-                                                      <th class="text-center tbhadfont tdnobotbor">SMS</th>
-                                                      <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th>
-                                                  </tr>
-                                              </thead>
-                                              <tbody>
-                                                  <tr>
-                                                      <td class="tbhadfont tdnotopbor">Pending</td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regOtpGroupPending" (change)="regOtpGroupPending = !regOtpGroupPending" [disabled]="!enableMe"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regSmsGroupPending" (change)="regSmsGroupPending = !regSmsGroupPending" [disabled]="!enSmsGroupPending"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regEmailGroupPending" (change)="regEmailGroupPending = !regEmailGroupPending" [disabled]="!enEmailGroupPending"/>
-                                                      </td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td class="tbhadfont tdnotopbor">Approve</td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regOtpGroupApprove" (change)="regOtpGroupApprove = !regOtpGroupApprove" [disabled]="!enOtpGroupApprove"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regSmsGroupApprove" (change)="regSmsGroupApprove = !regSmsGroupApprove" [disabled]="!enSmsGroupApprove" />
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regEmailGroupApprove" (change)="regEmailGroupApprove = !regEmailGroupApprove" [disabled]="!enEmailGroupApprove"/>
-                                                      </td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td class="tbhadfont tdnotopbor">Reject</td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regOtpGroupReject" (change)="regOtpGroupReject = !regOtpGroupReject" [disabled]="!enableMe"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regSmsGroupReject" (change)="regSmsGroupReject = !regSmsGroupReject"  [disabled]="!enSmsGroupReject"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regEmailGroupReject" (change)="regEmailGroupReject = !regEmailGroupReject"  [disabled]="!enEmailGroupReject"/>
-                                                      </td>
-                                                  </tr>
-                                              </tbody>
-                                          </table>
-                                      </div>
-                                  </div>
-                                  <div class="tab-pane" id="tab_d" *ngIf="ruletab">
-                                      <div class="table-responsive">
-                                          <table class="table text-center noborder">
-                                              <thead>
-                                                  <tr class="tbhadfont">
-                                                      <th class="text-center tbhadfont tdnobotbor">Actions</th>
-                                                      <th class="text-center tbhadfont tdnobotbor">OTP</th>
-                                                      <th class="text-center tbhadfont tdnobotbor">SMS</th>
-                                                      <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th>
-                                                  </tr>
-                                              </thead>
-                                              <tbody>
-                                                  <tr>
-                                                      <td class="tbhadfont tdnotopbor">Pending</td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regOtpRulePending" (change)="regOtpRulePending = !regOtpRulePending" [disabled]="!enableMe"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regSmsRulePending" (change)="regSmsRulePending = !regSmsRulePending" [disabled]="!enSmsRulePending"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regEmailRulePending" (change)="regEmailRulePending = !regEmailRulePending" [disabled]="!enEmailRulePending"/>
-                                                      </td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td class="tbhadfont tdnotopbor">Approve</td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regOtpRuleApprove" (change)="regOtpRuleApprove = !regOtpRuleApprove" [disabled]="!enOtpRuleApprove"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regSmsRuleApprove" (change)="regSmsRuleApprove = !regSmsRuleApprove" [disabled]="!enSmsRuleApprove"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regEmailRuleApprove" (change)="regEmailRuleApprove = !regEmailRuleApprove" [disabled]="!enEmailRuleApprove"/>
-                                                      </td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td class="tbhadfont tdnotopbor">Reject</td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regOtpRuleReject" (change)="regOtpRuleReject = !regOtpRuleReject" [disabled]="!enableMe"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regSmsRuleReject" (change)="regSmsRuleReject = !regSmsRuleReject" [disabled]="!enSmsRuleReject"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regEmailRuleReject" (change)="regEmailRuleReject = !regEmailRuleReject" [disabled]="!enEmailRuleReject"/>
-                                                      </td>
-                                                  </tr>
-                                              </tbody>
-                                          </table>
-                                      </div>
-                                  </div>
-                                  <!-- <div class="tab-pane" id="tab_e">
+    <div class="row">
+        <label class="notlabel" style="font-family:poppins-light;">Notification Matrix</label>
+    </div>
+    <div class="row">
+        <div class="col-md-12 tab text-center centra">
+            <button class="tablinks tbfnt" id="registration" [ngClass]="registrationtab?'active':''" (click)="clickRegTab()">REGISTRATION</button>
+            <button class="tablinks tbfnt" id="payment" [ngClass]="paymenttab?'active':''" (click)="clickPayTab()">PAYMENTS</button>
+            <button class="tablinks tbfnt" id="login" [ngClass]="logintab?'active':''" (click)="clickLoginTab()">LOGIN</button>
+        </div>
+        <div id="registrationtab" class="tabcontent nopad" *ngIf="registrationtab">
+            <div class="col-MD-12 cardnot">
+                <div id="conTab" class="tabs">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-12 col-sm-2 col-md-2 padln">
+                                <ul class="nav nav-pills nav-stacked flex-column">
+                                    <li [ngClass]="usertab?'active':''" (click)="clickUserTab()">
+                                        <a data-toggle="pill">USER</a>
+                                    </li>
+                                    <li [ngClass]="cardtab?'active':''" (click)="clickCardTab()">
+                                        <a data-toggle="pill">Cards</a>
+                                    </li>
+                                    <li [ngClass]="grouptab?'active':''" (click)="clickGroupTab()">
+                                        <a data-toggle="pill">Group</a>
+                                    </li>
+                                    <li [ngClass]="ruletab?'active':''" (click)="clickRuleTab()">
+                                        <a data-toggle="pill">Rules</a>
+                                    </li>
+
+                                    <li [ngClass]="billertab?'active':''" (click)="clickbillTab()">
+                                        <a data-toggle="pill">Billers</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-xl-12 col-sm-10 col-md-10 padln">
+                                <div class="tab-content">
+                                    <div class="tab-pane" id="tab_a" *ngIf="usertab">
+                                        <div class="table-responsive">
+                                            <table class="table text-center noborder">
+                                                <thead>
+                                                    <tr class="tbhadfont">
+                                                        <th class="text-center tbhadfont tdnobotbor">Actions</th>
+                                                        <th class="text-center tbhadfont tdnobotbor">OTP</th>
+                                                        <th class="text-center tbhadfont tdnobotbor">SMS</th>
+                                                        <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="tbhadfont tdnotopbor">Pending</td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regOtpUserPending"
+                                                                (change)="regOtpUserPending = !regOtpUserPending"
+                                                                [disabled]="!enableMe" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regSmsUserPending"
+                                                                (change)="regSmsUserPending = !regSmsUserPending"
+                                                                [disabled]="!enSmsUserPending" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regEmailUserPending"
+                                                                (change)="regEmailUserPending = !regEmailUserPending"
+                                                                [disabled]="!enEmailUserPending" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="tbhadfont tdnotopbor">Approve</td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regOtpUserApprove"
+                                                                (change)="regOtpUserApprove = !regOtpUserApprove"
+                                                                [disabled]="!enOtpUserApprove" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regSmsUserApprove"
+                                                                (change)="regSmsUserApprove = !regSmsUserApprove"
+                                                                [disabled]="!enSmsUserApprove" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regEmailUserApprove"
+                                                                (change)="regEmailUserApprove = !regEmailUserApprove"
+                                                                [disabled]="!enEmailUserApprove" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="tbhadfont tdnotopbor">Reject</td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regOtpUserReject"
+                                                                (change)="regOtpUserReject = !regOtpUserReject"
+                                                                [disabled]="!enableMe" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regSmsUserReject"
+                                                                (change)="regSmsUserReject = !regSmsUserReject"
+                                                                [disabled]="!enSmsUserReject" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regEmailUserReject"
+                                                                (change)="regEmailUserReject = !regEmailUserReject"
+                                                                [disabled]="!enEmailUserReject" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab_b" *ngIf="cardtab">
+                                        <div class="table-responsive">
+                                            <table class="table text-center noborder">
+                                                <thead>
+                                                    <tr class="tbhadfont">
+                                                        <th class="text-center tbhadfont tdnobotbor">Actions</th>
+                                                        <th class="text-center tbhadfont tdnobotbor">OTP</th>
+                                                        <th class="text-center tbhadfont tdnobotbor">SMS</th>
+                                                        <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="tbhadfont tdnotopbor">Pending</td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regOtpCardPending"
+                                                                (change)="regOtpCardPending = !regOtpCardPending"
+                                                                [disabled]="!enableMe" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regSmsCardPending"
+                                                                (change)="regSmsCardPending = !regSmsCardPending"
+                                                                [disabled]="!enSmsCardPending" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regEmailCardPending"
+                                                                (change)="regEmailCardPending = !regEmailCardPending"
+                                                                [disabled]="!enEmailCardPending" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="tbhadfont tdnotopbor">Approve</td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regOtpCardApprove"
+                                                                (change)="regOtpCardApprove = !regOtpCardApprove"
+                                                                [disabled]="!enOtpCardApprove" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regSmsCardApprove"
+                                                                (change)="regSmsCardApprove = !regSmsCardApprove"
+                                                                [disabled]="!enSmsCardApprove" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regEmailCardApprove"
+                                                                (change)="regEmailCardApprove = !regEmailCardApprove"
+                                                                [disabled]="!enEmailCardApprove" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="tbhadfont tdnotopbor">Reject</td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regOtpCardReject"
+                                                                (change)="regOtpCardReject = !regOtpCardReject"
+                                                                [disabled]="!enableMe" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regSmsCardReject"
+                                                                (change)="regSmsCardReject = !regSmsCardReject"
+                                                                [disabled]="!enSmsCardReject" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regEmailCardReject"
+                                                                (change)="regEmailCardReject = !regEmailCardReject"
+                                                                [disabled]="!enEmailCardReject" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab_c" *ngIf="grouptab">
+                                        <div class="table-responsive">
+                                            <table class="table text-center noborder">
+                                                <thead>
+                                                    <tr class="tbhadfont">
+                                                        <th class="text-center tbhadfont tdnobotbor">Actions</th>
+                                                        <th class="text-center tbhadfont tdnobotbor">OTP</th>
+                                                        <th class="text-center tbhadfont tdnobotbor">SMS</th>
+                                                        <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="tbhadfont tdnotopbor">Pending</td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regOtpGroupPending"
+                                                                (change)="regOtpGroupPending = !regOtpGroupPending"
+                                                                [disabled]="!enableMe" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regSmsGroupPending"
+                                                                (change)="regSmsGroupPending = !regSmsGroupPending"
+                                                                [disabled]="!enSmsGroupPending" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regEmailGroupPending"
+                                                                (change)="regEmailGroupPending = !regEmailGroupPending"
+                                                                [disabled]="!enEmailGroupPending" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="tbhadfont tdnotopbor">Approve</td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regOtpGroupApprove"
+                                                                (change)="regOtpGroupApprove = !regOtpGroupApprove"
+                                                                [disabled]="!enOtpGroupApprove" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regSmsGroupApprove"
+                                                                (change)="regSmsGroupApprove = !regSmsGroupApprove"
+                                                                [disabled]="!enSmsGroupApprove" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regEmailGroupApprove"
+                                                                (change)="regEmailGroupApprove = !regEmailGroupApprove"
+                                                                [disabled]="!enEmailGroupApprove" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="tbhadfont tdnotopbor">Reject</td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regOtpGroupReject"
+                                                                (change)="regOtpGroupReject = !regOtpGroupReject"
+                                                                [disabled]="!enableMe" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regSmsGroupReject"
+                                                                (change)="regSmsGroupReject = !regSmsGroupReject"
+                                                                [disabled]="!enSmsGroupReject" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regEmailGroupReject"
+                                                                (change)="regEmailGroupReject = !regEmailGroupReject"
+                                                                [disabled]="!enEmailGroupReject" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tab_d" *ngIf="ruletab">
+                                        <div class="table-responsive">
+                                            <table class="table text-center noborder">
+                                                <thead>
+                                                    <tr class="tbhadfont">
+                                                        <th class="text-center tbhadfont tdnobotbor">Actions</th>
+                                                        <th class="text-center tbhadfont tdnobotbor">OTP</th>
+                                                        <th class="text-center tbhadfont tdnobotbor">SMS</th>
+                                                        <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="tbhadfont tdnotopbor">Pending</td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regOtpRulePending"
+                                                                (change)="regOtpRulePending = !regOtpRulePending"
+                                                                [disabled]="!enableMe" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regSmsRulePending"
+                                                                (change)="regSmsRulePending = !regSmsRulePending"
+                                                                [disabled]="!enSmsRulePending" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regEmailRulePending"
+                                                                (change)="regEmailRulePending = !regEmailRulePending"
+                                                                [disabled]="!enEmailRulePending" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="tbhadfont tdnotopbor">Approve</td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regOtpRuleApprove"
+                                                                (change)="regOtpRuleApprove = !regOtpRuleApprove"
+                                                                [disabled]="!enOtpRuleApprove" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regSmsRuleApprove"
+                                                                (change)="regSmsRuleApprove = !regSmsRuleApprove"
+                                                                [disabled]="!enSmsRuleApprove" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regEmailRuleApprove"
+                                                                (change)="regEmailRuleApprove = !regEmailRuleApprove"
+                                                                [disabled]="!enEmailRuleApprove" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="tbhadfont tdnotopbor">Reject</td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regOtpRuleReject"
+                                                                (change)="regOtpRuleReject = !regOtpRuleReject"
+                                                                [disabled]="!enableMe" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regSmsRuleReject"
+                                                                (change)="regSmsRuleReject = !regSmsRuleReject"
+                                                                [disabled]="!enSmsRuleReject" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regEmailRuleReject"
+                                                                (change)="regEmailRuleReject = !regEmailRuleReject"
+                                                                [disabled]="!enEmailRuleReject" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="tab-pane" id="tab_e">
 
                                       <div class="table-responsive">
                                           <table class="table text-center noborder">
@@ -299,75 +371,92 @@
                                           </table>
                                       </div>
                                   </div> -->
-                                  <div class="tab-pane" id="tab_f" *ngIf="billertab">
-                                      <div class="table-responsive">
-                                          <table class="table text-center noborder">
-                                              <thead>
-                                                  <tr class="tbhadfont">
-                                                      <th class="text-center tbhadfont tdnobotbor">Actions</th>
-                                                      <th class="text-center tbhadfont tdnobotbor">OTP</th>
-                                                      <th class="text-center tbhadfont tdnobotbor">SMS</th>
-                                                      <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th>
-                                                  </tr>
-                                              </thead>
-                                              <tbody>
-                                                  <tr>
-                                                      <td class="tbhadfont tdnotopbor">Pending</td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regOtpSuppliersPending" (change)="regOtpSuppliersPending = !regOtpSuppliersPending" [disabled]="!enableMe"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regSmsSuppliersPending" (change)="regSmsSuppliersPending = !regSmsSuppliersPending" [disabled]="!enSmsSuppliersPending"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regEmailSuppliersPending" (change)="regEmailSuppliersPending = !regEmailSuppliersPending" [disabled]="!enEmailSuppliersPending"/>
-                                                      </td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td class="tbhadfont tdnotopbor">Approve</td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regOtpSuppliersApprove" (change)="regOtpSuppliersApprove = !regOtpSuppliersApprove" [disabled]="!enOtpSuppliersApprove" />
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regSmsSuppliersApprove" (change)="regSmsSuppliersApprove = !regSmsSuppliersApprove" [disabled]="!enSmsSuppliersApprove" />
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regEmailSuppliersApprove" (change)="regEmailSuppliersApprove = !regEmailSuppliersApprove" [disabled]="!enEmailSuppliersApprove"/>
-                                                      </td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td class="tbhadfont tdnotopbor">Reject</td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regOtpSuppliersReject" (change)="regOtpSuppliersReject = !regOtpSuppliersReject" [disabled]="!enableMe" />
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regSmsSuppliersReject" (change)="regSmsSuppliersReject = !regSmsSuppliersReject" [disabled]="!enSmsSuppliersReject"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regEmailSuppliersReject" (change)="regEmailSuppliersReject = !regEmailSuppliersReject" [disabled]="!enEmailSuppliersReject"/>
-                                                      </td>
-                                                  </tr>
-                                              </tbody>
-                                          </table>
-                                      </div>
-                                  </div>
-
-                      <!-- Payment checkboxes Added -->                                                      
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div id="paymenttab" class="tabcontent nopad" *ngIf="paymenttab">
-          <div class="col-MD-12 cardnot">
-              <div id="conTab" class="tabs">
-                  <div class="container">
-                      <div class="row">
-                          <div class="col-xl-12 col-sm-2 col-md-2 padln">
-                              <ul class="nav nav-pills nav-stacked flex-column">          
-                                  <!-- <li>
+                                    <div class="tab-pane" id="tab_f" *ngIf="billertab">
+                                        <div class="table-responsive">
+                                            <table class="table text-center noborder">
+                                                <thead>
+                                                    <tr class="tbhadfont">
+                                                        <th class="text-center tbhadfont tdnobotbor">Actions</th>
+                                                        <th class="text-center tbhadfont tdnobotbor">OTP</th>
+                                                        <th class="text-center tbhadfont tdnobotbor">SMS</th>
+                                                        <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="tbhadfont tdnotopbor">Pending</td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regOtpSuppliersPending"
+                                                                (change)="regOtpSuppliersPending = !regOtpSuppliersPending"
+                                                                [disabled]="!enableMe" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regSmsSuppliersPending"
+                                                                (change)="regSmsSuppliersPending = !regSmsSuppliersPending"
+                                                                [disabled]="!enSmsSuppliersPending" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regEmailSuppliersPending"
+                                                                (change)="regEmailSuppliersPending = !regEmailSuppliersPending"
+                                                                [disabled]="!enEmailSuppliersPending" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="tbhadfont tdnotopbor">Approve</td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regOtpSuppliersApprove"
+                                                                (change)="regOtpSuppliersApprove = !regOtpSuppliersApprove"
+                                                                [disabled]="!enOtpSuppliersApprove" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regSmsSuppliersApprove"
+                                                                (change)="regSmsSuppliersApprove = !regSmsSuppliersApprove"
+                                                                [disabled]="!enSmsSuppliersApprove" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regEmailSuppliersApprove"
+                                                                (change)="regEmailSuppliersApprove = !regEmailSuppliersApprove"
+                                                                [disabled]="!enEmailSuppliersApprove" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="tbhadfont tdnotopbor">Reject</td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regOtpSuppliersReject"
+                                                                (change)="regOtpSuppliersReject = !regOtpSuppliersReject"
+                                                                [disabled]="!enableMe" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regSmsSuppliersReject"
+                                                                (change)="regSmsSuppliersReject = !regSmsSuppliersReject"
+                                                                [disabled]="!enSmsSuppliersReject" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regEmailSuppliersReject"
+                                                                (change)="regEmailSuppliersReject = !regEmailSuppliersReject"
+                                                                [disabled]="!enEmailSuppliersReject" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- Payment checkboxes Added -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="paymenttab" class="tabcontent nopad" *ngIf="paymenttab">
+            <div class="col-MD-12 cardnot">
+                <div id="conTab" class="tabs">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-12 col-sm-2 col-md-2 padln">
+                                <ul class="nav nav-pills nav-stacked flex-column">
+                                    <!-- <li>
                                       <a href="#tab_b" data-toggle="pill">Cards</a>
                                   </li>
                                   <li>
@@ -382,78 +471,94 @@
                                   <li>
                                       <a href="#tab_f" data-toggle="pill">Suppliers</a>
                                   </li> -->
-                              </ul>
-                          </div>
-                          <div class="col-xl-12 col-sm-8 col-md-8 padln">
-                              <div class="tab-content">
-                                  <div class="tab-pane active" id="paymentmatrix">
-                                      <div class="table-responsive">
-                                          <table class="table text-center noborder">
-                                              <thead>
-                                                  <tr class="tbhadfont">
-                                                      <th class="text-center tbhadfont tdnobotbor">Actions</th>
-                                                      <th class="text-center tbhadfont tdnobotbor">OTP</th>
-                                                      <th class="text-center tbhadfont tdnobotbor">SMS</th>
-                                                      <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th>
-                                                  </tr>
-                                              </thead>
-                                              <tbody>
-                                                  <tr>
-                                                      <td class="tbhadfont tdnotopbor">Pending</td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regOtpPaymentPending" (change)="regOtpPaymentPending = !regOtpPaymentPending" [disabled]="!enableMe"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regSmsPaymentPending" (change)="regSmsPaymentPending = !regSmsPaymentPending"  [disabled]="!enSmsPaymentPending"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regEmailPaymentPending" (change)="regEmailPaymentPending = !regEmailPaymentPending"  [disabled]="!enEmailPaymentPending"/>
-                                                      </td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td class="tbhadfont tdnotopbor">Approve</td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regOtpPaymentApprove" (change)="regOtpPaymentApprove = !regOtpPaymentApprove" [disabled]="!enOtpPaymentApprove"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regSmsPaymentApprove" (change)="regSmsPaymentApprove = !regSmsPaymentApprove" [disabled]="!enSmsPaymentApprove"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regEmailPaymentApprove" (change)="regEmailPaymentApprove = !regEmailPaymentApprove" [disabled]="!enEmailPaymentApprove"/>
-                                                      </td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td class="tbhadfont tdnotopbor">Reject</td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regOtpPaymentReject" (change)="regOtpPaymentReject = !regOtpPaymentReject" [disabled]="!enableMe"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regSmsPaymentReject" (change)="regSmsPaymentReject = !regSmsPaymentReject" [disabled]="!enSmsPaymentReject"/>
-                                                      </td>
-                                                      <td class="tdnotopbor">
-                                                          <input type="checkbox" [checked]="regEmailPaymentReject" (change)="regEmailPaymentReject = !regEmailPaymenReject" [disabled]="!enEmailPaymentReject"/>
-                                                      </td>
-                                                  </tr>
-                                              </tbody>
-                                          </table>
-                                      </div>
-                                  </div>
-
-                      <!-- Payment checkboxes Added -->
-                                                        
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div id="logintab" class="tabcontent nopad" *ngIf="logintab">
-          <div class="col-MD-12 cardnot">
-              <div id="conTab" class="tabs">
-                  <div class="container">
-                      <div class="row">
-                          <!-- <div class="col-xl-12 col-sm-2 col-md-2 padln">
+                                </ul>
+                            </div>
+                            <div class="col-xl-12 col-sm-8 col-md-8 padln">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="paymentmatrix">
+                                        <div class="table-responsive">
+                                            <table class="table text-center noborder">
+                                                <thead>
+                                                    <tr class="tbhadfont">
+                                                        <th class="text-center tbhadfont tdnobotbor">Actions</th>
+                                                        <th class="text-center tbhadfont tdnobotbor">OTP</th>
+                                                        <th class="text-center tbhadfont tdnobotbor">SMS</th>
+                                                        <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="tbhadfont tdnotopbor">Pending</td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regOtpPaymentPending"
+                                                                (change)="regOtpPaymentPending = !regOtpPaymentPending"
+                                                                [disabled]="!enableMe" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regSmsPaymentPending"
+                                                                (change)="regSmsPaymentPending = !regSmsPaymentPending"
+                                                                [disabled]="!enSmsPaymentPending" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regEmailPaymentPending"
+                                                                (change)="regEmailPaymentPending = !regEmailPaymentPending"
+                                                                [disabled]="!enEmailPaymentPending" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="tbhadfont tdnotopbor">Approve</td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regOtpPaymentApprove"
+                                                                (change)="regOtpPaymentApprove = !regOtpPaymentApprove"
+                                                                [disabled]="!enOtpPaymentApprove" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regSmsPaymentApprove"
+                                                                (change)="regSmsPaymentApprove = !regSmsPaymentApprove"
+                                                                [disabled]="!enSmsPaymentApprove" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regEmailPaymentApprove"
+                                                                (change)="regEmailPaymentApprove = !regEmailPaymentApprove"
+                                                                [disabled]="!enEmailPaymentApprove" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="tbhadfont tdnotopbor">Reject</td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regOtpPaymentReject"
+                                                                (change)="regOtpPaymentReject = !regOtpPaymentReject"
+                                                                [disabled]="!enableMe" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regSmsPaymentReject"
+                                                                (change)="regSmsPaymentReject = !regSmsPaymentReject"
+                                                                [disabled]="!enSmsPaymentReject" />
+                                                        </td>
+                                                        <td class="tdnotopbor">
+                                                            <input type="checkbox" [checked]="regEmailPaymentReject"
+                                                                (change)="regEmailPaymentReject = !regEmailPaymenReject"
+                                                                [disabled]="!enEmailPaymentReject" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- Payment checkboxes Added -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="logintab" class="tabcontent nopad" *ngIf="logintab">
+            <div class="col-MD-12 cardnot">
+                <div id="conTab" class="tabs">
+                    <div class="container">
+                        <div class="row">
+                            <!-- <div class="col-xl-12 col-sm-2 col-md-2 padln">
                               <ul class="nav nav-pills nav-stacked flex-column">
                                   <li class="active"><a href="#tab_a" data-toggle="pill">USER</a></li>
                                   <li><a href="#tab_b" data-toggle="pill">Cards</a></li>
@@ -463,33 +568,35 @@
                                   <li><a href="#tab_f" data-toggle="pill">Suppliers</a></li>
                               </ul>
                           </div> -->
-                          <div class="col-xl-12 col-sm-12 col-md-12 padln">
-                              <div class="tab-content">
-                                  <div class="tab-pane active" id="tab_a">
-                                      <div class="table-responsive">
-                                          <table class="table text-center noborder" align="center">
-                                              <thead>
-                                                  <tr class="tbhadfont">
-                                                      <!-- <th class="tdnobotbor"></th> -->
-                                                      <!-- <th class="text-center tbhadfont tdnobotbor">OTP</th> -->
-                                                      <th class="text-center tbhadfont tdnobotbor" style="width:100%">OTP</th>
-                                                      <!-- <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th> -->
-                                                  </tr>
-                                              </thead>
-                                              <tbody>
-                                                  <tr>
-                                                      <!-- <td class="tbhadfont tdnotopbor"></td> -->
-                                                      <!-- <td class="tdnotopbor set-login-save-btn">
+                            <div class="col-xl-12 col-sm-12 col-md-12 padln">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab_a">
+                                        <div class="table-responsive">
+                                            <table class="table text-center noborder" align="center">
+                                                <thead>
+                                                    <tr class="tbhadfont">
+                                                        <!-- <th class="tdnobotbor"></th> -->
+                                                        <!-- <th class="text-center tbhadfont tdnobotbor">OTP</th> -->
+                                                        <th class="text-center tbhadfont tdnobotbor" style="width:100%">OTP</th>
+                                                        <!-- <th class="text-center tbhadfont tdnobotbor tdwidth">Email</th> -->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <!-- <td class="tbhadfont tdnotopbor"></td> -->
+                                                        <!-- <td class="tdnotopbor set-login-save-btn">
                                                           <input type="checkbox" [checked]="regSmsLoginApprove" (change)="regSmsLoginApprove = !regSmsLoginApprove" [disabled]="!enableMe"/>
                                                       </td> -->
-                                                      <td class="tdnotopbor" style="width:100%">
-                                                          <input type="checkbox" [checked]="regOtpLoginApprove" (change)="regOtpLoginApprove = !regOtpLoginApprove" [disabled]="!enableLogin"/> 
-                                                      </td>
-                                                      <!-- <td class="tdnotopbor">
+                                                        <td class="tdnotopbor" style="width:100%">
+                                                            <input type="checkbox" [checked]="regOtpLoginApprove"
+                                                                (change)="regOtpLoginApprove = !regOtpLoginApprove"
+                                                                [disabled]="!enableLogin" />
+                                                        </td>
+                                                        <!-- <td class="tdnotopbor">
                                                           <input type="checkbox" [checked]="regEmailLoginApprove" (change)="regEmailLoginApprove = !regEmailLoginApprove" [disabled]="!enableMe"/>
                                                       </td> -->
-                                                  </tr>
-                                                  <!-- <tr>
+                                                    </tr>
+                                                    <!-- <tr>
                                                       <td class="tbhadfont tdnotopbor">Approve</td>
                                                       <td class=" tdnotopbor"><input type="checkbox" name="mainmenu"></td>
                                                       <td class="tdnotopbor"><input type="checkbox" name="mainmenu"></td>
@@ -503,32 +610,33 @@
                                                       <td class="tdnotopbor"><input type="checkbox" name="mainmenu"></td>
 
                                                   </tr> -->
-                                              </tbody>
-                                          </table>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-  <div class="row save-rej-btnmargin">
-      <!-- <div class="col-md-7 col-lg-7 col-sm-7"></div> -->
-      <div class="col-md-12 col-lg-12 col-sm-12 text-center">
-          <table align="center">
-              <tr>
-                <td class="tdpad tdnotopbor save-rej-btnmargin" (click)="resetmatrixdata()">
-                    <img src="assets/img/reset-matrix.png" /> &nbsp;
-                    <span class="tdfont">Edit Matrix &nbsp;&nbsp;</span>
-                </td>
-                <td class="tdnotopbor save-right-btn-margin">
-                    <button class="btn bg-primary nextBtn nxt2 ruleNextBtn mrg0Auto ResponsiveBtnWidth" type="button" (click)="savematrixdata()" [hidden]="!Showme">Save Matrix</button>
-                </td>
-              </tr>
-          </table>
-      </div>
-  </div>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row save-rej-btnmargin">
+        <!-- <div class="col-md-7 col-lg-7 col-sm-7"></div> -->
+        <div class="col-md-12 col-lg-12 col-sm-12 text-center">
+            <table align="center">
+                <tr>
+                    <td class="tdpad tdnotopbor save-rej-btnmargin" (click)="resetmatrixdata()">
+                        <img src="assets/img/reset-matrix.png" /> &nbsp;
+                        <span class="tdfont">Edit Matrix &nbsp;&nbsp;</span>
+                    </td>
+                    <td class="tdnotopbor save-right-btn-margin">
+                        <button class="btn bg-primary nextBtn nxt2 ruleNextBtn mrg0Auto ResponsiveBtnWidth" type="button"
+                            (click)="savematrixdata()" [hidden]="!Showme">Save Matrix</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
