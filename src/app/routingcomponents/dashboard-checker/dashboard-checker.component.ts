@@ -14,6 +14,10 @@ import { Router,ActivatedRoute } from '@angular/router';
 export class DashboardCheckerComponent implements OnInit {
   @ViewChild('owlElement') owlElement: OwlCarousel
   carddata:any;
+  filterQuery = "";
+  rowsOnPage = 5;
+  sortBy = "email";
+  sortOrder = "asc";
   billdata:any=[];
   paymentdata:any=[];
   penPaydata:any=[];
@@ -119,6 +123,7 @@ rolename:any;
       this.penPaydata = this.paymentdata.filter((data)=>data['status']=='Pending');
       this.apprPaydata = this.paymentdata.filter((data)=>data['status']=='Approved');
       this.rejPayData = this.paymentdata.filter((data)=>data['status']=='Rejected');
+      console.log(this.apprPaydata)
       if(this.penPaydata==null){
         this.penpaylength=0
       }else{
