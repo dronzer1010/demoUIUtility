@@ -212,7 +212,7 @@
                           <td>{{(payment.billdate)?payment.billdate:"No Data"}}</td>
                           <td>{{(payment.duedate)?payment.duedate:"No Data"}}</td>
                           <td><button class="pending-btn">Pending</button></td>
-                          <td style="color:#533979;font-weight:bold;">Inprocess</td>
+                          <td style="color:#533979;font-weight:bold;">Pending</td>
                           <td style="padding: 0 5px;"><img alt="" src="assets/img/tb_downarrow.png" (click)="payment.collapsed=!payment.collapsed;"></td>
                         </tr>
                         <tr class="rowShow grayStrip" *ngIf="payment.collapsed">
@@ -269,7 +269,7 @@
                           </td>
                         </tr>
                         <tr class="rowShow grayStrip bottom_images" *ngIf="payment.collapsed">
-                          <td colspan="7">                            
+                          <td colspan="8">                            
                             <span class="pull-right"><img style="cursor:pointer;" src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                              
                             <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

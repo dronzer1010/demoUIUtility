@@ -24,10 +24,11 @@ export class BillerlistComponent implements OnInit {
   dropdownSettings = {};
   dropdownSettings1 = {};
   dropdownSettings2 = {};
-
+rolename:any;
   constructor() { }
 
   ngOnInit() {
+this.rolename=localStorage.getItem('rolename')
     this.billdata=JSON.parse(localStorage.getItem('billdetails'));
     console.log(this.billdata)
     if(this.billdata==null){

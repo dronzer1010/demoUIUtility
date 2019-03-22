@@ -23,10 +23,11 @@ export class MakerPaymentListComponent implements OnInit {
   dropdownSettings = {};
   dropdownSettings1 = {};
   dropdownSettings2 = {};
-
+rolename:any;
   constructor() { }
 
   ngOnInit() {
+    this.rolename=localStorage.getItem('rolename')
     this.payments=JSON.parse(localStorage.getItem('payments'));
 
     this.dropdownList = [

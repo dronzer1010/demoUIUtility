@@ -34,7 +34,24 @@
   <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
   <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
     <div class="row mt-4">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><span class="spanh1">Welcome Ms. Deepali Patekar</span><span class="spanh2">Senior Manager-Finance</span></div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <span class="spanh1" *ngIf="rolename=='checker'">Welcome Ms. Shreya Khanduri</span>
+        <span class="spanh2" *ngIf="rolename=='checker'">Manager-Finance</span>
+        <span class="spanh1" *ngIf="rolename=='maker'">Welcome Mr. Mukund Javir</span>
+        <span class="spanh2" *ngIf="rolename=='maker'">Manager-Finance</span>
+        <span class="spanh1" *ngIf="rolename=='ccadmin'">Welcome Mr. Nitin Chavan</span>
+        <span class="spanh2" *ngIf="rolename=='ccadmin'">Director Manager-Finance</span>
+        <span class="spanh1" *ngIf="rolename=='ccmaker'">Welcome Mr. Amit Kalekar</span>
+        <span class="spanh2" *ngIf="rolename=='ccmaker'">Senior Manager-Finance</span>
+        <span class="spanh1" *ngIf="rolename=='ccchecker'">Welcome Mr. Karan Singham</span>
+        <span class="spanh2" *ngIf="rolename=='ccchecker'">Manager-Finance</span>
+        <span class="spanh1" *ngIf="rolename=='ccmaker'">Welcome Mr. Achin Agarwal</span>
+        <span class="spanh2" *ngIf="rolename=='ccmaker'">Manager-Finance</span>
+        <span class="spanh1" *ngIf="rolename=='aschecker'">Welcome Ms. Deepali Patekar</span>
+        <span class="spanh2" *ngIf="rolename=='aschecker'">Senior Manager-Finance</span>
+        <span class="spanh1" *ngIf="rolename=='as'">Welcome Mr. Sandeep Vyas</span>
+        <span class="spanh2" *ngIf="rolename=='as'">Manager-Finance</span>
+      </div>
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="rolename=='checker'">Checker</div>
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="rolename=='maker'">Maker</div>
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="rolename=='ccadmin' || rolename=='ccmaker'|| rolename=='ccchecker'">Corporate Admin</div>

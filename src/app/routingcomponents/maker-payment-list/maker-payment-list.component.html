@@ -129,10 +129,10 @@
               </div>
             </div>
             <div class="row mb-3" style="margin-bottom:15px;">
-              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 txt"> No of Payments: <strong>17</strong></div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 txt"> No of Payments: <strong>{{payments.length}}</strong></div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right txt">Total Payments: <strong>17</strong></div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right txt">Total Amount: <strong><i class="fa fa-inr"></i> 243242.00</strong></div>
             </div>
             <div class="row" style="margin:0px;">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
@@ -161,7 +161,7 @@
                       <td>{{payment.paymentstatus}}</td>
                       <td style="padding:0 5px;"><img src="assets/img/tb_downarrow.png" alt="" (click)="payment.collapsed=!payment.collapsed"></td>
                     </tr>
-                    <tr class="rowShow grayStrip" style="" *ngIf="payment.collapsed">
+                    <tr class="rowShow grayStrip" *ngIf="payment.collapsed">
                       <td class="custmtd" colspan="8">
                         <div class="tablediv">
                           <h5>Biller Details</h5>
@@ -241,9 +241,10 @@
                       </td>
                     </tr>
                     <tr class="rowShow grayStrip" style="" *ngIf="payment.collapsed">
-                      <td colspan="8"><span class="pull-right"><a (click)="closeModalDialog1()"><img src="assets/img/page.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
-                            href="javascript:void(0)"><img src="assets/img/edit.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)"><img
+                      <td colspan="8">
+                        <span class="pull-right"><a (click)="closeModalDialog1()"><img src="assets/img/page.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a *ngIf="rolename=='maker' || rolename=='ccmaker'"
+                            href="javascript:void(0)"><img src="assets/img/edit.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a *ngIf="rolename=='maker' || rolename=='ccmaker'" href="javascript:void(0)"><img
                               src="assets/img/delete.png" alt=""></a></span></td>
                     </tr>
                     <div class="backdrop" [ngStyle]="{'display':displayBillDetails}"></div>
