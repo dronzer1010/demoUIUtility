@@ -41,6 +41,7 @@ export class DashboardCheckerComponent implements OnInit {
     format: 'dd-MM-yyyy',
     defaultOpen: false
 }
+public utilityparams:string;
 public params:string;
 rolename:any;
   fromdate:any;
@@ -78,6 +79,7 @@ rolename:any;
   constructor(private httpService: HttpClient,private router: Router,private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+  
     this.rolename=localStorage.getItem('rolename')
     this.params = this.activatedRoute.snapshot.queryParams["msg"];
     console.log(this.rolename)
@@ -173,4 +175,6 @@ goToPrevCard() {
     this.currentCard--;
   }
 }
+
+
 }

@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit {
   notActive:boolean=false;
   quickActive:boolean=false;
   profActive:boolean=false;
+  public utilityparams:string;
   pathroute: string;
   constructor(location: Location,private route: ActivatedRoute,private router: Router) { 
     router.events.subscribe((val) => {
@@ -58,6 +59,10 @@ this.clickNotEvent()
   }
 
   ngOnInit() {
+    this.utilityparams=this.route.snapshot.queryParams["token"];
+    console.log(this.utilityparams)
+    if(this.utilityparams!=null || this.utilityparams!=undefined)
+    this.savetoken()
     this.rolename=localStorage.getItem('rolename')
     console.log(this.rolename)
   }
@@ -336,6 +341,9 @@ this.clickNotEvent()
   logout(){
     localStorage.removeItem('rolename');
    
+  }
+  savetoken(){
+    localStorage.setItem("rolename",this.utilityparams)
   }
 
 }
