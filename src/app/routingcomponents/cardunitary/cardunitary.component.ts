@@ -22,7 +22,7 @@ export class CardunitaryComponent implements OnInit {
     this.cardData['digits'] = cardno_arr.join("");
     console.log(this.cardData)
     this.loaderService.display(false);
-    this.router.navigate(['/successmsg'],{queryParams:{msg:'cardsuccess'}});
+    this.router.navigate(['/main/successmsg'],{queryParams:{msg:'cardsuccess'}});
     // this.cardservice.registercard(this.cardData).subscribe(
     //   data=>{
     //     console.log(data)
