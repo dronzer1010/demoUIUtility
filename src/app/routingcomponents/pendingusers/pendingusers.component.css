@@ -183,3 +183,9 @@ input[type="checkbox"]:hover, input[type="checkbox"]:checked {
     width: 50%;
     right: 150px;
 }
+.span_width{
+    width: 42%
+}
+.bold_span,.span_width{
+    vertical-align: unset;
+}

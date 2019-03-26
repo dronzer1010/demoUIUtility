@@ -35,7 +35,7 @@ export class OtpapprovePaymentComponent implements OnInit {
 
      localStorage.setItem('payments', JSON.stringify(payments));
 
-    this.router.navigate(['checker-approve-payments'], { queryParams: { otp: 'success' } })
+    this.router.navigate(['main/maker-payment-list'], { queryParams: { otp: 'success' } })
 
 
   }

@@ -5,7 +5,7 @@
             <div class="col-md-6">
                 <button class="tablinks" [ngClass]="apprcrd?'active':''" id="mycard" (click)="apprcard()">APPROVED
                     CARDS</button>
-                <!-- <button class="tablinks" [ngClass]="pencrd?'active':''" id="pendcard" (click)="pencard()">PENDING CARDS</button> -->
+                <button class="tablinks" [ngClass]="pencrd?'active':''" id="pendcard" (click)="pencard()" *ngIf="rolename=='ccmaker' || rolename=='ccadmin' || rolename=='aschecker' || rolename=='as'|| rolename=='ccchecker'">PENDING CARDS</button>
                 <button class="tablinks" [ngClass]="rejcrd?'active':''" id="rejctcard" (click)="rejcard()" dddd>REJECTED
                     CARDS</button>
             </div>
@@ -22,7 +22,7 @@
         <div id="London" class="tabcontent" *ngIf="apprcrd">
             <div class="container">
                 <div class="row">
-                    <ng-container *ngFor="let approved of approvedcards">
+                    <ng-container *ngFor="let approved of cardapproved">
                         <div class="col-sm-6 col-md-6 col-lg-6">
                             <div class="col-sm-12 card-1">
                                 <div class="item bcolor">
@@ -40,62 +40,20 @@
                                             <div class="col-sm-6"><h3>Expiry Year</h3></div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-sm-6 exp"><h6 class="nofnt">06</h6></div>
-                                            <div class="col-sm-6 exp"><h6 class="nofnt">2019</h6></div>
+                                            <div class="col-sm-6 exp"><h6 class="nofnt">{{approved.expirymonth}}</h6></div>
+                                            <div class="col-sm-6 exp"><h6 class="nofnt">{{approved.expiryyear}}</h6></div>
                                         </div>
-                                        <!-- <h4 class="uk-card-title hffont"></h4>
-                                        <h4 class="nofnt"></h4>
-                                        <p class="textsmall mrgnp" style="font-family:Poppins-Regular!important;">
-                                            VALID
-                                        </p>
-                                        <p class="textsmall mrgnp textsmall1" style="font-family:Poppins-Regular!important;">
-                                            UP TO {{approved.expirydate}}
-                                        </p> -->
-                                        <!--<div class="clear10"></div>-->
+                                      
                                     </div>
                                 </div>
                                 <div class="clear10"></div>
                                 <div class="clear10"></div>
-                                <!-- <div class="col-sm-8 col-xs-6 text-left padnone">
-                                <label class="txtl">Total Credit Limit :</label>
-                                <label class="txtl">Available Credit :</label>
-                                <label class="txtl">Transactions this month :</label>
-                                </div>
-                                <div class="col-sm-4 col-xs-6 text-right padnone">
-                                <label class="rstxt">Rs.468800</label>
-                                <br>
-                                <label class="rstxt">Rs. 4688</label>
-                                <br>
-                                <label class="rstxt">80</label>
-                                </div> -->
+                         
                                 <div class="clear10"></div>
                                 <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12 padnone">
                                     <button class="collapsible" (click)="approved.selected=!approved.selected" style="text-decoration: underline;">{{(approved.selected)?"Hide
                                         Details":"View Details"}}</button>
                                     <div class="content" *ngIf="approved.selected">
-
-                                        <!-- <div class="col-sm-5 col-xs-5 col-lg-5 col-md-5 text-left padnone txtl ">
-                                        <label class="txtl">Initiated On :</label>
-                                        <label class="txtl">Initiated At :</label>
-                                        <label class="txtl">Initiated By :</label>
-                                        <label class="txtl">Approved On :</label>
-                                        <label class="txtl">Approved At :</label>
-                                        <label class="txtl">Approved By :</label>
-                                        </div>
-                                        <div class="col-sm-7 col-xs-7 col-lg-7 col-md-7 text-right padnone">
-                                        <label class="rstxt">{{approved.dateadded}}</label>
-                                        <br>
-                                        <label class="rstxt">{{approved.timeadded}}</label>
-                                        <br>
-                                        <label class="rstxt">{{approved.added}}</label>
-                                        <br>
-                                        <label class="rstxt">{{approved.dateapproved}}</label>
-                                        <br>
-                                        <label class="rstxt">{{approved.timeapproved}}</label>
-                                        <br>
-                                        <label class="rstxt">{{approved.approved}}</label>
-                                        </div> -->
-                                        
                                         <div class="mb-1 row">
                                             <div class="span_width col-sm-5">Initiated On</div> <span class="no-vert col-sm-1"> : </span> &nbsp;
                                             <div class="bold_span col-sm-6">{{approved.initiateddate}}</div>
@@ -129,94 +87,79 @@
                 </div>
             </div>
         </div>
-        <!-- <div id="Paris" class="tabcontent" *ngIf="pencrd">
-        <div class="container">
-        <div class="row">
-        <ng-container *ngFor="let pending of pendingcards">
-        <div class="col-sm-4">
-        <div class="col-sm-12 card-2">
-        <div class="item bcolor">
-        <div class="uk-card uk-light fontsize">
-        <h4 class="uk-card-title hffont">{{pending.cardholder}}</h4>
-        <h4 class="nofnt">{{pending.digits}}</h4>
-        <p class="textsmall mrgnp">
-        VALID
-        </p>
-        <p class="textsmall mrgnp textsmall1">
-        UP TO {{pending.expirydate}}
-        </p>
-
-        </div>
-        </div>
-        <div class="clear10"></div>
-        <div class="clear10"></div>
-
-        <div class="clear10"></div>
-        <div class="col-sm-12 padnone">
-        <button class="collapsible" (click)="pending.selected=!pending.selected;" style="text-decoration: underline;">{{(pending.selected)?"Hide Details":"View Details"}}</button>
-        <div class="content" *ngIf="pending.selected">
-
-
-        <div class="row">
-        <div class="col-sm-6 text-left">
-        <label class="txtl">Initiated On :</label>
-        </div>
-        <div class="col-sm-6 text-right">
-        <label class="rstxt">{{pending.initiateddate}}</label>
-        </div>
-        </div>
-        <div class="row">
-        <div class="col-sm-6 text-left">
-        <label class="txtl">Initiated At :</label>
-        </div>
-        <div class="col-sm-6 text-right">
-        <label class="rstxt">{{pending.initiatedtime}}</label>
-        </div>
-        </div>
-        <div class="row">
-        <div class="col-sm-6 text-left">
-        <label class="txtl">Initiated By :</label>
-        </div>
-        <div class="col-sm-6 text-right">
-        <label class="rstxt">{{pending.initiatedby}}</label>
-        </div>
-        </div>
-        <div class="row">
-        <div class="col-sm-6 text-left">
-        <label class="txtl">Approved On :</label>
-        </div>
-        <div class="col-sm-6 text-right">
-        <label class="rstxt">{{pending.aproveddate}}</label>
-        </div>
-        </div>
-        <div class="row">
-        <div class="col-sm-6 text-left">
-        <label class="txtl">Approved At :</label>
-        </div>
-        <div class="col-sm-6 text-right">
-        <label class="rstxt">{{pending.aprovedtime}}</label>
-        </div>
-        </div>
-        <div class="row">
-        <div class="col-sm-6 text-left">
-        <label class="txtl">Approved By :</label>
-        </div>
-        <div class="col-sm-6 text-right">
-        <label class="rstxt">{{pending.approvedby}}</label>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </ng-container>
-        </div>
-        </div>
-        </div> -->
+        <div id="Paris" class="tabcontent" *ngIf="pencrd">
+                <div class="container">
+                    <div class="row">
+                        <ng-container *ngFor="let pending of cardpending">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="col-sm-12 card-1">
+                                    <div class="item bcolor">
+                                        <div class="uk-card uk-light fontsize">
+                                            <div class="row bcolor1 mb-4">
+                                                <h3>Card Name</h3>   
+                                                <h6 class="nofnt">{{pending.cardholder}}</h6>
+                                            </div>
+                                            <div class="row bcolor1 mb-4">
+                                                <h3>Card Number</h3>
+                                                <h6 class="nofnt">{{pending.digits}}</h6>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6"><h3>Expiry Month</h3></div>
+                                                <div class="col-sm-6"><h3>Expiry Year</h3></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6 exp"><h6 class="nofnt">{{pending.expirymonth}}</h6></div>
+                                                <div class="col-sm-6 exp"><h6 class="nofnt">{{pending.expiryyear}}</h6></div>
+                                            </div>
+                                          
+                                        </div>
+                                    </div>
+                                    <div class="clear10"></div>
+                                    <div class="clear10"></div>
+                             
+                                    <div class="clear10"></div>
+                                    <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12 padnone">
+                                        <button class="collapsible" (click)="pending.selected=!pending.selected" style="text-decoration: underline;">{{(pending.selected)?"Hide
+                                            Details":"View Details"}}</button>
+                                        <div class="content" *ngIf="pending.selected">
+                                            <div class="mb-1 row">
+                                                <div class="span_width col-sm-5">Initiated On</div> <span class="no-vert col-sm-1"> : </span> &nbsp;
+                                                <div class="bold_span col-sm-6">{{pending.initiateddate}}</div>
+                                            </div>
+                                            <div class="mb-1 row">
+                                                <div class="span_width col-sm-5">Initiated At</div> <span class="no-vert col-sm-1"> : </span> &nbsp;
+                                                <div class="bold_span col-sm-6">{{pending.initiatedtime}}</div>
+                                            </div>
+                                            <div class="mb-1 row">
+                                                <div class="span_width col-sm-5">Initiated By</div> <span class="no-vert col-sm-1"> : </span> &nbsp;
+                                                <div class="bold_span col-sm-6">{{pending.initiatedby}}</div>
+                                            </div>
+                                            <div class="mb-1 row">
+                                                <div class="span_width col-sm-5">Approved On</div> <span class="no-vert col-sm-1"> : </span> &nbsp;
+                                                <div class="bold_span col-sm-6">{{pending.aproveddate}}</div>
+                                            </div>
+                                            <div class="mb-1 row">
+                                                <div class="span_width col-sm-5">Approved At</div> <span class="no-vert col-sm-1"> : </span> &nbsp;
+                                                <div class="bold_span col-sm-6">{{pending.aprovedtime}}</div>
+                                            </div>
+                                            <div class="mb-1 row">
+                                                <div class="span_width col-sm-5">Approved By</div> <span class="no-vert col-sm-1"> : </span> &nbsp;
+                                                <div class="bold_span col-sm-6">{{pending.approvedby}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+         
         <div id="Tokyo" class="tabcontent" *ngIf="rejcrd">
             <div class="container">
                 <div class="row">
-                    <ng-container *ngFor="let rejected of rejectedcards">
+                    <ng-container *ngFor="let rejected of cardRejected">
                         <div class="col-sm-6">
                             <div class="col-sm-12 card-1">
                                 <div class="item bcolor">
@@ -234,8 +177,8 @@
                                             <div class="col-sm-6"><h3>Expiry Year</h3></div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-sm-6 exp"><h6 class="nofnt">06</h6></div>
-                                            <div class="col-sm-6 exp"><h6 class="nofnt">2019</h6></div>
+                                            <div class="col-sm-6 exp"><h6 class="nofnt">{{rejected.expirymonth}}</h6></div>
+                                            <div class="col-sm-6 exp"><h6 class="nofnt">{{rejected.expiryyear}}</h6></div>
                                         </div>
                                         <!-- <p class="textsmall mrgnp" style="font-family:Poppins-Regular!important;">
                                             VALID
@@ -281,10 +224,7 @@
                                         <br>
                                         <label class="rstxt">{{rejected.approved}}</label>
                                         </div> -->
-                                        <div class="mb-1">
-                                            <div class="span_width">Short Name</div> <span class="no-vert"> : </span> &nbsp;
-                                            <div class="bold_span">{{payment.bill.shortname}}</div>
-                                        </div>
+                                       
                                         <div class="row">
                                             <div class="col-sm-6 text-left">
                                                 <label class="txtl">Initiated On :</label>

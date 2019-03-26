@@ -152,7 +152,7 @@
                       <td>Bill Date <img src="assets/img/Filter.png" alt=""></td>
                       <td>Due Date <img src="assets/img/Filter.png" alt=""></td>
                       <td>Status <img src="assets/img/Filter.png" alt=""></td>
-                      <td></td>
+                      <td *ngIf="rolename=='ccmaker' || rolename=='maker'"></td>
                       <td>&nbsp;</td>
                     </tr>
                   </thead>
@@ -166,7 +166,7 @@
                       <td>{{bill.billdate}}</td>
                       <td>{{bill.duedate}}</td>
                       <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': bill.status === 'Approved', 'Rejected': bill.status  === 'Rejected', 'Pending': bill.status  === 'Pending'}" role="button">{{bill.status}}</a></td>
-                      <td style="padding-left: 1%;"><a data-toggle="modal" id="openBtn"><img src="assets/img/delete.png"></a></td>
+                      <td  *ngIf="rolename=='ccmaker' || rolename=='maker'" style="padding-left: 1%;"><a data-toggle="modal" id="openBtn"><img src="assets/img/delete.png"></a></td>
                       <td style="padding:0 15px;"><img src="assets/img/tb_downarrow.png" alt=""  (click)="bill.collapsed=!bill.collapsed;"></td>
                       
                     </tr>
@@ -252,7 +252,7 @@
                     <tr class="rowShow grayStrip" *ngIf="bill.collapsed">
                       <td colspan="8"><span class="pull-right">
                         <img style="cursor:pointer;"src="assets/img/attach.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <a data-toggle="modal" id="openBtn"><img src="assets/img/edit.png"></a>
+                          <a *ngIf="rolename=='ccmaker' || rolename=='maker'" data-toggle="modal" id="openBtn"><img src="assets/img/edit.png"></a>
                         </span></td>
                     </tr>
                   </ng-container>
