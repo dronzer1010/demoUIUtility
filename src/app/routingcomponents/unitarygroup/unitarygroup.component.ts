@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import{LoaderService} from '../../api/loader.service'
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-unitarygroup',
   templateUrl: './unitarygroup.component.html',
@@ -9,7 +9,7 @@ import{LoaderService} from '../../api/loader.service'
 export class UnitarygroupComponent implements OnInit {
   groupdata: any = {};
   showLoader: boolean;
-  constructor(private loaderService: LoaderService) { }
+  constructor(private loaderService: LoaderService,private router: Router) { }
 
   ngOnInit() {
   }
@@ -20,6 +20,7 @@ export class UnitarygroupComponent implements OnInit {
     //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.cardData))
     this.loaderService.display(true);
     console.log(this.groupdata)
+    this.router.navigate(['/main/successmsg'],{queryParams:{msg:'groupsuccess'}});
     this.loaderService.display(false);
     // this.groupservice.registergroup(this.groupdata).subscribe(
     //   data=>{
