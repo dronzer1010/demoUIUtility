@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr'
 import { Routes, RouterModule,Router } from '@angular/router';
 import {HttpClient } from '@angular/common/http'
+import {AuthService} from '../../api/auth.service'
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,8 @@ import {HttpClient } from '@angular/common/http'
 export class LoginComponent implements OnInit {
 username:string=""
 password:string=""
-  constructor(private http: HttpClient,private router: Router,private toastr: ToastrService) { }
+
+  constructor(private http: HttpClient,private router: Router,private toastr: ToastrService,private auth:AuthService) { }
 
   ngOnInit() {
   }
@@ -39,6 +41,7 @@ password:string=""
           positionClass:'toast-top-center'
           })
       }else{
+        //this.auth.loginuser(this.username,this.password)
         this.router.navigate(['/otp']);
       }
   }

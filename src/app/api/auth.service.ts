@@ -1,5 +1,5 @@
 import { Injectable,EventEmitter,Output } from '@angular/core';
-import {HttpClient } from '@angular/common/http'
+import {HttpClient,HttpHeaders  } from '@angular/common/http'
 import {Config} from '../config'
 import { Routes, RouterModule,Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr'
@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr'
 })
 export class AuthService {
   path = new Config().getBaseURL();
+  utilitypatah= new Config().getutilityBaseUrl();
   @Output() isLoggedIn: EventEmitter<string> = new EventEmitter();
     TOKEN_KEY = 'token'
   constructor(private http: HttpClient,private router: Router,private toastr: ToastrService) { }
@@ -28,6 +29,23 @@ getIsLoggedIn(){
   }else{
       return false;
   }
+}
+
+loginuser(user:any,pwd:any){
+  let body = new URLSearchParams();
+  body.set('email', user);
+  body.set('password', pwd);
+  let options = {
+    headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+  };
+console.log(body)
+this.http.post(this.utilitypatah+'api/auth/signin',body.toString(), options).subscribe(data=>{
+  
+  console.log(data)
+  this.saveToken(data['token'])
+},error=>{
+  console.log(error)
+});
 }
 
 logout(){
