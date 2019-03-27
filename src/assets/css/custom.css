@@ -444,6 +444,10 @@ ng-multiselect-dropdown:nth-child(3) .multiselect-dropdown{
 .wc-banner, .wc-details, .year-title{
   background-color: #8153ad!important;
 }
+.wc-date-container{
+  border-radius: 20px!important;
+  border: 1px solid #d9cee6!important
+}
 .leftpad {
   padding-left: 25px
 }
