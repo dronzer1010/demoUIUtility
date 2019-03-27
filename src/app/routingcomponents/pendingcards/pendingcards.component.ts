@@ -102,5 +102,4 @@ export class PendingcardsComponent implements OnInit {
   closerehmod(){
     this.displayrejmodal='none'
   }
-
 }
