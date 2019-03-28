@@ -194,12 +194,12 @@
                       <thead>
                         <tr>
                           <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(payments)"></td>
-                          <td>Biller &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td>Biller Name&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td>Amount &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
-                          <td>Bill Date &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
-                          <td>Due Date &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td>Consumer No&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td>Consumer Name&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td>Status &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
-                          <td>Payment Status &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td class="text-center">Payment Status &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td>&nbsp;</td>
                         </tr>
                       </thead>
@@ -209,10 +209,10 @@
                           <td><input name="submenu" type="checkbox" [checked]="select" (change)="change(payment.id) "></td>
                           <td>{{payment.bill.biller}}</td>
                           <td><i class="fa fa-inr"></i> {{(payment.amount)?payment.amount:"No Data"}}</td>
-                          <td>{{(payment.billdate)?payment.billdate:"No Data"}}</td>
-                          <td>{{(payment.duedate)?payment.duedate:"No Data"}}</td>
+                          <td>{{payment.bill.consumerno}}</td>
+                          <td>Abc</td>
                           <td><button class="pending-btn">Pending</button></td>
-                          <td style="color:#533979;font-weight:bold;">Pending</td>
+                          <td style="color:#533979;font-weight:bold;text-align: center;">Pending</td>
                           <td style="padding: 0 5px;"><img alt="" src="assets/img/tb_downarrow.png" (click)="payment.collapsed=!payment.collapsed;"></td>
                         </tr>
                         <tr class="rowShow grayStrip" *ngIf="payment.collapsed">
@@ -228,8 +228,12 @@
                                 <div class="bold_span">{{payment.bill.expensecode}}</div>
                               </div>
                               <div class="mb-1">
-                                <div class="span_width">Consumer No</div> <span class="no-vert"> : </span> &nbsp;
-                                <div class="bold_span">{{payment.bill.consumerno}}</div>
+                                <div class="span_width">Bill Date</div> <span class="no-vert"> : </span> &nbsp;
+                                <div class="bold_span">{{(payment.billdate)?payment.billdate:"No Data"}}</div>
+                              </div>
+                              <div class="mb-1">
+                                <div class="span_width">Due Date</div> <span class="no-vert"> : </span> &nbsp;
+                                <div class="bold_span">{{(payment.duedate)?payment.duedate:"No Data"}}</div>
                               </div>
                               <!-- <div>
                                 <div class="span_width">Ref No 2:</div>
@@ -269,8 +273,10 @@
                           </td>
                         </tr>
                         <tr class="rowShow grayStrip bottom_images" *ngIf="payment.collapsed">
-                          <td colspan="8">                            
-                            <span class="pull-right"><img style="cursor:pointer;" src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <td colspan="8">   
+                              <span class="pull-right"><img style="cursor:pointer;" src="../../../assets/img/attach.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            
+                            <img style="cursor:pointer;" src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                              
                             <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                               <a id="button" class="anchor-bill openModal" (click)="closeModalDialog()">Add
@@ -282,7 +288,7 @@
                           <!-- modal -->
                           <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
                             <!-- modal-dialog -->
-                            <div class="modal-dialog" role="document">
+                            <div class="modal-dialog" id="mod" role="document">
                               <!-- modal-content -->
                               <div class="modal-content">
                                 <!-- modal-header -->
@@ -294,8 +300,30 @@
                                 <!-- modal-body -->
                                 <div class="modal-body">
                                     <div class="row mb-2">
-                                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 data">
-                                        <label for="" style="color: #807199;font-size: 14px;">Late Payment Charges</label> <span style="vertical-align:0px"> : </span> &nbsp;
+                                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 data">
+                                        <table style="width:100%">
+                                          <tr>
+                                            <td>Late Payment Charges</td>
+                                            <td>:</td>
+                                            <td><input type="text" class="model-inputs"></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Meter Reading</td>
+                                            <td>:</td>
+                                            <td><input type="text" class="model-inputs"></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Promt Payment Incentives</td>
+                                            <td>:</td>
+                                            <td><input type="text" class="model-inputs"></td>
+                                          </tr>
+                                          <tr>
+                                            <td>Remarks</td>
+                                            <td>:</td>
+                                            <td><input type="text" class="model-inputs"></td>
+                                          </tr>
+                                        </table>
+                                        <!-- <label for="" style="color: #807199;font-size: 14px;">Late Payment Charges</label> <span style="vertical-align:0px"> : </span> &nbsp;
                                         <span style="font-size:14px;vertical-align:0px"><input type="text" class="model-inputs"></span>
                                       </div>
                                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 data">
@@ -311,11 +339,12 @@
                                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 data">
                                         <label for="" style="color: #807199;font-size: 14px;">Remarks</label> <span style="vertical-align:0px"> : </span> &nbsp;
                                         <span style="font-size:14px;vertical-align:0px"><input type="text" class="model-inputs"></span>
-                                      </div>
+                                      </div> -->
                                     </div>
                                     <!-- <div class="row">
                                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button class="btn-ok" style="margin-right:10px;">OK</button></div>
                                     </div> -->
+                                  </div>
                                   </div>
                                 <!-- modal-footer -->
                                 <div class="modal-footer">
@@ -413,21 +442,21 @@
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:40px;">
-                  <p style="font-weight: 500;font-size: 15px;">Payments Details</p>
                   <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-6">
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 dummy-card">
+                      <p style="font-weight: 500;font-size: 15px;">Payments Details</p>
                       <table>
                         <tr style="background-color: #ffff;">
-                            <div class="span_width" style="margin:5px 0px;">No. of Payments Selected By</div>  <span class="no-vert"> : </span> &nbsp;
-                            <div class="bold_span" style="margin:3px 0px;">10</div>
+                            <div class="span_width" style="margin:5px 0px;width: 60%">Total Bill(s)</div>  <span class="no-vert"> : </span> &nbsp;
+                            <div class="bold_span" style="margin:3px 0px;width:30%">10</div>
                         </tr>
+                        <!-- <tr style="background-color: #ffff;">
+                            <div class="span_width" style="margin:5px 0px;width: 60%">Amount Payable</div>  <span class="no-vert"> : </span> &nbsp;
+                            <div class="bold_span" style="margin:3px 0px;width:30%"><i class="fa fa-inr"></i> 7655888</div>
+                        </tr> -->
                         <tr style="background-color: #ffff;">
-                            <div class="span_width" style="margin:5px 0px;">Amount Payable</div>  <span class="no-vert"> : </span> &nbsp;
-                            <div class="bold_span" style="margin:3px 0px;"><i class="fa fa-inr"></i> 7655888</div>
-                        </tr>
-                        <tr style="background-color: #ffff;">
-                            <div class="span_width" style="margin:5px 0px;">Total Amount</div>  <span class="no-vert"> : </span> &nbsp;
-                            <div class="bold_span" style="margin:3px 0px;"><i class="fa fa-inr"></i> 543224778</div>
+                            <div class="span_width" style="margin:5px 0px;width: 60%">Total Amount</div>  <span class="no-vert"> : </span> &nbsp;
+                            <div class="bold_span" style="margin:3px 0px;width:30%"><i class="fa fa-inr"></i> 543224778</div>
                         </tr>
                         <!-- <tr style="background-color: #ffff;">
                             <div class="span_width" style="margin:5px 0px;">Initiated By</div>  <span class="no-vert"> : </span> &nbsp;

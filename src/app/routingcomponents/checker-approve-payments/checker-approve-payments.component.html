@@ -32,7 +32,7 @@
                   (onSelect)="onItemSelect($event)"
                   (onSelectAll)="onSelectAll($event)">
                 </ng-multiselect-dropdown>
-                <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png" alt=""> Download File</button> -->
+                <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png" alt="">Download File</button> -->
                 <ng-multiselect-dropdown
                   [placeholder]="'Download List'"
                   [data]="dropdownDownload"
@@ -75,10 +75,10 @@
                           <td>Biller Name <img src="../../../utility/assets/img/Filter.png" alt=""></td>
                           <!-- <td>Consumer No <img src="../../../utility/assets/img/Filter.png" alt=""></td> -->
                           <td>Amount <img src="../../../utility/assets/img/Filter.png" alt=""></td>
-                          <td>Bill Date <img src="../../../utility/assets/img/Filter.png" alt=""></td>
-                          <td>Due Date <img src="../../../utility/assets/img/Filter.png" alt=""></td>
+                          <td>Consumer No <img src="../../../utility/assets/img/Filter.png" alt=""></td>
+                          <td>Consumer Name <img src="../../../utility/assets/img/Filter.png" alt=""></td>
                           <td>Status</td>
-                          <td>Payment Status</td>
+                          <td style="text-align:center;">Payment Status</td>
                           <td>&nbsp;</td>
                         </tr>
                       </thead>
@@ -89,13 +89,13 @@
                           <td>{{payment.bill.biller}}</td>
                           <!-- <td>{{payment.bill.consumerno}}</td> -->
                           <td><i class="fa fa-inr"></i> {{payment.amount}}</td>
-                          <td>{{payment.billdate}}</td>
-                          <td>{{payment.duedate}}</td>
+                          <td>{{payment.bill.consumerno}}</td>
+                          <td>{{payment.bill.consumername}}</td>
                           <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.status}}</a></td>
-                          <td>{{payment.paymentstatus}}</td>
+                          <td style="text-align:center;">{{payment.paymentstatus}}</td>
                           <td style="padding:0px 10px;"><img src="assets/img/tb_downarrow.png" alt="" (click)="payment.collapsed=!payment.collapsed;"></td>
                         </tr>
-                        <tr class="rowShow grayStrip" style="" *ngIf="payment.collapsed">
+                        <tr class="rowShow grayStrip" *ngIf="payment.collapsed">
                           <td class="custmtd" colspan="8">
                             <div class="tablediv">
                               <h5>Biller Details</h5>
@@ -107,10 +107,13 @@
                                   <div class="span_width">GL/Expense Code </div>  <span> : </span> &nbsp;
                                   <div class="bold_span">{{payment.bill.expensecode}}</div>
                                 </div>
-      
                                 <div class="mb-1">
-                                  <div class="span_width">Consumer No.</div> <span> : </span> &nbsp;
-                                  <div class="bold_span">{{payment.bill.consumerno}}</div>
+                                  <div class="span_width">Bill Date </div>  <span> : </span> &nbsp;
+                                  <div class="bold_span">{{payment.billdate}}</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Due Date </div>  <span> : </span> &nbsp;
+                                  <div class="bold_span">{{payment.duedate}}</div>
                                 </div>
                                 <div class="mb-1">
                                   <div class="span_width">Order Id</div> <span> : </span> &nbsp;
@@ -163,18 +166,10 @@
                                     <div class="span_width">Initiated on  </div>  <span> : </span> &nbsp;
                                     <div class="bold_span">{{payment.bill.initiatedon | date:'dd-MM-yyyy hh:mm a'}}</div>
                                   </div>
-                                  <!-- <div class="mb-1">
-                                      <div class="span_width">Approved by </div>  <span> : </span> &nbsp;
-                                      <div class="bold_span">{{payment.approvedby}}</div>
-                                    </div>
-                                    <div class="mb-1">
-                                      <div class="span_width">Approved on  </div>  <span> : </span> &nbsp;
-                                      <div class="bold_span">{{payment.approvedon}}</div>
-                                    </div> -->
                             </div>
                           </td>
                         </tr>
-                        <tr class="rowShow grayStrip" style="" *ngIf="payment.collapsed">
+                        <tr class="rowShow grayStrip" *ngIf="payment.collapsed">
                           <td colspan="8"><span class="pull-right"><a><img src="assets/img/page.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                               <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!--<a
                                 href=""><img src="../../../assets/img/edit.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a><img

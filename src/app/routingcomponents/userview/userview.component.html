@@ -18,10 +18,15 @@
         <div class="white-bg">
            <h4 class="col-md-9 col-sm-6 Top5Heading111 mrgnone">List of Users</h4>
            <div class="form-group col-md-3 col-sm-6 top-spac text-right right-spac">
-              <div class="btn-group rsspac">
-                 <button type="button" class="btn dropdown-toggle droparrow" data-toggle="dropdown">
-                 <span>Today</span>
-                 </button>
+               <ng-multiselect-dropdown [ngClass]="'second'"
+                  [placeholder]="'This Month'"
+                  [data]="dropdownList"
+                  [(ngModel)]="selectedItems2"
+                  [settings]="dropdownSettings2"
+                  (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll($event)">
+               </ng-multiselect-dropdown>
+              <!-- <div class="btn-group">
                  <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right2" role="menu">
                    <li class="input-text-center">
                        <input type="radio" name="dateformatstatus" value="Today" [(ngModel)]="Today" (change)="getDateFormatData(Today)">Today
@@ -45,7 +50,7 @@
                        <input type="radio" name="dateformatstatus" value="All" [(ngModel)]="All" (change)="getDateFormatData(All)">All
                    </li>
                  </ul>
-              </div>
+              </div> -->
            </div>
            <div class="clear"></div>
            <div class="BorderBottom"></div>

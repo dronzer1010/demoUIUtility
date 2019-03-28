@@ -402,6 +402,13 @@ ng-multiselect-dropdown:nth-child(3) .multiselect-dropdown{
   margin-right:unset!important;
   width: 33%!important;
 }
+ng-multiselect-dropdown.second .multiselect-dropdown {
+  width: 55%!important;
+  background-image: url(../img/datepicker.png)!important;
+  background-repeat: no-repeat!important;
+  background-position-x: 10px!important;
+  background-position-y: 4px!important;
+}
 .multiselect-item-checkbox input[type=checkbox]:checked + div:after{
   content: unset!important;
   border: 2px solid #8153ad!important;
@@ -444,10 +451,10 @@ ng-multiselect-dropdown:nth-child(3) .multiselect-dropdown{
 .wc-banner, .wc-details, .year-title{
   background-color: #8153ad!important;
 }
-.wc-date-container{
+/* .wc-date-container{
   border-radius: 20px!important;
   border: 1px solid #d9cee6!important
-}
+} */
 .leftpad {
   padding-left: 25px
 }
@@ -492,6 +499,9 @@ input[type=radio] {
   width: 50%;
   word-wrap: break-word;
   color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .menu_sel a {
@@ -769,7 +779,7 @@ input.search_box {
 }
 
 .droparrow {
-  background: url('/assets/img/droparrow.png') no-repeat 59px 15px
+  background: url('/assets/img/droparrow.png') no-repeat 54px 15px
 }
 
 .search {
@@ -2180,7 +2190,9 @@ label {
   vertical-align: top;
   font-weight: 600;
   font-size: 12.6px;
-
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .long_char {
@@ -2211,7 +2223,16 @@ label {
 }
 
 /* start media query for all elements  */
-
+@media screen and (max-width: 1100px) {
+.multiselect-dropdown{
+    font-size: 10px!important;
+    background-position-y: 5px!important;
+    background-size: 10px!important;
+}
+.multiselect-dropdown .dropdown-btn .dropdown-down{
+  border-top: 6px solid #64289d!important;
+}
+}
 @media screen and (max-width: 768px) {
   .chart-option {
     text-align: center;

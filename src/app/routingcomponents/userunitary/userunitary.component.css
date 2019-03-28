@@ -333,3 +333,7 @@ input[type="checkbox"]:hover, input[type="checkbox"]:checked {
     border-radius: 0px !important;
     padding: 6px 0px;
 }
+
+.backBtnpay_sup img{
+    vertical-align: 2px;
+}

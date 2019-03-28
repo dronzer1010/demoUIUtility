@@ -376,7 +376,7 @@ tbody tr td:last-child {
 
 @media only screen and (max-width:1920px){
   .main-cardbody {
-    background-image: urlurl("../../../assets/img/credit-card.png");
+    background-image: url("../../../assets/img/credit-card.png");
     color: #fff;
     min-height: 256px;
     background-size: contain;
@@ -419,6 +419,9 @@ tbody tr td:last-child {
   }
   .graph{
     height:440px;
+  }
+  .round1, .round2{
+    padding: 37% 10%;
   }
   }
   @media only screen and (max-width:1536px){

@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class MakerPaymentListComponent implements OnInit {
   display='none';
   displayBillDetails='none';
+  displayLogs='none';
   noofrole="No billers available"
   filterQuery = "";
   rowsOnPage = 300;
@@ -78,10 +79,16 @@ rolename:any;
   openModalDialog1(){
     this.displayBillDetails='';  //Set block css
   }
+  openModalDialog2(){
+    this.displayLogs='';  //Set block css
+  }
   closeModalDialog(){
     this.display='block';//set none css after close dialog
   }
    closeModalDialog1(){
     this.displayBillDetails='block';//set none css after close dialog
+  }
+  closeModalDialog2(){
+    this.displayLogs='block';//set none css after close dialog
   }
 }

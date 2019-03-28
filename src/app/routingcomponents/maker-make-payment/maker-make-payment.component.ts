@@ -59,19 +59,19 @@ export class MakerMakePaymentComponent implements OnInit {
     regcmt: "",
     status: 1},
     {
-      approvedby: "Mr. K.V. Hebbar",
-  aproveddate: "28-02-2019 07:17 PM",
-  aprovedtime: "07:17 PM",
-  cardholder: "Test Card 1",
-  digits: "4859 XXXX XXXX 0047",
-  expirydate: "06/22",
-  id: 2,
-  initiatedby: "Mr. Naveen Lohiya",
-  initiateddate: "28-02-2019 17:30 PM",
-  initiatedtime: "17:30:29",
-  orgid: 73,
-  regcmt: "",
-  status: 1
+    approvedby: "Mr. K.V. Hebbar",
+    aproveddate: "28-02-2019 07:17 PM",
+    aprovedtime: "07:17 PM",
+    cardholder: "Test Card 1",
+    digits: "4859 XXXX XXXX 0047",
+    expirydate: "06/22",
+    id: 2,
+    initiatedby: "Mr. Naveen Lohiya",
+    initiateddate: "28-02-2019 17:30 PM",
+    initiatedtime: "17:30:29",
+    orgid: 73,
+    regcmt: "",
+    status: 1
     }
   ]
   constructor(private httpService: HttpClient) { }
@@ -119,8 +119,7 @@ export class MakerMakePaymentComponent implements OnInit {
   //   }
   // }
 
-  getBiller(stateid){
-  
+  getBiller(stateid){  
     this.httpService.get('./assets/billers.json').subscribe(
       data=>{
         this.billers=data;
@@ -130,52 +129,45 @@ export class MakerMakePaymentComponent implements OnInit {
             this.billerlist=this.billers[i]['billers']
           }
         }
-        console.log(this.billerlist)
-       
+        console.log(this.billerlist)       
       }
     )
   }
 
   openModalDialog(){
     this.display=''; //Set block css
- }
- closeModalDialog(){
-  this.display='block'; //set none css after close dialog
- }
+  }
+  closeModalDialog(){
+    this.display='block'; //set none css after close dialog
+  }
   billrdetails(){
     this.billertype=false;
     this.billdetails=true;
     this.reviewCard=false;
 
-    var allBills = JSON.parse(localStorage.getItem('billdetails'));
-if(allBills!=null){
+  var allBills = JSON.parse(localStorage.getItem('billdetails'));
+  if(allBills!=null){
     this.bills = allBills.filter((bill)=>{
       return (bill['status']=="Approved")
     })
   }
 
-    console.log(this.bills);
-    this.payments = this.bills.map((bill)=>{
-      var payment={};
-      payment['id'] = bill.id;
-      payment['amount']=null;
-      payment['duedate']=null;
-      payment['billnumber']=null;
-      payment['bill']=bill;
-      payment['status']=null;
-      payment['initiatedby']=null;
-      payment['initiatedon']=null;
-      payment['approvedby']=null;
-      payment['approvedon']=null;
-
-
-
-      return payment;
-    })
-
-    console.log(this.payments);
-
-  
+  console.log(this.bills);
+  this.payments = this.bills.map((bill)=>{
+    var payment={};
+    payment['id'] = bill.id;
+    payment['amount']=null;
+    payment['duedate']=null;
+    payment['billnumber']=null;
+    payment['bill']=bill;
+    payment['status']=null;
+    payment['initiatedby']=null;
+    payment['initiatedon']=null;
+    payment['approvedby']=null;
+    payment['approvedon']=null;
+    return payment;
+  })
+    console.log(this.payments);  
   }
 
   getRandomInt(max) {
@@ -201,7 +193,6 @@ if(allBills!=null){
     this.activeElement = id;
   }
 
-
   fetchAllBills(){
     for(var i=0;i<this.payments.length;i++){
     
@@ -209,8 +200,7 @@ if(allBills!=null){
         this.payments[i].amount = (Math.random()*(3000-1000)).toFixed(2);
         this.payments[i].duedate = this.dueDates[this.getRandomInt(7)];
         this.payments[i].billdate = this.billDates[this.getRandomInt(7)];
-        this.payments[i].billnumber = d.getTime();
-      
+        this.payments[i].billnumber = d.getTime();      
     }
   }
 
@@ -227,17 +217,10 @@ if(allBills!=null){
         this.payments[i].billnumber = d.getTime();
       }
     }
-    this.fetchingBill = false;
-
-
-
-
-    
+    this.fetchingBill = false; 
   }
 
-
-  changeAll(pendingbillerpage): void {
-    
+  changeAll(pendingbillerpage): void {    
     if(this.checkedValueArray.length==this.payments.length){
     this.cntChk=1
     }else{
@@ -274,8 +257,7 @@ if(allBills!=null){
       }
     }
     if (this.flag == 0) {
-      this.checkedValueArray.push(id);
-     
+      this.checkedValueArray.push(id);     
     }
 
     if (this.checkedValueArray.length > 0) {
@@ -286,8 +268,7 @@ if(allBills!=null){
         this.selectall=true;
         this.cntChk = 1;
       }
-      console.log(this.selectall)
-     
+      console.log(this.selectall)     
     }
     else {
       this.temp = false;
@@ -296,25 +277,16 @@ if(allBills!=null){
       }else{
         this.selectall=true;
       }
-      console.log(this.selectall)
-     
+      console.log(this.selectall)     
     }
     console.log(this.checkedValueArray)
   }  
 
-
-
-
-
   cnfsend(){
     this.billdetails=false;
     this.conf=true;
-    this.billertype=false;
-   
+    this.billertype=false;   
     this.reviewCard=true;
-
-
-
 
     for(var i=0;i<this.payments.length;i++){
       for(var j=0;j<this.checkedValueArray.length;j++){
@@ -332,8 +304,6 @@ if(allBills!=null){
     this.success=true;
     this.reviewCard=false;
 
-
-
     var tempPendingPayments = this.pendingPayments.map((payment)=>{
       var card = this.selectedcard
       console.log(card)
@@ -342,7 +312,6 @@ if(allBills!=null){
       payment['card']=card;
       return payment;
     });
-
     localStorage.setItem('payments' , JSON.stringify(tempPendingPayments));
   }
 
