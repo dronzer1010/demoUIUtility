@@ -4,7 +4,7 @@ export class Config{
     constructor(){
 
         this.baseUrl = "http://aquapayfake.ap-south-1.elasticbeanstalk.com/api/"
-        this.utilityapiUrl = "";
+        this.utilityapiUrl = "http://60fc97ea.ngrok.io/";
     }
 
     getBaseURL(){
