@@ -14,6 +14,7 @@
 #modal-table tbody tr td:nth-child(1){
   color:#807199;
   font-weight: bold;
+  width: 45%;
 }
 .pop-input-text {
   width: 22%;

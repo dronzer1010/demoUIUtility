@@ -132,7 +132,7 @@
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 txt"> No of Payments: <strong>{{payments.length}}</strong></div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right txt">Total Amount: <strong><i class="fa fa-inr"></i> 243242.00</strong></div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right txt">Total Amount: <strong>{{243242 | currency:'INR':true:'1.2-2'}}</strong></div>
             </div>
             <div class="row" style="margin:0px;">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
@@ -154,7 +154,7 @@
                     <tr>
                       <td>{{i+1}}</td>
                       <td>{{payment.bill.biller}}</td>
-                      <td><i class="fa fa-inr"></i> {{payment.amount}}</td>
+                      <td>{{payment.amount | currency:'INR':true:'1.2-2'}}</td>
                       <td>{{payment.bill.consumerno}}</td>
                       <td>{{payment.bill.consumername}}</td>
                       <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.status}}</a></td>
@@ -178,9 +178,9 @@
                             <div class="bold_span">{{payment.billdate}}</div>
                           </div>
                           <div class="mb-1">
-                              <div class="span_width">Due Date</div> <span> : </span> &nbsp;
-                              <div class="bold_span">{{payment.duedate}}</div>
-                            </div>
+                            <div class="span_width">Due Date</div> <span> : </span> &nbsp;
+                            <div class="bold_span">{{payment.duedate}}</div>
+                          </div>
                           <div class="mb-1">
                             <div class="span_width">Order Id</div> <span> : </span> &nbsp;
                             <div class="bold_span">12345</div>
@@ -204,7 +204,7 @@
                           </div>
       
                         </div>
-                        <div class="tablediv">
+                        <div class="tablediv table2">
                           <h5>Contact Details</h5>
                           <div class="mb-1">
                             <div class="span_width">Mobile No</div> <span> : </span> &nbsp;
@@ -212,14 +212,14 @@
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Address</div> <span> : </span> &nbsp;
-                            <div class="bold_span">{{payment.bill.billaddress}}</div>
+                            <span class="bold_span" tooltip="{{payment.bill.billaddress}}" placement="top" show-delay="500">{{payment.bill.billaddress}}</span>
                           </div>
                           <div>
                             <div class="span_width">Email</div> <span> : </span> &nbsp;
-                            <div class="bold_span">{{payment.bill.email}}</div>
+                            <span class="bold_span" tooltip="{{payment.bill.billaddress}}" placement="top" show-delay="500">{{payment.bill.email}}</span>
                           </div>
                         </div>
-                        <div class="tablediv noborder">
+                        <div class="tablediv noborder table3">
                           <h5>Other Details</h5>
                           <div class="mb-1">
                             <div class="span_width">File Name</div> <span> : </span> &nbsp;

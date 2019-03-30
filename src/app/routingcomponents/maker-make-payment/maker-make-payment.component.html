@@ -180,7 +180,7 @@
               <div class="row" style="margin-top:15px; font-size:13px;">
                
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-left">
-                  Total Amount: <i class="fa fa-inr"></i> 6345886
+                  Total Amount: {{6345886.6775789 | currency:'INR':true:'1.2-2'}}
                     <!-- <button class="btn bg-primary nextpay buttonpad" type="button" (click)="fetchAllBills()" style="padding: 3px 25px!important;">Fetch All Bills</button> -->
                   </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
@@ -208,7 +208,9 @@
                         <tr>
                           <td><input name="submenu" type="checkbox" [checked]="select" (change)="change(payment.id) "></td>
                           <td>{{payment.bill.biller}}</td>
-                          <td><i class="fa fa-inr"></i> {{(payment.amount)?payment.amount:"No Data"}}</td>
+                          <td>{{payment.amount | currency:'INR':true}}
+                            <!-- <i class="fa fa-inr"></i> {{(payment.amount)?payment.amount:"No Data"}} -->
+                          </td>
                           <td>{{payment.bill.consumerno}}</td>
                           <td>Abc</td>
                           <td><button class="pending-btn">Pending</button></td>
@@ -240,7 +242,7 @@
                                 <div class="bold_span">358507</div>
                               </div> -->
                             </div>
-                            <div class="tablediv">
+                            <div class="tablediv table2">
                               <h5>Contact Details</h5>
                               <div class="mb-1">
                                 <div class="span_width">Mobile No</div> <span class="no-vert"> : </span> &nbsp;
@@ -248,14 +250,14 @@
                               </div>
                               <div class="mb-1">
                                 <div class="span_width">Address</div> <span class="no-vert"> : </span> &nbsp;
-                                <div class="bold_span">{{payment.bill.billaddress}}</div>
+                                <span class="bold_span" tooltip="{{payment.bill.billaddress}}" placement="top" show-delay="500">{{payment.bill.billaddress}}</span>
                               </div>
                               <div>
                                 <div class="span_width">Email</div> <span class="no-vert"> : </span> &nbsp;
-                                <div class="bold_span">{{payment.bill.email}}</div>
+                                <span class="bold_span" tooltip="{{payment.bill.email}}" placement="top" show-delay="500">{{payment.bill.email}}</span>
                               </div>
                             </div>
-                            <div class="tablediv noborder">
+                            <div class="tablediv noborder table3">
                               <h5>Other Details</h5>
                               <div class="mb-1">
                                 <div class="span_width">File Name</div> <span class="no-vert"> : </span> &nbsp;
@@ -447,16 +449,16 @@
                       <p style="font-weight: 500;font-size: 15px;">Payments Details</p>
                       <table>
                         <tr style="background-color: #ffff;">
-                            <div class="span_width" style="margin:5px 0px;width: 60%">Total Bill(s)</div>  <span class="no-vert"> : </span> &nbsp;
-                            <div class="bold_span" style="margin:3px 0px;width:30%">10</div>
+                            <div class="span_width" style="margin:5px 0px;width: 35%">Total Bill(s)</div>  <span class="no-vert"> : </span> &nbsp;
+                            <div class="bold_span" style="margin:3px 0px;width:40%">10</div>
                         </tr>
                         <!-- <tr style="background-color: #ffff;">
                             <div class="span_width" style="margin:5px 0px;width: 60%">Amount Payable</div>  <span class="no-vert"> : </span> &nbsp;
                             <div class="bold_span" style="margin:3px 0px;width:30%"><i class="fa fa-inr"></i> 7655888</div>
                         </tr> -->
                         <tr style="background-color: #ffff;">
-                            <div class="span_width" style="margin:5px 0px;width: 60%">Total Amount</div>  <span class="no-vert"> : </span> &nbsp;
-                            <div class="bold_span" style="margin:3px 0px;width:30%"><i class="fa fa-inr"></i> 543224778</div>
+                            <div class="span_width" style="margin:5px 0px;width: 35%">Total Amount</div>  <span class="no-vert"> : </span> &nbsp;
+                            <div class="bold_span" style="margin:3px 0px;width:40%">{{543224778 | currency:'INR':true}}</div>
                         </tr>
                         <!-- <tr style="background-color: #ffff;">
                             <div class="span_width" style="margin:5px 0px;">Initiated By</div>  <span class="no-vert"> : </span> &nbsp;

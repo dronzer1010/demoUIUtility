@@ -24,9 +24,9 @@
 .span_width{
     width: 42%
 }
-.bold_span,.span_width{
+/* .bold_span,.span_width{
     vertical-align: unset;
-}
+} */
 .page-item:first-child .page-link, .page-item:last-child .page-link {
     margin-left: 0;
     border-top-left-radius: .25rem;

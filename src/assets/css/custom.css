@@ -466,11 +466,26 @@ input[type=radio] {
 .span_width {
   width: 50%;
   display: inline-block;
-  vertical-align: top;
+  /* vertical-align: top; */
   font-size: 13px;
   color: #000;
 }
-
+.table1 .span_width{
+  width: 27%!important;
+}
+.table11 .span_width{
+  width: 33%!important;
+}
+.table2 .bold_span{
+  width: 60%!important;
+  font-weight: bold;
+}
+.table2 .span_width{
+  width: 25%!important;
+}
+.table3 .span_width{
+  width: 32%!important;
+}
 .dropdown-menu-right1 li a {
   color: #575962;
 }
@@ -493,7 +508,7 @@ input[type=radio] {
 
 .bold_span {
   display: inline-block;
-  vertical-align: top;
+  vertical-align: bottom;
   font-weight: 600;
   font-size: 13px;
   width: 50%;
@@ -2180,7 +2195,7 @@ label {
 .span_widthn {
   width: 120px;
   display: inline-block;
-  vertical-align: top;
+  /* vertical-align: top; */
   font-size: 12.6px;
   font-weight: 300;
 }

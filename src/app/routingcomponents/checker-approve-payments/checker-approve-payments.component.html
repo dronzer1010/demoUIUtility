@@ -54,9 +54,9 @@
                     </tr>
                     <tr>
                       <td>{{payments.length}}</td>
-                      <td><i class="fa fa-inr"></i> 7467482</td>
+                      <td>{{7467482 | currency:'INR':true:'1.2-2'}}</td>
                       <td>{{checkedValueArray.length}}</td>
-                      <td><i class="fa fa-inr"></i> 234343</td>
+                      <td>{{234343 | currency:'INR':true:'1.2-2'}}</td>
                     </tr>
                   </table>
                 </div>
@@ -88,7 +88,7 @@
                           <td><input type="checkbox" name="submenu" [checked]="select" (change)="change(payment.id) "></td>
                           <td>{{payment.bill.biller}}</td>
                           <!-- <td>{{payment.bill.consumerno}}</td> -->
-                          <td><i class="fa fa-inr"></i> {{payment.amount}}</td>
+                          <td>{{payment.amount | currency:'INR':true:'1.2-2'}}</td>
                           <td>{{payment.bill.consumerno}}</td>
                           <td>{{payment.bill.consumername}}</td>
                           <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.status}}</a></td>
@@ -137,7 +137,7 @@
                                   <div class="bold_span">9876 XXXX XXXX 1234</div>
                                 </div>
                             </div>
-                            <div class="tablediv">
+                            <div class="tablediv table2">
                                 <div class="mb-1">
                                     <h5>Contact Details</h5>
                                     <div class="span_width">Mobile No</div>  <span> : </span> &nbsp;
@@ -145,14 +145,14 @@
                                   </div>
                                   <div class="mb-1">
                                     <div class="span_width">Address </div>  <span> : </span> &nbsp;
-                                    <div class="bold_span">{{payment.bill.billaddress}}</div>
+                                    <span class="bold_span" tooltip="{{payment.bill.billaddress}}" placement="top" show-delay="500">{{payment.bill.billaddress}}</span>
                                   </div>
                                   <div>
                                     <div class="span_width">Email</div>  <span> : </span> &nbsp;
-                                    <div class="bold_span">{{payment.bill.email}}</div>
+                                    <span class="bold_span" tooltip="{{payment.bill.email}}" placement="top" show-delay="500">{{payment.bill.email}}</span>
                                   </div>
                             </div>
-                            <div class="tablediv noborder">
+                            <div class="tablediv noborder table3">
                                 <div class="mb-1">
                                     <h5>Other Details</h5>
                                     <div class="span_width">File Name </div>  <span> : </span> &nbsp;

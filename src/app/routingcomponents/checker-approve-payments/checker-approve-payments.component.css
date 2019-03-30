@@ -29,6 +29,10 @@ input[type="checkbox"] {
   text-align: center;
 }
 
+.entry-table{
+  border:1px solid #f4f4f4;
+}
+
 .entry-table tr:nth-child(1){
   color:#533979;
   font-weight: bold;
