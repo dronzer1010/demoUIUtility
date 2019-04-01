@@ -130,7 +130,14 @@
             </div>
             <div class="row mb-3" style="margin-bottom:15px;" >
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 txt">
-                {{noofrole}} <strong>{{billerlength}}</strong>
+                <table class="entry-table">
+                  <tr>
+                    <td>{{noofrole}}</td>
+                  </tr>
+                  <tr>
+                    <td>{{billerlength}}</td>
+                  </tr>
+                </table>
               </div>            
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
@@ -245,7 +252,9 @@
                       </td>
                     </tr>
                     <tr class="rowShow grayStrip" *ngIf="bill.collapsed">
-                      <td colspan="8"><span class="pull-right">
+                      <td colspan="8">
+                          <span class="text-left"><label style="color: #64289d;">Comment : &nbsp;</label>Invalid Biller Details</span>
+                        <span class="pull-right">
                         <img style="cursor:pointer;"src="assets/img/attach.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <a *ngIf="rolename=='ccmaker' || rolename=='maker'" data-toggle="modal" id="openBtn"><img src="assets/img/edit.png"></a>
                         </span></td>

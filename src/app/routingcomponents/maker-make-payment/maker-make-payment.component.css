@@ -21,13 +21,19 @@
   color:#533979;
   font-weight: bold;
 }
-
+.buttonpad1 {
+  padding: 0px 0px !important;
+  border: 1px solid transparent;
+  width: 95%;
+}
 #mod{
   width:430px;
 }
 #mod table tr td:nth-child(1){
   color: #807199;
   font-weight: bold;
+  width: 50%;
+  padding-left: 10px;
 }
 #mod table tr:nth-child(2) td:nth-child(3) .model-inputs, #mod table tr:nth-child(4) td:nth-child(3) .model-inputs{
   border: 1px solid #e2dee8!important;

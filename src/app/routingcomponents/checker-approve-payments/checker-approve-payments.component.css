@@ -22,7 +22,29 @@ input[type="checkbox"] {
   color: #333333;
   outline-style: none;
 }
-
+/*Popup Generate Report CSS*/
+.modal-dialog#logs{
+  width:420px;
+}
+#modal-table tbody tr td:nth-child(1) {
+  color: #807199;
+  font-weight: bold;
+  width: 53%;
+}
+tbody tr td {
+  font-size: 13px;
+  color: #7a7a7a;
+  height: 50px;
+  padding: 10px;
+}
+#modal-table{
+  border: 1px solid #e4dbe4;
+}
+.modal-body{
+  position: relative;
+  padding: 15px 0 15px 15px;
+}
+/*Popup Generate Report CSS End*/
 .entry-table tr td{
   height: 20px;
   width: 25%;

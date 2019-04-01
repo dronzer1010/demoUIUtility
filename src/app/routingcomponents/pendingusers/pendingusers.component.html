@@ -2,531 +2,575 @@
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 heading">Pending Users</div>
     </div>
-   <section class="content ">
-       <!--<div class="col-md-2 col-sm-2 top_back no-show2">
+    <section class="content ">
+        <!--<div class="col-md-2 col-sm-2 top_back no-show2">
            <h5 class="blu-color"> <a class="backBtn"><img src="assets/img/left-arrow.png"> Back </a></h5></div>-->
-       <div class="col-md-12">
-         <div class="stepwizard ">
-            <div class="stepwizard-row stepwizard-row2 setup-panel">
-               <div class="stepwizard-step">
-                  <a class="btn bg-primary btn-circle" id="fourth" *ngIf="step1">
-                  <img class="img-responsive tickimgn" src="assets/img/tick.png">
-                  </a>
-                  <a class="btn bg-primary btn-circle big-circle" id="fourth" *ngIf="step2 || step3">
-                   <img class="img-responsive tickimg" src="assets/img/tick.png">
-                   </a>
-                  <h6 class="blu-color stepmrgnlft" id="p1">Review Users</h6>
-               </div>
-               <div class="stepwizard-step">
-                  <a class="btn bg-default btn-circle " id="fifth" *ngIf="step1">
-                  <img class="img-responsive tickimgn" src="assets/img/tick.png">
-                  </a>
-                  <a class="btn bg-primary btn-circle " id="fifth" *ngIf="step2">
-                   <img class="img-responsive tickimgn" src="assets/img/tick.png">
-                   </a>
-                  <a class="btn bg-primary btn-circle big-circle" id="fourth" *ngIf="step3">
-                   <img class="img-responsive tickimg" src="assets/img/tick.png">
-                   </a>
-                  <h6 id="p2">Verification</h6>
-               </div>
-            
+        <div class="col-md-12">
+            <div class="stepwizard ">
+                <div class="stepwizard-row stepwizard-row2 setup-panel">
+                    <div class="stepwizard-step">
+                        <a class="btn bg-primary btn-circle" id="fourth" *ngIf="step1">
+                            <img class="img-responsive tickimgn" src="assets/img/tick.png">
+                        </a>
+                        <a class="btn bg-primary btn-circle big-circle" id="fourth" *ngIf="step2 || step3">
+                            <img class="img-responsive tickimg" src="assets/img/tick.png">
+                        </a>
+                        <h6 class="blu-color stepmrgnlft" id="p1">Review Users</h6>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a class="btn bg-default btn-circle " id="fifth" *ngIf="step1">
+                            <img class="img-responsive tickimgn" src="assets/img/tick.png">
+                        </a>
+                        <a class="btn bg-primary btn-circle " id="fifth" *ngIf="step2">
+                            <img class="img-responsive tickimgn" src="assets/img/tick.png">
+                        </a>
+                        <a class="btn bg-primary btn-circle big-circle" id="fourth" *ngIf="step3">
+                            <img class="img-responsive tickimg" src="assets/img/tick.png">
+                        </a>
+                        <h6 id="p2">Verification</h6>
+                    </div>
+
+                </div>
             </div>
-         </div>
-       </div>
-       <!--<div class="col-md-2 col-sm-2 top_back no-show">
+        </div>
+        <!--<div class="col-md-2 col-sm-2 top_back no-show">
    <h5 class="blu-color"> <a href="#" class="backBtn"><img src="assets/img/left-arrow.png"> Back </a></h5></div>-->
-       <div class="clearfix"></div>
-       <div role="form" class="contact-form ">
-           <div class="col-md-12">
+        <div class="clearfix"></div>
+        <div role="form" class="contact-form ">
+            <div class="col-md-12">
 
-               <div class="row setup-content" id="step-1">
-                  <div class="" id="lstpaymt">
-                     <!-- Content Wrapper. Contains page content -->
-                     <div class="">
-                         <!-- Main content -->
-                         <section class="">
-                             <div class="">
-                             </div>
-                             <div class="white-bg">
-                                 <h4 class="col-md-9 col-sm-6 Top5Heading111 mrgnone"> </h4>
-                                 <div class="form-group col-md-3 col-sm-6 top-spac text-right right-spac">
-                                 </div>
-                                 <div class="clear"></div>
-                                 <div class="BorderBottom"></div>
-                                 <div class="col-md-8 col-sm-6  top-spac">
-                                     <label class="plntxt">No of User Requests</label>
-                                     <label class="plntxtbold">{{checkedValueArray.length}}</label>
-                                     <div class="clear10"></div>
-                                     <div *ngIf="pendingusers.length > 0">
-                                     <button class="btn bg-primary" type="button" (click)="gotoOTP()">Approve</button>
-                                     <a class="btn btn-primary btn-outline ResponsiveBtnWidth btstyle" data-toggle="modal" data-target="#payreport" (click)="displayRejMod()">
-                                         Reject</a>
-                                     </div>
-                                 </div>
-                                 <div class="form-group col-md-4 col-sm-6 top-spac text-right right-spac">
-                                     <label>Show:
-                                         <select name="example_length" aria-controls="example" class=" input-sm bbor">
-                                             <option value="10">10</option>
-                                             <option value="25">25</option>
-                                             <option value="50">50</option>
-                                             <option value="100">100</option>
-                                         </select>
-                                     </label>
-                                 </div>
-                                 <div class="clear"></div>
-                                 <div class="table-responsive">
-                                     <table class="table table-hover table-striped">
-                                         <thead>
-                                             <tr class="cust-color">
-                                                 <td>
-                                                     <div _ngcontent-c3="">
-                                                         <input type="checkbox" name="mainmenu" (change)="changeAll(pendingusers);selectAll();" [checked]="selectall" [(ngModel)]="selectedAll">
-                                                     </div>
-                                                 </td>
-                                                 <td>
-                                                     S.No.
-                                                 </td>
-                                                 <td>
-                                                     <span class="bold-txt">Employee Name</span>
-                                                     <div class="btn-group dropdown">
-                                                         <button type="button" class="btn dropdown-toggle caret2" data-toggle="dropdown">
-                                                             <span class="sr-only">Toggle Dropdown</span>
-                                                         </button>
-                                                         <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right1" role="menu">
-                                                             <li>
-                                                                 <a href="javascript:void(0);" (click)="sortByAsc('employeename')">
-                                                                     <img src="assets/img/Sort_Ascending.png"> &nbsp;&nbsp;Sort Ascending</a>
-                                                             </li>
-                                                             <li class="divider"></li>
-                                                             <li>
-                                                                 <a href="javascript:void(0);" (click)="sortByDesc('employeename')">
-                                                                     <img src="assets/img/Sort_Descending.png"> &nbsp;&nbsp;Sort Descending</a>
-                                                             </li>
-                                                             <li class="divider"></li>
-                                                             <li>
-                                                                 <a href="javascript:void(0);">
-                                                                     <img src="assets/img/search-icon.png"> &nbsp;&nbsp;
-                                                                     <input class="search_box" type="text" placeholder="Search" [(ngModel)]="supplierName" >
-                                                                 </a>
-                                                             </li>
-                                                         </ul>
-                                                     </div>
-                                                 </td>
-                                                 <td>
-                                                     <span class="bold-txt">Designation</span>
-                                                     <div class="btn-group dropdown">
-                                                         <button type="button" class="btn dropdown-toggle caret2" data-toggle="dropdown">
-                                                             <span class="sr-only">Toggle Dropdown</span>
-                                                         </button>
-                                                         <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right1" role="menu">
-                                                             <li>
-                                                                 <a href="javascript:void(0);" (click)="sortByAsc('designation')">
-                                                                     <img src="assets/img/Sort_Ascending.png"> &nbsp;&nbsp;Sort Ascending</a>
-                                                             </li>
-                                                             <li class="divider"></li>
-                                                             <li>
-                                                                 <a href="javascript:void(0);" (click)="sortByDesc('designation')">
-                                                                     <img src="assets/img/Sort_Descending.png"> &nbsp;&nbsp;Sort Descending</a>
-                                                             </li>
-                                                             <li class="divider"></li>
-                                                             <li>
-                                                                 <a href="javascript:void(0);">
-                                                                     <img src="assets/img/search-icon.png"> &nbsp;&nbsp;
-                                                                     <input class="search_box" type="text" placeholder="Search"  [(ngModel)]="supplierdesignation">
-                                                                 </a>
-                                                             </li>
-                                                         </ul>
-                                                     </div>
-                                                 </td>
-                                                 <td>
-                                                     <span class="bold-txt">Department</span>
-                                                     <div class="btn-group">
-                                                         <button type="button" class="btn dropdown-toggle caret2" data-toggle="dropdown">
-                                                             <span class="sr-only">Toggle Dropdown</span>
-                                                         </button>
-                                                         <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right2" role="menu">
-                                                             <li>
-                                                                 <a href="javascript:void(0);" (click)="sortByAsc('department')">
-                                                                     <img src="assets/img/Sort_Ascending.png"> &nbsp;&nbsp;Sort Ascending</a>
-                                                             </li>
-                                                             <li class="divider"></li>
-                                                             <li>
-                                                                 <a href="javascript:void(0);" (click)="sortByDesc('department')">
-                                                                     <img src="assets/img/Sort_Descending.png"> &nbsp;&nbsp;Sort Descending</a>
-                                                             </li>
-                                                             <li class="divider"></li>
-                                                             <li>
-                                                                 <a href="javascript:void(0);">
-                                                                     <img src="assets/img/search-icon.png"> &nbsp;&nbsp;
-                                                                     <input class="search_box" type="text" placeholder="Search"  [(ngModel)]="department">
-                                                                 </a>
-                                                             </li>
-                                                         </ul>
-                                                     </div>
-                                                     <td>
-                                                         <span class="bold-txt">Role</span>
-                                                         <div class="btn-group">
-                                                             <button type="button" class="btn dropdown-toggle caret2" data-toggle="dropdown">
-                                                                 <span class="sr-only">Toggle Dropdown</span>
-                                                             </button>
-                                                             <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right2" role="menu">
-                                                                 <li>
-                                                                     <a href="javascript:void(0);" (click)="sortByAsc('role')">
-                                                                         <img src="assets/img/Sort_Ascending.png"> &nbsp;&nbsp;Sort Ascending</a>
-                                                                 </li>
-                                                                 <li class="divider"></li>
-                                                                 <li>
-                                                                     <a href="javascript:void(0);" (click)="sortByDesc('role')">
-                                                                         <img src="assets/img/Sort_Descending.png"> &nbsp;&nbsp;Sort Descending</a>
-                                                                 </li>
-                                                                 <li class="divider"></li>
-                                                                 <li>
-                                                                     <a href="javascript:void(0);">
-                                                                         <img src="assets/img/search-icon.png"> &nbsp;&nbsp;
-                                                                         <input class="search_box" type="text" placeholder="Search"  [(ngModel)]="role">
-                                                                     </a>
-                                                                 </li>
-                                                             </ul>
-                                                         </div>
-                                                     </td>
-                                                     <td>
-                                                         <span class="bold-txt"> Status</span> &nbsp;&nbsp;&nbsp;
-                                                     </td>
-                                                     <td></td>
-                                             </tr>
-                                         </thead>
-                                         <ng-container *ngFor="let userspending of pendingusers|aspendingusersfilter : supplierName: supplierdesignation : department : role; let i=index" >
-                                             <tbody>
-                                                 <tr>
-                                                     <td>
-                                                         <div _ngcontent-c3="">
-                                                             <input type="checkbox" name="submenu" (change)="change(userspending.id);checkIfAllSelected()" [(ngModel)]="userspending.selected">
-                                                         </div>
-                                                     </td>
-                                                     <td>{{i+1}}</td>
-                                                     <td>{{userspending.employeename}}</td>
-                                                     <td>{{userspending.designation}}</td>
-                                                     <td>{{userspending.department}}</td>
-                                                     <td>{{userspending.role}}</td>
-                                                     <td>
-                                                         <a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': userspending.status === 'Approved', 'Rejected': userspending.status  === 'Rejected', 'Pending': userspending.status  === 'Pending'}"
-                                                             role="button">{{userspending.status}} </a>
-                                                     </td>
-                                                     <td>
-                                                         <div [ngClass]="{'flashOn': userspending.collapsed, 'flash': !userspending.collapsed }" class="showhide" (click)="userspending.collapsed=!userspending.collapsed">
-                                                             <span class="showhide">+</span>
-                                                         </div>
-                                                     </td>
-                                                 </tr>
-                                                 <tr class="rowShow grayStrip" *ngIf="userspending.collapsed">
-                                                     <td colspan="8" class="custmtd">
-                                                         <div class="col-xs-4 col-md-4 col-sm-4 tablediv">
-                                                             <h5>Employee Details</h5>
-                                                             <div>
-                                                                 <div class="span_width">Employee ID</div><span> : </span>&nbsp;
-                                                                 <div class="bold_span">{{userspending.empid}}</div>
-                                                             </div>
-                                                             <div>
-                                                                 <div class="span_width">Group </div><span> : </span>&nbsp;
-                                                                 <div class="bold_span">{{userspending.group}}</div>
-                                                             </div>
-                                                             <div>
-                                                                 <div class="span_width">Date of birth</div><span> : </span>&nbsp;
-                                                                 <div class="bold_span">{{userspending.dob}}</div>
-                                                             </div>
-                                                         </div>
-                                                         <div class="col-xs-4 col-md-4 col-sm-4 tablediv">
-                                                             <h5>Contact Details</h5>
-                                                             <div>
-                                                                 <div class="span_width">Contact Number</div><span> : </span>&nbsp;
-                                                                 <div class="bold_span">{{userspending.mobileno}}</div>
-                                                             </div>
-                                                             <div>
-                                                                 <div class="span_width">Landline No</div><span> : </span>&nbsp;
-                                                                 <div class="bold_span">{{userspending.landlineno}}</div>
-                                                             </div>
-                                                             <div>
-                                                                 <div class="span_width">Email Id</div><span> : </span>&nbsp;
-                                                                 <div class="bold_span">{{userspending.email}}</div>
-                                                             </div>
-                                                         </div>
-                                                         <div class="col-xs-4 col-md-4 col-sm-4 tablediv noborder">
-                                                             <h5>Activity</h5>
-                 
-                                                             <div>
-                                                                 <div class="span_width">Uploaded in File </div><span> : </span>&nbsp;
-                                                                 <div class="bold_span" *ngIf="userspending.uploadfilename.length>0">{{userspending.uploadfilename}}</div>
-                                                                 <div class="bold_span" *ngIf="userspending.uploadfilename.length<=0">Unitary</div>
-                                                             </div>
-                                                             <div>
-                                                                 <div class="span_width">Initiated on  </div><span> : </span>&nbsp;
-                                                                 <div class="bold_span">{{userspending.initiateddate}} | {{userspending.initiatedtime}}</div>
-                                                             </div>
-                                                             <div>
-                                                                 <div class="span_width">Initiated by</div><span> : </span>&nbsp;
-                                                                 <div class="bold_span">{{userspending.initiatedby}}</div>
-                                                             </div>
-                                                             <div>
-                                                                 <div class="span_width">Approved on  </div><span> : </span>&nbsp;
-                                                                 <div class="bold_span">{{userspending.approveddate}} | {{userspending.approvedtime}}</div>
-                                                             </div>
-                                                             <div>
-                                                                 <div class="span_width">Approved by</div><span> : </span>&nbsp;
-                                                                 <div class="bold_span">{{userspending.approvedby}}</div>
-                                                             </div>
-                                                         </div>
-                                                     </td>
-                                                 </tr>
-                                                 <tr class="rowShow"  *ngIf="userspending.collapsed">
-                                                     <td colspan="8">
-                                                         <span class="pull-right">
-                                                             <a data-toggle="modal" data-target="#Privileges"  (click)="setPriv(userspending.previlage);openPrivMod();">
-                                                                 <img src="assets/img/str.png">&nbsp;&nbsp;&nbsp;</a>
-                                                         </span>
-                                                     </td>
-                                                 </tr>
-                                             </tbody>
-                                         </ng-container>
-                                     </table>
-                                 </div>
-                             </div>
-                             
-                             <!-- /.modal-content -->
-                             <div class="modal fade" id="myModal">
-                                 <div class="modal-dialog modal-lg">
-                                     <div class="modal-content modelWidth">
-                                         <div class="modal-header myheader">
-                                             <button type="button" class="close close2" data-dismiss="modal" aria-hidden="true">×</button>
-                                             <h4 class="modal-title">Payment Status</h4>
-                                         </div>
-                                         <div class="modal-body mybody">
-                                             <table class="table table-striped mycustomtable" id="tblGrid">
-                                                 <thead id="tblHead">
-                                                     <tr class="text-center">
-                                                         <th>State</th>
-                                                         <th>Date</th>
-                                                         <th>Time</th>
-                                                     </tr>
-                                                 </thead>
-                                                 <tbody>
-                                                     <tr>
-                                                         <td>Card Debited</td>
-                                                         <td>28/04/2018</td>
-                                                         <td>1</td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td>UTR</td>
-                                                         <td>25/05/2018</td>
-                                                         <td>1</td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td>Card Refunded</td>
-                                                         <td>NA</td>
-                                                         <td>NA</td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td>Fund Refunded</td>
-                                                         <td>25/05/2018</td>
-                                                         <td>1</td>
-                                                     </tr>
-                                                 </tbody>
-                                             </table>
-                                         </div>
-                                     </div>
-                                     <!-- /.modal-content -->
-                                 </div>
-                                 <!-- /.modal-dialog -->
-                             </div>
-                             <!-- /.modal -->
-                             <!-- Modal2 -->
-                             <div class="backdrop" [ngStyle]="{'display':disRejMod}"></div>
-                             <div id="payreport" class="modal"  tabindex="-1" role="dialog" [ngStyle]="{'display':disRejMod}">
-                                 <div class="modal-dialog modal-lg">
-                                     <!-- Modal content-->
-                                     <div class="modal-content modelWidth">
-                                         <div class="modal-header myheader">
-                                             <button type="button" class="close close2" data-dismiss="modal" (click)="closeRejMod()">&times;</button>
-                                             <h4 class="modal-title">Comment</h4>
-                                         </div>
-                                         <div class="modal-body mybody2">
-                                             <div class="col-md-12 col-sm-12 col-xs-12 ">
-                                                 <textarea class="form-control popupborder" rows="5" placeholder="Reason for Rejection" [(ngModel)]="comment"></textarea>
-                                             </div>
-                                             <div class="clear10"></div>
-                                             <a >
-                                                     <!-- routerLink="../asuserlist" -->
-                                                 <button class="btn bg-primary nextBtn nxt2" data-dismiss="modal" type="button" (click)="rejectGroupById();closeRejMod()" >Reject</button>
-                                             </a>
-                                         </div>
-                                     </div>
-                                 </div>
-                             </div>
-                             <div class="backdrop" [ngStyle]="{'display':disPrivModal}"></div>
-                             <div id="Privileges" class="modal" role="dialog" [ngStyle]="{'display':disPrivModal}">
-                                 <div class="modal-dialog modal-lg">
-                                    <!-- Modal content-->
-                                    <div class="modal-content modelWidthn">
-                                       <div class="modal-header myheader">
-                                          <button type="button" class="close close2" data-dismiss="modal" (click)="closePrivMod()">&times;</button>
-                                          <h4 class="modal-title">Set User Privileges </h4>
-                                       </div>
-                                       <div class="modal-body mybody2">
-                                          <div class="table-responsive norespopad">
-                                             <table class="table noborder">
-                                                <tbody>
-                                                   <tr>
-                                                      <td colspan="4" class="custmtd">
-                                                         <div class="col-sm-3 col-md-3 col-xs-3">
-                                                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                                               <h5 class="prevlghd">Billers</h5>
-                                                            </div>
-                                                            <div class="clear20"></div>
-                                                            <div class="col-md-1 col-sm-1 col-xs-1">
-                                                               <div *ngIf="!isViewsup" class="place"></div>
-                                                               <div *ngIf="isViewsup" class="place chkselect"></div>
-                                                               <div class="clear10"></div>
-                                                               <div *ngIf="!isApprsup" class="place"></div>
-                                                               <div *ngIf="isApprsup" class="place chkselect"></div>
-                                                               <div class="clear10"></div>
-                                                               <div *ngIf="!isUnisup" class="place"></div>
-                                                               <div *ngIf="isUnisup" class="place chkselect"></div>
-                                                               <div class="clear10"></div>
-                                                               <div *ngIf="!isBulksup" class="place"></div>
-                                                               <div *ngIf="isBulksup" class="place chkselect"></div>
-                                                               <div class="clear10"></div>
-                                                            </div>
-                                                            <div class="col-sm-9 col-md-9 col-xs-9">
-                                                               View
-                                                               <br>
-                                                               <div class="clear10"></div>
-                                                               Approve
-                                                               <br>
-                                                               <div class="clear10"></div>
-                                                               Add Unitary
-                                                               <br>
-                                                               <div class="clear10"></div>
-                                                               Add Bulk
-                                                               <br>
-                                                               <div class="clear10"></div>
-                                                            </div>
-                                                         </div>
-                                                         <div class="col-sm-3 col-md-3 col-xs-3 brdlft">
-                                                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                                               <h5 class="prevlghd">Payment</h5>
-                                                            </div>
-                                                            <div class="clear20"></div>
-                                                            <div class="col-md-1 col-sm-1 col-xs-1">
-                                                               <div *ngIf="!isViewpay" class="place"></div>
-                                                               <div *ngIf="isViewpay" class="place chkselect"></div>
-                                                               <div class="clear10"></div>
-                                                               <div *ngIf="!isApprpay" class="place"></div>
-                                                               <div *ngIf="isApprpay" class="place chkselect"></div>
-                                                               <div class="clear10"></div>
-                                                               <div *ngIf="!isUnipay" class="place"></div>
-                                                               <div *ngIf="isUnipay" class="place chkselect"></div>
-                                                               <div class="clear10"></div>
-                                                               <div *ngIf="!isBulkpay" class="place"></div>
-                                                               <div *ngIf="isBulkpay" class="place chkselect"></div>
-                                                               <div class="clear10"></div>
-                                                            </div>
-                                                            <div class="col-sm-9 col-md-9 col-xs-9">
-                                                               View
-                                                               <br>
-                                                               <div class="clear10"></div>
-                                                               Approve
-                                                               <br>
-                                                               <div class="clear10"></div>
-                                                               Make Unitary
-                                                               <br>
-                                                               <div class="clear10"></div>
-                                                               Make Bulk
-                                                               <br>
-                                                               <div class="clear10"></div>
-                                                            </div>
-                                                         </div>
-                                                         <div class="col-sm-3 col-md-3 col-xs-3 brdlft">
-                                                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                                               <h5 class="prevlghd">Users</h5>
-                                                            </div>
-                                                            <div class="clear20"></div>
-                                                            <div class="col-md-1 col-sm-1 col-xs-1">
-                                                               <div *ngIf="!isViewuser" class="place"></div>
-                                                               <div *ngIf="isViewuser" class="place chkselect"></div>
-                                                               <div class="clear10"></div>
-                                                               <div *ngIf="!isAppruser" class="place"></div>
-                                                               <div *ngIf="isAppruser" class="place chkselect"></div>
-                                                               <div class="clear10"></div>
-                                                               <div *ngIf="!isUniuser" class="place"></div>
-                                                               <div *ngIf="isUniuser" class="place chkselect"></div>
-                                                               <div class="clear10"></div>
-                                                               <div *ngIf="!isBulkuser" class="place"></div>
-                                                               <div *ngIf="isBulkuser" class="place chkselect"></div>
-                                                               <div class="clear10"></div>
-                                                            </div>
-                                                            <div class="col-sm-9 col-md-9 col-xs-9">
-                                                               View
-                                                               <br>
-                                                               <div class="clear10"></div>
-                                                               Approve
-                                                               <br>
-                                                               <div class="clear10"></div>
-                                                               Add Unitary
-                                                               <br>
-                                                               <div class="clear10"></div>
-                                                               Add Bulk
-                                                               <br>
-                                                               <div class="clear10"></div>
-                                                            </div>
-                                                         </div>
-                                                         <div class="col-sm-3 col-md-3 col-xs-3 brdlft">
-                                                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                                               <h5 class="prevlghd">Cards</h5>
-                                                            </div>
-                                                            <div class="clear20"></div>
-                                                            <div class="col-md-1 col-sm-1 col-xs-1">
-                                                               <div *ngIf="!isViewcard" class="place"></div>
-                                                               <div *ngIf="isViewcard" class="place chkselect"></div>
-                                                               <div class="clear10"></div>
-                                                               <div *ngIf="!isApprcard" class="place"></div>
-                                                               <div *ngIf="isApprcard" class="place chkselect"></div>
-                                                               <div class="clear10 "></div>
-                                                               <div *ngIf="!isUnicard" class="place"></div>
-                                                               <div *ngIf="isUnicard" class="place chkselect"></div>
-                                                               <div class="clear10"></div>
-                                                            </div>
-                                                            <div class="col-sm-9 col-md-9 col-xs-9">
-                                                               View
-                                                               <br>
-                                                               <div class="clear10"></div>
-                                                               Approve
-                                                               <br>
-                                                               <div class="clear10"></div>
-                                                               Add Unitary
-                                                               <br>
-                                                               <div class="clear10"></div>
-                                                               <div class="clear10"></div>
-                                                            </div>
-                                                         </div>
-                                                      </td>
-                                                   </tr>
-                                                </tbody>
-                                             </table>
-                                          </div>
-                                          <div class="clear10"></div>
-                                       </div>
+                <div class="row setup-content" id="step-1">
+                    <div class="" id="lstpaymt">
+                        <!-- Content Wrapper. Contains page content -->
+                        <div class="">
+                            <!-- Main content -->
+                            <section class="">
+                                <div class="">
+                                </div>
+                                <div class="white-bg">
+                                    <h4 class="col-md-9 col-sm-6 Top5Heading111 mrgnone"> </h4>
+                                    <div class="form-group col-md-3 col-sm-6 top-spac text-right right-spac">
                                     </div>
-                                 </div>
-                              </div>
-                         </section>
-                     </div>
-                 </div>
-                 <div class="clear20"></div>
-                 <div class="clear20"></div>
-               </div>
-               
+                                    <div class="clear"></div>
+                                    <div class="BorderBottom"></div>
+                                    <div class="col-md-8 col-sm-6  top-spac">
+                                        <label class="plntxt">No of User Requests</label>
+                                        <label class="plntxtbold">{{checkedValueArray.length}}</label>
+                                        <div class="clear10"></div>
+                                        <div *ngIf="pendingusers.length > 0">
+                                            <button class="btn bg-primary" type="button" (click)="gotoOTP()">Approve</button>
+                                            <a class="btn btn-primary btn-outline ResponsiveBtnWidth btstyle"
+                                                data-toggle="modal" data-target="#payreport" (click)="displayRejMod()">
+                                                Reject</a>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4 col-sm-6 top-spac text-right right-spac">
+                                        <label>Show:
+                                            <select name="example_length" aria-controls="example" class=" input-sm bbor">
+                                                <option value="10">10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-striped">
+                                            <thead>
+                                                <tr class="cust-color">
+                                                    <td>
+                                                        <div _ngcontent-c3="">
+                                                            <input type="checkbox" name="mainmenu" (change)="changeAll(pendingusers);selectAll();"
+                                                                [checked]="selectall" [(ngModel)]="selectedAll">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        S.No.
+                                                    </td>
+                                                    <td>
+                                                        <span class="bold-txt">Employee Name</span>
+                                                        <div class="btn-group dropdown">
+                                                            <button type="button" class="btn dropdown-toggle caret2"
+                                                                data-toggle="dropdown">
+                                                                <span class="sr-only">Toggle Dropdown</span>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right1"
+                                                                role="menu">
+                                                                <li>
+                                                                    <a href="javascript:void(0);" (click)="sortByAsc('employeename')">
+                                                                        <img src="assets/img/Sort_Ascending.png">
+                                                                        &nbsp;&nbsp;Sort Ascending</a>
+                                                                </li>
+                                                                <li class="divider"></li>
+                                                                <li>
+                                                                    <a href="javascript:void(0);" (click)="sortByDesc('employeename')">
+                                                                        <img src="assets/img/Sort_Descending.png">
+                                                                        &nbsp;&nbsp;Sort Descending</a>
+                                                                </li>
+                                                                <li class="divider"></li>
+                                                                <li>
+                                                                    <a href="javascript:void(0);">
+                                                                        <img src="assets/img/search-icon.png">
+                                                                        &nbsp;&nbsp;
+                                                                        <input class="search_box" type="text"
+                                                                            placeholder="Search" [(ngModel)]="supplierName">
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span class="bold-txt">Designation</span>
+                                                        <div class="btn-group dropdown">
+                                                            <button type="button" class="btn dropdown-toggle caret2"
+                                                                data-toggle="dropdown">
+                                                                <span class="sr-only">Toggle Dropdown</span>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right1"
+                                                                role="menu">
+                                                                <li>
+                                                                    <a href="javascript:void(0);" (click)="sortByAsc('designation')">
+                                                                        <img src="assets/img/Sort_Ascending.png">
+                                                                        &nbsp;&nbsp;Sort Ascending</a>
+                                                                </li>
+                                                                <li class="divider"></li>
+                                                                <li>
+                                                                    <a href="javascript:void(0);" (click)="sortByDesc('designation')">
+                                                                        <img src="assets/img/Sort_Descending.png">
+                                                                        &nbsp;&nbsp;Sort Descending</a>
+                                                                </li>
+                                                                <li class="divider"></li>
+                                                                <li>
+                                                                    <a href="javascript:void(0);">
+                                                                        <img src="assets/img/search-icon.png">
+                                                                        &nbsp;&nbsp;
+                                                                        <input class="search_box" type="text"
+                                                                            placeholder="Search" [(ngModel)]="supplierdesignation">
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span class="bold-txt">Department</span>
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn dropdown-toggle caret2"
+                                                                data-toggle="dropdown">
+                                                                <span class="sr-only">Toggle Dropdown</span>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right2"
+                                                                role="menu">
+                                                                <li>
+                                                                    <a href="javascript:void(0);" (click)="sortByAsc('department')">
+                                                                        <img src="assets/img/Sort_Ascending.png">
+                                                                        &nbsp;&nbsp;Sort Ascending</a>
+                                                                </li>
+                                                                <li class="divider"></li>
+                                                                <li>
+                                                                    <a href="javascript:void(0);" (click)="sortByDesc('department')">
+                                                                        <img src="assets/img/Sort_Descending.png">
+                                                                        &nbsp;&nbsp;Sort Descending</a>
+                                                                </li>
+                                                                <li class="divider"></li>
+                                                                <li>
+                                                                    <a href="javascript:void(0);">
+                                                                        <img src="assets/img/search-icon.png">
+                                                                        &nbsp;&nbsp;
+                                                                        <input class="search_box" type="text"
+                                                                            placeholder="Search" [(ngModel)]="department">
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    <td>
+                                                        <span class="bold-txt">Role</span>
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn dropdown-toggle caret2"
+                                                                data-toggle="dropdown">
+                                                                <span class="sr-only">Toggle Dropdown</span>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right2"
+                                                                role="menu">
+                                                                <li>
+                                                                    <a href="javascript:void(0);" (click)="sortByAsc('role')">
+                                                                        <img src="assets/img/Sort_Ascending.png">
+                                                                        &nbsp;&nbsp;Sort Ascending</a>
+                                                                </li>
+                                                                <li class="divider"></li>
+                                                                <li>
+                                                                    <a href="javascript:void(0);" (click)="sortByDesc('role')">
+                                                                        <img src="assets/img/Sort_Descending.png">
+                                                                        &nbsp;&nbsp;Sort Descending</a>
+                                                                </li>
+                                                                <li class="divider"></li>
+                                                                <li>
+                                                                    <a href="javascript:void(0);">
+                                                                        <img src="assets/img/search-icon.png">
+                                                                        &nbsp;&nbsp;
+                                                                        <input class="search_box" type="text"
+                                                                            placeholder="Search" [(ngModel)]="role">
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span class="bold-txt"> Status</span> &nbsp;&nbsp;&nbsp;
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </thead>
+                                            <ng-container *ngFor="let userspending of pendingusers|aspendingusersfilter : supplierName: supplierdesignation : department : role; let i=index">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <div _ngcontent-c3="">
+                                                                <input type="checkbox" name="submenu" (change)="change(userspending.id);checkIfAllSelected()"
+                                                                    [(ngModel)]="userspending.selected">
+                                                            </div>
+                                                        </td>
+                                                        <td>{{i+1}}</td>
+                                                        <td>{{userspending.employeename}}</td>
+                                                        <td>{{userspending.designation}}</td>
+                                                        <td>{{userspending.department}}</td>
+                                                        <td>{{userspending.role}}</td>
+                                                        <td>
+                                                            <a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': userspending.status === 'Approved', 'Rejected': userspending.status  === 'Rejected', 'Pending': userspending.status  === 'Pending'}"
+                                                                role="button">{{userspending.status}} </a>
+                                                        </td>
+                                                        <td>
+                                                            <div [ngClass]="{'flashOn': userspending.collapsed, 'flash': !userspending.collapsed }"
+                                                                class="showhide" (click)="userspending.collapsed=!userspending.collapsed">
+                                                                <span class="showhide">+</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="rowShow grayStrip" *ngIf="userspending.collapsed">
+                                                        <td colspan="8" class="custmtd">
+                                                            <div class="col-xs-4 col-md-4 col-sm-4 tablediv table2">
+                                                                <h5>Employee Details</h5>
+                                                                <div>
+                                                                    <div class="span_width">Employee ID</div><span> :
+                                                                    </span>&nbsp;
+                                                                    <div class="bold_span">{{userspending.empid}}</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div class="span_width">Group </div><span> : </span>&nbsp;
+                                                                    <div class="bold_span">{{userspending.group}}</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div class="span_width">Date of birth</div><span> :
+                                                                    </span>&nbsp;
+                                                                    <div class="bold_span">{{userspending.dob}}</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-4 col-md-4 col-sm-4 tablediv table3">
+                                                                <h5>Contact Details</h5>
+                                                                <div>
+                                                                    <div class="span_width">Contact Number</div><span>
+                                                                        : </span>&nbsp;
+                                                                    <div class="bold_span">{{userspending.mobileno}}</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div class="span_width">Landline No</div><span> :
+                                                                    </span>&nbsp;
+                                                                    <div class="bold_span">{{userspending.landlineno}}</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div class="span_width">Email Id</div><span> :
+                                                                    </span>&nbsp;
+                                                                    <div class="bold_span"><span tooltip="{{userspending.email}}" placement="top" show-delay="500">{{userspending.email}}</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-4 col-md-4 col-sm-4 tablediv noborder table3">
+                                                                <h5>Activity</h5>
 
-             
-           </div>
-       </div>
-   </section>
+                                                                <div>
+                                                                    <div class="span_width">Uploaded in File </div><span>
+                                                                        : </span>&nbsp;
+                                                                    <div class="bold_span" *ngIf="userspending.uploadfilename.length>0">{{userspending.uploadfilename}}</div>
+                                                                    <div class="bold_span" *ngIf="userspending.uploadfilename.length<=0">Unitary</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div class="span_width">Initiated on </div><span> :
+                                                                    </span>&nbsp;
+                                                                    <div class="bold_span">{{userspending.initiateddate}}
+                                                                        | {{userspending.initiatedtime}}</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div class="span_width">Initiated by</div><span> :
+                                                                    </span>&nbsp;
+                                                                    <div class="bold_span"><span tooltip="{{userspending.initiatedby}}" placement="top" show-delay="500">{{userspending.initiatedby}}</span></div>
+                                                                </div>
+                                                                <div>
+                                                                    <div class="span_width">Approved on </div><span> :
+                                                                    </span>&nbsp;
+                                                                    <div class="bold_span">{{userspending.approveddate}}
+                                                                        | {{userspending.approvedtime}}</div>
+                                                                </div>
+                                                                <div>
+                                                                    <div class="span_width">Approved by</div><span> :
+                                                                    </span>&nbsp;
+                                                                    <div class="bold_span">{{userspending.approvedby}}</div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="rowShow" *ngIf="userspending.collapsed">
+                                                        <td colspan="8">
+                                                            <span class="pull-right">
+                                                                <a data-toggle="modal" data-target="#Privileges"
+                                                                    (click)="setPriv(userspending.previlage);openPrivMod();">
+                                                                    <img src="assets/img/str.png">&nbsp;&nbsp;&nbsp;</a>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </ng-container>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- /.modal-content -->
+                                <div class="modal fade" id="myModal">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content modelWidth">
+                                            <div class="modal-header myheader">
+                                                <button type="button" class="close close2" data-dismiss="modal"
+                                                    aria-hidden="true">×</button>
+                                                <h4 class="modal-title">Payment Status</h4>
+                                            </div>
+                                            <div class="modal-body mybody">
+                                                <table class="table table-striped mycustomtable" id="tblGrid">
+                                                    <thead id="tblHead">
+                                                        <tr class="text-center">
+                                                            <th>State</th>
+                                                            <th>Date</th>
+                                                            <th>Time</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Card Debited</td>
+                                                            <td>28/04/2018</td>
+                                                            <td>1</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>UTR</td>
+                                                            <td>25/05/2018</td>
+                                                            <td>1</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Card Refunded</td>
+                                                            <td>NA</td>
+                                                            <td>NA</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Fund Refunded</td>
+                                                            <td>25/05/2018</td>
+                                                            <td>1</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                                <!-- /.modal -->
+                                <!-- Modal2 -->
+                                <div class="backdrop" [ngStyle]="{'display':disRejMod}"></div>
+                                <div id="payreport" class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':disRejMod}">
+                                    <div class="modal-dialog modal-lg">
+                                        <!-- Modal content-->
+                                        <div class="modal-content modelWidth">
+                                            <div class="modal-header myheader">
+                                                <button type="button" class="close close2" data-dismiss="modal" (click)="closeRejMod()">&times;</button>
+                                                <h4 class="modal-title">Comment</h4>
+                                            </div>
+                                            <div class="modal-body mybody2">
+                                                <div class="col-md-12 col-sm-12 col-xs-12 ">
+                                                    <textarea class="form-control popupborder" rows="5" placeholder="Reason for Rejection"
+                                                        [(ngModel)]="comment"></textarea>
+                                                </div>
+                                                <div class="clear10"></div>
+                                                <a>
+                                                    <!-- routerLink="../asuserlist" -->
+                                                    <button class="btn bg-primary nextBtn nxt2" data-dismiss="modal"
+                                                        type="button" (click)="rejectGroupById();closeRejMod()">Reject</button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="backdrop" [ngStyle]="{'display':disPrivModal}"></div>
+                                <div id="Privileges" class="modal" role="dialog" [ngStyle]="{'display':disPrivModal}">
+                                    <div class="modal-dialog modal-lg">
+                                        <!-- Modal content-->
+                                        <div class="modal-content modelWidthn">
+                                            <div class="modal-header myheader">
+                                                <button type="button" class="close close2" data-dismiss="modal" (click)="closePrivMod()">&times;</button>
+                                                <h4 class="modal-title">Set User Privileges </h4>
+                                            </div>
+                                            <div class="modal-body mybody2">
+                                                <div class="table-responsive norespopad">
+                                                    <table class="table noborder">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td colspan="4" class="custmtd">
+                                                                    <div class="col-sm-3 col-md-3 col-xs-3">
+                                                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                            <h5 class="prevlghd">Billers</h5>
+                                                                        </div>
+                                                                        <div class="clear20"></div>
+                                                                        <div class="col-md-1 col-sm-1 col-xs-1">
+                                                                            <div *ngIf="!isViewsup" class="place"></div>
+                                                                            <div *ngIf="isViewsup" class="place chkselect"></div>
+                                                                            <div class="clear10"></div>
+                                                                            <div *ngIf="!isApprsup" class="place"></div>
+                                                                            <div *ngIf="isApprsup" class="place chkselect"></div>
+                                                                            <div class="clear10"></div>
+                                                                            <div *ngIf="!isUnisup" class="place"></div>
+                                                                            <div *ngIf="isUnisup" class="place chkselect"></div>
+                                                                            <div class="clear10"></div>
+                                                                            <div *ngIf="!isBulksup" class="place"></div>
+                                                                            <div *ngIf="isBulksup" class="place chkselect"></div>
+                                                                            <div class="clear10"></div>
+                                                                        </div>
+                                                                        <div class="col-sm-9 col-md-9 col-xs-9">
+                                                                            View
+                                                                            <br>
+                                                                            <div class="clear10"></div>
+                                                                            Approve
+                                                                            <br>
+                                                                            <div class="clear10"></div>
+                                                                            Add Unitary
+                                                                            <br>
+                                                                            <div class="clear10"></div>
+                                                                            Add Bulk
+                                                                            <br>
+                                                                            <div class="clear10"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-3 col-md-3 col-xs-3 brdlft">
+                                                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                            <h5 class="prevlghd">Payment</h5>
+                                                                        </div>
+                                                                        <div class="clear20"></div>
+                                                                        <div class="col-md-1 col-sm-1 col-xs-1">
+                                                                            <div *ngIf="!isViewpay" class="place"></div>
+                                                                            <div *ngIf="isViewpay" class="place chkselect"></div>
+                                                                            <div class="clear10"></div>
+                                                                            <div *ngIf="!isApprpay" class="place"></div>
+                                                                            <div *ngIf="isApprpay" class="place chkselect"></div>
+                                                                            <div class="clear10"></div>
+                                                                            <div *ngIf="!isUnipay" class="place"></div>
+                                                                            <div *ngIf="isUnipay" class="place chkselect"></div>
+                                                                            <div class="clear10"></div>
+                                                                            <div *ngIf="!isBulkpay" class="place"></div>
+                                                                            <div *ngIf="isBulkpay" class="place chkselect"></div>
+                                                                            <div class="clear10"></div>
+                                                                        </div>
+                                                                        <div class="col-sm-9 col-md-9 col-xs-9">
+                                                                            View
+                                                                            <br>
+                                                                            <div class="clear10"></div>
+                                                                            Approve
+                                                                            <br>
+                                                                            <div class="clear10"></div>
+                                                                            Make Unitary
+                                                                            <br>
+                                                                            <div class="clear10"></div>
+                                                                            Make Bulk
+                                                                            <br>
+                                                                            <div class="clear10"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-3 col-md-3 col-xs-3 brdlft">
+                                                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                            <h5 class="prevlghd">Users</h5>
+                                                                        </div>
+                                                                        <div class="clear20"></div>
+                                                                        <div class="col-md-1 col-sm-1 col-xs-1">
+                                                                            <div *ngIf="!isViewuser" class="place"></div>
+                                                                            <div *ngIf="isViewuser" class="place chkselect"></div>
+                                                                            <div class="clear10"></div>
+                                                                            <div *ngIf="!isAppruser" class="place"></div>
+                                                                            <div *ngIf="isAppruser" class="place chkselect"></div>
+                                                                            <div class="clear10"></div>
+                                                                            <div *ngIf="!isUniuser" class="place"></div>
+                                                                            <div *ngIf="isUniuser" class="place chkselect"></div>
+                                                                            <div class="clear10"></div>
+                                                                            <div *ngIf="!isBulkuser" class="place"></div>
+                                                                            <div *ngIf="isBulkuser" class="place chkselect"></div>
+                                                                            <div class="clear10"></div>
+                                                                        </div>
+                                                                        <div class="col-sm-9 col-md-9 col-xs-9">
+                                                                            View
+                                                                            <br>
+                                                                            <div class="clear10"></div>
+                                                                            Approve
+                                                                            <br>
+                                                                            <div class="clear10"></div>
+                                                                            Add Unitary
+                                                                            <br>
+                                                                            <div class="clear10"></div>
+                                                                            Add Bulk
+                                                                            <br>
+                                                                            <div class="clear10"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-3 col-md-3 col-xs-3 brdlft">
+                                                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                            <h5 class="prevlghd">Cards</h5>
+                                                                        </div>
+                                                                        <div class="clear20"></div>
+                                                                        <div class="col-md-1 col-sm-1 col-xs-1">
+                                                                            <div *ngIf="!isViewcard" class="place"></div>
+                                                                            <div *ngIf="isViewcard" class="place chkselect"></div>
+                                                                            <div class="clear10"></div>
+                                                                            <div *ngIf="!isApprcard" class="place"></div>
+                                                                            <div *ngIf="isApprcard" class="place chkselect"></div>
+                                                                            <div class="clear10 "></div>
+                                                                            <div *ngIf="!isUnicard" class="place"></div>
+                                                                            <div *ngIf="isUnicard" class="place chkselect"></div>
+                                                                            <div class="clear10"></div>
+                                                                        </div>
+                                                                        <div class="col-sm-9 col-md-9 col-xs-9">
+                                                                            View
+                                                                            <br>
+                                                                            <div class="clear10"></div>
+                                                                            Approve
+                                                                            <br>
+                                                                            <div class="clear10"></div>
+                                                                            Add Unitary
+                                                                            <br>
+                                                                            <div class="clear10"></div>
+                                                                            <div class="clear10"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="clear10"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="clear20"></div>
+                    <div class="clear20"></div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </section>
 </div>

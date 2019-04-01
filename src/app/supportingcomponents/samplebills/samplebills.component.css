@@ -1,4 +1,22 @@
 /* Changes done by Vishal */
+table tr td {
+    vertical-align: middle;
+}
+table tr td img{
+    width:70%;
+}
+.btn-toolbar > .btn-group{
+    float:none!important;
+}
+.btn-toolbar{
+    text-align: center;
+    margin-left:0px!important;
+}
+.myfil{
+    border-color: #533979 !important;
+    background: #d9cee6!important;
+    font-weight: bold;
+}
 .Top5Heading111{
     font-weight: 600;
 }

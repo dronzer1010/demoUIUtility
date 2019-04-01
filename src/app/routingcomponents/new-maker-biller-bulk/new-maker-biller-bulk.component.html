@@ -354,9 +354,18 @@
                     Biller Name : <span class="spn">{{billdata.biller}}</span>
                   </div>
                 </div> -->
-                <div class="row" style="margin-top:15px; font-size:13px;">
+                <div class="row" style="margin-top:15px; margin-bottom:15px; font-size:13px;">
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                    No. of Entries : <span class="spn">5</span>
+                      <table class="entry-table">
+                          <tr>
+                            <td>No. of Entries</td>
+                            <td>No. of Selected Entries</td>
+                          </tr>
+                          <tr>
+                            <td>5</td>
+                            <td>0</td>
+                          </tr>
+                        </table>
                   </div>
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right"></div>
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right">
@@ -840,7 +849,16 @@
                 </div>
                 <div class="row" style="margin-top:15px; font-size:13px;">
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                    No. of Entries : <span class="spn">1</span>
+                    <table class="entry-table">
+                      <tr>
+                        <td>No. of Entries</td>
+                        <td>No. of Selected Entries</td>
+                      </tr>
+                      <tr>
+                        <td>5</td>
+                        <td>0</td>
+                      </tr>
+                    </table>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
                     <button class=" bg-primary nextpay buttonpad" type="button" (click)="revup()" style="padding: 3px 25px!important;">Submit

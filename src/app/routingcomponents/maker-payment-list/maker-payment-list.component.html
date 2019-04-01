@@ -129,10 +129,19 @@
               </div>
             </div>
             <div class="row mb-3" style="margin-bottom:15px;">
-              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 txt"> No of Payments: <strong>{{payments.length}}</strong></div>
-              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right txt">Total Amount: <strong>{{243242 | currency:'INR':true:'1.2-2'}}</strong></div>
+              <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 txt text-left">
+              <table class="entry-table">
+                <tr>
+                  <td>No of Payments</td>
+                  <td>Total Amount</td>
+                </tr>
+                <tr>
+                  <td>{{payments.length}}</td>
+                  <td>{{243242 | currency:'INR':true:'1.2-2'}}</td>
+                </tr>
+              </table>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 text-right txt"></div>
             </div>
             <div class="row" style="margin:0px;">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
@@ -222,6 +231,10 @@
                         <div class="tablediv noborder table3">
                           <h5>Other Details</h5>
                           <div class="mb-1">
+                            <div class="span_width">CRN</div> <span> : </span> &nbsp;
+                            <div class="bold_span">12345</div>
+                          </div>
+                          <div class="mb-1">
                             <div class="span_width">File Name</div> <span> : </span> &nbsp;
                             <div class="bold_span">Unitary</div>
                           </div>
@@ -246,18 +259,19 @@
                     </tr>
                     <tr class="rowShow grayStrip" *ngIf="payment.collapsed">
                       <td colspan="8">
-                        <span class="pull-right"><a (click)="closeModalDialog1()"><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <span class="text-left"><label style="color: #64289d;">Comment : &nbsp;</label>Invalid Bill Amount</span>
+                        <span class="pull-right"><a (click)="closeModalDialog2()"><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a *ngIf="rolename=='maker' || rolename=='ccmaker'" href="javascript:void(0)"><img src="assets/img/edit.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a *ngIf="rolename=='maker' || rolename=='ccmaker'" href="javascript:void(0)"><img src="assets/img/delete.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a (click)="closeModalDialog2()"><img src="assets/img/page.png"></a>
+                        <a (click)="closeModalDialog1()"><img src="assets/img/page.png"></a>
                       </span>
                       </td>
                     </tr>
                       <div class="backdrop" [ngStyle]="{'display':displayBillDetails}"></div>
                       <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayBillDetails}">
                         <!-- modal-dialog -->
-                        <div class="modal-dialog" role="document">
+                        <div class="modal-dialog" id="logs" role="document">
                           <!-- modal-content -->
                           <div class="modal-content">
                             <!-- modal-header -->
@@ -269,27 +283,35 @@
                             <!-- modal-body -->
                             <div class="modal-body">
                               <div class="row mb-2">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                  <label for="" style="color: #807199;font-size: 14px;">Late Payment Charges</label> <span> : </span> &nbsp;
-                                  <span style="font-size:14px"><i class="fa fa-inr"></i> 111146.37</span>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                  <label for="" style="color: #807199;font-size: 14px;">Meter Reading </label> <span> : </span> &nbsp;
-                                  <span style="font-size:14px">3565 Units</span>
-                                </div>
-                              </div>
-                              <div class="row mb-4">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                  <label for="" style="color: #807199;font-size: 14px;">Promt Payment Incentives</label> <span> : </span> &nbsp;
-                                  <span style="font-size:14px"><i class="fa fa-inr"></i> 0.00</span>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                  <label for="" style="color: #807199;font-size: 14px;">Remarks</label> <span> : </span> &nbsp;
-                                  <span style="font-size:14px">Incentives Applicable</span>
-                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <table style="width:100%" id="modal-table">
+                                  <tbody>
+                                    <tr>
+                                      <td>Late Payment Charges</td>
+                                      <td>:</td>
+                                      <td>{{111146.37 | currency:'INR':true:'1.2-2'}}</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Meter Reading</td>
+                                      <td>:</td>
+                                      <td>3565 Unit(s)</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Promt Payment Incentives</td>
+                                      <td>:</td>
+                                      <td>{{0 | currency:'INR':true:'1.2-2'}}</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Remarks</td>
+                                      <td>:</td>
+                                      <td>Incentives Applicable</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>                                
                               </div>
                               <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button class="btn-ok" style="margin-right:10px;" (click)="openModalDialog1()">OK</button></div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"><button class="btn btn-default" (click)="openModalDialog2()">Close</button></div>
                               </div>
                             </div>
                           </div>
@@ -349,7 +371,7 @@
                                 </div>                                
                               </div>
                               <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"><button class="btn btn-default" type="button" (click)="openModalDialog2()">Close</button></div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"><button class="btn btn-default" type="button" (click)="openModalDialog1()">Close</button></div>
                               </div>
                             </div>
                           </div>
