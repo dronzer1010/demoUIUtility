@@ -1,5 +1,4 @@
-input[type="checkbox"]{
-    
+input[type="checkbox"]{    
   -webkit-appearance: initial;
   width: 16px;
   height: 16px;
@@ -8,12 +7,13 @@ input[type="checkbox"]{
   border-radius: 5px;
   margin-right: 6px;
   vertical-align: sub;
-  outline: none
-  
+  outline: none;  
 }
+
 input[type="checkbox"]:hover, input[type="checkbox"]:checked {
   background: #64289d;
 }
+
 .row {
   margin-right: 0px !important;
 }

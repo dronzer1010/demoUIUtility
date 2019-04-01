@@ -7,6 +7,21 @@
   padding: 30px 0px 30px 15px;
   border-radius: 10px;
 }
+.entry-table tr td{
+  height: 20px;
+  width: 25%;
+  text-align: center;
+}
+
+.entry-table{
+  border:1px solid #f4f4f4;
+}
+
+.entry-table tr:nth-child(1){
+  color:#533979;
+  font-weight: bold;
+}
+
 #mod{
   width:430px;
 }

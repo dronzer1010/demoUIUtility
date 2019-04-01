@@ -45,10 +45,28 @@ export class UserviewComponent implements OnInit {
   public userDetails: any;
   downloadList:boolean=false;
   downloadArray:any=[];
+  dropdownList = [];
+  selectedItems1 = [];
+  dropdownSettings1 = {};
   constructor(private loaderService: LoaderService, private excelservice : ExcelService,private toastr: ToastrService,private route:Router) { }
 
   ngOnInit() {
     this.loadAllUsers()
+    this.dropdownList = [
+      { item_id: 1, item_text: 'Today' },
+      { item_id: 2, item_text: 'This Week' },
+      { item_id: 3, item_text: 'This Month' },
+      { item_id: 4, item_text: 'This Year' }
+    ];
+    this.dropdownSettings1 = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: true
+    };
   }
 
   private loadAllUsers() {
