@@ -60,7 +60,7 @@
            </div>
            <div class="clear"></div>
            <div class="table-responsive">
-              <table class="table table-hover table-striped" [mfData]="users | dataFilter : supplierName: description: department: role : status" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage"
+              <table class="table table-hover table-striped" [mfData]="users | dataFilter : supplierName: description: department: role : status:empid:group:dob:mobileno:landlineno:email:uploadfilename:initiateddate:initiatedby:approveddate:approvedby" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage"
               [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                  <thead>
                     <tr class="cust-color">
@@ -514,12 +514,12 @@
               </div>
            </div>
         </div>
-        <div id="Privileges" class="modal fade" role="dialog">
+        <div id="Privileges" class="modal" [ngStyle]="{'display':displayPrivModal}" role="dialog">
            <div class="modal-dialog modal-lg">
               <!-- Modal content-->
               <div class="modal-content modelWidthn">
                  <div class="modal-header myheader">
-                    <button type="button" class="close close2" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close close2" data-dismiss="modal" (click)="closesetpriv()">&times;</button>
                     <h4 class="modal-title">Set User Privileges </h4>
                  </div>
                  <div class="modal-body mybody2">
@@ -588,11 +588,9 @@
                                          Approve
                                          <br>
                                          <div class="clear10"></div>
-                                         Make Unitary
+                                         Make Payment
                                          <br>
-                                         <div class="clear10"></div>
-                                         Make Bulk
-                                         <br>
+                                        
                                          <div class="clear10"></div>
                                       </div>
                                    </div>

@@ -18,6 +18,7 @@ export class UserviewComponent implements OnInit {
   sortBy = "email";
   sortOrder = "asc";
   isComplexOrg:boolean=true;
+  displayPrivModal:string='none'
   isViewuser:boolean;
   isUniuser:boolean;
   isBulkuser:boolean;
@@ -107,6 +108,10 @@ setPriv(str :string){
   this.isUnipay = this.checkValInArray("20",tab_arr)
   this.isApprpay = this.checkValInArray("75",tab_arr)
   this.isBulkpay = this.checkValInArray("21",tab_arr)
+  this.displayPrivModal="block"
+}
+closesetpriv(){
+  this.displayPrivModal="none"
 }
 userId(id : number){
   this.checkval =[];
