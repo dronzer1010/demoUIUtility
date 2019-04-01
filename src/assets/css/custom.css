@@ -321,7 +321,7 @@ h5 {
   width: 30%!important;
   font-size: 12px!important;
   font-family: inherit;
-  background-image: url(../img/datepicker.png);
+  background-image: url('/assets/img/datepicker.png');
   background-repeat: no-repeat;
   background-position-x: 10px;
   background-position-y: 4px;
@@ -410,7 +410,7 @@ ng-multiselect-dropdown:nth-child(1) .multiselect-dropdown{
   width: 28%!important;
 }
 ng-multiselect-dropdown:nth-child(3) .multiselect-dropdown{
-  background-image: url(../img/downloadlist.png);
+  background-image: url('/assets/img/downloadlist.png');
   background-repeat: no-repeat;
   background-position-x: 10px;
   background-position-y: 6px;
@@ -420,7 +420,7 @@ ng-multiselect-dropdown:nth-child(3) .multiselect-dropdown{
 }
 ng-multiselect-dropdown.second .multiselect-dropdown {
   width: 55%!important;
-  background-image: url(../img/datepicker.png)!important;
+  background-image: url('/assets/img/datepicker.png')!important;
   background-repeat: no-repeat!important;
   background-position-x: 10px!important;
   background-position-y: 4px!important;
