@@ -175,9 +175,9 @@
                     </tr>
                     <tr>
                       <td>{{payments.length}}</td>
-                      <td>{{6345886.68 | currency:'INR':true:'1.2-2'}}</td>
+                      <td><i class="fa fa-rupee"></i>{{6345886.68 | numberfr}}</td>
                       <td>{{checkedValueArray.length}}</td>
-                      <td>{{234343 | currency:'INR':true:'1.2-2'}}</td>
+                      <td><i class="fa fa-rupee"></i>{{234343 | numberfr}}</td>
                     </tr>
                   </table>
                 <!-- <button class="btn bg-primary nextpay buttonpad" type="button" (click)="fetchAllBills()" style="padding: 3px 25px!important;">Fetch All Bills</button> -->
@@ -208,7 +208,7 @@
                         <tr>
                           <td><input name="submenu" type="checkbox" [checked]="select" (change)="change(payment.id) "></td>
                           <td>{{payment.bill.biller}}</td>
-                          <td>{{payment.amount | currency:'INR':true}}
+                          <td><i class="fa fa-rupee"></i>{{payment.amount | numberfr}}
                             <!-- <i class="fa fa-inr"></i> {{(payment.amount)?payment.amount:"No Data"}} -->
                           </td>
                           <td>{{payment.bill.consumerno}}</td>

@@ -106,6 +106,7 @@ import { PaymentFilterPipe } from './routingcomponents/maker-payment-list/paymen
 import { PenPayFilterPipe } from './routingcomponents/checker-approve-payments/pendingpay-filter.pipe';
 import { BillerFilterPipe } from './routingcomponents/billerlist/biller-filter.pipe';
 import { PenBillerFilterPipe } from './routingcomponents/checker-approve-biller/penbiller-filter.pipe';
+import { FrenchDecimalPipe } from './pipes/currency.filter.pipe';
 
 @NgModule({
   declarations: [
@@ -171,7 +172,8 @@ import { PenBillerFilterPipe } from './routingcomponents/checker-approve-biller/
     RepositoryComponent,
     SamplebillsComponent,
     TemplatesComponent,
-    NewMakerBillerBulkComponent
+    NewMakerBillerBulkComponent,
+    FrenchDecimalPipe
   ],
 
   imports: [
