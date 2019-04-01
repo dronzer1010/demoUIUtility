@@ -40,7 +40,7 @@ export class CheckerApproveBillerComponent implements OnInit {
   dropdownSettings1 = {};
   dropdownSettings2 = {};
   noofrole="No bills available"
-
+  public searchText : string;
   constructor(private router : Router , private aRouter : ActivatedRoute) { }
 
   

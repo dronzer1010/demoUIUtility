@@ -24,7 +24,10 @@ export class BillerlistComponent implements OnInit {
   dropdownSettings = {};
   dropdownSettings1 = {};
   dropdownSettings2 = {};
+  key: string = 'status'; //set default
+  reverse: boolean = true;
 rolename:any;
+public searchText : string;
   constructor() { }
 
   ngOnInit() {

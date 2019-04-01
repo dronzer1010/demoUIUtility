@@ -11,7 +11,7 @@
           <div class="card-body">
             <div class="row mb-3" style="margin-bottom:15px;">
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                <img src="assets/img/search-icon.png" alt="" width="5%;"> <input type="search" placeholder="Search for Location, Biller Type or Utility">
+                <img src="assets/img/search-icon.png" alt="" width="5%;"> <input type="search" placeholder="Search for Location, Biller Type or Utility" [(ngModel)]="searchText">
               </div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
@@ -162,7 +162,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <ng-container  *ngFor="let bill of mf.data; let i=index;">
+                    <ng-container  *ngFor="let bill of mf.data |orderBy: key : reverse|billerFilter :{biller: searchText,board:searchText,consumerno:searchText,consumername:searchText,status:searchText,paymentstatus:searchText,shortname:searchText,expensecode:searchText,billdate:searchText,duedate:searchText,state:searchText,digits:searchText,contact:searchText,email:searchText,billaddress:searchText,initiatedby:searchText,initiatedon:searchText,approvedby:searchText,approvedon:searchText}; let i=index;">
                     <tr>
                       <td>{{i+1}}</td>
                       <td>{{bill.board}}</td>
@@ -253,7 +253,7 @@
                     </tr>
                     <tr class="rowShow grayStrip" *ngIf="bill.collapsed">
                       <td colspan="8">
-                          <span class="text-left"><label style="color: #64289d;">Comment : &nbsp;</label>Invalid Biller Details</span>
+                          <span class="text-left" *ngIf="bill.status=='Rejected'"><label style="color: #64289d;">Comment : &nbsp;</label>Invalid Biller Details</span>
                         <span class="pull-right">
                         <img style="cursor:pointer;"src="assets/img/attach.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <a *ngIf="rolename=='ccmaker' || rolename=='maker'" data-toggle="modal" id="openBtn"><img src="assets/img/edit.png"></a>

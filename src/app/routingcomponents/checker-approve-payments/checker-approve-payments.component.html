@@ -11,7 +11,7 @@
           <div class="card-body">
             <div class="row" style="margin-bottom:20px;margin-right: -15px!important;">
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                <img src="../../../utility/assets/img/search-icon.png" alt="" width="5%;"> <input type="search" placeholder="Search for Location, Biller Type or Utility">
+                <img src="../../../utility/assets/img/search-icon.png" alt="" width="5%;"> <input type="search" placeholder="Search for Location, Biller Type or Utility" [(ngModel)]="searchText">
               </div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
@@ -68,7 +68,7 @@
             </div>
             <div class="row" style="margin:0px;">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
-                  <table id="main-table" [mfData]="pendingPayments" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                  <table id="main-table" [mfData]="paymentData" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                       <thead>
                         <tr>
                           <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(pendingPayments)"></td>
@@ -83,14 +83,14 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <ng-container *ngFor="let payment of mf.data; let i=index;">
+                        <ng-container *ngFor="let payment of mf.data|penpayFilter : {biller: searchText,amount:searchText,consumerno:searchText,consumername:searchText,status:searchText,paymentstatus:searchText,shortname:searchText,expensecode:searchText,billdate:searchText,duedate:searchText,billnumber:searchText,state:searchText,digits:searchText,contact:searchText,email:searchText,billaddress:searchText,initiatedby:searchText,initiatedon:searchText,approvedby:searchText,approvedon:searchText}; let i=index;">
                         <tr>
                           <td><input type="checkbox" name="submenu" [checked]="select" (change)="change(payment.id) "></td>
-                          <td>{{payment.bill.biller}}</td>
+                          <td>{{payment.biller}}</td>
                           <!-- <td>{{payment.bill.consumerno}}</td> -->
                           <td>{{payment.amount | currency:'INR':true:'1.2-2'}}</td>
-                          <td>{{payment.bill.consumerno}}</td>
-                          <td>{{payment.bill.consumername}}</td>
+                          <td>{{payment.consumerno}}</td>
+                          <td>Axis Bank ltd.</td>
                           <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.status}}</a></td>
                           <td style="text-align:center;">{{payment.paymentstatus}}</td>
                           <td style="padding:0px 10px;"><img src="assets/img/tb_downarrow.png" alt="" (click)="payment.collapsed=!payment.collapsed;"></td>
@@ -101,11 +101,11 @@
                               <h5>Biller Details</h5>
                               <div class="mb-1">
                                   <div class="span_width">Short Name</div>  <span> : </span> &nbsp;
-                                  <div class="bold_span">{{payment.bill.shortname}}</div>
+                                  <div class="bold_span">{{payment.shortname}}</div>
                                 </div>
                                 <div class="mb-1">
                                   <div class="span_width">GL/Expense Code </div>  <span> : </span> &nbsp;
-                                  <div class="bold_span">{{payment.bill.expensecode}}</div>
+                                  <div class="bold_span">{{payment.expensecode}}</div>
                                 </div>
                                 <div class="mb-1">
                                   <div class="span_width">Bill Date </div>  <span> : </span> &nbsp;
@@ -121,12 +121,12 @@
                                 </div>
                                 <div class="mb-1">
                                     <div class="span_width">Location</div> <span> : </span> &nbsp;
-                                    <div class="bold_span" *ngIf="payment.bill.state=='MH'" >Maharashtra</div>
-                                    <div class="bold_span" *ngIf="payment.bill.state=='RJ'" >Rajasthan</div>
-                                    <div class="bold_span" *ngIf="payment.bill.state=='KA'" >Karnataka</div>
-                                    <div class="bold_span" *ngIf="payment.bill.state=='AP'" >Andhra Pradesh</div>
-                                    <div class="bold_span" *ngIf="payment.bill.state=='GJ'" >Gujarat</div>
-                                    <div class="bold_span" *ngIf="payment.bill.state=='DL'" >Delhi</div>
+                                    <div class="bold_span" *ngIf="payment.state=='MH'" >Maharashtra</div>
+                                    <div class="bold_span" *ngIf="payment.state=='RJ'" >Rajasthan</div>
+                                    <div class="bold_span" *ngIf="payment.state=='KA'" >Karnataka</div>
+                                    <div class="bold_span" *ngIf="payment.state=='AP'" >Andhra Pradesh</div>
+                                    <div class="bold_span" *ngIf="payment.state=='GJ'" >Gujarat</div>
+                                    <div class="bold_span" *ngIf="payment.state=='DL'" >Delhi</div>
                                   </div>
                                 <div class="mb-1">
                                   <div class="span_width">Bill No</div> <span> : </span> &nbsp;
@@ -141,15 +141,15 @@
                                 <div class="mb-1">
                                     <h5>Contact Details</h5>
                                     <div class="span_width">Mobile No</div>  <span> : </span> &nbsp;
-                                    <div class="bold_span">{{payment.bill.contact}}</div>
+                                    <div class="bold_span">{{payment.contact}}</div>
                                   </div>
                                   <div class="mb-1">
                                     <div class="span_width">Address </div>  <span> : </span> &nbsp;
-                                    <span class="bold_span" tooltip="{{payment.bill.billaddress}}" placement="top" show-delay="500">{{payment.bill.billaddress}}</span>
+                                    <span class="bold_span" tooltip="{{payment.billaddress}}" placement="top" show-delay="500">{{payment.billaddress}}</span>
                                   </div>
                                   <div>
                                     <div class="span_width">Email</div>  <span> : </span> &nbsp;
-                                    <span class="bold_span" tooltip="{{payment.bill.email}}" placement="top" show-delay="500">{{payment.bill.email}}</span>
+                                    <span class="bold_span" tooltip="{{payment.email}}" placement="top" show-delay="500">{{payment.email}}</span>
                                   </div>
                             </div>
                             <div class="tablediv noborder table3">
@@ -164,11 +164,11 @@
                                   </div>
                                   <div class="mb-1">
                                     <div class="span_width">Initiated by </div>  <span> : </span> &nbsp;
-                                    <div class="bold_span">{{payment.bill.initiatedby}}</div>
+                                    <div class="bold_span">{{payment.initiatedby}}</div>
                                   </div>
                                   <div class="mb-1">
                                     <div class="span_width">Initiated on  </div>  <span> : </span> &nbsp;
-                                    <div class="bold_span">{{payment.bill.initiatedon | date:'dd-MM-yyyy hh:mm a'}}</div>
+                                    <div class="bold_span">{{payment.initiatedon | date:'dd-MM-yyyy hh:mm a'}}</div>
                                   </div>
                             </div>
                           </td>

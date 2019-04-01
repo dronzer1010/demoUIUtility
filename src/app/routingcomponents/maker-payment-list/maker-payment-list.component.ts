@@ -27,6 +27,8 @@ export class MakerPaymentListComponent implements OnInit {
   dropdownSettings1 = {};
   dropdownSettings2 = {};
 rolename:any;
+key: string = 'status'; //set default
+reverse: boolean = true;
   constructor() { }
 
   ngOnInit() {

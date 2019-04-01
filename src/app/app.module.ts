@@ -105,6 +105,7 @@ import { CustomCurrencyPipe } from './routingcomponents/maker-payment-list/curre
 import { PaymentFilterPipe } from './routingcomponents/maker-payment-list/payment-filter.pipe';
 import { PenPayFilterPipe } from './routingcomponents/checker-approve-payments/pendingpay-filter.pipe';
 import { BillerFilterPipe } from './routingcomponents/billerlist/biller-filter.pipe';
+import { PenBillerFilterPipe } from './routingcomponents/checker-approve-biller/penbiller-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -157,6 +158,7 @@ import { BillerFilterPipe } from './routingcomponents/billerlist/biller-filter.p
     PaymentFilterPipe,
     PenPayFilterPipe,
     BillerFilterPipe,
+    PenBillerFilterPipe,
     OtpuserComponent ,
     AspendingusersFilterPipe,
     RejectmsgComponent,

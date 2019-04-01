@@ -12,6 +12,7 @@ export class CheckerApprovePaymentsComponent implements OnInit {
   pendingList:boolean=true;
   approve:boolean=false;
   reject:boolean=false;
+  searchText:string
   displaypopup='none';
   displayreason='none';
   displaypaydetails='none';

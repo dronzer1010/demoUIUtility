@@ -353,7 +353,7 @@
                     </tr>
                     <tr class="rowShow"  *ngIf="user.selected">
                        <td colspan="7">
-                          <span class="text-left"><label style="color: #64289d;">Comment : &nbsp;</label>Invalid User Details</span>
+                          <span class="text-left" *ngIf="user.status =='Rejected'"><label style="color: #64289d;">Comment : &nbsp;</label>Invalid User Details</span>
                           <span class="pull-right">
                           <img data-toggle="modal" data-target="#deletereport" (click) = "userId(user.id)" src="assets/img/delete.png">&nbsp;&nbsp;&nbsp;
                          <img src="assets/img/edit.png" (click)="updateUser(user)">&nbsp;&nbsp;&nbsp; 
