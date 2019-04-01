@@ -5,9 +5,13 @@ export class CustomCurrencyPipe implements PipeTransform {
 
 constructor(private currencyPipe: CurrencyPipe) { }
 
-transform(value: any, currency: string, symbol: boolean = false): string {
-     if (value != null)
-        return this.currencyPipe.transform(value, currency, symbol);
-    return this.currencyPipe.transform(0, currency, symbol).split('0.00')[0];
+transform(val: number): string {
+   // Format the output to display any way you want here.
+   // For instance:
+   if (val !== undefined && val !== null) {
+     return val.toLocaleString(/*arguments you need*/);
+   } else {
+     return '';
+   }
  }
 }

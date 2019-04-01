@@ -15,7 +15,7 @@
               </div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-                  <ng-multiselect-dropdown
+                  <ng-multiselect-dropdown [ngClass]="first"
                   [placeholder]="'All Categories'"
                   [data]="dropdownCat"
                   [(ngModel)]="selectedItems1"
@@ -341,11 +341,11 @@
             <div class="clear20"></div>
             <div class="col-xs-3 col-sm-3 col-md-3"></div>
             <div class="col-xs-3 col-sm-3 col-md-3">
-              <a class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog" [routerLink]="['/main/checker-payments']">View
+              <a class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog" [routerLink]="['/main/maker-payment-list']">View
                 Payments</a>
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3">
-              <a class="btn btn-primary btn-outline Btn_Width2" [routerLink]="['/main/dashboard-checker']">Go to Dashboard</a>
+              <a class="btn btn-primary btn-outline Btn_Width2" [routerLink]="['/main/dashboard']">Go to Dashboard</a>
             </div>
             <div class="clear30"></div>
             <div class="clear20"></div>
