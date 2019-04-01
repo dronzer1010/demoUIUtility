@@ -194,8 +194,7 @@ export class MakerMakePaymentComponent implements OnInit {
   }
 
   fetchAllBills(){
-    for(var i=0;i<this.payments.length;i++){
-    
+    for(var i=0;i<this.payments.length;i++){    
         var d =new Date();
         this.payments[i].amount = (Math.random()*(3000-1000)).toFixed(2);
         this.payments[i].duedate = this.dueDates[this.getRandomInt(7)];
@@ -203,7 +202,6 @@ export class MakerMakePaymentComponent implements OnInit {
         this.payments[i].billnumber = d.getTime();      
     }
   }
-
 
   fetchBill(id){
     console.log("hello")
