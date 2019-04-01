@@ -18,10 +18,15 @@
         <div class="white-bg">
            <h4 class="col-md-9 col-sm-6 Top5Heading111 mrgnone">List of Users</h4>
            <div class="form-group col-md-3 col-sm-6 top-spac text-right right-spac">
-              <div class="btn-group rsspac">
-                 <button type="button" class="btn dropdown-toggle droparrow" data-toggle="dropdown">
-                 <span>Today</span>
-                 </button>
+               <ng-multiselect-dropdown [ngClass]="'second'"
+                  [placeholder]="'This Month'"
+                  [data]="dropdownList"
+                  [(ngModel)]="selectedItems2"
+                  [settings]="dropdownSettings2"
+                  (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll($event)">
+               </ng-multiselect-dropdown>
+              <!-- <div class="btn-group">
                  <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right2" role="menu">
                    <li class="input-text-center">
                        <input type="radio" name="dateformatstatus" value="Today" [(ngModel)]="Today" (change)="getDateFormatData(Today)">Today
@@ -45,7 +50,7 @@
                        <input type="radio" name="dateformatstatus" value="All" [(ngModel)]="All" (change)="getDateFormatData(All)">All
                    </li>
                  </ul>
-              </div>
+              </div> -->
            </div>
            <div class="clear"></div>
            <div class="BorderBottom"></div>
@@ -291,7 +296,7 @@
                     </tr>
                     <tr class="rowShow"  *ngIf="user.selected">
                        <td colspan="7" class="custmtd">
-                          <div class="col-xs-4 col-md-4 col-sm-4 tablediv">
+                          <div class="col-xs-4 col-md-4 col-sm-4 tablediv table1">
                              <h5>Employee Details</h5>
                              <div>
                                 <div class="span_width">Employee ID</div><span> : </span>&nbsp;
@@ -306,7 +311,7 @@
                                 <div class="bold_span">{{user.dob}}</div>
                              </div>
                           </div>
-                          <div class="col-xs-4 col-md-4 col-sm-4 tablediv">
+                          <div class="col-xs-4 col-md-4 col-sm-4 tablediv table11">
                              <h5>Contact Details</h5>
                              <div>
                                 <div class="span_width">Contact Number</div><span> : </span>&nbsp;
@@ -321,7 +326,7 @@
                                 <div class="bold_span">{{user.email}}</div>
                              </div>
                           </div>
-                          <div class="col-xs-4 col-md-4 col-sm-4 tablediv noborder">
+                          <div class="col-xs-4 col-md-4 col-sm-4 tablediv noborder table11">
                              <h5>Activity</h5>
                              <div>
                                 <div class="span_width">Uploaded in File</div><span> : </span>&nbsp;

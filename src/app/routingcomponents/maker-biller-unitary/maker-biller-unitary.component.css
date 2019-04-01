@@ -8,6 +8,7 @@
     border-radius: 50%;
     vertical-align: text-bottom;
 } */
+
 .ml-2input {
   margin-left: 10px;
   width: 30%;
@@ -16,7 +17,7 @@
   font-size: 12px;
 }
 .databill{
-  width: 68%;
+  width: 25%;
   display: inline;
   background-image: url('../../../assets/img/datepicker.png');
   background-repeat: no-repeat;

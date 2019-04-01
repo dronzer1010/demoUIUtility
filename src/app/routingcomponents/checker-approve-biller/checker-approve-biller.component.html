@@ -188,7 +188,7 @@
                       <td>{{bill.billdate}}</td>
                       <td>{{bill.duedate}}</td>
                       <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': bill.status === 'Approved', 'Rejected': bill.status  === 'Rejected', 'Pending': bill.status  === 'Pending'}" role="button">{{bill.status}}</a></td>
-                      <td style="padding: 1%;"><img src="../../../assets/img/tb_downarrow.png" (click)="bill.collapsed=!bill.collapsed;"></td>
+                      <td style="padding: 1%;width: 5%;"><img src="../../../assets/img/tb_downarrow.png" (click)="bill.collapsed=!bill.collapsed;"></td>
                     </tr>
                     <tr class="rowShow grayStrip" *ngIf="bill.collapsed">
                       <td class="custmtd" colspan="8">
@@ -224,7 +224,7 @@
                             <div class="bold_span">123456</div>
                           </div>
                         </div>
-                        <div class="tablediv">
+                        <div class="tablediv table2">
                           <h5>Contact Details</h5>
                           <div class="mb-1">
                             <div class="span_width">Mobile No</div>  <span> : </span> &nbsp;
@@ -232,14 +232,14 @@
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Address</div>  <span> : </span> &nbsp;
-                            <div class="bold_span">{{bill.billaddress}}</div>
+                            <span class="bold_span" tooltip="{{bill.billaddress}}" placement="top" show-delay="500">{{bill.billaddress}}</span>
                           </div>
                           <div>
                             <div class="span_width">Email</div>  <span> : </span> &nbsp;
-                            <div class="bold_span">{{bill.email}}</div>
+                            <span class="bold_span" tooltip="{{bill.billaddress}}" placement="top" show-delay="500">{{bill.email}}</span>
                           </div>
                         </div>
-                        <div class="tablediv noborder">
+                        <div class="tablediv noborder table3">
                           <h5>Other Details</h5>
                           <div class="mb-1">
                             <div class="span_width">File Name</div>  <span> : </span> &nbsp;

@@ -4,11 +4,24 @@
   font-size: 19px;
   font-weight: 500;
 }
-
+.modal-body {
+  position: relative;
+  padding: 15px 0 15px 15px;
+}
+#modal-table{
+  border: 1px solid #e4dbe4;
+}
+#modal-table tbody tr td:nth-child(1){
+  color:#807199;
+  font-weight: bold;
+  width: 45%;
+}
 .pop-input-text {
   width: 22%;
 }
-
+.modal-dialog#logs{
+  width:400px;
+}
 .pop-input {
   width: 50%;
   border: 0px;
@@ -241,7 +254,7 @@ img {
   border-right: 1px solid #c0bebe;
   padding: 14px 0px 14px 3%;
   vertical-align: top;
-  height: 210px;
+  height: 225px;
 }
 
 .span_width {

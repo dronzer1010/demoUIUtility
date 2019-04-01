@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router , ActivatedRoute } from '@angular/router';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 @Component({
   selector: 'app-checker-approve-payments',

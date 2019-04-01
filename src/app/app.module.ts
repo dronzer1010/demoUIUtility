@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-
+import { TooltipModule } from 'ng2-tooltip-directive';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -160,9 +160,10 @@ import { LightboxModule } from 'ngx-lightbox';
     SamplebillsComponent,
     TemplatesComponent,
     NewMakerBillerBulkComponent
-   
   ],
+
   imports: [
+    TooltipModule,
     BrowserModule,
     RouterModule,
     routing,

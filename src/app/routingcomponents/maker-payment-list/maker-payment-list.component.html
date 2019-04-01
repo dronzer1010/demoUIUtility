@@ -132,7 +132,7 @@
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 txt"> No of Payments: <strong>{{payments.length}}</strong></div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right txt">Total Amount: <strong><i class="fa fa-inr"></i> 243242.00</strong></div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right txt">Total Amount: <strong>{{243242 | currency:'INR':true:'1.2-2'}}</strong></div>
             </div>
             <div class="row" style="margin:0px;">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
@@ -142,10 +142,10 @@
                       <td>Sr.No.</td>
                       <td>Bill Name <img src="assets/img/Filter.png" alt=""></td>
                       <td>Amount <img src="assets/img/Filter.png" alt=""></td>
-                      <td>Bill Date <img src="assets/img/Filter.png" alt=""></td>
-                      <td>Due Date <img src="assets/img/Filter.png" alt=""></td>
+                      <td>Consumer No<img src="assets/img/Filter.png" alt=""></td>
+                      <td>Consumer Name<img src="assets/img/Filter.png" alt=""></td>
                       <td>Status <img src="assets/img/Filter.png" alt=""></td>
-                      <td>Payment Status <img src="assets/img/Filter.png" alt=""></td>
+                      <td class="text-center">Payment Status <img src="assets/img/Filter.png" alt=""></td>
                       <td>&nbsp;</td>
                     </tr>
                   </thead>
@@ -154,11 +154,11 @@
                     <tr>
                       <td>{{i+1}}</td>
                       <td>{{payment.bill.biller}}</td>
-                      <td><i class="fa fa-inr"></i> {{payment.amount}}</td>
-                      <td>{{payment.billdate}}</td>
-                      <td>{{payment.duedate}}</td>
+                      <td>{{payment.amount | currency:'INR':true:'1.2-2'}}</td>
+                      <td>{{payment.bill.consumerno}}</td>
+                      <td>{{payment.bill.consumername}}</td>
                       <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.status}}</a></td>
-                      <td>{{payment.paymentstatus}}</td>
+                      <td class="text-center">{{payment.paymentstatus}}</td>
                       <td style="padding:0 5px;"><img src="assets/img/tb_downarrow.png" alt="" (click)="payment.collapsed=!payment.collapsed"></td>
                     </tr>
                     <tr class="rowShow grayStrip" *ngIf="payment.collapsed">
@@ -174,8 +174,12 @@
                             <div class="bold_span">{{payment.bill.expensecode}}</div>
                           </div>
                           <div class="mb-1">
-                            <div class="span_width">Consumer No.</div> <span> : </span> &nbsp;
-                            <div class="bold_span">{{payment.bill.consumerno}}</div>
+                            <div class="span_width">Bill Date</div> <span> : </span> &nbsp;
+                            <div class="bold_span">{{payment.billdate}}</div>
+                          </div>
+                          <div class="mb-1">
+                            <div class="span_width">Due Date</div> <span> : </span> &nbsp;
+                            <div class="bold_span">{{payment.duedate}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Order Id</div> <span> : </span> &nbsp;
@@ -200,7 +204,7 @@
                           </div>
       
                         </div>
-                        <div class="tablediv">
+                        <div class="tablediv table2">
                           <h5>Contact Details</h5>
                           <div class="mb-1">
                             <div class="span_width">Mobile No</div> <span> : </span> &nbsp;
@@ -208,14 +212,14 @@
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Address</div> <span> : </span> &nbsp;
-                            <div class="bold_span">{{payment.bill.billaddress}}</div>
+                            <span class="bold_span" tooltip="{{payment.bill.billaddress}}" placement="top" show-delay="500">{{payment.bill.billaddress}}</span>
                           </div>
                           <div>
                             <div class="span_width">Email</div> <span> : </span> &nbsp;
-                            <div class="bold_span">{{payment.bill.email}}</div>
+                            <span class="bold_span" tooltip="{{payment.bill.billaddress}}" placement="top" show-delay="500">{{payment.bill.email}}</span>
                           </div>
                         </div>
-                        <div class="tablediv noborder">
+                        <div class="tablediv noborder table3">
                           <h5>Other Details</h5>
                           <div class="mb-1">
                             <div class="span_width">File Name</div> <span> : </span> &nbsp;
@@ -240,14 +244,17 @@
                         </div>
                       </td>
                     </tr>
-                    <tr class="rowShow grayStrip" style="" *ngIf="payment.collapsed">
+                    <tr class="rowShow grayStrip" *ngIf="payment.collapsed">
                       <td colspan="8">
-                        <span class="pull-right"><a (click)="closeModalDialog1()"><img src="assets/img/page.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a *ngIf="rolename=='maker' || rolename=='ccmaker'"
-                            href="javascript:void(0)"><img src="assets/img/edit.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a *ngIf="rolename=='maker' || rolename=='ccmaker'" href="javascript:void(0)"><img
-                              src="assets/img/delete.png" alt=""></a></span></td>
+                        <span class="pull-right"><a (click)="closeModalDialog1()"><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a *ngIf="rolename=='maker' || rolename=='ccmaker'" href="javascript:void(0)"><img src="assets/img/edit.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a *ngIf="rolename=='maker' || rolename=='ccmaker'" href="javascript:void(0)"><img src="assets/img/delete.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a (click)="closeModalDialog2()"><img src="assets/img/page.png"></a>
+                      </span>
+                      </td>
                     </tr>
-                    <div class="backdrop" [ngStyle]="{'display':displayBillDetails}"></div>
+                      <div class="backdrop" [ngStyle]="{'display':displayBillDetails}"></div>
                       <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayBillDetails}">
                         <!-- modal-dialog -->
                         <div class="modal-dialog" role="document">
@@ -282,7 +289,67 @@
                                 </div>
                               </div>
                               <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button class="btn-ok" style="margin-right:10px;">OK</button></div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button class="btn-ok" style="margin-right:10px;" (click)="openModalDialog1()">OK</button></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="backdrop" [ngStyle]="{'display':displayLogs}"></div>
+                      <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayLogs}">
+                        <!-- modal-dialog -->
+                        <div class="modal-dialog" id="logs" role="document">
+                          <!-- modal-content -->
+                          <div class="modal-content">
+                            <!-- modal-header -->
+                            <div class="modal-header">
+                              Payment Logs<button type="button" class="close" aria-label="Close" (click)="openModalDialog2()"><span
+                                  aria-hidden="true">&times;</span></button>
+                              <!-- <h4 class="modal-title">Login</h4> -->
+                            </div>
+                            <!-- modal-body -->
+                            <div class="modal-body">
+                              <div class="row mb-2">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                  <table style="width:100%" id="modal-table">
+                                    <thead>
+                                      <tr>
+                                        <td>State</td>
+                                        <td>Date</td>
+                                        <td>Time</td>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td>Card Debited</td>
+                                        <td>28/03/2019</td>
+                                        <td>05:30 PM</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Payment Success</td>
+                                        <td>28/03/2019</td>
+                                        <td>05:30 PM</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Payment Failed</td>
+                                        <td>28/03/2019</td>
+                                        <td>05:30 PM</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Card Refunded</td>
+                                        <td>28/03/2019</td>
+                                        <td>05:30 PM</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Refund Reason</td>
+                                        <td colspan="2">Transaction Failed Transaction Failed Transaction Failed Transaction Failed</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>                                
+                              </div>
+                              <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"><button class="btn btn-default" type="button" (click)="openModalDialog2()">Close</button></div>
                               </div>
                             </div>
                           </div>
