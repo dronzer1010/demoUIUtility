@@ -55,7 +55,7 @@
            <div class="clear"></div>
            <div class="BorderBottom"></div>
            <div class="col-md-8 col-sm-6  top-spac">
-              <input type="text" class="form-control search noborder" name="search" placeholder="Search" [(ngModel)]="supplierName">
+              <input type="text" class="form-control search noborder" name="search" placeholder="Search" [(ngModel)]="filter">
            </div>
            <div class="form-group col-md-4 col-sm-6 top-spac text-right right-spac">
               
@@ -65,7 +65,7 @@
            </div>
            <div class="clear"></div>
            <div class="table-responsive">
-              <table class="table table-hover table-striped" [mfData]="users | dataFilter : supplierName: description: department: role : status" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage"
+              <table class="table table-hover table-striped" [mfData]="users" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage"
               [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                  <thead>
                     <tr class="cust-color">
@@ -75,7 +75,7 @@
                        <td>
                           <span class="bold-txt">Employee Name</span> &nbsp;
                           <div class="btn-group dropdown">
-                             <button type="button" class="btn dropdown-toggle caret2" data-toggle="dropdown">
+                             <button type="button" class="btn dropdown-toggle caret2" data-toggle="dropdown" (click)="sort('employeename')">
                              <span class="sr-only">Toggle Dropdown</span>
                              </button>
                              <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right1" role="menu">
@@ -116,7 +116,7 @@
                        <td>
                           <span class="bold-txt">Designation</span> 
                           <div class="btn-group dropdown">
-                             <button type="button" class="btn dropdown-toggle caret2" data-toggle="dropdown">
+                             <button type="button" class="btn dropdown-toggle caret2" data-toggle="dropdown" (click)="sort('designation')">
                              <span class="sr-only">Toggle Dropdown</span>
                              </button>
                              <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right1" role="menu">
@@ -150,7 +150,7 @@
                        <td>
                           <span class="bold-txt">Department</span>
                           <div class="btn-group">
-                             <button type="button" class="btn dropdown-toggle caret2" data-toggle="dropdown">
+                             <button type="button" class="btn dropdown-toggle caret2" data-toggle="dropdown" (click)="sort('department')">
                              <span class="sr-only">Toggle Dropdown</span>
                              </button>
                              <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right2" role="menu">
@@ -182,7 +182,7 @@
                        <td>
                           <span class="bold-txt">Role</span>
                           <div class="btn-group">
-                             <button type="button" class="btn dropdown-toggle caret2" data-toggle="dropdown">
+                             <button type="button" class="btn dropdown-toggle caret2" data-toggle="dropdown" (click)="sort('role')">
                              <span class="sr-only">Toggle Dropdown</span>
                              </button>
                              <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right2" role="menu">
@@ -233,7 +233,7 @@
                        <td>
                           <span class="bold-txt"> Status</span>
                           <div class="btn-group">
-                             <button type="button" class="btn dropdown-toggle caret2" data-toggle="dropdown">
+                             <button type="button" class="btn dropdown-toggle caret2" data-toggle="dropdown" (click)="sort('status')">
                              <span class="sr-only">Toggle Dropdown</span>
                              </button>
                              <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right1" role="menu">
@@ -275,7 +275,7 @@
                     </tr>
                  </thead>
                  <tbody>
-                       <ng-container *ngFor="let user of mf.data let i=index" >
+                       <ng-container *ngFor="let user of mf.data  | orderBy: key : reverse|filter:filter;let i=index" >
                     <tr *ngIf = "user.status =='Approved' || user.status =='Pending' || user.status =='Rejected'">
                        <td>
                           <div _ngcontent-c3=""><input type="checkbox"  name="submenu"></div>
@@ -519,12 +519,12 @@
               </div>
            </div>
         </div>
-        <div id="Privileges" class="modal fade" role="dialog">
+        <div id="Privileges" class="modal" [ngStyle]="{'display':displayPrivModal}" role="dialog">
            <div class="modal-dialog modal-lg">
               <!-- Modal content-->
               <div class="modal-content modelWidthn">
                  <div class="modal-header myheader">
-                    <button type="button" class="close close2" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close close2" data-dismiss="modal" (click)="closesetpriv()">&times;</button>
                     <h4 class="modal-title">Set User Privileges </h4>
                  </div>
                  <div class="modal-body mybody2">
@@ -593,11 +593,9 @@
                                          Approve
                                          <br>
                                          <div class="clear10"></div>
-                                         Make Unitary
+                                         Make Payment
                                          <br>
-                                         <div class="clear10"></div>
-                                         Make Bulk
-                                         <br>
+                                        
                                          <div class="clear10"></div>
                                       </div>
                                    </div>

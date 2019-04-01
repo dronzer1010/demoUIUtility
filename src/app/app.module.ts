@@ -99,6 +99,8 @@ import{RuleserviceService} from './api/ruleservice.service'
 import { AuthinterceptorService} from './api/authinterceptor.service'
 import { SetupserviceService} from './api/setupservice.service'
 import { LightboxModule } from 'ngx-lightbox';
+import { Ng2OrderModule } from 'ng2-order-pipe';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -201,7 +203,9 @@ import { LightboxModule } from 'ngx-lightbox';
     DataTableModule,
     ToastrModule.forRoot(),
     NgDatepickerModule,
-    LightboxModule 
+    LightboxModule ,
+    Ng2OrderModule,
+    Ng2SearchPipeModule
 
   ],
  
