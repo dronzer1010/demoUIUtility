@@ -129,10 +129,19 @@
               </div>
             </div>
             <div class="row" style="margin-bottom:20px;margin-right: -15px!important;">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 txt">
-                    No of Bills : <strong>{{billerlength}}</strong>
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 txt">
+                    <table class="entry-table">
+                      <tr>
+                        <td>No of Bills</td>
+                        <td>No. of Selected Bills</td>
+                      </tr>
+                      <tr>
+                        <td>{{billerlength}}</td>
+                        <td>{{checkedValueArray.length}}</td>
+                      </tr>
+                    </table>
                   </div>
-                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right"><button class="btn1" style="margin-right:10px;"
                   (click)="approveBtn()">Approve

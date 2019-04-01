@@ -295,8 +295,8 @@
                       <td>Sr.No.</td>
                       <td>Bill Name <img src="assets/img/Filter.png" alt=""></td>
                       <td>Amount <img src="assets/img/Filter.png" alt=""></td>
-                      <td>Bill Date <img src="assets/img/Filter.png" alt=""></td>
-                      <td>Due Date <img src="assets/img/Filter.png" alt=""></td>
+                      <td>Consumer No. <img src="assets/img/Filter.png" alt=""></td>
+                      <td>Consumer Name <img src="assets/img/Filter.png" alt=""></td>
                       <td>Status <img src="assets/img/Filter.png" alt=""></td>
                       <td>Payment Status <img src="assets/img/Filter.png" alt=""></td>
                       <td>&nbsp;</td>
@@ -308,8 +308,8 @@
                           <td>{{i+1}}</td>
                           <td>{{payment.bill.biller}}</td>
                           <td><i class="fa fa-inr"></i> {{payment.amount}}</td>
-                          <td>{{payment.billdate}}</td>
-                          <td>{{payment.duedate}}</td>
+                          <td>{{payment.bill.consumerno}}</td>
+                          <td>{{payment.bill.consumername}}</td>
                           <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.status}}</a></td>
                           <td>{{payment.paymentstatus}}</td>
                           <td style="padding:0 5px;"><img src="assets/img/tb_downarrow.png" alt="" (click)="payment.collapsed=!payment.collapsed"></td>
@@ -327,8 +327,12 @@
                                 <div class="bold_span">{{payment.bill.expensecode}}</div>
                               </div>
                               <div class="mb-1">
-                                <div class="span_width">Consumer No.</div> <span> : </span> &nbsp;
-                                <div class="bold_span">{{payment.bill.consumerno}}</div>
+                                <div class="span_width">Bill Date</div> <span> : </span> &nbsp;
+                                <div class="bold_span">{{payment.billdate}}</div>
+                              </div>
+                              <div class="mb-1">
+                                <div class="span_width">Due Date</div> <span> : </span> &nbsp;
+                                <div class="bold_span">{{payment.duedate}}</div>
                               </div>
                               <div class="mb-1">
                                 <div class="span_width">Order Id</div> <span> : </span> &nbsp;
@@ -361,11 +365,11 @@
                               </div>
                               <div class="mb-1">
                                 <div class="span_width">Address</div> <span> : </span> &nbsp;
-                                <div class="bold_span">{{payment.bill.billaddress}}</div>
+                                <span class="bold_span text-left" tooltip="{{payment.bill.billaddress}}" placement="top" show-delay="500" style="text-align:left!important">{{payment.bill.billaddress}}</span>
                               </div>
                               <div>
                                 <div class="span_width">Email</div> <span> : </span> &nbsp;
-                                <div class="bold_span">{{payment.bill.email}}</div>
+                                <span class="bold_span" tooltip="{{payment.bill.email}}" placement="top" show-delay="500" style="text-align:left!important">{{payment.bill.email}}</span>
                               </div>
                             </div>
                             <div class="tablediv noborder">

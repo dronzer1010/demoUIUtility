@@ -323,7 +323,7 @@
                              </div>
                              <div>
                                 <div class="span_width">Email Id</div><span> : </span>&nbsp;
-                                <div class="bold_span">{{user.email}}</div>
+                                <div class="bold_span"><span tooltip="{{user.email}}" placement="top" show-delay="500">{{user.email}}</span></div>
                              </div>
                           </div>
                           <div class="col-xs-4 col-md-4 col-sm-4 tablediv noborder table11">
@@ -338,7 +338,7 @@
                              </div>
                              <div>
                                 <div class="span_width" >Initiated by</div><span> : </span>&nbsp;
-                                <div class="bold_span">{{user.initiatedby}}</div>
+                                <div class="bold_span"><span tooltip="{{user.initiatedby}}" placement="top" show-delay="500">{{user.initiatedby}}</span></div>
                              </div>
                              <div>
                                 <div class="span_width">Approved on</div><span> : </span>&nbsp;
@@ -353,6 +353,7 @@
                     </tr>
                     <tr class="rowShow"  *ngIf="user.selected">
                        <td colspan="7">
+                          <span class="text-left"><label style="color: #64289d;">Comment : &nbsp;</label>Invalid User Details</span>
                           <span class="pull-right">
                           <img data-toggle="modal" data-target="#deletereport" (click) = "userId(user.id)" src="assets/img/delete.png">&nbsp;&nbsp;&nbsp;
                          <img src="assets/img/edit.png" (click)="updateUser(user)">&nbsp;&nbsp;&nbsp; 

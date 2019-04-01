@@ -12,7 +12,7 @@ export class CheckerApprovePaymentsComponent implements OnInit {
   pendingList:boolean=true;
   approve:boolean=false;
   reject:boolean=false;
-  displaydownloadlist='none';
+  displaypopup='none';
   displayreason='none';
   displaypaydetails='none';
   filterQuery = "";
@@ -102,7 +102,7 @@ export class CheckerApprovePaymentsComponent implements OnInit {
     };
   }
   openModalDialog1(){
-    this.displaydownloadlist='';  //Set block css
+    this.displaypopup='';  //Set block css
  }
  openModalDialog2(){
   this.displayreason='';
@@ -111,7 +111,7 @@ export class CheckerApprovePaymentsComponent implements OnInit {
   this.displaypaydetails='';
  }
  closeModalDialog1(){
-  this.displaydownloadlist='block';//set none css after close dialog
+  this.displaypopup='block';//set none css after close dialog
  }
  closeModalDialog2(){
   this.displayreason='block';

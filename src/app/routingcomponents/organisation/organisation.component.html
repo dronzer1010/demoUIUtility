@@ -1,108 +1,106 @@
-
 <div class="container">
     <div class="row ">
-       <label class="notlabel">Organisation Details</label>
+        <label class="notlabel" style="font-family:poppins-light;">Organisation Details</label>
     </div>
     <div class="row abc">
-       <div class="col-md-12 col-sm-12 pfcard text-center">
-          <div class="clear20"></div>
-          <div class="row">
-             <div class="col-xs-12 col-md-4 col-sm-6 text-left magttwenty">
-                <h4>
-                   <img src="assets/img/building.png"> &nbsp; Company Details
-                </h4>
-                <div class="clear20"></div>
-                
-                <div class="col-xs-12 col-md-12 col-sm-12 text-left nopad magttwenty">
-                 <table>
-                         <tr>
-                         <td class="span_widthn">Company Name</td> <span class="top-vert">:</span> &nbsp;
-                         <td class="bold_spann long_char">{{orgdata.companyname}}</td>
-                         </tr>
-                         <tr>
-                             <td class="span_widthn">Corporate URL</td> <span class="top-vert">:</span> &nbsp;
-                             <td class="bold_spann long_char">{{orgdata.domain}}</td>
-                         </tr>
-                         <tr>
-                             <td class="span_widthn">Company PAN</td> <span class="top-vert">:</span> &nbsp;
-                             <td class="bold_spann long_char">{{orgdata.pan}}</td>
-                         </tr>
-                         <tr>
-                             <td class="span_widthn">Corporate GSTIN</td> <span class="top-vert">:</span> &nbsp;
-                             <td class="bold_spann long_char">{{orgdata.corpgstin}}</td>
-                         </tr>
-                         <tr>
-                             <td class="span_widthn">Convenience Fee</td> <span class="top-vert">:</span> &nbsp;
-                             <td class="bold_spann long_char">{{orgdata.convfee}}%+GST</td>
-                         </tr>
-                 </table>
+        <div class="col-md-12 col-sm-12 pfcard text-center">
+            <div class="clear20"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-4 col-sm-6 text-left magttwenty">
+                    <h4>
+                        <img src="assets/img/building.png"> &nbsp; Company Details
+                    </h4>
+                    <div class="clear20"></div>
+
+                    <div class="col-xs-12 col-md-12 col-sm-12 text-left nopad magttwenty">
+                        <table>
+                            <tr>
+                                <td class="span_widthn">Company Name</td> <span class="top-vert">:</span> &nbsp;
+                                <td class="bold_spann long_char">{{orgdata.companyname}}</td>
+                            </tr>
+                            <tr>
+                                <td class="span_widthn">Corporate URL</td> <span class="top-vert">:</span> &nbsp;
+                                <td class="bold_spann long_char">{{orgdata.domain}}</td>
+                            </tr>
+                            <tr>
+                                <td class="span_widthn">Company PAN</td> <span class="top-vert">:</span> &nbsp;
+                                <td class="bold_spann long_char">{{orgdata.pan}}</td>
+                            </tr>
+                            <tr>
+                                <td class="span_widthn">Corporate GSTIN</td> <span class="top-vert">:</span> &nbsp;
+                                <td class="bold_spann long_char">{{orgdata.corpgstin}}</td>
+                            </tr>
+                            <tr>
+                                <td class="span_widthn">Convenience Fee</td> <span class="top-vert">:</span> &nbsp;
+                                <td class="bold_spann long_char">{{orgdata.convfee}}%+GST</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-             </div>
-             <div class="col-xs-12 col-md-4 col-sm-6 text-left magttwenty">
-                <h4>
-                   <img src="assets/img/placeholder.png" /> &nbsp; Company Contact Details
-                </h4>
-                <div class="clear20"></div>
-               
-                <div class="col-xs-12 col-md-12 col-sm-12 text-left nopad magttwenty">
-                     <table>
-                             <tr>
-                             <td class="span_widthn">Contact No</td> <span class="top-vert">:</span> &nbsp;
-                             <td class="bold_spann long_char">{{orgdata.contact}}</td>
-                             </tr>
-                             <tr>
-                                 <td class="span_widthn">Address</td> <span class="top-vert">:</span> &nbsp;
-                                 <td class="bold_spann long_char">{{orgdata.address}}</td>
-                             </tr>
-                             <tr>
-                                 <td class="span_widthn">City</td> <span class="top-vert">:</span> &nbsp;
-                                 <td class="bold_spann long_char">{{orgdata.city}}</td>
-                             </tr>
-                             <tr>
-                                 <td class="span_widthn">State</td> <span class="top-vert">:</span> &nbsp;
-                                 <td class="bold_spann long_char">{{orgdata.state}}</td>
-                             </tr>
-                             <tr>
-                                 <td class="span_widthn">Pin Code</td> <span class="top-vert">:</span> &nbsp;
-                                 <td class="bold_spann long_char">{{orgdata.pincode}}</td>
-                             </tr>
-                     </table>
+                <div class="col-xs-12 col-md-4 col-sm-6 text-left magttwenty">
+                    <h4>
+                        <img src="assets/img/placeholder.png" /> &nbsp; Company Contact Details
+                    </h4>
+                    <div class="clear20"></div>
+
+                    <div class="col-xs-12 col-md-12 col-sm-12 text-left nopad magttwenty">
+                        <table>
+                            <tr>
+                                <td class="span_widthn">Contact No</td> <span class="top-vert">:</span> &nbsp;
+                                <td class="bold_spann long_char">{{orgdata.contact}}</td>
+                            </tr>
+                            <tr>
+                                <td class="span_widthn">Address</td> <span class="top-vert">:</span> &nbsp;
+                                <td class="bold_spann long_char"><span tooltip="{{orgdata.address}}" placement="top" show-delay="500">{{orgdata.address}}</span></td>
+                            </tr>
+                            <tr>
+                                <td class="span_widthn">City</td> <span class="top-vert">:</span> &nbsp;
+                                <td class="bold_spann long_char">{{orgdata.city}}</td>
+                            </tr>
+                            <tr>
+                                <td class="span_widthn">State</td> <span class="top-vert">:</span> &nbsp;
+                                <td class="bold_spann long_char">{{orgdata.state}}</td>
+                            </tr>
+                            <tr>
+                                <td class="span_widthn">Pin Code</td> <span class="top-vert">:</span> &nbsp;
+                                <td class="bold_spann long_char">{{orgdata.pincode}}</td>
+                            </tr>
+                        </table>
                     </div>
-             </div>
-             <div class="col-xs-12 col-md-4 col-sm-6 text-left magttwenty">
-                <h4>
-                   <img src="assets/img/pfuser.png" /> &nbsp; Contact Person Details
-                </h4>
-                <div class="clear20"></div>
-               
-                <div class="col-xs-12 col-md-12 col-sm-12 text-left nopad magttwenty">
-                     <table>
-                             <tr>
-                             <td class="span_widthn">Name</td> <span class="top-vert">:</span> &nbsp;
-                             <td class="bold_spann long_char">{{orgdata.cpname}}</td>
-                             </tr>
-                             <tr>
-                                 <td class="span_widthn">Email</td> <span class="top-vert">:</span> &nbsp;
-                                 <td class="bold_spann long_char">{{orgdata.cpemail}}</td>
-                             </tr>
-                             <tr>
-                                 <td class="span_widthn">Mobile No</td> <span class="top-vert">:</span> &nbsp;
-                                 <td class="bold_spann long_char">{{orgdata.cpmobile}}</td>
-                             </tr>
-                             
-                     </table>
+                </div>
+                <div class="col-xs-12 col-md-4 col-sm-6 text-left magttwenty">
+                    <h4>
+                        <img src="assets/img/pfuser.png" /> &nbsp; Contact Person Details
+                    </h4>
+                    <div class="clear20"></div>
+
+                    <div class="col-xs-12 col-md-12 col-sm-12 text-left nopad magttwenty">
+                        <table>
+                            <tr>
+                                <td class="span_widthn">Name</td> <span class="top-vert">:</span> &nbsp;
+                                <td class="bold_spann long_char">{{orgdata.cpname}}</td>
+                            </tr>
+                            <tr>
+                                <td class="span_widthn">Email</td> <span class="top-vert">:</span> &nbsp;
+                                <td class="bold_spann long_char"><span tooltip="{{orgdata.cpemail}}" placement="top" show-delay="500">{{orgdata.cpemail}}</span></td>
+                            </tr>
+                            <tr>
+                                <td class="span_widthn">Mobile No</td> <span class="top-vert">:</span> &nbsp;
+                                <td class="bold_spann long_char">{{orgdata.cpmobile}}</td>
+                            </tr>
+                        </table>
                     </div>
-             </div>
-             <div class="clear20"></div>
-             <div class="clear20"></div>
-             <div class="clear20"></div>
-             <div class="clear20"></div>
-             <!-- <div class="col-md-12 col-sm-12 text-left">
+                </div>
+                <div class="clear20"></div>
+                <div class="clear20"></div>
+                <div class="clear20"></div>
+                <div class="clear20"></div>
+                <!-- <div class="col-md-12 col-sm-12 text-left">
                 <a class="btn btn-primary btn-outline btnwdauto ResponsiveBtnWidth activeapp"> <img src="assets/images/filledit.png">  Approve</a>
                 <a class="btn btn-primary btn-outline btnwdauto ResponsiveBtnWidth activeapp"> <img src="assets/images/filledit.png">  Reject</a>
              </div> -->
-          </div>
-       </div>
+            </div>
+        </div>
     </div>
-    
- </div>
+
+</div>

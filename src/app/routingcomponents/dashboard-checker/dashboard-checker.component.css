@@ -303,26 +303,24 @@ table {
 }
 
 table tr td:nth-child(1) {
-  padding: 10px 40px;
-  width: 1%;
+  padding: 10px 10px;
   overflow: -webkit-paged-y;
 }
-
+a.btn.appoved{
+  width:75%;
+}
 thead tr td {
   font-size: 13px;
   font-weight: bold;
-  width: 2%;
 }
 
 tbody tr td {
   font-size: 13px;
-  width: 2%;
   color: #707070;
 }
 
 tbody tr td:last-child {
   font-size: 13px;
-  width: 2%;
   color: #8153ad;
 }
 
