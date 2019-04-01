@@ -2,9 +2,9 @@ import * as _ from 'lodash';
 import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
-    name: 'dataFilter'
+    name: 'penpayFilter'
 })
-export class DataFilterPipeUser implements PipeTransform {
+export class PenPayFilterPipe implements PipeTransform {
     
     transform(items: any, filter: any, defaultFilter: boolean): any {
         if (!filter){

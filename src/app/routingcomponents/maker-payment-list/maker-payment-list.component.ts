@@ -13,8 +13,10 @@ export class MakerPaymentListComponent implements OnInit {
   filterQuery = "";
   rowsOnPage = 300;
   sortBy = "email";
+  public searchText : string;
   sortOrder = "asc";
   payments : any =[]
+  paymentData: any =[];
   dropdownList = [];
   dropdownCat = [];
   dropdownDownload = [];
@@ -29,7 +31,7 @@ rolename:any;
 
   ngOnInit() {
     this.rolename=localStorage.getItem('rolename')
-    this.payments=JSON.parse(localStorage.getItem('payments'));
+    this.laodpayments();
 
     this.dropdownList = [
       { item_id: 1, item_text: 'Today' },
@@ -90,5 +92,36 @@ rolename:any;
   }
   closeModalDialog2(){
     this.displayLogs='block';//set none css after close dialog
+  }
+
+
+  private laodpayments(){
+    this.payments=JSON.parse(localStorage.getItem('payments'));
+    for(let data of this.payments){
+      var obj={
+        biller:data['bill']['biller'],
+        amount:data['amount'],
+        consumerno:data['bill']['consumerno'],
+        consumername:data['bill']['consumername'],
+        status:data['status'],
+        paymentstatus:data['paymentstatus'],
+        shortname:data['bill']['shortname'],
+        expensecode:data['bill']['expensecode'],
+        billdate:data['billdate'],
+        duedate:data['duedate'],
+        state:data['bill']['state'],
+        billnumber:data['billnumber'],
+        digits:data['card']['digits'],
+        contact:data['bill']['contact'],
+        billaddress:data['bill']['billaddress'],
+        email:data['bill']['email'],
+        initiatedby:data['bill']['initiatedby'],
+        initiatedon:data['bill']['initiatedon'],
+        approvedby:data['approvedby'],
+        approvedon:data['approvedon']
+
+      }
+      this.paymentData.push(obj)
+    }
   }
 }

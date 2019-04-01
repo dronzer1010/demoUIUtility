@@ -23,6 +23,7 @@ export class CheckerApprovePaymentsComponent implements OnInit {
   noofrole="No billers available"
   payments:any=[]
   pendingPayments:any = []
+  paymentData:any=[];
   public checkedValueArray: any = [];
   selectall:boolean=false;
   public temp: any;
@@ -42,6 +43,7 @@ export class CheckerApprovePaymentsComponent implements OnInit {
   constructor(private router:Router , private aRouter : ActivatedRoute) { }
 
   ngOnInit() {
+    this.loadPayments()
 
     this.aRouter.queryParams
       .filter(params => params.otp)
@@ -54,10 +56,7 @@ export class CheckerApprovePaymentsComponent implements OnInit {
         }
       });
 
-    this.payments=JSON.parse(localStorage.getItem('payments'));
-    this.pendingPayments = this.payments.filter((payment)=>{
-      return (payment.status == "Pending")
-    })
+ 
 
     this.dropdownList = [
       { item_id: 1, item_text: 'Today' },
@@ -216,5 +215,39 @@ change(id): void {
    
   }
   console.log(this.checkedValueArray)
-}  
+}
+
+private loadPayments(){
+  this.payments=JSON.parse(localStorage.getItem('payments'));
+  this.pendingPayments = this.payments.filter((payment)=>{
+    return (payment.status == "Pending")
+  })
+
+  for(let data of this.pendingPayments){
+    var obj={
+      biller:data['bill']['biller'],
+      amount:data['amount'],
+      consumerno:data['bill']['consumerno'],
+      consumername:data['bill']['consumername'],
+      status:data['status'],
+      paymentstatus:data['paymentstatus'],
+      shortname:data['bill']['shortname'],
+      expensecode:data['bill']['expensecode'],
+      billdate:data['billdate'],
+      duedate:data['duedate'],
+      state:data['bill']['state'],
+      billnumber:data['billnumber'],
+      digits:data['card']['digits'],
+      contact:data['bill']['contact'],
+      billaddress:data['bill']['billaddress'],
+      email:data['bill']['email'],
+      initiatedby:data['bill']['initiatedby'],
+      initiatedon:data['bill']['initiatedon'],
+      approvedby:data['approvedby'],
+      approvedon:data['approvedon']
+
+    }
+    this.paymentData.push(obj)
+}
+}
 }

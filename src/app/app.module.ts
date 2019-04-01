@@ -102,6 +102,9 @@ import { LightboxModule } from 'ngx-lightbox';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CustomCurrencyPipe } from './routingcomponents/maker-payment-list/currency.pipe';
+import { PaymentFilterPipe } from './routingcomponents/maker-payment-list/payment-filter.pipe';
+import { PenPayFilterPipe } from './routingcomponents/checker-approve-payments/pendingpay-filter.pipe';
+import { BillerFilterPipe } from './routingcomponents/billerlist/biller-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -151,6 +154,9 @@ import { CustomCurrencyPipe } from './routingcomponents/maker-payment-list/curre
     PendingcardsComponent ,
     DataFilterPipeUser,
     CustomCurrencyPipe,
+    PaymentFilterPipe,
+    PenPayFilterPipe,
+    BillerFilterPipe,
     OtpuserComponent ,
     AspendingusersFilterPipe,
     RejectmsgComponent,
