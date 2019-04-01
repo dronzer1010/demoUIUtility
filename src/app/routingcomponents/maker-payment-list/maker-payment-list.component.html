@@ -137,7 +137,7 @@
                 </tr>
                 <tr>
                   <td>{{payments.length}}</td>
-                  <td>{{243242 | CustomeCurrency}}</td>
+                  <td><i class="fa fa-rupee"></i>{{243242 | numberfr}}</td>
                 </tr>
               </table>
               </div>
@@ -163,7 +163,7 @@
                     <tr>
                       <td>{{i+1}}</td>
                       <td>{{payment.biller}}</td>
-                      <td>{{payment.amount | currency:'INR':true:'1.2-2'}}</td>
+                      <td><i class="fa fa-rupee"></i>{{payment.amount | numberfr}}</td>
                       <td>{{payment.consumerno}}</td>
                       <td>Axis bank ltd.</td>
                       <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.status}}</a></td>
@@ -289,7 +289,7 @@
                                     <tr>
                                       <td>Late Payment Charges</td>
                                       <td>:</td>
-                                      <td>{{111146.37 | currency:'INR':true:'1.2-2'}}</td>
+                                      <td><i class="fa fa-rupee"></i>{{111146.37 | numberfr}}</td>
                                     </tr>
                                     <tr>
                                       <td>Meter Reading</td>
@@ -299,7 +299,7 @@
                                     <tr>
                                       <td>Promt Payment Incentives</td>
                                       <td>:</td>
-                                      <td>{{0 | currency:'INR':true:'1.2-2'}}</td>
+                                      <td><i class="fa fa-rupee"></i>{{0 | numberfr}}</td>
                                     </tr>
                                     <tr>
                                       <td>Remarks</td>

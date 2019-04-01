@@ -54,9 +54,9 @@
                     </tr>
                     <tr>
                       <td>{{payments.length}}</td>
-                      <td>{{7467482 | currency:'INR':true:'1.2-2'}}</td>
+                      <td><i class="fa fa-rupee"></i>{{7467482 | numberfr}}</td>
                       <td>{{checkedValueArray.length}}</td>
-                      <td>{{234343 | currency:'INR':true:'1.2-2'}}</td>
+                      <td><i class="fa fa-rupee"></i>{{234343 | numberfr}}</td>
                     </tr>
                   </table>
                 </div>
@@ -88,7 +88,7 @@
                           <td><input type="checkbox" name="submenu" [checked]="select" (change)="change(payment.id) "></td>
                           <td>{{payment.biller}}</td>
                           <!-- <td>{{payment.bill.consumerno}}</td> -->
-                          <td>{{payment.amount | currency:'INR':true:'1.2-2'}}</td>
+                          <td><i class="fa fa-rupee"></i>{{payment.amount | numberfr}}</td>
                           <td>{{payment.consumerno}}</td>
                           <td>Axis Bank ltd.</td>
                           <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.status}}</a></td>
@@ -205,7 +205,7 @@
                                       <tr>
                                         <td>Late Payment Charges</td>
                                         <td>:</td>
-                                        <td>{{111146.37 | currency:'INR':true:'1.2-2'}}</td>
+                                        <td><i class="fa fa-rupee"></i>{{111146.37 | numberfr}}</td>
                                       </tr>
                                       <tr>
                                         <td>Meter Reading</td>
@@ -215,7 +215,7 @@
                                       <tr>
                                         <td>Promt Payment Incentives</td>
                                         <td>:</td>
-                                        <td>{{0 | currency:'INR':true:'1.2-2'}}</td>
+                                        <td><i class="fa fa-rupee"></i>{{0 | numberfr}}</td>
                                       </tr>
                                       <tr>
                                         <td>Remarks</td>
