@@ -181,7 +181,7 @@
                             <div class="span_width">Due Date</div> <span> : </span> &nbsp;
                             <div class="bold_span">{{payment.duedate}}</div>
                           </div>
-                          <div class="mb-1">
+                          <div class="mb-1" *ngIf="payment.paymentstatus=='Card Debited'">
                             <div class="span_width">Order Id</div> <span> : </span> &nbsp;
                             <div class="bold_span">12345</div>
                           </div>

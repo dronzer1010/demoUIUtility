@@ -101,6 +101,7 @@ import { SetupserviceService} from './api/setupservice.service'
 import { LightboxModule } from 'ngx-lightbox';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { CustomCurrencyPipe } from './routingcomponents/maker-payment-list/currency.pipe';
 
 @NgModule({
   declarations: [
@@ -149,6 +150,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     PendingrulesComponent,
     PendingcardsComponent ,
     DataFilterPipeUser,
+    CustomCurrencyPipe,
     OtpuserComponent ,
     AspendingusersFilterPipe,
     RejectmsgComponent,
