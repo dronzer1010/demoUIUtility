@@ -15,7 +15,7 @@
               </div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-                  <ng-multiselect-dropdown
+                  <ng-multiselect-dropdown [ngClass]="first-multiselect"
                   [placeholder]="'All Categories'"
                   [data]="dropdownCat"
                   [(ngModel)]="selectedItems1"
@@ -24,7 +24,7 @@
                   [(ngClass)]="all-cat"
                   (onSelectAll)="onSelectAll($event)">
                 </ng-multiselect-dropdown>
-                <ng-multiselect-dropdown
+                <ng-multiselect-dropdown [ngClass]="first-multiselect"
                   [placeholder]="'This Month'"
                   [data]="dropdownList"
                   [(ngModel)]="selectedItems2"
@@ -33,7 +33,7 @@
                   (onSelectAll)="onSelectAll($event)">
                 </ng-multiselect-dropdown>
                 <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png" alt=""> Download File</button> -->
-                <ng-multiselect-dropdown
+                <ng-multiselect-dropdown [ngClass]="first-multiselect"
                   [placeholder]="'Download List'"
                   [data]="dropdownDownload"
                   [(ngModel)]="selectedItems"
@@ -197,7 +197,7 @@
                       <td>{{bill.billdate}}</td>
                       <td>{{bill.duedate}}</td>
                       <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': bill.status === 'Approved', 'Rejected': bill.status  === 'Rejected', 'Pending': bill.status  === 'Pending'}" role="button">{{bill.status}}</a></td>
-                      <td style="padding: 1%;width: 5%;"><img src="../../../assets/img/tb_downarrow.png" (click)="bill.collapsed=!bill.collapsed;"></td>
+                      <td style="padding: 1%;width: 5%;"><img src="assets/img/tb_downarrow.png" (click)="bill.collapsed=!bill.collapsed;"></td>
                     </tr>
                     <tr class="rowShow grayStrip" *ngIf="bill.collapsed">
                       <td class="custmtd" colspan="8">
@@ -335,11 +335,11 @@
             <div class="clear20"></div>
             <div class="col-xs-3 col-sm-3 col-md-3"></div>
             <div class="col-xs-3 col-sm-3 col-md-3">
-              <a class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog" [routerLink]="['/main/checker-biller']">View
+              <a class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog" [routerLink]="['/main/billerlist']">View
                 Bills</a>
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3">
-              <a class="btn btn-primary btn-outline Btn_Width2" [routerLink]="['/main/dashboard-checker']">Go to Dashboard</a>
+              <a class="btn btn-primary btn-outline Btn_Width2" [routerLink]="['/main/dashboard']">Go to Dashboard</a>
             </div>
             <div class="clear30"></div>
             <div class="clear20"></div>

@@ -15,7 +15,7 @@
               </div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-                <ng-multiselect-dropdown
+                <ng-multiselect-dropdown [ngClass]="'first-multiselect'"
                   [placeholder]="'All Categories'"
                   [data]="dropdownCat"
                   [(ngModel)]="selectedItems1"
@@ -24,7 +24,7 @@
                   [(ngClass)]="all-cat"
                   (onSelectAll)="onSelectAll($event)">
                 </ng-multiselect-dropdown>
-                <ng-multiselect-dropdown
+                <ng-multiselect-dropdown [ngClass]="'first-multiselect'"
                   [placeholder]="'This Month'"
                   [data]="dropdownList"
                   [(ngModel)]="selectedItems2"
@@ -33,7 +33,7 @@
                   (onSelectAll)="onSelectAll($event)">
                 </ng-multiselect-dropdown>
                 <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png" alt=""> Download File</button> -->
-                <ng-multiselect-dropdown
+                <ng-multiselect-dropdown [ngClass]="'first-multiselect'"
                   [placeholder]="'Download List'"
                   [data]="dropdownDownload"
                   [(ngModel)]="selectedItems"
