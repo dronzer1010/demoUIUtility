@@ -307,7 +307,7 @@
                         <tr>
                           <td>{{i+1}}</td>
                           <td>{{payment.bill.biller}}</td>
-                          <td><i class="fa fa-inr"></i> {{payment.amount|numberfr}}</td>
+                          <td><i class="fa fa-inr"></i> {{payment.amount | numberfr}}</td>
                           <td>{{payment.bill.consumerno}}</td>
                           <td>{{payment.bill.consumername}}</td>
                           <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.status}}</a></td>
@@ -421,7 +421,7 @@
                                   <div class="row mb-2">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                       <label for="" style="color: #807199;font-size: 14px;">Late Payment Charges</label> <span> : </span> &nbsp;
-                                      <span style="font-size:14px"><i class="fa fa-inr"></i> 111146.37</span>
+                                      <span style="font-size:14px"><i class="fa fa-rupee"></i>{{111146.37 | numberfr}}</span>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                       <label for="" style="color: #807199;font-size: 14px;">Meter Reading </label> <span> : </span> &nbsp;
@@ -431,7 +431,7 @@
                                   <div class="row mb-4">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                       <label for="" style="color: #807199;font-size: 14px;">Promt Payment Incentives</label> <span> : </span> &nbsp;
-                                      <span style="font-size:14px"><i class="fa fa-inr"></i> 0.00</span>
+                                      <span style="font-size:14px"><i class="fa fa-inr"></i>{{0 | numberfr}}</span>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                       <label for="" style="color: #807199;font-size: 14px;">Remarks</label> <span> : </span> &nbsp;
