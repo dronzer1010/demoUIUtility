@@ -1,0 +1,465 @@
+/* .btn-circle {
+    width: 10px !important;
+    height: 10px !important;
+    text-align: center;
+    padding: 3px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 50%;
+    vertical-align: text-bottom;
+} */
+
+.ml-2input {
+  margin-left: 10px;
+  width: 30%;
+}
+.modelvalue{
+  font-size: 12px;
+}
+.databill{
+  width: 25%;
+  display: inline;
+  background-image: url('../../../assets/img/datepicker.png');
+  background-repeat: no-repeat;
+  background-position-y: 10px;
+  background-position-x: right;
+}
+input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+/* .big-circle1 {
+  width: 18px !important;
+  height: 18px !important;
+  padding: 6px 0px;
+  background-color: #533979;
+  border-color: #533979;
+  border-radius: 20px !important;
+} */
+
+/* .bg-primary {
+    color: #fff!important;
+    background-color: #533979!important;
+    border-color: #533979!important;
+    border-radius: 20px !important;
+} */
+/* .tick2,.tick3,.tick4{
+    margin-top: 0px !important;
+    width: 8px !important;
+    height: 8px !important;
+    display: none;
+    margin-left: 0px !important;
+} */
+.btn-circle-big .tick2 {
+  display: block;
+  height: 12px !important;
+  width: 12px !important;
+  margin-left: 2px !important;
+}
+
+.detail_bill {
+  padding: 2% 4% !important;
+  padding-bottom: 1% !important;
+}
+
+.inputstyle {
+  border: 0px;
+  border-bottom: 1px solid #b7b7b7;
+  width: 100%;
+  font-size: 13.1px;
+  font-weight: 300;
+  color: #3f4245;
+}
+
+.inputstyle1 {
+  border: 0px;
+  border-bottom: 1px solid #b7b7b7;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 300;
+  color: #3f4245;
+}
+
+.inputstylerole {
+  border: 0px;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 300;
+  color: #3f4245;
+}
+
+.inputstyletitle {
+  border: 0px;
+  width: 100%;
+  font-size: 13px;
+  font-weight: 300;
+  color: #3f4245;
+}
+
+.preregtxt {
+  font-size: 12.4px;
+  font-weight: 300;
+  color: #3f4245;
+}
+
+.inpstyle {
+  cursor: pointer;
+  background: url('/assets/images/datepicker.png') no-repeat 100% 6px !important;
+  padding-bottom: 10px;
+}
+
+#dropdown1 .btn {
+  display: inline-block;
+  padding: 6px 12px 6px 0px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 0px;
+}
+
+#dropdown1 button.btn.btn-default.dropdown-toggle.btn_width {
+  border-bottom: 1px solid #b7b7b7;
+}
+
+#dropdown1 .btn-default.active,
+.btn-default:active,
+.open>.dropdown-toggle.btn-default,
+.btn-default:hover {
+  color: #333;
+  background-color: #ffffff;
+  border-color: #adadad;
+}
+
+#dropdown1 button.btn.btn-default.dropdown-toggle.btn_width {
+  width: 100%;
+}
+
+#dropdown1 span#search_concept {
+  margin-right: 88%;
+}
+
+.padln {
+  padding-left: 0px !important;
+}
+
+.padrn {
+  padding-right: 0px !important;
+}
+
+.mrgntopm {
+  margin-top: -10px;
+}
+
+span {
+  font-weight: 500;
+  color: #333;
+  vertical-align: -4px;
+}
+
+.span1 {
+  font-weight: bold;
+  color: #533979;
+  margin-left: 10px;
+  vertical-align: -4px;
+}
+
+strong {
+  font-weight: 500;
+}
+
+.modelWidthn {
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 0px;
+}
+
+.mybody2n {
+  padding: 50px 20px
+}
+
+.brdlft {
+  border-left: 1px solid #eee;
+}
+
+.chkselect {
+  background-color: #64289d;
+}
+
+.prevlghd {
+  font-size: 15.8px;
+  font-weight: 600;
+  color: #3f4245;
+}
+
+.buttonpad {
+  padding: 6px 25px !important;
+}
+
+.btnmargin {
+  margin-left: 2% !important;
+}
+
+.stepmrgnlft {
+  margin-left: 22px;
+}
+
+input[type="checkbox"] {
+
+  -webkit-appearance: initial;
+  width: 16px;
+  height: 16px;
+  background-color: #c7c7c7;
+  display: inline-block;
+  border-radius: 5px;
+  margin-right: 6px;
+  vertical-align: sub;
+  outline: none
+}
+
+input[type="checkbox"]:hover,
+input[type="checkbox"]:checked {
+  background: #64289d;
+}
+
+
+.contact-form .label {
+  margin-bottom: 20px;
+  position: absolute;
+  left: 0px !important;
+  padding-left: 0px !important;
+  bottom: 0;
+  font-size: 14px;
+  line-height: 26px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  color: #533979;
+  cursor: text;
+  transition: -webkit-transform .2s ease-in-out;
+  transition: transform .2s ease-in-out;
+  transition: transform .2s ease-in-out, -webkit-transform .2s ease-in-out;
+}
+
+/* .tick2,.tick3,.tick4{
+    margin-top: -3px;
+    width: 10px;
+    height: 10px;
+    display: none;
+    margin-left: 3px;
+} */
+.inptxt {
+  font-size: 13.1px;
+  font-weight: 100;
+  line-height: 1.83;
+  color: #666666;
+  padding: 6px 0px;
+}
+
+.preregtxt {
+  font-size: 12.4px;
+  font-weight: 300;
+  color: #666666;
+}
+
+.stepwizard-row2:before {
+  width: 63%;
+  right: 160px;
+}
+
+.inputstyle {
+  border: 0px;
+  border-bottom: 1px solid #b7b7b7;
+  width: 100%;
+}
+
+.inpstyle {
+  cursor: pointer;
+  background: url('/assets/images/datepicker.png') no-repeat 100% 6px !important;
+}
+
+#dropdown1 .btn {
+  display: inline-block;
+  padding: 6px 12px 6px 0px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 0px;
+}
+
+#dropdown1 button.btn.btn-default.dropdown-toggle.btn_width {
+  border-bottom: 1px solid #b7b7b7;
+}
+
+#dropdown1 .btn-default.active,
+.btn-default:active,
+.open>.dropdown-toggle.btn-default,
+.btn-default:hover {
+  color: #333;
+  background-color: #ffffff;
+  border-color: #adadad;
+}
+
+#dropdown1 button.btn.btn-default.dropdown-toggle.btn_width {
+  width: 100%;
+}
+
+#dropdown1 span#search_concept {
+  margin-right: 88%;
+}
+
+.padln {
+  padding-left: 0px !important;
+}
+
+.padrn {
+  padding-right: 0px !important;
+}
+
+.mrgntopm {
+  margin-top: -10px;
+}
+
+
+
+.modelWidthn {
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 0px;
+}
+
+.mybody2n {
+  padding: 50px 20px
+}
+
+.brdlft {
+  border-left: 1px solid #eee;
+}
+
+.chkselect {
+  background-color: #64289d;
+}
+
+.prevlghd {
+  font-size: 15.8px;
+  font-weight: 600;
+  color: #3f4245;
+}
+
+.buttonpad {
+  padding: 6px 25px !important;
+}
+
+.btnmargin {
+  margin-left: 4% !important;
+}
+
+input[type="checkbox"] {
+
+  -webkit-appearance: initial;
+  width: 16px;
+  height: 16px;
+  background-color: #c7c7c7;
+  display: inline-block;
+  border-radius: 5px;
+  margin-right: 6px;
+  vertical-align: sub;
+  outline: none
+}
+
+input[type="checkbox"]:hover,
+input[type="checkbox"]:checked {
+  background: #64289d;
+}
+
+.labpos {
+
+  padding-left: -10px !important;
+
+}
+
+.privilegeHead td {
+  text-align: center;
+}
+
+.privilegeData td {
+  padding-left: 35px !important;
+  border-right: 1px solid #d5d5d5;
+}
+
+.labelData {
+  padding: 2%;
+  font-size: 14px;
+  border-bottom: 1px solid #d5d5d5;
+  width: 100%;
+}
+
+.form-control {
+  box-shadow: none !important;
+  border-radius: 0px !important;
+  margin-top: 13px;
+}
+
+.stepwizard {
+  /* margin-top: 30px; */
+  display: table;
+  width: 80%;
+  position: relative;
+  margin: 15px 0;
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline;
+}
+
+.upload-btn-wrapper .btn {}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.top_back {
+  padding-left: 4% !important;
+  margin-top: 0% !important;
+}
+
+.stepwizard-row:before {
+  top: 14px !important;
+  bottom: 0;
+  position: absolute;
+  content: " ";
+  width: 63% !important;
+  height: 1px;
+  background-color: #ccc;
+  z-index: 0;
+  right: 160px !important;
+}
+
+@media only screen and (max-width: 1100px) {
+  .stepwizard-row:before {
+    top: 14px !important;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 62% !important;
+    height: 1px;
+    background-color: #ccc;
+    z-index: 0;
+    right: 135px !important;
+  }
+  }
