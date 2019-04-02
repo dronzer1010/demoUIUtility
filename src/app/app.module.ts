@@ -8,8 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routing } from './app.routing';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AppComponent } from './app.component';
-import { DashboardCheckerComponent } from './routingcomponents/dashboard-checker/dashboard-checker.component';
-import { CheckerApproveBillerComponent } from './routingcomponents/checker-approve-biller/checker-approve-biller.component';
+import { DashboardComponent } from './routingcomponents/dashboard/dashboard.component';
+import { PendingBillerComponent } from './routingcomponents/pendingbiller/pendingbiller.component';
 import {MatDialogModule} from '@angular/material/dialog';
 //import {  } from './routingcomponents/checker-approve-biller/checker-approve-biller.component';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http'; 
@@ -17,13 +17,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 // import * as $ from 'jquery';
-import { MakerBillerUnitaryComponent } from './routingcomponents/maker-biller-unitary/maker-biller-unitary.component';
+import { BillerUnitaryComponent } from './routingcomponents/billerunitary/billerunitary.component';
 import { BillerlistComponent } from './routingcomponents/billerlist/billerlist.component';
 import { HeaderComponent } from './supportingcomponents/header/header.component';
 import {DataTableModule} from "angular2-datatable";
-import { DashboardMakerComponent } from './routingcomponents/dashboard-maker/dashboard-maker.component';
-import { MakerPaymentListComponent } from './routingcomponents/maker-payment-list/maker-payment-list.component';
-import { MakerMakePaymentComponent } from './routingcomponents/maker-make-payment/maker-make-payment.component';
+import { PaymentListComponent } from './routingcomponents/paymentlist/paymentlist.component';
+import { MakePaymentComponent } from './routingcomponents/makepayment/makepayment.component';
 import { MatRadioModule, MatCheckboxModule, MatSelectModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
@@ -33,20 +32,14 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 //import {MatDialogModule} from '@angular/material/dialog';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material';
-import { CheckerApprovePaymentsComponent } from './routingcomponents/checker-approve-payments/checker-approve-payments.component';
+import { PendingPaymentsComponent } from './routingcomponents/pendingpayments/pendingpayments.component';
 import { MakerBillerBulkComponent } from './routingcomponents/maker-biller-bulk/maker-biller-bulk.component';
 // import { OwlModule } from 'ngx-owl-carousel';
 import { LoginComponent } from './authentication/login/login.component';
 import { OtpComponent } from './authentication/otp/otp.component';
-import { LoginCheckerComponent } from './authentication/login-checker/login-checker.component';
-import { OtpCheckerComponent } from './authentication/otp-checker/otp-checker.component';
 import { StartpageComponent } from './startpage/startpage.component';
-import { HeadercheckerComponent } from './supportingcomponents/headerchecker/headerchecker.component';
-import { CheckerBillersComponent } from './routingcomponents/checker-billers/checker-billers.component';
-import { CheckerPaymentsComponent } from './routingcomponents/checker-payments/checker-payments.component';
 import {AutoTabDirective} from './directives/autotab.directive';
-import { CheckerPaymentListComponent } from './routingcomponents/checker-payment-list/checker-payment-list.component';
-import { MakerBillerListComponent } from './routingcomponents/maker-biller-list/maker-biller-list.component'
+
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OtpapprovePaymentComponent } from './routingcomponents/otpapprovepayment/otpapprovepayment.component';
@@ -54,9 +47,7 @@ import { OtpapproveBillerComponent } from './routingcomponents/otpapprovebiller/
 import { ToastrModule } from 'ngx-toastr';
 import { NgDatepickerModule } from 'ng2-datepicker';
 import { CardviewComponent } from './routingcomponents/cardview/cardview.component';
-import { CardviewCheckerComponent } from './routingcomponents/cardview-checker/cardview-checker.component';
-import { MyprofileMakerComponent } from './supportingcomponents/myprofile-maker/myprofile-maker.component';
-import { MyprofileCheckerComponent } from './supportingcomponents/myprofile-checker/myprofile-checker.component';
+import { MyprofileComponent } from './supportingcomponents/myprofile/myprofile.component';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 import { UserunitaryComponent } from './routingcomponents/userunitary/userunitary.component';
 import { CardunitaryComponent } from './routingcomponents/cardunitary/cardunitary.component';
@@ -90,7 +81,7 @@ import { NotificationmatrixComponent } from './supportingcomponents/notification
 import { RepositoryComponent } from './supportingcomponents/repository/repository.component';
 import { SamplebillsComponent } from './supportingcomponents/samplebills/samplebills.component';
 import { TemplatesComponent } from './supportingcomponents/templates/templates.component';
-import { NewMakerBillerBulkComponent } from './routingcomponents/new-maker-biller-bulk/new-maker-biller-bulk.component';
+import { BillerBulkComponent } from './routingcomponents/billerbulk/billerbulk.component';
 import {AuthService} from './api/auth.service'
 import{UserserviceService} from './api/userservice.service'
 import{CardserviceService} from './api/cardservice.service'
@@ -101,43 +92,34 @@ import { SetupserviceService} from './api/setupservice.service'
 import { LightboxModule } from 'ngx-lightbox';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { CustomCurrencyPipe } from './routingcomponents/maker-payment-list/currency.pipe';
-import { PaymentFilterPipe } from './routingcomponents/maker-payment-list/payment-filter.pipe';
-import { PenPayFilterPipe } from './routingcomponents/checker-approve-payments/pendingpay-filter.pipe';
+import { CustomCurrencyPipe } from './routingcomponents/paymentlist/currency.pipe';
+import { PaymentFilterPipe } from './routingcomponents/paymentlist/payment-filter.pipe';
+import { PenPayFilterPipe } from './routingcomponents/pendingpayments/pendingpay-filter.pipe';
 import { BillerFilterPipe } from './routingcomponents/billerlist/biller-filter.pipe';
-import { PenBillerFilterPipe } from './routingcomponents/checker-approve-biller/penbiller-filter.pipe';
+import { PenBillerFilterPipe } from './routingcomponents/pendingbiller/penbiller-filter.pipe';
 import { FrenchDecimalPipe } from './pipes/currency.filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardCheckerComponent,
-    CheckerApproveBillerComponent,
-    MakerBillerUnitaryComponent,
+    DashboardComponent,
+    PendingBillerComponent,
+    BillerUnitaryComponent,
     BillerlistComponent,
     HeaderComponent,
-    DashboardMakerComponent,
-    MakerPaymentListComponent,
-    MakerMakePaymentComponent,   
-    CheckerApprovePaymentsComponent,
+    PaymentListComponent,
+    MakePaymentComponent,   
+    PendingPaymentsComponent,
     MakerBillerBulkComponent,
     LoginComponent,
     OtpComponent,
-    LoginCheckerComponent,
-    OtpCheckerComponent,
     StartpageComponent,
-    HeadercheckerComponent,
-    CheckerBillersComponent,
-    CheckerPaymentsComponent,
     AutoTabDirective,
-    CheckerPaymentListComponent,
-    MakerBillerListComponent,
+  
     OtpapprovePaymentComponent,
     OtpapproveBillerComponent,
     CardviewComponent,
-    CardviewCheckerComponent,
-    MyprofileMakerComponent,
-    MyprofileCheckerComponent,
+    MyprofileComponent,
     UserunitaryComponent,
     CardunitaryComponent,
     UserbulkComponent,
@@ -172,7 +154,7 @@ import { FrenchDecimalPipe } from './pipes/currency.filter.pipe';
     RepositoryComponent,
     SamplebillsComponent,
     TemplatesComponent,
-    NewMakerBillerBulkComponent,
+    BillerBulkComponent,
     FrenchDecimalPipe
   ],
 

@@ -92,8 +92,7 @@
                 [routerLink]="['/main/unitary-biller']"><span>
                   <img id="user" src="assets/img/add-unitary-bills.png" /></span>
                 Add Unitary </a></li>
-            <li *ngIf="rolename=='maker' || rolename=='ccmaker'" class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()"
-                [routerLink]="['/main/maker-biller-bulk']"><span>
+            <li *ngIf="rolename=='maker' || rolename=='ccmaker'"  class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/biller-bulk']"><span>
                   <img id="user" src="assets/img/add-bulk.png" /></span>
                 Add Bulk </a></li>
             <li *ngIf="rolename=='aschecker' || rolename=='checker' || rolename=='ccchecker'" class="col-md-12 cust"><a
@@ -108,18 +107,17 @@
           <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="openpaydrop();clickPayEvent()">Payments
           </a>
           <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displaypaydrop}">
-            <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/maker-payment-list']">
-                <span> <img id="user" src="assets/img/view-payment.png" style="height:20px; width:25px;" /></span>
+            <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/paymentlist']">
+                <span> <img id="user" src="assets/img/view-payment.png" style="height:20px; width:25px;"/></span>
                 View Payments </a></li>
             <li *ngIf="rolename=='maker' || rolename=='ccmaker'" class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()"
                 [routerLink]="['/main/make-payment']"><span>
                   <img id="user" src="assets/img/make-payment.png" style="height:16px; width:35px;" /></span>
                 Make Payments </a></li>
-            <li *ngIf="rolename=='aschecker' || rolename=='checker' || rolename=='ccchecker'" class="col-md-12 cust"><a
-                class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/checker-approve-payments']"><span>
-                  <img id="user" src="assets/img/make-payment.png" style="height:16px; width:35px;" /></span>
-                Pending Payments </a></li>
-
+            <li *ngIf="rolename=='aschecker' || rolename=='checker' || rolename=='ccchecker'"  class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/pending-payments']"><span>
+                <img id="user" src="assets/img/make-payment.png" style="height:16px; width:35px;"/></span>
+              Pending Payments </a></li>
+                
             <!-- <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()"><span> <img id="user"
                     src="assets/img/user.png" /></span>
                 Add Bulk Payment </a></li> -->
