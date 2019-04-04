@@ -350,34 +350,43 @@
                                     <tbody>
                                       <tr>
                                         <td>Card Debited</td>
-                                        <td>28/03/2019</td>
-                                        <td>05:30 PM</td>
+                                        <td *ngIf="payment.status=='Approved'">28-03-2019</td>
+                                        <td *ngIf="payment.status=='Approved'">05:30 PM</td>
+                                        <td *ngIf="payment.status=='Pending' || payment.status=='Rejected'">--</td>
+                                        <td *ngIf="payment.status=='Pending' || payment.status=='Rejected'">--</td>
                                       </tr>
                                       <tr>
                                         <td>Payment Success</td>
-                                        <td>28/03/2019</td>
-                                        <td>05:30 PM</td>
+                                        <td *ngIf="payment.status=='Approved'">28-03-2019</td>
+                                        <td *ngIf="payment.status=='Approved'">05:30 PM</td>
+                                        <td *ngIf="payment.status=='Pending' || payment.status=='Rejected'">--</td>
+                                        <td *ngIf="payment.status=='Pending' || payment.status=='Rejected'">--</td>
                                       </tr>
                                       <tr>
                                         <td>Payment Failed</td>
-                                        <td>28/03/2019</td>
-                                        <td>05:30 PM</td>
+                                        <td *ngIf="payment.status=='Approved'">28-03-2019</td>
+                                        <td *ngIf="payment.status=='Approved'">05:30 PM</td>
+                                        <td *ngIf="payment.status=='Pending' || payment.status=='Rejected'">--</td>
+                                        <td *ngIf="payment.status=='Pending' || payment.status=='Rejected'">--</td>
                                       </tr>
                                       <tr>
                                         <td>Card Refunded</td>
-                                        <td>28/03/2019</td>
-                                        <td>05:30 PM</td>
+                                        <td *ngIf="payment.status=='Approved'">28-03-2019</td>
+                                        <td *ngIf="payment.status=='Approved'">05:30 PM</td>
+                                        <td *ngIf="payment.status=='Pending' || payment.status=='Rejected'">--</td>
+                                        <td *ngIf="payment.status=='Pending' || payment.status=='Rejected'">--</td>
                                       </tr>
                                       <tr>
                                         <td>Refund Reason</td>
-                                        <td colspan="2">Transaction Failed Transaction Failed Transaction Failed Transaction Failed</td>
+                                        <td *ngIf="payment.status=='Approved'" colspan="2">Invalid Account Details</td>
+                                        <td *ngIf="payment.status=='Pending' || payment.status=='Rejected'" colspan="2">--</td>
                                       </tr>
                                     </tbody>
                                   </table>
                                 </div>                                
                               </div>
                               <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"><button class="btn btn-default" type="button" (click)="openModalDialog1()">Close</button></div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"><button class="btn btn-default" type="button" (click)="openModalDialog2()">Close</button></div>
                               </div>
                             </div>
                           </div>

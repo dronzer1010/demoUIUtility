@@ -27,6 +27,7 @@ export class BillerBulkComponent implements OnInit {billertype:boolean=true;
   showUploadFile:boolean=false; 
   type2:boolean=false;
   type3:boolean=false;
+  selected:any=0;
   bulkbill:any=[
     {
       "billaddress":"333/34 Dynna Business Park Marol Andheri Mumbai",
@@ -139,6 +140,10 @@ export class BillerBulkComponent implements OnInit {billertype:boolean=true;
 
   changeall(){
     this.selectall=!this.selectall;
+    if(this.selectall==true)
+    this.selected=5
+    else
+    this.selected=0
   }
 
   getBiller(stateid){

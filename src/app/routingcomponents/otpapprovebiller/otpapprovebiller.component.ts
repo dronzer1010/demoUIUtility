@@ -34,7 +34,7 @@ export class OtpapproveBillerComponent implements OnInit {
 
      localStorage.setItem('billdetails', JSON.stringify(bills));
 
-    this.router.navigate(['main/pending-biller'], { queryParams: { otp: 'success' } })
+    this.router.navigate(['main/billerlist'], { queryParams: { otp: 'success' } })
 
 
   }
