@@ -11,6 +11,9 @@
 .nopad {
     padding: 0px !important;
 }
+.chkselect{
+    background-color: #64289d;
+}
 .span_width {
     width: 17%;
     display: inline-block;
