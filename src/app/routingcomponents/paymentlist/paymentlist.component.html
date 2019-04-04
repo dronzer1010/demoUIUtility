@@ -260,10 +260,16 @@
                     <tr class="rowShow grayStrip" *ngIf="payment.collapsed">
                       <td colspan="8">
                           <span class="text-left" *ngIf="payment.status=='Rejected'"><label style="color: #64289d;">Comment : &nbsp;</label>Invalid Bill Amount</span>
-                        <span class="pull-right"><a (click)="closeModalDialog2()"><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span class="pull-right" *ngIf="rolename=='checker' || rolename=='aschecker' || rolename=='ccchecker'">
+                        <a (click)="closeModalDialog2()"><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a *ngIf="rolename=='maker' || rolename=='ccmaker'" href="javascript:void(0)"><img src="assets/img/edit.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a *ngIf="rolename=='maker' || rolename=='ccmaker'" href="javascript:void(0)"><img src="assets/img/delete.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        
+                        <a (click)="closeModalDialog1()"><img src="assets/img/page.png"></a>
+                      </span>
+                      <span *ngIf="rolename=='maker' || rolename=='ccmaker'" class="pull-right"><a (click)="closeModalDialog2()"><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="javascript:void(0)"><img src="assets/img/edit.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="javascript:void(0)"><img src="assets/img/delete.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a (click)="closeModalDialog1()"><img src="assets/img/page.png"></a>
                       </span>
                       </td>

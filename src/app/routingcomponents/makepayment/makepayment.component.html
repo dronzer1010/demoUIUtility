@@ -177,7 +177,7 @@
                       <td>{{payments.length}}</td>
                       <td><i class="fa fa-rupee"></i>{{6345886.68 | numberfr}}</td>
                       <td>{{checkedValueArray.length}}</td>
-                      <td><i class="fa fa-rupee"></i>{{234343 | numberfr}}</td>
+                      <td><i class="fa fa-rupee"></i>{{totalamount | numberfr}}</td>
                     </tr>
                   </table>
                 <!-- <button class="btn bg-primary nextpay buttonpad" type="button" (click)="fetchAllBills()" style="padding: 3px 25px!important;">Fetch All Bills</button> -->
@@ -463,7 +463,7 @@
                         </tr> -->
                         <tr style="background-color: #ffff;">
                             <div class="span_width" style="margin:5px 0px;width: 35%">Total Amount</div>  <span class="no-vert"> : </span> &nbsp;
-                            <div class="bold_span" style="margin:3px 0px;width:40%"><i class="fa fa-rupee"></i>{{543224778 | numberfr}}</div>
+                            <div class="bold_span" style="margin:3px 0px;width:40%"><i class="fa fa-rupee"></i>{{6345886.68 | numberfr}}</div>
                         </tr>
                         <!-- <tr style="background-color: #ffff;">
                             <div class="span_width" style="margin:5px 0px;">Initiated By</div>  <span class="no-vert"> : </span> &nbsp;
@@ -707,7 +707,7 @@
                   <div class="clear20"></div>
                   <div class="col-xs-3 col-sm-3 col-md-3"></div>
                   <div class="col-xs-3 col-sm-3 col-md-3">
-                    <a class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog" [routerLink]="['/main/maker-payment-list']">View
+                    <a class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog" [routerLink]="['/main/paymentlist']">View
                       Payments</a>
                   </div>
                   <div class="col-xs-3 col-sm-3 col-md-3">
