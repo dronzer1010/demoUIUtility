@@ -188,7 +188,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                      <ng-container  *ngFor="let bill of mf.data|penbillerFilter :{biller: searchText,board:searchText,consumerno:searchText,consumername:searchText,status:searchText,paymentstatus:searchText,shortname:searchText,expensecode:searchText,billdate:searchText,duedate:searchText,state:searchText,digits:searchText,contact:searchText,email:searchText,billaddress:searchText,initiatedby:searchText,initiatedon:searchText}; let i=index;">
+                      <ng-container  *ngFor="let bill of mf.data|penbillerFilter :{biller: searchText,board:searchText,consumerno:searchText,uploadfilename:searchText,status:searchText,paymentstatus:searchText,shortname:searchText,expensecode:searchText,billdate:searchText,duedate:searchText,state:searchText,digits:searchText,contact:searchText,email:searchText,billaddress:searchText,initiatedby:searchText,initiatedon:searchText}; let i=index;">
                     <tr>
                       <td><input type="checkbox" name="submenu" [checked]="select" (change)="change(bill.id) "></td>
                       <td>{{i+1}}</td>
@@ -225,13 +225,13 @@
                             <div class="bold_span" *ngIf="bill.state=='DL'" >Delhi</div>
                           </div>
                           <div>
-                            <div class="span_width">Ref. No. 1</div>  <span> : </span> &nbsp;
+                            <div class="span_width">Consumner No.</div>  <span> : </span> &nbsp;
                             <div class="bold_span">{{bill.consumerno}}</div>
                           </div>
-                          <div>
+                          <!-- <div>
                             <div class="span_width">Ref. No. 2</div>  <span> : </span> &nbsp;
                             <div class="bold_span">123456</div>
-                          </div>
+                          </div> -->
                         </div>
                         <div class="tablediv table2">
                           <h5>Contact Details</h5>

@@ -19,7 +19,7 @@ export class UserserviceService {
   userData: any = {};
   constructor(private http: HttpClient) { }
 
-  getAll() {
+getAll() {
     return this.http.get<any[]>(path+'/adminuser/user');
 }
 create(user: any) {

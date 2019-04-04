@@ -40,7 +40,7 @@ export class PendingPaymentsComponent implements OnInit {
   dropdownSettings = {};
   dropdownSettings1 = {};
   dropdownSettings2 = {};
-
+  totalamount:any=0;
   constructor(private router:Router , private aRouter : ActivatedRoute) { }
 
   ngOnInit() {
@@ -156,9 +156,11 @@ changeAll(pendingbillerpage): void {
     
   if(this.checkedValueArray.length==this.payments.length){
   this.cntChk=1
+  this.totalamount=0
   }else{
   this.checkedValueArray = [];
   this.cntChk=0
+  this.totalamount=7467482
   }
   console.log(this.selectall)
   if (this.cntChk == 0) {
@@ -179,6 +181,7 @@ changeAll(pendingbillerpage): void {
     this.select=false;
   }
   console.log(this.checkedValueArray)
+  
 }
 
 change(id): void {

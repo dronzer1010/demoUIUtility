@@ -162,7 +162,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <ng-container  *ngFor="let bill of mf.data |orderBy: key : reverse|billerFilter :{biller: searchText,board:searchText,consumerno:searchText,consumername:searchText,status:searchText,paymentstatus:searchText,shortname:searchText,expensecode:searchText,billdate:searchText,duedate:searchText,state:searchText,digits:searchText,contact:searchText,email:searchText,billaddress:searchText,initiatedby:searchText,initiatedon:searchText,approvedby:searchText,approvedon:searchText}; let i=index;">
+                    <ng-container  *ngFor="let bill of mf.data |orderBy: key : reverse|billerFilter :{biller: searchText,board:searchText,consumerno:searchText,uploadfilename:searchText,status:searchText,paymentstatus:searchText,shortname:searchText,expensecode:searchText,billdate:searchText,duedate:searchText,state:searchText,digits:searchText,contact:searchText,email:searchText,billaddress:searchText,initiatedby:searchText,initiatedon:searchText,approvedby:searchText,approvedon:searchText}; let i=index;">
                     <tr>
                       <td>{{i+1}}</td>
                       <td>{{bill.board}}</td>
@@ -203,13 +203,13 @@
                             <div class="bold_span" *ngIf="bill.state=='DL'" >Delhi</div>
                           </div>
                           <div class="mb-1">
-                            <div class="span_width">Ref. No. 1</div>  <span> : </span> &nbsp;
+                            <div class="span_width">Consumer No</div>  <span> : </span> &nbsp;
                             <div class="bold_span">{{bill.consumerno}}</div>
                           </div>
-                          <div class="mb-1">
+                          <!-- <div class="mb-1">
                             <div class="span_width">Ref. No. 2</div>  <span> : </span> &nbsp;
                             <div class="bold_span"></div>
-                          </div>
+                          </div> -->
                         </div>
                         <div class="tablediv table2">
                           <h5>Contact Details</h5>

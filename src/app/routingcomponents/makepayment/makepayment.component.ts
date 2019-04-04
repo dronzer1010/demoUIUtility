@@ -39,6 +39,7 @@ export class MakePaymentComponent implements OnInit {
   sortBy = "email";
   sortOrder = "asc";
   activeElement :number;
+  totalamount: number=0;
   billDates=['01-04-2019' ,'05-04-2019' , '06-04-2019' , '03-04-2019' ,'08-04-2019','09-04-2019','10-04-2019']
   dueDates=['13-04-2019' ,'17-04-2019' , '16-04-2019' , '13-04-2019' ,'18-04-2019','19-04-2019','20-04-2019']
   fetchingBill=false;
@@ -221,8 +222,11 @@ export class MakePaymentComponent implements OnInit {
   changeAll(pendingbillerpage): void {    
     if(this.checkedValueArray.length==this.payments.length){
     this.cntChk=1
+    this.totalamount=0
     }else{
     this.checkedValueArray = [];
+    this.totalamount=6345886.68;
+    
     this.cntChk=0
     }
     console.log(this.selectall)
@@ -244,6 +248,7 @@ export class MakePaymentComponent implements OnInit {
       this.select=false;
     }
     console.log(this.checkedValueArray)
+    
   }
 
   change(id): void {
