@@ -237,23 +237,23 @@
                         <span class="bold-txt">Organisation Details</span>
                         <div>&nbsp;&nbsp;&nbsp;</div>
                         <div>
-                          <div class="span_width">Address:</div>
-                          <div class="bold_span">{{org.address}}</div>
+                          <div class="span_width">Address</div> <span>:</span>&nbsp;&nbsp;&nbsp;
+                          <span class="bold_span" tooltip="{{org.address}}" placement="top" show-delay="500">{{org.address}}</span>
                         </div>
                         <div>
-                          <div class="span_width">Contact No:</div>
+                          <div class="span_width">Contact No</div> <span>:</span>&nbsp;&nbsp;&nbsp;
                           <div class="bold_span">{{org.contact}}</div>
                         </div>
                       </div>
                       <div class="tablediv orgDetails">
                         <h5>&nbsp;&nbsp;&nbsp;</h5>
                         <div>
-                          <div class="span_width">PAN:</div>
+                          <div class="span_width">PAN</div> <span>:</span>&nbsp;&nbsp;&nbsp;
                           <div class="bold_span">{{org.pan}}</div>
                         </div>
 
                         <div>
-                          <div class="span_width">Domain:</div>
+                          <div class="span_width">Domain</div> <span>:</span>&nbsp;&nbsp;&nbsp;
                           <div class="bold_span">{{org.domain}}</div>
                         </div>
                       </div>
@@ -360,27 +360,27 @@
                         <span class="bold-txt">User Details</span>
                         <div>&nbsp;&nbsp;&nbsp;</div>
                         <div>
-                          <div class="span_width">Employee ID:</div>
+                          <div class="span_width">Employee ID</div>  <span>:</span>&nbsp;&nbsp;&nbsp;
                           <div class="bold_span">{{userdata.empid}}</div>
                         </div>
                         <div>
-                          <div class="span_width">Date Of Birth:</div>
+                          <div class="span_width">Date Of Birth</div>  <span>:</span>&nbsp;&nbsp;&nbsp;
                           <div class="bold_span">{{userdata.dob}}</div>
                         </div>
                         <div *ngIf="userdata.grpname!='NA'">
-                          <div class="span_width">Group:</div>
+                          <div class="span_width">Group</div>  <span>:</span>&nbsp;&nbsp;&nbsp;
                           <div class="bold_span">{{userdata.grpname}}</div>
                         </div>
                       </div>
                       <div class="tablediv orgDetails">
                         <h5>&nbsp;&nbsp;&nbsp;</h5>
                         <div>
-                          <div class="span_width">Mobile No:</div>
+                          <div class="span_width">Mobile No</div>  <span>:</span>&nbsp;&nbsp;&nbsp;
                           <div class="bold_span">{{userdata.mobileno}}</div>
                         </div>
                         <div>
-                          <div class="span_width">Email ID:</div>
-                          <div class="bold_span">{{userdata.email}}</div>
+                          <div class="span_width">Email ID</div>  <span>:</span>&nbsp;&nbsp;&nbsp;
+                          <span class="bold_span" tooltip="{{userdata.email}}" placement="top" show-delay="500">{{userdata.email}}</span>
                         </div>
                       </div>
                     </td>

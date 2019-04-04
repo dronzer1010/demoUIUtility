@@ -145,7 +145,10 @@ input::-webkit-calendar-picker-indicator {
   color: #64289d;
   cursor: pointer;
 }
-
+.buttonpad {
+  padding: 6px 25px !important;
+  height: 38px;
+}
 #button img {
   width: 10%;
 }

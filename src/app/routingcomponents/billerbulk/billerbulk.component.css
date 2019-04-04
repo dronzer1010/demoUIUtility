@@ -59,8 +59,11 @@
     display: block;
     margin: 1em 0;
     padding: 3em;
-    text-align: center;
-    
+    text-align: center; 
+  }
+  .buttonpad {
+    padding: 6px 25px !important;
+    height: 38px;
   }
   /* <-------> */
   tbody tr td {
@@ -158,6 +161,9 @@
     font-weight: bold;
     font-size: 13px;
     background: #d9cee6;
+  }
+  .bold_span{
+    font-weight: 600;
   }
   .dwn-temp img {
     width: 12px;

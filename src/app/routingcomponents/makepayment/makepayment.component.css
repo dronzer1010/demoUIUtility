@@ -686,7 +686,9 @@ input::-webkit-calendar-picker-indicator {
     margin-top: 10px;
     margin-bottom: 10px;
   }
-
+  .cardbody-copy{
+    margin-top:10px;
+  }
   .spn1 {
     display: block;
     text-align: left;
@@ -790,7 +792,9 @@ input::-webkit-calendar-picker-indicator {
     margin-top: 40px;
     margin-bottom: 0px;
   }
-
+  .cardbody-copy{
+    margin-top:40px;
+  }
   .spn1 {
     display: block;
     text-align: left;
@@ -889,7 +893,9 @@ input::-webkit-calendar-picker-indicator {
     margin-top: 40px;
     margin-bottom: 0px;
   }
-
+  .cardbody-copy{
+    margin-top:40px;
+  }
   .spn1 {
     display: block;
     text-align: left;
@@ -988,7 +994,9 @@ input::-webkit-calendar-picker-indicator {
     margin-top: 40px;
     margin-bottom: 0px;
   }
-
+  .cardbody-copy{
+    margin-top:40px;
+  }
   .spn1 {
     display: block;
     text-align: left;
@@ -1092,5 +1100,10 @@ input::-webkit-calendar-picker-indicator {
   background-color: #ccc;
   z-index: 0;
   right: 125px !important;
+}
+.dummy-card[_ngcontent-c3] {
+  border: 3px solid purple;
+  padding: 15px 0px 15px 15px;
+  border-radius: 10px;
 }
 }
