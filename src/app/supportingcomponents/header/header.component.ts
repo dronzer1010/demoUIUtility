@@ -36,9 +36,9 @@ export class HeaderComponent implements OnInit {
       this.pathroute=location.path();
       if(this.pathroute=='/dashboard'){
         this.clickDashEvent()
-      }else if(this.pathroute=='/main/make-payment' || this.pathroute=='/main/maker-payment-list' || this.pathroute=='/main/checker-approve-payments' || this.pathroute=='/main/checker-approve-payments' || this.pathroute=='/main/otp-approve-payment'){
+      }else if(this.pathroute=='/main/make-payment' || this.pathroute=='/main/paymentlist' || this.pathroute=='/main/pending-payments' || this.pathroute=='/main/pending-payments' || this.pathroute=='/main/otp-approve-payment'){
         this.clickPayEvent();
-      }else if(this.pathroute=='/main/billerlist' || this.pathroute=='/main/unitary-biller' || this.pathroute=='/main/maker-biller-bulk' || this.pathroute=='/main/otp-approve-biller' || this.pathroute=='/main/pending-biller'){
+      }else if(this.pathroute=='/main/billerlist' || this.pathroute=='/main/unitary-biller' || this.pathroute=='/main/biller-bulk' || this.pathroute=='/main/otp-approve-biller' || this.pathroute=='/main/pending-biller'){
         this.clickBillEvent()
       }
       else if(this.pathroute=='/main/cardview' || this.pathroute=='/unitary-card' || this.pathroute=='/main/pending-card' ||this.pathroute=='/main/cardview?msg=crdapprsuccess' ||this.pathroute=='/main/cardview?msg=cardsuccess'){

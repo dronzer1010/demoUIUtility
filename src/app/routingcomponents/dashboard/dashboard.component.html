@@ -92,7 +92,7 @@
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                       <div class="card">
-                        <div class="card-body" [routerLink]="['/main/maker-biller-bulk']" style="cursor: pointer;">
+                        <div class="card-body" [routerLink]="['/main/biller-bulk']" style="cursor: pointer;">
                           <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center mb-2"><img src="assets/img/add-bulk-bill.png"
                                 alt=""></div>
@@ -111,14 +111,14 @@
           <div class="card-body">
             <div class="row">
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 border1">
-                <div class="row" [routerLink]="['/main/checker-approve-payments']">
+                <div class="row" [routerLink]="['/main/pending-payments']">
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <div class="round1">{{penpaylength}}</div>
                   </div>
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
                 </div>
-                <div class="row" [routerLink]="['/main/checker-approve-payments']">
+                <div class="row" [routerLink]="['/main/pending-payments']">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <h6 *ngIf="penpaylength<=0 || penpaylength==1">Pending Payment</h6>
                     <h6 *ngIf="penpaylength>1">Pending Payments</h6>
@@ -131,11 +131,11 @@
                 </div> -->
                 <hr>
                 <div class="row mb-1">
-                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center" [routerLink]="['/main/checker-payments']">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center" [routerLink]="['/main/paymentlist']">
                     <span class="span1">{{apprpaylength}}</span>
                     <span><img src="assets/img/approved.png" alt="" style="vertical-align:1px"> Approved</span>
                   </div>
-                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center" [routerLink]="['/main/checker-payments']">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center" [routerLink]="['/main/paymentlist']">
                     <span class="span1">{{rejpaylength}}</span>
                     <span><img src="assets/img/rejected.png" alt="" style="vertical-align:1px"> Rejected</span>
                   </div>
@@ -162,11 +162,11 @@
                 </div> -->
                 <hr>
                 <div class="row mb-1">
-                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center" [routerLink]="['/main/checker-biller']">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center" [routerLink]="['/main/billerlist']">
                     <span class="span1">{{apprbilllength}}</span>
                     <span><img src="assets/img/approved.png" alt="" style="vertical-align:1px"> Approved</span>
                   </div>
-                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center" [routerLink]="['/main/checker-biller']">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center" [routerLink]="['/main/billerlist']">
                     <span class="span1">{{rejbilllength}}</span>
                     <span><img src="assets/img/rejected.png" alt="" style="vertical-align:1px"> Rejected</span>
                   </div>
