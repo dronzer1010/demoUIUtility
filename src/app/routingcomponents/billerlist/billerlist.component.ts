@@ -95,12 +95,25 @@ this.rolename=localStorage.getItem('rolename')
     console.log(items);
   }
 
+  onItemSelectDown(items:any){
+    console.log(items);
+    if(items['item_id']==2){
+      this.display='block';
+    }else{
+      this.display='none';
+    }
+  }
+
+  onSelectAllDown(items:any){
+    console.log(items);
+  }
+
   openModalDialog(){
-    this.display=''; //Set block css
+    this.display='block'; //Set block css
  }
 
  closeModalDialog(){
-  this.display='block'; //set none css after close dialog
+  this.display=''; //set none css after close dialog
  }
 
 }

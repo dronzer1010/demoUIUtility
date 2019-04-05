@@ -38,8 +38,8 @@
                   [data]="dropdownDownload"
                   [(ngModel)]="selectedItems"
                   [settings]="dropdownSettings"
-                  (onSelect)="onItemSelect($event)"
-                  (onSelectAll)="onSelectAll($event)">
+                  (onSelect)="onItemSelectDown($event)"
+                  (onSelectAll)="onSelectAllDown($event)">
                 </ng-multiselect-dropdown>
                 <div class="backdrop" [ngStyle]="{'display':display}"></div>
                 <!-- modal -->
@@ -50,7 +50,7 @@
                     <div class="modal-content">
                       <!-- modal-header -->
                       <div class="modal-header">
-                        Generate Customize Report<button type="button" class="close" aria-label="Close" (click)="openModalDialog()"><span
+                        Generate Customize Report<button type="button" class="close" aria-label="Close" (click)="closeModalDialog()"><span
                             aria-hidden="true">&times;</span></button>
                         <!-- <h4 class="modal-title">Login</h4> -->
                       </div>
@@ -120,7 +120,7 @@
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
                         </div>
                         <div class="row text-left">
-                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button class="btn-ok" style="margin-right:10px;">OK</button></div>
+                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button (click)="closeModalDialog()" class="btn-ok" style="margin-right:10px;">OK</button></div>
                         </div>
                       </div>
                     </div>
@@ -299,5 +299,7 @@
       </div>
     </div> -->
   </div>
+  <!-- Modal2 -->
+
   <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
 </div>
