@@ -27,6 +27,14 @@ export class BillerlistComponent implements OnInit {
   key: string = 'status'; //set default
   reverse: boolean = true;
 rolename:any;
+settings = {
+  bigBanner: true,
+  timePicker: false,
+  format: 'dd-MM-yyyy',
+  defaultOpen: false
+}
+todate:Date = new Date();
+fromdate:Date = new Date();
 public searchText : string;
   constructor() { }
 

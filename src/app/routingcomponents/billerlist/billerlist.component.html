@@ -115,8 +115,16 @@
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
                         </div>
                         <div class="row mb-4 text-left">
-                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"> From <input type="date" value="2018-08-26">
-                            To <input type="date"></div>
+                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                              <table>
+                                  <tr>
+                                    <td style="padding:0px; width:10%">From</td>
+                                    <td style="padding:0px; width:28%"><angular2-date-picker [(ngModel)]="fromdate" [settings]="settings"></angular2-date-picker></td>
+                                    <td style="padding-left:7px; width:10%">To</td>
+                                    <td style="padding-right:10px; width:31%"><angular2-date-picker [(ngModel)]="todate" [settings]="settings"></angular2-date-picker></td>
+                                  </tr>
+                                </table>
+                          </div>
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
                         </div>
                         <div class="row text-left">
