@@ -26,6 +26,7 @@ export class PaymentListComponent implements OnInit {
   dropdownSettings = {};
   dropdownSettings1 = {};
   dropdownSettings2 = {};
+  apprrejpay:any=[];
   settings = {
     bigBanner: true,
     timePicker: false,
@@ -37,6 +38,7 @@ export class PaymentListComponent implements OnInit {
 rolename:any;
 key: string = 'status'; //set default
 reverse: boolean = true;
+totalamount:any=0;
   constructor() { }
 
   ngOnInit() {
@@ -122,7 +124,11 @@ reverse: boolean = true;
 
   private laodpayments(){
     this.payments=JSON.parse(localStorage.getItem('payments'));
-    for(let data of this.payments){
+
+    this.apprrejpay=this.payments.filter((payment)=>{
+      return (payment.status == "Approved" || payment.status == "Rejected")
+    })
+    for(let data of this.apprrejpay){
       var obj={
         biller:data['bill']['biller'],
         amount:data['amount'],
@@ -148,5 +154,12 @@ reverse: boolean = true;
       }
       this.paymentData.push(obj)
     }
+
+    for(var total of this.paymentData){
+        this.totalamount+=parseFloat(total['amount'])
+    }
+    console.log(this.totalamount)
+
+
   }
 }

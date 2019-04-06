@@ -41,7 +41,8 @@ export class PendingPaymentsComponent implements OnInit {
   dropdownSettings = {};
   dropdownSettings1 = {};
   dropdownSettings2 = {};
-  totalamount:any=0;
+  amountpay:any=0;
+  totalamount:any=0
   settings = {
     bigBanner: true,
     timePicker: false,
@@ -187,11 +188,11 @@ changeAll(pendingbillerpage): void {
     
   if(this.checkedValueArray.length==this.payments.length){
   this.cntChk=1
-  this.totalamount=0
+  this.amountpay=0
   }else{
   this.checkedValueArray = [];
   this.cntChk=0
-  this.totalamount=7467482
+  this.amountpay=this.totalamount;
   }
   console.log(this.selectall)
   if (this.cntChk == 0) {
@@ -283,6 +284,9 @@ private loadPayments(){
 
     }
     this.paymentData.push(obj)
+}
+for(var total of this.paymentData){
+  this.totalamount+=parseFloat(total['amount'])
 }
 }
 }
