@@ -93,7 +93,8 @@ this.rolename=localStorage.getItem('rolename')
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 1,
-      allowSearchFilter: true
+      allowSearchFilter: false,
+      enableCheckAll:false
     };
   }
   onItemSelect(item: any) {
@@ -122,6 +123,7 @@ this.rolename=localStorage.getItem('rolename')
 
  closeModalDialog(){
   this.display=''; //set none css after close dialog
+
  }
 
 }
