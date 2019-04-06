@@ -58,7 +58,10 @@ export class BillerUnitaryComponent implements OnInit {
   }
 
   UploadFile(file: HTMLInputElement){
-    this.filename = file.value;
+    //this.filename = file.value;
+    var filenm = file.value;
+    this.filename = filenm.split(/[\\\/]/).pop()
+    //this.filename = filenm.substr(fileNameIndex);
   }
 
   getBiller(stateid){

@@ -37,6 +37,7 @@ export class MakePaymentComponent implements OnInit {
   filterQuery = "";
   rowsOnPage = 300;
   sortBy = "email";
+  filename:string;
   sortOrder = "asc";
   activeElement :number;
   totalamount: number=0;
@@ -229,6 +230,8 @@ export class MakePaymentComponent implements OnInit {
     
     this.cntChk=0
     }
+
+    
     console.log(this.selectall)
     if (this.cntChk == 0) {
       this.cntChk = 1;
@@ -284,6 +287,13 @@ export class MakePaymentComponent implements OnInit {
     }
     console.log(this.checkedValueArray)
   }  
+
+  UploadFile(file: HTMLInputElement){
+    //this.filename = file.value;
+    var filenm = file.value;
+    this.filename = filenm.split(/[\\\/]/).pop()
+    //this.filename = filenm.substr(fileNameIndex);
+  }
 
   cnfsend(){
     this.billdetails=false;

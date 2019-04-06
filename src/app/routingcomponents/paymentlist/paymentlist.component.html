@@ -132,8 +132,8 @@
               <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 txt text-left">
               <table class="entry-table">
                 <tr>
-                  <td>No of Payments</td>
-                  <td>Total Amount</td>
+                  <td class="unitheaders">No of Payments</td>
+                  <td class="unitheaders">Total Amount</td>
                 </tr>
                 <tr>
                   <td>{{payments.length}}</td>
@@ -151,7 +151,7 @@
                       <td>Sr.No.</td>
                       <td>Bill Name <img src="assets/img/Filter.png" alt=""></td>
                       <td>Amount <img src="assets/img/Filter.png" alt=""></td>
-                      <td>Consumer No<img src="assets/img/Filter.png" alt=""></td>
+                      <td>Reference No<img src="assets/img/Filter.png" alt=""></td>
                       <td>Consumer Name<img src="assets/img/Filter.png" alt=""></td>
                       <td>Status <img src="assets/img/Filter.png" alt=""></td>
                       <td class="text-center">Payment Status <img src="assets/img/Filter.png" alt=""></td>
@@ -182,6 +182,10 @@
                             <div class="span_width">GL/Expense Code</div> <span> : </span> &nbsp;
                             <div class="bold_span">{{payment.expensecode}}</div>
                           </div>
+                          <div class="mb-1">
+                              <div class="span_width">Consumer No</div> <span> : </span> &nbsp;
+                              <div class="bold_span">{{payment.consumerno}}</div>
+                            </div>
                           <div class="mb-1">
                             <div class="span_width">Bill Date</div> <span> : </span> &nbsp;
                             <div class="bold_span">{{payment.billdate}}</div>
@@ -331,7 +335,7 @@
                           <div class="modal-content">
                             <!-- modal-header -->
                             <div class="modal-header">
-                              Payment Logs<button type="button" class="close" aria-label="Close" (click)="openModalDialog2()"><span
+                              Transaction Logs<button type="button" class="close" aria-label="Close" (click)="openModalDialog2()"><span
                                   aria-hidden="true">&times;</span></button>
                               <!-- <h4 class="modal-title">Login</h4> -->
                             </div>

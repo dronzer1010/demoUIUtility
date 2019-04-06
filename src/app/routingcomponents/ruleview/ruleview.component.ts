@@ -19,6 +19,11 @@ export class RuleviewComponent implements OnInit {
   ngOnInit() {
   }
 
+  validateMobileNo(value){    
+    var k = value.keyCode;
+          return ((k >= 48 && k <= 57) || k == 8);
+  }
+
   rulevalidation(){
     // this.ruleservice.validateRule(this.amountdata).subscribe(data=>{
     //   console.log("Rule Data")

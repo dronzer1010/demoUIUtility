@@ -2488,3 +2488,13 @@ path.highcharts-button-symbol,
   max-width: 2%;
   vertical-align: baseline;
 }
+
+.unitheaders{
+  background-color: #533979 !important;
+  color:#fff !important;
+
+}
+
+.entry-table{
+  border:1px solid #533979;
+}

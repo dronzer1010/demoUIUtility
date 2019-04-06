@@ -47,10 +47,10 @@
               <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 txt">
                   <table class="entry-table">
                     <tr>
-                      <td>No. of Bills</td>
-                      <td>Total Amount</td>
-                      <td>No. of Selected Bills</td>
-                      <td>Amount Payable</td>
+                      <td class="unitheaders">No. of Bills</td>
+                      <td class="unitheaders">Total Amount</td>
+                      <td class="unitheaders">No. of Selected Bills</td>
+                      <td class="unitheaders">Amount Payable</td>
                     </tr>
                     <tr>
                       <td>{{payments.length}}</td>
@@ -75,7 +75,7 @@
                           <td>Biller Name <img src="../../../utility/assets/img/Filter.png" alt=""></td>
                           <!-- <td>Consumer No <img src="../../../utility/assets/img/Filter.png" alt=""></td> -->
                           <td>Amount <img src="../../../utility/assets/img/Filter.png" alt=""></td>
-                          <td>Consumer No <img src="../../../utility/assets/img/Filter.png" alt=""></td>
+                          <td>Reference No <img src="../../../utility/assets/img/Filter.png" alt=""></td>
                           <td>Consumer Name <img src="../../../utility/assets/img/Filter.png" alt=""></td>
                           <td>Status</td>
                           <td style="text-align:center;">Payment Status</td>
@@ -107,6 +107,10 @@
                                   <div class="span_width">GL/Expense Code </div>  <span> : </span> &nbsp;
                                   <div class="bold_span">{{payment.expensecode}}</div>
                                 </div>
+                                <div class="mb-1">
+                                    <div class="span_width">Consumer No</div> <span> : </span> &nbsp;
+                                    <div class="bold_span">{{payment.consumerno}}</div>
+                                  </div>
                                 <div class="mb-1">
                                   <div class="span_width">Bill Date </div>  <span> : </span> &nbsp;
                                   <div class="bold_span">{{payment.billdate}}</div>
@@ -241,7 +245,7 @@
                             <div class="modal-content">
                               <!-- modal-header -->
                               <div class="modal-header">
-                                Bill Details<button type="button" class="close" aria-label="Close" (click)="openModalDialog1()"><span
+                                  Transaction Logs<button type="button" class="close" aria-label="Close" (click)="openModalDialog1()"><span
                                     aria-hidden="true">&times;</span></button>
                                 <!-- <h4 class="modal-title">Login</h4> -->
                               </div>
