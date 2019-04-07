@@ -18,10 +18,10 @@
         <div class="clear20"></div>
         <p class="ruleHead">Enter the Amount</p>
         <div id="selectAuto" class="col-md-offset-1 col-md-10 ">
-           <span class="datalist-arrow">
-              <input id="cbxCities" class="jqx-combobox-input" name="browsers" type=number placeholder="Enter the amount"  [(ngModel)]="amountdata.chkamt" >
+          
+              <input id="cbxCities" class="jqx-combobox-input" type="text" name="chkamt" placeholder="Enter the amount"  [(ngModel)]="amountdata.chkamt" (keypress)="validateMobileNo($event)" autocomplete='off'>
               
-           </span>
+          
            <!-- <span class="ComboError">This amount does not belong to this organisation
            <i class="fa fa-exclamation-circle ComboErrorImg"></i>
            </span> -->

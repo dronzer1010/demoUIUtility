@@ -39,7 +39,16 @@ export class PendingBillerComponent implements OnInit {
   dropdownSettings = {};
   dropdownSettings1 = {};
   dropdownSettings2 = {};
+  todate:Date = new Date();
+fromdate:Date = new Date();
   noofrole="No bills available"
+  settings = {
+    bigBanner: true,
+    timePicker: false,
+    format: 'dd-MM-yyyy',
+    defaultOpen: false,
+    enableCheckAll:false
+  }
   public searchText : string;
   constructor(private router : Router , private aRouter : ActivatedRoute) { }
 
@@ -110,7 +119,8 @@ export class PendingBillerComponent implements OnInit {
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 1,
-      allowSearchFilter: true
+      allowSearchFilter: false,
+      enableCheckAll:false
     };
   }
 
@@ -179,12 +189,25 @@ export class PendingBillerComponent implements OnInit {
     }
     console.log(this.checkedValueArray)
   }
+  onItemSelectDown(items:any){
+    console.log(items);
+    if(items['item_id']==2){
+      this.display='block';
+    }else{
+      this.display='none';
+    }
+  }
+
+  onSelectAllDown(items:any){
+    console.log(items);
+  }
+
   openModalDialog(){
-    this.display=''; //Set block css
+    this.display='block'; //Set block css
  }
 
  closeModalDialog(){
-  this.display='block'; //set none css after close dialog
+  this.display=''; //set none css after close dialog
  }
  closeModalDialog2(){
   this.displayreason='block';

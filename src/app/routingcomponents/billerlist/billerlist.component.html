@@ -73,8 +73,7 @@
                               Type</span>
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Reference
-                              Number</span>
+                            <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Biller Name</span>
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <input type="checkbox" name="Bill" value="Bill"> <span class="spn-modal">Bill Date</span>
@@ -82,11 +81,10 @@
                         </div>
                         <div class="row mb-2 text-left">
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Email</span>
+                            <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Due Date</span>
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Biller
-                              Type</span>
+                            <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Status</span>
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <input type="checkbox" name="Bill" value="Bill"> <span class="spn-modal">Short Name</span>
@@ -94,29 +92,59 @@
                         </div>
                         <div class="row mb-2 text-left">
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Mobile
-                              Number</span>
+                            <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">GL/Expense Code</span>
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Location</span>
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Bill" value="Bill"> <span class="spn-modal">Due Date</span>
+                            <input type="checkbox" name="Bill" value="Bill"> <span class="spn-modal">Consumer No</span>
                           </div>
                         </div>
-                        <div class="row mb-4 text-left">
+                        <div class="row mb-2 text-left">
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">GL/Expense
-                              Code</span>
+                            <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Mobile No</span>
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Attachment</span>
+                            <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Address</span>
                           </div>
-                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+                          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Email</span>
+                            </div>
                         </div>
+                        <div class="row mb-2 text-left">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">File Name</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Initiated by</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Initiated on</span>
+                              </div>
+                          </div>
+                          <div class="row mb-2 text-left">
+                              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Approved by</span>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Approved on</span>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                  
+                                </div>
+                            </div>
                         <div class="row mb-4 text-left">
-                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"> From <input type="date" value="2018-08-26">
-                            To <input type="date"></div>
+                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                              <table>
+                                  <tr>
+                                    <td style="padding:0px; width:10%">From</td>
+                                    <td style="padding:0px; width:28%"><angular2-date-picker [(ngModel)]="fromdate" [settings]="settings"></angular2-date-picker></td>
+                                    <td style="padding-left:7px; width:10%">To</td>
+                                    <td style="padding-right:10px; width:31%"><angular2-date-picker [(ngModel)]="todate" [settings]="settings"></angular2-date-picker></td>
+                                  </tr>
+                                </table>
+                          </div>
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
                         </div>
                         <div class="row text-left">
@@ -132,7 +160,7 @@
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 txt">
                 <table class="entry-table">
                   <tr>
-                    <td>{{noofrole}}</td>
+                    <td class="unitheaders">{{noofrole}}</td>
                   </tr>
                   <tr>
                     <td>{{billerlength}}</td>

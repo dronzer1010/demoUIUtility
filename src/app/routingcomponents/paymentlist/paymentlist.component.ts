@@ -26,9 +26,19 @@ export class PaymentListComponent implements OnInit {
   dropdownSettings = {};
   dropdownSettings1 = {};
   dropdownSettings2 = {};
+  apprrejpay:any=[];
+  settings = {
+    bigBanner: true,
+    timePicker: false,
+    format: 'dd-MM-yyyy',
+    defaultOpen: false
+  }
+  todate:Date = new Date();
+  fromdate:Date = new Date();
 rolename:any;
 key: string = 'status'; //set default
 reverse: boolean = true;
+totalamount:any=0;
   constructor() { }
 
   ngOnInit() {
@@ -74,12 +84,13 @@ reverse: boolean = true;
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 1,
-      allowSearchFilter: true
+      allowSearchFilter: false,
+      enableCheckAll:false
     };
   }
   openModalDialog(){
-    this.display='';  //Set block css
-  }
+    this.display='block'; //Set block css
+ }
   openModalDialog1(){
     this.displayBillDetails='';  //Set block css
   }
@@ -87,8 +98,9 @@ reverse: boolean = true;
     this.displayLogs='';  //Set block css
   }
   closeModalDialog(){
-    this.display='block';//set none css after close dialog
-  }
+    this.display=''; //set none css after close dialog
+  
+   }
    closeModalDialog1(){
     this.displayBillDetails='block';//set none css after close dialog
   }
@@ -96,10 +108,27 @@ reverse: boolean = true;
     this.displayLogs='block';//set none css after close dialog
   }
 
+  onItemSelectDown(items:any){
+    console.log(items);
+    if(items['item_id']==2){
+      this.display='block';
+    }else{
+      this.display='none';
+    }
+  }
+
+  onSelectAllDown(items:any){
+    console.log(items);
+  }
+
 
   private laodpayments(){
     this.payments=JSON.parse(localStorage.getItem('payments'));
-    for(let data of this.payments){
+
+    this.apprrejpay=this.payments.filter((payment)=>{
+      return (payment.status == "Approved" || payment.status == "Rejected")
+    })
+    for(let data of this.apprrejpay){
       var obj={
         biller:data['bill']['biller'],
         amount:data['amount'],
@@ -125,5 +154,12 @@ reverse: boolean = true;
       }
       this.paymentData.push(obj)
     }
+
+    for(var total of this.paymentData){
+        this.totalamount+=parseFloat(total['amount'])
+    }
+    console.log(this.totalamount)
+
+
   }
 }

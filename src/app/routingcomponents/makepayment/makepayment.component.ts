@@ -37,9 +37,11 @@ export class MakePaymentComponent implements OnInit {
   filterQuery = "";
   rowsOnPage = 300;
   sortBy = "email";
+  filename:string;
   sortOrder = "asc";
   activeElement :number;
-  totalamount: number=0;
+  amountpay: number=0;
+  totalamount: any=0;
   billDates=['01-04-2019' ,'05-04-2019' , '06-04-2019' , '03-04-2019' ,'08-04-2019','09-04-2019','10-04-2019']
   dueDates=['13-04-2019' ,'17-04-2019' , '16-04-2019' , '13-04-2019' ,'18-04-2019','19-04-2019','20-04-2019']
   fetchingBill=false;
@@ -200,7 +202,12 @@ export class MakePaymentComponent implements OnInit {
         this.payments[i].amount = (Math.random()*(3000-1000)).toFixed(2);
         this.payments[i].duedate = this.dueDates[this.getRandomInt(7)];
         this.payments[i].billdate = this.billDates[this.getRandomInt(7)];
-        this.payments[i].billnumber = d.getTime();      
+        this.payments[i].billnumber = d.getTime(); 
+          
+    }
+
+    for(var total of this.payments){
+      this.totalamount+=parseFloat(total['amount']);
     }
   }
 
@@ -222,13 +229,15 @@ export class MakePaymentComponent implements OnInit {
   changeAll(pendingbillerpage): void {    
     if(this.checkedValueArray.length==this.payments.length){
     this.cntChk=1
-    this.totalamount=0
+    this.amountpay=0
     }else{
     this.checkedValueArray = [];
-    this.totalamount=6345886.68;
+    this.amountpay=this.totalamount
     
     this.cntChk=0
     }
+
+    
     console.log(this.selectall)
     if (this.cntChk == 0) {
       this.cntChk = 1;
@@ -284,6 +293,13 @@ export class MakePaymentComponent implements OnInit {
     }
     console.log(this.checkedValueArray)
   }  
+
+  UploadFile(file: HTMLInputElement){
+    //this.filename = file.value;
+    var filenm = file.value;
+    this.filename = filenm.split(/[\\\/]/).pop()
+    //this.filename = filenm.substr(fileNameIndex);
+  }
 
   cnfsend(){
     this.billdetails=false;

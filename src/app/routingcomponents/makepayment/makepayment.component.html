@@ -168,16 +168,16 @@
                 <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 txt text-left">
                   <table class="entry-table">
                     <tr>
-                      <td>No. of Bills</td>
-                      <td>Total Amount</td>
-                      <td>No. of Selected Bills</td>
-                      <td>Amount Payable</td>
+                      <td class="unitheaders">No. of Bills</td>
+                      <td class="unitheaders">Total Amount</td>
+                      <td class="unitheaders">No. of Selected Bills</td>
+                      <td class="unitheaders">Amount Payable</td>
                     </tr>
                     <tr>
                       <td>{{payments.length}}</td>
-                      <td><i class="fa fa-rupee"></i>{{6345886.68 | numberfr}}</td>
-                      <td>{{checkedValueArray.length}}</td>
                       <td><i class="fa fa-rupee"></i>{{totalamount | numberfr}}</td>
+                      <td>{{checkedValueArray.length}}</td>
+                      <td><i class="fa fa-rupee"></i>{{amountpay | numberfr}}</td>
                     </tr>
                   </table>
                 <!-- <button class="btn bg-primary nextpay buttonpad" type="button" (click)="fetchAllBills()" style="padding: 3px 25px!important;">Fetch All Bills</button> -->
@@ -196,7 +196,7 @@
                           <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(payments)"></td>
                           <td>Biller Name&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td>Amount &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
-                          <td>Consumer No&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td>Reference No&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td>Consumer Name&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td>Status &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td class="text-center">Payment Status &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
@@ -212,7 +212,7 @@
                             <!-- <i class="fa fa-inr"></i> {{(payment.amount)?payment.amount:"No Data"}} -->
                           </td>
                           <td>{{payment.bill.consumerno}}</td>
-                          <td>Abc</td>
+                          <td>Axis Bank ltd.</td>
                           <td><button class="pending-btn">Pending</button></td>
                           <td style="color:#533979;font-weight:bold;text-align: center;">Pending</td>
                           <td style="padding: 0 5px;"><img alt="" src="assets/img/tb_downarrow.png" (click)="payment.collapsed=!payment.collapsed;"></td>
@@ -229,6 +229,10 @@
                                 <div class="span_width">GL/Expense Code</div> <span class="no-vert"> : </span> &nbsp;
                                 <div class="bold_span">{{payment.bill.expensecode}}</div>
                               </div>
+                              <div class="mb-1">
+                                  <div class="span_width">Consumer No</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">{{payment.bill.consumerno}}</div>
+                                </div>
                               <div class="mb-1">
                                 <div class="span_width">Bill Date</div> <span class="no-vert"> : </span> &nbsp;
                                 <div class="bold_span">{{(payment.billdate)?payment.billdate:"No Data"}}</div>
@@ -327,7 +331,14 @@
                                           <tr>
                                             <td>Attachment</td>
                                             <td>:</td>
-                                            <td><input accept=".csv" class="bg-primary nextpay buttonpad1 ng-untouched ng-pristine ng-valid" name="fileUpload" ng-reflect-name="fileUpload" type="file"></td>
+                                            <td>
+                                                <div class="upload-btn-wrapper">
+                                                    <button class="" style="border: 1px solid #fff; background-color: white;"><img src="assets/img/attachments.png"
+                                                        alt=""></button>
+                                                        {{filename}}
+                                                    <input type="file" name="fileUpload" #file  (change)="UploadFile(file)" ng-reflect-name="fileUpload"/>
+                                                  </div>
+                                            </td>
                                           </tr>
                                         </table>
                                         <!-- <label for="" style="color: #807199;font-size: 14px;">Late Payment Charges</label> <span style="vertical-align:0px"> : </span> &nbsp;
@@ -426,12 +437,12 @@
                     </div>
                     <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="progress">
-                          <!-- <div class="progress-bar progress-bar-success" role="progressbar" style="width:50%">
+                        <!-- <div class="progress">
+                          <div class="progress-bar progress-bar-success" role="progressbar" style="width:50%">
                             <p class="p1">1.7 Cr</p>
                             <p class="p2">2 Cr</p>
-                          </div> -->
-                        </div>
+                          </div>
+                        </div> -->
                       </div>
                     </div>
                   </div>
@@ -455,7 +466,7 @@
                       <table>
                         <tr style="background-color: #ffff;">
                             <div class="span_width" style="margin:5px 0px;width: 35%">Total Bill(s)</div>  <span class="no-vert"> : </span> &nbsp;
-                            <div class="bold_span" style="margin:3px 0px;width:40%">10</div>
+                            <div class="bold_span" style="margin:3px 0px;width:40%">{{checkedValueArray.length}}</div>
                         </tr>
                         <!-- <tr style="background-color: #ffff;">
                             <div class="span_width" style="margin:5px 0px;width: 60%">Amount Payable</div>  <span class="no-vert"> : </span> &nbsp;
@@ -463,7 +474,7 @@
                         </tr> -->
                         <tr style="background-color: #ffff;">
                             <div class="span_width" style="margin:5px 0px;width: 35%">Total Amount</div>  <span class="no-vert"> : </span> &nbsp;
-                            <div class="bold_span" style="margin:3px 0px;width:40%"><i class="fa fa-rupee"></i>{{6345886.68 | numberfr}}</div>
+                            <div class="bold_span" style="margin:3px 0px;width:40%"><i class="fa fa-rupee"></i>{{amountpay | numberfr}}</div>
                         </tr>
                         <!-- <tr style="background-color: #ffff;">
                             <div class="span_width" style="margin:5px 0px;">Initiated By</div>  <span class="no-vert"> : </span> &nbsp;

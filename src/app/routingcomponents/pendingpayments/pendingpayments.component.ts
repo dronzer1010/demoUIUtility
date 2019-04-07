@@ -12,6 +12,7 @@ export class PendingPaymentsComponent implements OnInit {
   pendingList:boolean=true;
   approve:boolean=false;
   reject:boolean=false;
+  display:string='none'
   searchText:string
   displaypopup='none';
   displayreason='none';
@@ -40,7 +41,16 @@ export class PendingPaymentsComponent implements OnInit {
   dropdownSettings = {};
   dropdownSettings1 = {};
   dropdownSettings2 = {};
-  totalamount:any=0;
+  amountpay:any=0;
+  totalamount:any=0
+  settings = {
+    bigBanner: true,
+    timePicker: false,
+    format: 'dd-MM-yyyy',
+    defaultOpen: false
+  }
+  todate:Date = new Date();
+  fromdate:Date = new Date();
   constructor(private router:Router , private aRouter : ActivatedRoute) { }
 
   ngOnInit() {
@@ -98,7 +108,8 @@ export class PendingPaymentsComponent implements OnInit {
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 1,
-      allowSearchFilter: true
+      allowSearchFilter: false,
+      enableCheckAll:false
     };
   }
   openModalDialog1(){
@@ -118,6 +129,27 @@ export class PendingPaymentsComponent implements OnInit {
  }
  closeModalDialog3(){
   this.displaypaydetails='block'; 
+}
+
+closeModalDialog(){
+  this.display=''; //set none css after close dialog
+
+ }
+ openModalDialog(){
+  this.display='block'; //Set block css
+}
+
+onItemSelectDown(items:any){
+  console.log(items);
+  if(items['item_id']==2){
+    this.display='block';
+  }else{
+    this.display='none';
+  }
+}
+
+onSelectAllDown(items:any){
+  console.log(items);
 }
  approveBtn(){
   this.pendingList=false;
@@ -156,11 +188,11 @@ changeAll(pendingbillerpage): void {
     
   if(this.checkedValueArray.length==this.payments.length){
   this.cntChk=1
-  this.totalamount=0
+  this.amountpay=0
   }else{
   this.checkedValueArray = [];
   this.cntChk=0
-  this.totalamount=7467482
+  this.amountpay=this.totalamount;
   }
   console.log(this.selectall)
   if (this.cntChk == 0) {
@@ -252,6 +284,9 @@ private loadPayments(){
 
     }
     this.paymentData.push(obj)
+}
+for(var total of this.paymentData){
+  this.totalamount+=parseFloat(total['amount'])
 }
 }
 }

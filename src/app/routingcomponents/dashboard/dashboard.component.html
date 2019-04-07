@@ -214,12 +214,12 @@
                   </div>
                   <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="progress">
-                          <!-- <div class="progress-bar progress-bar-success" role="progressbar" style="width:50%">
+                        <!-- <div class="progress">
+                          <div class="progress-bar progress-bar-success" role="progressbar" style="width:50%">
                             <p class="p1">1.7 Cr</p>
                             <p class="p2">2 Cr</p>
-                          </div> -->
-                        </div>
+                          </div>
+                        </div> -->
                       </div>
                     </div>
                 <!-- <div class="row">
@@ -295,7 +295,7 @@
                       <td>Sr.No.</td>
                       <td>Bill Name <img src="assets/img/Filter.png" alt=""></td>
                       <td>Amount <img src="assets/img/Filter.png" alt=""></td>
-                      <td>Consumer No. <img src="assets/img/Filter.png" alt=""></td>
+                      <td>Reference No. <img src="assets/img/Filter.png" alt=""></td>
                       <td>Consumer Name <img src="assets/img/Filter.png" alt=""></td>
                       <td>Status <img src="assets/img/Filter.png" alt=""></td>
                       <td>Payment Status <img src="assets/img/Filter.png" alt=""></td>
@@ -309,7 +309,7 @@
                           <td>{{payment.bill.biller}}</td>
                           <td><i class="fa fa-inr"></i> {{payment.amount|numberfr}}</td>
                           <td>{{payment.bill.consumerno}}</td>
-                          <td>{{payment.bill.consumername}}</td>
+                          <td>Axis Bank ltd.</td>
                           <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.status}}</a></td>
                           <td>{{payment.paymentstatus}}</td>
                           <td style="padding:0 5px;"><img src="assets/img/tb_downarrow.png" alt="" (click)="payment.collapsed=!payment.collapsed"></td>
@@ -326,6 +326,10 @@
                                 <div class="span_width">GL/Expense Code</div> <span> : </span> &nbsp;
                                 <div class="bold_span">{{payment.bill.expensecode}}</div>
                               </div>
+                              <div class="mb-1">
+                                  <div class="span_width">Consumer No.</div> <span> : </span> &nbsp;
+                                  <div class="bold_span">{{payment.bill.consumerno}}</div>
+                                </div>
                               <div class="mb-1">
                                 <div class="span_width">Bill Date</div> <span> : </span> &nbsp;
                                 <div class="bold_span">{{payment.billdate}}</div>
@@ -397,7 +401,7 @@
                             </div>
                           </td>
                         </tr>
-                        <tr class="rowShow grayStrip" style="" *ngIf="payment.collapsed">
+                        <tr class="rowShow grayStrip" *ngIf="payment.collapsed">
                           <td colspan="8">
                             <span class="pull-right"><a (click)="closeModalDialog1()"><img src="assets/img/page.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                               <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a *ngIf="rolename=='maker' || rolename=='ccmaker'"
