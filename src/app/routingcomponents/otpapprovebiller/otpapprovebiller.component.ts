@@ -7,7 +7,6 @@ import{Router} from '@angular/router';
   styleUrls: ['./otpapprovebiller.component.css']
 })
 export class OtpapproveBillerComponent implements OnInit {
-
   constructor(private _location: Location , private router : Router) { }
 
   ngOnInit() {
@@ -31,12 +30,7 @@ export class OtpapproveBillerComponent implements OnInit {
         }
       }
     }
-
      localStorage.setItem('billdetails', JSON.stringify(bills));
-
     this.router.navigate(['main/billerlist'], { queryParams: { otp: 'success' } })
-
-
   }
-
 }
