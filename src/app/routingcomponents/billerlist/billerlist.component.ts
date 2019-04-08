@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {ExcelService} from '../../excelservice/excel.service'
 
 @Component({
   selector: 'app-billerlist',
@@ -36,17 +37,28 @@ settings = {
 todate:Date = new Date();
 fromdate:Date = new Date();
 public searchText : string;
-  constructor() { }
+downloadArray:any=[];
+approveRejBiller:any=[];
+  constructor(private excelservice : ExcelService) { }
 
   ngOnInit() {
 this.rolename=localStorage.getItem('rolename')
     this.billdata=JSON.parse(localStorage.getItem('billdetails'));
+    if(this.rolename=='maker' || this.rolename=='ccmaker' || this.rolename=='as'){
+      this.approveRejBiller=this.billdata.filter((biller)=>{
+        return (biller.status == "Approved" || biller.status == "Rejected"  || biller.status == "Pending")
+      })
+    }else if(this.rolename=='checker' || this.rolename=='aschecker' || this.rolename=='ccchecker'){
+      this.approveRejBiller=this.billdata.filter((biller)=>{
+        return (biller.status == "Approved" || biller.status == "Rejected")
+      })
+    }
     console.log(this.billdata)
-    if(this.billdata==null){
+    if(this.approveRejBiller==null){
       this.billerlength=0
       this.noofrole="No bills available"
     }else{
-      this.billerlength=this.billdata.length;
+      this.billerlength=this.approveRejBiller.length;
       if(this.billerlength>1){
         this.noofrole="No of bills"
       }else{
@@ -108,8 +120,29 @@ this.rolename=localStorage.getItem('rolename')
     console.log(items);
     if(items['item_id']==2){
       this.display='block';
-    }else{
-      this.display='none';
+    }else if(items['item_id']==1){
+      for(let data of this.approveRejBiller){
+        var obj={
+          Biller:data['biller'],
+          Consumer_No:data['consumerno'],
+          Status:data['status'],
+          Short_Name:data['shortname'],
+          GL_Expense_Code:data['expensecode'],
+          Bill_Date:data['billdate'],
+          Due_Date:data['duedate'],
+          State:data['state'],
+          Contact:data['contact'],
+          Bill_Address:data['billaddress'],
+          Email:data['email'],
+          Initiated_by:data['initiatedby'],
+          Initiated_On:data['initiatedon'],
+          Approved_By:data['approvedby'],
+          Approved_On:data['approvedon']
+  
+        }
+        this.downloadArray.push(obj)
+      }
+      this.excelservice.exportAsExcelFile( this.downloadArray, 'Biller List');
     }
   }
 

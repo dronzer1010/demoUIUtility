@@ -2,6 +2,7 @@ import { Component, OnInit,Inject } from '@angular/core';
 import {Router , ActivatedRoute} from '@angular/router';
 //import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {ExcelService} from '../../excelservice/excel.service'
 
 @Component({
   selector: 'app-pendingbiller',
@@ -50,7 +51,8 @@ fromdate:Date = new Date();
     enableCheckAll:false
   }
   public searchText : string;
-  constructor(private router : Router , private aRouter : ActivatedRoute) { }
+  downloadArray:any=[];
+  constructor(private router : Router , private aRouter : ActivatedRoute,private excelservice : ExcelService) { }
 
   
   ngOnInit() {
@@ -193,8 +195,29 @@ fromdate:Date = new Date();
     console.log(items);
     if(items['item_id']==2){
       this.display='block';
-    }else{
-      this.display='none';
+    }else if(items['item_id']==1){
+      for(let data of this.pendingbillers){
+        var obj={
+          Biller:data['biller'],
+          Consumer_No:data['consumerno'],
+          Status:data['status'],
+          Short_Name:data['shortname'],
+          GL_Expense_Code:data['expensecode'],
+          Bill_Date:data['billdate'],
+          Due_Date:data['duedate'],
+          State:data['state'],
+          Contact:data['contact'],
+          Bill_Address:data['billaddress'],
+          Email:data['email'],
+          Initiated_by:data['initiatedby'],
+          Initiated_On:data['initiatedon'],
+          Approved_By:data['approvedby'],
+          Approved_On:data['approvedon']
+  
+        }
+        this.downloadArray.push(obj)
+      }
+      this.excelservice.exportAsExcelFile( this.downloadArray, 'Biller List');
     }
   }
 

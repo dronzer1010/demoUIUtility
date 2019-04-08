@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router , ActivatedRoute } from '@angular/router';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { TooltipModule } from 'ng2-tooltip-directive';
+import {ExcelService} from '../../excelservice/excel.service'
 
 @Component({
   selector: 'app-pendingpayments',
@@ -51,7 +52,8 @@ export class PendingPaymentsComponent implements OnInit {
   }
   todate:Date = new Date();
   fromdate:Date = new Date();
-  constructor(private router:Router , private aRouter : ActivatedRoute) { }
+  downloadArray:any=[];
+  constructor(private router:Router , private aRouter : ActivatedRoute,private excelservice : ExcelService) { }
 
   ngOnInit() {
     this.loadPayments()
@@ -143,8 +145,36 @@ onItemSelectDown(items:any){
   console.log(items);
   if(items['item_id']==2){
     this.display='block';
-  }else{
-    this.display='none';
+  }else if(items['item_id']==1){
+    for(let data of this.paymentData){
+      var obj={
+        Biller:data['biller'],
+        Amount:data['amount'],
+        Consumer_No:data['consumerno'],
+        Consumer_Name:"Axis Bank ltd.",
+        Status:data['status'],
+        Payment_Status:data['paymentstatus'],
+        Short_Name:data['shortname'],
+        GL_Expense_Code:data['expensecode'],
+        Bill_Date:data['billdate'],
+        Due_Date:data['duedate'],
+        State:data['state'],
+        Bill_Number:String(data['billnumber']),
+        Card_Number:data['digits'],
+        Order_Id:123122,
+        Contact:data['contact'],
+        Bill_Address:data['billaddress'],
+        Email:data['email'],
+        CRN:123254,
+        Initiated_by:data['initiatedby'],
+        Initiated_On:data['initiatedon'],
+        Approved_By:data['approvedby'],
+        Approved_On:data['approvedon']
+
+      }
+      this.downloadArray.push(obj)
+    }
+    this.excelservice.exportAsExcelFile( this.downloadArray, 'Payment List');
   }
 }
 
@@ -272,7 +302,7 @@ private loadPayments(){
       billdate:data['billdate'],
       duedate:data['duedate'],
       state:data['bill']['state'],
-      billnumber:data['billnumber'],
+      billnumber:String(data['billnumber']),
       digits:data['card']['digits'],
       contact:data['bill']['contact'],
       billaddress:data['bill']['billaddress'],
