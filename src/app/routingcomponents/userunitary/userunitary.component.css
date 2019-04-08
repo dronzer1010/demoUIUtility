@@ -309,14 +309,12 @@ input[type="checkbox"]{
 input[type="checkbox"]:hover, input[type="checkbox"]:checked {
     background: #64289d;
 }
-.labpos{
-    
+.labpos{    
     padding-left: -10px!important;    
-    
 }
-
 .privilegeHead td{
-    text-align: center;
+    text-align: left;
+    padding-left: 35px;
 }
 .privilegeData td{
    padding-left: 35px !important;
