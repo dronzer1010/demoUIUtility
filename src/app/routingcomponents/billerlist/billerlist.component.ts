@@ -48,9 +48,9 @@ this.rolename=localStorage.getItem('rolename')
     }else{
       this.billerlength=this.billdata.length;
       if(this.billerlength>1){
-        this.noofrole="No of Bills"
+        this.noofrole="No of bills"
       }else{
-        this.noofrole="No of Bill"
+        this.noofrole="No of bill"
       }
     }
 
