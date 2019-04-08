@@ -315,6 +315,15 @@ h5 {
   font-size: 14px;
   color: #000;
 }
+
+.popup-datepicker .wc-date-popover{
+  width: 250px;
+  position: absolute;
+  top: -350px!important;
+  height: auto;
+  left: 120px!important;
+  transform: translateX(0);
+}
 /* Multiselect Dropdown */
 .multiselect-dropdown{
   position: relative;
