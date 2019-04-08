@@ -39,7 +39,38 @@ export class RuleviewComponent implements OnInit {
     //   console.log(error)
     // })
     this.ruleamount=this.amountdata['chkamt']
-    this.ruledata=[{"rule":{"lower_limit":0.0,"rule_formula":"A&A","upper_limit":1.0E8,"id":126,"status":1},"rule_data":[{"rule_heading":"Group A(Any 2)","users":["Mr. Thirumurugan J"]}]},{"rule":{"lower_limit":0.0,"rule_formula":"A&B","upper_limit":1.0E8,"id":127,"status":1},"rule_data":[{"rule_heading":"Group A(Any 1)","users":["Mr. Thirumurugan J","Ms. Nalini L"]},{"rule_heading":"Group B(Any 1)","users":["Ms. Meena A",""]}]},{"rule":{"lower_limit":0.0,"rule_formula":"B&B","upper_limit":1.0E8,"id":129,"status":1},"rule_data":[{"rule_heading":"Group B(Any 2)","users":["Ms. Meena A"]}]},{"rule":{"lower_limit":0.0,"rule_formula":"A&C","upper_limit":1.0E8,"id":130,"status":1},"rule_data":[{"rule_heading":"Group A(Any 1)","users":["Mr. Thirumurugan J"]},{"rule_heading":"Group C(Any 1)","users":[]}]},{"rule":{"lower_limit":0.0,"rule_formula":"B&C","upper_limit":1.0E8,"id":131,"status":1},"rule_data":[{"rule_heading":"Group B(Any 1)","users":["Ms. Meena A"]},{"rule_heading":"Group C(Any 1)","users":[]}]},{"rule":{"lower_limit":0.0,"rule_formula":"C&C","upper_limit":1.0E8,"id":132,"status":1},"rule_data":[{"rule_heading":"Group C(Any 2)","users":[]}]}]
+    this.ruledata=[
+      {"rule":
+      {"lower_limit":0.0,"rule_formula":"A&A","upper_limit":1.0E8,"id":126,"status":1},
+      "rule_data":[
+        {"rule_heading":"Group A(Any 2)","users":["Mr. Thirumurugan J","Ms. Nalini L"]}
+      ]},
+    {"rule":
+    {"lower_limit":0.0,"rule_formula":"A&B","upper_limit":1.0E8,"id":127,"status":1},
+    "rule_data":[
+      {"rule_heading":"Group A(Any 1)","users":["Mr. Thirumurugan J","Ms. Nalini L"]},
+      {"rule_heading":"Group B(Any 1)","users":["Ms. Meena A",""]}
+    ]},
+    {"rule":
+    {"lower_limit":0.0,"rule_formula":"B&B","upper_limit":1.0E8,"id":129,"status":1},
+    "rule_data":[
+      {"rule_heading":"Group B(Any 2)","users":["Ms. Meena A"]}
+    ]},
+    {"rule":
+    {"lower_limit":0.0,"rule_formula":"A&C","upper_limit":1.0E8,"id":130,"status":1},
+    "rule_data":[
+      {"rule_heading":"Group A(Any 1)","users":["Mr. Thirumurugan J"]},{"rule_heading":"Group C(Any 1)","users":[]}
+    ]},
+    {"rule":
+    {"lower_limit":0.0,"rule_formula":"B&C","upper_limit":1.0E8,"id":131,"status":1},
+    "rule_data":[
+      {"rule_heading":"Group B(Any 1)","users":["Ms. Meena A"]},{"rule_heading":"Group C(Any 1)","users":[]}
+    ]},
+    {"rule":
+    {"lower_limit":0.0,"rule_formula":"C&C","upper_limit":1.0E8,"id":132,"status":1},
+    "rule_data":[
+      {"rule_heading":"Group C(Any 2)","users":[]}
+    ]}]
         if(this.ruledata!=null){
           this.step2=false;
         } 
