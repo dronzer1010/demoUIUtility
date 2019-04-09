@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ExcelService} from '../../excelservice/excel.service'
 
 @Component({
   selector: 'app-paymentlist',
@@ -39,7 +40,8 @@ rolename:any;
 key: string = 'status'; //set default
 reverse: boolean = true;
 totalamount:any=0;
-  constructor() { }
+downloadArray:any=[];
+  constructor(private excelservice : ExcelService) { }
 
   ngOnInit() {
     this.rolename=localStorage.getItem('rolename')
@@ -112,8 +114,36 @@ totalamount:any=0;
     console.log(items);
     if(items['item_id']==2){
       this.display='block';
-    }else{
-      this.display='none';
+    }else if(items['item_id']==1){
+      for(let data of this.paymentData){
+        var obj={
+          Biller:data['biller'],
+          Amount:data['amount'],
+          Consumer_No:data['consumerno'],
+          Consumer_Name:"Axis Bank ltd.",
+          Status:data['status'],
+          Payment_Status:data['paymentstatus'],
+          Short_Name:data['shortname'],
+          GL_Expense_Code:data['expensecode'],
+          Bill_Date:data['billdate'],
+          Due_Date:data['duedate'],
+          State:data['state'],
+          Bill_Number:String(data['billnumber']),
+          Card_Number:data['digits'],
+          Order_Id:123122,
+          Contact:data['contact'],
+          Bill_Address:data['billaddress'],
+          Email:data['email'],
+          CRN:123254,
+          Initiated_by:data['initiatedby'],
+          Initiated_On:data['initiatedon'],
+          Approved_By:data['approvedby'],
+          Approved_On:data['approvedon']
+  
+        }
+        this.downloadArray.push(obj)
+      }
+      this.excelservice.exportAsExcelFile( this.downloadArray, 'Payment List');
     }
   }
 
@@ -124,10 +154,15 @@ totalamount:any=0;
 
   private laodpayments(){
     this.payments=JSON.parse(localStorage.getItem('payments'));
-
+    if(this.rolename=='maker' || this.rolename=='ccmaker' || this.rolename=='as'){
+    this.apprrejpay=this.payments.filter((payment)=>{
+      return (payment.status == "Approved" || payment.status == "Rejected"  || payment.status == "Pending")
+    })
+  }else if(this.rolename=='checker' || this.rolename=='aschecker' || this.rolename=='ccchecker'){
     this.apprrejpay=this.payments.filter((payment)=>{
       return (payment.status == "Approved" || payment.status == "Rejected")
     })
+  }
     for(let data of this.apprrejpay){
       var obj={
         biller:data['bill']['biller'],
@@ -141,7 +176,7 @@ totalamount:any=0;
         billdate:data['billdate'],
         duedate:data['duedate'],
         state:data['bill']['state'],
-        billnumber:data['billnumber'],
+        billnumber:String(data['billnumber']),
         digits:data['card']['digits'],
         contact:data['bill']['contact'],
         billaddress:data['bill']['billaddress'],
