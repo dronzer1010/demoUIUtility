@@ -270,6 +270,7 @@ input[type=text]::-webkit-outer-spin-button {
     margin-top: 12%;
     } 
     }
+    
     @media only screen and (max-width:1570px){
     .card{
     top:34%!important;
@@ -301,11 +302,11 @@ input[type=text]::-webkit-outer-spin-button {
     margin-top: 12%;
     } 
     }
-    @media only screen and (max-width:1440px){
-      .card[_ngcontent-c1] {
-        top: 27%!important;
-        width: 26%!important;
-        left: 49%;
+    @media only screen and (max-width:1450px){
+      .card {
+        top: 24%!important;
+        width: 25% !important;
+        left: 50%
     }
     #heading1{
     margin-left: 26%;
