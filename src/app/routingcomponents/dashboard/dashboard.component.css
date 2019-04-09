@@ -477,6 +477,9 @@ tbody tr td:last-child {
   .btn-img1 {
     margin-top: 85px;
   }
+  .graph {
+    height: 348px;
+  }
   }
   @media only screen and (max-width:1380px){
     .p2{
