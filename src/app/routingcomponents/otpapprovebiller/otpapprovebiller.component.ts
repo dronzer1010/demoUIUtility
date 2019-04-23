@@ -23,7 +23,7 @@ export class OtpapproveBillerComponent implements OnInit {
     for(var i=0;i<pendingBills.length;i++){
       for(var j=0;j<bills.length;j++){
         if(pendingBills[i]==bills[j].id){
-          bills[j].status ="Approved";
+          bills[j].status ="Registered";
           bills[j].approvedby="Ms. Deepali Patekar"
           var d =new Date();
           bills[j].approvedon=d.toLocaleString();

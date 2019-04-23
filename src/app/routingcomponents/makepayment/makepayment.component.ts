@@ -151,7 +151,7 @@ export class MakePaymentComponent implements OnInit {
   var allBills = JSON.parse(localStorage.getItem('billdetails'));
   if(allBills!=null){
     this.bills = allBills.filter((bill)=>{
-      return (bill['status']=="Approved")
+      return (bill['status']=="Registered")
     })
   }
 

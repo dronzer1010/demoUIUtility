@@ -26,7 +26,7 @@ export class BillerlistComponent implements OnInit {
   dropdownSettings1 = {};
   dropdownSettings2 = {};
   key: string = 'status'; //set default
-  reverse: boolean = true;
+  reverse: boolean = false;
 rolename:any;
 settings = {
   bigBanner: true,
@@ -46,11 +46,11 @@ this.rolename=localStorage.getItem('rolename')
     this.billdata=JSON.parse(localStorage.getItem('billdetails'));
     if(this.rolename=='maker' || this.rolename=='ccmaker' || this.rolename=='as'){
       this.approveRejBiller=this.billdata.filter((biller)=>{
-        return (biller.status == "Approved" || biller.status == "Rejected"  || biller.status == "Pending")
+        return (biller.status == "Registered" || biller.status == "Rejected"  || biller.status == "Pending with checker")
       })
     }else if(this.rolename=='checker' || this.rolename=='aschecker' || this.rolename=='ccchecker'){
       this.approveRejBiller=this.billdata.filter((biller)=>{
-        return (biller.status == "Approved" || biller.status == "Rejected")
+        return (biller.status == "Registered" || biller.status == "Rejected")
       })
     }
     console.log(this.billdata)

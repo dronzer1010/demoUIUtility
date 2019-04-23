@@ -3,32 +3,33 @@
 
 @font-face {
   font-family: 'FuturaLightBT_1';
-  src: url('/assets/fonts/Futura/FuturaLightBT_1.ttf') format('truetype');
+  src: url('/assets//fonts/Futura/FuturaLightBT_1.ttf') format('truetype');
+ 
 }
 
 @font-face {
   font-family: 'Poppins-Medium';
-  src: url('/assets/fonts/Poppins-Medium.ttf') format('truetype');
+  src: url('/assets//fonts/Poppins-Medium.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Poppins-Regular';
-  src: url('/assets/fonts/Poppins-Regular.ttf') format('truetype');
+  src: url('/assets//fonts/Poppins-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Poppins-Light';
-  src: url('/assets/fonts/Poppins-Light.ttf') format('truetype');
+  src: url('/assets//fonts/Poppins-Light.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Poppins-SemiBold';
-  src: url('/assets/fonts/Poppins-SemiBold.ttf') format('truetype');
+  src: url('/assets//fonts/Poppins-SemiBold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Poppins-Bold';
-  src: url('/assets/fonts/Poppins-Bold.ttf') format('truetype');
+  src: url('/assets//fonts/Poppins-Bold.ttf') format('truetype');
 }
 
 body {
@@ -228,7 +229,7 @@ body {
 }
 
 .datelist{
-  background-image: url('/assets/img/datepicker.png');
+  background-image: url('/assets//img/datepicker.png');
   background-repeat: no-repeat;
   background-position-x: 10px;
   background-position-y: 4px;
@@ -250,6 +251,16 @@ body {
   height: 20px!important;
   width: 25%;
   text-align: center;
+}
+
+.upload-btn-wrapper input[type=file]{
+  width: 40px;
+  height: 24px;
+  background-color: #FAFAFA!important;
+}
+
+.attach-span{
+  vertical-align: 1px!important;
 }
 
 .entry-table{
@@ -330,7 +341,7 @@ h5 {
   width: 30%!important;
   font-size: 12px!important;
   font-family: inherit;
-  background-image: url('/assets/img/datepicker.png');
+  background-image: url('/assets//img/datepicker.png');
   background-repeat: no-repeat;
   background-position-x: 10px;
   background-position-y: 4px;
@@ -419,7 +430,7 @@ ng-multiselect-dropdown:nth-child(1) .multiselect-dropdown{
   width: 28%!important;
 }
 ng-multiselect-dropdown:nth-child(3) .multiselect-dropdown{
-  background-image: url('/assets/img/downloadlist.png');
+  background-image: url('/assets//img/downloadlist.png');
   background-repeat: no-repeat;
   background-position-x: 10px;
   background-position-y: 6px;
@@ -429,7 +440,7 @@ ng-multiselect-dropdown:nth-child(3) .multiselect-dropdown{
 }
 ng-multiselect-dropdown.second .multiselect-dropdown {
   width: 55%!important;
-  background-image: url('/assets/img/datepicker.png')!important;
+  background-image: url('/assets//img/datepicker.png')!important;
   background-repeat: no-repeat!important;
   background-position-x: 10px!important;
   background-position-y: 4px!important;
@@ -549,7 +560,7 @@ input[type=radio] {
 }
 
 .CustomWidthOfMonth1 {
-  background: url('/assets/img/down-arrow.png') no-repeat 46px 11px !important;
+  background: url('/assets//img/down-arrow.png') no-repeat 46px 11px !important;
 }
 
 .marginbotttompage {
@@ -617,14 +628,14 @@ a.btn.Rejected {
 }
 
 .flash {
-  background: url('/assets/img/tb_downarrow.png') no-repeat 5px 6px;
+  background: url('/assets//img/tb_downarrow.png') no-repeat 5px 6px;
   color: #ffffff;
   width: 20px;
   cursor: pointer;
 }
 
 .flashOn {
-  background: url('/assets/img/tb_uparrow.png') no-repeat 5px 6px;
+  background: url('/assets//img/tb_uparrow.png') no-repeat 5px 6px;
   color: #ffffff;
   cursor: pointer;
 }
@@ -815,15 +826,15 @@ input.search_box {
 }
 
 .caret2 {
-  background: url('/assets/img/Filter.png') no-repeat 3px 0px
+  background: url('/assets//img/Filter.png') no-repeat 3px 0px
 }
 
 .droparrow {
-  background: url('/assets/img/droparrow.png') no-repeat 54px 15px
+  background: url('/assets//img/droparrow.png') no-repeat 54px 15px
 }
 
 .search {
-  background: url('/assets/img/search-icon.png') no-repeat 5px 10px
+  background: url('/assets//img/search-icon.png') no-repeat 5px 10px
 }
 
 .btn-group.open .dropdown-toggle {
@@ -923,7 +934,7 @@ input.search_box {
 }
 
 .bolda {
-  background: url('/assets/img/down-arrow.png') no-repeat 41px 11px;
+  background: url('/assets//img/down-arrow.png') no-repeat 41px 11px;
   font-size: 12px;
   padding: 8px;
   width: 86px;
@@ -945,7 +956,7 @@ input.search_box {
 }
 
 .bolda.bolda4 {
-  background: url('/assets/img/datepicker.png') no-repeat 38px 6px;
+  background: url('/assets//img/datepicker.png') no-repeat 38px 6px;
   display: inline-block;
   width: 63px;
   border: none;
@@ -956,7 +967,7 @@ input.search_box {
 
 .bolda,
 .bolda4 {
-  background: url('/assets/img/down-arrow.png') no-repeat 61px 6px;
+  background: url('/assets//img/down-arrow.png') no-repeat 61px 6px;
   font-size: 12px;
   padding: 8px;
   width: 86px;

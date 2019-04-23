@@ -165,7 +165,7 @@
                     <div class="col-lg-4 col-xs-4 col-sm-4 col-md-4 padln" style="margin-top:30px;">
                       <select class="input-text js-input inptxt form-control" name="usertitle" required [(ngModel)]="billdata.board"
                         name="board" (change)="showUpldView()">
-                        <option value="Electricity" selected>Elecricity</option>
+                        <option value="Electricity" selected>Electricity</option>
                       </select>
                       <label class="label" for="usertitle">Select Type of Utility</label>
                     </div>
@@ -208,52 +208,27 @@
               <div class="clear20"></div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center form_bg detail_bill1">
               <ul>
-                <li>Reliance Energy - Mumbai, Maharashtra</li>
-                <li>SNDL - Nagpur, Maharashtra</li>
-                <li>North Bihar Power Distribution Co. Ltd (NBPDCL)	- Bihar</li>
-                <li>South Bihar Power Distribution - Bihar</li>
-                <li>Torrent Power Limited	- Gujarat</li>
-                <li>Torrent Power Limited	- Uttar Pradesh
-                  </li>
-                <li>Torrent Power Limited	- Maharashtra</li>
-                <li>NOIDA POWER COMPANY LTD (NPCL) - Uttar Pradesh</li>
-                <li>TATA POWER DELHI DISTRIBUTION LIMITED	- New Delhi</li>
+                <li *ngFor="let p1 of para1">{{p1.Discom_Name | titlecase}}</li>
               </ul>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center form_bg detail_bill1">
               <ul>
-                <li>BSES Rajdhani	- New Delhi</li>
-                <li>BSES Yamuna	- New Delhi</li>
-                <li>Calcutta Electric Supply Corporation (India) Limited - West Bengal</li>
-                <li>Madhya Pradesh Madhya Kshetra Vidyut Vitran Company Limited (MPCZ) - Madhya Pradesh</li>
-                <li>MP Poorv Kshetra Vidyut Vitaran-Jabalpur - Madhya Pradesh</li>
-                <li>TSSPDCL - Telangana</li>
-                <li>TATA POWER - MUMBAI, Maharashtra</li>
-                <li>MSEDCL - Maharashtra</li>
-                <li>NESCO Utility - Odisha</li>
-                <li>Kerala State Electricity Board Ltd (KSEB Ltd) - Kerala</li>
+                <li *ngFor="let p2 of para2">{{p2.Discom_Name | titlecase}}</li>
               </ul> 
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center form_bg detail_bill1">
               <ul>
-                <li>Kota Electricity Distribution Limited(KEDL)	Rajasthan</li>
-                <li>JAMSHEDPUR UTILITIES &SERVICES COMPANY LTD (JUSCO) - Jharkhand</li>
-                <li>Eastern Power Distribution Company of A.P. Ltd. - Andhra Pradesh</li>
-                <li>Northern Power Distribution Company Limited: Warrangal (TSNPDCL) - Telangana</li>
-                <li>Jodhpur Vidyut Vitran Nigam Limited (JDVVNL) - Rajasthan</li>
-                <li>Brihanmumbai Electricity Supply and Transport Undertaking (BEST Undertaking) - Maharashtra</li>
-                <li>Ajmer Vidyut Vitran Nigam Limited (AVVNL) - Rajasthan</li>
-                <li>Madhya Pradesh Paschim Kshetra Vidyut Vitaran Company Ltd. (MPPKVVCL) -	Madhya Pradesh</li>
-                <li>Southern Electricity Supply Company Of Odisha Limited (SOUTHCO) - Odisha</li>
-                <li>West Bengal State Electricity Distribution Company Limited (WBSEDCL) - West Bengal</li>
+                <li *ngFor="let p3 of para3">{{p3.Discom_Name | titlecase}}-{{p3.Bu_Code}}-{{p3.BU_Name}}</li>
               </ul>
             </div>
           </div>
           <div class="row" *ngIf="showUploadFile">
             <div class="clear20"></div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center"><button class="dwn-temp"> <img src="assets/img/downloadlist.png" alt=""> Download Template</button></div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center"><button class="dwn-temp"> <img src="assets/img/downloadlist.png" alt=""> Download Template</button></div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center"><button class="dwn-temp"> <img src="assets/img/downloadlist.png" alt=""> Download Template</button></div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+              <a href="assets/templates/SampleFormat_Parameter_1.csv" target="_blank" class="dwn-temp"><img src="assets/img/downloadlist.png" alt=""> Download Template</a>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center"><a href="assets/templates/Sample_format_Parameter2.csv" target="_blank" class="dwn-temp"><img src="assets/img/downloadlist.png" alt=""> Download Template</a></div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center"><a href="assets/templates/Sample_Format_Parameter_3.csv" target="_blank" class="dwn-temp"> <img src="assets/img/downloadlist.png" alt=""> Download Template</a></div>
           </div>
           <div class="row" *ngIf="showUploadFile">
               <div class="clear20"></div>
@@ -464,9 +439,21 @@
                             </td>
                           </tr>
                           <tr class="rowShow grayStrip" *ngIf="collapse">
-                            <td colspan="7"><span class="pull-right"><img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                              </span></td>
+                            <td colspan="7">
+                              <span class="pull-right">
+                                <img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a data-toggle="modal" href="#myModal" id="openBtn">
+                                  <img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  <span class="attach-span" tooltip="Attach File" placement="top" show-delay="500">
+                                  <div class="upload-btn-wrapper">
+                                      <button class="" style="border: 1px solid #fafafa; background-color:#fafafa;"><img src="assets/img/attachments.png"
+                                          alt=""></button>
+                                          {{filename1}}
+                                      <input type="file" name="fileUpload" #file  (change)="UploadFileAttach1(file)" ng-reflect-name="fileUpload"/>
+                                    </div>
+                                  </span>
+                              </span>
+                            </td>
                           </tr>
                           <tr>
                             <td><input name="vehicle1" type="checkbox" [checked]="selectall"></td>
@@ -543,9 +530,19 @@
                             </td>
                           </tr>
                           <tr class="rowShow grayStrip" *ngIf="collapse1">
-                            <td colspan="7"><span class="pull-right"><img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                              </span></td>
+                              <td colspan="7">
+                                  <span class="pull-right">
+                                    <img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a data-toggle="modal" href="#myModal" id="openBtn">
+                                      <img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      <div class="upload-btn-wrapper">
+                                          <button class="" style="border: 1px solid #fff; background-color: white;"><img src="assets/img/attachments.png"
+                                              alt=""></button>
+                                              {{filename2}}
+                                          <input type="file" name="fileUpload" #file  (change)="UploadFileAttach2(file)" ng-reflect-name="fileUpload"/>
+                                        </div>
+                                  </span>
+                                </td>
                           </tr>
                           <tr>
                             <td><input name="vehicle1" type="checkbox" [checked]="selectall"></td>
@@ -622,9 +619,19 @@
                             </td>
                           </tr>
                           <tr class="rowShow grayStrip" *ngIf="collapse2">
-                            <td colspan="7"><span class="pull-right"><img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                              </span></td>
+                              <td colspan="7">
+                                  <span class="pull-right">
+                                    <img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a data-toggle="modal" href="#myModal" id="openBtn">
+                                      <img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      <div class="upload-btn-wrapper">
+                                          <button class="" style="border: 1px solid #fff; background-color: white;"><img src="assets/img/attachments.png"
+                                              alt=""></button>
+                                              {{filename3}}
+                                          <input type="file" name="fileUpload" #file  (change)="UploadFileAttach3(file)" ng-reflect-name="fileUpload"/>
+                                        </div>
+                                  </span>
+                                </td>
                           </tr>
                           <tr>
                             <td><input name="vehicle1" type="checkbox" [checked]="selectall"></td>
@@ -701,9 +708,20 @@
                             </td>
                           </tr>
                           <tr class="rowShow grayStrip" *ngIf="collapse3">
-                            <td colspan="7"><span class="pull-right"><img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                              </span></td>
+                              <td colspan="7">
+                                  <span class="pull-right">
+                                    <img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a data-toggle="modal" href="#myModal" id="openBtn">
+                                      <img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      
+                                          <button class="" style="border: 1px solid #fff; background-color: white;"><img src="assets/img/attachments.png"
+                                              alt=""></button>
+                                              {{filename4}}
+                                              <div class="upload-btn-wrapper">
+                                          <input type="file" name="fileUpload" #file  (change)="UploadFileAttach4(file)" ng-reflect-name="fileUpload"/>
+                                        </div>
+                                  </span>
+                                </td>
                           </tr>
                           <tr>
                             <td><input name="vehicle1" type="checkbox" [checked]="selectall"></td>
@@ -780,9 +798,19 @@
                             </td>
                           </tr>
                           <tr class="rowShow grayStrip" *ngIf="collapse4">
-                            <td colspan="7"><span class="pull-right"><img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                              </span></td>
+                              <td colspan="7">
+                                  <span class="pull-right">
+                                    <img src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a data-toggle="modal" href="#myModal" id="openBtn">
+                                      <img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      <div class="upload-btn-wrapper">
+                                          <button class="" style="border: 1px solid #fff; background-color: white;"><img src="assets/img/attachments.png"
+                                              alt=""></button>
+                                              {{filename5}}
+                                          <input type="file" name="fileUpload" #file  ````````````````(change)="UploadFileAttach5 (file)" ng-reflect-name="fileUpload"/>
+                                        </div>
+                                  </span>
+                                </td>
                           </tr>
                         </tbody>
                       </table>
