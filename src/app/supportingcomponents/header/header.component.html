@@ -144,11 +144,11 @@
         </li>
       </ul>
       <ul class="[ nav navbar-nav navbar-right menu_sel]">
-        <li class="roleheader" *ngIf="rolename=='maker'">Maker</li>
-        <li class="roleheader" *ngIf="rolename=='ccadmin' || rolename=='ccmaker'|| rolename=='ccchecker'">Corporate
+        <li class="roleheader">{{userdata.rolename}}</li>
+        <!-- <li class="roleheader" *ngIf="rolename=='ccadmin' || rolename=='ccmaker'|| rolename=='ccchecker'">Corporate
           Admin</li>
         <li class="roleheader" *ngIf="rolename=='checker'">Checker</li>
-        <li class="roleheader" *ngIf="rolename=='as' || rolename=='aschecker'">Authorised Signatory</li>
+        <li class="roleheader" *ngIf="rolename=='as' || rolename=='aschecker'">Authorised Signatory</li> -->
         <li class="menu_sel notilink" [ngClass]="quickActive ? 'active' : ''">
           <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="opennoti();clickQuickEvent()">
             <span>

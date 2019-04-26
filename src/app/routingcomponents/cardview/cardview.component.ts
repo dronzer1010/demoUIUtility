@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import {CardserviceService} from '../../api/cardservice.service'
+import{LoaderService} from '../../api/loader.service';
+import {UserserviceService} from '../../api/userservice.service'
 @Component({
   selector: 'app-cardview',
   templateUrl: './cardview.component.html',
@@ -15,17 +17,17 @@ export class CardviewComponent implements OnInit {
   cardapproved:any=[];
   rejectedcards:any=[];
   cardRejected:any=[];
+  userdata:any={};
+  cards:any=[];
     apprcrd:boolean=true;
     rejcrd:boolean=false;
     pencrd=false;
     rolename:any;
-  constructor() { }
+  constructor(private cardservice: CardserviceService,private userservice: UserserviceService,private loader:LoaderService) { }
 
   ngOnInit() {
-    this.rolename=localStorage.getItem('rolename')
-this.loadApprovedcards()
-this.loadPendingcards()
-this.loadRejectedcards()
+    this.getUserDetail();
+    this.loadallcards();
   }
 
   apprcard(){
@@ -49,159 +51,52 @@ this.loadRejectedcards()
 
   }
 
-  private loadApprovedcards(){
-    this.approvedcards=[
-      {approvedby: "Mr. K.V. Hebbar",
-      aproveddate: "28-02-2019",
-      aprovedtime: "12:10 PM",
-      cardholder: "Test card 5",
-      digits: "4859 XXXX XXXX 0005",
-      expirydate: "09/22",
-      id: 1,
-      initiatedby: "Mr. Naveen Lohiya",
-      initiateddate: "28-02-2019",
-      initiatedtime: "12:09 PM",
-      orgid: 73,
-      regcmt: "",
-      status: 1},
-      {
-        approvedby: "Mr. K.V. Hebbar",
-    aproveddate: "28-02-2019",
-    aprovedtime: "07:17 PM",
-    cardholder: "Test Card 1",
-    digits: "4859 XXXX XXXX 0047",
-    expirydate: "06/22",
-    id: 2,
-    initiatedby: "Mr. Naveen Lohiya",
-    initiateddate: "28-02-2019",
-    initiatedtime: "05:30 PM",
-    orgid: 73,
-    regcmt: "",
-    status: 1
+  private getUserDetail(){
+    this.userservice.getUserDetails().subscribe(res=>{
+      //console.log(res)
+      this.userdata=res['Data'];
+      console.log(this.userdata)
+      this.rolename=this.userdata['dualrole']
+    },error=>{
+      console.log(error)
+    })
       }
-    ];
 
-    for(let data of this.approvedcards){
-      var obj={
-        approvedby:data['approvedby'],
-        aproveddate:data['aproveddate'],
-        aprovedtime:data['aprovedtime'],
-        cardholder:data['cardholder'],
-        expirymonth:data['expirydate'].split("/")[0],
-        expiryyear:data['expirydate'].split("/")[1],
-        digits:data['digits'],
-        initiatedby:data['initiatedby'],
-        initiateddate:data['initiateddate'],
-        initiatedtime:data['initiatedtime'],
-        orgid:data['orgid'],
-        regcmt:data['regcmt'],
-        status:data['status'],
-        id:data['id']
+
+      private loadallcards(){
+        this.loader.display(true);
+        this.cardservice.getAll().subscribe(data=>{
+          
+          this.cards=data["data"];
+          console.log(this.cards)
+          // this.pendingcards=data["data"]["pendingcards"];
+          // this.rejectedcards=data["data"]["rejectedcards"]
+          // this.approvedcards=data["data"]["approvedcards"]
+          //console.log(this.approvedcards);
+          console.log(this.cards)
+          for(let i = 0; i < this.cards.length; i++){
+            if(this.cards[i].status == "Approved"){
+                this.approvedcards.push(this.cards[i]);
+            }
+        }
+        for(let i = 0; i < this.cards.length; i++){
+            if(this.cards[i].status == "Pending"){
+                this.pendingcards.push(this.cards[i]);
+            }
+        }
+        for(let i = 0; i < this.cards.length; i++){
+            if(this.cards[i].status == "Rejected"){
+                this.rejectedcards.push(this.cards[i]);
+            }
+        }
+        this.loader.display(false);
+        },error=>{
+          this.loader.display(false);
+            console.log("Failed to Fetch")
+        }
+      
+        )
+      
       }
-      this.cardapproved.push(obj)
-    }
-  }
-  private loadRejectedcards(){
-    this.rejectedcards=[
-      {approvedby: "Mr. K.V. Hebbar",
-      aproveddate: "28-02-2019",
-      aprovedtime: "04:23 PM",
-      cardholder: "Test card 5",
-      digits: "4859 XXXX XXXX 6564",
-      expirydate: "09/22",
-      id: 1,
-      initiatedby: "Mr. Naveen Lohiya",
-      initiateddate: "28-02-2019",
-      initiatedtime: "12:09 PM",
-      orgid: 73,
-      regcmt: "Invalid Expiry",
-      status: 0},
-      {
-        approvedby: "Mr. K.V. Hebbar",
-    aproveddate: "28-02-2019",
-    aprovedtime: "08:17 PM",
-    cardholder: "Test Card 1",
-    digits: "4859 XXXX XXXX 9864",
-    expirydate: "06/22",
-    id: 2,
-    initiatedby: "Mr. Naveen Lohiya",
-    initiateddate: "28-02-2019",
-    initiatedtime: "06:21 PM",
-    orgid: 73,
-    regcmt: "invalid Card Details",
-    status: 0
-      }];
-
-    for(let data of this.rejectedcards){
-      var obj={
-        approvedby:data['approvedby'],
-        aproveddate:data['aproveddate'],
-        aprovedtime:data['aprovedtime'],
-        cardholder:data['cardholder'],
-        expirymonth:data['expirydate'].split("/")[0],
-        expiryyear:data['expirydate'].split("/")[1],
-        digits:data['digits'],
-        initiatedby:data['initiatedby'],
-        initiateddate:data['initiateddate'],
-        initiatedtime:data['initiatedtime'],
-        orgid:data['orgid'],
-        regcmt:data['regcmt'],
-        status:data['status'],
-        id:data['id']
-      }
-      this.cardRejected.push(obj)
-    }
-  }
-
-  private loadPendingcards(){
-    this.pendingcards=[{approvedby: "",
-    aproveddate: "",
-    aprovedtime: "",
-    cardholder: "Test card 4",
-    digits: "4859 XXXX XXXX 4321",
-    expirydate: "09/22",
-    id: 1,
-    initiatedby: "Mr. Naveen Lohiya",
-    initiateddate: "28-02-2019",
-    initiatedtime: "03:45 PM",
-    orgid: 73,
-    regcmt: "",
-    status: 2},
-    {
-      approvedby: "",
-  aproveddate: "",
-  aprovedtime: "",
-  cardholder: "Test Card 1",
-  digits: "4859 XXXX XXXX 2324",
-  expirydate: "06/22",
-  id: 2,
-  initiatedby: "Mr. Naveen Lohiya",
-  initiateddate: "28-02-2019",
-  initiatedtime: "05:32 PM",
-  orgid: 73,
-  regcmt: "",
-  status: 2
-    }];
-
-    for(let data of this.pendingcards){
-      var obj={
-        approvedby:data['approvedby'],
-        aproveddate:data['aproveddate'],
-        aprovedtime:data['aprovedtime'],
-        cardholder:data['cardholder'],
-        expirymonth:data['expirydate'].split("/")[0],
-        expiryyear:data['expirydate'].split("/")[1],
-        digits:data['digits'],
-        initiatedby:data['initiatedby'],
-        initiateddate:data['initiateddate'],
-        initiatedtime:data['initiatedtime'],
-        orgid:data['orgid'],
-        regcmt:data['regcmt'],
-        status:data['status'],
-        id:data['id']
-      }
-      this.cardpending.push(obj)
-    }
-  }
-
+      
 }

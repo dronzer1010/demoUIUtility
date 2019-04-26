@@ -4,7 +4,7 @@ import { OwlCarousel } from 'ngx-owl-carousel';
 import { DatepickerOptions } from 'ng2-datepicker';
 import * as frLocale from 'date-fns/locale/fr';
 import { Router,ActivatedRoute } from '@angular/router';
-
+import {UserserviceService} from '../../api/userservice.service'
 
 @Component({
   selector: 'app-dashboard',
@@ -33,7 +33,9 @@ export class DashboardComponent implements OnInit {
   apprpaylength:number=0;
   rejpaylength:number=0
   todate:Date = new Date();
+  fromdate:Date = new Date();
   displayWelcomModal:string='none'
+  userdata:any={};
   username:string="deepali.patekar@axisbank.com"
   settings = {
     bigBanner: true,
@@ -44,7 +46,7 @@ export class DashboardComponent implements OnInit {
 public utilityparams:string;
 public params:string;
 rolename:any;
-  fromdate:any;
+
   public currentCard: any=0;
   approvedcard:any=[
     {approvedby: "Mr. K.V. HEBBAR",
@@ -76,11 +78,11 @@ rolename:any;
   status: 1
     }
   ]
-  constructor(private httpService: HttpClient,private router: Router,private activatedRoute: ActivatedRoute) { }
+  constructor(private httpService: HttpClient,private router: Router,private activatedRoute: ActivatedRoute,private usrservice:UserserviceService) { }
 
   ngOnInit() {
-  
-    this.rolename=localStorage.getItem('rolename')
+    this.getUserDetail()
+   // this.rolename=localStorage.getItem('rolename')
     this.params = this.activatedRoute.snapshot.queryParams["msg"];
     console.log(this.rolename)
     if(this.params=='firstloginas'){
@@ -175,6 +177,17 @@ goToPrevCard() {
     this.currentCard--;
   }
 }
+
+private getUserDetail(){
+  this.usrservice.getUserDetails().subscribe(res=>{
+    //console.log(res)
+    this.userdata=res['Data'];
+    console.log(this.userdata)
+    this.rolename=this.userdata['dualrole']
+  },error=>{
+    console.log(error)
+  })
+    }
 
 
 }

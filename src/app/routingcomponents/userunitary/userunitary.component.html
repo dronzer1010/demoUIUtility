@@ -147,7 +147,7 @@
                           <div class="">
                              
                              <!-- <input class="inpstyle input-text js-input inptxt form-control" name="dob" [(ngModel)]="model.dob" type="date" #name="ngModel" required> -->
-                             <angular2-date-picker [(ngModel)]="model.dob" name="dob" [settings]="settings"></angular2-date-picker>
+                             <angular2-date-picker [(ngModel)]="model.dob" name="dob" [settings]="settings" (ngModelChange)="validatedate()"></angular2-date-picker>
                              <label class="label" for="dob">Date of Birth</label>
                           </div>
                        </div>

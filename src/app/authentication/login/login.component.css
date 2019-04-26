@@ -11,7 +11,18 @@
 .h-100 {
   height: 100% !important;
 }
+.model-inputs{
+  width:95%;
+  border: 0px;
+  border:1px solid #e2dee8;
+  border-radius: 5px;
+  padding: 0 5px;
+  background: #fff;
+}
 
+#mod table tr:nth-child(2) td:nth-child(3) .model-inputs, #mod table tr:nth-child(4) td:nth-child(3) .model-inputs{
+  border: 1px solid #e2dee8!important;
+}
 .spn1{
   margin-left: 5px;
 }

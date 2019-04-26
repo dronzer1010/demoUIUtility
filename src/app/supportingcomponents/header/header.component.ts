@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute,NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
+import {UserserviceService} from '../../api/userservice.service'
+import {AuthService} from '../../api/auth.service'
 
 @Component({
   selector: 'app-header',
@@ -30,8 +32,9 @@ export class HeaderComponent implements OnInit {
   quickActive:boolean=false;
   profActive:boolean=false;
   public utilityparams:string;
+  userdata:any={};
   pathroute: string;
-  constructor(location: Location,private route: ActivatedRoute,private router: Router) { 
+  constructor(location: Location,private route: ActivatedRoute,private router: Router,private usrservice:UserserviceService,private auth:AuthService,) { 
     router.events.subscribe((val) => {
       this.pathroute=location.path();
       if(this.pathroute=='/dashboard'){
@@ -59,11 +62,12 @@ this.clickNotEvent()
   }
 
   ngOnInit() {
+    this.getUserDetail()
     this.utilityparams=this.route.snapshot.queryParams["token"];
     console.log(this.utilityparams)
     if(this.utilityparams!=null || this.utilityparams!=undefined)
     this.savetoken()
-    this.rolename=localStorage.getItem('rolename')
+    //this.rolename=localStorage.getItem('rolename')
     console.log(this.rolename)
   }
 
@@ -339,11 +343,23 @@ this.clickNotEvent()
   }
 
   logout(){
+    this.auth.logout();
     localStorage.removeItem('rolename');
    
   }
   savetoken(){
     localStorage.setItem("rolename",this.utilityparams)
+  }
+
+  private getUserDetail(){
+this.usrservice.getUserDetails().subscribe(res=>{
+  //console.log(res)
+  this.userdata=res['Data'];
+  console.log(this.userdata)
+  this.rolename=this.userdata['dualrole']
+},error=>{
+  console.log(error)
+})
   }
 
 }

@@ -15,11 +15,11 @@ export class GroupserviceService {
 
   constructor(private http: HttpClient) { }
   registergroup(group: any) {
-    return this.http.post(path+'/ccadmin/group', group);
+    return this.http.post(path+'ccadmin/group', group);
 }
 
 getAll() {
-  return this.http.get<any>(path+'/ccadmin/groups');
+  return this.http.get<any>(path+'ccadmin/groups');
 }
 
 getAllGroups(): Promise<any> {
@@ -77,7 +77,7 @@ sendOtp(ids: any): Promise<any> {
   // let headers = new HttpHeaders().set('Content-Type', 'application/json')
   //     .set('authorization', 'Bearer ' + token);
   // let options = { headers: headers };
-  let body = [ids];            
+  let body = ids;            
   let promise = new Promise((resolve, reject) => {       
       console.log("param id" + ids);
       this.http.post(path+"ccadmin/appGroupSendOTP", body)

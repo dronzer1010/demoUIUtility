@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import{LoaderService} from '../../api/loader.service';
+import {UserserviceService} from '../../api/userservice.service'
 declare var $: any;
 @Component({
   selector: 'app-otpuser',
@@ -20,21 +21,21 @@ export class OtpuserComponent implements OnInit {
   public txt3: any;
   public txt4: any;
   public txt5: any;
-  constructor(private route: ActivatedRoute, private router: Router,private loader:LoaderService) { }
+  constructor(private route: ActivatedRoute, private router: Router,private loader:LoaderService, private userservice: UserserviceService) { }
 
   ngOnInit() {
     this.loader.display(true);
     this.ids = JSON.parse(this.route.snapshot.paramMap.get('ids'));
-    // this.userApproveOTPService.sendOtp(this.ids).then(resp => {
-    //   this.validateOTP = resp.data;
-    //   if(resp['userotpvalue']==1){
-    //     this.loader.display(false);
-    //     this.router.navigate(['/asuserlist']);
-    //   }
-    //   this.loader.display(false);
-    // });
-    //this.router.navigate(['/main/userview']);
-    this.loader.display(false);
+    this.userservice.sendOtp(this.ids).then(resp => {
+      this.validateOTP = resp.data;
+      if(resp['userotpvalue']==1){
+        this.loader.display(false);
+        this.router.navigate(['/main/userview']);
+      }
+      this.loader.display(false);
+    });
+    // this.router.navigate(['/main/userview']);
+    // this.loader.display(false);
     
   }
 
@@ -51,17 +52,17 @@ export class OtpuserComponent implements OnInit {
 
     if (checkOtp.length == 5) {
       var checkOtp = this.txt1 + this.txt2 + this.txt3 + this.txt4 + this.txt5;
-      // this.userApproveOTPService.validateOTP(checkOtp).then(resp => {
-      //   this.approvedPayment = resp.data;
-      //   if (!!this.approvedPayment && this.approvedPayment == "otp validated") {
-      //     this.loader.display(false);
-      //     this.router.navigate(['/asuserlist']);
-      //   } else {
-      //     this.loader.display(false);
-      //     alert("Enter correct OTP");
-      //   }
-      // });
-      this.router.navigate(['/main/successmsg'],{queryParams:{msg:'usrapprsuccess'}});
+      this.userservice.validateOTP(checkOtp).then(resp => {
+        this.approvedPayment = resp.data;
+        if (!!this.approvedPayment && this.approvedPayment == "otp validated") {
+          this.loader.display(false);
+          this.router.navigate(['/main/successmsg'],{queryParams:{msg:'usrapprsuccess'}});
+        } else {
+          this.loader.display(false);
+          alert("Enter correct OTP");
+        }
+      });
+      
     }
     else {
       this.loader.display(false);

@@ -31,11 +31,62 @@
                 <input type="password" class="password" placeholder="Password" name="password" [(ngModel)]="password">
               </div>
             </div>
-            <div class="reg3"><input type="checkbox"><span class="spn1">Remember Me</span><span class="spn2">Forgot Password?</span></div>
+            <div class="reg3"><input type="checkbox"><span class="spn1">Remember Me</span><span class="spn2" (click)="openModalDialog()">Forgot Password?</span></div>
             <div class="login2"><button class="btn" type="submit" (click)="loginpost()">Login</button></div>
           </div>
         </form>
       </div>
     </div>
   </div>
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+    <!-- modal-dialog -->
+    <div class="modal-dialog" id="mod" role="document">
+      <!-- modal-content -->
+      <div class="modal-content">
+        <!-- modal-header -->
+        <div class="modal-header">
+         Enter Your Details<button type="button" class="close" aria-label="Close" (click)="closeModalDialog()"><span
+              aria-hidden="true">&times;</span></button>
+          <!-- <h4 class="modal-title">Login</h4> -->
+        </div>
+        <!-- modal-body -->
+        <div class="modal-body">
+          <div class="row mb-2">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 data">
+              <table style="width:100%">
+                <tr>
+                  <td>Email</td>
+                  <td>:</td>
+                  <td><input type="text" class="model-inputs" [(ngModel)]="email" name="email"></td>
+                </tr>
+                <tr>
+                  <td>Organization Name</td>
+                  <td>:</td>
+                  <td>
+                    <!-- <input list="orgid" class="model-inputs" [(ngModel)]="orgid" name="orgid" required>
+                    <datalist id="orgid">
+                      <option *ngFor="let org of orgdata" [value]="org.id">{{org.org_name}}</option>
+                    </datalist> -->
+                    <select class="model-inputs" [(ngModel)]="orgid" name="orgid" required>
+                      <option *ngFor="let org of orgdata" valiue="org.id">{{org.org_name}}</option>
+                    </select>
+                   </td>
+                </tr>
+               
+               
+                
+              </table>
+           
+          </div>
+     
+        </div>
+          </div>  
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" (click)="closeModalDialog();reqpwd()">Close</button>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+
 </div>

@@ -495,26 +495,26 @@ this.displayTncmodal='block'
           this.changeAllrule(this.isAllSelectedRule)
           
           
-          for (var data of this.getPendingRulesdata){
-            var str=[]
-            var exactrule;
-          str  = data['ruleformula'].split("&");
-          var ruleformula=""
-            for(var i=0;i<str.length;i++){
-              ruleformula+="\""+str[i]+"\"";
-              if(i==str.length-1){
-                exactrule = ruleformula.replace("\"\"" ,"\"&\"");
-                exactrule = exactrule.replace("\"\"" ,"\"&\"");
-              }
-              var obj={
-                ruleformula:exactrule,
-                lwramount:data['lwramount'],
-                upramount:data['upramount']
-               }
-            }
+      //     for (var data of this.getPendingRulesdata){
+      //       var str=[]
+      //       var exactrule;
+      //     str  = data['ruleformula'].split("&");
+      //     var ruleformula=""
+      //       for(var i=0;i<str.length;i++){
+      //         ruleformula+="\""+str[i]+"\"";
+      //         if(i==str.length-1){
+      //           exactrule = ruleformula.replace("\"\"" ,"\"&\"");
+      //           exactrule = exactrule.replace("\"\"" ,"\"&\"");
+      //         }
+      //         var obj={
+      //           ruleformula:exactrule,
+      //           lwramount:data['lwramount'],
+      //           upramount:data['upramount']
+      //          }
+      //       }
       
-       this.pendingRules.push(obj);
-          }
+      //  this.pendingRules.push(obj);
+      //     }
       }
  
   }else{

@@ -16,11 +16,11 @@ export class RuleserviceService {
  
   constructor(private http: HttpClient) { }
   createrule(rules: any[]) {
-    return this.http.post(path+'/ccadmin/saverule', rules);
+    return this.http.post(path+'ccadmin/saverule', rules);
 }
 
 validateRule(amount:any){
-  return this.http.post(path+'/ccadmin/validaterule',amount)
+  return this.http.post(path+'ccadmin/validaterule',amount)
 }
 
 getAllPendingRules(): Promise<any> {

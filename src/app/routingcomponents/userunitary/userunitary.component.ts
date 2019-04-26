@@ -6,6 +6,8 @@ import { ToastrService } from 'ngx-toastr'
 import { DatepickerOptions } from 'ng2-datepicker';
 import * as frLocale from 'date-fns/locale/fr';
 import { DatePipe } from '@angular/common'
+import{GroupserviceService} from '../../api/groupservice.service'
+import{UserserviceService} from '../../api/userservice.service'
 @Component({
   selector: 'app-userunitary',
   templateUrl: './userunitary.component.html',
@@ -66,12 +68,14 @@ export class UserunitaryComponent implements OnInit {
   apprcrdtab:boolean=false;
   apprgrptab:boolean=false;
   apprruletab:boolean=false;
+  mindate:Date=new Date("1950-01-01")
+  maxdate:Date=new Date("2000-01-01")
  //formatDate(value:string|number|Date,format:string, locale:string,timezone?:string):string;
   dateModel:string
   groups:any=[];
   submitted = false;
   groupname:string;
-  date:Date = new Date();
+  date:Date = new Date("1999-12-31");
   settings = {
     bigBanner: true,
     timePicker: false,
@@ -82,7 +86,7 @@ export class UserunitaryComponent implements OnInit {
 //     // other options...
 //     dateFormat: 'dd-mm-yyyy',
 // };
-  constructor(private router: Router,private loaderService: LoaderService,private toastr: ToastrService,public datepipe: DatePipe) { }
+  constructor(private router: Router,private loaderService: LoaderService,private toastr: ToastrService,public datepipe: DatePipe,private groupservice:GroupserviceService,private userservice:UserserviceService) { }
 
   ngOnInit() {
     this.loadAllGroups()
@@ -215,13 +219,10 @@ export class UserunitaryComponent implements OnInit {
 
 private loadAllGroups() {
 
-  this.groups=[
-    {"lwrlimit":0.0,"grpname":"A","id":97,"uprlimit":1.0E8,"users":["Mr. Thirumurugan J","Ms. Nalini L"],"status":"Approved"},
-    {"lwrlimit":0.0,"grpname":"B","id":98,"uprlimit":1.0E8,"users":["Ms. Meena A","Mr. Ravi Kumar"],"status":"Approved"},
-    {"lwrlimit":0.0,"grpname":"C","id":99,"uprlimit":1.0E8,"users":[],"status":"Approved"},
-    {"lwrlimit":0.0,"grpname":"D","id":100,"uprlimit":0.0,"users":[],"status":"Approved"},
-    {"lwrlimit":0.0,"grpname":"E","id":101,"uprlimit":0.0,"users":[],"status":"Approved"}]
-
+  
+  this.groupservice.getAll().subscribe(groups => {
+    //console.log(groups);
+    this.groups = groups['data']; 
     if(!!this.groups){
       this.usergroups=[];
       for(var i=0; i<this.groups.length;i++){
@@ -230,21 +231,9 @@ private loadAllGroups() {
         }
     }
     }
-  
-  // this.groupservice.getAll().subscribe(groups => {
-  //   //console.log(groups);
-  //   this.groups = groups['data']; 
-  //   if(!!this.groups){
-  //     this.usergroups=[];
-  //     for(var i=0; i<this.groups.length;i++){
-  //       if(this.groups[i].status == 'Approved'){
-  //           this.usergroups.push(this.groups[i]);
-  //       }
-  //   }
-  //   }
-  //    console.log(this.groups);
-  //    console.log("Complex Org:"+this.isComplexOrg)
-  //   });
+     console.log(this.groups);
+     console.log("Complex Org:"+this.isComplexOrg)
+    });
 }
 
 validateMobileNo(value){    
@@ -423,41 +412,60 @@ userselectedtab(){
   this.model['isview']['bulkpay']=21
 }
 
-
+validatedate(){
+  var date=this.datepipe.transform(this.model['dob'], 'yyyy-MM-dd')
+  if(date<this.datepipe.transform(this.mindate, 'yyyy-MM-dd')){
+    this.toastr.warning("Please Enter date after 01st Jan 1950!",'Alert',{
+              timeOut:3000,
+              positionClass:'toast-top-center'
+              })
+  }else if(date>this.datepipe.transform(this.maxdate, 'yyyy-MM-dd')){
+    this.toastr.warning("Please Enter date before 31st Dec 2000!",'Alert',{
+      timeOut:3000,
+      positionClass:'toast-top-center'
+      })
+  }
+}
 onSubmit() {
-  this.model['dob']=this.datepipe.transform(this.model['dob'], 'yyyy-MM-dd');
-  this.loaderService.display(true);
+  this.model['dob']=this.datepipe.transform(this.model['dob'], 'dd-MM-yyyy');
+  //this.loaderService.display(true);
   let obj: any = {};
-
+debugger
   var isview_arr =[];
   console.log(this.model['isview'])
   for(var key in this.model['isview'])
     isview_arr.push(parseInt(this.model['isview'][key]));
     this.model['isview'] = isview_arr;
+    console.log(this.model['dob'])
+    console.log(isview_arr)
     console.log(this.model)
-  //   this.userservice.create(this.model).subscribe(
-  //   data=>{
-  //     if(data==null){
-  //       this.loaderService.display(false);
-  //       this.toastr.warning("Failed to Register!",'Alert',{
-  //         timeOut:3000,
-  //         positionClass:'toast-top-center'
-  //         })
-  //       this.router.navigate(['/main/unitaryuser']);
-  //     }else{
-  //       this.loaderService.display(false);
-  //       console.log(data)
+    this.userservice.create(this.model).subscribe(
+    data=>{
+      if(data==null){
+        this.loaderService.display(false);
+        this.toastr.warning("Failed to Register!",'Alert',{
+          timeOut:3000,
+          positionClass:'toast-top-center'
+          })
+        this.router.navigate(['/main/unitaryuser']);
+      }else{
+        this.loaderService.display(false);
+        console.log(data)
 
-  //       this.router.navigate(['/main/successmsg'],{queryParams:{msg:'usersuccess'}});
-  //     }
-  //   },error => {
-  //     console.log("Failed to Register")
-  //     console.log(error)
-  //     this.loaderService.display(false);
-  // })
-  //console.log('SUCCESS!! :-)\n\n' + JSON.stringify(this.model['isview']));
-  this.loaderService.display(false);
-  this.router.navigate(['/main/successmsg'],{queryParams:{msg:'usersuccess'}});
+        this.router.navigate(['/main/successmsg'],{queryParams:{msg:'usersuccess'}});
+      }
+    },error => {
+      this.toastr.error("Failed to Register","Alert",{
+        timeOut:3000,
+        positionClass:'toast-top-center'
+      })
+      console.log("Failed to Register")
+      console.log(error)
+      this.loaderService.display(false);
+  })
+  console.log('SUCCESS!! :-)\n\n' + JSON.stringify(this.model['isview']));
+  //this.loaderService.display(false);
+  //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'usersuccess'}});
 }
 
 }

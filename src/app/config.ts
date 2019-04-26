@@ -3,8 +3,8 @@ export class Config{
     utilityapiUrl:string;
     constructor(){
 
-        this.baseUrl = "http://aquapayfake.ap-south-1.elasticbeanstalk.com/api/"
-        this.utilityapiUrl = "http://bd19b452.ngrok.io/";
+        this.baseUrl = "https://turpe.serveo.net/api/"
+        this.utilityapiUrl = "http://35.154.109.72:9999/";
     }
 
     getBaseURL(){

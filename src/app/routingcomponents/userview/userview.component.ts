@@ -4,6 +4,7 @@ import { Users } from '../../models/users';
 import { Router } from '@angular/router';
 import {LoaderService} from '../../api/loader.service';
 import {ExcelService} from '../../excelservice/excel.service'
+import {UserserviceService} from '../../api/userservice.service'
 @Component({
   selector: 'app-userview',
   templateUrl: './userview.component.html',
@@ -52,7 +53,7 @@ export class UserviewComponent implements OnInit {
   dropdownList = [];
   selectedItems1 = [];
   dropdownSettings1 = {};
-  constructor(private loaderService: LoaderService, private excelservice : ExcelService,private toastr: ToastrService,private route:Router) { }
+  constructor(private loaderService: LoaderService, private excelservice : ExcelService,private toastr: ToastrService,private route:Router, private userservice: UserserviceService) { }
 
   ngOnInit() {
     this.loadAllUsers()
@@ -80,21 +81,13 @@ export class UserviewComponent implements OnInit {
 
   private loadAllUsers() {
     this.loaderService.display(true);
-    // this.userservice.getAll().subscribe(users => {
-    //   console.log(users);
-    //   this.loaderService.display(false);
-    //    this.users = users['data']; 
-    //    console.log(this.users);
-    //   });
-    this.users=[
-      {"landlineno":null,"approveddate":"25-02-2019","empid":"T012","role":"Authorised Signatory","uploadfilename":"ShriramRegionalTest.csv","approvedby":"Mr. Thirumurugan J","previlage":"pid=1,52,38,4,22,26,18,61,11,60;cid=17,77,76,28,19,23,54,80,39,79,74,75,2,62,82,61;","mobileno":"9821142184","approvedtime":"12:47:15","dob":"05-01-1980","initiatedtime":"20:11:28","id":296,"designation":"Sr. Manager","department":"Regional Accts Expenses Team","employeename":"Mr. Thirumurugan J","email":"mukund.javir01@axisbank.com","initiateddate":"31-01-2019","initiatedby":"Mr. Sandeep Amit Jaiswar","status":"Approved","group":"A"},
-      {"landlineno":null,"approveddate":"25-02-2019","empid":"S2463","role":"Corporate Admin","uploadfilename":"ShriramRegionalTest.csv","approvedby":"Mr. Thirumurugan J","previlage":"pid=1,52,38,4,22,61,11;cid=17,6,7,23,24,53,54,39,40,83,61;","mobileno":"9821142184","approvedtime":"12:47:15","dob":"04-06-1989","initiatedtime":"20:11:28","id":297,"designation":"Officer II","department":"Regional Accts Expenses Team","employeename":"Ms. Saranya K","email":"deepali.patekar01@axisbank.com","initiateddate":"31-01-2019","initiatedby":"Mr. Sandeep Amit Jaiswar","status":"Approved","group":"--"},
-      {"landlineno":null,"approveddate":"25-02-2019","empid":"S2468","role":"Maker","uploadfilename":"ShriramRegionalTest.csv","approvedby":"Mr. Thirumurugan J","previlage":"pid=38,22,26,18,61,11;cid=27,28,51,20,19,21,23,39,0;","mobileno":"9821142184","approvedtime":"12:47:15","dob":"25-11-1977","initiatedtime":"20:11:28","id":298,"designation":"Asst. Manager","department":"Regional Accts Expenses Team","employeename":"Ms. Sujatha NR","email":"karan@bank.com","initiateddate":"31-01-2019","initiatedby":"Mr. Sandeep Amit Jaiswar","status":"Approved","group":"--"},
-      {"landlineno":null,"approveddate":"25-02-2019","empid":"N645","role":"Checker","uploadfilename":"ShriramRegionalTest.csv","approvedby":"Mr. Thirumurugan J","previlage":"pid=22,26,18,61,11;cid=28,74,19,75,23,0;","mobileno":"9821142184","approvedtime":"12:47:15","dob":"07-06-1963","initiatedtime":"20:11:28","id":299,"designation":"AGM","department":"Regional Accts Expenses Team","employeename":"Ms. Nalini L","email":"amit.kalekar01@axisbank.com","initiateddate":"31-01-2019","initiatedby":"Mr. Sandeep Amit Jaiswar","status":"Approved","group":"A"},
-      {"landlineno":null,"approveddate":"25-02-2019","empid":"M1035","role":"Checker","uploadfilename":"ShriramRegionalTest.csv","approvedby":"Mr. Thirumurugan J","previlage":"pid=22,26,18,61,11;cid=28,74,19,75,23,0;","mobileno":"9821142184","approvedtime":"12:47:15","dob":"13-05-1971","initiatedtime":"20:11:28","id":300,"designation":"Manager","department":"Regional Accts Expenses Team","employeename":"Ms. Meena A","email":"shreya.khanduri01@axisbank.com","initiateddate":"31-01-2019","initiatedby":"Mr. Sandeep Amit Jaiswar","status":"Approved","group":"B"},
-      {"landlineno":"23232323232","approveddate":"25-02-2019","empid":"23235456","role":"Checker","uploadfilename":"","approvedby":"Mr. Thirumurugan J","previlage":"pid=22,26,18,61,11;cid=28,19,23,74,75,0;","mobileno":"1232323232","approvedtime":"12:47:15","dob":"07-12-0012","initiatedtime":"18:27:55","id":381,"designation":"Manager","department":"Marketting","employeename":"Mr. Ravi Kumar","email":"ravikumar@bank.com","initiateddate":"27-02-2019","initiatedby":"Ms. Saranya K","status":"Approved","group":"B"},
-      {"landlineno":"2324354354","approveddate":"25-02-2019","empid":"7876443","role":"Maker","uploadfilename":"","approvedby":"Mr. Thirumurugan J","previlage":"pid=22,26,18,61,11;cid=28,19,23,27,20,51,21,0;","mobileno":"1244365768","approvedtime":"12:47:15","dob":"09-08-0022","initiatedtime":"18:31:24","id":382,"designation":"Manager","department":"Marketign","employeename":"Mr. Karan Kumar","email":"anuragjainaugust12@gmail.com","initiateddate":"27-02-2019","initiatedby":"Ms. Saranya K","status":"Approved","group":"--"}
-      ]
+    this.userservice.getAll().subscribe(users => {
+      console.log(users);
+      this.loaderService.display(false);
+       this.users = users['data']; 
+       console.log(this.users);
+      });
+    
 
       this.loaderService.display(false);
 }

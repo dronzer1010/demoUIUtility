@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 // import * as $ from 'jquery';
 // declare var jquery:any;
 // declare var $ :any;
-// import{GroupService} from '../../api/group.service'
+ import{GroupserviceService} from '../../api/groupservice.service'
 // import { Groups } from '../../models/groups';
-// import{RuleService} from '../../api/rule.service'
+ import{RuleserviceService} from '../../api/ruleservice.service'
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-unitaryrule',
@@ -19,7 +19,7 @@ export class UnitaryruleComponent implements OnInit {
   _rules:any[]=[];
   isSelected = false;
   usergroups:any=[];
-  constructor(private router: Router) { }
+  constructor(private router: Router,private ruleservice:RuleserviceService,private groupservice:GroupserviceService) { }
 
   ngOnInit() {
     this.loadAllGroups()
@@ -27,20 +27,20 @@ export class UnitaryruleComponent implements OnInit {
   }
 
   private loadAllGroups() {
-  //   this.groupservice.getAll().subscribe(groups => {
-  //   this.groups = groups['data']; 
+    this.groupservice.getAll().subscribe(groups => {
+    this.groups = groups['data']; 
    
-  //   if(!!this.groups){
-  //     this.usergroups=[];
-  //     for(var i=0; i<this.groups.length;i++){
-  //       if(this.groups[i]['status'] == 'Approved'){
-  //           this.usergroups.push(this.groups[i]);
-  //       }
-  //   }
-  //   }
-  // });
+    if(!!this.groups){
+      this.usergroups=[];
+      for(var i=0; i<this.groups.length;i++){
+        if(this.groups[i]['status'] == 'Approved'){
+            this.usergroups.push(this.groups[i]);
+        }
+    }
+    }
+  });
 
-  this.groups=[{"lwrlimit":0.0,"grpname":"A","id":97,"uprlimit":1.0E8,"users":["Mr. Thirumurugan J","Ms. Nalini L"],"status":"Approved"},{"lwrlimit":0.0,"grpname":"B","id":98,"uprlimit":1.0E8,"users":["Ms. Meena A","Mr. Ravi Kumar"],"status":"Approved"},{"lwrlimit":0.0,"grpname":"C","id":99,"uprlimit":1.0E8,"users":[],"status":"Approved"},{"lwrlimit":0.0,"grpname":"D","id":100,"uprlimit":0.0,"users":[],"status":"Approved"},{"lwrlimit":0.0,"grpname":"E","id":101,"uprlimit":0.0,"users":[],"status":"Approved"}]
+  // this.groups=[{"lwrlimit":0.0,"grpname":"A","id":97,"uprlimit":1.0E8,"users":["Mr. Thirumurugan J","Ms. Nalini L"],"status":"Approved"},{"lwrlimit":0.0,"grpname":"B","id":98,"uprlimit":1.0E8,"users":["Ms. Meena A","Mr. Ravi Kumar"],"status":"Approved"},{"lwrlimit":0.0,"grpname":"C","id":99,"uprlimit":1.0E8,"users":[],"status":"Approved"},{"lwrlimit":0.0,"grpname":"D","id":100,"uprlimit":0.0,"users":[],"status":"Approved"},{"lwrlimit":0.0,"grpname":"E","id":101,"uprlimit":0.0,"users":[],"status":"Approved"}]
     if(!!this.groups){
       this.usergroups=[];
       for(var i=0; i<this.groups.length;i++){
@@ -115,12 +115,12 @@ updateRuleList(rule:any , index:number){
    */
   submitRules(){
     console.log(this._rules)
-    this.router.navigate(['/main/successmsg'],{queryParams:{msg:'rulesuccess'}});
-//     this.ruleservice.createrule(this._rules).subscribe(data => {
-//      this.router.navigate(['/main/successmsg'],{queryParams:{msg:'rulesuccess'}});
-//    },error => {
-//      this.router.navigate(['/main/successmsg'],{queryParams:{msg:'rulesuccess'}});
-//  });
+    //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'rulesuccess'}});
+    this.ruleservice.createrule(this._rules).subscribe(data => {
+     this.router.navigate(['/main/successmsg'],{queryParams:{msg:'rulesuccess'}});
+   },error => {
+     this.router.navigate(['/main/successmsg'],{queryParams:{msg:'rulesuccess'}});
+ });
   }
 
 

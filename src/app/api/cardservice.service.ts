@@ -17,11 +17,12 @@ export class CardserviceService {
   constructor(private http: HttpClient) { }
 
   registercard(card: any) {
-    return this.http.post(path+'/cards/save-Card', card);
+    console.log(card)
+    return this.http.post(path+'cards/save-Card', card);
 }
 
 getAll() {
-  return this.http.get<any>(path+'/maker/cards');
+  return this.http.get<any>(path+'maker/cards');
 }
 
 getAllCardsData(firstdate,lastdate){

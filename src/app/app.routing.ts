@@ -40,55 +40,59 @@ import { RepositoryComponent } from './supportingcomponents/repository/repositor
 import { SamplebillsComponent } from './supportingcomponents/samplebills/samplebills.component';
 import { TemplatesComponent } from './supportingcomponents/templates/templates.component'
 import { BillerBulkComponent } from './routingcomponents/billerbulk/billerbulk.component';
+import { AuthGuard } from './gaurd/auth.gaurd';
+import { SetpasswordComponent } from './authentication/setpassword/setpassword.component';
+import { GeneratepasswordComponent } from './authentication/generatepassword/generatepassword.component'
 
 const appRoutes: Routes = [ 
     { path:'main',component:UserhomeComponent,
     children:[
-    {path:'pending-biller',component:PendingBillerComponent},
-    {path:'unitary-biller',component:BillerUnitaryComponent},
-    {path:'billerlist',component:BillerlistComponent},
-    {path:'paymentlist',component:PaymentListComponent},
-    {path:'make-payment',component:MakePaymentComponent},
-    {path:'pending-payments',component:PendingPaymentsComponent},
+    {path:'pending-biller',component:PendingBillerComponent,canActivate: [AuthGuard]},
+    {path:'unitary-biller',component:BillerUnitaryComponent,canActivate: [AuthGuard]},
+    {path:'billerlist',component:BillerlistComponent,canActivate: [AuthGuard]},
+    {path:'paymentlist',component:PaymentListComponent,canActivate: [AuthGuard]},
+    {path:'make-payment',component:MakePaymentComponent,canActivate: [AuthGuard]},
+    {path:'pending-payments',component:PendingPaymentsComponent,canActivate: [AuthGuard]},
     //{path:'maker-biller-bulk',component:MakerBillerBulkComponent},  
-    {path:'biller-bulk',component:BillerBulkComponent}, 
-    {path:'dashboard',component:DashboardComponent},                                                                                                              
-    {path:'otp-approve-payment',component:OtpapprovePaymentComponent},
-    {path:'otp-approve-biller',component:OtpapproveBillerComponent},
-    {path:'cardview',component:CardviewComponent},
-    {path:'profile',component:MyprofileComponent},
-    {path:'userview',component:UserviewComponent},
-    {path:'unitary-user',component:UserunitaryComponent},
-    {path:'unitary-group',component:UnitarygroupComponent},
-    {path:'unitary-rule',component:UnitaryruleComponent},
-    {path:'groupview',component:GroupviewComponent},
-    {path:'ruleview',component:RuleviewComponent},
-    {path:'unitary-card',component:CardunitaryComponent},
-    {path:'user-bulk',component:UserbulkComponent},
-    {path:'pending-user',component:PendingusersComponent},
-    {path:'pending-group',component:PendinggroupsComponent},
-    {path:'pending-rules',component:PendingrulesComponent},
-    {path:'organisation',component:OrganisationComponent},
-    {path:'pending-card',component:PendingcardsComponent},
-    {path:'successmsg',component:SuccessComponent},
-    {path:'otp-user',component:OtpuserComponent},
-    {path:'otp-card',component:OtpCardComponent},
-    {path:'otp-group',component:OtpGroupComponent},
-    {path:'otp-rule',component:OtpRuleComponent},
-    {path:'rejectmsg',component:RejectmsgComponent},
-    {path:'notification',component:NotificationmatrixComponent},
-    {path:'repository',component:RepositoryComponent},
-    {path:'sample-bills',component:SamplebillsComponent},
-    {path:'templates',component:TemplatesComponent}
+    {path:'biller-bulk',component:BillerBulkComponent,canActivate: [AuthGuard]}, 
+    {path:'dashboard',component:DashboardComponent,canActivate: [AuthGuard]},                                                                                                              
+    {path:'otp-approve-payment',component:OtpapprovePaymentComponent,canActivate: [AuthGuard]},
+    {path:'otp-approve-biller',component:OtpapproveBillerComponent,canActivate: [AuthGuard]},
+    {path:'cardview',component:CardviewComponent,canActivate: [AuthGuard]},
+    {path:'profile',component:MyprofileComponent,canActivate: [AuthGuard]},
+    {path:'userview',component:UserviewComponent,canActivate: [AuthGuard]},
+    {path:'unitary-user',component:UserunitaryComponent,canActivate: [AuthGuard]},
+    {path:'unitary-group',component:UnitarygroupComponent,canActivate: [AuthGuard]},
+    {path:'unitary-rule',component:UnitaryruleComponent,canActivate: [AuthGuard]},
+    {path:'groupview',component:GroupviewComponent,canActivate: [AuthGuard]},
+    {path:'ruleview',component:RuleviewComponent,canActivate: [AuthGuard]},
+    {path:'unitary-card',component:CardunitaryComponent,canActivate: [AuthGuard]},
+    {path:'user-bulk',component:UserbulkComponent,canActivate: [AuthGuard]},
+    {path:'pending-user',component:PendingusersComponent,canActivate: [AuthGuard]},
+    {path:'pending-group',component:PendinggroupsComponent,canActivate: [AuthGuard]},
+    {path:'pending-rules',component:PendingrulesComponent,canActivate: [AuthGuard]},
+    {path:'organisation',component:OrganisationComponent,canActivate: [AuthGuard]},
+    {path:'pending-card',component:PendingcardsComponent,canActivate: [AuthGuard]},
+    {path:'successmsg',component:SuccessComponent,canActivate: [AuthGuard]},
+    {path:'otp-user/:ids',component:OtpuserComponent,canActivate: [AuthGuard]},
+    {path:'otp-card/:ids',component:OtpCardComponent,canActivate: [AuthGuard]},
+    {path:'otp-group/:ids',component:OtpGroupComponent,canActivate: [AuthGuard]},
+    {path:'otp-rule/:ids',component:OtpRuleComponent,canActivate: [AuthGuard]},
+    {path:'rejectmsg',component:RejectmsgComponent,canActivate: [AuthGuard]},
+    {path:'notification',component:NotificationmatrixComponent,canActivate: [AuthGuard]},
+    {path:'repository',component:RepositoryComponent,canActivate: [AuthGuard]},
+    {path:'sample-bills',component:SamplebillsComponent,canActivate: [AuthGuard]},
+    {path:'templates',component:TemplatesComponent,canActivate: [AuthGuard]}
 ]},
 
     // otherwise redirect to home
     {path:'',component:LoginComponent},  
-    {path:'otp',component:OtpComponent},  
-    
+    {path:'otp',component:OtpComponent,canActivate: [AuthGuard]},  
+    {path:'setpassword',component:SetpasswordComponent}, 
+    {path:'gen-pwd',component:GeneratepasswordComponent},
     {path:'firstlogin',component:AccountsetupComponent},
     
     { path: '**', redirectTo: '' }
 ];
 
-export const routing = RouterModule.forRoot(appRoutes);
+export const routing = RouterModule.forRoot(appRoutes, {useHash: true});

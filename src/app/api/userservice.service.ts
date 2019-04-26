@@ -9,9 +9,9 @@ import 'rxjs/add/observable/throw';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-
-const path = new Config().getBaseURL();
 import {Config} from '../config'
+const path = new Config().getBaseURL();
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,14 +20,19 @@ export class UserserviceService {
   constructor(private http: HttpClient) { }
 
 getAll() {
-    return this.http.get<any[]>(path+'/adminuser/user');
+    return this.http.get<any[]>(path+'adminuser/user');
 }
 create(user: any) {
-  return this.http.post(path+'/adminuser/user', user);
+  return this.http.post(path+'adminuser/user', user);
 }
 
 getUserDetails(){
-  return this.http.get(path+'/adminuser/whois');
+  return this.http.get(path+'adminuser/whois');
+}
+
+submitBulkUser(users:any[]){
+  console.log(users)
+  return this.http.post(path+'adminuser/savebulkuser', users);
 }
 
 uploaduser(file:File){
@@ -35,7 +40,7 @@ uploaduser(file:File){
   const formdata: FormData = new FormData();
   formdata.append('file', file);
   console.log(file);
-  return this.http.post(path+'/adminuser/bulkuserupload', formdata);
+  return this.http.post(path+'adminuser/bulkuserupload', formdata);
 }
 
 getUserById(id:number){
@@ -43,7 +48,7 @@ getUserById(id:number){
 }
 
 deleteUser(checkval : any){
-    return this.http.post(path+'/adminuser/deleteuser', checkval);
+    return this.http.post(path+'adminuser/deleteuser', checkval);
 
 }
 
@@ -55,7 +60,7 @@ getFilterdData(dateformat): Promise<any> {
   // let options = { headers: headers };
 
   let promise = new Promise((resolve, reject) => {
-      this.http.get(path+'/adminuser/filteredusers?dateformat='+ dateformat )
+      this.http.get(path+'adminuser/filteredusers?dateformat='+ dateformat )
           .subscribe(
               res => {
                   //console.log(res);

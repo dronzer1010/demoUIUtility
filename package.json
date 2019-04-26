@@ -50,6 +50,7 @@
     "ngx-lightbox": "^1.2.0",
     "ngx-owl-carousel": "^2.0.7",
     "ngx-owl-carousel-o": "^1.0.11",
+    "ngx-select-dropdown": "^1.0.1",
     "ngx-slick-carousel": "^0.4.4",
     "ngx-toastr": "^9.1.2",
     "owl.carousel": "^2.3.4",

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 // import * as $ from 'jquery';
-// import { AsCardsService } from './asapprovecard.service';
+ import { CardserviceService } from '../../api/cardservice.service';
 declare var jquery: any;
 declare var $: any;
 @Component({
@@ -19,38 +19,12 @@ export class PendingcardsComponent implements OnInit {
   public currentCard: any;
   public newpendingcards:any = [];
   displayrejmodal:string='none';
-  constructor(private router: Router) { }
+  constructor(private router: Router,private cardservice: CardserviceService) { }
 
   ngOnInit() {
     this.currentCard = 0;
-    this.newpendingcards=[{approvedby: "",
-    aproveddate: "",
-    aprovedtime: "",
-    cardholder: "Test card 4",
-    digits: "4859 XXXX XXXX 4321",
-    expirydate: "09/22",
-    id: 1,
-    initiatedby: "Mr. Naveen Lohiya",
-    initiateddate: "28-02-2019",
-    initiatedtime: "03:45 PM",
-    orgid: 73,
-    regcmt: "",
-    status: 2},
-    {
-      approvedby: "",
-  aproveddate: "",
-  aprovedtime: "",
-  cardholder: "Test Card 1",
-  digits: "4859 xxxx xxxx 2324",
-  expirydate: "06/22",
-  id: 2,
-  initiatedby: "Mr. Naveen Lohiya",
-  initiateddate: "28-02-2019",
-  initiatedtime: "05:32 PM",
-  orgid: 73,
-  regcmt: "",
-  status: 2
-    }];
+this.loadpendingcards();
+
     console.log(this.newpendingcards)
   }
 
@@ -60,7 +34,7 @@ export class PendingcardsComponent implements OnInit {
 
   gotoOTP(id: any): void {
     // if (!!this.pendingCardsid) { 
-    this.router.navigate(['/main/otp-card'],{queryParams:{ids:id}});
+    this.router.navigate(['/main/otp-card'],id);
     // } else {
     //   alert("First select at least one checkbox.");
     // }
@@ -86,14 +60,14 @@ export class PendingcardsComponent implements OnInit {
   }
 
   rejectGroupById(id: any): void {
-    // this.asCardsService.rejectedCard(id, this.comment).then(resp => {
-    //   this.rejectedgroupdata = resp.data;
-    //   this.rejectedgroupmsg = resp.msg;
-    //   if (this.rejectedgroupmsg == "succes") {
-    //     this.router.navigate(['/ascards']);
-    //   }
-    // });
-    this.router.navigate(['/main/rejectmsg'],{queryParams:{msg:'cardreject'}});
+    this.cardservice.rejectedCard(id, this.comment).then(resp => {
+      this.rejectedgroupdata = resp.data;
+      this.rejectedgroupmsg = resp.msg;
+      if (this.rejectedgroupmsg == "succes") {
+         this.router.navigate(['/main/rejectmsg'],{queryParams:{msg:'cardreject'}});
+      }
+    });
+   // this.router.navigate(['/main/rejectmsg'],{queryParams:{msg:'cardreject'}});
   }
 
   openrejmod(){
@@ -101,5 +75,17 @@ export class PendingcardsComponent implements OnInit {
   }
   closerehmod(){
     this.displayrejmodal='none'
+  }
+
+
+  private loadpendingcards(){
+    this.cardservice.getAllCards().then(resp => {
+      this.pendingCards = resp.data;
+      for (let i = 0; i < this.pendingCards.length; i++) {
+        if (this.pendingCards[i].status == "Pending") {
+          this.newpendingcards.push(this.pendingCards[i]);
+        }
+      }
+    });
   }
 }

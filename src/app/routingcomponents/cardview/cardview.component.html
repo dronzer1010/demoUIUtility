@@ -22,7 +22,7 @@
         <div id="London" class="tabcontent" *ngIf="apprcrd">
             <div class="container">
                 <div class="row">
-                    <ng-container *ngFor="let approved of cardapproved">
+                    <ng-container *ngFor="let approved of approvedcards">
                         <div class="col-sm-6 col-md-6 col-lg-6">
                             <div class="col-sm-12 card-1">
                                 <div class="item bcolor">
@@ -90,7 +90,7 @@
         <div id="Paris" class="tabcontent" *ngIf="pencrd">
                 <div class="container">
                     <div class="row">
-                        <ng-container *ngFor="let pending of cardpending">
+                        <ng-container *ngFor="let pending of pendingcards">
                             <div class="col-sm-6 col-md-6 col-lg-6">
                                 <div class="col-sm-12 card-1">
                                     <div class="item bcolor">
@@ -159,7 +159,7 @@
         <div id="Tokyo" class="tabcontent" *ngIf="rejcrd">
             <div class="container">
                 <div class="row">
-                    <ng-container *ngFor="let rejected of cardRejected">
+                    <ng-container *ngFor="let rejected of rejectedcards">
                         <div class="col-sm-6">
                             <div class="col-sm-12 card-1">
                                 <div class="item bcolor">

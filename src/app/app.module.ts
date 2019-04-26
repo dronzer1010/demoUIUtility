@@ -98,6 +98,9 @@ import { PenPayFilterPipe } from './routingcomponents/pendingpayments/pendingpay
 import { BillerFilterPipe } from './routingcomponents/billerlist/biller-filter.pipe';
 import { PenBillerFilterPipe } from './routingcomponents/pendingbiller/penbiller-filter.pipe';
 import { FrenchDecimalPipe } from './pipes/currency.filter.pipe';
+import { SetpasswordComponent } from './authentication/setpassword/setpassword.component';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
+import { GeneratepasswordComponent } from './authentication/generatepassword/generatepassword.component'
 
 @NgModule({
   declarations: [
@@ -155,7 +158,9 @@ import { FrenchDecimalPipe } from './pipes/currency.filter.pipe';
     SamplebillsComponent,
     TemplatesComponent,
     BillerBulkComponent,
-    FrenchDecimalPipe
+    FrenchDecimalPipe,
+    SetpasswordComponent,
+    GeneratepasswordComponent
   ],
 
   imports: [
@@ -199,7 +204,8 @@ import { FrenchDecimalPipe } from './pipes/currency.filter.pipe';
     NgDatepickerModule,
     LightboxModule ,
     Ng2OrderModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    SelectDropDownModule
 
   ],
  
