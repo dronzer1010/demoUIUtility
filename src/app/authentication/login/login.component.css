@@ -336,7 +336,13 @@ p {
     width: 16px;
   }
 }
-
+@media only screen and (max-width:1450px){
+  .card {
+    top: 20%!important;
+    width: 25% !important;
+    left:50%;
+}
+}
 @media only screen and (max-width:1370px){
   .card{
     top:21%!important;

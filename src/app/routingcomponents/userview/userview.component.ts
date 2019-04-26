@@ -57,6 +57,7 @@ export class UserviewComponent implements OnInit {
 
   ngOnInit() {
     this.loadAllUsers()
+    //this.rolename=localStorage.getItem('rolename')
     this.dropdownList = [
       { item_id: 1, item_text: 'Today' },
       { item_id: 2, item_text: 'This Week' },

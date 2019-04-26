@@ -355,8 +355,8 @@
                        <td colspan="7">
                           <span class="text-left" *ngIf="user.status =='Rejected'"><label style="color: #64289d;">Comment : &nbsp;</label>Invalid User Details</span>
                           <span class="pull-right">
-                          <img data-toggle="modal" data-target="#deletereport" (click) = "userId(user.id)" src="assets/img/delete.png">&nbsp;&nbsp;&nbsp;
-                         <img src="assets/img/edit.png" (click)="updateUser(user)">&nbsp;&nbsp;&nbsp; 
+                          <img *ngIf="rolename=='ccadmin' || rolename=='ccmaker'" data-toggle="modal" data-target="#deletereport" (click) = "userId(user.id)" src="assets/img/delete.png">&nbsp;&nbsp;&nbsp;
+                         <img *ngIf="rolename=='ccadmin' || rolename=='ccmaker'" src="assets/img/edit.png" (click)="updateUser(user)">&nbsp;&nbsp;&nbsp; 
                           <a data-toggle="modal" data-target="#Privileges" (click)="setPriv(user.previlage)">
                           <img src="assets/img/str.png">&nbsp;&nbsp;&nbsp;</a>
                           </span>

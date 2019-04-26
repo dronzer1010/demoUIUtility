@@ -90,17 +90,63 @@ rolename:any;
       this.displayWelcomModal='block'
     
     }
+
+    this.loadallcards()
    
-    this.httpService.get('./assets/cards.json').subscribe(data=>{
-      this.carddata=data;
-      console.log(this.carddata)
+    // this.httpService.get('./assets/cards.json').subscribe(data=>{
+    //   this.carddata=data;
+    //   console.log(this.carddata)
      
-      this.billdata=JSON.parse(localStorage.getItem('billdetails'));
+      
+    // })
+  }
+  fun() {
+    this.owlElement.next([200])
+    //duration 200ms
+}
+
+closemodal(){
+  this.displayWelcomModal='none'; 
+}
+
+goToNextCard() {
+  if (this.approvedcard.length - 1 == this.currentCard) {
+    this.currentCard = 0;
+  }
+  else {
+    this.currentCard++;
+  }
+
+}
+
+goToPrevCard() {
+  if (this.currentCard == 0) {
+    this.currentCard = this.approvedcard.length - 1;
+  }
+  else {
+    this.currentCard--;
+  }
+}
+
+private loadallcards(){
+  this.carddata=[{
+    "cardnumber": "1232323433331234",
+    "cardholder": "Sample",
+    "valid": "09/11"
+  },
+{
+
+    "cardnumber": "2323243254643634",
+    "cardholder": "test",
+    "valid": "26/11"
+}]
+
+this.billdata=JSON.parse(localStorage.getItem('billdetails'));
       this.paymentdata=JSON.parse(localStorage.getItem('payments'));
       console.log(this.billdata)
       if(this.billdata!=null){
-      this.pendingbillers = this.billdata.filter((data)=>data['status']=='Pending');
-      this.apprbillers = this.billdata.filter((data)=>data['status']=='Approved');
+      this.pendingbillers = this.billdata.filter((data)=>data['status']=='Pending with checker');
+      this.apprbillers = this.billdata.filter((data)=>data['status']=='Registered');
       this.rejbillers = this.billdata.filter((data)=>data['status']=='Rejected');
       if(this.pendingbillers==null){
         this.billerlength=0
@@ -148,34 +194,6 @@ rolename:any;
   this.apprpaylength=0
   this.rejpaylength=0
     }
-    })
-  }
-  fun() {
-    this.owlElement.next([200])
-    //duration 200ms
-}
-
-closemodal(){
-  this.displayWelcomModal='none'; 
-}
-
-goToNextCard() {
-  if (this.approvedcard.length - 1 == this.currentCard) {
-    this.currentCard = 0;
-  }
-  else {
-    this.currentCard++;
-  }
-
-}
-
-goToPrevCard() {
-  if (this.currentCard == 0) {
-    this.currentCard = this.approvedcard.length - 1;
-  }
-  else {
-    this.currentCard--;
-  }
 }
 
 private getUserDetail(){

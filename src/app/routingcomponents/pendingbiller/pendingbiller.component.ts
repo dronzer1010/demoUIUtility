@@ -69,7 +69,7 @@ fromdate:Date = new Date();
     this.billdata=JSON.parse(localStorage.getItem('billdetails'));
     console.log(this.billdata)
 
-    this.pendingbillers = this.billdata.filter((data)=>data['status']=='Pending');
+    this.pendingbillers = this.billdata.filter((data)=>data['status']=='Pending with checker');
     if(this.pendingbillers==null){
       this.billerlength=0
       this.noofrole="No bills available"
