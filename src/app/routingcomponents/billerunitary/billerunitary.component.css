@@ -8,7 +8,11 @@
     border-radius: 50%;
     vertical-align: text-bottom;
 } */
-
+sup {
+  top: -0.1em!important;
+  color:red!important;
+  font-size:100%!important;
+}
 .ml-2input {
   margin-left: 10px;
   width: 30%;

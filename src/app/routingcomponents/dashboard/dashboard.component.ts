@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
   fromdate:Date = new Date();
   displayWelcomModal:string='none'
   userdata:any={};
-  username:string="deepali.patekar@axisbank.com"
+  username:string="Authorised Signatory"
   settings = {
     bigBanner: true,
     timePicker: false,
@@ -202,6 +202,7 @@ private getUserDetail(){
     this.userdata=res['Data'];
     console.log(this.userdata)
     this.rolename=this.userdata['dualrole']
+    this.username=this.userdata['firstname']+" "+this.userdata['lastname']
   },error=>{
     console.log(error)
   })

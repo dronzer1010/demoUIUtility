@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {ExcelService} from '../../excelservice/excel.service'
+import {BillerserviceService} from  '../../api/billerservice.service'
 
+import {UserserviceService} from '../../api/userservice.service'
 @Component({
   selector: 'app-billerlist',
   templateUrl: './billerlist.component.html',
@@ -39,32 +41,26 @@ fromdate:Date = new Date();
 public searchText : string;
 downloadArray:any=[];
 approveRejBiller:any=[];
-  constructor(private excelservice : ExcelService) { }
+userdata:any={};
+  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService) { }
 
   ngOnInit() {
-this.rolename=localStorage.getItem('rolename')
-    this.billdata=JSON.parse(localStorage.getItem('billdetails'));
-    if(this.rolename=='maker' || this.rolename=='ccmaker' || this.rolename=='as'){
-      this.approveRejBiller=this.billdata.filter((biller)=>{
-        return (biller.status == "Registered" || biller.status == "Rejected"  || biller.status == "Pending with checker")
-      })
-    }else if(this.rolename=='checker' || this.rolename=='aschecker' || this.rolename=='ccchecker'){
-      this.approveRejBiller=this.billdata.filter((biller)=>{
-        return (biller.status == "Registered" || biller.status == "Rejected")
-      })
-    }
-    console.log(this.billdata)
-    if(this.approveRejBiller==null){
-      this.billerlength=0
-      this.noofrole="No bills available"
-    }else{
-      this.billerlength=this.approveRejBiller.length;
-      if(this.billerlength>1){
-        this.noofrole="No of bills"
-      }else{
-        this.noofrole="No of bill"
-      }
-    }
+    this.getUserDetail();
+    this.loadbills()
+//this.rolename=localStorage.getItem('rolename')
+   // this.billdata=JSON.parse(localStorage.getItem('billdetails'));
+    // if(this.rolename=='maker' || this.rolename=='ccmaker' || this.rolename=='as'){
+    //   this.approveRejBiller=this.billdata.filter((biller)=>{
+    //     return (biller.status == "Registered" || biller.status == "Rejected"  || biller.status == "Pending")
+    //   })
+    // }else if(this.rolename=='checker' || this.rolename=='aschecker' || this.rolename=='ccchecker'){
+    //   this.approveRejBiller=this.billdata.filter((biller)=>{
+    //     return (biller.status == "Registered" || biller.status == "Rejected")
+    //   })
+    // }
+   
+    //console.log(this.billdata)
+   
 
     this.dropdownList = [
       { item_id: 1, item_text: 'Today' },
@@ -158,5 +154,37 @@ this.rolename=localStorage.getItem('rolename')
   this.display=''; //set none css after close dialog
 
  }
+
+ private loadbills(){
+   this.billservice.getAllbillers().then(resp=>{
+    this.billdata=resp
+    if(this.billdata==null){
+      this.billerlength=0
+      this.noofrole="No bills available"
+    }else{
+      this.billerlength=this.billdata.length;
+      if(this.billerlength>1){
+        this.noofrole="No of bills"
+      }else{
+        this.noofrole="No of bill"
+      }
+    }
+   },error=>{
+     console.log(error)
+   })
+ }
+
+ private getUserDetail(){
+  this.userservice.getUserDetails().subscribe(res=>{
+    //console.log(res)
+    this.userdata=res['Data'];
+    console.log(this.userdata)
+    this.rolename=this.userdata['dualrole']
+   // this.username=this.userdata['firstname']+" "+this.userdata['lastname']
+  },error=>{
+    console.log(error)
+  })
+    }
+
 
 }

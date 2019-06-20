@@ -92,7 +92,7 @@
                 [routerLink]="['/main/unitary-biller']"><span>
                   <img id="user" src="assets/img/add-unitary-bills.png" /></span>
                 Add Unitary </a></li>
-            <li *ngIf="rolename=='maker' || rolename=='ccmaker'"  class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/biller-bulk']"><span>
+            <li *ngIf="rolename=='maker' || rolename=='ccmaker'"  class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/biller-bulk']" style="display:none;"><span>
                   <img id="user" src="assets/img/add-bulk.png" /></span>
                 Add Bulk </a></li>
             <li *ngIf="rolename=='aschecker' || rolename=='checker' || rolename=='ccchecker'" class="col-md-12 cust"><a

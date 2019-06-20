@@ -43,7 +43,7 @@ import { BillerBulkComponent } from './routingcomponents/billerbulk/billerbulk.c
 import { AuthGuard } from './gaurd/auth.gaurd';
 import { SetpasswordComponent } from './authentication/setpassword/setpassword.component';
 import { GeneratepasswordComponent } from './authentication/generatepassword/generatepassword.component'
-
+import { BackusrupComponent } from './supportingcomponents/backusrup/backusrup.component';
 const appRoutes: Routes = [ 
     { path:'main',component:UserhomeComponent,
     children:[
@@ -91,6 +91,7 @@ const appRoutes: Routes = [
     {path:'setpassword',component:SetpasswordComponent}, 
     {path:'gen-pwd',component:GeneratepasswordComponent},
     {path:'firstlogin',component:AccountsetupComponent},
+    { path : 'useruploadback', component: BackusrupComponent},
     
     { path: '**', redirectTo: '' }
 ];

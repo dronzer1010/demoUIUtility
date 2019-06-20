@@ -139,7 +139,7 @@
                   <div class="col-xs-12 col-sm-12 col-md-12 padln">
                     <select class="input-text js-input inptxt form-control" required [(ngModel)]="billdata.state" name="state"
                       (change)="getBiller($event.target.value)">
-                      <option *ngFor="let state of states" value="{{state.code}}">{{state.name}}</option>
+                      <option *ngFor="let state of states" value="{{state._id}}">{{state.name}}</option>
                     </select>
                     <label class="label" for="usertitle">Select State</label>
                   </div>
@@ -147,8 +147,8 @@
                   <div class="clear20"></div>
 
                   <div class="col-xs-12 col-sm-12 col-md-12 padln">
-                    <select class="input-text js-input inptxt form-control" (change)="showBillSample()" required [(ngModel)]="billdata.biller" name="biller">
-                      <option *ngFor="let bilr of billerlist" value="{{bilr.name}}">{{bilr.name}}</option>
+                    <select class="input-text js-input inptxt form-control" (change)="showBillSample();getBillerDetails($event.target.value)" required [(ngModel)]="billdata.biller_name" name="biller_name">
+                      <option *ngFor="let bilr of billerlist" value="{{bilr.name}}">{{bilr.name|titlecase}}</option>
                     </select>
                     <label class="label" for="usertitle">Select Biller</label>
                   </div>
@@ -183,191 +183,227 @@
               <h4 class="Top5Heading111 ">Bill Details</h4>
             </div>
             <div class="BorderBottom"></div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 extra_padd detail_bill">
-              <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <div class="lft_div">
-                    <div class="clear20"></div>
-                    <div class="clear20"></div>
-                    <div class="col-xs-7 col-sm-7 col-md-7  padln">
-                      <input type="text" value="" class="input-text js-input inptxt form-control" name="consumerno"
-                        [(ngModel)]="billdata.consumerno" #name="ngModel" autocomplete='off'>
-                      <label class="label" for="usertitle">Consumer No.</label>
-                    </div>
-                    <div class="col-xs-5 col-sm-5 col-md-5" style="margin-top: 27px;">
-                        <div *ngFor="let image of samplebill;let i=index">
-                            <!-- <img [src]="image.thumb" (click)="open(i)" *ngIf="image.id==32"/> -->
-                            <a (click)="open(i)" *ngIf="image.id==32">View Sample Bill</a>
-                         </div>
-                    </div>
-                    <div class="clear20"></div>
-                    <div class="clear20"></div>
-                    <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                      <input type="text" value="" class="input-text js-input inptxt form-control" name="shortname"
-                        [(ngModel)]="billdata.shortname" #name="ngModel" autocomplete='off'>
-                      <label class="label" for="usertitle">Short Name</label>
-                    </div>
-                    <div class="clear20"></div>
-                    <div class="clear20"></div>
-                    <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                      <input type="text" value="" class="input-text js-input inptxt form-control" name="expensecode"
-                        [(ngModel)]="billdata.expensecode" #name="ngModel" autocomplete='off'>
-                      <label class="label" for="usertitle">GL/Expense Code</label>
-                    </div>
-                    <div class="clear20"></div>
-                    <div class="clear20"></div>
-                    <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                      <!-- <input type="date" value="" class="input-text js-input inptxt form-control" name="billdate" [(ngModel)]="billdata.billdate" #name="ngModel"> -->
-                      <input list="billdate" class="input-text js-input inptxt form-control databill" required
-                        [(ngModel)]="billdata.billdate" name="billdate"> &nbsp;&nbsp;of every month
-                      <datalist id="billdate">
-                        <option value="1st">1st</option>
-                        <option value="2nd">2nd</option>
-                        <option value="3rd">3rd</option>
-                        <option value="4th">4th</option>
-                        <option value="5th">5th</option>
-                        <option value="6th">6th</option>
-                        <option value="7th">7th</option>
-                        <option value="8th">8th</option>
-                        <option value="9th">9th</option>
-                        <option value="10th">10th</option>
-                        <option value="11th">11th</option>
-                        <option value="12th">12th</option>
-                        <option value="13th">13th</option>
-                        <option value="14th">14th</option>
-                        <option value="15th">15th</option>
-                        <option value="16th">16th</option>
-                        <option value="17th">17th</option>
-                        <option value="18th">18th</option>
-                        <option value="19th">19th</option>
-                        <option value="20th">20th</option>
-                        <option value="21st">21st</option>
-                        <option value="22nd">22nd</option>
-                        <option value="23rd">23rd</option>
-                        <option value="24th">24th</option>
-                        <option value="25th">25th</option>
-                        <option value="26th">26th</option>
-                        <option value="27th">27th</option>
-                        <option value="28th">28th</option>
-                        <option value="29th">29th</option>
-                        <option value="30th">30th</option>
-                        <option value="31st">31st</option>
-                      </datalist>
-                      <label class="label" for="usertitle">Bill Date</label>
-                    </div>
-                    <div class="clear20"></div>
-                    <div class="clear20"></div>
-                    <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                      <input type="text" value="" class="input-text js-input inptxt form-control" name="email"
-                        [(ngModel)]="billdata.email" #name="ngModel" autocomplete='off'>
-                      <label class="label" for="usertitle">Email</label>
-                    </div>
-                    <div class="clear20"></div>
-                    <div class="clear20"></div>
-                  </div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                  <div class="clear20"></div>
-                  <div class="clear20"></div>
-                  <div class="col-md-3 col-sm-3 top_back no-show2">
-                    <h5 class="blu-color">
-                      <a *ngIf="billdetails" class="backBtnpay_sup" (click)="backbilltype()">
-                        <img style="vertical-align: 3px;" src="assets/img/left-arrow.png">Back</a>
-                    </h5>
-                  </div>
-                  <button class="btn bg-primary nextpay buttonpad" type="button" (click)="cnfsend()">Next</button>
-                  <div class="clear20"></div>
-                  <div class="clear20"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 extra_padd detail_bill">
-              <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <div>
-                    <!-- <div class="clear20"></div>
-                    <div class="clear20"></div> -->
-                    <!-- <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                      <select class="input-text js-input inptxt form-control" name="usertitle" required>
-                        <option value="" selected></option>
-                        <option value="Mr.">Mr.</option>
-                        <option value="Ms.">Ms.</option>
-                      </select>
-                      <label class="label" for="usertitle">Reference No. 2</label>
-                    </div> -->
-                    <div class="clear20"></div>
-                    <div class="clear20"></div>
-                    <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                      <!-- <input type="date" value="" class="input-text js-input inptxt form-control" name="duedate" [(ngModel)]="billdata.duedate" #name="ngModel"> -->
-                      <input list="duedate" class="input-text js-input inptxt form-control databill" required
-                        [(ngModel)]="billdata.duedate" name="duedate"> &nbsp;&nbsp;of every month
-                      <datalist id="duedate">
-                        <option value="1st">1st</option>
-                        <option value="2nd">2nd</option>
-                        <option value="3rd">3rd</option>
-                        <option value="4th">4th</option>
-                        <option value="5th">5th</option>
-                        <option value="6th">6th</option>
-                        <option value="7th">7th</option>
-                        <option value="8th">8th</option>
-                        <option value="9th">9th</option>
-                        <option value="10th">10th</option>
-                        <option value="11th">11th</option>
-                        <option value="12th">12th</option>
-                        <option value="13th">13th</option>
-                        <option value="14th">14th</option>
-                        <option value="15th">15th</option>
-                        <option value="16th">16th</option>
-                        <option value="17th">17th</option>
-                        <option value="18th">18th</option>
-                        <option value="19th">19th</option>
-                        <option value="20th">20th</option>
-                        <option value="21st">21st</option>
-                        <option value="22nd">22nd</option>
-                        <option value="23rd">23rd</option>
-                        <option value="24th">24th</option>
-                        <option value="25th">25th</option>
-                        <option value="26th">26th</option>
-                        <option value="27th">27th</option>
-                        <option value="28th">28th</option>
-                        <option value="29th">29th</option>
-                        <option value="30th">30th</option>
-                        <option value="31st">31st</option>
-                      </datalist>
-                      <label class="label" for="usertitle">Due Date</label>
-                    </div>
-                    <div class="clear20"></div>
-                    <div class="clear20"></div>
-                    <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                      <input type="text" value="" class="input-text js-input inptxt form-control" name="billaddress"
-                        [(ngModel)]="billdata.billaddress" #name="ngModel" autocomplete='off'>
-                      <label class="label" for="usertitle">Address on the bill</label>
-                    </div>
-                    <div class="clear20"></div>
-                    <div class="clear20"></div>
-                    <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                      <input type="phone" value="" class="input-text js-input inptxt form-control" name="contact"
-                        [(ngModel)]="billdata.contact" #name="ngModel" autocomplete='off'>
-                      <label class="label" for="usertitle">Contact Number</label>
-                    </div>
-                    <div class="clear20"></div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 padln">
-                      <label class="label" for="usertitle" style="position:relative;display: block;
-                      text-align: left;margin-bottom: 10px;">Attachment</label>
-                      <div class="upload-btn-wrapper">
-                        <button class="" style="border: 1px solid #fff; background-color: white;"><img src="assets/img/attachments.png"
-                            alt=""></button>
-                            {{filename}}
-                        <input type="file" name="fileUpload" #file  (change)="UploadFile(file)" ng-reflect-name="fileUpload"/>
+            <form action="">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 extra_padd detail_bill">
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <div class="lft_div">
+                        <div class="clear20"></div>
+                        <div class="clear20"></div>
+                        <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                          <input type="text" class="input-text js-input inptxt form-control" [value]="billdata.biller_name"
+                              autocomplete='off' disabled>
+                          <label class="label" for="usertitle">Biller Name <sup>*</sup></label>
+                        </div>
+                        <div class="clear20" *ngIf="showcircles"></div>
+                        <div class="clear20" *ngIf="showcircles"></div>
+                        <div class="col-xs-12 col-sm-12 col-md-12  padln" *ngIf="showcircles">
+                          <!-- <input type="date" value="" class="input-text js-input inptxt form-control" name="duedate" [(ngModel)]="billdata.duedate" #name="ngModel"> -->
+                          <input list="circle" class="input-text js-input inptxt form-control" required
+                            [(ngModel)]="billdata.circle" name="circle">
+                          <datalist id="circle">
+                            <option  *ngFor="let item of circles" 
+                            value={{item}}></option>
+                            
+                          </datalist>
+                          <label class="label" for="usertitle">{{para3}}</label>
+                        </div>
+                        
+                        <div class="clear20"></div>
+                        <div class="clear20"></div>
+                        <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                          <!-- <input type="date" value="" class="input-text js-input inptxt form-control" name="duedate" [(ngModel)]="billdata.duedate" #name="ngModel"> -->
+                          <input list="duedate" class="input-text js-input inptxt form-control databill" required
+                            [(ngModel)]="billdata.due_date" name="due_date"> &nbsp;&nbsp;of every month
+                          <datalist id="duedate">
+                            <option value="1st">1st</option>
+                            <option value="2nd">2nd</option>
+                            <option value="3rd">3rd</option>
+                            <option value="4th">4th</option>
+                            <option value="5th">5th</option>
+                            <option value="6th">6th</option>
+                            <option value="7th">7th</option>
+                            <option value="8th">8th</option>
+                            <option value="9th">9th</option>
+                            <option value="10th">10th</option>
+                            <option value="11th">11th</option>
+                            <option value="12th">12th</option>
+                            <option value="13th">13th</option>
+                            <option value="14th">14th</option>
+                            <option value="15th">15th</option>
+                            <option value="16th">16th</option>
+                            <option value="17th">17th</option>
+                            <option value="18th">18th</option>
+                            <option value="19th">19th</option>
+                            <option value="20th">20th</option>
+                            <option value="21st">21st</option>
+                            <option value="22nd">22nd</option>
+                            <option value="23rd">23rd</option>
+                            <option value="24th">24th</option>
+                            <option value="25th">25th</option>
+                            <option value="26th">26th</option>
+                            <option value="27th">27th</option>
+                            <option value="28th">28th</option>
+                            <option value="29th">29th</option>
+                            <option value="30th">30th</option>
+                            <option value="31st">31st</option>
+                          </datalist>
+                          <label class="label" for="usertitle">Due Date</label>
+                        </div>
+                        <div class="clear20"></div>
+                        <div class="clear20"></div>
+                        <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                          <input type="phone" value="" class="input-text js-input inptxt form-control" name="contact_no"
+                            [(ngModel)]="billdata.contact_no" #name="ngModel" autocomplete='off'>
+                          <label class="label" for="usertitle">Contact Number <sup>*</sup></label>
+                        </div>
+                        <div class="clear20"></div>
+                        <div class="clear20"></div>
+                        <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                          <input type="text" value="" class="input-text js-input inptxt form-control" name="short_name"
+                            [(ngModel)]="billdata.short_name" #name="ngModel" autocomplete='off'>
+                          <label class="label" for="usertitle">Short Name</label>
+                        </div>
+                        <div class="clear20"></div>
+                        <div class="clear20"></div>
+                        <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                          <input type="text" value="" class="input-text js-input inptxt form-control" name="contact_address"
+                            [(ngModel)]="billdata.contact_address" #name="ngModel" autocomplete='off'>
+                          <label class="label" for="usertitle">Address on the bill <sup>*</sup></label>
+                        </div>
+                        <div class="clear20"></div>
+                        <div class="clear20"></div>
                       </div>
                     </div>
-                    <div class="clear20"></div>
-                    <div class="clear20"></div>
+                    <div class="clearfix"></div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                      <div class="clear20"></div>
+                      <div class="clear20"></div>
+                      <div class="col-md-3 col-sm-3 top_back no-show2">
+                        <h5 class="blu-color">
+                          <a *ngIf="billdetails" class="backBtnpay_sup" (click)="backbilltype()">
+                            <img style="vertical-align: 3px;" src="assets/img/left-arrow.png">Back</a>
+                        </h5>
+                      </div>
+                      <button class="btn bg-primary nextpay buttonpad" type="button" (click)="cnfsend();getStateName(billdata.state)" [disabled]="valid">Next</button>
+                      <div class="clear20"></div>
+                      <div class="clear20"></div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+                </form>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 extra_padd detail_bill">
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <div>
+                        <!-- <div class="clear20"></div>
+                        <div class="clear20"></div> -->
+                        <!-- <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                          <select class="input-text js-input inptxt form-control" name="usertitle" required>
+                            <option value="" selected></option>
+                            <option value="Mr.">Mr.</option>
+                            <option value="Ms.">Ms.</option>
+                          </select>
+                          <label class="label" for="usertitle">Reference No. 2</label>
+                        </div> -->
+                        <div class="clear20"></div>
+                        <div class="clear20"></div>
+                        <div class="col-xs-7 col-sm-7 col-md-7  padln">
+                          <input type="text" value="" class="input-text js-input inptxt form-control" name="consumer_no"
+                            [(ngModel)]="billdata.consumer_no" #name="ngModel" autocomplete='off' required>
+                          <label class="label" for="usertitle">{{para1}} <sup>*</sup></label>
+                        </div>
+                        <div class="col-xs-5 col-sm-5 col-md-5" style="margin-top: 27px;">
+                            <div *ngFor="let image of samplebill;let i=index">
+                                <!-- <img [src]="image.thumb" (click)="open(i)" *ngIf="image.id==32"/> -->
+                                <a (click)="open(i)" *ngIf="image.id==32">View Sample Bill</a>
+                             </div>
+                        </div>
+                        <div class="clear20" *ngIf="showbus"></div>
+                        <div class="clear20" *ngIf="showbus"></div>
+                        <div class="col-xs-12 col-sm-12 col-md-12  padln" *ngIf="showbus">
+                          <!-- <input type="date" value="" class="input-text js-input inptxt form-control" name="duedate" [(ngModel)]="billdata.duedate" #name="ngModel"> -->
+                          <input list="bu" class="input-text js-input inptxt form-control" required
+                            [(ngModel)]="billdata.bu" name="bu">
+                          <datalist id="bu">
+                            <option *ngFor="let item of bus" 
+                            value={{item}}></option>
+                            
+                          </datalist>
+                          <label class="label" for="usertitle">{{para2}}</label>
+                        </div>
+                        <div class="clear20"></div>
+                        <div class="clear20"></div>
+                        <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                          <!-- <input type="date" value="" class="input-text js-input inptxt form-control" name="billdate" [(ngModel)]="billdata.billdate" #name="ngModel"> -->
+                          <input list="billdate" class="input-text js-input inptxt form-control databill" required
+                            [(ngModel)]="billdata.bill_date" name="bill_date"> &nbsp;&nbsp;of every month
+                          <datalist id="billdate">
+                            <option value="1st">1st</option>
+                            <option value="2nd">2nd</option>
+                            <option value="3rd">3rd</option>
+                            <option value="4th">4th</option>
+                            <option value="5th">5th</option>
+                            <option value="6th">6th</option>
+                            <option value="7th">7th</option>
+                            <option value="8th">8th</option>
+                            <option value="9th">9th</option>
+                            <option value="10th">10th</option>
+                            <option value="11th">11th</option>
+                            <option value="12th">12th</option>
+                            <option value="13th">13th</option>
+                            <option value="14th">14th</option>
+                            <option value="15th">15th</option>
+                            <option value="16th">16th</option>
+                            <option value="17th">17th</option>
+                            <option value="18th">18th</option>
+                            <option value="19th">19th</option>
+                            <option value="20th">20th</option>
+                            <option value="21st">21st</option>
+                            <option value="22nd">22nd</option>
+                            <option value="23rd">23rd</option>
+                            <option value="24th">24th</option>
+                            <option value="25th">25th</option>
+                            <option value="26th">26th</option>
+                            <option value="27th">27th</option>
+                            <option value="28th">28th</option>
+                            <option value="29th">29th</option>
+                            <option value="30th">30th</option>
+                            <option value="31st">31st</option>
+                          </datalist>
+                          <label class="label" for="usertitle">Bill Date</label>
+                        </div>                    
+                        <div class="clear20"></div>
+                        <div class="clear20"></div>
+                        <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                          <input type="text" value="" class="input-text js-input inptxt form-control" name="email"
+                            [(ngModel)]="billdata.email" #name="ngModel" autocomplete='off'>
+                          <label class="label" for="usertitle">Email <sup>*</sup></label>
+                        </div>
+                        <div class="clear20"></div>
+                        <div class="clear20"></div>
+                        <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                          <input type="text" value="" class="input-text js-input inptxt form-control" name="gl_expense_code"
+                            [(ngModel)]="billdata.gl_expense_code" #name="ngModel" autocomplete='off'>
+                          <label class="label" for="usertitle">GL/Expense Code</label>
+                        </div>
+                        <div class="clear20"></div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 padln">
+                          <label class="label" for="usertitle" style="position:relative;display: block;
+                          text-align: left;margin-bottom: 10px;">Attachment <sup>*</sup></label>
+                          <div class="upload-btn-wrapper">
+                            <button class="" style="border: 1px solid #fff; background-color: white;"><img src="assets/img/attachments.png"
+                                alt=""></button>
+                                {{filename}}
+                            <input type="file" name="fileUpload" #file  (change)="UploadFile(file)" ng-reflect-name="fileUpload"/>
+                          </div>
+                        </div>
+                        <div class="clear20"></div>
+                        <div class="clear20"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
           </div>
           <div class="row setup-content form_bg" id="" *ngIf="conf">
             <h4 class="Top5Heading111">Bill Information</h4>
@@ -392,10 +428,8 @@
                     </div>
                     <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                     <div class="col-xs-6 col-sm-6 col-md-6">
-                      <span *ngIf="billdata.state=='MH'"> Maharashtra</span>
-                      <span *ngIf="billdata.state=='AP'"> Andhra Pradesh</span>
-                      <span *ngIf="billdata.state=='KA'"> Karanataka</span>
-                      <span *ngIf="billdata.state=='RJ'"> Rajasthan</span>
+                      <span> {{statename}}</span>
+                     
                     </div>
                     <div class="clear20"></div>
                     <div class="col-xs-5 col-sm-5 col-md-5">
@@ -404,16 +438,23 @@
                     </div>
                     <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                     <div class="col-xs-6 col-sm-6 col-md-6">
-                      <span> {{billdata.biller}}</span>
+                      <span> {{billdata.biller_name}}</span>
+                    </div>
+                    <div class="clear20" *ngIf="showcircles"></div>
+                    <div class="col-xs-5 col-sm-5 col-md-5" *ngIf="showcircles">
+                      <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">{{para3}}</strong></label>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1" *ngIf="showcircles"><span> : </span></div>
+                    <div class="col-xs-6 col-sm-6 col-md-6" *ngIf="showcircles">
+                      <span> {{billdata.circle}}</span>
                     </div>
                     <div class="clear20"></div>
                     <div class="col-xs-5 col-sm-5 col-md-5">
-                      <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Reference
-                          No.</strong></label>
+                      <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">{{para1}}</strong></label>
                     </div>
                     <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                     <div class="col-xs-6 col-sm-6 col-md-6">
-                      <span> {{billdata.consumerno}}</span>
+                      <span> {{billdata.consumer_no}}</span>
                     </div>
                     <div class="clear20"></div>
                     <div class="col-xs-5 col-sm-5 col-md-5">
@@ -422,7 +463,7 @@
                     </div>
                     <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                     <div class="col-xs-6 col-sm-6 col-md-6">
-                      <span> {{billdata.billdate}}</span> <span class="span1">of every month</span>
+                      <span> {{billdata.bill_date}}</span> <span class="span1">of every month</span>
                     </div>
                     <div class="clear20"></div>
                     <div class="col-xs-5 col-sm-5 col-md-5">
@@ -431,7 +472,7 @@
                     </div>
                     <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                     <div class="col-xs-6 col-sm-6 col-md-6">
-                      <span> {{billdata.billaddress}}</span>
+                      <span> {{billdata.contact_address}}</span>
                     </div>
                     <div class="clear20"></div>
 
@@ -478,7 +519,7 @@
                       </div>
                       <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                       <div class="col-xs-7 col-sm-7 col-md-7">
-                        <span> {{billdata.shortname}}</span>
+                        <span> {{billdata.short_name}}</span>
                       </div>
                       <div class="clear20"></div>
                       <div class="col-xs-4 col-sm-4 col-md-4">
@@ -487,7 +528,7 @@
                       </div>
                       <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                       <div class="col-xs-7 col-sm-7 col-md-7">
-                        <span> {{billdata.expensecode}}</span>
+                        <span> {{billdata.gl_expense_code}}</span>
                       </div>
                       <div class="clear20"></div>
                       <div class="col-xs-4 col-sm-4 col-md-4">
@@ -496,7 +537,15 @@
                       </div>
                       <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                       <div class="col-xs-7 col-sm-7 col-md-7">
-                        <span> {{billdata.duedate}}</span> <span class="span1">of every month</span>
+                        <span> {{billdata.due_date}}</span> <span class="span1">of every month</span>
+                      </div>
+                      <div class="clear20" *ngIf="showbus"></div>
+                      <div class="col-xs-4 col-sm-4 col-md-4" *ngIf="showbus">
+                        <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">{{para2}}</strong></label>
+                      </div>
+                      <div class="col-xs-1 col-sm-1 col-md-1" *ngIf="showbus"><span *ngIf="showbus"> : </span></div>
+                      <div class="col-xs-7 col-sm-7 col-md-7" *ngIf="showbus">
+                        <span> {{billdata.bu}}</span>
                       </div>
                       <div class="clear20"></div>
                       <div class="col-xs-4 col-sm-4 col-md-4">
@@ -505,7 +554,7 @@
                       </div>
                       <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                       <div class="col-xs-7 col-sm-7 col-md-7">
-                        <span> {{billdata.contact}}</span>
+                        <span> {{billdata.contact_no}}</span>
                       </div>
                       <div class="clear20"></div>
                       <div class="col-xs-4 col-sm-4 col-md-4">

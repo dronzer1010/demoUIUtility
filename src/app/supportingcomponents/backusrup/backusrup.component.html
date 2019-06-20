@@ -1,0 +1,198 @@
+
+<div class="container ">
+   <section *ngIf="!step2" class="content">
+      <!--<div class="col-md-2 col-sm-2 top_back no-show2">
+         <h5 class="blu-color"> <a class="backBtn"><img src="assets/img/left-arrow.png"> Back </a></h5></div>-->
+      <div class="col-md-12">
+         <div class="stepwizard ">
+            <div class="stepwizard-row setup-panel">
+               <div class="stepwizard-step">
+                  <a class="btn bg-primary btn-circle " id="first">
+                  <img class="img-responsive tick" src="assets/img/tick.png">
+                  </a>
+                  <h6 class="blu-color mrgnlft" id="p1">Upload Files</h6>
+               </div>
+               <div class="stepwizard-step">
+                  <a class="btn bg-default btn-circle " id="second">
+                  <img class="img-responsive tick2" src="assets/img/tick.png">
+                  </a>
+                  <h6 id="p2">Review Details</h6>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--<div class="col-md-2 col-sm-2 top_back no-show">
+         <h5 class="blu-color"> <a href="#" class="backBtn"><img src="assets/img/left-arrow.png"> Back </a></h5></div>-->
+      <div class="clearfix"></div>
+      <form role="form" class="contact-form ">
+         <div class="col-md-12">
+            <div class="row setup-content form_bg" id="step-1">
+               <div class="col-md-12 padlft">
+                  <a class="btn btn-primary btn-outline ResponsiveBtnWidth pull-right">
+                  <img _ngcontent-c8="" src="assets/img/downloadlist.png"> Download Template</a>
+               </div>
+               <div class="col-md-12 extra_padd">
+                  <div class="col-xs-10 col-xs-offset-1 col-md-offset-3 col-sm-offset-2 col-sm-8 col-md-6 col-lg-offset-4 col-lg-4 text-center">
+                     <div class="uploadimg">
+                        <img src="assets/img/upload.png" class="zin" />
+                     </div>
+                     <div class=" row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 text-center nextpay dnddive" id="file-drag">
+                         <form id="file-upload-form">
+                           <!-- <input id="file-upload" type="file" name="fileUpload" /> -->
+                           <label for="file-upload">
+                             <span class="blu-color dndlabel">
+                               Drag n Drop
+                             </span>
+                             <span class="blu-color chota">
+                               to Upload your File or
+                             </span>
+                             </label>
+                             <div class="clear20"></div>
+                             <label class="btn bg-primary nextBtn">
+                             <span>{{filename}}
+                               <input type="file" [(ngModel)]="fileUpload"  name="fileUpload"  (change)="UploadFile($event)" accept=".csv"/></span>
+                           </label>
+ 
+ 
+                           
+                         </form>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="clear20"></div>
+                   <div class="clear20"></div>
+                   <div class="clear20"></div>
+                 </div>
+               </div>
+               <div class="row setup-content" id="step-2">
+               <div class="clearfix"></div>
+               <!-- <app-reviewbulkusers></app-reviewbulkusers> -->
+               <div class="" id="lstpaymt">
+                   <!-- Content Wrapper. Contains page content -->
+                   <div class="content-wrapper">
+                      <!-- Main content -->
+                     
+                   </div>
+                 </div>
+                 <div class="clear20"></div>
+                 <div class="clear20"></div>
+               </div>
+               <div id="pagi">
+               <!-- <app-pagination></app-pagination> -->
+               </div>
+              
+             </div>
+           </form>
+   </section>
+   <section *ngIf="step2" class="content">
+     <div class="row">
+        <div _ngcontent-c4="" class="clear20"></div>
+     </div>
+     <div class="white-bg">
+        <h4 class="col-md-9 col-sm-6 Top5Heading111 mrgnone">Review Users</h4>
+        <div class="form-group col-md-3 col-sm-6 top-spac text-right right-spac">
+        </div>
+        <div class="clear"></div>
+        <div class="BorderBottom"></div>
+        <div class="col-md-8 col-sm-6  top-spac">
+           <h4 class="col-md-9 col-sm-6 Top5Heading111 mrgnone">No. of Users {{userData.length}}</h4>
+        </div>
+        <div class="form-group col-md-4 col-sm-6 top-spac text-right right-spac">
+           <!-- <label>
+              Show:
+              <select name="example_length" aria-controls="example" class=" input-sm bbor">
+                 <option value="10">10</option>
+                 <option value="25">25</option>
+                 <option value="50">50</option>
+                 <option value="100">100</option>
+              </select>
+           </label> -->
+           &nbsp;&nbsp;&nbsp;
+           <button class="btn bg-primary finalpay approval" (click)="submitUsers();">Submit for Approval</button>
+        </div>
+        <div class="clear"></div>
+        <div class="table-responsive">
+           <table class="table table-hover table-striped">
+              <thead>
+                 <tr class="cust-color">
+                    <td>
+                       <div _ngcontent-c3=""><input type="checkbox"  name="all" (change)="checkAll(isSelected)"></div>
+                    </td>
+                    <td>
+                       <span class="bold-txt">Employee ID</span>
+                    </td>
+                    <td>
+                       <span class="bold-txt">Employee Name</span>
+                    </td>
+                    <td>
+                       <span class="bold-txt">Role</span>
+                    </td>
+                    <td>
+                       <span class="bold-txt">Designation</span>
+                    </td>
+                    <td>
+                       <span class="bold-txt">Department</span>
+                    </td>
+                    <td></td>
+                 </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let users of userData; let i = index" >
+                 <tr >
+                    <td>
+                       <div _ngcontent-c3=""><input type="checkbox" (change)="updateUserList(users , i)"  name="submenu" [checked]="isSelected"></div>
+                    </td>
+                    <td>{{users.empid}}</td>
+                    <td>{{users.firstname}}</td>
+                    <td>{{users.rolename}}</td>
+                    <td>{{users.designation}}</td>
+                    <td>{{users.department}}</td>
+                    <td>
+                       <div class="flash equipment6 showhide" (click)="users.selected=!users.selected">
+                          <span class="showhide" >+</span>
+                       </div>
+                    </td>
+                 </tr>
+                 <tr class="rowShow grayStrip" *ngIf="users.selected">
+                    <td colspan="7" class="custmtd">
+                       <div class="col-xs-6 col-md-6 col-sm-6 tablediv1">
+                          <h5>Employee Details</h5>
+                          <div>
+                             <div class="span_width">Employee ID:</div>
+                             <div class="bold_span">{{users.empid}}</div>
+                          </div>
+                          <div>
+                             <div class="span_width">Group: </div>
+                             <div class="bold_span">{{users.grpname}}</div>
+                          </div>
+                          <div>
+                             <div class="span_width">Date of birth</div>
+                             <div class="bold_span">{{users.dob}}</div>
+                          </div>
+                       </div>
+                       <div class="col-xs-6 col-md-6 col-sm-6 tablediv2">
+                          <h5>Contact Details</h5>
+                          <div>
+                             <div class="span_width">Contact Number:</div>
+                             <div class="bold_span">{{users.mobileno}}</div>
+                          </div>
+                          <div>
+                             <div class="span_width">Landline No: </div>
+                             <div class="bold_span">{{users.landlineno}}</div>
+                          </div>
+                          <div>
+                             <div class="span_width">Email Id:</div>
+                             <div class="bold_span">{{users.email}}</div>
+                          </div>
+                       </div>
+                    </td>
+                 </tr>
+               </ng-container>
+              </tbody>
+           </table>
+        </div>
+     </div>
+  </section>
+ </div>
+ 

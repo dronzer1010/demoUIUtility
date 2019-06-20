@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Lightbox } from 'ngx-lightbox';
-
+import { BillerserviceService } from '../../api/billerservice.service'
 @Component({
   selector: 'app-billerunitary',
   templateUrl: './billerunitary.component.html',
@@ -20,7 +20,17 @@ export class BillerUnitaryComponent implements OnInit {
   filename:string;
   samplebill:any=[];
   showsamplebill:boolean=false;
-  constructor(private httpService: HttpClient,private _lightbox: Lightbox) { }
+  parameters:any=[];
+  bus:any=[];
+  circles:any=[];
+  para1:any;
+  para2:any;
+  para3:any;
+  showcircles:boolean=false;
+  showbus:boolean=false;
+  statename:string;
+  
+  constructor(private httpService: HttpClient,private _lightbox: Lightbox,private billerservice: BillerserviceService) { }
 
   ngOnInit() {
     // this.httpService.get('./assets/states.json').subscribe(
@@ -43,155 +53,15 @@ this.getallStates()
     this._lightbox.close();
   }
 
-  private getallStates(){
-    this.states=
-    [
-    {
-    "code": "AN",
-    "name": "Andaman and Nicobar Islands"
-    },
-    {
-    "code": "AP",
-    "name": "Andhra Pradesh"
-    },
-    {
-    "code": "AR",
-    "name": "Arunachal Pradesh"
-    },
-    {
-    "code": "AS",
-    "name": "Assam"
-    },
-    {
-    "code": "BR",
-    "name": "Bihar"
-    },
-    {
-    "code": "CG",
-    "name": "Chandigarh"
-    },
-    {
-    "code": "CH",
-    "name": "Chhattisgarh"
-    },
-    {
-    "code": "DH",
-    "name": "Dadra and Nagar Haveli"
-    },
-    {
-    "code": "DD",
-    "name": "Daman and Diu"
-    },
-    {
-    "code": "DL",
-    "name": "Delhi"
-    },
-    {
-    "code": "GA",
-    "name": "Goa"
-    },
-    {
-    "code": "GJ",
-    "name": "Gujarat"
-    },
-    {
-    "code": "HR",
-    "name": "Haryana"
-    },
-    {
-    "code": "HP",
-    "name": "Himachal Pradesh"
-    },
-    {
-    "code": "JK",
-    "name": "Jammu and Kashmir"
-    },
-    {
-    "code": "JH",
-    "name": "Jharkhand"
-    },
-    {
-    "code": "KA",
-    "name": "Karnataka"
-    },
-    {
-    "code": "KL",
-    "name": "Kerala"
-    },
-    {
-    "code": "LD",
-    "name": "Lakshadweep"
-    },
-    {
-    "code": "MP",
-    "name": "Madhya Pradesh"
-    },
-    {
-    "code": "MH",
-    "name": "Maharashtra"
-    },
-    {
-    "code": "MN",
-    "name": "Manipur"
-    },
-    {
-    "code": "ML",
-    "name": "Meghalaya"
-    },
-    {
-    "code": "MZ",
-    "name": "Mizoram"
-    },
-    {
-    "code": "NL",
-    "name": "Nagaland"
-    },
-    {
-    "code": "OR",
-    "name": "Odisha"
-    },
-    {
-    "code": "PY",
-    "name": "Puducherry"
-    },
-    {
-    "code": "PB",
-    "name": "Punjab"
-    },
-    {
-    "code": "RJ",
-    "name": "Rajasthan"
-    },
-    {
-    "code": "SK",
-    "name": "Sikkim"
-    },
-    {
-    "code": "TN",
-    "name": "Tamil Nadu"
-    },
-    {
-    "code": "TS",
-    "name": "Telangana"
-    },
-    {
-    "code": "TR",
-    "name": "Tripura"
-    },
-    {
-    "code": "UP",
-    "name": "Uttar Pradesh"
-    },
-    {
-    "code": "UK",
-    "name": "Uttarakhand"
-    },
-    {
-    "code": "WB",
-    "name": "West Bengal"
-    }
-    ]
-  }
+
+private getallStates(){
+    this.billerservice.getAllStates().then(resp=>{
+        console.log(resp)
+        this.states=resp;
+    },error=>{
+        console.log(error)
+    })
+}
 
   showBillSample(){
 
@@ -493,6 +363,14 @@ this.getallStates()
           "thumb":"assets/samplebills/thumbs/Image (41)_tn.jpg",
           "caption":"West Bengal State Electricity Distribution Company Limited (WBSEDCL)",
           "state":"West Bengal"
+      },
+      
+      {
+          "id":42,
+          "src":"assets/samplebills/Image (42).jpg",
+          "thumb":"assets/samplebills/thumbs/Image (42)_tn.jpg",
+          "caption":"Dakshin Haryana Bijli Vitran Nigam (DHBVN)",
+          "state":"Haryana"
       }
   ]
   this.showsamplebill=true;
@@ -507,154 +385,81 @@ this.getallStates()
   }
 
   getBiller(stateid){
+  this.billerlist=[];
+   this.billerservice.getbillersbystate(stateid).then(resp=>{
+       console.log(resp)
+       this.billerlist=resp;
+   },error=>{
+       console.log(error)
+   })
   
-    // this.httpService.get('./assets/billers.json').subscribe(
-    //   data=>{
-    //     this.billers=data;
-    //     for(var i=0;i<this.billers.length;i++){
-    //       if(this.billers[i]['code']==stateid){
-    //         this.billerlist=[];
-    //         this.billerlist=this.billers[i]['billers']
-    //       }
-    //     }
-    //     console.log(this.billerlist)
-       
-    //   }
-    // )
-
-    this.billers=[
-      {
-          "code": "MH",
-          "billers":[
-              {
-                  "id":1,
-                  "name":"BEST"
-              },
-              {
-                  "id":2,
-                  "name":"MSEDCL"
-              },
-             
-              {
-                  "id":3,
-                  "name":"Tata Power - Mumbai"
-              },
-              {
-                  "id":4,
-                  "name":"Adani Electricity"
-              },
-              {
-                  "id":5,
-                  "name":"SNDL Nagpur"
-              },
-              {
-                  "id":6,
-                  "name":"Torrent Power Ltd."
-              }
-          ]
-      },
-      {
-          "code": "AP",
-          "billers":[
-              {
-                  "id":7,
-                  "name":"APEPDCL"
-              },
-              {
-                  "id":8,
-                  "name":"APSPDCL"
-              }
-          ]
-      },
-      {
-          "code": "KA",
-          "billers":[
-              {
-                  "id":9,
-                  "name":"BESCOM"
-              },
-              {
-                  "id":10,
-                  "name":"CESO Ltd Mysore"
-              },
-              {
-                  "id":11,
-                  "name":"GESCOM"
-              },
-              {
-                  "id":12,
-                  "name":"HESCOM"
-              },
-              {
-                  "id":13,
-                  "name":"MESCOM"
-              }
-          ]
-      },
-      {
-          "code": "RJ",
-          "billers":[
-              {
-                  "id":14,
-                  "name":"AVVNL Ajmer"
-              },
-              {
-                  "id":15,
-                  "name":"Bharatpur electricity services limited-Bharatpur"
-              },
-              {
-                  "id":16,
-                  "name":"Bikaner electricity supply limited-Bikaner"
-              },
-              {
-                  "id":17,
-                  "name":"JVVNL Jaipur"
-              },
-              {
-                  "id":18,
-                  "name":"JDVVNL Jodhpur"
-              },
-              {
-                  "id":19,
-                  "name":"Kota electricity distribution limited(kedl)"
-              },
-              {
-                  "id":20,
-                  "name":"TP ajmer distribution limited (tpadl)"
-              }
-          ]
-      },
-      {
-          "code": "DL",
-          "billers":[
-              {
-                  "id":21,
-                  "name":"BSES Rajdhani-Delhi"
-              },
-              {
-                  "id":22,
-                  "name":"BSES Yamuna-Delhi"
-              }
-          ]
-      },
-      {
-          "code": "GJ",
-          "billers":[
-              {
-                  "id":23,
-                  "name":"Torrent Power Ltd.-Ahmedabad"
-              }
-          ] 
-      }
-  
-  ]
-  for(var i=0;i<this.billers.length;i++){
-    if(this.billers[i]['code']==stateid){
-      this.billerlist=[];
-      this.billerlist=this.billers[i]['billers']
-    }
   }
-  console.log(this.billerlist)
+
+  getBillerDetails(billername){
+      this.para1="";
+      this.para2="";
+      this.para3="";
+      this.showbus=false;
+      this.showcircles=false;
+this.billerservice.getbillerdetails(billername).then(resp=>{
+    console.log(resp)
+    this.parameters=resp['data'];
+    
+    if(this.parameters['bus'].length>0){
+        this.bus=this.parameters.bus;
+       this.showbus=true;
+        
+        console.log(this.bus)
+    }else{
+        this.bus=[];
+        this.showbus=false;
+        console.log(this.bus)
+    }
+    if(this.parameters['circles'].length>0){
+        this.circles=this.parameters.circles
+        this.showcircles=true;
+        console.log(this.circles)
+    }else{
+        this.circles=[];
+        this.showcircles=false;
+        console.log(this.circles)
+    }
+    if(this.parameters['parameter'].length>0){
+        this.para1=this.parameters['parameter']
+        console.log(this.para1)
+    }else{
+        
+        console.log(this.para1)
+    }
+    if(this.parameters['display_name_bu']!=null){
+        this.showbus=true;
+        this.para2=this.parameters['display_name_bu']
+        
+    }else{
+        this.showbus=false;
+    }
+    if(this.parameters['display_name_circle']!=null){
+        this.showcircles=true;
+        this.para3=this.parameters['display_name_circle']
+    }else{
+        this.showcircles=false;
+    }
+},error=>{
+    console.log(error)
+})
+  }
+
+  getStateName(id:any){
+      console.log(id)
+      console.log(this.states)
+for(var i=0;i<=this.states.length;i++){
+    if(this.states[i]['_id']==id){
+        this.statename=this.states[i]['name']
+        break;
+    }else{
+        this.statename="Statename"
+    }
+}
   }
 
   billrdetails(){
@@ -690,28 +495,39 @@ this.getallStates()
     this.success=false;
   }
 
+//   submitbilldata(){
+//     console.log(this.billdata)
+//     this.billdata.status = "Pending with checker";
+//     this.billdata.initiatedby = "Mr. Mukund javir"
+//     this.billdata.approvedby="--"
+//     this.billdata.approvedon="--"
+//     var d =new Date();
+//     this.billdata.initiatedon = d.toLocaleString();
+//     this.billdata.uploadfilename = "Unitary"
+//     var billerData =[];
+//     billerData=JSON.parse(localStorage.getItem('billdetails'));
+//     if(billerData){
+//       this.billdata.id = billerData.length+1;
+//       billerData.push(this.billdata);
+//     }else{
+//       billerData=[]
+//       this.billdata.id=1;
+//       billerData.push(this.billdata);
+
+//     }
+//     localStorage.setItem('billdetails', JSON.stringify(billerData));
+//     console.log(JSON.parse(localStorage.getItem('billdetails')))
+//   }
+
   submitbilldata(){
     console.log(this.billdata)
-    this.billdata.status = "Pending with checker";
-    this.billdata.initiatedby = "Mr. Mukund javir"
-    this.billdata.approvedby="--"
-    this.billdata.approvedon="--"
-    var d =new Date();
-    this.billdata.initiatedon = d.toLocaleString();
-    this.billdata.uploadfilename = "Unitary"
-    var billerData =[];
-    billerData=JSON.parse(localStorage.getItem('billdetails'));
-    if(billerData){
-      this.billdata.id = billerData.length+1;
-      billerData.push(this.billdata);
-    }else{
-      billerData=[]
-      this.billdata.id=1;
-      billerData.push(this.billdata);
-
-    }
-    localStorage.setItem('billdetails', JSON.stringify(billerData));
-    console.log(JSON.parse(localStorage.getItem('billdetails')))
+this.billerservice.registerbills(this.billdata).then(resp=>{
+    console.log(resp)
+},error=>{
+    console.log(error)
+})
   }
+
+
 
 }

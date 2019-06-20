@@ -13,7 +13,7 @@ export class AuthinterceptorService implements HttpInterceptor {
     var url=req.url; 
     var auth = this.injector.get(AuthService)
    // console.log(url.indexOf("login"));
-    if(url.indexOf("login")==-1){
+    if(url.indexOf("login")==-1 || url.indexOf("authcode")==-1){
         
         var authRequest = req.clone({
             

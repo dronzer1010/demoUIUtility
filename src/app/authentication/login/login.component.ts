@@ -108,6 +108,10 @@ this.auth.getAllOrg().then(data=>{
     this.auth.requestPassword(this.email,this.orgid);
   }
 
+  selectOption(id: number){
+this.orgid=id;
+  }
+
   
 
 }

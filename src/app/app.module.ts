@@ -89,6 +89,7 @@ import{GroupserviceService} from './api/groupservice.service'
 import{RuleserviceService} from './api/ruleservice.service'
 import { AuthinterceptorService} from './api/authinterceptor.service'
 import { SetupserviceService} from './api/setupservice.service'
+import { AccoutsetupService} from './api/accoutsetup.service'
 import { LightboxModule } from 'ngx-lightbox';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -101,6 +102,9 @@ import { FrenchDecimalPipe } from './pipes/currency.filter.pipe';
 import { SetpasswordComponent } from './authentication/setpassword/setpassword.component';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { GeneratepasswordComponent } from './authentication/generatepassword/generatepassword.component'
+import { BackusrupComponent } from './supportingcomponents/backusrup/backusrup.component';
+import { DatePipeFormat} from './directives/formatdate.pipe';
+import {BillerserviceService} from './api/billerservice.service'
 
 @NgModule({
   declarations: [
@@ -160,7 +164,9 @@ import { GeneratepasswordComponent } from './authentication/generatepassword/gen
     BillerBulkComponent,
     FrenchDecimalPipe,
     SetpasswordComponent,
-    GeneratepasswordComponent
+    GeneratepasswordComponent,
+    BackusrupComponent,
+    DatePipeFormat
   ],
 
   imports: [
@@ -209,7 +215,7 @@ import { GeneratepasswordComponent } from './authentication/generatepassword/gen
 
   ],
  
-  providers: [LoaderService,ExcelService,DatePipe,AuthService,UserserviceService,CardserviceService,GroupserviceService,RuleserviceService,SetupserviceService,{
+  providers: [LoaderService,ExcelService,DatePipe,AuthService,UserserviceService,CardserviceService,GroupserviceService,RuleserviceService,SetupserviceService,AccoutsetupService,BillerserviceService,{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthinterceptorService,
     multi: true

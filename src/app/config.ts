@@ -1,10 +1,12 @@
 export class Config{
     baseUrl:string
     utilityapiUrl:string;
+    backurl:string;
     constructor(){
 
-        this.baseUrl = "https://turpe.serveo.net/api/"
-        this.utilityapiUrl = "http://35.154.109.72:9999/";
+        this.baseUrl = "http://utility-aquapay.ap-south-1.elasticbeanstalk.com/api/"
+        this.utilityapiUrl = "http://0bab404c.ngrok.io/";
+        this.backurl="http://33c1f409.ngrok.io"
     }
 
     getBaseURL(){
@@ -12,5 +14,8 @@ export class Config{
     }
     getutilityBaseUrl(){
         return this.utilityapiUrl;
+    }
+    getBackURL(){
+        return this.backurl
     }
 }
