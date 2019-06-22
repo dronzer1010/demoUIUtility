@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import{LoaderService} from '../../api/loader.service';
 import {RuleserviceService} from '../../api/ruleservice.service'
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-otp-rule',
   templateUrl: './otp-rule.component.html',
@@ -20,7 +21,7 @@ export class OtpRuleComponent implements OnInit {
   public txt3: any;
   public txt4: any;
   public txt5: any;
-  constructor(private route: ActivatedRoute, private router: Router,private loader:LoaderService,private ruleservice: RuleserviceService) { }
+  constructor(private _location: Location,private route: ActivatedRoute, private router: Router,private loader:LoaderService,private ruleservice: RuleserviceService) { }
 
   ngOnInit() {
     this.loader.display(true);
@@ -35,6 +36,10 @@ export class OtpRuleComponent implements OnInit {
     });
     // this.router.navigate(['/main/successmsg'],{queryParams:{msg:'ruleapprsuccess'}});
     // this.loader.display(false);
+  }
+
+  backClicked() {
+    this._location.back();
   }
 
   gotoValidateOTP(): void {

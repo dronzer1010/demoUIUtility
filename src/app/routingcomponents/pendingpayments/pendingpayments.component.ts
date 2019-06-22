@@ -3,7 +3,11 @@ import { Router , ActivatedRoute } from '@angular/router';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import {ExcelService} from '../../excelservice/excel.service'
-
+import {BillerserviceService} from  '../../api/billerservice.service'
+import{LoaderService} from '../../api/loader.service'
+import {UserserviceService} from '../../api/userservice.service'
+import {PaymentserviceService} from '../../api/paymentservice.service'
+import { ToastrService } from 'ngx-toastr'
 @Component({
   selector: 'app-pendingpayments',
   templateUrl: './pendingpayments.component.html',
@@ -30,7 +34,7 @@ export class PendingPaymentsComponent implements OnInit {
   public checkedValueArray: any = [];
   selectall:boolean=false;
   public temp: any;
-  public cntChk: any;
+  public cntChk: any=0;
   public flag: any;
   select=false;
   dropdownList = [];
@@ -53,9 +57,14 @@ export class PendingPaymentsComponent implements OnInit {
   todate:Date = new Date();
   fromdate:Date = new Date();
   downloadArray:any=[];
-  constructor(private router:Router , private aRouter : ActivatedRoute,private excelservice : ExcelService) { }
+  approverDetails:any=[];
+selectedIndex = -1;
+userdata:any={};
+rolename:any;
+  constructor(private router:Router , private aRouter : ActivatedRoute,private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,private toastr: ToastrService) { }
 
   ngOnInit() {
+    this.getUserDetail();
     this.loadPayments()
 
     this.aRouter.queryParams
@@ -148,28 +157,26 @@ onItemSelectDown(items:any){
   }else if(items['item_id']==1){
     for(let data of this.paymentData){
       var obj={
-        Biller:data['biller'],
+        Biller:data['biller_name'],
         Amount:data['amount'],
-        Consumer_No:data['consumerno'],
-        Consumer_Name:"Axis Bank ltd.",
-        Status:data['status'],
-        Payment_Status:data['paymentstatus'],
-        Short_Name:data['shortname'],
-        GL_Expense_Code:data['expensecode'],
-        Bill_Date:data['billdate'],
-        Due_Date:data['duedate'],
+        Consumer_No:data['consumer_no'],
+        Consumer_Name:data['consumer_name'],
+        Status:data['transaction_status'],
+        Payment_Status:data['payment_status'],
+        Short_Name:data['short_name'],
+        GL_Expense_Code:data['gl_expense_code'],
+        Bill_Date:data['bill_date'],
+        Due_Date:data['due_date'],
         State:data['state'],
-        Bill_Number:String(data['billnumber']),
-        Card_Number:data['digits'],
-        Order_Id:123122,
-        Contact:data['contact'],
-        Bill_Address:data['billaddress'],
+        Bill_Number:String(data['bill_number']),
+        Card_Number:data['card_last_digits'],
+        Order_Id:data['order_id'],
+        Contact:data['contact_no'],
+        Bill_Address:data['contact_address'],
         Email:data['email'],
-        CRN:123254,
-        Initiated_by:data['initiatedby'],
-        Initiated_On:data['initiatedon'],
-        Approved_By:data['approvedby'],
-        Approved_On:data['approvedon']
+        CRN:data['transaction_ref_no'],
+        Initiated_by:data['initiated_by'],
+        Initiated_On:data['initiated_date']
 
       }
       this.downloadArray.push(obj)
@@ -211,18 +218,44 @@ viewBtn(){
 }
 
 
-
-
+checkall(pendingbillerpage):void{
+  console.log(this.checkedValueArray.length)
+if(this.checkedValueArray.length==this.paymentData.length){
+  this.selectall=false;
+  this.select=false;
+  this.checkedValueArray=[];
+  this.amountpay=0
+}else if(this.checkedValueArray.length>0 && this.checkedValueArray<this.paymentData){
+  this.selectall=true;
+  this.temp = true;
+  this.amountpay=this.totalamount
+ this.checkedValueArray=[];
+ this.select=true;
+    for (var i = 0; i < pendingbillerpage.length; i++) {
+      this.checkedValueArray[i] = pendingbillerpage[i].id;
+    }
+  
+}else if(this.checkedValueArray.length==0){
+  this.selectall=true;
+  this.temp = true;
+  this.amountpay=this.totalamount
+  this.select=true;
+  for (var i = 0; i < pendingbillerpage.length; i++) {
+    this.checkedValueArray[i] = pendingbillerpage[i].id;
+  }
+}
+console.log(this.checkedValueArray)
+}
 
 changeAll(pendingbillerpage): void {
-    
-  if(this.checkedValueArray.length==this.payments.length){
+    console.log(this.cntChk)
+    console.log(pendingbillerpage);
+  if(this.checkedValueArray.length==this.paymentData.length){
   this.cntChk=1
-  this.amountpay=0
   }else{
   this.checkedValueArray = [];
+  this.amountpay=0
   this.cntChk=0
-  this.amountpay=this.totalamount;
   }
   console.log(this.selectall)
   if (this.cntChk == 0) {
@@ -230,6 +263,7 @@ changeAll(pendingbillerpage): void {
     this.temp = true;
     this.selectall=true;
     this.select=true;
+    this.amountpay=this.totalamount;
     for (var i = 0; i < pendingbillerpage.length; i++) {
       this.checkedValueArray[i] = pendingbillerpage[i].id;
     }
@@ -243,7 +277,6 @@ changeAll(pendingbillerpage): void {
     this.select=false;
   }
   console.log(this.checkedValueArray)
-  
 }
 
 change(id): void {
@@ -258,10 +291,19 @@ change(id): void {
     this.checkedValueArray.push(id);
    
   }
+  for(var i=0;i<this.paymentData.length;i++){
+    if(this.paymentData[i]['id'] == id){
+      if(this.flag==0){
+        this.amountpay+=parseInt(this.paymentData[i]['amount'])
+      }else{
+        this.amountpay-=parseInt(this.paymentData[i]['amount'])
+      }
+    }
+  }
 
   if (this.checkedValueArray.length > 0) {
     this.temp = true;
-    if(this.checkedValueArray.length<this.payments.length){
+    if(this.checkedValueArray.length<this.paymentData.length){
       this.selectall=false
     }else{
       this.selectall=true;
@@ -272,7 +314,7 @@ change(id): void {
   }
   else {
     this.temp = false;
-    if(this.checkedValueArray.length<this.payments.length){
+    if(this.checkedValueArray.length<this.paymentData.length){
       this.selectall=false
     }else{
       this.selectall=true;
@@ -284,39 +326,57 @@ change(id): void {
 }
 
 private loadPayments(){
-  this.payments=JSON.parse(localStorage.getItem('payments'));
-  this.pendingPayments = this.payments.filter((payment)=>{
-    return (payment.status == "Pending")
+  this.loaderService.display(true)
+  this.paymentservice.getPendingPayments().then(resp=>{
+    console.log(resp)
+    this.paymentData=resp['data'];
+    this.loaderService.display(false)
+    for(var total of this.paymentData){
+      this.totalamount+=parseFloat(total['amount'])
+    }
+  },error=>{
+    this.loaderService.display(false)
+    console.log(error)
   })
 
-  for(let data of this.pendingPayments){
-    var obj={
-      biller:data['bill']['biller'],
-      amount:data['amount'],
-      consumerno:data['bill']['consumerno'],
-      consumername:data['bill']['consumername'],
-      status:data['status'],
-      paymentstatus:data['paymentstatus'],
-      shortname:data['bill']['shortname'],
-      expensecode:data['bill']['expensecode'],
-      billdate:data['billdate'],
-      duedate:data['duedate'],
-      state:data['bill']['state'],
-      billnumber:String(data['billnumber']),
-      digits:data['card']['digits'],
-      contact:data['bill']['contact'],
-      billaddress:data['bill']['billaddress'],
-      email:data['bill']['email'],
-      initiatedby:data['bill']['initiatedby'],
-      initiatedon:data['bill']['initiatedon'],
-      approvedby:data['approvedby'],
-      approvedon:data['approvedon']
+ 
 
+console.log(this.totalamount)
+}
+
+getpaylogs(id,index){
+  this.selectedIndex = index;
+  this.paymentservice.paylogs(id).then(resp=>{
+    console.log(resp)
+    this.approverDetails=resp
+  },error=>{
+    console.log(error)
+  })
+
+}
+
+private getUserDetail(){
+  this.userservice.getUserDetails().subscribe(res=>{
+    //console.log(res)
+    this.userdata=res['Data'];
+    console.log(this.userdata)
+    this.rolename=this.userdata['dualrole']
+   // this.username=this.userdata['firstname']+" "+this.userdata['lastname']
+  },error=>{
+    console.log(error)
+  })
     }
-    this.paymentData.push(obj)
-}
-for(var total of this.paymentData){
-  this.totalamount+=parseFloat(total['amount'])
-}
-}
+
+    gotoOTP(): void {
+      if (this.temp == true) {
+    
+        this.router.navigate(['/main/otp-approve-payment', JSON.stringify(this.checkedValueArray)]);
+      } else {
+        this.toastr.warning("Please select atleast one Payment!","Alert",{
+          timeOut:3000,
+          positionClass:'toast-top-center'
+          })
+      }
+    
+    }
 }

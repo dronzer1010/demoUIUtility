@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { HttpClient ,HttpEventType} from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr'
+import{LoaderService} from '../../api/loader.service'
+import { Router,ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-billerbulk',
   templateUrl: './billerbulk.component.html',
@@ -38,6 +41,9 @@ export class BillerBulkComponent implements OnInit {billertype:boolean=true;
   filename3:string;
   filename4:string;
   filename5:string;
+  public progress: number;
+  public message: string;
+  public downloadFileName:string;
   bulkbill:any=[
     {
       "billaddress":"333/34 Dynna Business Park Marol Andheri Mumbai",
@@ -121,8 +127,8 @@ export class BillerBulkComponent implements OnInit {billertype:boolean=true;
     }
   ]
 
-  
-  constructor(private httpService: HttpClient) { }
+  @Output() public onUploadFinished = new EventEmitter();
+  constructor(private httpService: HttpClient,private toastr: ToastrService,private loaderService: LoaderService,private route:Router,private router:ActivatedRoute) { }
 
   ngOnInit() {
     this.httpService.get('./assets/states.json').subscribe(
@@ -215,7 +221,7 @@ export class BillerBulkComponent implements OnInit {billertype:boolean=true;
     this.conf=false;    
   } 
 
-  UploadFile(fileLoadedEvent): void {
+  UploadFile(files): void {
     // const csvSeparator = ';';
     // const textFromFileLoaded = fileLoadedEvent.target.result;
     // this.csvContent = textFromFileLoaded;
@@ -231,11 +237,46 @@ export class BillerBulkComponent implements OnInit {billertype:boolean=true;
     // this.parsedCsv = csv;
     // console.log(this.parsedCsv);
 
-    this.reviewfile=true;
-    this.billdetails=false;    
-    this.conf=false;
-    this.success=false;
-    this.billertype=false; 
+    // this.reviewfile=true;
+    // this.billdetails=false;    
+    // this.conf=false;
+    // this.success=false;
+    // this.billertype=false; 
+    this.loaderService.display(true);
+console.log("File Upload Started")
+    if (files.length === 0) {
+        return;
+      }
+   
+      let fileToUpload = <File>files[0];
+      const formData = new FormData();
+      formData.append('file', fileToUpload, fileToUpload.name);
+      var version = localStorage.getItem('version')
+      this.httpService.post('https://billtree.aquapay.in:3002/api/v1/bill_upload', formData, {reportProgress: true, observe: 'events'})
+        .subscribe(event => {
+          if (event.type === HttpEventType.UploadProgress)
+            this.progress = Math.round(100 * event.loaded / event.total);
+          else if (event.type === HttpEventType.Response) {
+            this.message = 'Upload success.';
+            this.onUploadFinished.emit(event.body);
+            if(event.body['name'])
+              this.downloadFileName = event.body['name'];
+            console.log(event.body);
+          }
+          this.route.navigate(['/main/dashboard']);
+          this.loaderService.display(false);
+
+         
+        },error=>{
+            this.toastr.error("Failed to upload !","Alert",{
+                timeOut:8000,
+                positionClass:'toast-top-center'
+                })
+        });
+        this.toastr.success("Bills file has been sent for processing, it will reflect on bill view after processing, !","Alert",{
+            timeOut:8000,
+            positionClass:'toast-top-center'
+            })
    }
 
    submitdata(){

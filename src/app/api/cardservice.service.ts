@@ -25,6 +25,10 @@ getAll() {
   return this.http.get<any>(path+'maker/cards');
 }
 
+getCardById(id:number){
+  return this.http.get<any>(path+`/maker/card?id=${id}`);
+}
+
 getAllCardsData(firstdate,lastdate){
   return this.http.get<any>(path+'/maker/cardcompare?firstDate='+firstdate+'&lastDate='+ lastdate);
 }

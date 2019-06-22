@@ -3,7 +3,9 @@ import {Router , ActivatedRoute} from '@angular/router';
 //import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {ExcelService} from '../../excelservice/excel.service'
-
+import {BillerserviceService} from  '../../api/billerservice.service'
+import{LoaderService} from '../../api/loader.service'
+import { ToastrService } from 'ngx-toastr'
 @Component({
   selector: 'app-pendingbiller',
   templateUrl: './pendingbiller.component.html',
@@ -52,24 +54,26 @@ fromdate:Date = new Date();
   }
   public searchText : string;
   downloadArray:any=[];
-  constructor(private router : Router , private aRouter : ActivatedRoute,private excelservice : ExcelService) { }
+  checkbills:any;
+  constructor(private router : Router , private aRouter : ActivatedRoute,private excelservice : ExcelService,private billservice:BillerserviceService,private loaderService: LoaderService,private toastr: ToastrService) { }
 
   
   ngOnInit() {
-    this.aRouter.queryParams
-    .filter(params => params.otp)
-    .subscribe(params => {
-      console.log(params);
-      if(params.otp && params.otp == 'success'){
-        this.pendingList=false;
-        this.approve=true;
-        this.reject=false;
-      }
-    });
-    this.billdata=JSON.parse(localStorage.getItem('billdetails'));
-    console.log(this.billdata)
+    this.loadPendingbills()
+    // this.aRouter.queryParams
+    // .filter(params => params.otp)
+    // .subscribe(params => {
+    //   console.log(params);
+    //   if(params.otp && params.otp == 'success'){
+    //     this.pendingList=false;
+    //     this.approve=true;
+    //     this.reject=false;
+    //   }
+    // });
+    //this.billdata=JSON.parse(localStorage.getItem('billdetails'));
+    //console.log(this.billdata)
 
-    this.pendingbillers = this.billdata.filter((data)=>data['status']=='Pending with checker');
+    //this.pendingbillers = this.billdata.filter((data)=>data['status']=='Pending with checker');
     if(this.pendingbillers==null){
       this.billerlength=0
       this.noofrole="No bills available"
@@ -198,21 +202,20 @@ fromdate:Date = new Date();
     }else if(items['item_id']==1){
       for(let data of this.pendingbillers){
         var obj={
-          Biller:data['biller'],
-          Consumer_No:data['consumerno'],
+          Biller:data['biller_name'],
+          Consumer_No:data['consumer_no'],
           Status:data['status'],
-          Short_Name:data['shortname'],
-          GL_Expense_Code:data['expensecode'],
-          Bill_Date:data['billdate'],
-          Due_Date:data['duedate'],
+          Short_Name:data['short_name'],
+          GL_Expense_Code:data['gl_expense_code'],
+          Bill_Date:data['bill_date'],
+          Due_Date:data['due_date'],
           State:data['state'],
-          Contact:data['contact'],
-          Bill_Address:data['billaddress'],
+          Contact:data['contact_no'],
+          Bill_Address:data['contact_address'],
           Email:data['email'],
-          Initiated_by:data['initiatedby'],
-          Initiated_On:data['initiatedon'],
-          Approved_By:data['approvedby'],
-          Approved_On:data['approvedon']
+          Initiated_by:data['created_by'],
+          Initiated_On:data['created_on'],
+         
   
         }
         this.downloadArray.push(obj)
@@ -270,6 +273,43 @@ rejectBtn(){
   this.pendingList=false;
   this.approve=false;
   this.reject=true;
+}
+
+private loadPendingbills(){
+  this.loaderService.display(true)
+this.billservice.getPendingbillers().then(resp=>{
+  console.log(resp)
+  this.pendingbillers=resp;
+  if(this.pendingbillers==null){
+    this.billerlength=0
+    this.noofrole="No bills available"
+    this.loaderService.display(false)
+  }else{
+    this.billerlength=this.pendingbillers.length;
+    if(this.billerlength>1){
+      this.noofrole="No of Bills:"
+    }else{
+      this.noofrole="No of Bill:"
+    }
+  }
+  this.loaderService.display(false)
+},error=>{
+  console.log(error)
+  this.loaderService.display(false)
+})
+}
+
+gotoOTP(): void {
+  if (this.temp == true) {
+
+    this.router.navigate(['/main/otp-approve-biller', JSON.stringify(this.checkedValueArray)]);
+  } else {
+    this.toastr.warning("Please select atleast one bill!","Alert",{
+      timeOut:3000,
+      positionClass:'toast-top-center'
+      })
+  }
+
 }
   
 

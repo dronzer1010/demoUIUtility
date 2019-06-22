@@ -172,7 +172,7 @@
                   <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right"><button class="btn1" style="margin-right:10px;"
-                  (click)="approveBtn()">Approve
+                  (click)="gotoOTP()">Approve
                   Bill</button>
                 <button class="btn2 ml-2" (click)="closeModalDialog2()">Reject Bill</button></div>
             </div>
@@ -216,15 +216,15 @@
                     </tr>
                   </thead>
                   <tbody>
-                      <ng-container  *ngFor="let bill of mf.data|penbillerFilter :{biller: searchText,board:searchText,consumerno:searchText,uploadfilename:searchText,status:searchText,paymentstatus:searchText,shortname:searchText,expensecode:searchText,billdate:searchText,duedate:searchText,state:searchText,digits:searchText,contact:searchText,email:searchText,billaddress:searchText,initiatedby:searchText,initiatedon:searchText}; let i=index;">
+                      <ng-container  *ngFor="let bill of mf.data|penbillerFilter :{biller_name: searchText,utility:searchText,consumer_no:searchText,uploadfilename:searchText,status:searchText,short_name:searchText,gl_expense_code:searchText,bill_date:searchText,due_date:searchText,state:searchText,contact_no:searchText,email:searchText,contact_address:searchText,created_by:searchText,created_on:searchText}; let i=index;">
                     <tr>
                       <td><input type="checkbox" name="submenu" [checked]="select" (change)="change(bill.id) "></td>
                       <td>{{i+1}}</td>
-                      <td>{{bill.board}}</td>
-                      <td>{{bill.biller}}</td>
-                      <td>{{bill.billdate}}</td>
-                      <td>{{bill.duedate}}</td>
-                      <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': bill.status === 'Registered', 'Rejected': bill.status  === 'Rejected', 'Pending': bill.status  === 'Pending with checker'}" role="button">{{bill.status}}</a></td>
+                      <td>{{bill.utility}}</td>
+                      <td>{{bill.biller_name}}</td>
+                      <td>{{bill.bill_date}}</td>
+                      <td>{{bill.due_date}}</td>
+                      <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': bill.status === 'Registered', 'Rejected': bill.status  === 'Rejected', 'Pending': bill.status  === 'Pending'}" role="button">{{bill.status}}</a></td>
                       <td style="padding: 1%;width: 5%;"><img src="assets/img/tb_downarrow.png" (click)="bill.collapsed=!bill.collapsed;"></td>
                     </tr>
                     <tr class="rowShow grayStrip" *ngIf="bill.collapsed">
@@ -233,11 +233,11 @@
                           <h5>Biller Details</h5>
                           <div class="mb-1">
                             <div class="span_width">Short Name</div>  <span> : </span> &nbsp;
-                            <div class="bold_span">{{bill.shortname}}</div>
+                            <div class="bold_span">{{bill.short_name}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">GL/Expense Code</div>  <span> : </span> &nbsp;
-                            <div class="bold_span">{{bill.expensecode}}</div>
+                            <div class="bold_span">{{bill.gl_expense_code}}</div>
                           </div>
                           <!-- <div class="mb-1">
                             <div class="span_width">Meter Reading</div>  <span> : </span> &nbsp;
@@ -245,16 +245,20 @@
                           </div> -->
                           <div class="mb-1">
                             <div class="span_width">Location</div> <span> : </span> &nbsp;
-                            <div class="bold_span" *ngIf="bill.state=='MH'" >Maharashtra</div>
-                            <div class="bold_span" *ngIf="bill.state=='RJ'" >Rajasthan</div>
-                            <div class="bold_span" *ngIf="bill.state=='KA'" >Karnataka</div>
-                            <div class="bold_span" *ngIf="bill.state=='AP'" >Andhra Pradesh</div>
-                            <div class="bold_span" *ngIf="bill.state=='GJ'" >Gujarat</div>
-                            <div class="bold_span" *ngIf="bill.state=='DL'" >Delhi</div>
+                            <div class="bold_span"  >{{bill.state}}</div>
+                          
                           </div>
                           <div>
-                            <div class="span_width">Consumer No.</div>  <span> : </span> &nbsp;
-                            <div class="bold_span">{{bill.consumerno}}</div>
+                            <div class="span_width">{{bill.parameter_1}}</div>  <span> : </span> &nbsp;
+                            <div class="bold_span">{{bill.consumer_no}}</div>
+                          </div>
+                          <div class="mb-1" *ngIf="bill.display_name_bu!=null">
+                            <div class="span_width">{{bill.display_name_bu}}</div> <span> : </span> &nbsp;
+                            <div class="bold_span" tooltip="{{bill.bu}}" placement="top" show-delay="500">{{bill.bu}}</div>
+                          </div>
+                          <div class="mb-1" *ngIf="bill.display_name_circle!=null">
+                            <div class="span_width">{{bill.display_name_circle}}</div> <span> : </span> &nbsp;
+                            <div class="bold_span">{{bill.circle}}</div>
                           </div>
                           <!-- <div>
                             <div class="span_width">Ref. No. 2</div>  <span> : </span> &nbsp;
@@ -265,39 +269,40 @@
                           <h5>Contact Details</h5>
                           <div class="mb-1">
                             <div class="span_width">Mobile No</div>  <span> : </span> &nbsp;
-                            <div class="bold_span">{{bill.contact}}</div>
+                            <div class="bold_span">{{bill.contact_no}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Address</div>  <span> : </span> &nbsp;
-                            <span class="bold_span" tooltip="{{bill.billaddress}}" placement="top" show-delay="500">{{bill.billaddress}}</span>
+                            <span class="bold_span" tooltip="{{bill.contact_address}}" placement="top" show-delay="500">{{bill.contact_address}}</span>
                           </div>
                           <div>
                             <div class="span_width">Email</div>  <span> : </span> &nbsp;
-                            <span class="bold_span" tooltip="{{bill.billaddress}}" placement="top" show-delay="500">{{bill.email}}</span>
+                            <span class="bold_span" tooltip="{{bill.email}}" placement="top" show-delay="500">{{bill.email}}</span>
                           </div>
                         </div>
                         <div class="tablediv noborder table3">
                           <h5>Other Details</h5>
                           <div class="mb-1">
                             <div class="span_width">File Name</div>  <span> : </span> &nbsp;
-                            <div class="bold_span">{{bill.uploadfilename}}</div>
+                            <div class="bold_span">Unitary</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Initiated by</div>  <span> : </span> &nbsp;
-                            <div class="bold_span">{{bill.initiatedby}}</div>
+                            <div class="bold_span">{{bill.created_by}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Initiated on</div>  <span> : </span> &nbsp;
-                            <div class="bold_span">{{bill.initiatedon | date:'dd-MM-yyyy hh:mm a'}}</div>
+                            <div class="bold_span">{{bill.created_at | formatDate}}</div>
                           </div>
-                          <div class="mb-1">
+                          <!-- <div class="mb-1">
                             <div class="span_width">Approved by</div>  <span> : </span> &nbsp;
                             <div class="bold_span">{{bill.approvedby}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Approved on</div>  <span> : </span> &nbsp;
-                            <div class="bold_span">{{bill.approvedon | date:'dd-MM-yyyy hh:mm a'}}</div>
-                          </div>
+                            <div class="bold_span" *ngIf="bill.approvedon=='--'">{{bill.approvedon}}</div>
+                            <div class="bold_span" *ngIf="bill.approvedon!='--'">{{bill.approvedon | formatDate}}</div>
+                          </div> -->
                         </div>
                       </td>
                     </tr>

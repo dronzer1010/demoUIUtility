@@ -105,6 +105,7 @@ import { GeneratepasswordComponent } from './authentication/generatepassword/gen
 import { BackusrupComponent } from './supportingcomponents/backusrup/backusrup.component';
 import { DatePipeFormat} from './directives/formatdate.pipe';
 import {BillerserviceService} from './api/billerservice.service'
+import {PaymentserviceService} from './api/paymentservice.service'
 
 @NgModule({
   declarations: [
@@ -215,7 +216,7 @@ import {BillerserviceService} from './api/billerservice.service'
 
   ],
  
-  providers: [LoaderService,ExcelService,DatePipe,AuthService,UserserviceService,CardserviceService,GroupserviceService,RuleserviceService,SetupserviceService,AccoutsetupService,BillerserviceService,{
+  providers: [LoaderService,ExcelService,DatePipe,AuthService,UserserviceService,CardserviceService,GroupserviceService,RuleserviceService,SetupserviceService,AccoutsetupService,BillerserviceService,PaymentserviceService,{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthinterceptorService,
     multi: true

@@ -5,8 +5,9 @@ export class Config{
     constructor(){
 
         this.baseUrl = "http://utility-aquapay.ap-south-1.elasticbeanstalk.com/api/"
-        this.utilityapiUrl = "http://0bab404c.ngrok.io/";
-        this.backurl="http://33c1f409.ngrok.io"
+      //  this.utilityapiUrl = "https://billtree.aquapay.in:3002/";
+       this.utilityapiUrl=" http://ec849fd6.ngrok.io/"
+        this.backurl="http://utility-aquapay.ap-south-1.elasticbeanstalk.com"
     }
 
     getBaseURL(){

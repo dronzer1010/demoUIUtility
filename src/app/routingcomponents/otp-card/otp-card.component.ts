@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import{LoaderService} from '../../api/loader.service';
 import { CardserviceService } from '../../api/cardservice.service';
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-otp-card',
   templateUrl: './otp-card.component.html',
@@ -20,7 +21,7 @@ export class OtpCardComponent implements OnInit {
   public txt3: any;
   public txt4: any;
   public txt5: any;
-  constructor(private route: ActivatedRoute, private router: Router,private loader:LoaderService,private cardservice: CardserviceService) { }
+  constructor(private _location: Location,private route: ActivatedRoute, private router: Router,private loader:LoaderService,private cardservice: CardserviceService) { }
 
   ngOnInit() {
     this.loader.display(true);
@@ -35,6 +36,11 @@ export class OtpCardComponent implements OnInit {
     });
   //this.router.navigate(['/main/userview']);
    // this.loader.display(false);
+  }
+
+  
+  backClicked() {
+    this._location.back();
   }
 
   gotoValidateOTP(): void {

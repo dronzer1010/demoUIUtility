@@ -1,36 +1,91 @@
 import { Component, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
-import{Router} from '@angular/router';
+import{Router,ActivatedRoute} from '@angular/router';
+import {BillerserviceService} from  '../../api/billerservice.service'
+import{LoaderService} from '../../api/loader.service'
+import { ToastrService } from 'ngx-toastr'
 @Component({
   selector: 'app-otpapprove-biller',
   templateUrl: './otpapprovebiller.component.html',
   styleUrls: ['./otpapprovebiller.component.css']
 })
 export class OtpapproveBillerComponent implements OnInit {
-  constructor(private _location: Location , private router : Router) { }
+  validateOPT: any = [];
+  private approveBills: any;
+  //public id: string;
+  public ids: any = [];
+  public txt1: any;
+  public txt2: any;
+  public txt3: any;
+  public txt4: any;
+  public txt5: any;
+  constructor(private _location: Location , private router : Router,private billservice:BillerserviceService,private loaderService: LoaderService,private toastr: ToastrService,private route:ActivatedRoute) { }
 
   ngOnInit() {
+    this.otprepsonse();
   }
 
   backClicked() {
     this._location.back();
   }
 
-  verifyOtp(){
-    var bills = JSON.parse(localStorage.getItem('billdetails'));
-    var pendingBills = JSON.parse(localStorage.getItem('selectedBillers'));
 
-    for(var i=0;i<pendingBills.length;i++){
-      for(var j=0;j<bills.length;j++){
-        if(pendingBills[i]==bills[j].id){
-          bills[j].status ="Registered";
-          bills[j].approvedby="Ms. Deepali Patekar"
-          var d =new Date();
-          bills[j].approvedon=d.toLocaleString();
-        }
-      }
+
+  verifyOtp(){
+    this.loaderService.display(true)
+    if (!!this.txt1 && this.txt2 && this.txt3 && this.txt4 && this.txt5) {
+      var checkOtp = this.txt1 + this.txt2 + this.txt3 + this.txt4 + this.txt5;
+      console.log("OTP" + checkOtp);
+      
     }
-     localStorage.setItem('billdetails', JSON.stringify(bills));
-    this.router.navigate(['main/billerlist'], { queryParams: { otp: 'success' } })
+    else {
+      this.loaderService.display(false)
+      this.toastr.warning("Enter Otp first!!","Alert",{
+        timeOut:3000,
+        positionClass:'toast-top-center'
+        })
+    }
+
+    if (checkOtp.length == 5) {
+      var checkOtp = this.txt1 + this.txt2 + this.txt3 + this.txt4 + this.txt5;
+      this.billservice.validateOTP(checkOtp).then(resp => {
+        this.approveBills = resp;
+        if (!!this.approveBills.msg && this.approveBills.msg == "Bill successfully approved") {
+          this.loaderService.display(false)
+          this.router.navigate(['/main/successmsg'],{queryParams:{msg:'billapprsuccess'}});
+        }
+        else {
+          this.loaderService.display(false)
+          this.toastr.warning("Enter Correct Otp!!","Alert",{
+            timeOut:3000,
+            positionClass:'toast-top-center'
+            })
+        }
+      });
+
+    }
+    else {
+      this.loaderService.display(false)
+      this.toastr.warning("Enter Proper Otp!!","Alert",{
+        timeOut:3000,
+        positionClass:'toast-top-center'
+        })
+    }
+  }
+
+  private otprepsonse(){
+    this.loaderService.display(true);
+    this.ids = JSON.parse(this.route.snapshot.paramMap.get('ids'));
+    this.billservice.sendOtp(this.ids).then(resp => {
+      this.validateOPT = resp.data;
+      // if(resp['venotpvalue']==0){
+      //   this.loaderService.display(false);
+      //   this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+      // }
+      this.loaderService.display(false);
+    },error=>{
+      console.log(error)
+      this.loaderService.display(false);
+    });
   }
 }

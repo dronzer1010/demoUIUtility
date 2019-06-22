@@ -233,13 +233,13 @@
           <div class="row" *ngIf="showUploadFile">
               <div class="clear20"></div>
               <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-                <input _ngcontent-c5="" accept=".csv" class="btn bg-primary nextpay buttonpad ng-untouched ng-pristine ng-valid" name="fileUpload" type="file" ng-reflect-name="fileUpload" (change)="UploadFile($event);twoparams()">
+                <input _ngcontent-c5="" class="btn bg-primary nextpay buttonpad ng-untouched ng-pristine ng-valid" name="fileUpload" type="file" ng-reflect-name="fileUpload" (change)="UploadFile($event.target.files)">
               </div>
               <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-                <input _ngcontent-c5="" accept=".csv" class="btn bg-primary nextpay buttonpad ng-untouched ng-pristine ng-valid" name="fileUpload" type="file" ng-reflect-name="fileUpload" (change)="UploadFile($event);threeparams();">
+                <input _ngcontent-c5="" class="btn bg-primary nextpay buttonpad ng-untouched ng-pristine ng-valid" name="fileUpload" type="file" ng-reflect-name="fileUpload" (change)="UploadFile(file.files);">
               </div>
               <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-                <input _ngcontent-c5="" accept=".csv" class="btn bg-primary nextpay buttonpad ng-untouched ng-pristine ng-valid" name="fileUpload" type="file" ng-reflect-name="fileUpload" (change)="UploadFile($event);fourparams()">
+                <input _ngcontent-c5=""  class="btn bg-primary nextpay buttonpad ng-untouched ng-pristine ng-valid" name="fileUpload" type="file" ng-reflect-name="fileUpload" (change)="UploadFile(file.files)">
               </div>
             </div>
         </div>

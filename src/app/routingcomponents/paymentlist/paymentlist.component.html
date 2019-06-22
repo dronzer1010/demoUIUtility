@@ -208,61 +208,65 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <ng-container *ngFor="let payment of mf.data|orderBy: key : reverse|payamentFilter: {biller: searchText,amount:searchText,consumerno:searchText,consumername:searchText,status:searchText,paymentstatus:searchText,shortname:searchText,expensecode:searchText,billdate:searchText,duedate:searchText,billnumber:searchText,state:searchText,digits:searchText,contact:searchText,email:searchText,billaddress:searchText,initiatedby:searchText,initiatedon:searchText,approvedby:searchText,approvedon:searchText}; let i=index;">
+                    <ng-container *ngFor="let payment of mf.data|orderBy: key : reverse|payamentFilter: {biller_name: searchText,amount:searchText,consumer_no:searchText,consumer_name:searchText,transaction_status:searchText,payment_status:searchText,short_name:searchText,gl_expense_code:searchText,consumer_no:searchText,bill_date:searchText,due_date:searchText,order_id:searchText,bill_number:searchText,state:searchText,card_last_digits:searchText,contact_no:searchText,email:searchText,contact_address:searchText,initiated_by:searchText,initiated_at:searchText,transaction_ref_no:searchText}; let i=index;">
                     <tr>
                       <td>{{i+1}}</td>
-                      <td>{{payment.biller}}</td>
+                      <td>{{payment.biller_name}}</td>
                       <td><i class="fa fa-rupee"></i>{{payment.amount | numberfr}}</td>
-                      <td>{{payment.consumerno}}</td>
-                      <td>Axis bank ltd.</td>
-                      <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.status}}</a></td>
-                      <td class="text-center">{{payment.paymentstatus}}</td>
-                      <td style="padding:0 5px;"><img src="assets/img/tb_downarrow.png" alt="" (click)="payment.collapsed=!payment.collapsed"></td>
+                      <td>{{payment.consumer_no}}</td>
+                      <td>{{payment.consumer_name}}</td>
+                      <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.transaction_status === 'Approved', 'Rejected': payment.transaction_status  === 'Rejected', 'Pending': payment.transaction_status  === 'Pending'}" role="button">{{payment.transaction_status}}</a></td>
+                      <td class="text-center" [ngClass]="{'appoved': payment.payment_status === 'Approved','appoved': payment.payment_status === 'Card Debited','appoved': payment.payment_status === 'In Process','appoved': payment.payment_status === 'Payment Success', 'Rejected': payment.payment_status  === 'Payment Failed', 'Pending': payment.payment_status  === 'Pending'}">{{payment.payment_status}}</td>
+                      <td style="padding:0 5px;"><img src="assets/img/tb_downarrow.png" alt="" (click)="payment.collapsed=!payment.collapsed;getapproverdetails(payment.id,i)"></td>
                     </tr>
-                    <tr class="rowShow grayStrip" *ngIf="payment.collapsed">
+                    <tr class="rowShow grayStrip" *ngIf="payment.collapsed && selectedIndex==i">
                       <td class="custmtd" colspan="8">
                         <div class="tablediv">
                           <h5>Biller Details</h5>
                           <div class="mb-1">
                             <div class="span_width">Short Name</div> <span> : </span> &nbsp;
-                            <div class="bold_span">{{payment.shortname}}</div>
+                            <div class="bold_span">{{payment.short_name}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">GL/Expense Code</div> <span> : </span> &nbsp;
-                            <div class="bold_span">{{payment.expensecode}}</div>
+                            <div class="bold_span">{{payment.gl_expense_code}}</div>
                           </div>
                           <div class="mb-1">
-                              <div class="span_width">Consumer No</div> <span> : </span> &nbsp;
-                              <div class="bold_span">{{payment.consumerno}}</div>
+                              <div class="span_width">{{payment.parameter_1}}</div> <span> : </span> &nbsp;
+                              <div class="bold_span">{{payment.consumer_no}}</div>
                             </div>
                           <div class="mb-1">
                             <div class="span_width">Bill Date</div> <span> : </span> &nbsp;
-                            <div class="bold_span">{{payment.billdate}}</div>
+                            <div class="bold_span">{{payment.bill_date}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Due Date</div> <span> : </span> &nbsp;
-                            <div class="bold_span">{{payment.duedate}}</div>
+                            <div class="bold_span">{{payment.due_date}}</div>
                           </div>
-                          <div class="mb-1" *ngIf="payment.paymentstatus=='Card Debited'">
+                          <div class="mb-1" *ngIf="payment.payment_status=='Payment Success'">
                             <div class="span_width">Order Id</div> <span> : </span> &nbsp;
-                            <div class="bold_span">234234354</div>
+                            <div class="bold_span">{{paymnet.order_id}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Location</div> <span> : </span> &nbsp;
-                            <div class="bold_span" *ngIf="payment.state=='MH'" >Maharashtra</div>
-                            <div class="bold_span" *ngIf="payment.state=='RJ'" >Rajasthan</div>
-                            <div class="bold_span" *ngIf="payment.state=='KA'" >Karnataka</div>
-                            <div class="bold_span" *ngIf="payment.state=='AP'" >Andhra Pradesh</div>
-                            <div class="bold_span" *ngIf="payment.state=='GJ'" >Gujarat</div>
-                            <div class="bold_span" *ngIf="payment.state=='DL'" >Delhi</div>
+                            <div class="bold_span">{{payment.state}}</div>
+                           
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Bill No</div> <span> : </span> &nbsp;
-                            <div class="bold_span">{{payment.billnumber}}</div>
+                            <div class="bold_span">{{payment.bill_number}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Card No</div> <span> : </span> &nbsp;
-                            <div class="bold_span">{{payment.digits}}</div>
+                            <div class="bold_span">{{payment.card_last_digits}}</div>
+                          </div>
+                          <div class="mb-1" *ngIf="payment.display_name_bu!=null">
+                            <div class="span_width">{{payment.display_name_bu}}</div> <span> : </span> &nbsp;
+                            <div class="bold_span">{{payment.bu}}</div>
+                          </div>
+                          <div class="mb-1" *ngIf="payment.display_name_circle!=null">
+                            <div class="span_width">{{payment.display_name_circle}}</div> <span> : </span> &nbsp;
+                            <div class="bold_span">{{payment.circle}}</div>
                           </div>
       
                         </div>
@@ -270,22 +274,22 @@
                           <h5>Contact Details</h5>
                           <div class="mb-1">
                             <div class="span_width">Mobile No</div> <span> : </span> &nbsp;
-                            <div class="bold_span">{{payment.contact}}</div>
+                            <div class="bold_span">{{payment.contact_no}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Address</div> <span> : </span> &nbsp;
-                            <span class="bold_span" tooltip="{{payment.billaddress}}" placement="top" show-delay="500">{{payment.billaddress}}</span>
+                            <span class="bold_span" tooltip="{{payment.contact_address}}" placement="top" show-delay="500">{{payment.contact_address}}</span>
                           </div>
                           <div>
                             <div class="span_width">Email</div> <span> : </span> &nbsp;
-                            <span class="bold_span" tooltip="{{payment.billaddress}}" placement="top" show-delay="500">{{payment.email}}</span>
+                            <span class="bold_span" tooltip="{{payment.email}}" placement="top" show-delay="500">{{payment.email}}</span>
                           </div>
                         </div>
                         <div class="tablediv noborder table3">
                           <h5>Other Details</h5>
                           <div class="mb-1">
                             <div class="span_width">CRN</div> <span> : </span> &nbsp;
-                            <div class="bold_span">23234243</div>
+                            <div class="bold_span">{{payment.transaction_ref_no}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">File Name</div> <span> : </span> &nbsp;
@@ -293,26 +297,29 @@
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Initiated by</div> <span> : </span> &nbsp;
-                            <div class="bold_span">{{payment.initiatedby}}</div>
+                            <div class="bold_span">{{payment.initiated_by}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Initiated on</div> <span> : </span> &nbsp;
-                            <div class="bold_span">{{payment.initiatedon | date:'dd-MM-yyyy hh:mm a'}}</div>
+                            <div class="bold_span" tooltip="{{payment.created_on | formatDate}}" placement="top"
+                            show-delay="500">{{payment.initiated_date | date:'dd-MM-yyyy hh:mm a'}}</div>
                           </div>
+                          <ng-container *ngFor="let approver of approverdetails">
                           <div class="mb-1">
                               <div class="span_width">Approved by </div>  <span> : </span> &nbsp;
-                              <div class="bold_span">{{payment.approvedby}}</div>
+                              <div class="bold_span">{{approver.approved_by}}</div>
                             </div>
                             <div class="mb-1">
                               <div class="span_width">Approved on  </div>  <span> : </span> &nbsp;
-                              <div class="bold_span">{{payment.approvedon | date:'dd-MM-yyyy hh:mm a'}}</div>
+                              <div class="bold_span">{{approver.approved_on | date:'dd-MM-yyyy hh:mm a'}}</div>
                             </div>
+                          </ng-container>
                         </div>
                       </td>
                     </tr>
-                    <tr class="rowShow grayStrip" *ngIf="payment.collapsed">
+                    <tr class="rowShow grayStrip" *ngIf="payment.collapsed && selectedIndex==i">
                       <td colspan="8">
-                          <span class="text-left" *ngIf="payment.status=='Rejected'"><label style="color: #64289d;">Comment : &nbsp;</label>Invalid Bill Amount</span>
+                          <span class="text-left" *ngIf="payment.transaction_status=='Rejected'"><label style="color: #64289d;">Comment : &nbsp;</label>{{payment.rejection_reason}}</span>
                         <span class="pull-right" *ngIf="rolename=='checker' || rolename=='aschecker' || rolename=='ccchecker'">
                         <a (click)="closeModalDialog2()"><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -323,7 +330,7 @@
                         <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="javascript:void(0)"><img src="assets/img/edit.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="javascript:void(0)"><img src="assets/img/delete.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a (click)="closeModalDialog1()"><img src="assets/img/page.png"></a>
+                        <a (click)="getextradetails(payment.late_pay_charges,promt_pay_incentives,remarks,meter_reading)"><img src="assets/img/page.png"></a>
                       </span>
                       </td>
                     </tr>
@@ -348,22 +355,23 @@
                                     <tr>
                                       <td>Late Payment Charges</td>
                                       <td>:</td>
-                                      <td><i class="fa fa-rupee"></i>{{111146.37 | numberfr}}</td>
+                                      <td><i class="fa fa-rupee"></i>{{latecharges | numberfr}}</td>
                                     </tr>
                                     <tr>
                                       <td>Meter Reading</td>
                                       <td>:</td>
-                                      <td>3565 Unit(s)</td>
+                                      <td>{{meterreading}}</td>
+                                      
                                     </tr>
                                     <tr>
                                       <td>Promt Payment Incentives</td>
                                       <td>:</td>
-                                      <td><i class="fa fa-rupee"></i>{{0 | numberfr}}</td>
+                                      <td><i class="fa fa-rupee"></i>{{incentives | numberfr}}</td>
                                     </tr>
                                     <tr>
                                       <td>Remarks</td>
                                       <td>:</td>
-                                      <td>Incentives Applicable</td>
+                                      <td>{{remarks}}</td>
                                     </tr>
                                   </tbody>
                                 </table>
@@ -403,36 +411,36 @@
                                     <tbody>
                                       <tr>
                                         <td>Card Debited</td>
-                                        <td *ngIf="payment.status=='Approved'">28-03-2019</td>
-                                        <td *ngIf="payment.status=='Approved'">05:30 PM</td>
-                                        <td *ngIf="payment.status=='Pending' || payment.status=='Rejected'">--</td>
-                                        <td *ngIf="payment.status=='Pending' || payment.status=='Rejected'">--</td>
+                                        <td *ngIf="payment.transaction_status=='Approved'">28-03-2019</td>
+                                        <td *ngIf="payment.transaction_status=='Approved'">05:30 PM</td>
+                                        <td *ngIf="payment.transaction_status=='Pending' || payment.transaction_status=='Rejected'">--</td>
+                                        <td *ngIf="payment.transaction_status=='Pending' || payment.transaction_status=='Rejected'">--</td>
                                       </tr>
                                       <tr>
                                         <td>Payment Success</td>
-                                        <td *ngIf="payment.status=='Approved'">28-03-2019</td>
-                                        <td *ngIf="payment.status=='Approved'">05:30 PM</td>
-                                        <td *ngIf="payment.status=='Pending' || payment.status=='Rejected'">--</td>
-                                        <td *ngIf="payment.status=='Pending' || payment.status=='Rejected'">--</td>
+                                        <td *ngIf="payment.transaction_status=='Approved'">28-03-2019</td>
+                                        <td *ngIf="payment.transaction_status=='Approved'">05:30 PM</td>
+                                        <td *ngIf="payment.transaction_status=='Pending' || payment.transaction_status=='Rejected'">--</td>
+                                        <td *ngIf="payment.transaction_status=='Pending' || payment.transaction_status=='Rejected'">--</td>
                                       </tr>
                                       <tr>
                                         <td>Payment Failed</td>
-                                        <td *ngIf="payment.status=='Approved'">28-03-2019</td>
-                                        <td *ngIf="payment.status=='Approved'">05:30 PM</td>
-                                        <td *ngIf="payment.status=='Pending' || payment.status=='Rejected'">--</td>
-                                        <td *ngIf="payment.status=='Pending' || payment.status=='Rejected'">--</td>
+                                        <td *ngIf="payment.transaction_status=='Approved'">28-03-2019</td>
+                                        <td *ngIf="payment.transaction_status=='Approved'">05:30 PM</td>
+                                        <td *ngIf="payment.transaction_status=='Pending' || payment.transaction_status=='Rejected'">--</td>
+                                        <td *ngIf="payment.transaction_status=='Pending' || payment.transaction_status=='Rejected'">--</td>
                                       </tr>
                                       <tr>
                                         <td>Card Refunded</td>
-                                        <td *ngIf="payment.status=='Approved'">28-03-2019</td>
-                                        <td *ngIf="payment.status=='Approved'">05:30 PM</td>
-                                        <td *ngIf="payment.status=='Pending' || payment.status=='Rejected'">--</td>
-                                        <td *ngIf="payment.status=='Pending' || payment.status=='Rejected'">--</td>
+                                        <td *ngIf="payment.status=='transaction_status'">28-03-2019</td>
+                                        <td *ngIf="payment.status=='transaction_status'">05:30 PM</td>
+                                        <td *ngIf="payment.status=='transaction_status' || payment.transaction_status=='Rejected'">--</td>
+                                        <td *ngIf="payment.transaction_status=='transaction_status' || payment.transaction_status=='Rejected'">--</td>
                                       </tr>
                                       <tr>
                                         <td>Refund Reason</td>
-                                        <td *ngIf="payment.status=='Approved'" colspan="2">Invalid Account Details</td>
-                                        <td *ngIf="payment.status=='Pending' || payment.status=='Rejected'" colspan="2">--</td>
+                                        <td *ngIf="payment.status=='transaction_status'" colspan="2">Invalid Account Details</td>
+                                        <td *ngIf="payment.status=='transaction_status' || payment.transaction_status=='Rejected'" colspan="2">--</td>
                                       </tr>
                                     </tbody>
                                   </table>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {ExcelService} from '../../excelservice/excel.service'
 import {BillerserviceService} from  '../../api/billerservice.service'
-
+import{LoaderService} from '../../api/loader.service'
 import {UserserviceService} from '../../api/userservice.service'
 @Component({
   selector: 'app-billerlist',
@@ -42,7 +42,9 @@ public searchText : string;
 downloadArray:any=[];
 approveRejBiller:any=[];
 userdata:any={};
-  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService) { }
+approverdetails:any=[];
+selectedIndex = -1;
+  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService) { }
 
   ngOnInit() {
     this.getUserDetail();
@@ -119,21 +121,22 @@ userdata:any={};
     }else if(items['item_id']==1){
       for(let data of this.approveRejBiller){
         var obj={
-          Biller:data['biller'],
-          Consumer_No:data['consumerno'],
+          Biller:data['biller_name'],
+          Consumer_No:data['consumer_no'],
           Status:data['status'],
-          Short_Name:data['shortname'],
-          GL_Expense_Code:data['expensecode'],
-          Bill_Date:data['billdate'],
-          Due_Date:data['duedate'],
+          Short_Name:data['short_name'],
+          GL_Expense_Code:data['gl_expense_code'],
+          Bill_Date:data['bill_date'],
+          Due_Date:data['due_date'],
           State:data['state'],
-          Contact:data['contact'],
-          Bill_Address:data['billaddress'],
+          Reference_no_1:data['bu'],
+          Reference_no_2:data['circle'],
+          Contact:data['contact_no'],
+          Bill_Address:data['contact_address'],
           Email:data['email'],
-          Initiated_by:data['initiatedby'],
-          Initiated_On:data['initiatedon'],
-          Approved_By:data['approvedby'],
-          Approved_On:data['approvedon']
+          Initiated_by:data['created_by'],
+          Initiated_On:data['created_on'],
+
   
         }
         this.downloadArray.push(obj)
@@ -156,11 +159,13 @@ userdata:any={};
  }
 
  private loadbills(){
+  this.loaderService.display(true)
    this.billservice.getAllbillers().then(resp=>{
     this.billdata=resp
     if(this.billdata==null){
       this.billerlength=0
       this.noofrole="No bills available"
+      this.loaderService.display(false)
     }else{
       this.billerlength=this.billdata.length;
       if(this.billerlength>1){
@@ -169,8 +174,10 @@ userdata:any={};
         this.noofrole="No of bill"
       }
     }
+    this.loaderService.display(false)
    },error=>{
      console.log(error)
+     this.loaderService.display(false)
    })
  }
 
@@ -184,6 +191,20 @@ userdata:any={};
   },error=>{
     console.log(error)
   })
+    }
+
+    getApproverDetails(id,index){
+      this.selectedIndex = index;
+      this.billservice.suplogs(id).then(resp=>{
+        console.log(resp)
+        if(resp!=null){
+        this.approverdetails=resp['data']
+        }else{
+          this.approverdetails=[];
+        }
+      },error=>{
+        console.log(error)
+      })
     }
 
 

@@ -5,7 +5,7 @@ import { DatepickerOptions } from 'ng2-datepicker';
 import * as frLocale from 'date-fns/locale/fr';
 import { Router,ActivatedRoute } from '@angular/router';
 import {UserserviceService} from '../../api/userservice.service'
-
+import{CardserviceService} from '../../api/cardservice.service'
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -45,6 +45,7 @@ export class DashboardComponent implements OnInit {
 }
 public utilityparams:string;
 public params:string;
+cardData:any=[];
 rolename:any;
 
   public currentCard: any=0;
@@ -78,7 +79,7 @@ rolename:any;
   status: 1
     }
   ]
-  constructor(private httpService: HttpClient,private router: Router,private activatedRoute: ActivatedRoute,private usrservice:UserserviceService) { }
+  constructor(private cards:CardserviceService,private httpService: HttpClient,private router: Router,private activatedRoute: ActivatedRoute,private usrservice:UserserviceService) { }
 
   ngOnInit() {
     this.getUserDetail()
@@ -90,7 +91,7 @@ rolename:any;
       this.displayWelcomModal='block'
     
     }
-
+console.log(this.approvedcard)
     this.loadallcards()
    
     // this.httpService.get('./assets/cards.json').subscribe(data=>{
@@ -206,6 +207,30 @@ private getUserDetail(){
   },error=>{
     console.log(error)
   })
+    }
+
+    private loadApprovedCards(){
+
+  
+      this.cards.getAll().subscribe(data=>{
+        //console.log(data["data"])
+       this.cardData=data["data"]
+        console.log(this.cardData)
+        for(let i = 0; i < this.cardData.length; i++){
+          if(this.cardData[i].status == "Approved"){
+              this.approvedcard.push(this.cardData[i]);
+          }
+      }
+  
+      console.log(this.approvedcard)
+  
+        // if(this.currenCard ==-1){
+        //   this.activeElement=this.approvedcard[0]["id"]
+        //   this.getCardbyId(this.approvedcard[0]["id"]);
+        // }
+      },error=>{
+        console.log(error)
+      })
     }
 
 

@@ -212,9 +212,9 @@
                         <td *ngIf="rolename=='ccmaker' || rolename=='maker'" style="padding-left: 1%;"><a
                             data-toggle="modal" id="openBtn"><img src="assets/img/delete.png"></a></td>
                         <td style="padding:0 15px;"><img src="assets/img/tb_downarrow.png" alt=""
-                            (click)="bill.collapsed=!bill.collapsed;"></td>
+                            (click)="bill.collapsed=!bill.collapsed;getApproverDetails(bill.id,i)"></td>
                       </tr>
-                      <tr class="rowShow grayStrip" *ngIf="bill.collapsed">
+                      <tr class="rowShow grayStrip" *ngIf="bill.collapsed && selectedIndex==i">
                         <td class="custmtd" colspan="8">
                           <div class="tablediv">
                             <h5>Biller Details</h5>
@@ -280,28 +280,32 @@
                               <div class="bold_span">Unitary</div>
                             </div>
                             <div class="mb-1">
-                              <div class="span_width">Initiated by</div> <span> : </span> &nbsp;
-                              <div class="bold_span">{{bill.created_by}}</div>
+                              <div class="span_width" >Initiated by</div> <span> : </span> &nbsp;
+                              <div class="bold_span" tooltip="{{bill.created_by}}" placement="top"
+                              show-delay="500">{{bill.created_by}}</div>
                             </div>
                             <div class="mb-1">
                               <div class="span_width">Initiated on</div> <span> : </span> &nbsp;
                               <div class="bold_span" tooltip="{{bill.created_on | formatDate}}" placement="top"
                               show-delay="500">{{bill.created_on | formatDate}}</div>
                             </div>
+                            <ng-container *ngFor="let approver of approverdetails">
                             <div class="mb-1">
                               <div class="span_width">Approved by</div> <span> : </span> &nbsp;
-                              <div class="bold_span">--</div>
+                              <div class="bold_span" tooltip="{{approver.approved_by}}" placement="top"
+                              show-delay="500">{{approver.approved_by}}</div>
                             </div>
                             <div>
                               <div class="span_width">Approved on</div> <span> : </span> &nbsp;
                               
-                              <div class="bold_span"  tooltip="--" placement="top"
-                              show-delay="500">--</div>
+                              <div class="bold_span"  tooltip="{{approver.approved_on | formatDate}}" placement="top"
+                              show-delay="500">{{approver.approved_on | formatDate}}</div>
                             </div>
+                            </ng-container>
                           </div>
                         </td>
                       </tr>
-                      <tr class="rowShow grayStrip" *ngIf="bill.collapsed">
+                      <tr class="rowShow grayStrip" *ngIf="bill.collapsed && selectedIndex==i">
                         <td colspan="8">
                           <span class="text-left" *ngIf="bill.status=='Rejected'"><label style="color: #64289d;">Comment
                               : &nbsp;</label>{{bill.rejection_reson}}</span>

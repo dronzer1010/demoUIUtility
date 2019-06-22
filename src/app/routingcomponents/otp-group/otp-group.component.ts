@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import{LoaderService} from '../../api/loader.service';
 import { GroupserviceService } from '../../api/groupservice.service'
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-otp-group',
   templateUrl: './otp-group.component.html',
@@ -20,7 +21,7 @@ export class OtpGroupComponent implements OnInit {
   public txt3: any;
   public txt4: any;
   public txt5: any;
-  constructor(private route: ActivatedRoute, private router: Router,private loader:LoaderService,private groupservice : GroupserviceService) { }
+  constructor(private _location: Location,private route: ActivatedRoute, private router: Router,private loader:LoaderService,private groupservice : GroupserviceService) { }
 
   ngOnInit() {
     this.loader.display(true);
@@ -35,6 +36,10 @@ export class OtpGroupComponent implements OnInit {
     });
     // this.router.navigate(['/main/userview']);
     // this.loader.display(false);
+  }
+
+  backClicked() {
+    this._location.back();
   }
 
   gotoValidateOTP(): void {

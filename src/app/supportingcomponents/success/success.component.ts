@@ -15,11 +15,14 @@ export class SuccessComponent implements OnInit {
   cardsuccess:boolean=false;
   usersucess:boolean=false;
   rulesuccess:boolean=false;
+  billsuccess:boolean=false;
   usrapprsuccess:boolean=false;
   grpapprsuccess:boolean=false;
   ruleapprsuccess:boolean=false;
   crdapprsuccess:boolean=false;
-  
+  billapprsuccess:boolean=false;
+  paymentsuccess:boolean=false;
+  paymentapprsuccess:boolean=false;
   constructor(private router: Router,private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -41,6 +44,14 @@ export class SuccessComponent implements OnInit {
       this.ruleapprsuccess=true;
     }else if(this.params=='grpapprsuccess'){
       this.grpapprsuccess=true;
+    }else if(this.params=='billsuccess'){
+      this.billsuccess=true;
+    }else if(this.params=='billapprsuccess'){
+      this.billapprsuccess=true;
+    }else if(this.params='paymentsuccess'){
+      this.paymentsuccess=true;
+    }else if(this.params=='paymentapprsuccess'){
+      this.paymentapprsuccess=true;
     }
     else{
       this.groupsuccess=false;
@@ -51,7 +62,10 @@ export class SuccessComponent implements OnInit {
       this.usrapprsuccess=false;
       this.ruleapprsuccess=false;
       this.crdapprsuccess=false;
-     
+      this.billsuccess=false;
+      this.billapprsuccess=false;
+      this.paymentapprsuccess=false;
+      this.paymentsuccess=false;
     }
   }
 

@@ -90,7 +90,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="display:none;">
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                       <div class="card">
                         <div class="card-body" [routerLink]="['/main/biller-bulk']" style="cursor: pointer;">
                           <div class="row">
@@ -204,7 +204,7 @@
                 <div class="row bottom">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-12 spn2">
                       <span class="spn2">UPTO </span>
-                      <span class="spn2">{{approvedcard[currentCard].expirydate}}</span>
+                      <span class="spn2">{{approvedcard[currentCard].expirymonth}}/{{approvedcard[currentCard].expiryyear}}</span>
                   </div>
                 </div>
                 <div class="row">

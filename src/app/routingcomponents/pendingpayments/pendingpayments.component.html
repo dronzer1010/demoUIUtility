@@ -196,7 +196,7 @@
                 </div>
               <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
               <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right"><button class="btn1" style="margin-right:10px;"
-                  (click)="approveBtn()">Approve
+                  (click)="gotoOTP()">Approve
                   Payments</button>
                 <button class="btn2 ml-2" (click)="closeModalDialog2()">Reject Payments</button></div>
             </div>
@@ -205,85 +205,89 @@
                   <table id="main-table" [mfData]="paymentData" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                       <thead>
                         <tr>
-                          <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(pendingPayments)"></td>
+                          <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(paymentData)"></td>
                           <td>Biller Name <img src="../../../utility/assets/img/Filter.png" alt=""></td>
                           <!-- <td>Consumer No <img src="../../../utility/assets/img/Filter.png" alt=""></td> -->
                           <td>Amount <img src="../../../utility/assets/img/Filter.png" alt=""></td>
                           <td>Reference No <img src="../../../utility/assets/img/Filter.png" alt=""></td>
                           <td>Consumer Name <img src="../../../utility/assets/img/Filter.png" alt=""></td>
                           <td>Status</td>
-                          <td style="text-align:center;">Payment Status</td>
+                          <!-- <td style="text-align:center;">Payment Status</td> -->
                           <td>&nbsp;</td>
                         </tr>
                       </thead>
                       <tbody>
-                        <ng-container *ngFor="let payment of mf.data|penpayFilter : {biller: searchText,amount:searchText,consumerno:searchText,consumername:searchText,status:searchText,paymentstatus:searchText,shortname:searchText,expensecode:searchText,billdate:searchText,duedate:searchText,billnumber:searchText,state:searchText,digits:searchText,contact:searchText,email:searchText,billaddress:searchText,initiatedby:searchText,initiatedon:searchText,approvedby:searchText,approvedon:searchText}; let i=index;">
+                        <ng-container *ngFor="let payment of mf.data|penpayFilter : {biller_name: searchText,amount:searchText,consumer_no:searchText,consumer_name:searchText,status:searchText,payment_status:searchText,short_name:searchText,gl_expense_code:searchText,bill_date:searchText,due_date:searchText,bill_number:searchText,state:searchText,card_last_digits:searchText,contact_no:searchText,email:searchText,contact_address:searchText,initiated_by:searchText,initiated_date:searchText,transaction_ref_no:searchText}; let i=index;">
                         <tr>
                           <td><input type="checkbox" name="submenu" [checked]="select" (change)="change(payment.id) "></td>
-                          <td>{{payment.biller}}</td>
+                          <td>{{payment.biller_name}}</td>
                           <!-- <td>{{payment.bill.consumerno}}</td> -->
                           <td><i class="fa fa-rupee"></i>{{payment.amount | numberfr}}</td>
-                          <td>{{payment.consumerno}}</td>
-                          <td>Axis Bank ltd.</td>
-                          <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.status}}</a></td>
-                          <td style="text-align:center;">{{payment.paymentstatus}}</td>
-                          <td style="padding:0px 10px;"><img src="assets/img/tb_downarrow.png" alt="" (click)="payment.collapsed=!payment.collapsed;"></td>
+                          <td>{{payment.consumer_no}}</td>
+                          <td>{{payment.consumer_name}}</td>
+                          <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.transaction_status}}</a></td>
+                          <!-- <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.payment_status === 'Approved', 'Rejected': payment.payment_status  === 'Rejected', 'Pending': payment.payment_status  === 'Pending'}" role="button">{{payment.payment_status}}</a></td> -->
+                          <td style="padding:0px 10px;"><img src="assets/img/tb_downarrow.png" alt="" (click)="payment.collapsed=!payment.collapsed;getpaylogs(payment.id,i)"></td>
                         </tr>
-                        <tr class="rowShow grayStrip" *ngIf="payment.collapsed">
+                        <tr class="rowShow grayStrip" *ngIf="payment.collapsed && selectedIndex==i">
                           <td class="custmtd" colspan="8">
                             <div class="tablediv">
                               <h5>Biller Details</h5>
                               <div class="mb-1">
                                   <div class="span_width">Short Name</div>  <span> : </span> &nbsp;
-                                  <div class="bold_span">{{payment.shortname}}</div>
+                                  <div class="bold_span">{{payment.short_name}}</div>
                                 </div>
                                 <div class="mb-1">
                                   <div class="span_width">GL/Expense Code </div>  <span> : </span> &nbsp;
-                                  <div class="bold_span">{{payment.expensecode}}</div>
+                                  <div class="bold_span">{{payment.gl_expense_code}}</div>
                                 </div>
                                 <div class="mb-1">
-                                    <div class="span_width">Consumer No</div> <span> : </span> &nbsp;
-                                    <div class="bold_span">{{payment.consumerno}}</div>
+                                    <div class="span_width">{{payment.parameter_1}}</div> <span> : </span> &nbsp;
+                                    <div class="bold_span">{{payment.consumer_no}}</div>
+                                  </div>
+                                  <div class="mb-1" *ngIf="payment.display_name_bu!=null">
+                                    <div class="span_width">{{payment.display_name_bu}}</div> <span> : </span> &nbsp;
+                                    <div class="bold_span">{{payment.bu}}</div>
+                                  </div>
+                                  <div class="mb-1" *ngIf="payment.display_name_circle!=null">
+                                    <div class="span_width">{{payment.display_name_circle}}</div> <span> : </span> &nbsp;
+                                    <div class="bold_span">{{payment.circle}}</div>
                                   </div>
                                 <div class="mb-1">
                                   <div class="span_width">Bill Date </div>  <span> : </span> &nbsp;
-                                  <div class="bold_span">{{payment.billdate}}</div>
+                                  <div class="bold_span">{{payment.bill_date}}</div>
                                 </div>
                                 <div class="mb-1">
                                   <div class="span_width">Due Date </div>  <span> : </span> &nbsp;
-                                  <div class="bold_span">{{payment.duedate}}</div>
+                                  <div class="bold_span">{{payment.due_date}}</div>
                                 </div>
-                                <div class="mb-1">
+                                <div class="mb-1" *ngIf="payment.order_id!=null">
                                   <div class="span_width">Order Id</div> <span> : </span> &nbsp;
-                                  <div class="bold_span">12345</div>
+                                  <div class="bold_span">{{payment.order_id}}</div>
                                 </div>
                                 <div class="mb-1">
                                     <div class="span_width">Location</div> <span> : </span> &nbsp;
-                                    <div class="bold_span" *ngIf="payment.state=='MH'" >Maharashtra</div>
-                                    <div class="bold_span" *ngIf="payment.state=='RJ'" >Rajasthan</div>
-                                    <div class="bold_span" *ngIf="payment.state=='KA'" >Karnataka</div>
-                                    <div class="bold_span" *ngIf="payment.state=='AP'" >Andhra Pradesh</div>
-                                    <div class="bold_span" *ngIf="payment.state=='GJ'" >Gujarat</div>
-                                    <div class="bold_span" *ngIf="payment.state=='DL'" >Delhi</div>
+                                    <div class="bold_span" >{{payment.state}}</div>
+                                   
                                   </div>
                                 <div class="mb-1">
                                   <div class="span_width">Bill No</div> <span> : </span> &nbsp;
-                                  <div class="bold_span">{{payment.billnumber}}</div>
+                                  <div class="bold_span">{{payment.bill_number}}</div>
                                 </div>
                                 <div class="mb-1">
                                   <div class="span_width">Card No</div> <span> : </span> &nbsp;
-                                  <div class="bold_span">9876 XXXX XXXX 1234</div>
+                                  <div class="bold_span">{{payment.card_last_digits}}</div>
                                 </div>
                             </div>
                             <div class="tablediv table2">
                                 <div class="mb-1">
                                     <h5>Contact Details</h5>
                                     <div class="span_width">Mobile No</div>  <span> : </span> &nbsp;
-                                    <div class="bold_span">{{payment.contact}}</div>
+                                    <div class="bold_span">{{payment.contact_no}}</div>
                                   </div>
                                   <div class="mb-1">
                                     <div class="span_width">Address </div>  <span> : </span> &nbsp;
-                                    <span class="bold_span" tooltip="{{payment.billaddress}}" placement="top" show-delay="500">{{payment.billaddress}}</span>
+                                    <span class="bold_span" tooltip="{{payment.contact_address}}" placement="top" show-delay="500">{{payment.contact_address}}</span>
                                   </div>
                                   <div>
                                     <div class="span_width">Email</div>  <span> : </span> &nbsp;
@@ -294,24 +298,24 @@
                                   <div class="mb-1">
                                     <h5>Other Details</h5>
                                     <div class="span_width">CRN </div>  <span> : </span> &nbsp;
-                                    <div class="bold_span">12345</div>
+                                    <div class="bold_span">{{payment.transaction_ref_no}}</div>
                                   </div>
                                   <div class="mb-1">
                                     <div class="span_width">File Name </div>  <span> : </span> &nbsp;
-                                    <div class="bold_span">None</div>
+                                    <div class="bold_span">Unitary</div>
                                   </div>
                                   <div class="mb-1">
                                     <div class="span_width">Initiated by </div>  <span> : </span> &nbsp;
-                                    <div class="bold_span">{{payment.initiatedby}}</div>
+                                    <div class="bold_span">{{payment.initiated_by}}</div>
                                   </div>
                                   <div class="mb-1">
                                     <div class="span_width">Initiated on  </div>  <span> : </span> &nbsp;
-                                    <div class="bold_span">{{payment.initiatedon | date:'dd-MM-yyyy hh:mm a'}}</div>
+                                    <div class="bold_span">{{payment.initiated_date | date:'dd-MM-yyyy hh:mm a'}}</div>
                                   </div>
                             </div>
                           </td>
                         </tr>
-                        <tr class="rowShow grayStrip" *ngIf="payment.collapsed">
+                        <tr class="rowShow grayStrip" *ngIf="payment.collapsed && selectedIndex==i">
                           <td colspan="8">
                             <span class="pull-right">
                               <a (click)="closeModalDialog3()"><img src="assets/img/page.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

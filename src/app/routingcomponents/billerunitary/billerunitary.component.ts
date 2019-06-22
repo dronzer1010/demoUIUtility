@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Lightbox } from 'ngx-lightbox';
 import { BillerserviceService } from '../../api/billerservice.service'
+import { ToastrService } from 'ngx-toastr'
+import{LoaderService} from '../../api/loader.service'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-billerunitary',
   templateUrl: './billerunitary.component.html',
@@ -30,7 +33,7 @@ export class BillerUnitaryComponent implements OnInit {
   showbus:boolean=false;
   statename:string;
   
-  constructor(private httpService: HttpClient,private _lightbox: Lightbox,private billerservice: BillerserviceService) { }
+  constructor(private httpService: HttpClient,private _lightbox: Lightbox,private billerservice: BillerserviceService,private toastr: ToastrService,private loaderService: LoaderService,private router: Router,) { }
 
   ngOnInit() {
     // this.httpService.get('./assets/states.json').subscribe(
@@ -477,7 +480,7 @@ for(var i=0;i<=this.states.length;i++){
     this.billdetails=false;
     this.billertype=false;
     this.conf=false;
-    this.success=true;
+    
 
   }
 
@@ -485,14 +488,14 @@ for(var i=0;i<=this.states.length;i++){
     this.billdetails=false;
     this.billertype=true;
     this.conf=false;
-    this.success=false;
+
   }
 
   backbilldetails(){
     this.billdetails=true;
     this.billertype=false;
     this.conf=false;
-    this.success=false;
+
   }
 
 //   submitbilldata(){
@@ -520,11 +523,27 @@ for(var i=0;i<=this.states.length;i++){
 //   }
 
   submitbilldata(){
+    this.loaderService.display(true);
     console.log(this.billdata)
 this.billerservice.registerbills(this.billdata).then(resp=>{
     console.log(resp)
+    this.loaderService.display(false);
+    this.router.navigate(['/main/successmsg'],{queryParams:{msg:'billsuccess'}});
+    this.billdetails=false;
+    this.billertype=false;
+    this.conf=false;
+   
 },error=>{
     console.log(error)
+    this.loaderService.display(false);
+    this.toastr.error("Failed to register biller!","Alert",{
+        timeOut:3000,
+        positionClass:'toast-top-center'
+        })
+  
+    this.billdetails=false;
+    this.conf=true;
+    this.billertype=false;
 })
   }
 

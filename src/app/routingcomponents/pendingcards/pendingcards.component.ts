@@ -34,7 +34,7 @@ this.loadpendingcards();
 
   gotoOTP(id: any): void {
     // if (!!this.pendingCardsid) { 
-    this.router.navigate(['/main/otp-card'],id);
+    this.router.navigate(['/main/otp-card',id]);
     // } else {
     //   alert("First select at least one checkbox.");
     // }

@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
+import{CardserviceService} from '../../api/cardservice.service'
+import {BillerserviceService} from  '../../api/billerservice.service'
+import {UserserviceService} from '../../api/userservice.service'
+import{LoaderService} from '../../api/loader.service'
+import { Router } from '@angular/router';
+import {PaymentserviceService} from  '../../api/paymentservice.service'
+import { ToastrService } from 'ngx-toastr'
 @Component({
   selector: 'app-makepayment',
   templateUrl: './makepayment.component.html',
@@ -23,9 +30,10 @@ export class MakePaymentComponent implements OnInit {
   cardapprovedon:string="";
   selectedcard:any={}
   public checkedValueArray: any = [];
+  public additionaldetails: any = [];
   selectall:boolean=false;
   public temp: any;
-  public cntChk: any;
+  public cntChk: number=0;
   public flag: any;
   display='none'; 
   states:any;
@@ -42,85 +50,47 @@ export class MakePaymentComponent implements OnInit {
   activeElement :number;
   amountpay: number=0;
   totalamount: any=0;
-  billDates=['01-04-2019' ,'05-04-2019' , '06-04-2019' , '03-04-2019' ,'08-04-2019','09-04-2019','10-04-2019']
-  dueDates=['13-04-2019' ,'17-04-2019' , '16-04-2019' , '13-04-2019' ,'18-04-2019','19-04-2019','20-04-2019']
-  fetchingBill=false;
+  late_pay_charges:any;
+  meter_reading:any;
+  promt_pay_incentives:any;
+  remarks:any;
+  attachment_url:any;
+  payment_id:any;
+  cardid:any;
   public currentCard: any=0;
   pendingPayments:any=[]
-  approvedcard:any=[
-    {approvedby: "Mr. K.V. Hebbar",
-    aproveddate: "28-02-2019 12:10 PM",
-    aprovedtime: "12:10 PM",
-    cardholder: "Test card",
-    digits: "4859 XXXX XXXX 0005",
-    expirydate: "09/22",
-    id: 1,
-    initiatedby: "Mr. Naveen Lohiya",
-    initiateddate: "28-02-2019 12:09 PM",
-    initiatedtime: "12:09:38",
-    orgid: 73,
-    regcmt: "",
-    status: 1},
-    {
-    approvedby: "Mr. K.V. Hebbar",
-    aproveddate: "28-02-2019 07:17 PM",
-    aprovedtime: "07:17 PM",
-    cardholder: "Test Card 1",
-    digits: "4859 XXXX XXXX 0047",
-    expirydate: "06/22",
-    id: 2,
-    initiatedby: "Mr. Naveen Lohiya",
-    initiateddate: "28-02-2019 17:30 PM",
-    initiatedtime: "17:30:29",
-    orgid: 73,
-    regcmt: "",
-    status: 1
-    }
-  ]
-  constructor(private httpService: HttpClient) { }
+  approvedcard:any=[]
+  cardData:any=[];
+  paymentdata:any={}
+  constructor(private httpService: HttpClient,private cards:CardserviceService,private billservice: BillerserviceService, private loader: LoaderService, private users: UserserviceService,private router: Router,private paymentservice: PaymentserviceService,private toaster:ToastrService) { }
 
   ngOnInit() {
     this.billrdetails();
-    this.getActivecard()
-    this.fetchAllBills()
+    this.loadApprovedCards();
   }
 
-  getActivecard(){
-    this.currenCard=-1;
-    if(this.currenCard ==-1){
-      this.activeElement=1
-      this.getCardbyId(1);
-    }
-    this.cardHolder="Test card"
-    this.cardNumber="4859 XXXX XXXX 0005"
-    this.cardExpiry="09/22"
-    this.cardinitiatedby="Mr. Naveen Lohiya"
-    this.cardinitiatedon="28-02-2019 12:09 PM"
-    this.cardapprovedby="Mr. K.V. Hebbar"
-    this.cardapprovedon="28-02-2019 12:10 PM"
+  getActivecard(id:any){
+   
+    this.activeElement = id;
+
+    this.cards.getCardById(id).subscribe(resp=>{
+      console.log("This Card List by Id")
+      console.log(resp)
+      this.cardHolder=resp['data'][0]['cardholder']
+     this.cardNumber=resp['data'][0]['digits']
+     this.cardExpiry=resp['data'][0]['expirydate']
+     this.cardinitiatedby=resp['data'][0]['initiatedby']
+     this.cardinitiatedon=resp['data'][0]['initiateddate']
+     this.cardapprovedby=resp['data'][0]['approvedby']
+     this.cardapprovedon=resp['data'][0]['aproveddate']
+    })
     
     this.selectedcard=this.approvedcard[0]
     console.log(this.selectedcard)
+    console.log(this.selectedcard['id'])
   }
 
-  // goToNextCard() {
-  //   if (this.approvedcard.length - 1 == this.currentCard) {
-  //     this.currentCard = 0;
-  //   }
-  //   else {
-  //     this.currentCard++;
-  //   }
-  
-  // }
-  
-  // goToPrevCard() {
-  //   if (this.currentCard == 0) {
-  //     this.currentCard = this.approvedcard.length - 1;
-  //   }
-  //   else {
-  //     this.currentCard--;
-  //   }
-  // }
+
 
   getBiller(stateid){  
     this.httpService.get('./assets/billers.json').subscribe(
@@ -140,37 +110,36 @@ export class MakePaymentComponent implements OnInit {
   openModalDialog(){
     this.display=''; //Set block css
   }
-  closeModalDialog(){
+  closeModalDialog(id){
     this.display='block'; //set none css after close dialog
+    this.payment_id=id;
   }
   billrdetails(){
+    this.loader.display(true)
     this.billertype=false;
     this.billdetails=true;
     this.reviewCard=false;
+    
+   this.billservice.getAllbillers().then(resp=>{
+    this.payments=resp
+    var allBills = this.payments
+    if(allBills!=null){
+      this.bills = allBills.filter((bill)=>{
+        return (bill['status']=="Registered")
+      })
+    }
+    console.log(this.bills)
+    for(var i=0;i<this.bills.length;i++){
+      this.totalamount+=parseInt(this.bills[i]['amount'])
+    }
+    this.loader.display(false)
+   },error=>{
+     console.log(error)
+     this.loader.display(false)
+   })
+  
 
-  var allBills = JSON.parse(localStorage.getItem('billdetails'));
-  if(allBills!=null){
-    this.bills = allBills.filter((bill)=>{
-      return (bill['status']=="Registered")
-    })
-  }
 
-  console.log(this.bills);
-  this.payments = this.bills.map((bill)=>{
-    var payment={};
-    payment['id'] = bill.id;
-    payment['amount']=null;
-    payment['duedate']=null;
-    payment['billnumber']=null;
-    payment['bill']=bill;
-    payment['status']=null;
-    payment['initiatedby']=null;
-    payment['initiatedon']=null;
-    payment['approvedby']=null;
-    payment['approvedon']=null;
-    return payment;
-  })
-    console.log(this.payments);  
   }
 
   getRandomInt(max) {
@@ -178,7 +147,6 @@ export class MakePaymentComponent implements OnInit {
   }
 
   getCardDetails(card:any){
-    //console.log(card)
     this.selectedcard=card;
     //this.approvedcard[this.currentCard]=card
     console.log(this.selectedcard)
@@ -189,63 +157,58 @@ export class MakePaymentComponent implements OnInit {
     this.cardinitiatedon=card['initiateddate']
     this.cardapprovedby=card['approvedby']
     this.cardapprovedon=card['aproveddate']
+    
   }
 
-  getCardbyId(id:number){
-    console.log(id)
-    this.activeElement = id;
-  }
+  private loadApprovedCards(){
 
-  fetchAllBills(){
-    for(var i=0;i<this.payments.length;i++){    
-        var d =new Date();
-        this.payments[i].amount = (Math.random()*(3000-1000)).toFixed(2);
-        this.payments[i].duedate = this.dueDates[this.getRandomInt(7)];
-        this.payments[i].billdate = this.billDates[this.getRandomInt(7)];
-        this.payments[i].billnumber = d.getTime(); 
-          
+    this.currenCard=-1;
+    this.cards.getAll().subscribe(data=>{
+      //console.log(data["data"])
+     this.cardData=data["data"]
+      console.log(this.cardData)
+      for(let i = 0; i < this.cardData.length; i++){
+        if(this.cardData[i].status == "Approved"){
+            this.approvedcard.push(this.cardData[i]);
+        }
     }
 
-    for(var total of this.payments){
-      this.totalamount+=parseFloat(total['amount']);
-    }
-  }
-
-  fetchBill(id){
-    console.log("hello")
-    this.fetchingBill = true;
-    for(var i=0;i<this.payments.length;i++){
-      if(this.payments[i].id == id){
-        var d =new Date();
-        this.payments[i].amount = (Math.random()*(3000-1000)).toFixed(2);
-        this.payments[i].duedate = this.dueDates[this.getRandomInt(7)];
-        this.payments[i].billdate = this.billDates[this.getRandomInt(7)];
-        this.payments[i].billnumber = d.getTime();
+    console.log(this.approvedcard)
+    console.log(this.approvedcard[0])
+      if(this.currenCard ==-1){
+        this.activeElement=this.approvedcard[0]["id"]
+        this.getActivecard(this.approvedcard[0]["id"]);
       }
-    }
-    this.fetchingBill = false; 
+    },error=>{
+      console.log(error)
+    })
   }
 
   changeAll(pendingbillerpage): void {    
     if(this.checkedValueArray.length==this.payments.length){
     this.cntChk=1
-    this.amountpay=0
     }else{
     this.checkedValueArray = [];
-    this.amountpay=this.totalamount
-    
+    this.amountpay=0
     this.cntChk=0
     }
-
-    
     console.log(this.selectall)
     if (this.cntChk == 0) {
       this.cntChk = 1;
       this.temp = true;
       this.selectall=true;
       this.select=true;
+      this.amountpay=0
       for (var i = 0; i < pendingbillerpage.length; i++) {
-        this.checkedValueArray[i] = pendingbillerpage[i].id;
+        var obj ={
+          bill_id:pendingbillerpage[i]['id'],
+          amount:pendingbillerpage[i]['amount'],
+          billdate:pendingbillerpage[i]['fetch_bill_date'],
+          duedate:pendingbillerpage[i]['fetch_due_date'],
+          billnumber:pendingbillerpage[i]['fetch_bill_no']
+        }
+        this.checkedValueArray.push(obj);
+        this.amountpay+=parseInt(pendingbillerpage[i]['amount'])
       }
       this.cntChk = 0;
     }
@@ -255,23 +218,41 @@ export class MakePaymentComponent implements OnInit {
       this.temp = false;
       this.checkedValueArray = [];
       this.select=false;
+      this.amountpay=0
     }
     console.log(this.checkedValueArray)
+   // console.log(pendingbillerpage)
     
   }
 
-  change(id): void {
+  change(payment): void {
     this.flag = 0;
     for (var i = 0; i < this.checkedValueArray.length; i++) {
-      if (this.checkedValueArray[i] == id) {
+
+      if (this.checkedValueArray[i]["bill_id"] == payment["id"]) {
         this.checkedValueArray.splice(i, 1);
         this.flag = 1;
       }
     }
     if (this.flag == 0) {
-      this.checkedValueArray.push(id);     
+      var obj={
+        bill_id:payment['id'],
+        amount:payment['amount'],
+        billdate:payment['fetch_bill_date'],
+        duedate:payment['fetch_due_date'],
+        billnumber:payment['fetch_bill_no']
+      }
+      this.checkedValueArray.push(obj);     
     }
-
+    for(var i=0;i<this.payments.length;i++){
+      if(this.payments[i]['id'] == payment["id"]){
+        if(this.flag==0){
+          this.amountpay+=parseInt(this.payments[i]['amount'])
+        }else{
+          this.amountpay-=parseInt(this.payments[i]['amount'])
+        }
+      }
+    }
     if (this.checkedValueArray.length > 0) {
       this.temp = true;
       if(this.checkedValueArray.length<this.payments.length){
@@ -292,6 +273,7 @@ export class MakePaymentComponent implements OnInit {
       console.log(this.selectall)     
     }
     console.log(this.checkedValueArray)
+    //console.log(this.payments)
   }  
 
   UploadFile(file: HTMLInputElement){
@@ -317,21 +299,43 @@ export class MakePaymentComponent implements OnInit {
   }
 
   succesadd(){
-    this.billdetails=false;
-    this.billertype=false;
-    this.conf=false;
-    this.success=true;
-    this.reviewCard=false;
-
-    var tempPendingPayments = this.pendingPayments.map((payment)=>{
-      var card = this.selectedcard
-      console.log(card)
-      payment['status']='Pending';
-      payment['paymentstatus']='Pending';
-      payment['card']=card;
-      return payment;
-    });
-    localStorage.setItem('payments' , JSON.stringify(tempPendingPayments));
+    // this.billdetails=false;
+    // this.billertype=false;
+    // this.conf=false;
+    // this.success=true;
+    // this.reviewCard=false;
+    this.loader.display(true);
+    this.paymentData={
+      "card_id":this.selectedcard['id'],
+      "bills":this.checkedValueArray,
+      "count":this.checkedValueArray.length,
+      "totalamount":this.amountpay
+    }
+    console.log(this.paymentData)
+    this.paymentservice.makepayment(this.paymentData).then(resp=>{
+      console.log(resp)
+      this.router.navigate(['/main/successmsg'],{queryParams:{msg:'paymentsuccess'}});
+      this.loader.display(false);
+    },error=>{
+      this.toaster.error("Failed to register bill payment!","Alert",{
+        timeOut:3000,
+        positionClass:'toast-top-center'
+        })
+      console.log(error)
+      this.loader.display(false);
+    })
+    
+   
+   
+    // var tempPendingPayments = this.pendingPayments.map((payment)=>{
+    //   var card = this.selectedcard
+    //   console.log(card)
+    //   payment['status']='Pending';
+    //   payment['paymentstatus']='Pending';
+    //   payment['card']=card;
+    //   return payment;
+    // });
+    // localStorage.setItem('payments' , JSON.stringify(tempPendingPayments));
   }
 
   backbilltype(){
@@ -356,4 +360,10 @@ export class MakePaymentComponent implements OnInit {
     this.success=false;
     this.reviewCard=true;
   }
+  submitextradetails(){
+    this.display=''; 
+
+  }
+
+  
 }

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ExcelService} from '../../excelservice/excel.service'
-
+import {BillerserviceService} from  '../../api/billerservice.service'
+import{LoaderService} from '../../api/loader.service'
+import {UserserviceService} from '../../api/userservice.service'
+import {PaymentserviceService} from '../../api/paymentservice.service'
 @Component({
   selector: 'app-paymentlist',
   templateUrl: './paymentlist.component.html',
@@ -41,10 +44,25 @@ key: string = 'status'; //set default
 reverse: boolean = true;
 totalamount:any=0;
 downloadArray:any=[];
-  constructor(private excelservice : ExcelService) { }
+approverDetails:any=[];
+selectedIndex = -1;
+userdata:any={};
+latecharges:string;
+remarks:string;
+incentives:string;
+meterreading:string;
+carddebittime:string;
+carddebitdate:string;
+paysuccessdate:string;
+paysuccesstime:string;
+payfaildate:string;
+payfailtime:string;
+rejectreason:string;
+  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService) { }
 
   ngOnInit() {
-    this.rolename=localStorage.getItem('rolename')
+    //this.rolename=localStorage.getItem('rolename')
+    this.getUserDetail();
     this.laodpayments();
 
     this.dropdownList = [
@@ -117,28 +135,27 @@ downloadArray:any=[];
     }else if(items['item_id']==1){
       for(let data of this.paymentData){
         var obj={
-          Biller:data['biller'],
+          Biller:data['biller_name'],
           Amount:data['amount'],
-          Consumer_No:data['consumerno'],
-          Consumer_Name:"Axis Bank ltd.",
-          Status:data['status'],
-          Payment_Status:data['paymentstatus'],
-          Short_Name:data['shortname'],
-          GL_Expense_Code:data['expensecode'],
-          Bill_Date:data['billdate'],
-          Due_Date:data['duedate'],
+          Consumer_No:data['consumer_no'],
+          Consumer_Name:data['consumer_name'],
+          Status:data['transaction_status'],
+          Payment_Status:data['payment_status'],
+          Short_Name:data['short_name'],
+          GL_Expense_Code:data['gl_expense_code'],
+          Bill_Date:data['bill_date'],
+          Due_Date:data['due_date'],
           State:data['state'],
-          Bill_Number:String(data['billnumber']),
-          Card_Number:data['digits'],
-          Order_Id:123122,
-          Contact:data['contact'],
-          Bill_Address:data['billaddress'],
+          Bill_Number:String(data['bill_number']),
+          Card_Number:data['card_last_digits'],
+          Order_Id:data['order_id'],
+          Contact:data['contact_no'],
+          Bill_Address:data['contact_address'],
           Email:data['email'],
-          CRN:123254,
-          Initiated_by:data['initiatedby'],
-          Initiated_On:data['initiatedon'],
-          Approved_By:data['approvedby'],
-          Approved_On:data['approvedon']
+          CRN:data['transaction_ref_no'],
+          Initiated_by:data['initiated_by'],
+          Initiated_On:data['initiated_date'],
+       
   
         }
         this.downloadArray.push(obj)
@@ -153,48 +170,67 @@ downloadArray:any=[];
 
 
   private laodpayments(){
-    this.payments=JSON.parse(localStorage.getItem('payments'));
-    if(this.rolename=='maker' || this.rolename=='ccmaker' || this.rolename=='as'){
-    this.apprrejpay=this.payments.filter((payment)=>{
-      return (payment.status == "Approved" || payment.status == "Rejected"  || payment.status == "Pending")
-    })
-  }else if(this.rolename=='checker' || this.rolename=='aschecker' || this.rolename=='ccchecker'){
-    this.apprrejpay=this.payments.filter((payment)=>{
-      return (payment.status == "Approved" || payment.status == "Rejected")
-    })
-  }
-    for(let data of this.apprrejpay){
-      var obj={
-        biller:data['bill']['biller'],
-        amount:data['amount'],
-        consumerno:data['bill']['consumerno'],
-        consumername:data['bill']['consumername'],
-        status:data['status'],
-        paymentstatus:data['paymentstatus'],
-        shortname:data['bill']['shortname'],
-        expensecode:data['bill']['expensecode'],
-        billdate:data['billdate'],
-        duedate:data['duedate'],
-        state:data['bill']['state'],
-        billnumber:String(data['billnumber']),
-        digits:data['card']['digits'],
-        contact:data['bill']['contact'],
-        billaddress:data['bill']['billaddress'],
-        email:data['bill']['email'],
-        initiatedby:data['bill']['initiatedby'],
-        initiatedon:data['bill']['initiatedon'],
-        approvedby:data['approvedby'],
-        approvedon:data['approvedon']
+  //   this.payments=JSON.parse(localStorage.getItem('payments'));
+  //   if(this.rolename=='maker' || this.rolename=='ccmaker' || this.rolename=='as'){
+  //   this.apprrejpay=this.payments.filter((payment)=>{
+  //     return (payment.status == "Approved" || payment.status == "Rejected"  || payment.status == "Pending")
+  //   })
+  // }else if(this.rolename=='checker' || this.rolename=='aschecker' || this.rolename=='ccchecker'){
+  //   this.apprrejpay=this.payments.filter((payment)=>{
+  //     return (payment.status == "Approved" || payment.status == "Rejected")
+  //   })
+  // }
+   
 
+    // for(var total of this.paymentData){
+    //     this.totalamount+=parseFloat(total['amount'])
+    // }
+    //console.log(this.totalamount)
+    this.loaderService.display(true)
+this.paymentservice.getAllPayments().then(resp=>{
+  console.log(resp)
+  this.paymentData=resp['data'];
+  this.loaderService.display(false)
+  if(this.paymentData!=null){
+  for(var total of this.paymentData){
+    this.totalamount+=parseFloat(total['amount'])
+  }
+}
+},error=>{
+  this.loaderService.display(false)
+  console.log(error)
+})
+
+  }
+  getapproverdetails(id,index){
+    this.selectedIndex = index;
+    this.paymentservice.paylogs(id).then(resp=>{
+      console.log(resp)
+      this.approverDetails=resp
+    },error=>{
+      console.log(error)
+    })
+
+  }
+
+  private getUserDetail(){
+    this.userservice.getUserDetails().subscribe(res=>{
+      //console.log(res)
+      this.userdata=res['Data'];
+      console.log(this.userdata)
+      this.rolename=this.userdata['dualrole']
+     // this.username=this.userdata['firstname']+" "+this.userdata['lastname']
+    },error=>{
+      console.log(error)
+    })
       }
-      this.paymentData.push(obj)
-    }
-
-    for(var total of this.paymentData){
-        this.totalamount+=parseFloat(total['amount'])
-    }
-    console.log(this.totalamount)
 
 
-  }
+      getextradetails(latepaycharge,incentives,remarks,meterreading){
+        this.displayBillDetails='block';
+          this.latecharges=latepaycharge;
+          this.incentives=incentives;
+          this.remarks=remarks
+          this.meterreading=meterreading;
+      }
 }
