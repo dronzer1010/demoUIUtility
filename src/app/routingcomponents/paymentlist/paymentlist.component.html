@@ -304,7 +304,7 @@
                             <div class="bold_span" tooltip="{{payment.created_on | formatDate}}" placement="top"
                             show-delay="500">{{payment.initiated_date | date:'dd-MM-yyyy hh:mm a'}}</div>
                           </div>
-                          <ng-container *ngFor="let approver of approverdetails">
+                          <ng-container *ngFor="let approver of approverDetails">
                           <div class="mb-1">
                               <div class="span_width">Approved by </div>  <span> : </span> &nbsp;
                               <div class="bold_span">{{approver.approved_by}}</div>
@@ -321,12 +321,12 @@
                       <td colspan="8">
                           <span class="text-left" *ngIf="payment.transaction_status=='Rejected'"><label style="color: #64289d;">Comment : &nbsp;</label>{{payment.rejection_reason}}</span>
                         <span class="pull-right" *ngIf="rolename=='checker' || rolename=='aschecker' || rolename=='ccchecker'">
-                        <a (click)="closeModalDialog2()"><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a (click)="getpaymentlogs(payment.card_debited_date,payment.payment_status_time,payment.rejection_reason)"><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         
                         <a (click)="closeModalDialog1()"><img src="assets/img/page.png"></a>
                       </span>
-                      <span *ngIf="rolename=='maker' || rolename=='ccmaker'" class="pull-right"><a (click)="closeModalDialog2()"><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span *ngIf="rolename=='maker' || rolename=='ccmaker'" class="pull-right"><a (click)="getpaymentlogs(payment.card_debited_date,payment.payment_status_time,payment.rejection_reason)"><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="javascript:void(0)"><img src="assets/img/edit.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="javascript:void(0)"><img src="assets/img/delete.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -411,35 +411,35 @@
                                     <tbody>
                                       <tr>
                                         <td>Card Debited</td>
-                                        <td *ngIf="payment.transaction_status=='Approved'">28-03-2019</td>
-                                        <td *ngIf="payment.transaction_status=='Approved'">05:30 PM</td>
+                                        <td *ngIf="payment.transaction_status=='Approved'">{{carddebitdate}}</td>
+                                        <td *ngIf="payment.transaction_status=='Approved'">{{carddebittime}}</td>
                                         <td *ngIf="payment.transaction_status=='Pending' || payment.transaction_status=='Rejected'">--</td>
                                         <td *ngIf="payment.transaction_status=='Pending' || payment.transaction_status=='Rejected'">--</td>
                                       </tr>
                                       <tr>
                                         <td>Payment Success</td>
-                                        <td *ngIf="payment.transaction_status=='Approved'">28-03-2019</td>
-                                        <td *ngIf="payment.transaction_status=='Approved'">05:30 PM</td>
+                                        <td *ngIf="payment.transaction_status=='Approved'">{{paysuccessdate}}</td>
+                                        <td *ngIf="payment.transaction_status=='Approved'">{{paysuccesstime}}</td>
                                         <td *ngIf="payment.transaction_status=='Pending' || payment.transaction_status=='Rejected'">--</td>
                                         <td *ngIf="payment.transaction_status=='Pending' || payment.transaction_status=='Rejected'">--</td>
                                       </tr>
                                       <tr>
                                         <td>Payment Failed</td>
-                                        <td *ngIf="payment.transaction_status=='Approved'">28-03-2019</td>
-                                        <td *ngIf="payment.transaction_status=='Approved'">05:30 PM</td>
+                                        <td *ngIf="payment.transaction_status=='Approved'">--</td>
+                                        <td *ngIf="payment.transaction_status=='Approved'">--</td>
                                         <td *ngIf="payment.transaction_status=='Pending' || payment.transaction_status=='Rejected'">--</td>
                                         <td *ngIf="payment.transaction_status=='Pending' || payment.transaction_status=='Rejected'">--</td>
                                       </tr>
                                       <tr>
                                         <td>Card Refunded</td>
-                                        <td *ngIf="payment.status=='transaction_status'">28-03-2019</td>
-                                        <td *ngIf="payment.status=='transaction_status'">05:30 PM</td>
+                                        <td *ngIf="payment.status=='transaction_status'">--</td>
+                                        <td *ngIf="payment.status=='transaction_status'">--</td>
                                         <td *ngIf="payment.status=='transaction_status' || payment.transaction_status=='Rejected'">--</td>
                                         <td *ngIf="payment.transaction_status=='transaction_status' || payment.transaction_status=='Rejected'">--</td>
                                       </tr>
                                       <tr>
                                         <td>Refund Reason</td>
-                                        <td *ngIf="payment.status=='transaction_status'" colspan="2">Invalid Account Details</td>
+                                        <td *ngIf="payment.status=='transaction_status'" colspan="2">{{rejectreason}}</td>
                                         <td *ngIf="payment.status=='transaction_status' || payment.transaction_status=='Rejected'" colspan="2">--</td>
                                       </tr>
                                     </tbody>

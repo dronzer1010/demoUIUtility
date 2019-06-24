@@ -312,6 +312,16 @@
                                     <div class="span_width">Initiated on  </div>  <span> : </span> &nbsp;
                                     <div class="bold_span">{{payment.initiated_date | date:'dd-MM-yyyy hh:mm a'}}</div>
                                   </div>
+                                  <ng-container *ngFor="let approver of approverDetails">
+                                    <div class="mb-1">
+                                        <div class="span_width">Approved by </div>  <span> : </span> &nbsp;
+                                        <div class="bold_span">{{approver.approved_by}}</div>
+                                      </div>
+                                      <div class="mb-1">
+                                        <div class="span_width">Approved on  </div>  <span> : </span> &nbsp;
+                                        <div class="bold_span">{{approver.approved_on | date:'dd-MM-yyyy hh:mm a'}}</div>
+                                      </div>
+                                    </ng-container>
                             </div>
                           </td>
                         </tr>
@@ -322,7 +332,7 @@
 
                               <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                              <a (click)="closeModalDialog1()"><img src="assets/img/popup.png" alt="" style="width: 23px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              <a (click)="getextradetails(payment.late_pay_charges,promt_pay_incentives,remarks,meter_reading)"><img src="assets/img/popup.png" alt="" style="width: 23px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </span>
                           </td>
                         </tr>
@@ -347,22 +357,22 @@
                                       <tr>
                                         <td>Late Payment Charges</td>
                                         <td>:</td>
-                                        <td><i class="fa fa-rupee"></i>{{111146.37 | numberfr}}</td>
+                                        <td><i class="fa fa-rupee"></i>{{latecharges | numberfr}}</td>
                                       </tr>
                                       <tr>
                                         <td>Meter Reading</td>
                                         <td>:</td>
-                                        <td>3565 Unit(s)</td>
+                                        <td>{{meterreading}} Unit(s)</td>
                                       </tr>
                                       <tr>
                                         <td>Promt Payment Incentives</td>
                                         <td>:</td>
-                                        <td><i class="fa fa-rupee"></i>{{0 | numberfr}}</td>
+                                        <td><i class="fa fa-rupee"></i>{{incentives | numberfr}}</td>
                                       </tr>
                                       <tr>
                                         <td>Remarks</td>
                                         <td>:</td>
-                                        <td>Incentives Applicable</td>
+                                        <td>{{remarks}}</td>
                                       </tr>
                                     </tbody>
                                   </table>

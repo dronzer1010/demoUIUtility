@@ -4,6 +4,7 @@ import {BillerserviceService} from  '../../api/billerservice.service'
 import{LoaderService} from '../../api/loader.service'
 import {UserserviceService} from '../../api/userservice.service'
 import {PaymentserviceService} from '../../api/paymentservice.service'
+import { DatePipe } from '@angular/common'
 @Component({
   selector: 'app-paymentlist',
   templateUrl: './paymentlist.component.html',
@@ -58,7 +59,7 @@ paysuccesstime:string;
 payfaildate:string;
 payfailtime:string;
 rejectreason:string;
-  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService) { }
+  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,public datepipe: DatePipe) { }
 
   ngOnInit() {
     //this.rolename=localStorage.getItem('rolename')
@@ -206,7 +207,8 @@ this.paymentservice.getAllPayments().then(resp=>{
     this.selectedIndex = index;
     this.paymentservice.paylogs(id).then(resp=>{
       console.log(resp)
-      this.approverDetails=resp
+      this.approverDetails=resp['data']
+      console.log(this.approverDetails)
     },error=>{
       console.log(error)
     })
@@ -227,10 +229,59 @@ this.paymentservice.getAllPayments().then(resp=>{
 
 
       getextradetails(latepaycharge,incentives,remarks,meterreading){
-        this.displayBillDetails='block';
+          this.displayBillDetails='block';
+          if(latepaycharge!=null)
           this.latecharges=latepaycharge;
+          else
+          this.latecharges="--";
+          if(incentives!=null)
           this.incentives=incentives;
+          else
+          this.incentives="--"
+          if(remarks!=null)
           this.remarks=remarks
+          else
+          this.remarks="--"
+          if(meterreading)
           this.meterreading=meterreading;
+          else
+          this.meterreading="--"
       }
+
+      
+    getpaymentlogs(carddebittime,paystatustime,rejectreason){
+      console.log(paystatustime)
+      this.displayLogs='block';
+      if(carddebittime!=null){
+        carddebittime=this.datepipe.transform(carddebittime, 'M/d/yy, h:mm a');
+        console.log(carddebittime)
+     var crddate = carddebittime.split(", ")[0];
+     var crdtime= carddebittime.split(", ")[1];
+       // var crddate1 = crddate
+        this.carddebitdate=crddate;
+        //this.carddebittime=this.datepipe.transform(crdtime, 'h:mm a');;
+        this.carddebittime=crdtime
+        console.log(this.carddebittime)
+        
+      }else{
+        this.carddebitdate="--"
+        this.carddebittime="--"
+      }
+      if(paystatustime!=null){
+        paystatustime=this.datepipe.transform(paystatustime, 'M/d/yy, h:mm a');
+        var psdate = paystatustime.split(", ")[0];
+        var pstime= paystatustime.split(", ")[1];
+        this.paysuccessdate=psdate;
+        //this.carddebittime=this.datepipe.transform(crdtime, 'h:mm a');;
+        this.paysuccesstime=pstime
+         }else{
+           this.paysuccessdate="--"
+           this.paysuccesstime="--"
+         }
+         if(rejectreason!=null || rejectreason!=undefined){
+           this.rejectreason=rejectreason;
+         }else{
+           this.rejectreason="--"
+         }
+    }
 }

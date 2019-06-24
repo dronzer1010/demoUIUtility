@@ -151,7 +151,7 @@ export class PaymentserviceService {
     
 
     let promise = new Promise((resolve, reject) => {
-        this.http.get(path+`api/v1/bill_approver_detail/${id}`)
+        this.http.get(path+`api/v1/payment_approver_detail/${id}`)
             .subscribe(
                 res => {
                     console.log(res);

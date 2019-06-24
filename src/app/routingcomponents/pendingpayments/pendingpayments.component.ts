@@ -8,6 +8,7 @@ import{LoaderService} from '../../api/loader.service'
 import {UserserviceService} from '../../api/userservice.service'
 import {PaymentserviceService} from '../../api/paymentservice.service'
 import { ToastrService } from 'ngx-toastr'
+import { DatePipe } from '@angular/common'
 @Component({
   selector: 'app-pendingpayments',
   templateUrl: './pendingpayments.component.html',
@@ -61,7 +62,18 @@ export class PendingPaymentsComponent implements OnInit {
 selectedIndex = -1;
 userdata:any={};
 rolename:any;
-  constructor(private router:Router , private aRouter : ActivatedRoute,private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,private toastr: ToastrService) { }
+carddebittime:string;
+carddebitdate:string;
+paysuccessdate:string;
+paysuccesstime:string;
+payfaildate:string;
+payfailtime:string;
+rejectreason:string;
+latecharges:string;
+remarks:string;
+incentives:string;
+meterreading:string;
+  constructor(private router:Router , private aRouter : ActivatedRoute,private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,private toastr: ToastrService,public datepipe: DatePipe) { }
 
   ngOnInit() {
     this.getUserDetail();
@@ -348,11 +360,31 @@ getpaylogs(id,index){
   this.selectedIndex = index;
   this.paymentservice.paylogs(id).then(resp=>{
     console.log(resp)
-    this.approverDetails=resp
+    this.approverDetails=resp['data']
   },error=>{
     console.log(error)
   })
 
+}
+
+getextradetails(latepaycharge,incentives,remarks,meterreading){
+  this.displaypaydetails='block'
+  if(latepaycharge!=null)
+  this.latecharges=latepaycharge;
+  else
+  this.latecharges="--";
+  if(incentives!=null)
+  this.incentives=incentives;
+  else
+  this.incentives="--"
+  if(remarks!=null)
+  this.remarks=remarks
+  else
+  this.remarks="--"
+  if(meterreading)
+  this.meterreading=meterreading;
+  else
+  this.meterreading="--"
 }
 
 private getUserDetail(){
@@ -378,5 +410,16 @@ private getUserDetail(){
           })
       }
     
+    }
+
+    getpaymentlogs(carddebittime,paystatustime,rejectreason){
+      if(carddebittime!=undefined || carddebittime!=null){
+     var crddate = carddebittime.split(" ")[0];
+     var crdtime= carddebittime.split(" ")[1];
+        var crddate1 = this.datepipe.transform(crddate, 'dd-MM-yyyy');
+        this.carddebitdate=crddate1;
+        this.carddebittime=crdtime;
+        
+      }
     }
 }
