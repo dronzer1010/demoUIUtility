@@ -1,0 +1,59 @@
+#reportname{display: none}
+.noborder3 {
+    border: none;
+    outline: none;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0);
+    padding-left: 0px
+}
+input.form-control.noborder3::placeholder {
+    color: #333333;
+    opacity: 1;
+    font-weight: 600;
+}
+
+input.form-control.noborder3:-ms-input-placeholder {
+    color: #333333;
+    opacity: 1;
+    font-weight: 600;
+}
+
+input.form-control.noborder3::-ms-input-placeholder {
+    color: #333333;
+    opacity: 1;
+    font-weight: 600;
+}
+.modelWidthn {
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 0px;
+}
+
+.mybody2n{padding: 50px 20px}
+.brdlft{
+    border-left: 1px solid #eee;
+}
+.chkselect{
+    background-color: #64289d;
+}
+.prevlghd{
+    font-size: 12.4px;
+    font-weight: 600;
+    color: #3f4245;
+}
+input[type="checkbox"]{
+    
+    -webkit-appearance: initial;
+    width: 16px;
+    height: 16px;
+    background-color: #c7c7c7;
+    display: inline-block;
+    border-radius: 5px;
+    margin-right: 6px;
+    vertical-align: sub;
+    outline: none
+    
+}
+input[type="checkbox"]:hover, input[type="checkbox"]:checked {
+    background: #64289d;
+}

@@ -13,15 +13,15 @@
                </div>
                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left padln">
                   <span class="span_width">Employee ID</span> <span> : </span>&nbsp;
-                  <span class="bold_span">132143432</span>
+                  <span class="bold_span">{{userdata.empid}}</span>
                </div>
                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left padln">
                   <span class="span_width">Employee Name</span> <span> : </span>&nbsp;
-                  <span class="bold_span">Mr. Mukund Javir</span>
+                  <span class="bold_span">{{userdata.firstname}} {{userdata.lastname}}</span>
                </div>
                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left padln">
                   <span class="span_width">Date of Birth</span> <span> : </span>&nbsp;
-                  <span class="bold_span">01-02-1982</span>
+                  <span class="bold_span">{{userdata.dob}}</span>
                </div>
             </div>
 
@@ -34,17 +34,17 @@
                </div>
                <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left padln">
                   <span class="span_width"> Department</span> <span> : </span>&nbsp;
-                  <span class="bold_span">Finance</span>
+                  <span class="bold_span">{{userdata.department}}</span>
                   <br>
                </div>
                <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left padln">
                   <span class="span_width">Designation</span> <span> : </span>&nbsp;
-                  <span class="bold_span">Manager</span>
+                  <span class="bold_span">{{userdata.designation}}</span>
                   <br>
                </div>
                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left padln">
                   <span class="span_width">Role</span> <span> : </span>&nbsp;
-                  <span class="bold_span">Maker</span>
+                  <span class="bold_span">{{userdata.rolename}}</span>
                </div>
             </div>
 
@@ -59,17 +59,17 @@
                   <span class="span_width">
                      Mobile No
                   </span> <span> : </span>&nbsp;
-                  <span class="bold_span">9349956854</span>
+                  <span class="bold_span">{{userdata.mobileno}}</span>
                   <br>
                </div>
                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left padln">
                   <span class="span_width">Landline No</span> <span> : </span>&nbsp;
-                  <span class="bold_span">022-34343212</span>
+                  <span class="bold_span">{{userdata.landlineno}}</span>
                   <br>
                </div>
                <div class="col-xs-12 col-md-12 col-sm-12 text-left padln">
                   <span class="span_width">Employee Email</span> <span> : </span>&nbsp;
-                  <span class="bold_span" tooltip="mukund.javir@axisbank.com" placement="top" show-delay="500">mukund.javir@axisbank.com</span>
+                  <span class="bold_span" tooltip="{{userdata.email}}" placement="top" show-delay="500">{{userdata.email   }}</span>
                </div>
             </div>
             <div class="clear20"></div>
@@ -91,17 +91,17 @@
                               </div>
                               <div class="clear20"></div>
                               <div class="col-md-1 col-sm-1 col-xs-1">
-                                 <!-- <div *ngIf="!isViewsup" class="place"></div> -->
-                                 <div class="place chkselect"></div>
+                                 <div *ngIf="!isViewsup" class="place"></div>
+                                 <div *ngIf="isViewsup" class="place chkselect"></div>
                                  <div class="clear10"></div>
-                                 <div class="place"></div>
-                                 <!-- <div *ngIf="isApprsup" class="place chkselect"></div> -->
+                                 <div *ngIf="!isApprsup" class="place"></div>
+                                 <div *ngIf="isApprsup" class="place chkselect"></div>
                                  <div class="clear10"></div>
-                                 <!-- <div *ngIf="!isUnisup" class="place"></div> -->
-                                 <div class="place chkselect"></div>
+                                 <div *ngIf="!isUnisup" class="place"></div>
+                                 <div *ngIf="isUnisup" class="place chkselect"></div>
                                  <div class="clear10"></div>
-                                 <!-- <div *ngIf="!isBulksup" class="place"></div> -->
-                                 <div class="place chkselect"></div>
+                                 <div *ngIf="!isBulksup" class="place"></div>
+                                 <div *ngIf="isBulksup" class="place chkselect"></div>
                                  <div class="clear10"></div>
                               </div>
                               <div class="col-sm-9 col-md-9 col-xs-9 text-left">
@@ -127,18 +127,18 @@
                               </div>
                               <div class="clear20"></div>
                               <div class="col-md-1 col-sm-1 col-xs-1">
-                                 <!-- <div *ngIf="!isViewpay" class="place"></div> -->
-                                 <div class="place chkselect"></div>
+                                 <div *ngIf="!isViewpay" class="place"></div>
+                                 <div *ngIf="isViewpay" class="place chkselect"></div>
                                  <div class="clear10"></div>
-                                 <div class="place"></div>
-                                 <!-- <div *ngIf="isApprpay" class="place chkselect"></div> -->
+                                 <div *ngIf="!isApprpay" class="place"></div>
+                                 <div *ngIf="isApprpay" class="place chkselect"></div>
                                  <div class="clear10"></div>
-                                 <!-- <div *ngIf="!isUnipay" class="place"></div> -->
-                                 <div class="place chkselect"></div>
+                                 <div *ngIf="!isUnipay" class="place"></div>
+                                 <div *ngIf="isUnipay" class="place chkselect"></div>
                                  <div class="clear10"></div>
                                  <!-- <div *ngIf="!isBulkpay" class="place"></div>
-                              <div *ngIf="isBulkpay" class="place chkselect"></div>
-                              <div class="clear10"></div> -->
+                                 <div *ngIf="isBulkpay" class="place chkselect"></div>
+                                 <div class="clear10"></div> -->
                               </div>
                               <div class="col-sm-9 col-md-9 col-xs-9 text-left">
                                  View
@@ -156,7 +156,7 @@
                               </div>
                            </div>
                         </div>
-                           <!-- <div class="col-sm-2 col-md-2 col-xs-2 brdlft">
+                           <div class="col-sm-2 col-md-2 col-xs-2 brdlft">
                            <div class="col-xs-12 col-sm-12 col-md-12">
                               <h5 class="prevlghd">Users</h5>
                            </div>
@@ -189,8 +189,8 @@
                               <br>
                               <div class="clear10"></div>
                            </div>
-                        </div> -->
-                           <!-- <div class="col-sm-2 col-md-2 col-xs-2 brdlft">
+                        </div> 
+                           <div class="col-sm-2 col-md-2 col-xs-2 brdlft">
                            <div class="col-xs-12 col-sm-12 col-md-12">
                               <h5 class="prevlghd">Cards</h5>
                            </div>
@@ -219,7 +219,7 @@
                               <div class="clear10"></div>
                            </div>
                         </div>
-                        <div class="col-sm-2 col-md-2 col-xs-2 brdlft" *ngIf="currentUser.authmtrix=='Complex'">
+                        <div class="col-sm-2 col-md-2 col-xs-2 brdlft" *ngIf="userdata.authmtrix=='Complex'">
                            <div class="col-xs-12 col-sm-12 col-md-12">
                               <h5 class="prevlghd">Groups</h5>
                            </div>
@@ -248,7 +248,7 @@
                               <div class="clear10"></div>
                            </div>
                         </div>
-                        <div class="col-sm-2 col-md-2 col-xs-2 brdlft" *ngIf="currentUser.authmtrix=='Complex'">
+                        <div class="col-sm-2 col-md-2 col-xs-2 brdlft" *ngIf="userdata.authmtrix=='Complex'">
                            <div class="col-xs-12 col-sm-12 col-md-12">
                               <h5 class="prevlghd">Rules</h5>
                            </div>
@@ -276,7 +276,7 @@
                               <div class="clear10"></div>
                               <div class="clear10"></div>
                            </div>
-                        </div> -->
+                        </div>
                         </td>
                      </tr>
                   </tbody>

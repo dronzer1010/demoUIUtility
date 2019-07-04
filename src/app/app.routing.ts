@@ -44,6 +44,29 @@ import { AuthGuard } from './gaurd/auth.gaurd';
 import { SetpasswordComponent } from './authentication/setpassword/setpassword.component';
 import { GeneratepasswordComponent } from './authentication/generatepassword/generatepassword.component'
 import { BackusrupComponent } from './supportingcomponents/backusrup/backusrup.component';
+import { RmifscComponent } from './rmcomponents/rmifsc/rmifsc.component';
+import { RmreportnameComponent } from './rmcomponents/rmreportname/rmreportname.component';
+import { RmrawaccessdetailsComponent } from './rmcomponents/rmrawaccessdetails/rmrawaccessdetails.component';
+import { RmorganisationdetailComponent } from './rmcomponents/rmorganisationdetail/rmorganisationdetail.component';
+import { RmuserreportsComponent } from './rmcomponents/rmuserreports/rmuserreports.component';
+import { RmrulevalidationComponent } from './rmcomponents/rmrulevalidation/rmrulevalidation.component';
+import { RmracessComponent } from './rmcomponents/rmracess/rmracess.component';
+import { RmpaymentsComponent } from './rmcomponents/rmpayments/rmpayments.component';
+import { RmorgroupsComponent } from './rmcomponents/rmorgroups/rmorgroups.component';
+import { RmorganisationComponent } from './rmcomponents/rmorganisation/rmorganisation.component';
+import { RmnotificationmatrixComponent } from './rmcomponents/rmnotificationmatrix/rmnotificationmatrix.component';
+import { RmprofileComponent } from './rmcomponents/rmprofile/rmprofile.component';
+import { RmgrouporganisationComponent } from './rmcomponents/rmgrouporganisation/rmgrouporganisation.component';
+import { RmgrouplistComponent } from './rmcomponents/rmgrouplist/rmgrouplist.component';
+import { RmfaqComponent } from './rmcomponents/rmfaq/rmfaq.component';
+import { RmdashboardComponent } from './rmcomponents/rmdashboard/rmdashboard.component';
+import { RmcardsComponent } from './rmcomponents/rmcards/rmcards.component';
+import { RmrepositoryComponent } from './rmcomponents/rmrepository/rmrepository.component';
+import { RmbillsComponent } from './rmcomponents/rmbills/rmbills.component';
+import { RmsamplebillsComponent } from './rmcomponents/rmsamplebills/rmsamplebills.component';
+import { RmtemplatesComponent } from './rmcomponents/rmtemplates/rmtemplates.component'
+import { BackgrpregComponent } from './supportingcomponents/backgrpreg/backgrpreg.component';
+import { MakeprepaidpaymentsComponent } from './routingcomponents/makeprepaidpayments/makeprepaidpayments.component';
 const appRoutes: Routes = [ 
     { path:'main',component:UserhomeComponent,
     children:[
@@ -52,6 +75,7 @@ const appRoutes: Routes = [
     {path:'billerlist',component:BillerlistComponent,canActivate: [AuthGuard]},
     {path:'paymentlist',component:PaymentListComponent,canActivate: [AuthGuard]},
     {path:'make-payment',component:MakePaymentComponent,canActivate: [AuthGuard]},
+    {path:'make-prepaid-payment',component:MakeprepaidpaymentsComponent,canActivate: [AuthGuard]},
     {path:'pending-payments',component:PendingPaymentsComponent,canActivate: [AuthGuard]},
     //{path:'maker-biller-bulk',component:MakerBillerBulkComponent},  
     {path:'biller-bulk',component:BillerBulkComponent,canActivate: [AuthGuard]}, 
@@ -83,6 +107,7 @@ const appRoutes: Routes = [
     {path:'repository',component:RepositoryComponent,canActivate: [AuthGuard]},
     {path:'sample-bills',component:SamplebillsComponent,canActivate: [AuthGuard]},
     {path:'templates',component:TemplatesComponent,canActivate: [AuthGuard]}
+    
 ]},
 
     // otherwise redirect to home
@@ -92,7 +117,28 @@ const appRoutes: Routes = [
     {path:'gen-pwd',component:GeneratepasswordComponent},
     {path:'firstlogin',component:AccountsetupComponent},
     { path : 'useruploadback', component: BackusrupComponent},
-    
+    { path : 'grpregback', component: BackgrpregComponent},
+    { path: 'rm-ifsc-verify', component: RmifscComponent ,canActivate:[AuthGuard]},
+    { path: 'rmreportname', component: RmreportnameComponent ,canActivate:[AuthGuard]},
+    { path: 'rmrawdetails/:id', component: RmrawaccessdetailsComponent,canActivate:[AuthGuard] },
+    { path: 'rmorganisationdetail/:id', component: RmorganisationdetailComponent ,canActivate:[AuthGuard]},
+    { path: 'rmuserreports/:id', component: RmuserreportsComponent ,canActivate:[AuthGuard]},
+    { path: 'rmrulevalidation', component: RmrulevalidationComponent ,canActivate:[AuthGuard]},
+    { path: 'rmrawaccess', component: RmracessComponent ,canActivate:[AuthGuard]},
+    { path: 'rmpayment', component: RmpaymentsComponent,canActivate:[AuthGuard] },
+    { path: 'rmorggroups/:id', component: RmorgroupsComponent,canActivate:[AuthGuard] },
+    { path: 'rmorganisation', component: RmorganisationComponent ,canActivate:[AuthGuard]},
+    { path: 'rmnotificationmatrix', component: RmnotificationmatrixComponent ,canActivate:[AuthGuard]},
+    { path: 'rmmyprofile', component: RmprofileComponent ,canActivate:[AuthGuard]},
+    { path: 'rmgrouporganisation', component: RmgrouporganisationComponent,canActivate:[AuthGuard] },
+    { path: 'rmgrouplist/:id/:authmatrix', component: RmgrouplistComponent ,canActivate:[AuthGuard]},
+    { path: 'rmfaq', component: RmfaqComponent ,canActivate:[AuthGuard]},
+    { path: 'rmdashboard', component: RmdashboardComponent ,canActivate:[AuthGuard]},
+    { path : 'rmcards/:id', component: RmcardsComponent,canActivate: [AuthGuard]},
+    { path : 'rmbills/:id', component: RmbillsComponent,canActivate: [AuthGuard]},
+    { path : 'rmrepository', component: RmrepositoryComponent,canActivate: [AuthGuard]},
+    { path : 'rmtemplates', component: RmtemplatesComponent,canActivate: [AuthGuard]},
+    { path : 'rmsample-bills', component: RmsamplebillsComponent,canActivate: [AuthGuard]},
     { path: '**', redirectTo: '' }
 ];
 

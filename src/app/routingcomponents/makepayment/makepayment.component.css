@@ -12,6 +12,9 @@
   width: 25%;
   text-align: center;
 }
+.btnspace{
+  margin-right: 3px;
+}
 
 
 
@@ -881,6 +884,9 @@ input::-webkit-calendar-picker-indicator {
     font-size: 12px;
     margin-right: 15px;
   }
+  .btnspace{
+    margin-right: 3px;
+  }
 }
 
 @media only screen and (max-width: 1370px) {
@@ -981,6 +987,9 @@ input::-webkit-calendar-picker-indicator {
   .graph-ratio {
     font-size: 12px;
     margin-right: 15px;
+  }
+  .btnspace{
+    margin-right: 3px;
   }
 }
 
@@ -1087,6 +1096,9 @@ input::-webkit-calendar-picker-indicator {
     font-size: 12px;
     margin-right: 15px;
   }
+  .btnspace{
+    margin-right: 3px;
+  }
 }
 
 @media only screen and (max-width: 1100px) {
@@ -1105,5 +1117,8 @@ input::-webkit-calendar-picker-indicator {
   border: 3px solid purple;
   padding: 15px 0px 15px 15px;
   border-radius: 10px;
+}
+.btnspace{
+  margin-right: 3px;
 }
 }

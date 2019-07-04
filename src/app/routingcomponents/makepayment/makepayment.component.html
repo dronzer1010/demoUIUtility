@@ -174,7 +174,7 @@
                       <td class="unitheaders">Amount payable</td>
                     </tr>
                     <tr>
-                      <td>{{payments.length}}</td>
+                      <td>{{bills.length}}</td>
                       <td><i class="fa fa-rupee"></i>{{totalamount | numberfr}}</td>
                       <td>{{checkedValueArray.length}}</td>
                       <td><i class="fa fa-rupee"></i>{{amountpay | numberfr}}</td>
@@ -182,9 +182,12 @@
                   </table>
                 <!-- <button class="btn bg-primary nextpay buttonpad" type="button" (click)="fetchAllBills()" style="padding: 3px 25px!important;">Fetch All Bills</button> -->
                 </div>
-                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right">
+                <!-- <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div> -->
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-right">
+                    <button class="btn btn-primary btn-outline ResponsiveBtnWidth btnspace" type="button" (click)="onItemSelectDown()" style="padding: 3px 25px!important;"><img src="assets/img/downloadlist.png"></button>
+                  <button class="btn bg-primary buttonpad btnspace" type="button" (click)="filtervalidamount()" style="padding: 3px 25px!important;">Valid Amount</button>
                   <button class="btn bg-primary nextpay buttonpad" type="button" (click)="cnfsend()" style="padding: 3px 25px!important;">Next</button>
+                
                 </div>
               </div>
               <div class="row" id="">
@@ -193,11 +196,11 @@
                     <table id="main-table" [mfData]="bills" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                       <thead>
                         <tr>
-                          <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(payments)"></td>
+                          <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(bills)"></td>
                           <td>Biller Name&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td>Amount &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td>Reference No&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
-                          <td>Consumer Name&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                         
                           <td>Status &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td class="text-center">Payment Status &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td>&nbsp;</td>
@@ -212,7 +215,7 @@
                             <!-- <i class="fa fa-inr"></i> {{(payment.amount)?payment.amount:"No Data"}} -->
                           </td>
                           <td>{{payment.consumer_no}}</td>
-                          <td>Company Name</td>
+                          
                           <td><button class="pending-btn">Pending</button></td>
                           <td style="color:#533979;font-weight:bold;text-align: center;">Pending</td>
                           <td style="padding: 0 5px;"><img alt="" src="assets/img/tb_downarrow.png" (click)="payment.collapsed=!payment.collapsed;"></td>
@@ -239,7 +242,7 @@
                               </div>
                               <div class="mb-1">
                                 <div class="span_width">Due Date</div> <span class="no-vert"> : </span> &nbsp;
-                                <div class="bold_span">{{(payment.fetch_due_date)?payment.fetch_bill_date:"No Data"}}</div>
+                                <div class="bold_span">{{(payment.fetch_due_date)?payment.fetch_due_date:"No Data"}}</div>
                               </div>
                               <!-- <div>
                                 <div class="span_width">Ref No 2:</div>

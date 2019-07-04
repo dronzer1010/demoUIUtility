@@ -1,0 +1,325 @@
+/* Changes done by Vishal */
+.uk-section{
+    box-shadow: 0 4px 6px rgba(0,0,0,.175);
+}
+.CardWhitebox{
+    box-shadow: 0px 0px 1px #d5d5d5;
+}
+/* <-------------------> */
+.margnrht{
+    margin-right: 20px;
+
+}
+.mrgntpminus{
+    margin-top: -25px;
+}
+.uk-card-primaryn{
+
+    width: 90%!important;
+}
+.highcharts-background{
+    height:320px !important;
+
+}
+.CardWhiteboxn {
+    width: 100%;
+    float: left;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px #ccc;
+    margin-bottom: 3%;
+}
+.card-background{
+    background-image: url("../../../assets/img/credit-card.png");
+}
+
+.btn-img1 {
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    margin-top: 70px;
+    height: 35px;
+    width: 35px;
+    border: 0px;
+    margin-left: 10px;
+  }
+
+
+.padtbn{
+    padding: 0px!important;
+}
+.marginnon{
+margin: 0px!important;
+}
+.nummrgn{
+    margin: 10px 0px 10px 0px!important;
+}
+.uk-card-primary {
+    
+    width: 90%!important;
+    height: 254px!important;
+   
+}
+.pnpad{
+    padding: 0px!important;
+}
+.nicname{
+    font-size: 23px;
+    font-weight: 300;
+}
+.no{
+    font-size: 40.2px;
+    font-weight: 300;
+}
+.textsmalln {
+    font-size: 13.7px !important;
+    font-weight: 300!important;
+    color: #b2a8bb !important;
+    font-family: 'FuturaLightBT_1';
+}
+.textsmall1 {
+    color: #ffffff !important;
+    font-size: 13.7px !important;
+    font-weight: 300!important;
+    font-family: 'FuturaLightBT_1';
+    
+}
+.textsmall3n {
+    font-size: 12.6px !important;
+    color: #ffffff !important;
+    font-weight: 300!important;
+    font-family: 'FuturaLightBT_1';
+}
+.mrgntxt{
+    margin-top: 0px!important;
+}
+.mrgbot{
+    margin-bottom: 0px!important;
+}
+.clear5 {
+    clear: both;
+    height: 5px;
+}
+.tfcard{
+    font-size: 18.1px;
+  font-weight: 600;
+  color: #2c2e30;
+}
+.CardWhitebox1n h3 {
+    padding: 5px 0px 15px 27px!important;
+    text-align: left;
+}
+#cbxCities{
+    width: 400px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: 1px solid #d5d5d5;
+}
+#cbxCiti{
+    width: 250px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: 1px solid #d5d5d5;
+}
+.TopHeading {
+    padding: 5%;
+}
+
+.name{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .number{
+    font-size: 19px;
+  }  
+
+  .spn1, .spn2{
+    font-size:10px;
+  }
+  .spn1{
+    margin-top:12px;
+  }
+
+
+@media only screen and (max-width:1920px){
+    .main-cardbody {
+      background-image: url("../../../assets/img/credit-card.png");
+      color: #fff;
+      min-height: 256px;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    .btn-img1{
+      margin-top:100px;
+    }
+    .spn4 {
+      font-size: 25px;
+    }
+    .number {
+      font-size: 35px;
+    }
+    .spn1 {
+      margin-top: 16px;
+    }
+    .spn1, .spn2 {
+      font-size: 15px;
+    }
+    .progress{
+      width:96%;
+    }
+    .credit-limit{
+      margin-top:15px;
+      font-size:20px;
+    }
+    .p2{
+      left: 420px!important;
+    }
+    .p1, .p2{
+      font-size:20px;
+      margin-top:10px;
+      width:62px;
+    }
+    .main-card {
+      position: relative;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .graph{
+      height:440px;
+    }
+    .round1, .round2{
+      padding: 37% 10%;
+    }
+    }
+    @media only screen and (max-width:1536px){
+      .p2{
+        left: 338px!important;
+      }
+      .graph{
+        height:410px;
+      }
+      .number {
+        font-size: 30px;
+    }
+    .spn4 {
+      font-size: 22px;
+    }
+    .credit-limit {
+      margin-top: 5px;
+      font-size: 17px;
+    }
+    .spn1, .spn2 {
+      font-size: 12px;
+    }
+    .spn1 {
+      margin-top: 5px;
+    }
+    .p1, .p2 {
+      font-size: 16px;
+      margin-top: 6px;
+      width: 62px;
+    }
+    .progress {
+      width: 100%;
+    }
+    .main-card {
+      position: relative;
+      margin-top: 10px;
+      margin-bottom: -35px;
+    }
+    .span1+span {
+      font-size: 15px;
+      text-align: center;
+    }
+    }
+    @media only screen and (max-width:1440px){
+      .p2{
+        left: 290px!important;
+      }
+      .number {
+        font-size: 28px;
+    }
+    .name {
+      margin-top: 10px;
+      margin-bottom: 3px;
+    }
+    .btn-img1 {
+      margin-top: 85px;
+    }
+    .graph {
+      height: 348px;
+    }
+    }
+    @media only screen and (max-width:1380px){
+      .p2{
+        left: 295px!important;
+      }
+      .number{
+        font-size: 27px;
+    }
+    .spn4 {
+      font-size: 20px;
+    }
+    .credit-limit {
+      margin-top: 5px;
+      font-size: 14px;
+    }
+    .p1, .p2 {
+      font-size: 15px;
+      margin-top: 6px;
+      width: 62px;
+    }
+    .span1+span{
+      font-size: 15px;
+      text-align: center;
+    }
+    }
+    @media only screen and (max-width:1370px){
+    .number{
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+    .spn4{
+      font-size: 17px;
+    }
+    .spn1, .spn2{
+      font-size: 11px;
+    }
+    .credit-limit{
+      margin-top: 11px;
+      font-size: 13px;
+    }
+    .p1, .p2{
+      font-size: 12px;
+      margin-top: 3px;
+      width: 62px;
+    }
+    .p2{
+      left: 260px!important;
+    }
+    .graph{
+      height:326px;
+    }
+    .name{
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+    }
+  
+    @media only screen and (max-width:1100px){
+    .span1 + span{
+        font-size: 12px;
+        text-align: center;
+    }
+    .title{
+      font-size: 1rem;
+      padding: 2% 6%;
+    }
+    .spent{
+      font-size: 13px;
+      position: absolute;
+      top: 90px;
+      left: 52%;
+    }
+    }

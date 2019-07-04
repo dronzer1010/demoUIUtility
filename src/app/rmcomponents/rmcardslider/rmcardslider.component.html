@@ -1,0 +1,41 @@
+<div class="CardWhitebox CardWhitebox1 CardWhitebox11">
+  <h3 class="col-md-3 col-sm-6 Top5Heading111 mrgnone headfont">You Have {{carddataLength}} Cards</h3>
+          <div id="selectAuto" class="col-md-3 col-sm-6 TopHeading">
+                  <span class="datalist-arrow">
+                    <input id="cbxCiti" class="jqx-combobox-input" list="browsers" [(ngModel)]="selectedRuleValue" name="browsers" placeholder="Select Organisation Name"
+                      (change)="onOrganizationChange(selectedRuleValue)">
+                    <datalist id="browsers">
+                      <option *ngFor="let org of orgAllDetail" [ngValue]="org.OrgId">{{org.CompanyName}}</option>
+                    </datalist>
+                  </span>
+                </div>  
+    </div>
+  <!--<div class="whitebox whitebox1">-->
+  <!--<div class="uk-margin"></div>-->
+  <div class="uk-section">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 mrgntpminus">
+                  <!-- <div class="row">
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                          <h4>Card Activity</h4>
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 text-right ">
+                          <a class="btn btn-primary btn-outline viewBtn " role="button">View Details&nbsp;
+                              <img src="assets/images/right-arrow.png">
+                          </a>
+                      </div>
+                     
+                  </div>
+                  <div class="clear20"></div>
+                  <div class="clear20"></div>
+                  <div [chart]="chart"></div> -->
+                  <!-- <app-astopcardactivity> </app-astopcardactivity> -->
+                  <!-- <app-toppayment></app-toppayment> -->
+              </div>
+      </div>
+
+  <!-- <div class="clear"></div>
+
+  <div class="clear10"></div> -->

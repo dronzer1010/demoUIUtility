@@ -1,0 +1,181 @@
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Poppins-light';
+    margin: 7px 0;
+}
+h3{
+    font-size: 20px;
+}
+.exp h6{
+    margin:0px 0px;
+}
+.txtl {
+    font-size: 14px;
+    font-weight: 300;
+    color: #575962;
+}
+.background-fff{
+    background-color: #fff;
+}
+.rstxt {
+    font-size: 14px;
+    font-weight: 600;
+    color: #575962;
+}
+.nopad {
+    padding: 0px !important;
+}
+.collapsible {
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+    padding: 0px 18px 10px 0px;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    
+}
+.span_width{
+    width:39%;
+    vertical-align: unset;
+}
+.bold_span{
+    vertical-align: unset;
+    width: 48%;
+}
+    .collapsible:after {
+        /* content: '\View Details'; */
+        color: #575962;
+        font-weight: 300;
+        float: right;
+        border-bottom: 1px solid #575962;
+        /*margin-left: 5px;*/
+    }
+    
+.cactive:before {
+    content: "\Hide Details";
+    color: #575962;
+}
+
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    
+    transition: max-height 0.2s ease-out;
+    background-color: #fff;
+}
+
+.centra {
+    float:none!important;
+}
+.hffont {
+    font-family: 'Poppins-Regular';
+    padding-bottom:0px;
+    font-size: 16px!important;
+    font-weight: 300!important;
+}
+.bcolor {
+    background-image: url('../../../assets/img/new-cred-card.png');
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #ffffff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:250px;
+}
+.bcolor1{
+    padding: 0px 15px;
+}
+.cardnot {
+    background-color: #ffffff;
+    box-shadow: 0 0 8.5px 1.5px rgba(86, 79, 193, 0.1);
+    margin-bottom:20px;
+}
+.pfcard {
+    background-color: #ffffff;
+    box-shadow: 0 0 8.5px 1.5px rgba(86, 79, 193, 0.1);
+    padding:25px 50px;
+}
+.card-1 {
+    background-color: #ffffff;
+    box-shadow: 0 0 8.5px 1.5px rgba(86, 79, 193, 0.1);
+    padding: 40px 35px 20px 35px;
+    margin: 10px 0px;
+    border-radius: 10px;
+}
+.card-2 {
+    background-color: #ffffff;
+    box-shadow: 0 0 8.5px 1.5px rgba(86, 79, 193, 0.1);
+    padding: 40px 35px 20px 35px;
+    margin: 10px 0px;
+    border-radius: 10px;
+}
+
+.fontsize h4 {
+    padding: 0px !important;
+    font-family: 'Poppins-Regular';
+}
+.card-3 {
+    background-color: #ffffff;
+    box-shadow: 0 0 8.5px 1.5px rgba(86, 79, 193, 0.1);
+    padding: 40px 35px 20px 35px;
+    margin: 10px 0px;
+}
+.tab {
+    overflow: hidden;
+    background-color: #ffffff;
+    height: 79px;
+    box-shadow: 0 0 4.7px 0.4px rgba(88, 103, 195, 0.27);
+}
+    .tab button {
+    margin-top: 38px;
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 8px 16px;
+    transition: 0.3s;
+    font-size: 13px;
+    font-weight: 300;
+    color: #575962;
+}
+.tab button:hover {
+border-bottom: 3px solid #fff33b;
+color: #52178b;
+}
+.tab button.active {
+    border-bottom: 4px solid #fff33b;
+font-size: 14px;
+font-weight: 600;
+}
+.tabcontent {
+    
+    padding: 6px 12px;
+    border-top: none;
+}
+.notlabel {
+    font-family: 'Poppins-Regular';
+    font-size: 17.3px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: normal;
+    color: #533979;
+    margin:30px 0px;
+}
+.mrgnp{
+    margin: 0px!important;
+
+}
+.nofnt{
+    font-size: 16px!important;
+    font-weight: 300!important;
+    font-family: 'Poppins-light';
+}
+.bdivtopmrgn{
+    margin-top: 25px;
+}
+
+.wordwrap{
+    word-wrap: break-word !important;
+    /* width: 75% !important; */
+}

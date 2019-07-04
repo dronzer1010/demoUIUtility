@@ -1,0 +1,363 @@
+<app-rmheader></app-rmheader>
+<div class="row h-100" style="background-color:#f4f4f4;">
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 heading">List of Bills</div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="row mb-3" style="margin-bottom:15px;">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                  <img src="assets/img/search-icon.png" alt="" width="5%;"> <input type="search"
+                    placeholder="Search for Location, Biller Type or Utility" [(ngModel)]="searchText">
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
+                  <ng-multiselect-dropdown [ngClass]="'first-multiselect'" [placeholder]="'All Categories'"
+                    [data]="dropdownCat" [(ngModel)]="selectedItems1" [settings]="dropdownSettings1"
+                    (onSelect)="onItemSelect($event)" [(ngClass)]="all-cat" (onSelectAll)="onSelectAll($event)">
+                  </ng-multiselect-dropdown>
+                  <ng-multiselect-dropdown [ngClass]="'first-multiselect'" [placeholder]="'This Month'"
+                    [data]="dropdownList" [(ngModel)]="selectedItems2" [settings]="dropdownSettings2"
+                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                  </ng-multiselect-dropdown>
+                  <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png" alt=""> Download File</button> -->
+                  <ng-multiselect-dropdown [ngClass]="'first-multiselect'" [placeholder]="'Download List'"
+                    [data]="dropdownDownload" [(ngModel)]="selectedItems" [settings]="dropdownSettings"
+                    (onSelect)="onItemSelectDown($event)" (onSelectAll)="onSelectAllDown($event)">
+                  </ng-multiselect-dropdown>
+                  <div class="backdrop" [ngStyle]="{'display':display}"></div>
+                  <!-- modal -->
+                  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+                    <!-- modal-dialog -->
+                    <div class="modal-dialog" role="document">
+                      <!-- modal-content -->
+                      <div class="modal-content">
+                        <!-- modal-header -->
+                        <div class="modal-header">
+                          Generate Customize Report<button type="button" class="close" aria-label="Close"
+                            (click)="closeModalDialog()"><span aria-hidden="true">&times;</span></button>
+                          <!-- <h4 class="modal-title">Login</h4> -->
+                        </div>
+                        <!-- modal-body -->
+                        <div class="modal-body">
+                          <div class="row mb-4 text-left">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                              <label for="" class="pop-input-text">Report Name :</label>
+                              <input type="text" class="pop-input" placeholder="Eg. Quarterly Report">
+                            </div>
+                          </div>
+                          <div class="row mb-4 text-left">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                              <label for="">Select the field to create a report</label>
+                            </div>
+                          </div>
+                          <div class="row mb-2 text-left">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Utility
+                                Type</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Biller
+                                Name</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Bill" value="Bill"> <span class="spn-modal">Bill Date</span>
+                            </div>
+                          </div>
+                          <div class="row mb-2 text-left">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Due
+                                Date</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Reference" value="Reference"> <span
+                                class="spn-modal">Status</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Bill" value="Bill"> <span class="spn-modal">Short Name</span>
+                            </div>
+                          </div>
+                          <div class="row mb-2 text-left">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">GL/Expense
+                                Code</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Reference" value="Reference"> <span
+                                class="spn-modal">Location</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Bill" value="Bill"> <span class="spn-modal">Consumer No</span>
+                            </div>
+                          </div>
+                          <div class="row mb-2 text-left">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Mobile
+                                No</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Reference" value="Reference"> <span
+                                class="spn-modal">Address</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Reference" value="Reference"> <span
+                                class="spn-modal">Email</span>
+                            </div>
+                          </div>
+                          <div class="row mb-2 text-left">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">File
+                                Name</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Initiated
+                                by</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Initiated
+                                on</span>
+                            </div>
+                          </div>
+                          <div class="row mb-2 text-left">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Approved
+                                by</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Approved
+                                on</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+  
+                            </div>
+                          </div>
+                          <div class="row mb-4 text-left">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                              <table>
+                                <tr>
+                                  <td style="padding:0px; width:10%">From</td>
+                                  <td style="padding:0px; width:28%">
+                                    <angular2-date-picker [ngClass]="'popup-datepicker'" [(ngModel)]="fromdate"
+                                      [settings]="settings"></angular2-date-picker>
+                                  </td>
+                                  <td style="padding-left:7px; width:10%">To</td>
+                                  <td style="padding-right:10px; width:31%">
+                                    <angular2-date-picker [ngClass]="'popup-datepicker'" [(ngModel)]="todate"
+                                      [settings]="settings"></angular2-date-picker>
+                                  </td>
+                                </tr>
+                              </table>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
+                          </div>
+                          <div class="row text-left">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button (click)="closeModalDialog()"
+                                class="btn-ok" style="margin-right:10px;">OK</button></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3" style="margin-bottom:15px;">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 txt">
+                  <table class="entry-table">
+                    <tr>
+                      <td class="unitheaders">{{noofrole}}</td>
+                    </tr>
+                    <tr>
+                      <td>{{billerlength}}</td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right"><button class="btn1">Approve Biller</button>
+                    <button class="btn2 ml-2">Reject Biller</button></div> -->
+              </div>
+              <div class="row" style="margin:0px;">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
+                  <table id="main-table" [mfData]="billdata" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage"
+                    [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                    <thead>
+                      <tr>
+                        <td>
+                          Sr.No.
+                        </td>
+                        <td>Utility Type <img src="assets/img/Filter.png" alt=""></td>
+                        <td>Biller Name <img src="assets/img/Filter.png" alt=""></td>
+                        <td>Bill Date <img src="assets/img/Filter.png" alt=""></td>
+                        <td>Due Date <img src="assets/img/Filter.png" alt=""></td>
+                        <td>Status <img src="assets/img/Filter.png" alt=""></td>
+                        <td *ngIf="rolename=='ccmaker' || rolename=='maker'"></td>
+                        <td>&nbsp;</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container
+                        *ngFor="let bill of mf.data |orderBy: key : reverse|rMbillerFilter :{utility: searchText,biller_name:searchText,bill_date:searchText,due_date:searchText,status:searchText,short_name:searchText,gl_expense_code:searchText,consumer_no:searchText,display_name_bu:searchText,state:searchText,display_name_circle:searchText,contact_no:searchText,contact_address:searchText,email:searchText,created_by:searchText,created_on:searchText,approvedby:searchText,approvedon:searchText}; let i=index;">
+                        <tr>
+                          <td>{{i+1}}</td>
+                          <td>{{bill.utility}}</td>
+                          <td>{{bill.biller_name}}</td>
+                          <td>{{bill.bill_date}}</td>
+                          <td>{{bill.due_date}}</td>
+                          <td><a href="javascript:void(0);" class="btn"
+                              [ngClass]="{'appoved': bill.status === 'Registered', 'Rejected': bill.status  === 'Rejected', 'Pending': bill.status  === 'Pending'}"
+                              role="button">{{bill.status}}</a></td>
+                          <td *ngIf="rolename=='ccmaker' || rolename=='maker'" style="padding-left: 1%;"><a
+                              data-toggle="modal" id="openBtn"><img src="assets/img/delete.png"></a></td>
+                          <td style="padding:0 15px;"><img src="assets/img/tb_downarrow.png" alt=""
+                              (click)="bill.collapsed=!bill.collapsed;getApproverDetails(bill.id,i)"></td>
+                        </tr>
+                        <tr class="rowShow grayStrip" *ngIf="bill.collapsed && selectedIndex==i">
+                          <td class="custmtd" colspan="8">
+                            <div class="tablediv">
+                              <h5>Biller Details</h5>
+                              <div class="mb-1">
+                                <div class="span_width">Short Name</div> <span> : </span> &nbsp;
+                                <div class="bold_span">{{bill.short_name}}</div>
+                              </div>
+                              <div class="mb-1">
+                                <div class="span_width">GL/Expense Code</div> <span> : </span> &nbsp;
+                                <div class="bold_span">{{bill.gl_expense_code}}</div>
+                              </div>
+                              <!-- <div class="mb-1">
+                              <div class="span_width">Meter Reading:</div>
+                              <div class="bold_span">{{bill.reading}}</div>
+                            </div> -->
+                              <!-- <div class="mb-1">
+                              <div class="span_width">Bill Date:</div>
+                              <div class="bold_span">10/12/2018</div>
+                            </div> -->
+                              <div class="mb-1">
+                                <div class="span_width">Location</div> <span> : </span> &nbsp;
+                                <div class="bold_span">{{bill.state}}</div>
+                                
+                              </div>
+                              <div class="mb-1">
+                                <div class="span_width">{{bill.parameter_1}}</div> <span> : </span> &nbsp;
+                                <div class="bold_span">{{bill.consumer_no}}</div>
+                              </div>
+                              <div class="mb-1" *ngIf="bill.display_name_bu!=null">
+                                <div class="span_width">{{bill.display_name_bu}}</div> <span> : </span> &nbsp;
+                                <div class="bold_span">{{bill.bu}}</div>
+                              </div>
+                              <div class="mb-1" *ngIf="bill.display_name_circle!=null">
+                                <div class="span_width">{{bill.display_name_circle}}</div> <span> : </span> &nbsp;
+                                <div class="bold_span">{{bill.circle}}</div>
+                              </div>
+                              <!-- <div class="mb-1">
+                              <div class="span_width">Ref. No. 2</div>  <span> : </span> &nbsp;
+                              <div class="bold_span"></div>
+                            </div> -->
+                            </div>
+                            <div class="tablediv table2">
+                              <h5>Contact Details</h5>
+                              <div class="mb-1">
+                                <div class="span_width">Mobile No</div> <span> : </span> &nbsp;
+                                <div class="bold_span">{{bill.contact_no}}</div>
+                              </div>
+                              <div class="mb-1">
+                                <div class="span_width">Address</div> <span> : </span> &nbsp;
+                                <span class="bold_span" tooltip="{{bill.contact_address}}" placement="top"
+                                  show-delay="500">{{bill.contact_address}}</span>
+                              </div>
+                              <div>
+                                <div class="span_width">Email</div> <span> : </span> &nbsp;
+                                <span class="bold_span" tooltip="{{bill.email}}" placement="top"
+                                  show-delay="500">{{bill.email}}</span>
+                              </div>
+                            </div>
+                            <div class="tablediv noborder table3">
+                              <h5>Other Details</h5>
+                              <div class="mb-1">
+                                <div class="span_width">File Name</div> <span> : </span> &nbsp;
+                                <div class="bold_span">Unitary</div>
+                              </div>
+                              <div class="mb-1">
+                                <div class="span_width" >Initiated by</div> <span> : </span> &nbsp;
+                                <div class="bold_span" tooltip="{{bill.created_by}}" placement="top"
+                                show-delay="500">{{bill.created_by}}</div>
+                              </div>
+                              <div class="mb-1">
+                                <div class="span_width">Initiated on</div> <span> : </span> &nbsp;
+                                <div class="bold_span" tooltip="{{bill.created_on | formatDate}}" placement="top"
+                                show-delay="500">{{bill.created_on | formatDate}}</div>
+                              </div>
+                              <ng-container *ngFor="let approver of approverdetails">
+                              <div class="mb-1">
+                                <div class="span_width">Approved by</div> <span> : </span> &nbsp;
+                                <div class="bold_span" tooltip="{{approver.approved_by}}" placement="top"
+                                show-delay="500">{{approver.approved_by}}</div>
+                              </div>
+                              <div>
+                                <div class="span_width">Approved on</div> <span> : </span> &nbsp;
+                                
+                                <div class="bold_span"  tooltip="{{approver.approved_on | formatDate}}" placement="top"
+                                show-delay="500">{{approver.approved_on | formatDate}}</div>
+                              </div>
+                              </ng-container>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr class="rowShow grayStrip" *ngIf="bill.collapsed && selectedIndex==i">
+                          <td colspan="8">
+                            <span class="text-left" *ngIf="bill.status=='Rejected'"><label style="color: #64289d;">Comment
+                                : &nbsp;</label>{{bill.rejection_reson}}</span>
+                            <span class="pull-right">
+                              <img style="cursor:pointer;"
+                                src="assets/img/attach.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              <a *ngIf="rolename=='ccmaker' || rolename=='maker'" data-toggle="modal" id="openBtn"><img
+                                  src="assets/img/edit.png"></a>
+                            </span></td>
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td colspan="8">
+                          <mfBootstrapPaginator [rowsOnPageSet]="[10,25,50,100]"></mfBootstrapPaginator>
+                        </td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row mt-4">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
+          <nav aria-label="Page navigation example" style="float:right;">
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&lang;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&rang;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div> -->
+    </div>
+    <!-- Modal2 -->
+  
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+  </div>

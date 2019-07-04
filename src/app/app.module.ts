@@ -95,8 +95,10 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CustomCurrencyPipe } from './routingcomponents/paymentlist/currency.pipe';
 import { PaymentFilterPipe } from './routingcomponents/paymentlist/payment-filter.pipe';
+import { RmPaymentFilterPipe } from './rmcomponents/rmpayments/rm-payment-filter.pipe';
 import { PenPayFilterPipe } from './routingcomponents/pendingpayments/pendingpay-filter.pipe';
 import { BillerFilterPipe } from './routingcomponents/billerlist/biller-filter.pipe';
+import { RmBillerFilterPipe } from './rmcomponents/rmbills/rm-biller-filter.pipe';
 import { PenBillerFilterPipe } from './routingcomponents/pendingbiller/penbiller-filter.pipe';
 import { FrenchDecimalPipe } from './pipes/currency.filter.pipe';
 import { SetpasswordComponent } from './authentication/setpassword/setpassword.component';
@@ -105,8 +107,39 @@ import { GeneratepasswordComponent } from './authentication/generatepassword/gen
 import { BackusrupComponent } from './supportingcomponents/backusrup/backusrup.component';
 import { DatePipeFormat} from './directives/formatdate.pipe';
 import {BillerserviceService} from './api/billerservice.service'
-import {PaymentserviceService} from './api/paymentservice.service'
-
+import {PaymentserviceService} from './api/paymentservice.service';
+import { RmheaderComponent } from './rmcomponents/rmheader/rmheader.component';
+import { RmprofileComponent } from './rmcomponents/rmprofile/rmprofile.component';
+import { RmusersComponent } from './rmcomponents/rmusers/rmusers.component';
+import { RmcardsComponent } from './rmcomponents/rmcards/rmcards.component';
+import { RmcardsliderComponent } from './rmcomponents/rmcardslider/rmcardslider.component';
+import { RmdashboardComponent } from './rmcomponents/rmdashboard/rmdashboard.component';
+import { RmfaqComponent } from './rmcomponents/rmfaq/rmfaq.component';
+import { RmgrouplistComponent } from './rmcomponents/rmgrouplist/rmgrouplist.component';
+import { RmgrouporganisationComponent } from './rmcomponents/rmgrouporganisation/rmgrouporganisation.component';
+import { RmhomeComponent } from './rmcomponents/rmhome/rmhome.component';
+import { RmifscComponent } from './rmcomponents/rmifsc/rmifsc.component';
+import { RmnotificationmatrixComponent } from './rmcomponents/rmnotificationmatrix/rmnotificationmatrix.component';
+import { RmorganisationComponent } from './rmcomponents/rmorganisation/rmorganisation.component';
+import { RmorganisationdetailComponent } from './rmcomponents/rmorganisationdetail/rmorganisationdetail.component';
+import { RmorgroupsComponent } from './rmcomponents/rmorgroups/rmorgroups.component';
+import { RmpaymentsComponent } from './rmcomponents/rmpayments/rmpayments.component';
+import { RmracessComponent } from './rmcomponents/rmracess/rmracess.component';
+import { RmrawaccessdetailsComponent } from './rmcomponents/rmrawaccessdetails/rmrawaccessdetails.component';
+import { RmreportnameComponent } from './rmcomponents/rmreportname/rmreportname.component';
+import { RmrulevalidationComponent } from './rmcomponents/rmrulevalidation/rmrulevalidation.component';
+import { RmuserreportsComponent } from './rmcomponents/rmuserreports/rmuserreports.component';
+import { RmrepositoryComponent } from './rmcomponents/rmrepository/rmrepository.component';
+import { RmbillsComponent } from './rmcomponents/rmbills/rmbills.component';
+import { RmsamplebillsComponent } from './rmcomponents/rmsamplebills/rmsamplebills.component';
+import { RmtemplatesComponent } from './rmcomponents/rmtemplates/rmtemplates.component'
+import { RmservicesService } from './api/rmservices.service';
+import { IfscVerificationService } from './api/ifsc-verification.service';
+import { BackgrpregComponent } from './supportingcomponents/backgrpreg/backgrpreg.component';
+import { BackruleregComponent } from './supportingcomponents/backrulereg/backrulereg.component';
+import { BackorgregComponent } from './supportingcomponents/backorgreg/backorgreg.component';
+import {PageSliderModule}    from 'ng2-page-slider';
+import { MakeprepaidpaymentsComponent } from './routingcomponents/makeprepaidpayments/makeprepaidpayments.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -150,6 +183,8 @@ import {PaymentserviceService} from './api/paymentservice.service'
     PenPayFilterPipe,
     BillerFilterPipe,
     PenBillerFilterPipe,
+    RmBillerFilterPipe,
+    RmPaymentFilterPipe,
     OtpuserComponent ,
     AspendingusersFilterPipe,
     RejectmsgComponent,
@@ -167,7 +202,36 @@ import {PaymentserviceService} from './api/paymentservice.service'
     SetpasswordComponent,
     GeneratepasswordComponent,
     BackusrupComponent,
-    DatePipeFormat
+    DatePipeFormat,
+    RmheaderComponent,
+    RmprofileComponent,
+    RmusersComponent,
+    RmcardsComponent,
+    RmcardsliderComponent,
+    RmdashboardComponent,
+    RmfaqComponent,
+    RmgrouplistComponent,
+    RmgrouporganisationComponent,
+    RmhomeComponent,
+    RmifscComponent,
+    RmnotificationmatrixComponent,
+    RmorganisationComponent,
+    RmorganisationdetailComponent,
+    RmorgroupsComponent,
+    RmpaymentsComponent,
+    RmracessComponent,
+    RmrawaccessdetailsComponent,
+    RmreportnameComponent,
+    RmrulevalidationComponent,
+    RmuserreportsComponent,
+    RmrepositoryComponent,
+    RmbillsComponent,
+    RmsamplebillsComponent,
+    RmtemplatesComponent,
+    BackgrpregComponent,
+    BackruleregComponent,
+    BackorgregComponent,
+    MakeprepaidpaymentsComponent
   ],
 
   imports: [
@@ -212,11 +276,12 @@ import {PaymentserviceService} from './api/paymentservice.service'
     LightboxModule ,
     Ng2OrderModule,
     Ng2SearchPipeModule,
-    SelectDropDownModule
+    SelectDropDownModule,
+    PageSliderModule
 
   ],
  
-  providers: [LoaderService,ExcelService,DatePipe,AuthService,UserserviceService,CardserviceService,GroupserviceService,RuleserviceService,SetupserviceService,AccoutsetupService,BillerserviceService,PaymentserviceService,{
+  providers: [LoaderService,ExcelService,DatePipe,AuthService,UserserviceService,CardserviceService,GroupserviceService,RuleserviceService,SetupserviceService,AccoutsetupService,BillerserviceService,PaymentserviceService,RmservicesService,IfscVerificationService,{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthinterceptorService,
     multi: true

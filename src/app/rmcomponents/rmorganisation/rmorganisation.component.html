@@ -1,0 +1,43 @@
+<app-rmheader></app-rmheader>
+<div class="container ">
+	<div class="clearfix"></div>
+	<div id="rulevalid" class="row mrg-none mainContainBox mrg-t30 mrg-b30">
+	
+		<div class="col-xs-12 col-md-3"></div>
+		<div class="col-xs-12 col-md-6 mrg0Auto text-center">
+			<div class="clear20"></div>
+			<div class="clear20"></div>
+			<p class="ruleHead">Select Organisation</p>
+			<div id="selectAuto" class="col-md-offset-1 col-md-10 ">
+
+				<span class="datalist-arrow">
+					<input id="cbxCities" class="jqx-combobox-input" list="browsers" [(ngModel)]="selectedOrgValue" name="browsers" placeholder="Select Organisation Name" (change)="onOrganizationChange(selectedOrgValue)">
+
+					<datalist id="browsers">
+						<option *ngFor="let org of orgList" [ngValue]="org.CompanyName">{{org.CompanyName}}</option>
+					</datalist>
+				</span>
+				<span class="ComboError">This amount does not belong to this organisation
+					<i class="fa fa-exclamation-circle ComboErrorImg"></i>
+				</span>
+
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-3"></div>
+		<div class="col-md-12">
+			<div class="form-field col x-50 text-center">
+				<!-- routerLink="../rmorganisationdetail"-->
+			<a class="View">	<button class="btn bg-primary nextBtn nxt2  mrg0Auto" (click)="gotoDetail()" type="button">View</button></a>
+			</div>
+		</div>
+		<div class="clear20"></div>
+		<div class="clear20"></div>
+		<div class="clear20"></div>
+		<div class="clear20"></div>
+		<div class="clear20"></div>
+		<div class="clear20"></div>
+		<div class="clear20"></div>
+	</div>
+	<div class="clearfix"></div>
+
+</div>

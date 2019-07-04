@@ -1,0 +1,139 @@
+<app-rmheader></app-rmheader>
+<div class="container xyz" id="lstpaymt">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+       <!-- Main content -->
+       <section class="content">
+          <div class="row">
+             <div _ngcontent-c4="" class="clear20"></div>
+             <div _ngcontent-c4="" class="clear20"></div>
+             <div _ngcontent-c4="" class="clear20"></div>
+          </div>
+          <div class="white-bg">
+             <h4 class="col-md-9 col-sm-6 col-xs-6 toptxt Top5Heading111 mrgnone">IFSC-Verification</h4>
+             <div class="clear"></div>
+             <div class="BorderBottom"></div>
+             <div class="clear"></div>
+             <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 divifscmrgnlft">
+                   <form (ngSubmit)="onSubmit()" #f="ngForm">
+                   <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="clear20"> </div>
+                      <div class="clear20"></div>
+                      <div class="clear20"></div>
+                      <div class="clear20"></div>
+                      <div class="contact-form col-xs-12 col-sm-10 col-md-10  padln">
+                         <input id="ifsc" class="input-text js-input inptxt" [(ngModel)]="ifsc" name="ifsc" type="text" #name="ngModel" required>
+                         <label class="label labpos" for="cardholder">Enter IFSC</label>
+                      </div>
+                      <div class="clearfix"></div>
+                      <div class="clear20"></div>
+                      <div class="col-md-12 col-sm-12 col-xs-12 padln">
+                         <button class="btn bg-primary mrtfi nextBtn btnw verify ruleNextBtn mrg0Auto nxtbbgcolor submit"
+                            type="submit" [disabled]="!f.form.valid">Verify</button>
+                      </div>
+                      <div class="clear100"> </div>
+                   </div>
+                   <div class="col-md-6 col-sm-6 col-xs-12">
+                   </div>
+                   </form>
+                </div>
+             </div>
+          </div>
+       </section>
+    </div>
+  </div>
+  <div class="container xyz" id="lstpaymt"  *ngIf = "isViewifsc">
+     <!-- Content Wrapper. Contains page content -->
+     <div class="content-wrapper">
+        <!-- Main content -->
+        <section class="content">
+           <div class="row">
+              <div _ngcontent-c4="" class="clear20"></div>
+           </div>
+           <div class="white-bg">
+              <div class="row">
+                 <div class="col-md-12 col-sm-12 col-xs-12 divmrgnlft">
+                       
+                     <div class="table-responsive">
+                         <table id="fold-table" class="table table-hover fold-table">
+                           <thead>
+                             <tr class="cust-color">
+                             <td>
+                             <span class="">BANK NAME</span>
+                             </td>
+                             <td>
+                             <span class="">IFSC</span>
+                             </td>
+                             <td>
+                             <span class="">BRANCH</span>
+                             </td>
+                             <td>
+                             <span class="">ADDRESS</span>
+                             </td>
+                             <td>
+                             <span class="">CITY</span>
+                             </td>
+                             <td>
+                             <span class="">DISTRICT</span>
+                             </td>
+                             <td>
+                             <span class="">STATE</span>
+                             </td>
+                             
+                             </tr>
+                           </thead>
+                           <tbody>
+                             <ng-container >
+                             <tr class="view grayStrip" >
+  
+                               <td>{{ifscdetails.bank}}</td>
+                               <td>{{ifscdetails.ifsc}}</td>
+                               <td>
+                               {{ifscdetails.branch}}
+                               </td>
+                               <td >
+                               {{ifscdetails.address}}
+                               </td>
+                               <td>
+                                   {{ifscdetails.city}}
+                               </td>
+                               <td>
+                                   {{ifscdetails.district}}
+                               </td>
+                               <td>
+                                   {{ifscdetails.state}}
+                               </td>
+                             </tr>
+                            
+                           </ng-container>
+                             
+                           </tbody>
+                         </table>
+                       </div>
+                     </div>
+                 </div>
+              </div>
+           </section>
+        </div>
+     </div>
+     <div class="container xyz" id="lstpaymt"  *ngIf = "!isViewifsc && display == false">
+             <!-- Content Wrapper. Contains page content -->
+             <div class="content-wrapper">
+                <!-- Main content -->
+                <section class="content">
+                   <div class="row">
+                      <div _ngcontent-c4="" class="clear20"></div>
+                   </div>
+                   <div class="white-bg">
+                      <div class="row">
+                         <div class="col-md-12 col-sm-12 col-xs-12 divmrgnlft">
+                         <h4 class = "divifscmrgnlft">No Data Found!</h4>
+                        </div>
+                     </div>
+                </div>
+             </section>
+         </div>
+     </div>
+          
+     

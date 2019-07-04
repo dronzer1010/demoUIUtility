@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit {
   quickActive:boolean=false;
   profActive:boolean=false;
   public utilityparams:string;
+  authmatrix:string;
   userdata:any={};
   pathroute: string;
   constructor(location: Location,private route: ActivatedRoute,private router: Router,private usrservice:UserserviceService,private auth:AuthService,) { 
@@ -357,6 +358,7 @@ this.usrservice.getUserDetails().subscribe(res=>{
   this.userdata=res['Data'];
   console.log(this.userdata)
   this.rolename=this.userdata['dualrole']
+  this.authmatrix=this.userdata['authmtrix']
 },error=>{
   console.log(error)
 })

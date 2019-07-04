@@ -43,7 +43,7 @@
                 Pending Users </a></li>
           </ul>
         </li>
-        <li *ngIf="rolename=='as' || rolename=='ccadmin' || rolename=='ccchecker' || rolename=='ccmaker' || rolename=='aschecker'"
+        <li *ngIf="authmatrix=='Complex'"
           class="menu_sel" [ngClass]="groupActive ? 'active' : ''">
           <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="opengroup();clickGroupEvent()">Groups
           </a>
@@ -62,7 +62,7 @@
                 Pending Groups </a></li>
           </ul>
         </li>
-        <li *ngIf="rolename=='as' || rolename=='ccadmin' || rolename=='ccchecker' || rolename=='ccmaker' || rolename=='aschecker'"
+        <li *ngIf="authmatrix=='Complex'"
           class="menu_sel" [ngClass]="ruleActive ? 'active' : ''">
           <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="openrule();clickRuleEvent()">Rules
           </a>
@@ -114,6 +114,10 @@
                 [routerLink]="['/main/make-payment']"><span>
                   <img id="user" src="assets/img/make-payment.png" style="height:16px; width:35px;" /></span>
                 Make Payments </a></li>
+            <li *ngIf="rolename=='maker' || rolename=='ccmaker'" class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()"
+              [routerLink]="['/main/make-prepaid-payment']"><span>
+                <img id="user" src="assets/img/make-payment.png" style="height:16px; width:35px;" /></span>
+              Make Prepaid Payments </a></li>
             <li *ngIf="rolename=='aschecker' || rolename=='checker' || rolename=='ccchecker'"  class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/pending-payments']"><span>
                 <img id="user" src="assets/img/make-payment.png" style="height:16px; width:35px;"/></span>
               Pending Payments </a></li>
@@ -149,7 +153,7 @@
           Admin</li>
         <li class="roleheader" *ngIf="rolename=='checker'">Checker</li>
         <li class="roleheader" *ngIf="rolename=='as' || rolename=='aschecker'">Authorised Signatory</li> -->
-        <li class="menu_sel notilink" [ngClass]="quickActive ? 'active' : ''">
+        <!-- <li class="menu_sel notilink" [ngClass]="quickActive ? 'active' : ''">
           <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="opennoti();clickQuickEvent()">
             <span>
               <img src="assets/img/notification.png" />
@@ -227,12 +231,12 @@
             </li>
 
           </ul>
-        </li>
+        </li> -->
 
         <li class="menu_sel profilink" [ngClass]="notActive ? 'active' : ''">
           <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="openmyprofile();clickNotEvent()">
             <span class="profile">
-              <img src="assets/img/profile-pic.png" />
+              <img src="assets/img/usricon.png" />
             </span> <span>
               <img src="assets/img/forma-1.png" />
             </span>

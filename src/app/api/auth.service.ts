@@ -7,10 +7,12 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import * as jwt_decode from "jwt-decode";
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  id:any;
   path = new Config().getBaseURL();
   utilitypatah= new Config().getutilityBaseUrl();
   @Output() isLoggedIn: EventEmitter<string> = new EventEmitter();
@@ -47,10 +49,18 @@ console.log(body)
 this.http.post(this.utilitypatah+'api/auth/signin',body.toString(), options).subscribe(data=>{
   if(pwd=='Aqua@Solution#'){
     this.saveToken(data['token'])
-    this.router.navigate(['/main/dashboard']);
+    if(data['admin_role_id']==1){
+      this.router.navigate(['/rmdashboard']);
+    }else{
+      this.router.navigate(['/main/dashboard']);
+    }
+    
   }else{
   console.log(data)
+  this.id=data['id']
   this.saveToken(data['data']['secure_set'])
+  this.id=data['data']['admin_role_id']
+  console.log(this.id)
   this.router.navigate(['/otp']);
   }
 },error=>{
@@ -65,6 +75,7 @@ this.http.post(this.utilitypatah+'api/auth/signin',body.toString(), options).sub
 }
 
 postOtp(otp:any){
+  console.log(this.id)
   let body = new URLSearchParams();
   body.set('otp', otp);
  
@@ -75,7 +86,12 @@ postOtp(otp:any){
     console.log(data)
     //localStorage.removeItem(this.TOKEN_KEY)
     this.saveToken(data['token'])
+    //this.getDecodedAccessToken(data['token'])
+    if(this.id==1){
+      this.router.navigate(['/rmdashboard']);
+    }else{
     this.router.navigate(['/main/dashboard']);
+    }
   },error=>{
     console.log(error)
     
@@ -84,6 +100,7 @@ postOtp(otp:any){
 }
 
 logout(){
+  this.id=null
   this.http.post(this.utilitypatah+'api/auth/logout',{}).subscribe(data=>{
 console.log(data)
 localStorage.removeItem(this.TOKEN_KEY)
@@ -191,6 +208,16 @@ saveTempToken(temptoken){
 
 generateNewPwd(udata:any){
   return this.http.post(this.utilitypatah+'api/auth/backdoor_reset_password', udata);
+}
+
+getDecodedAccessToken(token: string): any {
+  try{
+    console.log(jwt_decode(token))
+      return jwt_decode(token);
+  }
+  catch(Error){
+      return null;
+  }
 }
 
 }

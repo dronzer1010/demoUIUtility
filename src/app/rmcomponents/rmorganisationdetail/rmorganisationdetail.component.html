@@ -1,0 +1,254 @@
+<app-rmheader></app-rmheader>
+<div class="container-fluid">
+    <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12  centran">
+                    <div class="clear10"></div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 text-right">
+                            <h4>Select Organisation</h4>
+                    </div>
+                    <div id="selectAuton" class="col-md-4 col-sm-4 col-xs-12 text-center  ">
+
+                            <span class="datalist-arrow">
+                                    <input id="cbxCities" class="jqx-combobox-input mrgntforty" list="browsers" [(ngModel)]="selectedOrgValue" name="browsers" style="width: 100%" placeholder="Select Organisations" (change)="onOrganizationChange(selectedOrgValue)">
+                                    <datalist id="browsers">
+                                            <option *ngFor="let org of orgAllDetail" [ngValue]="org.OrgId">{{org.CompanyName}}</option>
+                                    </datalist>
+                            </span>
+
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 text-left">
+                              <!-- <a class="vallg" routerLink="/rmgrouplist"> -->
+                            <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="GroupAllDetail(selectedOrg.OrgId)"  type="button">Next</button>
+                            <!-- </a> -->
+                    </div>
+                    <div class="clear10"></div>
+            </div>
+
+            <div class="container">
+                    <div class="row">
+                            <div class="col-sm-4 col-sm-4 col-xs-12">
+
+                                    <div class="col-sm-12 col-xs-12 cardfirst text-center nopad">
+
+                                            <div class="clear20"></div>
+                                           
+                                                    <h4>Organisation Details</h4>
+                                                    <hr>
+
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="col-sm-6 col-xs-6 text-left">
+                                                                    <label class="ntxt">Org Name :</label>
+                                                            </div>
+                                                            <div class="col-sm-6 col-xs-6 text-left">
+                                                                    <label class="btxt" *ngIf="!!orgDetail"> {{orgDetail.companyname || ''}}</label>
+                                                                    <br>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <hr>
+                                                    </div>
+
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="col-sm-6 col-xs-6 text-left">
+                                                                    <label class="ntxt">Reg Date :</label>
+                                                            </div>
+                                                            <div class="col-sm-6 col-xs-6 text-left">
+                                                                    <label class="btxt" *ngIf="!!orgDetail">{{orgDetail.regdate}}</label>
+                                                                    <br>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <hr>
+                                                    </div>
+
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="col-sm-6 col-xs-6 text-left">
+                                                                    <label class="ntxt">Contact No :</label>
+                                                            </div>
+                                                            <div class="col-sm-6 col-xs-6 text-left">
+                                                                    <label class="btxt" *ngIf="!!orgDetail">{{orgDetail.contact}}</label>
+                                                                    <br>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <hr>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="col-sm-6 col-xs-6 text-left">
+                                                                    <label class="ntxt">PAN No :</label>
+                                                            </div>
+                                                            <div class="col-sm-6 col-xs-6 text-left">
+                                                                    <label class="btxt" *ngIf="!!orgDetail">{{orgDetail.pan}}</label>
+                                                                    <br>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <hr>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="col-sm-6 col-xs-6 text-left">
+                                                                    <label class="ntxt">Convenience Fee :</label>
+                                                            </div>
+                                                            <div class="col-sm-6 col-xs-6 text-left">
+                                                                    <label class="btxt" *ngIf="!!orgDetail">{{orgDetail.convfee}}</label>
+                                                                    <br>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <hr>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="col-sm-6 col-xs-6 text-left">
+                                                                    <label class="ntxt">Authorization Matrix :</label>
+                                                            </div>
+                                                            <div class="col-sm-6 col-xs-6 text-left">
+                                                                    <label class="btxt" *ngIf="!!orgDetail">{{orgDetail.authmtrix}}</label>
+                                                                    <br>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <hr>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="col-sm-6 col-xs-6 text-left">
+                                                                    <label class="ntxt">GSTIN :</label>
+                                                            </div>
+                                                            <div class="col-sm-6 col-xs-6 text-left">
+                                                                    <label class="btxt" *ngIf="!!orgDetail">{{orgDetail.tin}}</label>
+                                                                    <br>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <hr>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-xs-12 mrgnbfiv">
+                                                            <div class="col-sm-6 col-xs-6 text-left">
+                                                                    <label class="ntxt">
+                                                                            Status :</label>
+                                                            </div>
+                                                            <div class="col-sm-6 col-xs-6 text-left">
+                                                                    <label class="btxt" *ngIf="!!orgDetail">{{orgDetail.status}}</label>
+                                                                    <br>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+
+                                                    </div>
+                                            
+                                            <div class="clear20"></div>
+                                    </div>
+
+                            </div>
+                            <div class="col-sm-4">
+                                    <div class="col-sm-12 text-left cardsecond nopad">
+                                            <div class="clear20"></div>
+                                            <h4 class="crdpdlft">Groups</h4>
+                                            <hr>
+                                            <div class="clear20"></div>
+                                            <div class="col-sm-12">
+                                                    <div class="col-sm-3">
+                                                            <img src="assets/img/rs.png">
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                            <p class="orcardtxt">{{corporatename || ''}} Groups</p>
+                                                    </div>
+
+                                            </div>
+                                            <div class="clear10"></div>
+                                            <div  *ngIf="authmatrix=='Complex'" class="col-sm-12 text-center">
+                                                    <!-- <a class="vallg" routerLink="../rmgroups"> -->
+                                                            <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="gotoGroupsDetail()" type="button">View All Groups</button>
+                                                           
+                                                    <!-- </a> -->
+                                            </div>
+                                            <div *ngIf="authmatrix=='Standard'" class="col-sm-12 text-center">
+                                                    <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor"  type="button">Not Applicable</button>
+                                            </div>
+                                            <div class="clear20"></div>
+                                            <div class="clear20"></div>
+
+
+                                    </div>
+                            </div>
+                            <div class="col-sm-4">
+                                    <div class="col-sm-12 text-left cardsecond nopad">
+                                            <div class="clear20"></div>
+                                            <h4 class="crdpdlft">Bills</h4>
+                                            <hr>
+                                            <div class="clear20"></div>
+                                            <div class="col-sm-12">
+                                                    <div class="col-sm-3">
+                                                            <img src="assets/img/layer.png">
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                            <p class="orcardtxt">{{corporatename || ''}} Bills Registered
+                                                            </p>
+                                                    </div>
+
+                                            </div>
+                                            <div class="clear10"></div>
+                                            <div class="col-sm-12 text-center">
+                                                    <!-- <a routerLink="/rmsuppliers"> -->
+                                                            <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="gotoSupllyDetail()" type="button">View All Bills</button>
+                                                    <!-- </a> -->
+                                            </div>
+                                            <div class="clear20"></div>
+                                            <div class="clear20"></div>
+
+
+                                    </div>
+                            </div>
+                            <div class="col-sm-4">
+                                    <div class="col-sm-12 text-left cardsecond nopad">
+                                            <div class="clear20"></div>
+                                            <h4 class="crdpdlft">Users</h4>
+                                            <hr>
+                                            <div class="clear20"></div>
+                                            <div class="col-sm-12">
+                                                    <div class="col-sm-3">
+                                                            <img src="assets/img/ousers.png">
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                            <p class="orcardtxt">{{corporatename || ''}} Users Registered </p>
+                                                    </div>
+
+                                            </div>
+                                            <div class="clear10"></div>
+                                            <div class="col-sm-12 text-center">
+                                                    <!-- <a routerLink="/rmuserreports"> -->
+                                                            <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="gotoUserDetail()" type="button">View All Users</button>
+                                                    <!-- </a> -->
+                                            </div>
+                                            <div class="clear20"></div>
+                                            <div class="clear20"></div>
+
+
+                                    </div>
+                            </div>
+                            <div class="col-sm-4">
+                                    <div class="col-sm-12 text-left cardsecond nopad">
+                                            <div class="clear20"></div>
+                                            <h4 class="crdpdlft">Cards</h4>
+                                            <hr>
+                                            <div class="clear20"></div>
+                                            <div class="col-sm-12">
+                                                    <div class="col-sm-3">
+                                                            <img src="assets/img/uxdesigner.png">
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                            <p class="orcardtxt">{{corporatename || ''}} Registered Cards
+                                                            </p>
+                                                    </div>
+
+                                            </div>
+                                            <div class="clear10"></div>
+                                            <div class="col-sm-12 text-center">
+                                                    <!-- <a routerLink="/rmcards/:id"> -->
+                                                         <!-- <a class="View"> -->
+                                                                  <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="gotoDetail()" type="button">View All Cards</button>
+                                                            <!-- </a> -->
+                                                    <!-- </a> -->
+                                            </div>
+                                            <div class="clear20"></div>
+                                            <div class="clear20"></div>
+
+
+                                    </div>
+                            </div>
+
+                    </div>
+            </div>
+    </div>
+</div>

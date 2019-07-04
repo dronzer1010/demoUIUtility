@@ -1,0 +1,111 @@
+.paracolor{
+    color: #52178b;
+}
+.divpaddr{
+    padding-right: 33px;
+}
+.divmrgnlft{
+    margin-left: 0%;
+}
+.divifscmrgnlft{
+    margin-left: 4%;
+}
+
+.divwidth{
+    width: 15%;
+    display:inline-block;
+    vertical-align: top;
+    margin:3px 4px 3px 0px;
+    align-content: center;
+}
+.inputstyle{
+    border: 0px;
+    border-bottom: 1px solid #b7b7b7;
+    width: 100%;
+    font-size: 13.1px;
+    font-weight: 300;
+    color: #3f4245;
+    }
+.calpos{
+    position: relative;
+}
+
+    .inputstyledot{
+        border: 0px;
+        border-bottom: 1px solid #58109d;
+        width: 100%;
+        font-size: 13.1px;
+        font-weight: 300;
+        color: #3f4245;
+        }
+
+
+    .padln{
+        padding-left: 0px!important;
+    }
+
+    .example1 {
+        cursor:pointer;
+        
+        
+    
+    }
+
+.inpstyle{
+    cursor:pointer;
+    background: url('/assets/images/datepicker.png') no-repeat 100% 6px!important;
+    padding-bottom: 10px;
+}
+
+.toptxt{
+    font-size: 17.3px;
+    font-weight: 600;
+    color: #2c2e30;
+}
+.view.grayStrip.open td, .fold.grayStrip.open td,.view.whiteStrip.open td, .fold.whiteStrip.open td  {border:0px;}
+.foldInner{
+display:flex;
+}
+.grayStrip{
+    background-color: #f8f7f9;
+    border: solid 1px #ebedf2;
+}
+table.fold-table thead tr td{
+    font-size: 15.8px;
+    font-weight: 600;
+    color: #3f4245;
+    }
+    table.fold-table > tbody > tr td {
+    font-size: 14.2px;
+    font-weight: 300;
+    color: #3f4245;
+    }
+    table.fold-table > tbody > tr.view td, table.fold-table > tbody > tr.view th {
+    cursor: pointer;
+    }
+    
+    table.fold-table > tbody > tr.view.open .fa-angle-down {
+    transform: rotate(-180deg);
+    }
+    table.fold-table > tbody > tr.fold {
+    display: none;
+    }
+    table.fold-table > tbody > tr.fold.open {
+    display: table-row;
+    }
+    #fold-table .fa-angle-down {
+    opacity: 0.47;
+    font-size: 22px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+

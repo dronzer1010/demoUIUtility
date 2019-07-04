@@ -8,6 +8,8 @@ import{LoaderService} from '../../api/loader.service'
 import { Router } from '@angular/router';
 import {PaymentserviceService} from  '../../api/paymentservice.service'
 import { ToastrService } from 'ngx-toastr'
+import {ExcelService} from '../../excelservice/excel.service'
+import { DatePipe } from '@angular/common'
 @Component({
   selector: 'app-makepayment',
   templateUrl: './makepayment.component.html',
@@ -62,11 +64,15 @@ export class MakePaymentComponent implements OnInit {
   approvedcard:any=[]
   cardData:any=[];
   paymentdata:any={}
-  constructor(private httpService: HttpClient,private cards:CardserviceService,private billservice: BillerserviceService, private loader: LoaderService, private users: UserserviceService,private router: Router,private paymentservice: PaymentserviceService,private toaster:ToastrService) { }
+  downloadArray:any=[];
+  filteredbills:any=[];
+  date:Date;
+  constructor(private httpService: HttpClient,private cards:CardserviceService,private billservice: BillerserviceService, private loader: LoaderService, private users: UserserviceService,private router: Router,private paymentservice: PaymentserviceService,private toaster:ToastrService,private excelservice : ExcelService,public datepipe: DatePipe,) { }
 
   ngOnInit() {
     this.billrdetails();
     this.loadApprovedCards();
+    
   }
 
   getActivecard(id:any){
@@ -130,6 +136,7 @@ export class MakePaymentComponent implements OnInit {
     }
     console.log(this.bills)
     for(var i=0;i<this.bills.length;i++){
+      if(this.bills[i]['amount']!=null)
       this.totalamount+=parseInt(this.bills[i]['amount'])
     }
     this.loader.display(false)
@@ -140,6 +147,33 @@ export class MakePaymentComponent implements OnInit {
   
 
 
+  }
+
+  filtervalidamount(){
+    this.loader.display(true)
+    this.totalamount=0
+    this.billservice.getAllbillers().then(resp=>{
+      this.filteredbills=resp
+      var allBills = this.filteredbills
+      if(allBills!=null){
+        this.bills = allBills.filter((bill)=>{
+          return (bill['status']=="Registered" && bill['amount']!=null && bill['amount']>0)
+        })
+      }
+      console.log(this.bills)
+      for(var i=0;i<this.bills.length;i++){
+      
+        this.totalamount+=parseInt(this.bills[i]['amount'])
+      }
+      this.loader.display(false)
+      this.toaster.success("Please Relaod the page to fetch all the bills again!","Alert",{
+        timeOut:3000,
+        positionClass:'toast-top-center'
+        })
+     },error=>{
+       console.log(error)
+       this.loader.display(false)
+     })
   }
 
   getRandomInt(max) {
@@ -185,7 +219,7 @@ export class MakePaymentComponent implements OnInit {
   }
 
   changeAll(pendingbillerpage): void {    
-    if(this.checkedValueArray.length==this.payments.length){
+    if(this.checkedValueArray.length==this.bills.length){
     this.cntChk=1
     }else{
     this.checkedValueArray = [];
@@ -208,6 +242,7 @@ export class MakePaymentComponent implements OnInit {
           billnumber:pendingbillerpage[i]['fetch_bill_no']
         }
         this.checkedValueArray.push(obj);
+        if(pendingbillerpage[i]['amount']!=null)
         this.amountpay+=parseInt(pendingbillerpage[i]['amount'])
       }
       this.cntChk = 0;
@@ -244,18 +279,20 @@ export class MakePaymentComponent implements OnInit {
       }
       this.checkedValueArray.push(obj);     
     }
-    for(var i=0;i<this.payments.length;i++){
-      if(this.payments[i]['id'] == payment["id"]){
+    for(var i=0;i<this.bills.length;i++){
+      if(this.bills[i]['id'] == payment["id"]){
         if(this.flag==0){
-          this.amountpay+=parseInt(this.payments[i]['amount'])
+          if(this.bills[i]['amount']!=null)
+          this.amountpay+=parseInt(this.bills[i]['amount'])
         }else{
-          this.amountpay-=parseInt(this.payments[i]['amount'])
+          if(this.bills[i]['amount']!=null)
+          this.amountpay-=parseInt(this.bills[i]['amount'])
         }
       }
     }
     if (this.checkedValueArray.length > 0) {
       this.temp = true;
-      if(this.checkedValueArray.length<this.payments.length){
+      if(this.checkedValueArray.length<this.bills.length){
         this.selectall=false
       }else{
         this.selectall=true;
@@ -265,7 +302,7 @@ export class MakePaymentComponent implements OnInit {
     }
     else {
       this.temp = false;
-      if(this.checkedValueArray.length<this.payments.length){
+      if(this.checkedValueArray.length<this.bills.length){
         this.selectall=false
       }else{
         this.selectall=true;
@@ -304,6 +341,16 @@ export class MakePaymentComponent implements OnInit {
     // this.conf=false;
     // this.success=true;
     // this.reviewCard=false;
+    this.date= new Date((new Date()).getTime() + 24*60*60*1000);
+    console.log(this.date)
+    var date=this.datepipe.transform(this.date, 'HH:MM:SS')
+    console.log(date)
+    if(date<'13:58:00' && date>'08:00:00'){
+      console.log("Time for initiate transaction")
+    }else{
+      console.log("Transaction time passed")
+    }
+    if(date<'13:58:00' && date>'08:00:00'){
     this.loader.display(true);
     this.paymentData={
       "card_id":this.selectedcard['id'],
@@ -324,6 +371,12 @@ export class MakePaymentComponent implements OnInit {
       console.log(error)
       this.loader.display(false);
     })
+  }else{
+    this.toaster.error("Todays batch has passed now, you cannot initiate payment now. Please fetch the bills tomorrow between 08:00 AM and 01:58 PM and initiate the payments !","Alert",{
+      timeOut:8000,
+      positionClass:'toast-top-center'
+      })
+  }
     
    
    
@@ -363,6 +416,41 @@ export class MakePaymentComponent implements OnInit {
   submitextradetails(){
     this.display=''; 
 
+  }
+
+  onItemSelectDown(){
+    
+    
+      for(let data of this.bills){
+        var obj={
+          Biller:data['biller_name'],
+          Amount:data['amount'],
+          Consumer_No:data['consumer_no'],
+         
+          Status:data['transaction_status'],
+          Payment_Status:data['payment_status'],
+          Short_Name:data['short_name'],
+          GL_Expense_Code:data['gl_expense_code'],
+        
+          State:data['state'],
+          Bill_Number:String(data['fetch_bill_no']),
+          Card_Number:data['card_last_digits'],
+          Order_Id:data['order_id'],
+          Contact:data['contact_no'],
+          Bill_Address:data['contact_address'],
+          Email:data['email'],
+         
+          Initiated_by:data['initiated_by'],
+          Initiated_On:data['initiated_date'],
+       Due_date:data['fetch_due_date'],
+       Bill_date:data['fetch_bill_date'],
+      
+  
+        }
+        this.downloadArray.push(obj)
+      }
+      this.excelservice.exportAsExcelFile( this.downloadArray, 'Payment List');
+    
   }
 
   

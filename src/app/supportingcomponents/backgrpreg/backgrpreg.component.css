@@ -1,0 +1,108 @@
+/* Chnages done by Vishal */
+.btn[disabled]{
+    opacity: 1 !important;
+}
+/* <---------------------> */
+.divmrgnlft{
+    margin-left: 4%;
+    }
+    .toptxt{
+    font-size: 17.3px;
+    font-weight: 600;
+    color: #2c2e30;
+    }
+    .fun-img,.fun-img_sup{margin-top: -4px}
+    .btn-group.dropdown.approbtn {
+    left: 95%;
+    position: relative;
+    top: -27px;
+    }
+    .caret5 {
+    background: url('/assets/img/drop-shap.png') no-repeat 3px 0px !important;
+    }
+    select {
+    /* for Firefox */
+    -moz-appearance: none;
+    /* for Chrome */
+    -webkit-appearance: none;
+    }
+    /* For IE10 */
+    select::-ms-expand {
+    display: none;
+    }
+    .dropdown-menu-right{
+    border-top: 1px solid #c5b0d9;
+    padding: 20px;
+    width: 500px;
+    height: 302px;
+    overflow: auto;
+    }
+    input.form-control.search.round-txt {
+    border-radius: 15px;
+    border: 1px solid #c5b0d9;
+    }
+    .dropdown-menu-right1 li a {
+    color: #575962;
+    padding: 4px 0px;
+    }input.form-control.search {
+    border-radius: 15px!important;
+    margin-bottom: 10px;
+    padding-left: 30px
+    }
+    .form-control:focus{border-color: #c5b0d9}
+    .txt-div{margin-bottom:15px }  
+    .user-input-wrp {
+    position: relative;
+    }
+    .user-input-wrp .inputText{
+    width: 100%;
+    outline: none;
+    border:none;
+    border-bottom: 1px solid #777;
+    }
+    .user-input-wrp .inputText:invalid {
+    box-shadow: none !important;
+    }
+    .user-input-wrp .inputText:focus{
+    border-color: blue;
+    border-width: medium medium 2px;
+    }
+    .user-input-wrp .floating-label {
+    position: absolute;
+    pointer-events: none;
+    top: -20px;
+    left: 0px;
+    -webkit-transition: 0.2s ease all;
+    transition: 0.2s ease all;
+    color: #533979;
+    }
+    .user-input-wrp input:focus ~ .floating-label,
+    .user-input-wrp input:not(:focus):valid ~ .floating-label{
+    top: 0px!important;
+    left: -10px;
+    font-size: 14px;
+    opacity: 1;
+    color: #888888
+    }
+    .resetstyle{
+    font-size: 14px;
+    font-weight: 300;
+    color: #575962;
+    }
+    .padlrnone{
+    padding-left: 0px!important;
+    padding-right: 0px!important;
+    }
+    .contact-form .input-text {
+    display: block;
+    width: 100%;
+    height: 36px;
+    border-width: 0 0 1px 0;
+    border-color: #53397957;
+    font-size: 14px;
+    line-height: 26px;
+    font-weight: 300;
+    }
+    .contact-form .label {
+        margin-bottom: 10px;        
+    }
