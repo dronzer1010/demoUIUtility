@@ -191,6 +191,7 @@ rejectreason:string;
 this.paymentservice.getAllPayments().then(resp=>{
   console.log(resp)
   this.paymentData=resp['data'];
+  console.log(this.paymentData)
   this.loaderService.display(false)
   if(this.paymentData!=null){
   for(var total of this.paymentData){

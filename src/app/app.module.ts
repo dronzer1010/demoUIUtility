@@ -140,6 +140,7 @@ import { BackruleregComponent } from './supportingcomponents/backrulereg/backrul
 import { BackorgregComponent } from './supportingcomponents/backorgreg/backorgreg.component';
 import {PageSliderModule}    from 'ng2-page-slider';
 import { MakeprepaidpaymentsComponent } from './routingcomponents/makeprepaidpayments/makeprepaidpayments.component';
+import { HttpModule } from '@angular/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -239,6 +240,7 @@ import { MakeprepaidpaymentsComponent } from './routingcomponents/makeprepaidpay
     BrowserModule,
     RouterModule,
     routing,
+    HttpModule ,
     FormsModule,
     ReactiveFormsModule,
     AngularFontAwesomeModule,

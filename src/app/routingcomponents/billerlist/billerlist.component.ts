@@ -4,6 +4,13 @@ import {ExcelService} from '../../excelservice/excel.service'
 import {BillerserviceService} from  '../../api/billerservice.service'
 import{LoaderService} from '../../api/loader.service'
 import {UserserviceService} from '../../api/userservice.service'
+import { DatePipe } from '@angular/common'
+import { Http, ResponseContentType , Headers,RequestOptions} from '@angular/http';
+import { AuthService } from '../../api/auth.service';
+import {Config} from '../../config'
+const path = new Config().getutilityBaseUrl();
+import {saveAs as importedSaveAs} from "file-saver";
+import {Observable} from 'rxjs/Rx';
 @Component({
   selector: 'app-billerlist',
   templateUrl: './billerlist.component.html',
@@ -44,11 +51,31 @@ approveRejBiller:any=[];
 userdata:any={};
 approverdetails:any=[];
 selectedIndex = -1;
-  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService) { }
+billername:boolean=false;
+consumerno:boolean=false;
+duedate:boolean=false;
+billdate:boolean=false;
+glexpensecode:boolean=false;
+shortname:boolean=false;
+email:boolean=false;
+contactno:boolean=false;
+contactaddress:boolean=false;
+utilityname:boolean=false;
+status:boolean=false;
+location:boolean=false;
+initiatedby:boolean=false;
+initiatedon:boolean=false;
+filterfromdate:any;
+  filtertodate:any
+  selectallpara:boolean=false;
+  token : string;
+  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,public datepipe: DatePipe,private authService : AuthService, private http: Http) { }
 
   ngOnInit() {
     this.getUserDetail();
     this.loadbills()
+    this.filterfromdate=this.fromdate
+    this.filtertodate=this.todate;
 //this.rolename=localStorage.getItem('rolename')
    // this.billdata=JSON.parse(localStorage.getItem('billdetails'));
     // if(this.rolename=='maker' || this.rolename=='ccmaker' || this.rolename=='as'){
@@ -205,6 +232,84 @@ selectedIndex = -1;
       },error=>{
         console.log(error)
       })
+    }
+
+    getcustomreport(){
+      this.filterfromdate=this.datepipe.transform(this.filterfromdate, 'yyyy-MM-dd');
+    this.filtertodate=this.datepipe.transform(this.filtertodate, 'yyyy-MM-dd');
+    let headers = new Headers();
+    let billsdata={
+      "Fromdate":this.filterfromdate,
+      "Todate":this.filtertodate,
+      "utility_type":this.utilityname,
+      "consumer_no":this.consumerno,
+      "name":this.billername,
+      "bill_name":this.shortname,
+      "gl_expense_code":this.glexpensecode,
+      "bill_date":this.billdate,
+      "due_date":this.duedate,
+      "email":this.email,
+      "contact_no":this.contactno,
+      "contact_address":this.contactaddress,
+      "created_by":this.initiatedby,
+      "created_on":this.initiatedon,
+      "status":this.status,
+      "state":this.location
+      
+    };
+    let date =new Date()
+    this.downloadFile(billsdata).subscribe(blob=>{
+      importedSaveAs(blob, "bills_"+date+".csv");
+    })
+
+    
+}
+
+downloadFile(arr:any): Observable<Blob> {
+  let options = new RequestOptions({responseType: ResponseContentType.Blob });
+  return this.http.post(path+`api/v1/bill_report`,arr, options)
+      .map(res => res.blob())
+      .catch(this.handleError)
+}
+  handleError(handleError: any): Observable<Blob> {
+    throw new Error("Method not implemented.");
+  }
+
+   
+
+    selectllpara(){
+      if(this.selectallpara==true){
+        this.utilityname=true;
+        this.consumerno=true;
+        this.billername=true;
+        this.shortname=true;
+        this.glexpensecode=true;
+        this.billdate=true;
+        this.duedate=true;
+        this.email=true;
+        this.contactno=true;
+        this.contactaddress=true;
+        this.initiatedby=true;
+        this.initiatedon=true;
+        this.status=true;
+        this.location=true;
+      }else{
+        this.utilityname=false;
+        this.consumerno=false;
+        this.billername=false;
+        this.shortname=false;
+        this.glexpensecode=false;
+        this.billdate=false;
+        this.duedate=false;
+        this.email=false;
+        this.contactno=false;
+        this.contactaddress=false;
+        this.initiatedby=false;
+        this.initiatedon=false;
+        this.status=false;
+        this.location=false;
+      }
+
     }
 
 

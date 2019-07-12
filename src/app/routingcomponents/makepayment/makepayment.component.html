@@ -185,8 +185,8 @@
                 <!-- <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div> -->
                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-right">
                     <button class="btn btn-primary btn-outline ResponsiveBtnWidth btnspace" type="button" (click)="onItemSelectDown()" style="padding: 3px 25px!important;"><img src="assets/img/downloadlist.png"></button>
-                  <button class="btn bg-primary buttonpad btnspace" type="button" (click)="filtervalidamount()" style="padding: 3px 25px!important;">Valid Amount</button>
-                  <button class="btn bg-primary nextpay buttonpad" type="button" (click)="cnfsend()" style="padding: 3px 25px!important;">Next</button>
+                  <!-- <button class="btn bg-primary buttonpad btnspace" type="button" (click)="filtervalidamount()" style="padding: 3px 25px!important;">Valid Amount</button> -->
+                  <button class="btn bg-primary nextpay buttonpad" type="button" (click)="prompt()" style="padding: 3px 25px!important;">Next</button>
                 
                 </div>
               </div>
@@ -199,7 +199,7 @@
                           <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(bills)"></td>
                           <td>Biller Name&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td>Amount &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
-                          <td>Reference No&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td>Due date&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                          
                           <td>Status &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td class="text-center">Payment Status &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
@@ -214,7 +214,7 @@
                           <td><i class="fa fa-rupee"></i>{{payment.amount}}
                             <!-- <i class="fa fa-inr"></i> {{(payment.amount)?payment.amount:"No Data"}} -->
                           </td>
-                          <td>{{payment.consumer_no}}</td>
+                          <td>{{(payment.fetch_due_date)?payment.fetch_due_date:"No Data"}}</td>
                           
                           <td><button class="pending-btn">Pending</button></td>
                           <td style="color:#533979;font-weight:bold;text-align: center;">Pending</td>
@@ -240,10 +240,10 @@
                                 <div class="span_width">Bill Date</div> <span class="no-vert"> : </span> &nbsp;
                                 <div class="bold_span">{{(payment.fetch_bill_date)?payment.fetch_bill_date:"No Data"}}</div>
                               </div>
-                              <div class="mb-1">
+                              <!-- <div class="mb-1">
                                 <div class="span_width">Due Date</div> <span class="no-vert"> : </span> &nbsp;
                                 <div class="bold_span">{{(payment.fetch_due_date)?payment.fetch_due_date:"No Data"}}</div>
-                              </div>
+                              </div> -->
                               <!-- <div>
                                 <div class="span_width">Ref No 2:</div>
                                 <div class="bold_span">358507</div>
@@ -356,11 +356,45 @@
                               </div>
                             </div>
                           </div>
+                        
+                          
                         </tr>
                         </ng-container>
                       </tbody>
                     </table>
                   </div>
+                  <div class="backdrop" [ngStyle]="{'display':displayprompt}"></div>
+                   <!-- modal -->
+                   <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayprompt}">
+                      <!-- modal-dialog -->
+                      <div class="modal-dialog" id="mod" role="document">
+                        <!-- modal-content -->
+                        <div class="modal-content">
+                          <!-- modal-header -->
+                          <div class="modal-header popupheadeer">
+                            Alert!<button type="button" class="close" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                            <!-- <h4 class="modal-title">Login</h4> -->
+                          </div>
+                          <!-- modal-body -->
+                          <div class="modal-body">
+                              <div class="row mb-2">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 data">
+                              
+                               <p>You are initiating payments for bills with past due dates. Please validate these entires. 
+                                  Click ok to continue  or cancel to go back to list view</p>
+                              </div>
+                         
+                            </div>
+                            </div>
+                          <!-- modal-footer -->
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default popupheadeer" (click)="confirmprompt(true)">Ok</button>
+                            <button type="button" class="btn btn-default popupheadeer" (click)="confirmprompt(false)">Cancel</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                 </div>
               </div>
             </div>

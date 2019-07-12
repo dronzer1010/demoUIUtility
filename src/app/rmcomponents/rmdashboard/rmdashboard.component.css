@@ -6,3 +6,25 @@
     border-bottom: 1px solid #d5d5d5;
     background: #F0F4F5;
 }
+.round1,
+.round2 {
+  text-align: center;
+  border: 1px solid #8153ad;
+  border-radius: 50%;
+  padding: 30% 10%;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.round1 {
+    background-color: #8153ad;
+    color: #fff;
+}
+  
+.round2 {
+    color: #8153ad;
+}
+.round1, .round2{
+    padding: 37% 10%;
+}

@@ -38,6 +38,7 @@ export class MakePaymentComponent implements OnInit {
   public cntChk: number=0;
   public flag: any;
   display='none'; 
+  displayprompt:string='none';
   states:any;
   paymentData : any={};
   billers:any;
@@ -67,6 +68,8 @@ export class MakePaymentComponent implements OnInit {
   downloadArray:any=[];
   filteredbills:any=[];
   date:Date;
+  currentdate:Date;
+  duedatepassd:any=[];
   constructor(private httpService: HttpClient,private cards:CardserviceService,private billservice: BillerserviceService, private loader: LoaderService, private users: UserserviceService,private router: Router,private paymentservice: PaymentserviceService,private toaster:ToastrService,private excelservice : ExcelService,public datepipe: DatePipe,) { }
 
   ngOnInit() {
@@ -125,14 +128,17 @@ export class MakePaymentComponent implements OnInit {
     this.billertype=false;
     this.billdetails=true;
     this.reviewCard=false;
-    
-   this.billservice.getAllbillers().then(resp=>{
+    this.currentdate= new Date((new Date()).getTime() + 24*60*60*1000);
+   this.billservice.getbillsforpay().then(resp=>{
+     console.log(resp)
     this.payments=resp
     var allBills = this.payments
     if(allBills!=null){
       this.bills = allBills.filter((bill)=>{
-        return (bill['status']=="Registered")
+        return (bill['status']=="Registered" && bill['amount']!=null && bill['amount']>0 && bill['amount']==bill['paytm_amount'])
       })
+
+      
     }
     console.log(this.bills)
     for(var i=0;i<this.bills.length;i++){
@@ -320,19 +326,54 @@ export class MakePaymentComponent implements OnInit {
     //this.filename = filenm.substr(fileNameIndex);
   }
 
+  
+
+  prompt(){
+    this.duedatepassd=[];
+    for(var i=0;i<this.bills.length;i++){
+     
+        this.duedatepassd.push(this.bills[i].fetch_due_date_status)
+      
+    }
+    console.log(this.duedatepassd)
+    if(this.duedatepassd.indexOf("Due date passed") > -1){
+        console.log("Prompt For Due Date Passed")
+        this.displayprompt='block'
+    }else{
+      this.cnfsend()
+      console.log("Go to Next Step")
+    }
+    
+  }
+  confirmprompt(confirmation){
+    this.displayprompt='none'
+console.log(confirmation)
+if(confirmation==true){
+  this.cnfsend()
+}else{
+
+}
+  }
+
   cnfsend(){
+    
     this.billdetails=false;
     this.conf=true;
     this.billertype=false;   
     this.reviewCard=true;
-
-    for(var i=0;i<this.payments.length;i++){
+    console.log(this.bills)
+    console.log(this.checkedValueArray)
+    for(var i=0;i<this.bills.length;i++){
       for(var j=0;j<this.checkedValueArray.length;j++){
-        if(this.payments[i].id == this.checkedValueArray[j]){
-          this.pendingPayments.push(this.payments[i]);
+     
+        if(this.bills[i].id == this.checkedValueArray[j]){
+          this.pendingPayments.push(this.bills[i]);
         }
+ 
       }
+     
     }
+    console.log(this.checkedValueArray)
   }
 
   succesadd(){

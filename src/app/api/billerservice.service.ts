@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 // import { Observable, of, throwError } from 'rxjs';
 // import { catchError, tap, map } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
+import { Http, ResponseContentType , Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
@@ -45,9 +46,55 @@ export class BillerserviceService {
     return promise;
   }
 
+  submitbulkbill(billdata:any[]): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+    console.log(billdata)
+    let promise = new Promise((resolve, reject) => {
+        // let paramsValue = {
+        //     "regcmt": comment,
+        //     "checkval": ids
+        // };
+        this.http.post(path+"api/v2/bulk_upload", billdata)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                    console.log("Error occured : " + err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
   getAllbillers(){
     let promise = new Promise((resolve, reject) => {
       this.http.get(path+"api/v1/maker_bills")
+          .subscribe(
+              res => {
+                  console.log(res);
+                  resolve(res);
+              },
+              err => {
+                  console.log("Error occured : " + err);
+                  reject(err);
+              }
+          );
+  
+  });
+  return promise;
+  }
+
+  getbillsforpay(){
+    let promise = new Promise((resolve, reject) => {
+      this.http.get(path+"api/v2/payment_bills")
           .subscribe(
               res => {
                   console.log(res);
@@ -226,4 +273,56 @@ sendOtp(ids: any): Promise<any> {
   
     return promise;
   }
+
+
+
+
+
+//   custombillreport(arr:any): Promise<any> {
+   
+//     let date = new Date();
+//     let headers = new Headers();
+ 
+//     var op={
+//         responseType: ResponseContentType.Blob,
+   
+        
+//       }
+//     let promise = new Promise((resolve, reject) => {
+//         this.http.post(path+`api/v1/bill_report`,arr,op).map(res=>{
+//             return {
+//                 filename: 'filename.pdf',
+//                 data: res.blob()
+//               };
+//         })
+//             .subscribe(
+//                 res => {
+//                     console.log('start download:',res);
+//                     var url = window.URL.createObjectURL(res.data);
+//           var a = document.createElement('a');
+//           document.body.appendChild(a);
+//           a.setAttribute('style', 'display: none');
+//           a.href = url;
+//           a.download = "payments_"+date+".xls";
+//           a.click();
+//           window.URL.revokeObjectURL(url);
+//           a.remove(); // remove the element
+//                     console.log(res);
+//                     resolve(res);
+//                 },
+//                 err => {
+                  
+//                     console.log('download error:', JSON.stringify(err));
+//                     console.log("Error occured :")
+//                     console.log(err);
+//                     reject(err);
+//                 },()=>{
+//                     console.log('Completed file download.')
+//                 }
+//             );
+  
+//     });
+  
+//     return promise;
+//   }
 }

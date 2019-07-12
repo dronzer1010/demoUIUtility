@@ -55,75 +55,81 @@
                           </div>
                         </div>
                         <div class="row mb-2 text-left">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <input type="checkbox" (change)="selectllpara()" name="selectallpara"  [(ngModel)]="selectallpara"> <span class="spn-modal">Select All
+                                    Type</span>
+                            </div>
+                        </div>
+                        <div class="row mb-2 text-left">
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Utility
+                            <input type="checkbox" name="utilityname" [(ngModel)]="utilityname"> <span class="spn-modal">Utility
                               Type</span>
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Biller
+                            <input type="checkbox" name="billername" [(ngModel)]="billername"> <span class="spn-modal">Biller
                               Name</span>
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Bill" value="Bill"> <span class="spn-modal">Bill Date</span>
+                            <input type="checkbox" name="billdate" [(ngModel)]="billdate"> <span class="spn-modal">Bill Date</span>
                           </div>
                         </div>
                         <div class="row mb-2 text-left">
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Due
+                            <input type="checkbox" name="duedate" [(ngModel)]="duedate"> <span class="spn-modal">Due
                               Date</span>
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Reference" value="Reference"> <span
+                            <input type="checkbox" name="status" [(ngModel)]="status"> <span
                               class="spn-modal">Status</span>
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Bill" value="Bill"> <span class="spn-modal">Short Name</span>
+                            <input type="checkbox" name="shortname" [(ngModel)]="shortname"> <span class="spn-modal">Short Name</span>
                           </div>
                         </div>
                         <div class="row mb-2 text-left">
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">GL/Expense
+                            <input type="checkbox" name="glexpensecode" [(ngModel)]="glexpensecode"> <span class="spn-modal">GL/Expense
                               Code</span>
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Reference" value="Reference"> <span
+                            <input type="checkbox" name="location" [(ngModel)]="location"> <span
                               class="spn-modal">Location</span>
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Bill" value="Bill"> <span class="spn-modal">Consumer No</span>
+                            <input type="checkbox" name="consumerno" [(ngModel)]="consumerno"> <span class="spn-modal">Consumer No</span>
                           </div>
                         </div>
                         <div class="row mb-2 text-left">
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Mobile
+                            <input type="checkbox" name="contactno" [(ngModel)]="contactno"> <span class="spn-modal">Mobile
                               No</span>
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Reference" value="Reference"> <span
+                            <input type="checkbox" name="contactaddress" [(ngModel)]="contactaddress"> <span
                               class="spn-modal">Address</span>
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Reference" value="Reference"> <span
+                            <input type="checkbox" name="email" [(ngModel)]="email"> <span
                               class="spn-modal">Email</span>
                           </div>
                         </div>
                         <div class="row mb-2 text-left">
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">File
+                            <input type="checkbox"> <span class="spn-modal">File
                               Name</span>
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Initiated
+                            <input type="checkbox" name="initiatedby" [(ngModel)]="initiatedby"> <span class="spn-modal">Initiated
                               by</span>
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Initiated
+                            <input type="checkbox" name="initiatedon" [(ngModel)]="initiatedon"> <span class="spn-modal">Initiated
                               on</span>
                           </div>
                         </div>
                         <div class="row mb-2 text-left">
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Approved
+                            <input type="checkbox" name="utilityname" [(ngModel)]="utilityname"> <span class="spn-modal">Approved
                               by</span>
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -140,12 +146,12 @@
                               <tr>
                                 <td style="padding:0px; width:10%">From</td>
                                 <td style="padding:0px; width:28%">
-                                  <angular2-date-picker [ngClass]="'popup-datepicker'" [(ngModel)]="fromdate"
+                                  <angular2-date-picker [ngClass]="'popup-datepicker'" [(ngModel)]="filterfromdate"
                                     [settings]="settings"></angular2-date-picker>
                                 </td>
                                 <td style="padding-left:7px; width:10%">To</td>
                                 <td style="padding-right:10px; width:31%">
-                                  <angular2-date-picker [ngClass]="'popup-datepicker'" [(ngModel)]="todate"
+                                  <angular2-date-picker [ngClass]="'popup-datepicker'" [(ngModel)]="filtertodate"
                                     [settings]="settings"></angular2-date-picker>
                                 </td>
                               </tr>
@@ -154,7 +160,7 @@
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
                         </div>
                         <div class="row text-left">
-                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button (click)="closeModalDialog()"
+                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button (click)="closeModalDialog();getcustomreport()"
                               class="btn-ok" style="margin-right:10px;">OK</button></div>
                         </div>
                       </div>

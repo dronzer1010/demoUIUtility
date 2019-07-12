@@ -84,141 +84,141 @@
                   <tbody>
                      <tr>
                         <td colspan="4">
-                           <div class="col-sm-3 col-md-3 col-xs-3">
-                              <div class="row">
-                              <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                 <h5 class="prevlghd" style="font-size:19px;margin:0;">Bills</h5>
+                              <div class="col-sm-3 col-md-3 col-xs-3">
+                                    <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 text-left">
+                                       <h5 class="prevlghd" style="font-size:19px;margin:0;">Bills</h5>
+                                    </div>
+                                    <div class="clear20"></div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                       <div *ngIf="!isViewsup" class="place"></div>
+                                       <div *ngIf="isViewsup" class="place chkselect"></div>
+                                       <div class="clear10"></div>
+                                       <div *ngIf="!isApprsup" class="place"></div>
+                                       <div *ngIf="isApprsup" class="place chkselect"></div>
+                                       <div class="clear10"></div>
+                                       <div *ngIf="!isUnisup" class="place"></div>
+                                       <div *ngIf="isUnisup" class="place chkselect"></div>
+                                       <div class="clear10"></div>
+                                       <div *ngIf="!isBulksup" class="place"></div>
+                                       <div *ngIf="isBulksup" class="place chkselect"></div>
+                                       <div class="clear10"></div>
+                                    </div>
+                                    <div class="col-sm-9 col-md-9 col-xs-9 text-left">
+                                       View
+                                       <br>
+                                       <div class="clear10"></div>
+                                       Approve
+                                       <br>
+                                       <div class="clear10"></div>
+                                       Add Unitary
+                                       <br>
+                                       <div class="clear10"></div>
+                                       Add Bulk
+                                       <br>
+                                       <div class="clear10"></div>
+                                    </div>
+                                 </div>
                               </div>
-                              <div class="clear20"></div>
-                              <div class="col-md-1 col-sm-1 col-xs-1">
-                                 <div *ngIf="!isViewsup" class="place"></div>
-                                 <div *ngIf="isViewsup" class="place chkselect"></div>
-                                 <div class="clear10"></div>
-                                 <div *ngIf="!isApprsup" class="place"></div>
-                                 <div *ngIf="isApprsup" class="place chkselect"></div>
-                                 <div class="clear10"></div>
-                                 <div *ngIf="!isUnisup" class="place"></div>
-                                 <div *ngIf="isUnisup" class="place chkselect"></div>
-                                 <div class="clear10"></div>
-                                 <div *ngIf="!isBulksup" class="place"></div>
-                                 <div *ngIf="isBulksup" class="place chkselect"></div>
-                                 <div class="clear10"></div>
+                                 <div class="col-sm-3 col-md-3 col-xs-3 brdlft">
+                                    <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 text-left">
+                                       <h5 class="prevlghd" style="font-size:19px;margin:0;">Payment</h5>
+                                    </div>
+                                    <div class="clear20"></div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                       <div *ngIf="!isViewpay" class="place"></div>
+                                       <div *ngIf="isViewpay" class="place chkselect"></div>
+                                       <div class="clear10"></div>
+                                       <div *ngIf="!isApprpay" class="place"></div>
+                                       <div *ngIf="isApprpay" class="place chkselect"></div>
+                                       <div class="clear10"></div>
+                                       <div *ngIf="!isUnipay" class="place"></div>
+                                       <div *ngIf="isUnipay" class="place chkselect"></div>
+                                       <div class="clear10"></div>
+                                       <!-- <div *ngIf="!isBulkpay" class="place"></div>
+                                       <div *ngIf="isBulkpay" class="place chkselect"></div>
+                                       <div class="clear10"></div> -->
+                                    </div>
+                                    <div class="col-sm-9 col-md-9 col-xs-9 text-left">
+                                       View
+                                       <br>
+                                       <div class="clear10"></div>
+                                       Approve
+                                       <br>
+                                       <div class="clear10"></div>
+                                       Add Unitary
+                                       <br>
+                                       <div class="clear10"></div>
+                                       <!-- Add Bulk
+                                    <br>
+                                    <div class="clear10"></div> -->
+                                    </div>
+                                 </div>
                               </div>
-                              <div class="col-sm-9 col-md-9 col-xs-9 text-left">
-                                 View
-                                 <br>
-                                 <div class="clear10"></div>
-                                 Approve
-                                 <br>
-                                 <div class="clear10"></div>
-                                 Add Unitary
-                                 <br>
-                                 <div class="clear10"></div>
-                                 Add Bulk
-                                 <br>
-                                 <div class="clear10"></div>
+                                 <div class="col-sm-3 col-md-3 col-xs-3 text-left">
+                                 <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <h5 class="prevlghd" style="font-size:19px;margin:0;">Users</h5>
+                                 </div>
+                                 <div class="clear20"></div>
+                                 <div class="col-md-1 col-sm-1 col-xs-1">
+                                    <div *ngIf="!isViewuser" class="place"></div>
+                                    <div *ngIf="isViewuser" class="place chkselect"></div>
+                                    <div class="clear10"></div>
+                                    <div *ngIf="!isAppruser" class="place"></div>
+                                    <div *ngIf="isAppruser" class="place chkselect"></div>
+                                    <div class="clear10"></div>
+                                    <div *ngIf="!isUniuser" class="place"></div>
+                                    <div *ngIf="isUniuser" class="place chkselect"></div>
+                                    <div class="clear10"></div>
+                                    <div *ngIf="!isBulkuser" class="place"></div>
+                                    <div *ngIf="isBulkuser" class="place chkselect"></div>
+                                    <div class="clear10"></div>
+                                 </div>
+                                 <div class="col-sm-9 col-md-9 col-xs-9">
+                                    View
+                                    <br>
+                                    <div class="clear10"></div>
+                                    Approve
+                                    <br>
+                                    <div class="clear10"></div>
+                                    Add Unitary
+                                    <br>
+                                    <div class="clear10"></div>
+                                    Add Bulk
+                                    <br>
+                                    <div class="clear10"></div>
+                                 </div>
+                              </div> 
+                                 <div class="col-sm-3 col-md-3 col-xs-3 text-left">
+                                 <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <h5 class="prevlghd" style="font-size:19px;margin:0;">Cards</h5>
+                                 </div>
+                                 <div class="clear20"></div>
+                                 <div class="col-md-1 col-sm-1 col-xs-1">
+                                    <div *ngIf="!isViewcard" class="place"></div>
+                                    <div *ngIf="isViewcard" class="place chkselect"></div>
+                                    <div class="clear10"></div>
+                                    <div *ngIf="!isApprcard" class="place"></div>
+                                    <div *ngIf="isApprcard" class="place chkselect"></div>
+                                    <div class="clear10 "></div>
+                                    <div *ngIf="!isUnicard" class="place"></div>
+                                    <div *ngIf="isUnicard" class="place chkselect"></div>
+                                    <div class="clear10"></div>
+                                 </div>
+                                 <div class="col-sm-9 col-md-9 col-xs-9">
+                                    View
+                                    <br>
+                                    <div class="clear10"></div>
+                                    Approve
+                                    <br>
+                                    <div class="clear10"></div>
+                                    Add Unitary
+                                    <br>
+                                    <div class="clear10"></div>
+                                    <div class="clear10"></div>
+                                 </div>
                               </div>
-                           </div>
-                        </div>
-                           <div class="col-sm-3 col-md-3 col-xs-3 brdlft">
-                              <div class="row">
-                              <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                 <h5 class="prevlghd" style="font-size:19px;margin:0;">Payment</h5>
-                              </div>
-                              <div class="clear20"></div>
-                              <div class="col-md-1 col-sm-1 col-xs-1">
-                                 <div *ngIf="!isViewpay" class="place"></div>
-                                 <div *ngIf="isViewpay" class="place chkselect"></div>
-                                 <div class="clear10"></div>
-                                 <div *ngIf="!isApprpay" class="place"></div>
-                                 <div *ngIf="isApprpay" class="place chkselect"></div>
-                                 <div class="clear10"></div>
-                                 <div *ngIf="!isUnipay" class="place"></div>
-                                 <div *ngIf="isUnipay" class="place chkselect"></div>
-                                 <div class="clear10"></div>
-                                 <!-- <div *ngIf="!isBulkpay" class="place"></div>
-                                 <div *ngIf="isBulkpay" class="place chkselect"></div>
-                                 <div class="clear10"></div> -->
-                              </div>
-                              <div class="col-sm-9 col-md-9 col-xs-9 text-left">
-                                 View
-                                 <br>
-                                 <div class="clear10"></div>
-                                 Approve
-                                 <br>
-                                 <div class="clear10"></div>
-                                 Add Unitary
-                                 <br>
-                                 <div class="clear10"></div>
-                                 <!-- Add Bulk
-                              <br>
-                              <div class="clear10"></div> -->
-                              </div>
-                           </div>
-                        </div>
-                           <div class="col-sm-2 col-md-2 col-xs-2 brdlft">
-                           <div class="col-xs-12 col-sm-12 col-md-12">
-                              <h5 class="prevlghd">Users</h5>
-                           </div>
-                           <div class="clear20"></div>
-                           <div class="col-md-1 col-sm-1 col-xs-1">
-                              <div *ngIf="!isViewuser" class="place"></div>
-                              <div *ngIf="isViewuser" class="place chkselect"></div>
-                              <div class="clear10"></div>
-                              <div *ngIf="!isAppruser" class="place"></div>
-                              <div *ngIf="isAppruser" class="place chkselect"></div>
-                              <div class="clear10"></div>
-                              <div *ngIf="!isUniuser" class="place"></div>
-                              <div *ngIf="isUniuser" class="place chkselect"></div>
-                              <div class="clear10"></div>
-                              <div *ngIf="!isBulkuser" class="place"></div>
-                              <div *ngIf="isBulkuser" class="place chkselect"></div>
-                              <div class="clear10"></div>
-                           </div>
-                           <div class="col-sm-9 col-md-9 col-xs-9">
-                              View
-                              <br>
-                              <div class="clear10"></div>
-                              Approve
-                              <br>
-                              <div class="clear10"></div>
-                              Add Unitary
-                              <br>
-                              <div class="clear10"></div>
-                              Add Bulk
-                              <br>
-                              <div class="clear10"></div>
-                           </div>
-                        </div> 
-                           <div class="col-sm-2 col-md-2 col-xs-2 brdlft">
-                           <div class="col-xs-12 col-sm-12 col-md-12">
-                              <h5 class="prevlghd">Cards</h5>
-                           </div>
-                           <div class="clear20"></div>
-                           <div class="col-md-1 col-sm-1 col-xs-1">
-                              <div *ngIf="!isViewcard" class="place"></div>
-                              <div *ngIf="isViewcard" class="place chkselect"></div>
-                              <div class="clear10"></div>
-                              <div *ngIf="!isApprcard" class="place"></div>
-                              <div *ngIf="isApprcard" class="place chkselect"></div>
-                              <div class="clear10 "></div>
-                              <div *ngIf="!isUnicard" class="place"></div>
-                              <div *ngIf="isUnicard" class="place chkselect"></div>
-                              <div class="clear10"></div>
-                           </div>
-                           <div class="col-sm-9 col-md-9 col-xs-9">
-                              View
-                              <br>
-                              <div class="clear10"></div>
-                              Approve
-                              <br>
-                              <div class="clear10"></div>
-                              Add Unitary
-                              <br>
-                              <div class="clear10"></div>
-                              <div class="clear10"></div>
-                           </div>
-                        </div>
                         <div class="col-sm-2 col-md-2 col-xs-2 brdlft" *ngIf="userdata.authmtrix=='Complex'">
                            <div class="col-xs-12 col-sm-12 col-md-12">
                               <h5 class="prevlghd">Groups</h5>
