@@ -245,7 +245,8 @@ export class MakePaymentComponent implements OnInit {
           amount:pendingbillerpage[i]['amount'],
           billdate:pendingbillerpage[i]['fetch_bill_date'],
           duedate:pendingbillerpage[i]['fetch_due_date'],
-          billnumber:pendingbillerpage[i]['fetch_bill_no']
+          billnumber:pendingbillerpage[i]['fetch_bill_no'],
+          fetch_due_date_status:pendingbillerpage[i]['fetch_due_date_status']
         }
         this.checkedValueArray.push(obj);
         if(pendingbillerpage[i]['amount']!=null)
@@ -281,7 +282,8 @@ export class MakePaymentComponent implements OnInit {
         amount:payment['amount'],
         billdate:payment['fetch_bill_date'],
         duedate:payment['fetch_due_date'],
-        billnumber:payment['fetch_bill_no']
+        billnumber:payment['fetch_bill_no'],
+        fetch_due_date_status:payment['fetch_due_date_status']
       }
       this.checkedValueArray.push(obj);     
     }
@@ -330,9 +332,9 @@ export class MakePaymentComponent implements OnInit {
 
   prompt(){
     this.duedatepassd=[];
-    for(var i=0;i<this.bills.length;i++){
+    for(var i=0;i<this.checkedValueArray.length;i++){
      
-        this.duedatepassd.push(this.bills[i].fetch_due_date_status)
+        this.duedatepassd.push(this.checkedValueArray[i].fetch_due_date_status)
       
     }
     console.log(this.duedatepassd)
@@ -391,7 +393,7 @@ if(confirmation==true){
     }else{
       console.log("Transaction time passed")
     }
-    if(date<'13:58:00' && date>'08:00:00'){
+    //if(date<'13:58:00' && date>'08:00:00'){
     this.loader.display(true);
     this.paymentData={
       "card_id":this.selectedcard['id'],
@@ -412,12 +414,12 @@ if(confirmation==true){
       console.log(error)
       this.loader.display(false);
     })
-  }else{
-    this.toaster.error("Todays batch has passed now, you cannot initiate payment now. Please fetch the bills tomorrow between 08:00 AM and 01:58 PM and initiate the payments !","Alert",{
-      timeOut:8000,
-      positionClass:'toast-top-center'
-      })
-  }
+  // }else{
+  //   this.toaster.error("Todays batch has passed now, you cannot initiate payment now. Please fetch the bills tomorrow between 08:00 AM and 01:58 PM and initiate the payments !","Alert",{
+  //     timeOut:8000,
+  //     positionClass:'toast-top-center'
+  //     })
+  // }
     
    
    

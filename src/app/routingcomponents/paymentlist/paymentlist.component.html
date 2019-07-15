@@ -215,7 +215,8 @@
                       <td><i class="fa fa-rupee"></i>{{payment.amount | numberfr}}</td>
                       <td>{{payment.consumer_no}}</td>
                       <td>{{payment.consumer_name}}</td>
-                      <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.transaction_status === 'Approved', 'Rejected': payment.transaction_status  === 'Rejected', 'Pending': payment.transaction_status  === 'Pending'}" role="button">{{payment.transaction_status}}</a></td>
+                      <td *ngIf="rolename=='maker' || rolename=='ccmaker' || rolename=='as'"><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.transaction_status === 'Approved', 'Rejected': payment.transaction_status  === 'Rejected', 'Pending': payment.transaction_status  === 'Pending'}" role="button">{{payment.transaction_status}}</a></td>
+                      <td *ngIf="rolename=='checker' || rolename=='ccchecker' || rolename=='aschecker'"><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.status === 'Approved', 'Rejected': payment.status  === 'Rejected', 'Pending': payment.status  === 'Pending'}" role="button">{{payment.status}}</a></td>
                       <td class="text-center" [ngClass]="{'appoved': payment.payment_status === 'Approved','appoved': payment.payment_status === 'Card Debited','appoved': payment.payment_status === 'In Process','appoved': payment.payment_status === 'Payment Success', 'Rejected': payment.payment_status  === 'Payment Failed', 'Pending': payment.payment_status  === 'Pending'}">{{payment.payment_status}}</td>
                       <td style="padding:0 5px;"><img src="assets/img/tb_downarrow.png" alt="" (click)="payment.collapsed=!payment.collapsed;getapproverdetails(payment.id,i)"></td>
                     </tr>
