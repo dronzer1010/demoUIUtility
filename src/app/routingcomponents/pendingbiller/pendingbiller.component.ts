@@ -48,7 +48,7 @@ fromdate:Date = new Date();
   settings = {
     bigBanner: true,
     timePicker: false,
-    format: 'dd-MM-yyyy',
+    format: 'MM-yyyy',
     defaultOpen: false,
     enableCheckAll:false
   }

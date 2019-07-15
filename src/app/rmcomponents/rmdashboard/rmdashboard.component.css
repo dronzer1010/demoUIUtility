@@ -28,3 +28,47 @@
 .round1, .round2{
     padding: 37% 10%;
 }
+.rm-pend, .rm-reg, .rm-rej{
+    height:100px;
+    width:100px;
+    border:0px;
+    text-align: center;
+    border-radius: 50%;
+    line-height:100px;
+    margin: 30px auto 20px auto;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 500;
+}
+.rm-pend{
+    background-color: #d8b219;
+}
+.rm-reg{
+    background-color: #34bfa3;
+}
+.rm-rej{
+    background-color: #dc3545;
+}
+.txt{
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+.txt1{
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 0px;
+}
+.txt1 div{
+    background: #f4f4f4;
+    padding: 5px 10px;
+    width: 75%!important;
+    border-radius: 5px;
+    margin: 0 auto 5px;
+}
+.view-detail{
+    background: #533979;
+    color: #fff;
+    padding: 5px 9px;
+    border-radius: 5px;
+}

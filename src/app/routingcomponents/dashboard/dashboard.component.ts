@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit {
   settings = {
     bigBanner: true,
     timePicker: false,
-    format: 'dd-MM-yyyy',
+    format: 'MM-yyyy',
     defaultOpen: false
 }
 public utilityparams:string;

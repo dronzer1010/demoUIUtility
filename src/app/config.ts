@@ -10,7 +10,7 @@ this.baseUrl="http://utilityrest.ap-south-1.elasticbeanstalk.com/api/"
       //  this.utilityapiUrl = "https://billtree.aquapay.in:3002/";
        
         // Test URL
-   this.utilityapiUrl="http://utility-test.aquapay.in:9999/"
+   this.utilityapiUrl="http://13.233.114.106:9999/"
 
   //  NGrock URL
     //this.utilityapiUrl="http://cbd3f750.ngrok.io/"
