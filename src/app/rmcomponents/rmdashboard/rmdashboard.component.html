@@ -9,6 +9,7 @@
 
             <div class="row">
                 <!--row -->
+                <div class="clear20"></div> 
                 <app-rmhome [data]="dashboardData"></app-rmhome>
                 <!-- <h4 class="col-md-3 col-sm-6 Top5Heading111 mrgnone headfont">Select Organisation</h4>
                 <div id="selectAuto" class="col-md-4 col-sm-6 Top5Heading111">
@@ -21,9 +22,35 @@
                     </span>
                 </div> -->
                 <div class="col-md-6 col-sm-6 col-lg-6 col-6">
-                    <app-rmcardslider></app-rmcardslider>
+                    <!-- <app-rmcardslider></app-rmcardslider> -->
+                    <div class="white-bg CardWhitebox">
+                        <div class="col-md-9">
+                        <h4 class="Top5Heading">No. of bills registered</h4>
+                        </div>
+                        <div class="col-md-3" style="margin-top:17px;">
+                            <button class="view-detail">View Details</button>
+                        </div>
+                        <div class="col-md-12" style="border-top: 1px solid #eee;">
+                            <div class="row">
+                                <div class="col-md-4 text-center">
+                                    <div class="rm-pend">10</div>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <div class="rm-reg">10</div>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <div class="rm-rej">10</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 text-center txt">Pending</div>
+                                <div class="col-md-4 text-center txt">Registered</div>
+                                <div class="col-md-4 text-center txt">Rejected</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-6 col-sm-6 col-lg-6 col-6">
                     <!-- <app-rmtoppayment></app-rmtoppayment> -->
                      <!-- <div class="white-bg CardWhitebox">
                         <h4 class="col-md-9 col-sm-6 Top5Heading">Top 5 Supplier Payments</h4> 
@@ -38,12 +65,63 @@
                         <!-- <div id="paybar"></div>  -->
                      <!-- <button (click)="add()">Add Point!</button> 
                     <div [chart]="chart"></div> -->
+                    <div class="white-bg CardWhitebox">
+                        <div class="col-md-9">
+                        <h4 class="Top5Heading">No. of bills payments</h4>
+                        </div>
+                        <div class="col-md-3" style="margin-top:17px;">
+                            <button class="view-detail">View Details</button>
+                        </div>
+                        <div class="col-md-12" style="border-top: 1px solid #eee;">
+                            <div class="row">
+                                <div class="col-md-4 text-center">
+                                    <div class="rm-pend">10</div>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <div class="rm-reg">10</div>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <div class="rm-rej">10</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 text-center txt1"><div>10,000 ₹</div></div>
+                                <div class="col-md-4 text-center txt1"><div>100,000 ₹</div></div>
+                                <div class="col-md-4 text-center txt1"><div>100,000,000 ₹</div></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 text-center txt">Pending</div>
+                                <div class="col-md-4 text-center txt">Approved</div>
+                                <div class="col-md-4 text-center txt">Rejected</div>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 <div class="clear20"></div>
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <!-- <app-rmtodayspent [data]="toDaySpentDetail"></app-rmtodayspent> -->
+                <div class="col-md-6 col-sm-6 col-lg-6 col-6">
+                <div class="white-bg CardWhitebox">
+                    <h4 class="col-md-9 col-sm-6 Top5Heading">YTD total number of bills registered</h4>
                 </div>
+                </div>
+                <!-- <div class="clear20"></div> -->
+                <div class="col-md-6 col-sm-6 col-lg-6 col-6">
+                <div class="white-bg CardWhitebox">
+                    <h4 class="col-md-9 col-sm-6 Top5Heading">YTD no. of bill payments initiated</h4>
+                </div>
+                </div>
+                
                 <div class="clear20"></div>
+                <div class="col-md-6 col-sm-6 col-lg-6 col-6">
+                <div class="white-bg CardWhitebox">
+                    <h4 class="col-md-9 col-sm-6 Top5Heading">MTD number of corporate set up</h4>
+                </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-lg-6 col-6">
+                <div class="white-bg CardWhitebox">
+                    <h4 class="col-md-9 col-sm-6 Top5Heading">YTD number of corporate set up</h4>
+                </div>
+                </div>
                 <!-- bar chart content -->
 
                 <!-- bar chart content end-->

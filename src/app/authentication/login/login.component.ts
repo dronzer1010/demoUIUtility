@@ -19,7 +19,7 @@ email:any;
 settings = {
   bigBanner: true,
   timePicker: false,
-  format: 'dd-MM-yyyy',
+  format: 'MM-yyyy',
   defaultOpen: false
 }
 orgdata:any=[];
