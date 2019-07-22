@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {RmservicesService} from '../../api/rmservices.service'
+import { RmservicesService } from '../../api/rmservices.service'
 import { Router } from '@angular/router';
-import {AuthService} from '../../api/auth.service'
+import { AuthService } from '../../api/auth.service'
 @Component({
   selector: 'app-rmdashboard',
   templateUrl: './rmdashboard.component.html',
@@ -23,7 +23,40 @@ export class RmdashboardComponent implements OnInit {
   public unit: any;
   public temp: any;
   public cardData: any;
-  constructor(private authservice: AuthService,private rmservice:RmservicesService,private router:Router) { }
+  dataSource: Object;
+
+  constructor(private authservice: AuthService,private rmservice:RmservicesService,private router:Router) { 
+    this.dataSource = {
+      chart: {
+          // "caption": "Countries With Most Oil Reserves [2017-18]",
+          // "subCaption": "In MMbbl = One Million barrels",
+          // "xAxisName": "Country",
+          "yAxisName": "Reserves (MMbbl)",
+          "numberSuffix": "K",
+          "theme": "fusion",
+      },
+      // Chart Data
+      "data": [{
+          "label": "Saudi",
+          "value": "260"
+      }, {
+          "label": "Canada",
+          "value": "180"
+      }, {
+          "label": "India",
+          "value": "140"
+      }, {
+          "label": "Russia",
+          "value": "115"
+      }, {
+          "label": "UAE",
+          "value": "100"
+      }, {
+          "label": "US",
+          "value": "30"
+      }]
+  };
+  }
 
   ngOnInit() {
     this.loadUserDetails();
