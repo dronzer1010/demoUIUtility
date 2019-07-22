@@ -5,6 +5,7 @@ import{LoaderService} from '../../api/loader.service'
 import {UserserviceService} from '../../api/userservice.service'
 import {PaymentserviceService} from '../../api/paymentservice.service'
 import { DatePipe } from '@angular/common'
+import { ToastrService } from 'ngx-toastr'
 @Component({
   selector: 'app-paymentlist',
   templateUrl: './paymentlist.component.html',
@@ -59,7 +60,9 @@ paysuccesstime:string;
 payfaildate:string;
 payfailtime:string;
 rejectreason:string;
-  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,public datepipe: DatePipe) { }
+deletemodal:string='none';
+deleteid:any;
+  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,public datepipe: DatePipe,private toaster:ToastrService) { }
 
   ngOnInit() {
     //this.rolename=localStorage.getItem('rolename')
@@ -284,5 +287,38 @@ this.paymentservice.getAllPayments().then(resp=>{
          }else{
            this.rejectreason="--"
          }
+    }
+
+    closedelmodal(){
+      this.deletemodal='none'; //set none css after close dialog
+    
+     }
+    
+     opendeletemodal(id){
+       console.log(this.deletemodal)
+       console.log(id)
+      this.deletemodal='block'; //Set block css
+      this.deleteid=id;
+    
+    }
+
+    deletepayment(){
+      this.loaderService.display(true)
+      this.paymentservice.deletepayment(this.deleteid).then(resp=>{
+        console.log(resp)
+        this.loaderService.display(false)
+        this.toaster.success("Payment Deleted Successfully!","Alert",{
+          timeOut:3000,
+          positionClass:'toast-top-center'
+          })
+          this.laodpayments()
+      },error=>{
+        console.log(error)
+        this.loaderService.display(false)
+        this.toaster.error("Failed to delete the payment!","Alert",{
+          timeOut:3000,
+          positionClass:'toast-top-center'
+          })
+      })
     }
 }

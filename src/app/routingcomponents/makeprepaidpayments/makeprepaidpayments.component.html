@@ -185,7 +185,7 @@
                   <!-- <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div> -->
                   <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-right">
                       <button class="btn btn-primary btn-outline ResponsiveBtnWidth btnspace" type="button" (click)="onItemSelectDown()" style="padding: 3px 25px!important;"><img src="assets/img/downloadlist.png"></button>
-                    <button class="btn bg-primary buttonpad btnspace" type="button" (click)="filtervalidamount()" style="padding: 3px 25px!important;">Valid Amount</button>
+                  
                     <button class="btn bg-primary nextpay buttonpad" type="button" (click)="cnfsend()" style="padding: 3px 25px!important;">Next</button>
                   
                   </div>
@@ -211,7 +211,7 @@
                           <tr>
                             <td><input name="submenu" type="checkbox" [checked]="select" (change)="change(payment)"></td>
                             <td>{{payment.biller_name}}</td>
-                            <td><i class="fa fa-rupee"></i>{{payment.amount}}
+                            <td><i class="fa fa-rupee"></i>{{(payment.amount)?payment.amount:"No Data"}}
                               <!-- <i class="fa fa-inr"></i> {{(payment.amount)?payment.amount:"No Data"}} -->
                             </td>
                             <td>{{payment.consumer_no}}</td>
@@ -290,7 +290,7 @@
                               <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a id="button" class="anchor-bill openModal" (click)="closeModalDialog(payment.id)">Add
                                   Details</a></span>
-                                  <a id="button" class="anchor-bill openModal" (click)="editamount(payment.id)">Edit Amount</a>
+                                  <a id="button" class="anchor-bill openModal" (click)="editamount(payment.id)">Add Amount</a>
                                 <!-- <span><button  *ngIf="!fetchingBill" (click)="fetchBill(payment.id)" class="anchor-bill">Fetch Bill</button> </span>
                                 <span><a  *ngIf="fetchingBill" class="anchor-bill"><img src="assets/img/loading.svg" class="loading-svg" /></a></span> -->
                                 </td>                                
@@ -366,7 +366,7 @@
                                   <div class="modal-content">
                                     <!-- modal-header -->
                                     <div class="modal-header">
-                                      Edit Amount<button type="button" class="close" aria-label="Close" (click)="submitamount()"><span
+                                      Add Amount<button type="button" class="close" aria-label="Close" (click)="closeamtmodal()"><span
                                           aria-hidden="true">&times;</span></button>
                                       <!-- <h4 class="modal-title">Login</h4> -->
                                     </div>
@@ -378,7 +378,7 @@
                                               <tr>
                                                 <td>Amount</td>
                                                 <td>:</td>
-                                                <td><input type="text" class="model-inputs" [(ngModel)]="newamount" name="late_pay_charges"></td>
+                                                <td><input type="text" class="model-inputs" [(ngModel)]="newamount" name="newamount"></td>
                                               </tr>
                                             
                                               

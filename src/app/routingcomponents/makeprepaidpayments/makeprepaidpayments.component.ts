@@ -69,6 +69,7 @@ export class MakeprepaidpaymentsComponent implements OnInit {
   editamtmodal:string='none';
   newamount:string;
   date:Date;
+  paymentid:any;
   constructor(private httpService: HttpClient,private cards:CardserviceService,private billservice: BillerserviceService, private loader: LoaderService, private users: UserserviceService,private router: Router,private paymentservice: PaymentserviceService,private toaster:ToastrService,private excelservice : ExcelService,public datepipe: DatePipe) { }
 
   ngOnInit() {
@@ -125,39 +126,62 @@ export class MakeprepaidpaymentsComponent implements OnInit {
   editamount(id){
     this.editamtmodal='block'; //set none css after close dialog
     console.log("Edit Amount")
+    this.paymentid=id;
+    console.log(this.paymentid)
   }
   submitamount(){
     this.editamtmodal='';
+    this.loader.display(true)
+    var amtdata={
+      "id":this.paymentid,
+      "amount":this.newamount
+    }
+    console.log(amtdata)
+    this.paymentservice.updateprepaidamt(amtdata).then(resp=>{
+      console.log(resp)
+      this.billrdetails();
+     
+    },error=>{
+      console.log(error)
+    })
+  }
+
+ closeamtmodal(){
+    this.editamtmodal='';
   }
   billrdetails(){
-    //this.loader.display(true)
+    this.totalamount=0;
+    this.checkedValueArray=[];
+    this.selectall=false;
+    this.select=false;
+    this.loader.display(true)
     this.billertype=false;
     this.billdetails=true;
     this.reviewCard=false;
     this.bills=[]
-    for(var i=0;i<this.bills.length;i++){
-           if(this.bills[i]['amount']!=null)
-           this.totalamount+=parseInt(this.bills[i]['amount'])
-         }
+    // for(var i=0;i<this.bills.length;i++){
+    //        if(this.bills[i]['amount']!=null)
+    //        this.totalamount+=parseInt(this.bills[i]['amount'])
+    //      }
     
-  //  this.billservice.getAllbillers().then(resp=>{
-  //   this.payments=resp
-  //   var allBills = this.payments
-  //   if(allBills!=null){
-  //     this.bills = allBills.filter((bill)=>{
-  //       return (bill['status']=="Registered")
-  //     })
-  //   }
-  //   console.log(this.bills)
-  //   for(var i=0;i<this.bills.length;i++){
-  //     if(this.bills[i]['amount']!=null)
-  //     this.totalamount+=parseInt(this.bills[i]['amount'])
-  //   }
-  //   this.loader.display(false)
-  //  },error=>{
-  //    console.log(error)
-  //    this.loader.display(false)
-  //  })
+   this.billservice.getbillsforpay().then(resp=>{
+    this.payments=resp
+    var allBills = this.payments
+    if(allBills!=null){
+      this.bills = allBills.filter((bill)=>{
+        return (bill['status']=="Registered" && bill['biller_type']=='Prepaid')
+      })
+    }
+    console.log(this.bills)
+    for(var i=0;i<this.bills.length;i++){
+      if(this.bills[i]['amount']!=null)
+      this.totalamount+=parseInt(this.bills[i]['amount'])
+    }
+    this.loader.display(false)
+   },error=>{
+     console.log(error)
+     this.loader.display(false)
+   })
   
 
 
@@ -364,7 +388,7 @@ export class MakeprepaidpaymentsComponent implements OnInit {
     }else{
       console.log("Transaction time passed")
     }
-    if(date<'13:58:00' && date>'08:00:00'){
+    //if(date<'13:58:00' && date>'08:00:00'){
     this.loader.display(true);
     this.paymentData={
       "card_id":this.selectedcard['id'],
@@ -372,6 +396,7 @@ export class MakeprepaidpaymentsComponent implements OnInit {
       "count":this.checkedValueArray.length,
       "totalamount":this.amountpay
     }
+    if(this.amountpay>0){
     console.log(this.paymentData)
     this.paymentservice.makepayment(this.paymentData).then(resp=>{
       console.log(resp)
@@ -386,11 +411,19 @@ export class MakeprepaidpaymentsComponent implements OnInit {
       this.loader.display(false);
     })
   }else{
-    this.toaster.error("Todays batch has passed now, you cannot initiate payment now. Please fetch the bills tomorrow between 08:00 AM and 01:58 PM and initiate the payments !","Alert",{
-      timeOut:8000,
+    this.toaster.error("Total Amount Should be greater than 0!","Alert",{
+      timeOut:3000,
       positionClass:'toast-top-center'
       })
+   
+    this.loader.display(false);
   }
+  // }else{
+  //   this.toaster.error("Todays batch has passed now, you cannot initiate payment now. Please fetch the bills tomorrow between 08:00 AM and 01:58 PM and initiate the payments !","Alert",{
+  //     timeOut:8000,
+  //     positionClass:'toast-top-center'
+  //     })
+  // }
     
    
    

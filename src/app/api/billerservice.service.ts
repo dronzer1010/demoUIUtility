@@ -245,6 +245,64 @@ sendOtp(ids: any): Promise<any> {
     return promise;
   }
 
+
+  rejectbills(rejectdata:any): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+   console.log(JSON.stringify(rejectdata))
+    let promise = new Promise((resolve, reject) => {
+        this.http.post(path+"api/v2/reject_bills", rejectdata)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                   // this.loader.display(false);
+                    //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                    
+                    console.log("Error occured :")
+                    console.log(err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
+
+  deletebill(deleteid:any): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+  // console.log(JSON.stringify(rejectdata))
+    let promise = new Promise((resolve, reject) => {
+        this.http.delete(path+`api/v2/bill_delete_by_id/${deleteid}`)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                   // this.loader.display(false);
+                    //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                    
+                    console.log("Error occured :")
+                    console.log(err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
   suplogs(id: any): Promise<any> {
     // let token = this.storage.getData("chlogin_data").token;
     // let headers = new HttpHeaders().set('Content-Type', 'application/json')

@@ -25,7 +25,7 @@ export class PaymentserviceService {
         //     "regcmt": comment,
         //     "checkval": ids
         // };
-        this.http.post(path+"api/v1/add_payment", paymentdata)
+        this.http.post(path+"api/v2/add_payment", paymentdata)
             .subscribe(
                 res => {
                     console.log(res);
@@ -34,7 +34,7 @@ export class PaymentserviceService {
                 err => {
                     console.log("Error occured : " + err);
                     reject(err);
-                }
+                    }
             );
   
     });
@@ -58,6 +58,35 @@ export class PaymentserviceService {
   
   });
   return promise;
+  }
+
+
+  deletepayment(deleteid:any): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+  // console.log(JSON.stringify(rejectdata))
+    let promise = new Promise((resolve, reject) => {
+        this.http.delete(path+`api/v2/payment_delete_by_id/${deleteid}`)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                   // this.loader.display(false);
+                    //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                    
+                    console.log("Error occured :")
+                    console.log(err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
   }
 
   getPendingPayments(){
@@ -121,7 +150,60 @@ export class PaymentserviceService {
     }
     console.log("param id" + otp);
     let promise = new Promise((resolve, reject) => {
-        this.http.post(path+"api/v1/payment_approve_validate", paramsValue)
+        this.http.post(path+"api/v2/payment_approve_validate", paramsValue)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                   // this.loader.display(false);
+                    //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                    
+                    console.log("Error occured :")
+                    console.log(err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
+
+  rejectpayments(rejectdata:any): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+   console.log(JSON.stringify(rejectdata))
+    let promise = new Promise((resolve, reject) => {
+        this.http.post(path+"api/v2/reject_payments", rejectdata)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                   // this.loader.display(false);
+                    //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                    
+                    console.log("Error occured :")
+                    console.log(err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
+  updateprepaidamt(amtdata){
+    console.log(JSON.stringify(amtdata))
+    let promise = new Promise((resolve, reject) => {
+        this.http.post(path+"api/v2/update_amount_by_id", amtdata)
             .subscribe(
                 res => {
                     console.log(res);

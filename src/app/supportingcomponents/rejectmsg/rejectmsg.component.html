@@ -18,20 +18,23 @@
               <label *ngIf="cardreject" class="successhedtxt">Card is rejected and notification has been sent</label>
               <label *ngIf="rulereject" class="successhedtxt">Rule is rejected and notification has been sent</label>
               <label *ngIf="userreject" class="successhedtxt">User is rejected and notification has been sent</label>
-             
+              <label *ngIf="billreject" class="successhedtxt">Bills are rejected and notification has been sent</label>
+              <label *ngIf="payreject" class="successhedtxt">Payments are rejected and notification has been sent</label>
               <div class="clear20"></div>
               <label *ngIf="groupreject" class="smrinstatustxt">You can view the summary and status of your request in the group page  </label>
               <label *ngIf="cardreject" class="smrinstatustxt">You can view the summary and status of your request in the card page  </label>
               <label *ngIf="rulereject" class="smrinstatustxt">You can view the summary and status of your request in the rule page  </label>
               <label *ngIf="userreject" class="smrinstatustxt">You can view the summary and status of your request in the user page  </label>
-             
+              <label *ngIf="billreject" class="smrinstatustxt">You can view the summary and status of your request in the bills page  </label>
+              <label *ngIf="payreject" class="smrinstatustxt">You can view the summary and status of your request in the payments page  </label>
               
               <div class="col-md-12 col-sm-12 top-spac margin20">
                  <a *ngIf="groupreject" [routerLink]="['/main/groupview']" class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Groups</a>
                  <a *ngIf="cardreject" [routerLink]="['/main/cardview']" class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Cards</a>
                  <a *ngIf="rulereject" [routerLink]="['/main/ruleview']"  class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Rules</a>
                  <a *ngIf="userreject" [routerLink]="['/main/userview']" class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Users</a>
-                
+                 <a *ngIf="billreject" [routerLink]="['/main/billerlist']" class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Bills</a>
+                 <a *ngIf="payreject" [routerLink]="['/main/paymentlist']" class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Payments</a>
                   <a [routerLink]="['/main/dashboard']" class="btn btn-primary btn-outline Btn_Width2">Go to Dashboard</a>
               </div>
 

@@ -55,6 +55,7 @@ fromdate:Date = new Date();
   public searchText : string;
   downloadArray:any=[];
   checkbills:any;
+  rejectcomnt:any;
   constructor(private router : Router , private aRouter : ActivatedRoute,private excelservice : ExcelService,private billservice:BillerserviceService,private loaderService: LoaderService,private toastr: ToastrService) { }
 
   
@@ -270,15 +271,28 @@ this.displayreason='';
 
 }
 rejectBtn(){
-  this.pendingList=false;
-  this.approve=false;
-  this.reject=true;
+
+  var rejectdata={
+    "bill_id":this.checkedValueArray,
+    "comment":this.rejectcomnt,
+    "count":this.checkedValueArray.length
+  }
+  //console.log(rejectdata)
+  console.log(JSON.stringify(rejectdata))
+  this.billservice.rejectbills(rejectdata).then(resp=>{
+    console.log(resp)
+    this.router.navigate(['/main/rejectmsg'],{queryParams:{msg:'billreject'}});
+  },error=>{
+    console.log(error)
+
+  })
+  
 }
 
 private loadPendingbills(){
   this.loaderService.display(true)
 this.billservice.getPendingbillers().then(resp=>{
-  console.log(resp)
+  console.log(JSON.stringify( resp['bills']));
   this.pendingbillers=resp;
   if(this.pendingbillers==null){
     this.billerlength=0

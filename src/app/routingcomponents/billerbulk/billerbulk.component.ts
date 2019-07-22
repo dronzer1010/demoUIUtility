@@ -330,10 +330,11 @@ console.log("File Upload Started")
   }
 
    submitdata(){
-     this.loaderService.display(true)
+     
      console.log(this._bills)
      console.log(JSON.stringify(this._bills))
      if(this.downloaddone==true){
+      this.loaderService.display(true)
        this.billerservice.submitbulkbill(this._bills).then(resp=>{
          console.log(resp)
          this.loaderService.display(false)

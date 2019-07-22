@@ -135,7 +135,7 @@ export class MakePaymentComponent implements OnInit {
     var allBills = this.payments
     if(allBills!=null){
       this.bills = allBills.filter((bill)=>{
-        return (bill['status']=="Registered" && bill['amount']!=null && bill['amount']>0 && bill['amount']==bill['paytm_amount'])
+        return (bill['status']=="Registered" && bill['amount']!=null && bill['amount']>0 && bill['amount']==bill['paytm_amount'] && bill['biller_type']=='Postpaid')
       })
 
       
@@ -404,6 +404,17 @@ if(confirmation==true){
     console.log(this.paymentData)
     this.paymentservice.makepayment(this.paymentData).then(resp=>{
       console.log(resp)
+      if(resp['msg']=='Bill payment already initiated for these due date'){
+        this.toaster.warning("Some payments may not be added because of same due date payment exists in payments!","Alert",{
+          timeOut:3000,
+          positionClass:'toast-top-center'
+          })
+          this.router.navigate(['/main/successmsg'],{queryParams:{msg:'paymentsuccess'}});
+      this.loader.display(false);
+      }else{
+        this.router.navigate(['/main/successmsg'],{queryParams:{msg:'paymentsuccess'}});
+      this.loader.display(false);
+      }
       this.router.navigate(['/main/successmsg'],{queryParams:{msg:'paymentsuccess'}});
       this.loader.display(false);
     },error=>{

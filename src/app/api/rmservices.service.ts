@@ -347,7 +347,7 @@ getAllPayments(params:any): Promise<any> {
   // let options = { headers: headers };
   
   let promise = new Promise((resolve, reject) => {
-      this.http.post(utilpath+"api/v1/bill_payments_by_org",params)
+      this.http.post(utilpath+"api/v2/dashboard_payment_filter",params)
           .subscribe(
               res => {
                   //console.log(res);
@@ -373,7 +373,7 @@ getAllBills(params:any,id:any): Promise<any> {
     // let options = { headers: headers };
     
     let promise = new Promise((resolve, reject) => {
-        this.http.post(utilpath+`api/v1/bills_by_org/${id}`,params)
+        this.http.post(utilpath+`api/v2/dashboard_bill_filter/${id}`,params)
             .subscribe(
                 res => {
                     //console.log(res);

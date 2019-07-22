@@ -22,6 +22,7 @@ export class PendingPaymentsComponent implements OnInit {
   searchText:string
   displaypopup='none';
   displayreason='none';
+  rejectcomnt:any;
   displaypaydetails='none';
   filterQuery = "";
   rowsOnPage = 300;
@@ -73,6 +74,7 @@ latecharges:string;
 remarks:string;
 incentives:string;
 meterreading:string;
+
   constructor(private router:Router , private aRouter : ActivatedRoute,private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,private toastr: ToastrService,public datepipe: DatePipe) { }
 
   ngOnInit() {
@@ -219,9 +221,22 @@ onSelectAllDown(items:any){
   // }
 }
 rejectBtn(){
-  this.pendingList=false;
-  this.approve=false;
-  this.reject=true;
+this.loaderService.display(true)
+  var rejectdata={
+    "payment_id":this.checkedValueArray,
+    "comment":this.rejectcomnt,
+    "count":this.checkedValueArray.length,
+    "amount":this.amountpay
+  }
+  this.paymentservice.rejectpayments(rejectdata).then(resp=>{
+    console.log(resp)
+    this.loaderService.display(false)
+    this.router.navigate(['/main/rejectmsg'],{queryParams:{msg:'payreject'}});
+  },error=>{
+    this.loaderService.display(false)
+    console.log(error)
+
+  })
 }
 viewBtn(){
   this.pendingList=true;

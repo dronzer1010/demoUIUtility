@@ -4,6 +4,7 @@ import {BillerserviceService} from  '../../api/billerservice.service'
 import{LoaderService} from '../../api/loader.service'
 import {RmservicesService} from '../../api/rmservices.service'
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr'
 @Component({
   selector: 'app-rmbills',
   templateUrl: './rmbills.component.html',
@@ -46,11 +47,19 @@ approverdetails:any=[];
 selectedIndex = -1;
 billparams:any={};
 public id: string;
-  constructor(private excelservice : ExcelService,private loaderService: LoaderService,private billservice:BillerserviceService,private rmservice:RmservicesService,private route: ActivatedRoute,) { }
+statusddSettings = {};
+dropdownStatus = [];
+statusselected=[];
+filterstatus:any="0";
+filterinterval:any="0";
+filtercategory:any="6f6af57a-5c48-442e-b5b8-8b3559b10cd9";
+filterorgid:any;
+  constructor(private excelservice : ExcelService,private loaderService: LoaderService,private billservice:BillerserviceService,private rmservice:RmservicesService,private route: ActivatedRoute,private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id');
+    this.filterorgid = this.route.snapshot.paramMap.get('id');
     this.dropdownList = [
+      { item_id: 0, item_text: 'All' },
       { item_id: 1, item_text: 'Today' },
       { item_id: 2, item_text: 'This Week' },
       { item_id: 3, item_text: 'This Month' },
@@ -58,25 +67,27 @@ public id: string;
     ];
 
     this.dropdownSettings1 = {
-      singleSelection: false,
+      singleSelection: true,
       idField: 'item_id',
       textField: 'item_text',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 1,
-      allowSearchFilter: true
+      allowSearchFilter: false,
+      enableCheckAll:false
     };
     this.dropdownCat = [
-      { item_id: 1, item_text: 'Electricity' }
+      { item_id: "6f6af57a-5c48-442e-b5b8-8b3559b10cd9", item_text: 'Electricity' }
     ];
     this.dropdownSettings2 = {
-      singleSelection: false,
+      singleSelection: true,
       idField: 'item_id',
       textField: 'item_text',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 1,
-      allowSearchFilter: true
+      allowSearchFilter: false,
+      enableCheckAll:false
     };
     this.dropdownDownload = [
       { item_id: 1, item_text: 'Standard List' },
@@ -92,6 +103,24 @@ public id: string;
       allowSearchFilter: false,
       enableCheckAll:false
     };
+
+    this.statusddSettings = {
+      singleSelection: true,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: false,
+      enableCheckAll:false
+    };
+
+    this.dropdownStatus = [
+      { item_id: 1, item_text: 'All' },
+      { item_id: 2, item_text: 'Registered' },
+      { item_id: 3, item_text: 'Rejected' },
+      { item_id: 4, item_text: 'Pending' }
+    ];
     this.loadallbills();
   }
   onItemSelect(item: any) {
@@ -99,6 +128,12 @@ public id: string;
   }
   onSelectAll(items: any) {
     console.log(items);
+  }
+
+  onIntervalSelect(interval:any){
+    console.log(interval)
+  this.filterinterval=interval['item_id']
+    console.log(this.filterinterval)
   }
   onItemSelectDown(items:any){
     console.log(items);
@@ -144,6 +179,15 @@ public id: string;
 
  }
 
+ onSelectStatus(status:any){
+  this.filterstatus=status['item_text']
+  console.log(this.filterstatus)
+ }
+
+ onSelectAllStatus(status:any){
+  console.log(status)
+ }
+
  getApproverDetails(id,index){
   this.selectedIndex = index;
   this.billservice.suplogs(id).then(resp=>{
@@ -162,12 +206,13 @@ public id: string;
 private loadallbills(){
   this.loaderService.display(true);
   this.billparams={
-    "categories":"6f6af57a-5c48-442e-b5b8-8b3559b10cd9",
-    "interval":""
+    "category":this.filtercategory,
+    "interval":this.filterinterval,
+    "status":this.filterstatus
   }
-  this.rmservice.getAllBills(this.billparams,this.id).then(resp=>{
+  this.rmservice.getAllBills(this.billparams,this.filterorgid).then(resp=>{
     console.log(resp)
-    this.billdata=resp;
+    this.billdata=resp['bills'];
     if(this.billdata==null){
       this.billerlength=0
       this.noofrole="No bills available"
@@ -184,8 +229,54 @@ private loadallbills(){
   },error=>{
     console.log(error)
     this.loaderService.display(false)
+    if(error['error']['msg']=='Bills not found'){
+      this.billdata=[]
+      this.toastr.error("Bills not found for this organisation!",'Alert',{
+        timeOut:3000,
+        positionClass:'toast-top-center'
+        })
+    }
   })
   
+}
+
+getfilterdata(){
+  this.loaderService.display(true);
+  if(this.filterstatus=='All')
+  this.filterstatus="0"
+  this.billparams={
+    "category":this.filtercategory,
+    "interval":this.filterinterval,
+    "status":this.filterstatus
+  }
+  this.rmservice.getAllBills(this.billparams,this.filterorgid).then(resp=>{
+    console.log(resp)
+    this.billdata=resp['bills'];
+    if(this.billdata==null){
+      this.billerlength=0
+      this.noofrole="No bills available"
+      this.loaderService.display(false)
+    }else{
+      this.billerlength=this.billdata.length;
+      if(this.billerlength>1){
+        this.noofrole="No of bills"
+      }else{
+        this.noofrole="No of bill"
+      }
+    }
+    this.loaderService.display(false)
+  },error=>{
+    console.log(error)
+    
+    this.loaderService.display(false)
+    if(error['error']['msg']=='Bills not found'){
+      this.billdata=[]
+      this.toastr.error("Bills not found for your filtered criteria!",'Alert',{
+        timeOut:3000,
+        positionClass:'toast-top-center'
+        })
+    }
+  })
 }
 
 }

@@ -6,6 +6,7 @@ import {UserserviceService} from '../../api/userservice.service'
 import {PaymentserviceService} from '../../api/paymentservice.service'
 import { DatePipe } from '@angular/common'
 import {RmservicesService} from '../../api/rmservices.service'
+import { ToastrService } from 'ngx-toastr'
 @Component({
   selector: 'app-rmpayments',
   templateUrl: './rmpayments.component.html',
@@ -34,6 +35,12 @@ export class RmpaymentsComponent implements OnInit {
   dropdownSettings1 = {};
   dropdownSettings2 = {};
   dropdownSettings3 = {};
+  tsdropdownsettings = {};
+  psdropdownsettings = {};
+  tsdddata = [];
+  psdddata = [];
+  tsselected = [];
+  psselected = [];
   apprrejpay:any=[];
   settings = {
     bigBanner: true,
@@ -67,7 +74,13 @@ orglist:any=[];
 orglistsetting:any={};
 payparams:any={};
 organisationid:any=[];
-  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,public datepipe: DatePipe,private rmservice:RmservicesService) { }
+filterorgid:any=[];
+filterinterval:any="0";
+filtercategory:any="6f6af57a-5c48-442e-b5b8-8b3559b10cd9";
+filterts:any="0";
+filterps:any="0";
+arrayorgid:any=[];
+  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,public datepipe: DatePipe,private rmservice:RmservicesService,private toastr: ToastrService) { }
 
   ngOnInit() {
     this.getAllOrg()
@@ -82,31 +95,33 @@ organisationid:any=[];
       enableCheckAll:true
     };
     this.dropdownList = [
+      { item_id: 0, item_text: 'All' },
       { item_id: 1, item_text: 'Today' },
       { item_id: 2, item_text: 'This Week' },
       { item_id: 3, item_text: 'This Month' },
       { item_id: 4, item_text: 'This Year' }
     ];
     this.dropdownSettings1 = {
-      singleSelection: false,
+      singleSelection: true,
       idField: 'item_id',
       textField: 'item_text',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 1,
-      allowSearchFilter: true
+      allowSearchFilter: false,
+      enableCheckAll:false
     };
     this.dropdownCat = [
-      { item_id: 1, item_text: 'Electricity' }
+      { item_id: "6f6af57a-5c48-442e-b5b8-8b3559b10cd9", item_text: 'Electricity' }
     ];
     this.dropdownSettings2 = {
-      singleSelection: false,
+      singleSelection: true,
       idField: 'item_id',
       textField: 'item_text',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 1,
-      allowSearchFilter: true
+      enableCheckAll:false
     };
     this.dropdownDownload = [
       { item_id: 1, item_text: 'Standard List' },
@@ -123,6 +138,45 @@ organisationid:any=[];
       allowSearchFilter: false,
       enableCheckAll:false
     };
+
+    this.tsdropdownsettings = {
+      singleSelection: true,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: false,
+      enableCheckAll:false
+    };
+
+    this.tsdddata = [
+      { item_id: 1, item_text: 'All' },
+      { item_id: 2, item_text: 'Approved' },
+      { item_id: 3, item_text: 'Rejected' },
+      { item_id: 4, item_text: 'Pending' }
+    ];
+
+    this.psdropdownsettings = {
+      singleSelection: true,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: false,
+      enableCheckAll:false
+    };
+
+    this.psdddata = [
+      { item_id: 1, item_text: 'All' },
+      { item_id: 2, item_text: 'Card Debited' },
+      { item_id: 3, item_text: 'Pending' },
+      { item_id: 4, item_text: 'Payment Success' },
+      { item_id: 5, item_text: 'Payment Failed' },
+      { item_id: 6, item_text: 'Rejected' },
+      { item_id: 7, item_text: 'Insufficient funds' },
+    ];
 
     
   }
@@ -149,6 +203,7 @@ organisationid:any=[];
       console.log(this.organisationid)
      
     });
+    console.log(this.orglist)
   }
 
   openModalDialog(){
@@ -207,8 +262,85 @@ organisationid:any=[];
     }
   }
 
+  onIntervalSelect(interval:any){
+    console.log(interval)
+  this.filterinterval=interval['item_id']
+    console.log(this.filterinterval)
+  }
+
+  onCatSelect(cat:any){
+    console.log(cat);
+    // this.filtercategory = cat.map(function(val) {
+    //   return val.item_id;
+    // }).join(',');
+    this.filtercategory=cat['item_id']
+    console.log(this.filtercategory)
+  }
+
+  onOrgSelect(org:any){
+
+  
+console.log(this.selectedItems3)
+    this.filterorgid = this.selectedItems3.map(function(val) {
+      return val.OrgId;
+    })
+
+  
+    console.log(this.filterorgid)
+  }
+
+  onItemDeSelect(org:any){
+    this.filterorgid.pop(org)
+    console.log(this.filterorgid)
+  }
+
+  onSelectAllOrg(org:any){
+   
+    console.log(org)
+    this.filterorgid = org.map(function(val) {
+      return val.OrgId;
+    })
+    console.log(this.filterorgid)
+  }
+
+  onSelectAllCat(cat:any){
+    console.log(cat)
+    // this.filtercategory = cat.map(function(val) {
+    //   return val.item_id;
+    // }).join(',');
+    this.filtercategory=cat['item_id']
+    console.log(this.filtercategory)
+  }
+
   onSelectAllDown(items:any){
     console.log(items);
+  }
+
+  ontsselect(ts:any){
+    console.log(ts)
+    // this.filterts = ts.map(function(val) {
+    //   return val.item_text;
+    // }).join(',');
+    this.filterts=ts['item_text']
+    console.log(this.filterts)
+  }
+
+  ontsselectall(ts:any){
+    console.log(ts)
+    this.filterts=ts['item_text']
+    console.log(this.filterts)
+  }
+
+  onpsSelect(ps:any){
+    console.log(ps)
+    this.filterps=ps['item_text']
+    console.log(this.filterps)
+  }
+
+  onpsselectall(ps:any){
+    console.log(ps)
+    this.filterps=ps['item_text']
+    console.log(this.filterps)
   }
 
   getapproverdetails(id,index){
@@ -241,6 +373,38 @@ organisationid:any=[];
     this.meterreading=meterreading;
     else
     this.meterreading="--"
+}
+
+getfilterdata(){
+  this.loaderService.display(true);
+
+  if(this.filterps=='All')
+  this.filterps="0"
+  if(this.filterts=='All')
+  this.filterts="0"
+  this.payparams={
+    "org_ids":this.filterorgid,
+    "interval":this.filterinterval,
+    "payment_status":this.filterps,
+    "transaction_status":this.filterts,
+    "category":this.filtercategory
+  }
+  this.rmservice.getAllPayments(this.payparams).then(resp=>{
+   
+    console.log(resp)
+    this.paymentData=resp['data']
+    this.loaderService.display(false);
+  },error=>{
+    console.log(error)
+    this.loaderService.display(false);
+    if(error['error']['msg']=='Payment not found'){
+      this.paymentData=[];
+      this.toastr.error("Payment not found for your filtered criteria!",'Alert',{
+        timeOut:3000,
+        positionClass:'toast-top-center'
+        })
+    }
+  })
 }
 
 getpaymentlogs(carddebittime,paystatustime,rejectreason){
@@ -282,14 +446,16 @@ getpaymentlogs(carddebittime,paystatustime,rejectreason){
 private loadPayments(){
   this.loaderService.display(true);
   console.log(this.organisationid)
-  var result = this.organisationid.map(function(val) {
+  this.filterorgid = this.organisationid.map(function(val) {
     return val.OrgId;
-  }).join(',');
-  console.log(result)
+  })
+  console.log(this.filterorgid)
   this.payparams={
-    "org_id":result,
-    "categories":"6f6af57a-5c48-442e-b5b8-8b3559b10cd9",
-    "interval":""
+    "org_ids":this.filterorgid,
+    "interval":"0",
+    "payment_status":"0",
+    "transaction_status":"0",
+    "category":"6f6af57a-5c48-442e-b5b8-8b3559b10cd9"
   }
   this.rmservice.getAllPayments(this.payparams).then(resp=>{
     console.log(resp)
@@ -299,12 +465,22 @@ private loadPayments(){
         this.totalamount+=parseFloat(total['amount'])
       }
     }
-    this.loaderService.display(true);
+    this.loaderService.display(false);
   },error=>{
     console.log(error)
-    this.loaderService.display(true);
+    this.loaderService.display(false);
+    if(error['error']['msg']=='Payment not found'){
+      this.paymentData=[];
+      this.toastr.error("Payment not found for these organisations!",'Alert',{
+        timeOut:3000,
+        positionClass:'toast-top-center'
+        })
+    }
   })
 }
+
+
+
 
 
 }

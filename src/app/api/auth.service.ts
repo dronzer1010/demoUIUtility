@@ -70,6 +70,11 @@ this.http.post(this.utilitypatah+'api/auth/signin',body.toString(), options).sub
       timeOut:3000,
       positionClass:'toast-top-center'
       })
+  }else if(error['error']['msg']=='User not found'){
+    this.toastr.error("Entered Username is invalid",'Error',{
+      timeOut:3000,
+      positionClass:'toast-top-center'
+      })
   }
 });
 }

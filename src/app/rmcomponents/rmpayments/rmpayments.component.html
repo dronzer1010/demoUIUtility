@@ -18,28 +18,27 @@
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 text-right">
                     <ng-multiselect-dropdown
                     [placeholder]="'Select Organisation'"
-                    [data]="orglist"
+                    [data]="organisationlist"
                     [(ngModel)]="selectedItems3"
                     [settings]="dropdownSettings3"
-                    (onSelect)="onItemSelect($event)"
-                    (onSelectAll)="onSelectAll($event)">
+                    (onSelect)="onOrgSelect($event)"
+                    (onSelectAll)="onSelectAllOrg($event)"
+                    (onDeSelect)="onItemDeSelect($event)">
                   </ng-multiselect-dropdown>
                     <ng-multiselect-dropdown
                     [placeholder]="'All Categories'"
                     [data]="dropdownCat"
                     [(ngModel)]="selectedItems1"
                     [settings]="dropdownSettings1"
-                    (onSelect)="onItemSelect($event)"
-                    [(ngClass)]="all-cat"
-                    (onSelectAll)="onSelectAll($event)">
+                    (onSelect)="onCatSelect($event)"
+                    [(ngClass)]="all-cat">
                   </ng-multiselect-dropdown>
                   <ng-multiselect-dropdown
                     [placeholder]="'This Month'"
                     [data]="dropdownList"
                     [(ngModel)]="selectedItems2"
                     [settings]="dropdownSettings2"
-                    (onSelect)="onItemSelect($event)"
-                    (onSelectAll)="onSelectAll($event)">
+                    (onSelect)="onIntervalSelect($event)">
                   </ng-multiselect-dropdown>
                   <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png" alt=""> Download File</button> -->
                   <ng-multiselect-dropdown
@@ -47,9 +46,23 @@
                     [data]="dropdownDownload"
                     [(ngModel)]="selectedItems"
                     [settings]="dropdownSettings"
-                    (onSelect)="onItemSelectDown($event)"
-                    (onSelectAll)="onSelectAllDown($event)">
+                    (onSelect)="onItemSelectDown($event)">
                   </ng-multiselect-dropdown>
+                  <ng-multiselect-dropdown
+                    [placeholder]="'Transaction Status'"
+                    [data]="tsdddata"
+                    [(ngModel)]="tsselected"
+                    [settings]="tsdropdownsettings"
+                    (onSelect)="ontsselect($event)">
+                  </ng-multiselect-dropdown>
+                  <ng-multiselect-dropdown
+                    [placeholder]="'Payment Status'"
+                    [data]="psdddata"
+                    [(ngModel)]="psselected"
+                    [settings]="psdropdownsettings"
+                    (onSelect)="onpsSelect($event)">
+                  </ng-multiselect-dropdown>
+                  <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="getfilterdata()" type="button">Filter Payment</button>
                   <div class="backdrop" [ngStyle]="{'display':display}"></div>
                   <!-- modal -->
                   <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">

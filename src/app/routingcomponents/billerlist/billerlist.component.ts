@@ -11,6 +11,7 @@ import {Config} from '../../config'
 const path = new Config().getutilityBaseUrl();
 import {saveAs as importedSaveAs} from "file-saver";
 import {Observable} from 'rxjs/Rx';
+import { ToastrService } from 'ngx-toastr'
 @Component({
   selector: 'app-billerlist',
   templateUrl: './billerlist.component.html',
@@ -69,7 +70,9 @@ filterfromdate:any;
   filtertodate:any
   selectallpara:boolean=false;
   token : string;
-  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,public datepipe: DatePipe,private authService : AuthService, private http: Http) { }
+  deletemodal:string='none';
+  deleteid:any;
+  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,public datepipe: DatePipe,private authService : AuthService, private http: Http,private toaster:ToastrService) { }
 
   ngOnInit() {
     this.getUserDetail();
@@ -146,7 +149,7 @@ filterfromdate:any;
     if(items['item_id']==2){
       this.display='block';
     }else if(items['item_id']==1){
-      for(let data of this.approveRejBiller){
+      for(let data of this.billdata){
         var obj={
           Biller:data['biller_name'],
           Consumer_No:data['consumer_no'],
@@ -184,6 +187,39 @@ filterfromdate:any;
   this.display=''; //set none css after close dialog
 
  }
+
+ closedelmodal(){
+  this.deletemodal='none'; //set none css after close dialog
+
+ }
+
+ opendeletemodal(id){
+   console.log(this.deletemodal)
+   console.log(id)
+  this.deletemodal='block'; //Set block css
+  this.deleteid=id;
+
+}
+
+deletebill(){
+  this.loaderService.display(true)
+  this.billservice.deletebill(this.deleteid).then(resp=>{
+    console.log(resp)
+    this.loaderService.display(false)
+    this.toaster.success("Bill Deleted Successfully!","Alert",{
+      timeOut:3000,
+      positionClass:'toast-top-center'
+      })
+      this.loadbills()
+  },error=>{
+    console.log(error)
+    this.loaderService.display(false)
+    this.toaster.error("Failed to delete the bill!","Alert",{
+      timeOut:3000,
+      positionClass:'toast-top-center'
+      })
+  })
+}
 
  private loadbills(){
   this.loaderService.display(true)
