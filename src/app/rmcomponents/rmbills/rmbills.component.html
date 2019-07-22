@@ -22,7 +22,7 @@
                   </ng-multiselect-dropdown>
                   <ng-multiselect-dropdown [ngClass]="'first-multiselect'" [placeholder]="'This Month'"
                     [data]="dropdownList" [(ngModel)]="selectedItems2" [settings]="dropdownSettings2"
-                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                    (onSelect)="onIntervalSelect($event)">
                   </ng-multiselect-dropdown>
                   <ng-multiselect-dropdown [ngClass]="'first-multiselect'" [placeholder]="'Status'"
                     [data]="dropdownStatus" [(ngModel)]="statusselected" [settings]="statusddSettings"
@@ -33,6 +33,7 @@
                     [data]="dropdownDownload" [(ngModel)]="selectedItems" [settings]="dropdownSettings"
                     (onSelect)="onItemSelectDown($event)" (onSelectAll)="onSelectAllDown($event)">
                   </ng-multiselect-dropdown>
+                  <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="getfilterdata()" type="button">Filter Bills</button>
                   <div class="backdrop" [ngStyle]="{'display':display}"></div>
                   <!-- modal -->
                   <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">

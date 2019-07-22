@@ -149,7 +149,7 @@ filterfromdate:any;
     if(items['item_id']==2){
       this.display='block';
     }else if(items['item_id']==1){
-      for(let data of this.approveRejBiller){
+      for(let data of this.billdata){
         var obj={
           Biller:data['biller_name'],
           Consumer_No:data['consumer_no'],

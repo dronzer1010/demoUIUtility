@@ -398,7 +398,8 @@ getfilterdata(){
     console.log(error)
     this.loaderService.display(false);
     if(error['error']['msg']=='Payment not found'){
-      this.toastr.error("Payment not found!",'Alert',{
+      this.paymentData=[];
+      this.toastr.error("Payment not found for your filtered criteria!",'Alert',{
         timeOut:3000,
         positionClass:'toast-top-center'
         })
@@ -468,6 +469,13 @@ private loadPayments(){
   },error=>{
     console.log(error)
     this.loaderService.display(false);
+    if(error['error']['msg']=='Payment not found'){
+      this.paymentData=[];
+      this.toastr.error("Payment not found for these organisations!",'Alert',{
+        timeOut:3000,
+        positionClass:'toast-top-center'
+        })
+    }
   })
 }
 
