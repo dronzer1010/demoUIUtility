@@ -307,11 +307,13 @@
                           </div>
                           <ng-container *ngFor="let approver of approverDetails">
                           <div class="mb-1">
-                              <div class="span_width">Approved by </div>  <span> : </span> &nbsp;
+                              <div class="span_width" *ngIf="approver.status=='Approved'">Approved by </div>  <span *ngIf="approver.status=='Approved'"> : &nbsp;</span> 
+                              <div class="span_width" *ngIf="approver.status=='Rejected'">Rejected by </div>  <span *ngIf="approver.status=='Rejected'"> : &nbsp;</span>
                               <div class="bold_span">{{approver.approved_by}}</div>
                             </div>
                             <div class="mb-1">
-                              <div class="span_width">Approved on  </div>  <span> : </span> &nbsp;
+                              <div class="span_width" *ngIf="approver.status=='Approved'">Approved on  </div>  <span *ngIf="approver.status=='Approved'"> :  &nbsp;</span>
+                              <div class="span_width" *ngIf="approver.status=='Rejected'">Rejected on  </div>  <span *ngIf="approver.status=='Rejected'"> :  &nbsp;</span>
                               <div class="bold_span">{{approver.approved_on | date:'dd-MM-yyyy hh:mm a'}}</div>
                             </div>
                           </ng-container>
@@ -330,7 +332,7 @@
                       <span *ngIf="rolename=='maker' || rolename=='ccmaker'" class="pull-right"><a (click)="getpaymentlogs(payment.card_debited_date,payment.payment_status_time,payment.rejection_reason)"><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="javascript:void(0)"><img src="assets/img/edit.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="javascript:void(0)"><img src="assets/img/delete.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a *ngIf="payment.transaction_status=='Pending'" (click)="opendeletemodal(payment.id)" href="javascript:void(0)"><img src="assets/img/delete.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a (click)="getextradetails(payment.late_pay_charges,promt_pay_incentives,remarks,meter_reading)"><img src="assets/img/page.png"></a>
                       </span>
                       </td>
@@ -449,6 +451,36 @@
                               </div>
                               <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"><button class="btn btn-default" type="button" (click)="openModalDialog2()">Close</button></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="backdrop" [ngStyle]="{'display':deletemodal}"></div>
+                      <!-- modal -->
+                      <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':deletemodal}">
+                        <!-- modal-dialog -->
+                        <div class="modal-dialog" role="document">
+                          <!-- modal-content -->
+                          <div class="modal-content">
+                            <!-- modal-header -->
+                            <div class="modal-header">
+                              Delete Payment<button type="button" class="close" aria-label="Close"
+                                (click)="closedelmodal()"><span aria-hidden="true">&times;</span></button>
+                              <!-- <h4 class="modal-title">Login</h4> -->
+                            </div>
+                            <!-- modal-body -->
+                            <div class="modal-body">
+                             
+                              <div class="row mb-4 text-left">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                  <label for="">Are you sure want to delete the payment?</label>
+                                </div>
+                              </div>
+                             
+                              <div class="row text-left">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button (click)="closedelmodal();deletepayment()"
+                                    class="btn-ok" style="margin-right:10px;">OK</button></div>
                               </div>
                             </div>
                           </div>

@@ -4,6 +4,7 @@ import {BillerserviceService} from  '../../api/billerservice.service'
 import{LoaderService} from '../../api/loader.service'
 import {RmservicesService} from '../../api/rmservices.service'
 import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-rmbills',
   templateUrl: './rmbills.component.html',
@@ -46,11 +47,19 @@ approverdetails:any=[];
 selectedIndex = -1;
 billparams:any={};
 public id: string;
+statusddSettings = {};
+dropdownStatus = [];
+statusselected=[];
+filterstatus:any="0";
+filterinterval:any="0";
+filtercategory:any="0";
+filterorgid:any;
   constructor(private excelservice : ExcelService,private loaderService: LoaderService,private billservice:BillerserviceService,private rmservice:RmservicesService,private route: ActivatedRoute,) { }
 
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id');
+    this.filterorgid = this.route.snapshot.paramMap.get('id');
     this.dropdownList = [
+      { item_id: 0, item_text: 'All' },
       { item_id: 1, item_text: 'Today' },
       { item_id: 2, item_text: 'This Week' },
       { item_id: 3, item_text: 'This Month' },
@@ -67,7 +76,7 @@ public id: string;
       allowSearchFilter: true
     };
     this.dropdownCat = [
-      { item_id: 1, item_text: 'Electricity' }
+      { item_id: "6f6af57a-5c48-442e-b5b8-8b3559b10cd9", item_text: 'Electricity' }
     ];
     this.dropdownSettings2 = {
       singleSelection: false,
@@ -92,6 +101,24 @@ public id: string;
       allowSearchFilter: false,
       enableCheckAll:false
     };
+
+    this.statusddSettings = {
+      singleSelection: true,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: false,
+      enableCheckAll:false
+    };
+
+    this.dropdownStatus = [
+      { item_id: 1, item_text: 'All' },
+      { item_id: 2, item_text: 'Registered' },
+      { item_id: 3, item_text: 'Rejected' },
+      { item_id: 4, item_text: 'Pending' }
+    ];
     this.loadallbills();
   }
   onItemSelect(item: any) {
@@ -142,6 +169,14 @@ public id: string;
  closeModalDialog(){
   this.display=''; //set none css after close dialog
 
+ }
+
+ onSelectStatus(status:any){
+console.log(status)
+ }
+
+ onSelectAllStatus(status:any){
+  console.log(status)
  }
 
  getApproverDetails(id,index){

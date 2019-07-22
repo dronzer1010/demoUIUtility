@@ -24,6 +24,10 @@
                     [data]="dropdownList" [(ngModel)]="selectedItems2" [settings]="dropdownSettings2"
                     (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
                   </ng-multiselect-dropdown>
+                  <ng-multiselect-dropdown [ngClass]="'first-multiselect'" [placeholder]="'Status'"
+                    [data]="dropdownStatus" [(ngModel)]="statusselected" [settings]="statusddSettings"
+                    (onSelect)="onSelectStatus($event)" (onSelectAll)="onSelectAllStatus($event)">
+                  </ng-multiselect-dropdown>
                   <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png" alt=""> Download File</button> -->
                   <ng-multiselect-dropdown [ngClass]="'first-multiselect'" [placeholder]="'Download List'"
                     [data]="dropdownDownload" [(ngModel)]="selectedItems" [settings]="dropdownSettings"
