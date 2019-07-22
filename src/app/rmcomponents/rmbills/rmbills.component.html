@@ -14,26 +14,25 @@
                   <img src="assets/img/search-icon.png" alt="" width="5%;"> <input type="search"
                     placeholder="Search for Location, Biller Type or Utility" [(ngModel)]="searchText">
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-                  <ng-multiselect-dropdown [ngClass]="'first-multiselect'" [placeholder]="'All Categories'"
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 text-right">
+                  <ng-multiselect-dropdown [ngClass]="'first-multiselect1'" [placeholder]="'All Categories'"
                     [data]="dropdownCat" [(ngModel)]="selectedItems1" [settings]="dropdownSettings1"
                     (onSelect)="onItemSelect($event)" [(ngClass)]="all-cat" (onSelectAll)="onSelectAll($event)">
                   </ng-multiselect-dropdown>
-                  <ng-multiselect-dropdown [ngClass]="'first-multiselect'" [placeholder]="'This Month'"
+                  <ng-multiselect-dropdown [ngClass]="'first-multiselect2'" [placeholder]="'This Month'"
                     [data]="dropdownList" [(ngModel)]="selectedItems2" [settings]="dropdownSettings2"
                     (onSelect)="onIntervalSelect($event)">
                   </ng-multiselect-dropdown>
-                  <ng-multiselect-dropdown [ngClass]="'first-multiselect'" [placeholder]="'Status'"
+                  <ng-multiselect-dropdown [ngClass]="'first-multiselect3'" [placeholder]="'Status'"
                     [data]="dropdownStatus" [(ngModel)]="statusselected" [settings]="statusddSettings"
                     (onSelect)="onSelectStatus($event)" (onSelectAll)="onSelectAllStatus($event)">
                   </ng-multiselect-dropdown>
                   <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png" alt=""> Download File</button> -->
-                  <ng-multiselect-dropdown [ngClass]="'first-multiselect'" [placeholder]="'Download List'"
+                  <ng-multiselect-dropdown [ngClass]="'first-multiselect4'" [placeholder]="'Download List'"
                     [data]="dropdownDownload" [(ngModel)]="selectedItems" [settings]="dropdownSettings"
                     (onSelect)="onItemSelectDown($event)" (onSelectAll)="onSelectAllDown($event)">
                   </ng-multiselect-dropdown>
-                  <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="getfilterdata()" type="button">Filter Bills</button>
+                  
                   <div class="backdrop" [ngStyle]="{'display':display}"></div>
                   <!-- modal -->
                   <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
@@ -170,7 +169,7 @@
                 </div>
               </div>
               <div class="row mb-3" style="margin-bottom:15px;">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 txt">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 txt">
                   <table class="entry-table">
                     <tr>
                       <td class="unitheaders">{{noofrole}}</td>
@@ -180,8 +179,10 @@
                     </tr>
                   </table>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right">
+                  <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="getfilterdata()" type="button">Filter Bills</button>
+                </div>
                 <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right"><button class="btn1">Approve Biller</button>
                     <button class="btn2 ml-2">Reject Biller</button></div> -->
               </div>
