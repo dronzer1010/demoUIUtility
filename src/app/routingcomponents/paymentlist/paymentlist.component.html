@@ -330,10 +330,10 @@
                         <a (click)="closeModalDialog1()"><img src="assets/img/page.png"></a>
                       </span>
                       <span *ngIf="rolename=='maker' || rolename=='ccmaker'" class="pull-right"><a (click)="getpaymentlogs(payment.card_debited_date,payment.payment_status_time,payment.rejection_reason)"><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a data-toggle="modal" href="javascript:void(0)" id="openBtn" (click)="downloadattachment(payment.id)"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="javascript:void(0)"><img src="assets/img/edit.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a *ngIf="payment.transaction_status=='Pending'" (click)="opendeletemodal(payment.id)" href="javascript:void(0)"><img src="assets/img/delete.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a (click)="getextradetails(payment.late_pay_charges,promt_pay_incentives,remarks,meter_reading)"><img src="assets/img/page.png"></a>
+                        <a (click)="getextradetails(payment.late_pay_charges,payment.promt_pay_incentives,payment.remarks,payment.meter_reading)"><img src="assets/img/page.png"></a>
                       </span>
                       </td>
                     </tr>

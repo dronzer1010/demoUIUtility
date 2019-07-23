@@ -26,6 +26,7 @@
     "@types/hammerjs": "^2.0.36",
     "angular-carousel": "^1.1.0",
     "angular-datepicker-custom": "^2.1.16",
+    "angular-file-uploader": "^5.0.2",
     "angular-font-awesome": "^3.1.2",
     "angular-owl-carousel": "^1.0.0",
     "angular-popper": "^2.0.0",

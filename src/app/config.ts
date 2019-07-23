@@ -13,7 +13,7 @@ this.baseUrl="http://utilityrest.ap-south-1.elasticbeanstalk.com/api/"
   // this.utilityapiUrl="http://e8c96f23.ngrok.io/"
 
   //  NGrock URL
-    this.utilityapiUrl="http://46e1c92e.ngrok.io/"
+    this.utilityapiUrl="http://c0b6f3af.ngrok.io/"
 
       //this.backurl="https://utility-rest.aquapay.in"
      this.backurl="http://utilityrest.ap-south-1.elasticbeanstalk.com"

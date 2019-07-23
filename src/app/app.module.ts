@@ -141,6 +141,7 @@ import { BackorgregComponent } from './supportingcomponents/backorgreg/backorgre
 import {PageSliderModule}    from 'ng2-page-slider';
 import { MakeprepaidpaymentsComponent } from './routingcomponents/makeprepaidpayments/makeprepaidpayments.component';
 import { HttpModule } from '@angular/http';
+import { AngularFileUploaderModule } from "angular-file-uploader";
 @NgModule({
   declarations: [
     AppComponent,
@@ -279,7 +280,8 @@ import { HttpModule } from '@angular/http';
     Ng2OrderModule,
     Ng2SearchPipeModule,
     SelectDropDownModule,
-    PageSliderModule
+    PageSliderModule,
+    AngularFileUploaderModule
 
   ],
  

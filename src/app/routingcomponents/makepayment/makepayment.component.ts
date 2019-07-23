@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit , ViewChild, Output, EventEmitter} from '@angular/core';
+import {  HttpClient ,HttpEventType } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import{CardserviceService} from '../../api/cardservice.service'
 import {BillerserviceService} from  '../../api/billerservice.service'
@@ -10,12 +10,16 @@ import {PaymentserviceService} from  '../../api/paymentservice.service'
 import { ToastrService } from 'ngx-toastr'
 import {ExcelService} from '../../excelservice/excel.service'
 import { DatePipe } from '@angular/common'
+import {Config} from '../../config'
+const path = new Config().getutilityBaseUrl();
 @Component({
   selector: 'app-makepayment',
   templateUrl: './makepayment.component.html',
   styleUrls: ['./makepayment.component.css']
 })
 export class MakePaymentComponent implements OnInit {
+ 
+  public files: Set<File> = new Set()
   select=false;
   billertype:boolean=false;
   billdetails:boolean=true;
@@ -70,11 +74,18 @@ export class MakePaymentComponent implements OnInit {
   date:Date;
   currentdate:Date;
   duedatepassd:any=[];
+  userdata:any=[];
+  public progress: number;
+  public message: string;
+  public downloadFileName:string;
+  fileUpload:File;
+@Output() public onUploadFinished = new EventEmitter();
   constructor(private httpService: HttpClient,private cards:CardserviceService,private billservice: BillerserviceService, private loader: LoaderService, private users: UserserviceService,private router: Router,private paymentservice: PaymentserviceService,private toaster:ToastrService,private excelservice : ExcelService,public datepipe: DatePipe,) { }
 
   ngOnInit() {
     this.billrdetails();
     this.loadApprovedCards();
+    this.getuserdetails();
     
   }
 
@@ -98,6 +109,16 @@ export class MakePaymentComponent implements OnInit {
     console.log(this.selectedcard)
     console.log(this.selectedcard['id'])
   }
+
+private getuserdetails(){
+  this.users.getUserDetails().subscribe(resp=>{
+   
+    this.userdata=resp['Data']
+    console.log(this.userdata)
+  },error=>{
+    console.log(error)
+  })
+}
 
 
 
@@ -246,7 +267,12 @@ export class MakePaymentComponent implements OnInit {
           billdate:pendingbillerpage[i]['fetch_bill_date'],
           duedate:pendingbillerpage[i]['fetch_due_date'],
           billnumber:pendingbillerpage[i]['fetch_bill_no'],
-          fetch_due_date_status:pendingbillerpage[i]['fetch_due_date_status']
+          fetch_due_date_status:pendingbillerpage[i]['fetch_due_date_status'],
+          attachment_url:pendingbillerpage[i]['attachment_url'],
+          reading:pendingbillerpage[i]['reading'],
+          remark:pendingbillerpage[i]['remark'],
+          pay_incentive:pendingbillerpage[i]['pay_incentive'],
+          late_pay_charge:pendingbillerpage[i]['late_pay_charge']
         }
         this.checkedValueArray.push(obj);
         if(pendingbillerpage[i]['amount']!=null)
@@ -283,7 +309,12 @@ export class MakePaymentComponent implements OnInit {
         billdate:payment['fetch_bill_date'],
         duedate:payment['fetch_due_date'],
         billnumber:payment['fetch_bill_no'],
-        fetch_due_date_status:payment['fetch_due_date_status']
+        fetch_due_date_status:payment['fetch_due_date_status'],
+        attachment_url:payment['attachment_url'],
+        reading:payment['reading'],
+        remark:payment['remark'],
+        pay_incentive:payment['pay_incentive'],
+        late_pay_charge:payment['late_pay_charge']
       }
       this.checkedValueArray.push(obj);     
     }
@@ -321,12 +352,31 @@ export class MakePaymentComponent implements OnInit {
     //console.log(this.payments)
   }  
 
-  UploadFile(file: HTMLInputElement){
-    //this.filename = file.value;
-    var filenm = file.value;
-    this.filename = filenm.split(/[\\\/]/).pop()
-    //this.filename = filenm.substr(fileNameIndex);
-  }
+
+
+
+  UploadFile(files): void {
+    this.loader.display(true);
+    console.log("File Upload Started")
+    if (files.length === 0) {
+        return;
+      }
+      let fileToUpload =  files.target.files[0];
+      const formData = new FormData();
+      this.downloadFileName=fileToUpload['name']
+      formData.append('file', fileToUpload, fileToUpload.name);
+      this.httpService.post(path+`api/v2/upload_bill_attachment/${this.payment_id}`, formData, {reportProgress: true, observe: 'events'})
+        .subscribe(event => {
+            this.loader.display(false);
+          //this.route.navigate(['/main/dashboard']);
+        },error=>{
+          this.loader.display(false);
+            this.toaster.error(error['error']['msg'],"Alert",{
+                timeOut:3000,
+                positionClass:'toast-top-center'
+                })
+        });
+   }
 
   
 
@@ -402,6 +452,7 @@ if(confirmation==true){
       "totalamount":this.amountpay
     }
     console.log(this.paymentData)
+    if(this.userdata['isseq']==0){
     this.paymentservice.makepayment(this.paymentData).then(resp=>{
       console.log(resp)
       if(resp['msg']=='Bill payment already initiated for these due date'){
@@ -425,6 +476,36 @@ if(confirmation==true){
       console.log(error)
       this.loader.display(false);
     })
+  }else if(this.userdata['isseq']==1){
+    this.paymentservice.makeseqpayment(this.paymentData).then(resp=>{
+      console.log(resp)
+      if(resp['msg']=='Bill payment already initiated for these due date'){
+        this.toaster.warning("Some payments may not be added because of same due date payment exists in payments!","Alert",{
+          timeOut:3000,
+          positionClass:'toast-top-center'
+          })
+          this.router.navigate(['/main/successmsg'],{queryParams:{msg:'paymentsuccess'}});
+      this.loader.display(false);
+      }else{
+        this.router.navigate(['/main/successmsg'],{queryParams:{msg:'paymentsuccess'}});
+      this.loader.display(false);
+      }
+      this.router.navigate(['/main/successmsg'],{queryParams:{msg:'paymentsuccess'}});
+      this.loader.display(false);
+    },error=>{
+      this.toaster.error("Failed to register bill payment!","Alert",{
+        timeOut:3000,
+        positionClass:'toast-top-center'
+        })
+      console.log(error)
+      this.loader.display(false);
+    })
+  }else{
+    this.toaster.error("Internal Server error!","Alert",{
+      timeOut:3000,
+      positionClass:'toast-top-center'
+      })
+  }
   // }else{
   //   this.toaster.error("Todays batch has passed now, you cannot initiate payment now. Please fetch the bills tomorrow between 08:00 AM and 01:58 PM and initiate the payments !","Alert",{
   //     timeOut:8000,
@@ -469,7 +550,17 @@ if(confirmation==true){
   }
   submitextradetails(){
     this.display=''; 
-
+    var extradata={
+      "reading":this.meter_reading,
+      "late_pay_charge":this.late_pay_charges,
+      "pay_incentive":this.promt_pay_incentives,
+      "remark":this.remarks
+    }
+    this.paymentservice.updextradetail(extradata,this.payment_id).then(resp=>{
+      console.log(resp)
+    },error=>{
+      console.log(error)
+    })
   }
 
   onItemSelectDown(){

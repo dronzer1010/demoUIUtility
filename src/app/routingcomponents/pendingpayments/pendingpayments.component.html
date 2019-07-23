@@ -330,9 +330,9 @@
                             <span class="pull-right">
                               <a (click)="closeModalDialog3()"><img src="assets/img/page.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                              <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              <a data-toggle="modal" href="#myModal" id="openBtn" (click)="downloadattachment(payment.id)"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                              <a (click)="getextradetails(payment.late_pay_charges,promt_pay_incentives,remarks,meter_reading)"><img src="assets/img/popup.png" alt="" style="width: 23px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              <a (click)="getextradetails(payment.late_pay_charges,payment,promt_pay_incentives,payment.remarks,payment.meter_reading)"><img src="assets/img/popup.png" alt="" style="width: 23px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </span>
                           </td>
                         </tr>
@@ -367,7 +367,7 @@
                                       <tr>
                                         <td>Promt Payment Incentives</td>
                                         <td>:</td>
-                                        <td><i class="fa fa-rupee"></i>{{incentives | numberfr}}</td>
+                                        <td><i class="fa fa-rupee"></i>{{incentives}}</td>
                                       </tr>
                                       <tr>
                                         <td>Remarks</td>
@@ -479,25 +479,7 @@
     </div>
     <div class="row mt-4" *ngIf="pendingList">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
-        <nav aria-label="Page navigation example" style="float:right;">
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&lang;</span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&rang;</span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
+        
       </div>
     </div>
     <div class="row setup-content form_bg" id="" *ngIf="approve">

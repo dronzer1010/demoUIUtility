@@ -193,6 +193,7 @@ console.log("File Upload Started")
    
       let fileToUpload = <File>files[0];
       const formData = new FormData();
+      console.log(files)
       formData.append('file', fileToUpload, fileToUpload.name);
      
       this.httpService.post(path+'api/v1/bill_upload', formData, {reportProgress: true, observe: 'events'})

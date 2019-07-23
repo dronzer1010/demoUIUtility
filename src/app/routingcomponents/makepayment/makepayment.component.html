@@ -338,8 +338,12 @@
                                                 <div class="upload-btn-wrapper">
                                                     <button class="" style="border: 1px solid #fff; background-color: white;"><img src="assets/img/attachments.png"
                                                         alt=""></button>
-                                                        {{filename}}
-                                                    <input type="file" name="fileUpload" #file  (change)="UploadFile(file)" ng-reflect-name="fileUpload"/>
+                                                        {{downloadFileName}}
+                                                    <input type="file" [(ngModel)]="fileUpload" name="fileUpload"  (change)="UploadFile($event)" />
+                                                    <!-- <input class="btn bg-primary nextpay buttonpad" type="file" [(ngModel)]="fileUpload" name="fileUpload"
+                                                    (change)="UploadFile($event)" /> -->
+                                               
+
                                                   </div>
                                             </td>
                                           </tr>
@@ -351,7 +355,7 @@
                                   </div>
                                 <!-- modal-footer -->
                                 <div class="modal-footer">
-                                  <button type="button" class="btn btn-default" (click)="submitextradetails()">Close</button>
+                                  <button type="button" class="btn btn-default" (click)="submitextradetails()">Submit</button>
                                 </div>
                               </div>
                             </div>

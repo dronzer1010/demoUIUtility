@@ -321,4 +321,13 @@ this.paymentservice.getAllPayments().then(resp=>{
           })
       })
     }
+
+    downloadattachment(id){
+      this.paymentservice.getattachment(id).then(resp=>{
+        console.log(resp)
+      },error=>{
+        console.log(error)
+      })
+
+    }
 }

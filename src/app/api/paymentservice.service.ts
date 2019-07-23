@@ -42,6 +42,34 @@ export class PaymentserviceService {
     return promise;
   }
 
+
+  makeseqpayment(paymentdata:any): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+    let promise = new Promise((resolve, reject) => {
+        // let paramsValue = {
+        //     "regcmt": comment,
+        //     "checkval": ids
+        // };
+        this.http.post(path+"api/v2/add_payment_seqential", paymentdata)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                    console.log("Error occured : " + err);
+                    reject(err);
+                    }
+            );
+  
+    });
+  
+    return promise;
+  }
+
   getAllPayments(){
     let promise = new Promise((resolve, reject) => {
       this.http.get(path+"api/v1/maker_payments")
@@ -107,6 +135,25 @@ export class PaymentserviceService {
   return promise;
   }
 
+  getattachment(id:any){
+    let promise = new Promise((resolve, reject) => {
+      this.http.get(path+`api/v2/download_payment_attachment/${id}`)
+          .subscribe(
+              res => {
+                  console.log(res);
+                  resolve(res);
+              },
+              err => {
+                  console.log("Error occured : " + err);
+                  reject(err);
+              }
+          );
+  
+  });
+  return promise;
+  }
+
+
   sendOtp(ids: any): Promise<any> {
     // let token = this.storage.getData("chlogin_data").token;
     // let headers = new HttpHeaders().set('Content-Type', 'application/json')
@@ -151,6 +198,37 @@ export class PaymentserviceService {
     console.log("param id" + otp);
     let promise = new Promise((resolve, reject) => {
         this.http.post(path+"api/v2/payment_approve_validate", paramsValue)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                   // this.loader.display(false);
+                    //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                    
+                    console.log("Error occured :")
+                    console.log(err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
+  validateOTPSeq(otp: any): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+    let paramsValue = {
+        "otp":otp
+    }
+    console.log("param id" + otp);
+    let promise = new Promise((resolve, reject) => {
+        this.http.post(path+"api/v2/payment_approve_validate_sequential", paramsValue)
             .subscribe(
                 res => {
                     console.log(res);
@@ -253,4 +331,57 @@ export class PaymentserviceService {
   
     return promise;
   }
+
+  uploadattachment(id: any,file): Promise<any> {
+    let fileToUpload = <File>file[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+    let promise = new Promise((resolve, reject) => {
+        this.http.post(path+`api/v2/upload_bill_attachment/${id}`, formData, {reportProgress: true, observe: 'events'})
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                   // this.loader.display(false);
+                    //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                    
+                    console.log("Error occured :")
+                    console.log(err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
+  updextradetail(extradata:any,id: any): Promise<any> {
+    let promise = new Promise((resolve, reject) => {
+        this.http.post(path+`api/v2/update_bill/${id}`,extradata)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                   // this.loader.display(false);
+                    //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                    
+                    console.log("Error occured :")
+                    console.log(err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
+
+  
+  
 }

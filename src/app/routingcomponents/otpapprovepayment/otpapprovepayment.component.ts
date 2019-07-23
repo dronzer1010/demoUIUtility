@@ -5,6 +5,7 @@ import{LoaderService} from '../../api/loader.service'
 import {UserserviceService} from '../../api/userservice.service'
 import {PaymentserviceService} from '../../api/paymentservice.service'
 import { ToastrService } from 'ngx-toastr'
+
 @Component({
   selector: 'app-otpapprove-payment',
   templateUrl: './otpapprovepayment.component.html',
@@ -20,15 +21,28 @@ export class OtpapprovePaymentComponent implements OnInit {
   public txt3: any;
   public txt4: any;
   public txt5: any;
+  userdata:any=[];
   constructor(private _location: Location , private router : Router,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,private toastr: ToastrService,private route:ActivatedRoute) { }
 
   ngOnInit() {
     this.otprepsonse();
+    this.getuserdetails();
   }
 
   backClicked() {
     this._location.back();
   }
+
+  private getuserdetails(){
+    this.userservice.getUserDetails().subscribe(resp=>{
+     
+      this.userdata=resp['Data']
+      console.log(this.userdata)
+    },error=>{
+      console.log(error)
+    })
+  }
+  
 
   verifyOtp(){
     this.loaderService.display(true)
@@ -47,6 +61,7 @@ export class OtpapprovePaymentComponent implements OnInit {
 
     if (checkOtp.length == 5) {
       var checkOtp = this.txt1 + this.txt2 + this.txt3 + this.txt4 + this.txt5;
+      if(this.userdata['isseq']==0){
       this.paymentservice.validateOTP(checkOtp).then(resp => {
         this.approvePayments = resp;
         if (!!this.approvePayments.msg && this.approvePayments.msg == "Payments Approved") {
@@ -61,6 +76,28 @@ export class OtpapprovePaymentComponent implements OnInit {
             })
         }
       });
+    }else if(this.userdata['isseq']==1){
+      this.paymentservice.validateOTPSeq(checkOtp).then(resp => {
+        this.approvePayments = resp;
+        if (!!this.approvePayments.msg && (this.approvePayments.msg == "Payments Approved" || this.approvePayments.msg == "Payment added successfully")) {
+          this.loaderService.display(false)
+          this.router.navigate(['/main/successmsg'],{queryParams:{msg:'paymentapprsuccess'}});
+        }
+        else {
+          this.loaderService.display(false)
+          this.toastr.warning("Enter Correct Otp!!","Alert",{
+            timeOut:3000,
+            positionClass:'toast-top-center'
+            })
+        }
+      });
+    }else{
+      this.loaderService.display(false)
+      this.toastr.error("Internal Server Error!!","Alert",{
+        timeOut:3000,
+        positionClass:'toast-top-center'
+        })
+    }
 
     }
     else {

@@ -10,6 +10,8 @@ import {PaymentserviceService} from  '../../api/paymentservice.service'
 import { ToastrService } from 'ngx-toastr'
 import {ExcelService} from '../../excelservice/excel.service'
 import { DatePipe } from '@angular/common'
+import {Config} from '../../config'
+const path = new Config().getutilityBaseUrl();
 @Component({
   selector: 'app-makeprepaidpayments',
   templateUrl: './makeprepaidpayments.component.html',
@@ -70,11 +72,27 @@ export class MakeprepaidpaymentsComponent implements OnInit {
   newamount:string;
   date:Date;
   paymentid:any;
+  userdata:any=[];
+  public progress: number;
+  public message: string;
+  public downloadFileName:string;
+  fileUpload:File;
   constructor(private httpService: HttpClient,private cards:CardserviceService,private billservice: BillerserviceService, private loader: LoaderService, private users: UserserviceService,private router: Router,private paymentservice: PaymentserviceService,private toaster:ToastrService,private excelservice : ExcelService,public datepipe: DatePipe) { }
 
   ngOnInit() {
     this.billrdetails();
     this.loadApprovedCards();
+    this.getuserdetails();
+  }
+
+  private getuserdetails(){
+    this.users.getUserDetails().subscribe(resp=>{
+     
+      this.userdata=resp['Data']
+      console.log(this.userdata)
+    },error=>{
+      console.log(error)
+    })
   }
 
   getActivecard(id:any){
@@ -277,7 +295,12 @@ export class MakeprepaidpaymentsComponent implements OnInit {
           amount:pendingbillerpage[i]['amount'],
           billdate:pendingbillerpage[i]['fetch_bill_date'],
           duedate:pendingbillerpage[i]['fetch_due_date'],
-          billnumber:pendingbillerpage[i]['fetch_bill_no']
+          billnumber:pendingbillerpage[i]['fetch_bill_no'],
+          attachment_url:pendingbillerpage[i]['attachment_url'],
+          reading:pendingbillerpage[i]['reading'],
+          remark:pendingbillerpage[i]['remark'],
+          pay_incentive:pendingbillerpage[i]['pay_incentive'],
+          late_pay_charge:pendingbillerpage[i]['late_pay_charge']
         }
         this.checkedValueArray.push(obj);
         if(pendingbillerpage[i]['amount']!=null)
@@ -313,7 +336,12 @@ export class MakeprepaidpaymentsComponent implements OnInit {
         amount:payment['amount'],
         billdate:payment['fetch_bill_date'],
         duedate:payment['fetch_due_date'],
-        billnumber:payment['fetch_bill_no']
+        billnumber:payment['fetch_bill_no'],
+        attachment_url:payment['attachment_url'],
+        reading:payment['reading'],
+        remark:payment['remark'],
+        pay_incentive:payment['pay_incentive'],
+        late_pay_charge:payment['late_pay_charge']
       }
       this.checkedValueArray.push(obj);     
     }
@@ -351,12 +379,28 @@ export class MakeprepaidpaymentsComponent implements OnInit {
     //console.log(this.payments)
   }  
 
-  UploadFile(file: HTMLInputElement){
-    //this.filename = file.value;
-    var filenm = file.value;
-    this.filename = filenm.split(/[\\\/]/).pop()
-    //this.filename = filenm.substr(fileNameIndex);
-  }
+  UploadFile(files): void {
+    this.loader.display(true);
+    console.log("File Upload Started")
+    if (files.length === 0) {
+        return;
+      }
+      let fileToUpload =  files.target.files[0];
+      const formData = new FormData();
+      this.downloadFileName=fileToUpload['name']
+      formData.append('file', fileToUpload, fileToUpload.name);
+      this.httpService.post(path+`api/v2/upload_bill_attachment/${this.payment_id}`, formData, {reportProgress: true, observe: 'events'})
+        .subscribe(event => {
+            this.loader.display(false);
+          //this.route.navigate(['/main/dashboard']);
+        },error=>{
+          this.loader.display(false);
+            this.toaster.error(error['error']['msg'],"Alert",{
+                timeOut:3000,
+                positionClass:'toast-top-center'
+                })
+        });
+   }
 
   cnfsend(){
     this.billdetails=false;
@@ -396,8 +440,10 @@ export class MakeprepaidpaymentsComponent implements OnInit {
       "count":this.checkedValueArray.length,
       "totalamount":this.amountpay
     }
+    if(this.userdata['isseq']==0){
     if(this.amountpay>0){
     console.log(this.paymentData)
+    
     this.paymentservice.makepayment(this.paymentData).then(resp=>{
       console.log(resp)
       this.router.navigate(['/main/successmsg'],{queryParams:{msg:'paymentsuccess'}});
@@ -418,6 +464,36 @@ export class MakeprepaidpaymentsComponent implements OnInit {
    
     this.loader.display(false);
   }
+}else if(this.userdata['isseq']==1){
+  if(this.amountpay>0){
+    console.log(this.paymentData)
+    
+    this.paymentservice.makeseqpayment(this.paymentData).then(resp=>{
+      console.log(resp)
+      this.router.navigate(['/main/successmsg'],{queryParams:{msg:'paymentsuccess'}});
+      this.loader.display(false);
+    },error=>{
+      this.toaster.error("Failed to register bill payment!","Alert",{
+        timeOut:3000,
+        positionClass:'toast-top-center'
+        })
+      console.log(error)
+      this.loader.display(false);
+    })
+  }else{
+    this.toaster.error("Total Amount Should be greater than 0!","Alert",{
+      timeOut:3000,
+      positionClass:'toast-top-center'
+      })
+   
+    this.loader.display(false);
+  }
+}else{
+  this.toaster.error("Internal Server error!","Alert",{
+    timeOut:3000,
+    positionClass:'toast-top-center'
+    })
+}
   // }else{
   //   this.toaster.error("Todays batch has passed now, you cannot initiate payment now. Please fetch the bills tomorrow between 08:00 AM and 01:58 PM and initiate the payments !","Alert",{
   //     timeOut:8000,
@@ -446,6 +522,8 @@ export class MakeprepaidpaymentsComponent implements OnInit {
     this.reviewCard=false;
   }
 
+  
+
   backbilldetails(){
     this.billdetails=true;
     this.billertype=false;
@@ -462,6 +540,17 @@ export class MakeprepaidpaymentsComponent implements OnInit {
   }
   submitextradetails(){
     this.display=''; 
+    var extradata={
+      "reading":this.meter_reading,
+      "late_pay_charge":this.late_pay_charges,
+      "pay_incentive":this.promt_pay_incentives,
+      "remark":this.remarks
+    }
+    this.paymentservice.updextradetail(extradata,this.payment_id).then(resp=>{
+      console.log(resp)
+    },error=>{
+      console.log(error)
+    })
 
   }
 
