@@ -142,6 +142,12 @@ import {PageSliderModule}    from 'ng2-page-slider';
 import { MakeprepaidpaymentsComponent } from './routingcomponents/makeprepaidpayments/makeprepaidpayments.component';
 import { HttpModule } from '@angular/http';
 import { AngularFileUploaderModule } from "angular-file-uploader";
+// import { FusionChartsModule } from 'angular-fusioncharts';
+// import FusionCharts from 'fusioncharts/core';
+// import Column2D from 'fusioncharts/viz/column2d';
+// import * as FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
+
+// FusionChartsModule.fcRoot(FusionCharts, Column2D, FusionTheme);
 @NgModule({
   declarations: [
     AppComponent,
@@ -237,6 +243,7 @@ import { AngularFileUploaderModule } from "angular-file-uploader";
   ],
 
   imports: [
+    //FusionChartsModule,
     TooltipModule,
     BrowserModule,
     RouterModule,

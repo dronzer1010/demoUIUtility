@@ -491,6 +491,125 @@ ng-multiselect-dropdown.second .multiselect-dropdown {
   border-radius: 20px!important;
   border: 1px solid #d9cee6!important
 } */
+
+/** RM Payment Dropdown start**/
+ng-multiselect-dropdown.drop-first .multiselect-dropdown, ng-multiselect-dropdown.drop-second .multiselect-dropdown, ng-multiselect-dropdown.drop-third .multiselect-dropdown, ng-multiselect-dropdown.drop-fourth .multiselect-dropdown, ng-multiselect-dropdown.drop-fifth .multiselect-dropdown, ng-multiselect-dropdown.drop-sixth .multiselect-dropdown{
+  margin-bottom: 5px!important;
+  margin-top:20px!important;
+}
+ng-multiselect-dropdown.drop-first .multiselect-dropdown .dropdown-btn, ng-multiselect-dropdown.drop-second .multiselect-dropdown .dropdown-btn, ng-multiselect-dropdown.drop-third .multiselect-dropdown .dropdown-btn, ng-multiselect-dropdown.drop-fourth .multiselect-dropdown .dropdown-btn, ng-multiselect-dropdown.drop-fifth .multiselect-dropdown .dropdown-btn, ng-multiselect-dropdown.drop-sixth .multiselect-dropdown .dropdown-btn{
+  padding: 2px 5px!important;
+  text-align: right!important;
+}
+ng-multiselect-dropdown.drop-first .multiselect-dropdown .dropdown-btn .dropdown-down, ng-multiselect-dropdown.drop-second .multiselect-dropdown .dropdown-btn .dropdown-down, ng-multiselect-dropdown.drop-third .multiselect-dropdown .dropdown-btn .dropdown-down, ng-multiselect-dropdown.drop-fourth .multiselect-dropdown .dropdown-btn .dropdown-down, ng-multiselect-dropdown.drop-fifth .multiselect-dropdown .dropdown-btn .dropdown-down, ng-multiselect-dropdown.drop-sixth .multiselect-dropdown .dropdown-btn .dropdown-down{
+  margin-left: 7px;
+}
+ng-multiselect-dropdown.drop-first .multiselect-dropdown{
+  background-image: url(../../assets/img/downloadlist.png);
+  background-repeat: no-repeat;
+  background-position-x: 10px;
+  background-position-y: 6px;
+  background-size: 11px;
+  background: unset!important;
+  width: 16%!important;
+  margin-right:10px!important;
+}
+ng-multiselect-dropdown.drop-second .multiselect-dropdown{
+  background-image: url(../../assets/img/downloadlist.png);
+  background-repeat: no-repeat;
+  background-position-x: 10px;
+  background-position-y: 6px;
+  background-size: 11px;
+  width: 15%!important;
+  margin-right:10px!important;
+}
+ng-multiselect-dropdown.drop-third .multiselect-dropdown{
+  background-image: url(../../assets/img/datepicker.png);
+  background-repeat: no-repeat;
+  background-position-x: 10px;
+  background-position-y: 6px;
+  background-size: 11px;
+  width: 13%!important;
+  margin-right:10px!important;
+}
+ng-multiselect-dropdown.drop-fourth .multiselect-dropdown{
+  background-image: url(../../assets/img/downloadlist.png);
+  background-repeat: no-repeat;
+  background-position-x: 10px;
+  background-position-y: 6px;
+  background-size: 11px;
+  width: 15%!important;
+  margin-right:10px!important;
+}
+ng-multiselect-dropdown.drop-fifth .multiselect-dropdown{
+  background-image: url(../../assets/img/downloadlist.png);
+  background-repeat: no-repeat;
+  background-position-x: 10px;
+  background-position-y: 6px;
+  background-size: 11px;
+  width: 18%!important;
+  margin-right:10px!important;
+}
+ng-multiselect-dropdown.drop-sixth .multiselect-dropdown{
+  background-image: url(../../assets/img/downloadlist.png);
+  background-repeat: no-repeat;
+  background-position-x: 10px;
+  background-position-y: 6px;
+  background-size: 11px;
+  width: 16%!important;
+  margin-right:10px!important;
+}
+/** RM Payment Dropdown end**/
+
+/** RM Bills Dropdown start**/
+ng-multiselect-dropdown.first-multiselect1 .multiselect-dropdown, 
+ng-multiselect-dropdown.first-multiselect2 .multiselect-dropdown, 
+ng-multiselect-dropdown.first-multiselect3 .multiselect-dropdown, 
+ng-multiselect-dropdown.first-multiselect4 .multiselect-dropdown{
+  margin-bottom: 5px!important;
+  margin-top:0px!important;
+}
+ng-multiselect-dropdown.first-multiselect1 .multiselect-dropdown .dropdown-down, 
+ng-multiselect-dropdown.first-multiselect2 .multiselect-dropdown .dropdown-down, 
+ng-multiselect-dropdown.first-multiselect3 .multiselect-dropdown .dropdown-down, 
+ng-multiselect-dropdown.first-multiselect4 .multiselect-dropdown .dropdown-down{ 
+  margin-left: 7px;
+}
+ng-multiselect-dropdown.first-multiselect1 .multiselect-dropdown{
+  background-image: url(../../assets/img/downloadlist.png);
+  background-repeat: no-repeat;
+  background-position-x: 10px;
+  background-position-y: 6px;
+  background-size: 11px;
+  background: unset!important;
+  width: 21%!important;
+  margin-right:10px!important;
+}
+ng-multiselect-dropdown.first-multiselect2 .multiselect-dropdown{
+  background-image: url(../../assets/img/datepicker.png);
+  background-repeat: no-repeat;
+  background-position-x: 10px;
+  background-position-y: 6px;
+  background-size: 11px;
+  width: 20%!important;
+  margin-right:10px!important;
+}
+ng-multiselect-dropdown.first-multiselect3 .multiselect-dropdown{
+  background: unset!important;
+  width: 14%!important;
+  margin-right:10px!important;
+}
+ng-multiselect-dropdown.first-multiselect4 .multiselect-dropdown{
+  background-image: url(../../assets/img/downloadlist.png);
+  background-repeat: no-repeat;
+  background-position-x: 10px;
+  background-position-y: 6px;
+  background-size: 11px;
+  width: 22%!important;
+  margin-right:10px!important;
+}
+/** RM Bills Dropdown end**/
+
 .leftpad {
   padding-left: 25px
 }
