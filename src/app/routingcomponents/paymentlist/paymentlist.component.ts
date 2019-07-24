@@ -62,6 +62,16 @@ payfailtime:string;
 rejectreason:string;
 deletemodal:string='none';
 deleteid:any;
+filterinterval:any="0";
+filtercategory:any="6f6af57a-5c48-442e-b5b8-8b3559b10cd9";
+filterts:any="0";
+filterps:any="0";
+tsdropdownsettings = {};
+psdropdownsettings = {};
+tsdddata = [];
+psdddata = [];
+tsselected = [];
+psselected = [];
   constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,public datepipe: DatePipe,private toaster:ToastrService) { }
 
   ngOnInit() {
@@ -70,39 +80,14 @@ deleteid:any;
     this.laodpayments();
 
     this.dropdownList = [
+      { item_id: 0, item_text: 'All' },
       { item_id: 1, item_text: 'Today' },
       { item_id: 2, item_text: 'This Week' },
       { item_id: 3, item_text: 'This Month' },
       { item_id: 4, item_text: 'This Year' }
     ];
     this.dropdownSettings1 = {
-      singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 1,
-      allowSearchFilter: true
-    };
-    this.dropdownCat = [
-      { item_id: 1, item_text: 'Electricity' }
-    ];
-    this.dropdownSettings2 = {
-      singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 1,
-      allowSearchFilter: true
-    };
-    this.dropdownDownload = [
-      { item_id: 1, item_text: 'Standard List' },
-      { item_id: 2, item_text: 'Customise List' }
-    ];
-   
-    this.dropdownSettings = {
-      singleSelection: false,
+      singleSelection: true,
       idField: 'item_id',
       textField: 'item_text',
       selectAllText: 'Select All',
@@ -111,6 +96,73 @@ deleteid:any;
       allowSearchFilter: false,
       enableCheckAll:false
     };
+    this.dropdownCat = [
+      { item_id: "6f6af57a-5c48-442e-b5b8-8b3559b10cd9", item_text: 'Electricity' }
+    ];
+    this.dropdownSettings2 = {
+      singleSelection: true,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: false,
+      enableCheckAll:false
+    };
+    this.dropdownDownload = [
+      { item_id: 1, item_text: 'Standard List' },
+      { item_id: 2, item_text: 'Customise List' }
+    ];
+   
+    this.dropdownSettings = {
+      singleSelection: true,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: false,
+      enableCheckAll:false
+    };
+
+    this.tsdropdownsettings = {
+      singleSelection: true,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: false,
+      enableCheckAll:false
+    };
+
+    this.tsdddata = [
+      { item_id: 1, item_text: 'All' },
+      { item_id: 2, item_text: 'Approved' },
+      { item_id: 3, item_text: 'Rejected' },
+      { item_id: 4, item_text: 'Pending' }
+    ];
+
+    this.psdropdownsettings = {
+      singleSelection: true,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: false,
+      enableCheckAll:false
+    };
+
+    this.psdddata = [
+      { item_id: 1, item_text: 'All' },
+      { item_id: 2, item_text: 'Card Debited' },
+      { item_id: 3, item_text: 'Pending' },
+      { item_id: 4, item_text: 'Payment Success' },
+      { item_id: 5, item_text: 'Payment Failed' },
+      { item_id: 6, item_text: 'Rejected' },
+      { item_id: 7, item_text: 'Insufficient funds' },
+    ];
   }
   openModalDialog(){
     this.display='block'; //Set block css
@@ -130,6 +182,40 @@ deleteid:any;
   }
   closeModalDialog2(){
     this.displayLogs='block';//set none css after close dialog
+  }
+
+  onIntervalSelect(interval:any){
+    console.log(interval)
+  this.filterinterval=interval['item_id']
+    console.log(this.filterinterval)
+  }
+
+  onCatSelect(cat:any){
+    console.log(cat);
+    // this.filtercategory = cat.map(function(val) {
+    //   return val.item_id;
+    // }).join(',');
+    this.filtercategory=cat['item_id']
+    console.log(this.filtercategory)
+  }
+
+  ontsselect(ts:any){
+    console.log(ts)
+    if(ts['item_text']=='All')
+    this.filterts="0"
+    else
+    this.filterts=ts['item_text']
+    console.log(this.filterts)
+  }
+
+  
+  onpsSelect(ps:any){
+    console.log(ps)
+    if(ps['item_text']=='All')
+    this.filterps="0"
+    else
+    this.filterps=ps['item_text']
+    console.log(this.filterps)
   }
 
   onItemSelectDown(items:any){
@@ -329,5 +415,31 @@ this.paymentservice.getAllPayments().then(resp=>{
         console.log(error)
       })
 
+    }
+
+    getfilterdata(){
+      this.loaderService.display(true)
+      var payparams={
+        "interval":this.filterinterval,
+    "payment_status":this.filterps,
+    "transaction_status":this.filterts,
+    "category":this.filtercategory
+      }
+
+      this.paymentservice.filterpayment(payparams).then(resp=>{
+        this.totalamount=0
+        console.log(resp)
+        this.paymentData=resp['data'];
+        console.log(this.paymentData)
+        this.loaderService.display(false)
+        if(this.paymentData!=null){
+        for(var total of this.paymentData){
+          this.totalamount+=parseFloat(total['amount'])
+        }
+      }
+      },error=>{
+        this.loaderService.display(false)
+        console.log(error)
+      })
     }
 }

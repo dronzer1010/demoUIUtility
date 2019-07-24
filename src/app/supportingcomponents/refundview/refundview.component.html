@@ -1,0 +1,105 @@
+<div class="row h-100" style="background-color:#f4f4f4;">
+  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 heading">List of ISG Responses</div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row mb-3" style="margin-bottom:15px;">
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <img src="assets/img/search-icon.png" alt="" width="5%;"> <input type="search"
+                  placeholder="Search for Location, Biller Type or Utility" [(ngModel)]="searchText">
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
+               
+           
+                <!-- modal -->
+              
+              </div>
+            </div>
+            <div class="row mb-3" style="margin-bottom:15px;">
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 txt">
+               
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right"><button class="btn1" (click)="refundpayments()">Approve Biller</button>
+               <!--    <button class="btn2 ml-2">Reject Biller</button></div> -->
+            </div>
+            <div class="row" style="margin:0px;">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
+                <table id="main-table" [mfData]="refunddata" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage"
+                  [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                  <thead>
+                    <tr>
+                        <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(refunddata)"></td>
+                     
+                      <td>Amount <img src="assets/img/Filter.png" alt=""></td>
+                      <td>Transaction Ref No <img src="assets/img/Filter.png" alt=""></td>
+                      <td>Reciept No <img src="assets/img/Filter.png" alt=""></td>
+                      <td>Response Message <img src="assets/img/Filter.png" alt=""></td>
+                     
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container *ngFor="let refnd of mf.data; let i=index;">
+                      <tr>
+                          <td><input type="checkbox" name="submenu" [checked]="select" (change)="change(refnd.id) "></td>
+                      
+                        <td>{{refnd.cc_Amount}}</td>
+                        <td>{{refnd.cc_MerchTxnRef}}</td>
+                        <td>{{refnd.cc_RRN}}</td>
+                        <td>{{refnd.cc_ResponseMsg}}</td>
+                     
+                      </tr>
+                   
+                     
+                      
+                    </ng-container>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="8">
+                        <mfBootstrapPaginator [rowsOnPageSet]="[10,25,50,100]"></mfBootstrapPaginator>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="row mt-4">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
+        <nav aria-label="Page navigation example" style="float:right;">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&lang;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&rang;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div> -->
+  </div>
+  <!-- Modal2 -->
+
+  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+</div>

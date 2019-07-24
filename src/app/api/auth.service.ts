@@ -225,4 +225,29 @@ getDecodedAccessToken(token: string): any {
   }
 }
 
+resetpasswordbyuser(resetdata){
+  console.log(JSON.stringify(resetdata))
+  let promise = new Promise((resolve, reject) => {
+      this.http.post(this.utilitypatah+"api/auth/reset_password", resetdata)
+          .subscribe(
+              res => {
+                  console.log(res);
+                  resolve(res);
+              },
+              err => {
+                 // this.loader.display(false);
+                  //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                  
+                  console.log("Error occured :")
+                  console.log(err);
+                  reject(err);
+              }
+          );
+
+  });
+
+  return promise;
+
+}
+
 }

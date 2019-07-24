@@ -20,18 +20,36 @@
                   [data]="dropdownCat"
                   [(ngModel)]="selectedItems1"
                   [settings]="dropdownSettings1"
-                  (onSelect)="onItemSelect($event)"
+                  (onSelect)="onCatSelect($event)"
                   [(ngClass)]="all-cat"
-                  (onSelectAll)="onSelectAll($event)">
+                  >
                 </ng-multiselect-dropdown>
                 <ng-multiselect-dropdown
                   [placeholder]="'This Month'"
                   [data]="dropdownList"
                   [(ngModel)]="selectedItems2"
                   [settings]="dropdownSettings2"
-                  (onSelect)="onItemSelect($event)"
-                  (onSelectAll)="onSelectAll($event)">
+                  (onSelect)="onIntervalSelect($event)"
+                  >
                 </ng-multiselect-dropdown>
+
+                <ng-multiselect-dropdown
+                [ngClass]="'drop-fifth'"
+                [placeholder]="'Transaction Status'"
+                [data]="tsdddata"
+                [(ngModel)]="tsselected"
+                [settings]="tsdropdownsettings"
+                (onSelect)="ontsselect($event)">
+              </ng-multiselect-dropdown>
+
+              <ng-multiselect-dropdown
+                [ngClass]="'drop-sixth'"
+                [placeholder]="'Payment Status'"
+                [data]="psdddata"
+                [(ngModel)]="psselected"
+                [settings]="psdropdownsettings"
+                (onSelect)="onpsSelect($event)">
+              </ng-multiselect-dropdown>
                 <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png" alt=""> Download File</button> -->
                 <ng-multiselect-dropdown
                   [placeholder]="'Download List'"
@@ -41,6 +59,7 @@
                   (onSelect)="onItemSelectDown($event)"
                   (onSelectAll)="onSelectAllDown($event)">
                 </ng-multiselect-dropdown>
+                <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="getfilterdata()" type="button" style="border-radius:25px;">Filter Payment</button>
                 <div class="backdrop" [ngStyle]="{'display':display}"></div>
                 <!-- modal -->
                 <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
@@ -309,12 +328,16 @@
                           <div class="mb-1">
                               <div class="span_width" *ngIf="approver.status=='Approved'">Approved by </div>  <span *ngIf="approver.status=='Approved'"> : &nbsp;</span> 
                               <div class="span_width" *ngIf="approver.status=='Rejected'">Rejected by </div>  <span *ngIf="approver.status=='Rejected'"> : &nbsp;</span>
-                              <div class="bold_span">{{approver.approved_by}}</div>
+                              <div *ngIf="approver.group==0" class="bold_span" tooltip="{{approver.approved_by}}" placement="top"
+                              show-delay="500">{{approver.approved_by}}</div>
+                              <div *ngIf="approver.group!=0" class="bold_span" tooltip="{{approver.approved_by}}({{approver.group}})" placement="top"
+                              show-delay="500">{{approver.approved_by}}({{approver.group}})</div>
                             </div>
                             <div class="mb-1">
                               <div class="span_width" *ngIf="approver.status=='Approved'">Approved on  </div>  <span *ngIf="approver.status=='Approved'"> :  &nbsp;</span>
                               <div class="span_width" *ngIf="approver.status=='Rejected'">Rejected on  </div>  <span *ngIf="approver.status=='Rejected'"> :  &nbsp;</span>
-                              <div class="bold_span">{{approver.approved_on | date:'dd-MM-yyyy hh:mm a'}}</div>
+                              <div class="bold_span" tooltip="{{approver.approved_on | date:'dd-MM-yyyy hh:mm a'}}" placement="top"
+                              show-delay="500">{{approver.approved_on | date:'dd-MM-yyyy hh:mm a'}}</div>
                             </div>
                           </ng-container>
                         </div>

@@ -17,17 +17,22 @@
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
                 <ng-multiselect-dropdown [ngClass]="'first-multiselect'" [placeholder]="'All Categories'"
                   [data]="dropdownCat" [(ngModel)]="selectedItems1" [settings]="dropdownSettings1"
-                  (onSelect)="onItemSelect($event)" [(ngClass)]="all-cat" (onSelectAll)="onSelectAll($event)">
+                  (onSelect)="onCatSelect($event)" [(ngClass)]="all-cat">
                 </ng-multiselect-dropdown>
                 <ng-multiselect-dropdown [ngClass]="'first-multiselect'" [placeholder]="'This Month'"
                   [data]="dropdownList" [(ngModel)]="selectedItems2" [settings]="dropdownSettings2"
-                  (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                  (onSelect)="onIntervalSelect($event)">
+                </ng-multiselect-dropdown>
+                <ng-multiselect-dropdown [ngClass]="'first-multiselect'" [placeholder]="'Status'"
+                  [data]="dropdownStatus" [(ngModel)]="selectedStatus" [settings]="dropdownSettingsStatus"
+                  (onSelect)="onStatusSelect($event)">
                 </ng-multiselect-dropdown>
                 <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png" alt=""> Download File</button> -->
                 <ng-multiselect-dropdown [ngClass]="'first-multiselect'" [placeholder]="'Download List'"
                   [data]="dropdownDownload" [(ngModel)]="selectedItems" [settings]="dropdownSettings"
-                  (onSelect)="onItemSelectDown($event)" (onSelectAll)="onSelectAllDown($event)">
+                  (onSelect)="onItemSelectDown($event)">
                 </ng-multiselect-dropdown>
+                <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="getfilterdata()" type="button">Filter Bills</button>
                 <div class="backdrop" [ngStyle]="{'display':display}"></div>
                 <!-- modal -->
                 <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
@@ -298,9 +303,12 @@
                             <ng-container *ngFor="let approver of approverdetails">
                             <div class="mb-1">
                               <div class="span_width" *ngIf="approver.status=='Registered'">Approved by</div> <span *ngIf="bill.status=='Registered'"> : &nbsp;</span> 
+                           
                               <div class="span_width" *ngIf="approver.status=='Rejected'">Rejected by</div> <span *ngIf="bill.status=='Rejected'"> : &nbsp;</span> 
-                              <div class="bold_span" tooltip="{{approver.approved_by}}" placement="top"
+                              <div *ngIf="approver.group==0" class="bold_span" tooltip="{{approver.approved_by}}" placement="top"
                               show-delay="500">{{approver.approved_by}}</div>
+                              <div *ngIf="approver.group!=0" class="bold_span" tooltip="{{approver.approved_by}}({{approver.group}})" placement="top"
+                              show-delay="500">{{approver.approved_by}}({{approver.group}})</div>
                             </div>
                             <div>
                               <div class="span_width" *ngIf="approver.status=='Registered'">Approved on</div> <span *ngIf="bill.status=='Registered'"> : &nbsp;</span> 

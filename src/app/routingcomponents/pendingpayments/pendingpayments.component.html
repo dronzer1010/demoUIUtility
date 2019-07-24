@@ -315,7 +315,8 @@
                                   <ng-container *ngFor="let approver of approverDetails">
                                     <div class="mb-1">
                                         <div class="span_width">Approved by </div>  <span> : </span> &nbsp;
-                                        <div class="bold_span">{{approver.approved_by}}</div>
+                                        <div class="bold_span" *ngIf="approver.group==0">{{approver.approved_by}}</div>
+                                        <div class="bold_span" *ngIf="approver.group!=0">{{approver.approved_by}}({{approver.group}})</div>
                                       </div>
                                       <div class="mb-1">
                                         <div class="span_width">Approved on  </div>  <span> : </span> &nbsp;

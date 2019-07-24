@@ -383,5 +383,27 @@ export class PaymentserviceService {
 
 
   
+  filterpayment(params:any): Promise<any> {
+    let promise = new Promise((resolve, reject) => {
+        this.http.post(path+`api/v1/payment_detail_filter`,params)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                   // this.loader.display(false);
+                    //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                    
+                    console.log("Error occured :")
+                    console.log(err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
   
 }

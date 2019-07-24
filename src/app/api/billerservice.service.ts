@@ -275,6 +275,35 @@ sendOtp(ids: any): Promise<any> {
   }
 
 
+  filterbills(params:any): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+  
+    let promise = new Promise((resolve, reject) => {
+        this.http.post(path+"api/v1/bill_filter", params)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                   // this.loader.display(false);
+                    //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                    
+                    console.log("Error occured :")
+                    console.log(err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
+
   deletebill(deleteid:any): Promise<any> {
     // let token = this.storage.getData("chlogin_data").token;
     // let headers = new HttpHeaders().set('Content-Type', 'application/json')

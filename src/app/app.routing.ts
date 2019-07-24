@@ -67,6 +67,8 @@ import { RmsamplebillsComponent } from './rmcomponents/rmsamplebills/rmsamplebil
 import { RmtemplatesComponent } from './rmcomponents/rmtemplates/rmtemplates.component'
 import { BackgrpregComponent } from './supportingcomponents/backgrpreg/backgrpreg.component';
 import { MakeprepaidpaymentsComponent } from './routingcomponents/makeprepaidpayments/makeprepaidpayments.component';
+import { ResetpwduserComponent } from './supportingcomponents/resetpwduser/resetpwduser.component';
+import { RefundviewComponent } from './supportingcomponents/refundview/refundview.component';
 const appRoutes: Routes = [ 
     { path:'main',component:UserhomeComponent,
     children:[
@@ -106,7 +108,8 @@ const appRoutes: Routes = [
     {path:'notification',component:NotificationmatrixComponent,canActivate: [AuthGuard]},
     {path:'repository',component:RepositoryComponent,canActivate: [AuthGuard]},
     {path:'sample-bills',component:SamplebillsComponent,canActivate: [AuthGuard]},
-    {path:'templates',component:TemplatesComponent,canActivate: [AuthGuard]}
+    {path:'templates',component:TemplatesComponent,canActivate: [AuthGuard]},
+    {path:'reset-password-user',component:ResetpwduserComponent,canActivate: [AuthGuard]}
     
 ]},
 
@@ -116,6 +119,7 @@ const appRoutes: Routes = [
     {path:'setpassword',component:SetpasswordComponent}, 
     {path:'gen-pwd',component:GeneratepasswordComponent},
     {path:'firstlogin',component:AccountsetupComponent},
+    {path:'refund-review',component:RefundviewComponent},
     { path : 'useruploadback', component: BackusrupComponent},
     { path : 'grpregback', component: BackgrpregComponent},
     { path: 'rm-ifsc-verify', component: RmifscComponent ,canActivate:[AuthGuard]},

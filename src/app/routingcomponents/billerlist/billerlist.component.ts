@@ -29,12 +29,15 @@ export class BillerlistComponent implements OnInit {
   dropdownList = [];
   dropdownCat = [];
   dropdownDownload = [];
+  dropdownStatus = [];
   selectedItems = [];
   selectedItems1 = [];
   selectedItems2 = [];
+  selectedStatus = [];
   dropdownSettings = {};
   dropdownSettings1 = {};
   dropdownSettings2 = {};
+  dropdownSettingsStatus = {};
   key: string = 'status'; //set default
   reverse: boolean = false;
 rolename:any;
@@ -72,6 +75,10 @@ filterfromdate:any;
   token : string;
   deletemodal:string='none';
   deleteid:any;
+  filterstatus:any="0";
+filterinterval:any="0";
+filtercategory:any="6f6af57a-5c48-442e-b5b8-8b3559b10cd9";
+
   constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,public datepipe: DatePipe,private authService : AuthService, private http: Http,private toaster:ToastrService) { }
 
   ngOnInit() {
@@ -95,39 +102,14 @@ filterfromdate:any;
    
 
     this.dropdownList = [
+      { item_id: 0, item_text: 'All' },
       { item_id: 1, item_text: 'Today' },
       { item_id: 2, item_text: 'This Week' },
       { item_id: 3, item_text: 'This Month' },
       { item_id: 4, item_text: 'This Year' }
     ];
     this.dropdownSettings1 = {
-      singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 1,
-      allowSearchFilter: true
-    };
-    this.dropdownCat = [
-      { item_id: 1, item_text: 'Electricity' }
-    ];
-    this.dropdownSettings2 = {
-      singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 1,
-      allowSearchFilter: true
-    };
-    this.dropdownDownload = [
-      { item_id: 1, item_text: 'Standard List' },
-      { item_id: 2, item_text: 'Customise List' }
-    ];
-   
-    this.dropdownSettings = {
-      singleSelection: false,
+      singleSelection: true,
       idField: 'item_id',
       textField: 'item_text',
       selectAllText: 'Select All',
@@ -136,13 +118,55 @@ filterfromdate:any;
       allowSearchFilter: false,
       enableCheckAll:false
     };
+    this.dropdownCat = [
+      { item_id: "6f6af57a-5c48-442e-b5b8-8b3559b10cd9", item_text: 'Electricity' }
+    ];
+    this.dropdownSettings2 = {
+      singleSelection: true,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: false,
+      enableCheckAll:false
+    };
+    this.dropdownDownload = [
+      { item_id: 1, item_text: 'Standard List' },
+      { item_id: 2, item_text: 'Customise List' }
+    ];
+   
+    this.dropdownSettings = {
+      singleSelection: true,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: false,
+      enableCheckAll:false
+    };
+
+    this.dropdownStatus = [
+      { item_id: 1, item_text: 'All' },
+      { item_id: 2, item_text: 'Registered' },
+      { item_id: 3, item_text: 'Rejected' },
+      { item_id: 4, item_text: 'Pending' }
+    ];
+
+    this.dropdownSettingsStatus = {
+      singleSelection: true,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: false,
+      enableCheckAll:false
+    };
+
   }
-  onItemSelect(item: any) {
-    console.log(item);
-  }
-  onSelectAll(items: any) {
-    console.log(items);
-  }
+
 
   onItemSelectDown(items:any){
     console.log(items);
@@ -175,8 +199,19 @@ filterfromdate:any;
     }
   }
 
-  onSelectAllDown(items:any){
-    console.log(items);
+  onStatusSelect(status:any){
+    if(status['item_text']=='All')
+    this.filterstatus="0"
+    else
+    this.filterstatus=status['item_text']
+  }
+
+  onIntervalSelect(interval:any){
+    this.filterinterval=interval['item_id']
+  }
+
+  onCatSelect(cat:any){
+    this.filtercategory=cat['item_id']
   }
 
   openModalDialog(){
@@ -346,6 +381,42 @@ downloadFile(arr:any): Observable<Blob> {
         this.location=false;
       }
 
+    }
+
+    getfilterdata(){
+      this.loaderService.display(true)
+      var billparams={
+        "category":this.filtercategory,
+        "interval":this.filterinterval,
+        "status":this.filterstatus
+      }
+
+      this.billservice.filterbills(billparams).then(resp=>{
+        console.log(resp)
+        this.billdata=resp['bills']
+        if(this.billdata==null){
+          this.billerlength=0
+          this.noofrole="No bills available"
+          this.loaderService.display(false)
+        }else{
+          this.billerlength=this.billdata.length;
+          if(this.billerlength>1){
+            this.noofrole="No of bills"
+          }else{
+            this.noofrole="No of bill"
+          }
+        }
+        this.loaderService.display(false)
+      },error=>{
+        console.log(error)
+        this.loaderService.display(false)
+        if(error['error']['msg']=='Bills not found'){
+        this.toaster.error("Can't able to filter the bills with your filtered criteria!","Alert",{
+          timeOut:3000,
+          positionClass:'toast-top-center'
+          })
+        }
+      })
     }
 
 
