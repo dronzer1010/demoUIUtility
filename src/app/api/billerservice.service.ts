@@ -412,4 +412,22 @@ sendOtp(ids: any): Promise<any> {
   
 //     return promise;
 //   }
+
+getattachment(id:any){
+    let promise = new Promise((resolve, reject) => {
+      this.http.get(path+`api/v2/download_bill_attachment/${id}`)
+          .subscribe(
+              res => {
+                  console.log(res);
+                  resolve(res);
+              },
+              err => {
+                  console.log("Error occured : " + err);
+                  reject(err);
+              }
+          );
+  
+  });
+  return promise;
+  }
 }

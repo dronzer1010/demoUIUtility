@@ -13,8 +13,8 @@
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                 <img src="assets/img/search-icon.png" alt="" width="5%;"> <input type="search" placeholder="Search for Location, Biller Type or Utility" [(ngModel)]="searchText">
               </div>
-              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
+              <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div> -->
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
                   <ng-multiselect-dropdown
                   [placeholder]="'All Categories'"
                   [data]="dropdownCat"
@@ -59,7 +59,7 @@
                   (onSelect)="onItemSelectDown($event)"
                   (onSelectAll)="onSelectAllDown($event)">
                 </ng-multiselect-dropdown>
-                <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="getfilterdata()" type="button" style="border-radius:25px;">Filter Payment</button>
+               
                 <div class="backdrop" [ngStyle]="{'display':display}"></div>
                 <!-- modal -->
                 <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
@@ -209,7 +209,10 @@
                 </tr>
               </table>
               </div>
-              <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 text-right txt"></div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right txt"></div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right txt">
+                <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="getfilterdata()" type="button" style="border-radius:25px;">Filter Payment</button>
+              </div>
             </div>
             <div class="row" style="margin:0px;">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">

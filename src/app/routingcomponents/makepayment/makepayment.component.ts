@@ -382,6 +382,7 @@ private getuserdetails(){
 
   prompt(){
     this.duedatepassd=[];
+    if(this.checkedValueArray.length>0){
     for(var i=0;i<this.checkedValueArray.length;i++){
      
         this.duedatepassd.push(this.checkedValueArray[i].fetch_due_date_status)
@@ -395,6 +396,12 @@ private getuserdetails(){
       this.cnfsend()
       console.log("Go to Next Step")
     }
+  }else{
+    this.toaster.warning("Please Select Bills first!","Alert",{
+      timeOut:3000,
+      positionClass:'toast-top-center'
+      })
+  }
     
   }
   confirmprompt(confirmation){

@@ -403,6 +403,7 @@ export class MakeprepaidpaymentsComponent implements OnInit {
    }
 
   cnfsend(){
+    if(this.checkedValueArray.length>0){
     this.billdetails=false;
     this.conf=true;
     this.billertype=false;   
@@ -415,6 +416,12 @@ export class MakeprepaidpaymentsComponent implements OnInit {
         }
       }
     }
+  }else{
+    this.toaster.warning("Please Select Bills first!","Alert",{
+      timeOut:3000,
+      positionClass:'toast-top-center'
+      })
+  }
   }
 
   succesadd(){

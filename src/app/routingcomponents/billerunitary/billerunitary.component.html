@@ -254,7 +254,7 @@
                         <div class="clear20"></div>
                         <div class="col-xs-12 col-sm-12 col-md-12  padln">
                           <input type="phone" value="" class="input-text js-input inptxt form-control" name="contact_no"
-                            [(ngModel)]="billdata.contact_no" #name="ngModel" autocomplete='off'>
+                            [(ngModel)]="billdata.contact_no" #name="ngModel" autocomplete='off' maxlength="10">
                           <label class="label" for="usertitle">Contact Number <sup>*</sup></label>
                         </div>
                         <div class="clear20"></div>
@@ -376,7 +376,7 @@
                         <div class="clear20"></div>
                         <div class="clear20"></div>
                         <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                          <input type="text" value="" class="input-text js-input inptxt form-control" name="email"
+                          <input type="email" value="" class="input-text js-input inptxt form-control" name="email"
                             [(ngModel)]="billdata.email" #name="ngModel" autocomplete='off'>
                           <label class="label" for="usertitle">Email <sup>*</sup></label>
                         </div>
@@ -394,8 +394,8 @@
                           <div class="upload-btn-wrapper">
                             <button class="" style="border: 1px solid #fff; background-color: white;"><img src="assets/img/attachments.png"
                                 alt=""></button>
-                                {{filename}}
-                            <input type="file" name="fileUpload" #file  (change)="UploadFile(file)" ng-reflect-name="fileUpload"/>
+                                {{downloadFileName}}
+                            <input type="file" name="fileUpload" [(ngModel)]="fileUpload"  (change)="UploadFile($event)" ng-reflect-name="fileUpload"/>
                           </div>
                         </div>
                         <div class="clear20"></div>
@@ -562,7 +562,7 @@
                       </div>
                       <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                       <div class="col-xs-7 col-sm-7 col-md-7">
-                        <span> {{filename}}</span>
+                        <span> {{downloadFileName}}</span>
                       </div>
                       <div class="clear20"></div>
                       <div class="clear20"></div>

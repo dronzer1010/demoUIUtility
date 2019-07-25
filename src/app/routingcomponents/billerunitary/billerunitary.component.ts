@@ -6,6 +6,9 @@ import { BillerserviceService } from '../../api/billerservice.service'
 import { ToastrService } from 'ngx-toastr'
 import{LoaderService} from '../../api/loader.service'
 import { Router } from '@angular/router';
+import {Config} from '../../config'
+import { e } from '@angular/core/src/render3';
+const path = new Config().getutilityBaseUrl();
 @Component({
   selector: 'app-billerunitary',
   templateUrl: './billerunitary.component.html',
@@ -32,7 +35,8 @@ export class BillerUnitaryComponent implements OnInit {
   showcircles:boolean=false;
   showbus:boolean=false;
   statename:string;
-  
+  public downloadFileName:string;
+  fileUpload:File;
   constructor(private httpService: HttpClient,private _lightbox: Lightbox,private billerservice: BillerserviceService,private toastr: ToastrService,private loaderService: LoaderService,private router: Router,) { }
 
   ngOnInit() {
@@ -380,12 +384,38 @@ private getallStates(){
    
   }
 
-  UploadFile(file: HTMLInputElement){
-    //this.filename = file.value;
-    var filenm = file.value;
-    this.filename = filenm.split(/[\\\/]/).pop()
-    //this.filename = filenm.substr(fileNameIndex);
-  }
+  UploadFile(files): void {
+    this.loaderService.display(true);
+    console.log("File Upload Started")
+    if (files.length === 0) {
+        return;
+      }
+      let fileToUpload =  files.target.files[0];
+      const formData = new FormData();
+      this.downloadFileName=fileToUpload['name']
+      formData.append('file', fileToUpload, fileToUpload.name);
+      this.httpService.post(path+`api/v2/bill_attachment_upload`, formData, {reportProgress: true, observe: 'events'})
+        .subscribe(event => {
+            
+            console.log(event['body'])
+            if(event['body']!=undefined){
+            var attachment = Object.values(event['body'])[1]
+             this.billdata['bill_attachment']=attachment
+             console.log(this.billdata['bill_attachment'])
+             this.loaderService.display(false);
+            }else{
+                this.billdata['bill_attachment']="Not Uploaded yet"; 
+                console.log(this.billdata['bill_attachment'])
+            }
+            
+        },error=>{
+          this.loaderService.display(false);
+            this.toastr.error(error['error']['msg'],"Alert",{
+                timeOut:3000,
+                positionClass:'toast-top-center'
+                })
+        });
+   }
 
   getBiller(stateid){
   this.billerlist=[];
@@ -466,8 +496,26 @@ for(var i=0;i<=this.states.length;i++){
   }
 
   billrdetails(){
-    this.billertype=false;
-    this.billdetails=true;
+    
+    if(this.billdata['biller_name']==undefined|| this.billdata['biller_name']==null){
+        this.toastr.warning("Select biller first!","Alert",{
+            timeOut:3000,
+            positionClass:'toast-top-center'
+            })
+    }else if(this.billdata['state']==undefined|| this.billdata['state']==null){
+        this.toastr.warning("Select state first!","Alert",{
+            timeOut:3000,
+            positionClass:'toast-top-center'
+            })
+    }else if(this.billdata['board']==undefined|| this.billdata['board']==null){
+        this.toastr.warning("Select category first!","Alert",{
+            timeOut:3000,
+            positionClass:'toast-top-center'
+            })
+    }else{
+        this.billertype=false;
+        this.billdetails=true;
+    }
   }
 
   cnfsend(){

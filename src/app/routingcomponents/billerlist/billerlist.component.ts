@@ -419,5 +419,14 @@ downloadFile(arr:any): Observable<Blob> {
       })
     }
 
+    downloadattachment(id){
+      this.billservice.getattachment(id).then(resp=>{
+        console.log(resp)
+      },error=>{
+        console.log(error)
+      })
+
+    }
+
 
 }
