@@ -197,12 +197,13 @@
                         <thead>
                           <tr>
                             <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(bills)"></td>
+                            <td>Utility&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                             <td>Biller Name&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                             <td>Amount &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                             <td>Reference No&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                            
-                            <td>Status &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
-                            <td class="text-center">Payment Status &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                            <!-- <td>Status &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                            <td class="text-center">Payment Status &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td> -->
                             <td>&nbsp;</td>
                           </tr>
                         </thead>
@@ -210,14 +211,15 @@
                             <ng-container  *ngFor="let payment of mf.data; let i=index;">
                           <tr>
                             <td><input name="submenu" type="checkbox" [checked]="select" (change)="change(payment)"></td>
+                            <td>{{payment.utility}}</td>
                             <td>{{payment.biller_name}}</td>
                             <td><i class="fa fa-rupee"></i>{{(payment.amount)?payment.amount:"No Data"}}
                               <!-- <i class="fa fa-inr"></i> {{(payment.amount)?payment.amount:"No Data"}} -->
                             </td>
                             <td>{{payment.consumer_no}}</td>
                             
-                            <td><button class="pending-btn">Pending</button></td>
-                            <td style="color:#533979;font-weight:bold;text-align: center;">Pending</td>
+                            <!-- <td><button class="pending-btn">Pending</button></td>
+                            <td style="color:#533979;font-weight:bold;text-align: center;">Pending</td> -->
                             <td style="padding: 0 5px;"><img alt="" src="assets/img/tb_downarrow.png" (click)="payment.collapsed=!payment.collapsed;"></td>
                           </tr>
                           <tr class="rowShow grayStrip" *ngIf="payment.collapsed">

@@ -96,6 +96,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CustomCurrencyPipe } from './routingcomponents/paymentlist/currency.pipe';
 import { PaymentFilterPipe } from './routingcomponents/paymentlist/payment-filter.pipe';
 import { RmPaymentFilterPipe } from './rmcomponents/rmpayments/rm-payment-filter.pipe';
+import { MakePayFilterPipe } from './routingcomponents/makepayment/make-pay-filter.pipe';
 import { PenPayFilterPipe } from './routingcomponents/pendingpayments/pendingpay-filter.pipe';
 import { BillerFilterPipe } from './routingcomponents/billerlist/biller-filter.pipe';
 import { RmBillerFilterPipe } from './rmcomponents/rmbills/rm-biller-filter.pipe';
@@ -195,6 +196,7 @@ import { RefundviewComponent } from './supportingcomponents/refundview/refundvie
     PenBillerFilterPipe,
     RmBillerFilterPipe,
     RmPaymentFilterPipe,
+    MakePayFilterPipe,
     OtpuserComponent ,
     AspendingusersFilterPipe,
     RejectmsgComponent,
