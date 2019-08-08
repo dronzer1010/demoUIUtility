@@ -57,6 +57,15 @@ input[type="date"] {
 input {
   width: auto;
 }
+
+.col-half-offset{
+  margin-left:0;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 20%;
+  float: left;
+  margin-top:20px;
+}
 /*Popup Generate Report CSS End*/
 
 .entry-table tr td{
