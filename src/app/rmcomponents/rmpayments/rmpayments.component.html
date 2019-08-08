@@ -280,7 +280,7 @@
                             </div>
                             <div class="mb-1" *ngIf="payment.payment_status=='Payment Success'">
                               <div class="span_width">Order Id</div> <span> : </span> &nbsp;
-                              <div class="bold_span">{{paymnet.order_id}}</div>
+                              <div class="bold_span">{{payment.order_id}}</div>
                             </div>
                             <div class="mb-1">
                               <div class="span_width">Location</div> <span> : </span> &nbsp;
@@ -356,7 +356,7 @@
                         <td colspan="8">
                             <span class="text-left" *ngIf="payment.transaction_status=='Rejected'"><label style="color: #64289d;">Comment : &nbsp;</label>{{payment.rejection_reason}}</span>
                           <span class="pull-right">
-                          <a (click)="getpaymentlogs(payment.card_debited_date,payment.payment_status_time,payment.rejection_reason)"><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <a (click)="getpaymentlogs(payment.card_debited_date,payment.payment_status_time,payment.rejection_reason,payment.payment_status)"><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           
                           <a (click)="closeModalDialog1()"><img src="assets/img/page.png"></a>
@@ -452,29 +452,30 @@
                                         </tr>
                                         <tr>
                                           <td>Payment Success</td>
-                                          <td *ngIf="payment.transaction_status=='Approved'">{{paysuccessdate}}</td>
-                                          <td *ngIf="payment.transaction_status=='Approved'">{{paysuccesstime}}</td>
-                                          <td *ngIf="payment.transaction_status=='Pending' || payment.transaction_status=='Rejected'">--</td>
-                                          <td *ngIf="payment.transaction_status=='Pending' || payment.transaction_status=='Rejected'">--</td>
+                                          <td *ngIf="paymentstatus=='Payment Success'">{{paysuccessdate}}</td>
+                                          <td *ngIf="paymentstatus=='Payment Success'">{{paysuccesstime}}</td>
+                                          <td *ngIf="paymentstatus=='Payment Failed' ||paymentstatus=='Payment Returned' || paymentstatus=='Pending' || paymentstatus=='Rejected'">--</td>
+                                          <td *ngIf="paymentstatus=='Payment Failed' || paymentstatus=='Payment Returned' || paymentstatus=='Pending' || paymentstatus=='Rejected'">--</td>
                                         </tr>
                                         <tr>
                                           <td>Payment Failed</td>
-                                          <td *ngIf="payment.transaction_status=='Approved'">--</td>
-                                          <td *ngIf="payment.transaction_status=='Approved'">--</td>
-                                          <td *ngIf="payment.transaction_status=='Pending' || payment.transaction_status=='Rejected'">--</td>
-                                          <td *ngIf="payment.transaction_status=='Pending' || payment.transaction_status=='Rejected'">--</td>
+                                          <td *ngIf="paymentstatus=='Payment Failed'">{{paysuccessdate}}</td>
+                                          <td *ngIf="paymentstatus=='Payment Failed'">{{paysuccesstime}}</td>
+                                          <td *ngIf="paymentstatus=='Payment Success' || paymentstatus=='Payment Returned' || paymentstatus=='Pending' || paymentstatus=='Rejected'">--</td>
+                                          <td *ngIf="paymentstatus=='Payment Success' || paymentstatus=='Payment Returned' || paymentstatus=='Pending' || paymentstatus=='Rejected'">--</td>
                                         </tr>
                                         <tr>
                                           <td>Card Refunded</td>
-                                          <td *ngIf="payment.status=='transaction_status'">--</td>
-                                          <td *ngIf="payment.status=='transaction_status'">--</td>
-                                          <td *ngIf="payment.status=='transaction_status' || payment.transaction_status=='Rejected'">--</td>
-                                          <td *ngIf="payment.transaction_status=='transaction_status' || payment.transaction_status=='Rejected'">--</td>
+                                         
+                                        <td *ngIf="paymentstatus=='Payment Returned'">{{paysuccessdate}}</td>
+                                        <td *ngIf="paymentstatus=='Payment Returned'">{{paysuccesstime}}</td>
+                                        <td *ngIf="paymentstatus=='Payment Success' || paymentstatus=='Payment Failed' || paymentstatus=='Pending' || paymentstatus=='Rejected'">--</td>
+                                        <td *ngIf="paymentstatus=='Payment Success' || paymentstatus=='Payment Failed' || paymentstatus=='Pending' || paymentstatus=='Rejected'">--</td>
                                         </tr>
                                         <tr>
                                           <td>Refund Reason</td>
-                                          <td *ngIf="payment.status=='transaction_status'" colspan="2">{{rejectreason}}</td>
-                                          <td *ngIf="payment.status=='transaction_status' || payment.transaction_status=='Rejected'" colspan="2">--</td>
+                                          <td *ngIf="paymentstatus=='Payment Returned'" colspan="2">{{rejectreason}}</td>
+                                          <td *ngIf="paymentstatus=='Payment Success' || paymentstatus=='Payment Failed' || paymentstatus=='Pending' || paymentstatus=='Rejected'" colspan="2">--</td>
                                         </tr>
                                       </tbody>
                                     </table>

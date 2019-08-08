@@ -80,6 +80,7 @@ filtercategory:any="6f6af57a-5c48-442e-b5b8-8b3559b10cd9";
 filterts:any="0";
 filterps:any="0";
 arrayorgid:any=[];
+paymentstatus:any;
   constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,public datepipe: DatePipe,private rmservice:RmservicesService,private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -407,8 +408,9 @@ getfilterdata(){
   })
 }
 
-getpaymentlogs(carddebittime,paystatustime,rejectreason){
-  console.log(paystatustime)
+getpaymentlogs(carddebittime,paystatustime,rejectreason,paymentstat){
+this.paymentstatus=paymentstat
+  console.log(this.paymentstatus)
   this.displayLogs='block';
   if(carddebittime!=null){
     carddebittime=this.datepipe.transform(carddebittime, 'M/d/yy, h:mm a');

@@ -5,6 +5,11 @@
 .wc-date-popover{
   left:-85%!important;
 }
+.cardsize{
+  font-size: 20px;
+    font-weight: bold;
+    color: #8153ad;
+}
 
 .spent{
   font-size: 13px;

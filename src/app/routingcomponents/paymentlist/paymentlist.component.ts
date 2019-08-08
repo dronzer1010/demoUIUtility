@@ -36,11 +36,15 @@ export class PaymentListComponent implements OnInit {
   settings = {
     bigBanner: true,
     timePicker: false,
-    format: 'MM-yyyy',
+    format: 'dd-MM-yyyy',
     defaultOpen: false
   }
   todate:Date = new Date();
   fromdate:Date = new Date();
+  tofilter:Date = new Date();
+  fromfilter: Date = new Date();
+  fromfilterstring:any;
+  tofilterstring:any;
 rolename:any;
 key: string = 'status'; //set default
 reverse: boolean = true;
@@ -72,6 +76,7 @@ tsdddata = [];
 psdddata = [];
 tsselected = [];
 psselected = [];
+paymentstatus:any;
   constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,public datepipe: DatePipe,private toaster:ToastrService) { }
 
   ngOnInit() {
@@ -339,7 +344,9 @@ this.paymentservice.getAllPayments().then(resp=>{
       }
 
       
-    getpaymentlogs(carddebittime,paystatustime,rejectreason){
+    getpaymentlogs(carddebittime,paystatustime,rejectreason,paymentstat){
+      this.paymentstatus=paymentstat
+  console.log(this.paymentstatus)
       console.log(paystatustime)
       this.displayLogs='block';
       if(carddebittime!=null){
@@ -418,12 +425,18 @@ this.paymentservice.getAllPayments().then(resp=>{
     }
 
     getfilterdata(){
+      this.paymentData=[]
+      this.totalamount=0;
+      this.fromfilterstring=this.datepipe.transform(this.fromfilter, 'yyyy-MM-dd');
+      this.tofilterstring=this.datepipe.transform(this.tofilter, 'yyyy-MM-dd');
       this.loaderService.display(true)
       var payparams={
-        "interval":this.filterinterval,
-    "payment_status":this.filterps,
-    "transaction_status":this.filterts,
-    "category":this.filtercategory
+        // "interval":this.filterinterval,
+        "payment_status":this.filterps,
+        "transaction_status":this.filterts,
+        "category":this.filtercategory,
+        "from":this.fromfilterstring,
+        "to":this.tofilterstring
       }
 
       this.paymentservice.filterpayment(payparams).then(resp=>{

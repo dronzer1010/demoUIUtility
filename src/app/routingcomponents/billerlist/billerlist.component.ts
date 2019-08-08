@@ -384,6 +384,7 @@ downloadFile(arr:any): Observable<Blob> {
     }
 
     getfilterdata(){
+      this.billdata=[];
       this.loaderService.display(true)
       var billparams={
         "category":this.filtercategory,

@@ -59,6 +59,7 @@ lastpayments:any=[];
   approvedcard:any=[]
   approverDetails:any=[];
 selectedIndex = -1;
+cardsize:any;
   constructor(private cards:CardserviceService,private httpService: HttpClient,private router: Router,private activatedRoute: ActivatedRoute,private usrservice:UserserviceService,private dashservice: DashboardService) { }
 
   ngOnInit() {
@@ -147,6 +148,12 @@ private getUserDetail(){
           if(this.cardData[i].status == "Approved"){
               this.approvedcard.push(this.cardData[i]);
           }
+      }
+
+      if(this.cardData.length>0){
+        this.cardsize=this.cardData.length
+      }else{
+        this.cardsize=0
       }
   
       console.log(this.approvedcard)
