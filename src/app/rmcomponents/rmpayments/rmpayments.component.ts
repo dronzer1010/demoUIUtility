@@ -7,6 +7,7 @@ import {PaymentserviceService} from '../../api/paymentservice.service'
 import { DatePipe } from '@angular/common'
 import {RmservicesService} from '../../api/rmservices.service'
 import { ToastrService } from 'ngx-toastr'
+
 @Component({
   selector: 'app-rmpayments',
   templateUrl: './rmpayments.component.html',
@@ -45,11 +46,15 @@ export class RmpaymentsComponent implements OnInit {
   settings = {
     bigBanner: true,
     timePicker: false,
-    format: 'MM-yyyy',
+    format: 'dd-MM-yyyy',
     defaultOpen: false
   }
   todate:Date = new Date();
   fromdate:Date = new Date();
+  tofilter:Date = new Date();
+  fromfilter: Date = new Date('2019-07-10 06:40:03');
+  fromfilterstring:any;
+  tofilterstring:any;
 rolename:any;
 key: string = 'status'; //set default
 reverse: boolean = true;
@@ -378,14 +383,17 @@ console.log(this.selectedItems3)
 
 getfilterdata(){
   this.loaderService.display(true);
-
+this.paymentData=[];
+this.fromfilterstring=this.datepipe.transform(this.fromfilter, 'yyyy-MM-dd');
+      this.tofilterstring=this.datepipe.transform(this.tofilter, 'yyyy-MM-dd');
   if(this.filterps=='All')
   this.filterps="0"
   if(this.filterts=='All')
   this.filterts="0"
   this.payparams={
     "org_ids":this.filterorgid,
-    "interval":this.filterinterval,
+    "from":this.fromfilterstring,
+    "to": this.tofilterstring,
     "payment_status":this.filterps,
     "transaction_status":this.filterts,
     "category":this.filtercategory
@@ -454,7 +462,8 @@ private loadPayments(){
   console.log(this.filterorgid)
   this.payparams={
     "org_ids":this.filterorgid,
-    "interval":"0",
+    "from":this.datepipe.transform(this.fromfilter, 'yyyy-MM-dd'),
+    "to":this.datepipe.transform(this.tofilter, 'yyyy-MM-dd'),
     "payment_status":"0",
     "transaction_status":"0",
     "category":"6f6af57a-5c48-442e-b5b8-8b3559b10cd9"

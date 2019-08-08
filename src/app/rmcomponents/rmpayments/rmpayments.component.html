@@ -37,24 +37,25 @@
                     [(ngClass)]="all-cat">
                   </ng-multiselect-dropdown>
 
-                  <ng-multiselect-dropdown
+                  <!-- <ng-multiselect-dropdown
                     [ngClass]="'drop-third'"
                     [placeholder]="'This Month'"
                     [data]="dropdownList"
                     [(ngModel)]="selectedItems2"
                     [settings]="dropdownSettings2"
                     (onSelect)="onIntervalSelect($event)">
-                  </ng-multiselect-dropdown>
+                  </ng-multiselect-dropdown> -->
+                  <table>
+                    <tr>
+                      <td style="padding:0px; width:10%">From</td>
+                      <td style="padding:0px; width:28%"><angular2-date-picker [ngClass]="'popup-datepicker'" [(ngModel)]="fromfilter" [settings]="settings"></angular2-date-picker></td>
+                      <td style="padding-left:7px; width:10%">To</td>
+                      <td style="padding-right:10px; width:31%"><angular2-date-picker [ngClass]="'popup-datepicker'" [(ngModel)]="tofilter" [settings]="settings"></angular2-date-picker></td>
+                    </tr>
+                  </table>
 
                   <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png" alt=""> Download File</button> -->
-                  <ng-multiselect-dropdown
-                    [ngClass]="'drop-fourth'"
-                    [placeholder]="'Download List'"
-                    [data]="dropdownDownload"
-                    [(ngModel)]="selectedItems"
-                    [settings]="dropdownSettings"
-                    (onSelect)="onItemSelectDown($event)">
-                  </ng-multiselect-dropdown>
+                 
 
                   <ng-multiselect-dropdown
                     [ngClass]="'drop-fifth'"
@@ -73,6 +74,15 @@
                     [settings]="psdropdownsettings"
                     (onSelect)="onpsSelect($event)">
                   </ng-multiselect-dropdown>
+
+                  <ng-multiselect-dropdown
+                  [ngClass]="'drop-fourth'"
+                  [placeholder]="'Download List'"
+                  [data]="dropdownDownload"
+                  [(ngModel)]="selectedItems"
+                  [settings]="dropdownSettings"
+                  (onSelect)="onItemSelectDown($event)">
+                </ng-multiselect-dropdown>
                   
                   <div class="backdrop" [ngStyle]="{'display':display}"></div>
                   <!-- modal -->
