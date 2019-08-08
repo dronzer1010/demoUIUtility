@@ -426,15 +426,14 @@ h5 {
   color: red!important;
 }
 ng-multiselect-dropdown:nth-child(1) .multiselect-dropdown{
-  background: unset!important;
-  width: 28%!important;
+  width: 77%!important;
+  margin-right: 0px!important;
+  background-repeat: no-repeat!important;
+  background-position-x: 10px!important;
+  background-position-y: 6px!important;
+  background-size: 11px!important;
 }
 ng-multiselect-dropdown:nth-child(3) .multiselect-dropdown{
-  background-image: url('/assets//img/downloadlist.png');
-  background-repeat: no-repeat;
-  background-position-x: 10px;
-  background-position-y: 6px;
-  background-size: 11px;
   margin-right:unset!important;
   width: 33%!important;
 }
@@ -499,7 +498,6 @@ ng-multiselect-dropdown.drop-first .multiselect-dropdown, ng-multiselect-dropdow
 }
 ng-multiselect-dropdown.drop-first .multiselect-dropdown .dropdown-btn, ng-multiselect-dropdown.drop-second .multiselect-dropdown .dropdown-btn, ng-multiselect-dropdown.drop-third .multiselect-dropdown .dropdown-btn, ng-multiselect-dropdown.drop-fourth .multiselect-dropdown .dropdown-btn, ng-multiselect-dropdown.drop-fifth .multiselect-dropdown .dropdown-btn, ng-multiselect-dropdown.drop-sixth .multiselect-dropdown .dropdown-btn{
   padding: 2px 5px!important;
-  text-align: right!important;
 }
 ng-multiselect-dropdown.drop-first .multiselect-dropdown .dropdown-btn .dropdown-down, ng-multiselect-dropdown.drop-second .multiselect-dropdown .dropdown-btn .dropdown-down, ng-multiselect-dropdown.drop-third .multiselect-dropdown .dropdown-btn .dropdown-down, ng-multiselect-dropdown.drop-fourth .multiselect-dropdown .dropdown-btn .dropdown-down, ng-multiselect-dropdown.drop-fifth .multiselect-dropdown .dropdown-btn .dropdown-down, ng-multiselect-dropdown.drop-sixth .multiselect-dropdown .dropdown-btn .dropdown-down{
   margin-left: 7px;
@@ -542,22 +540,21 @@ ng-multiselect-dropdown.drop-fourth .multiselect-dropdown{
   margin-right:10px!important;
 }
 ng-multiselect-dropdown.drop-fifth .multiselect-dropdown{
-  background-image: url(../../assets/img/downloadlist.png);
-  background-repeat: no-repeat;
-  background-position-x: 10px;
-  background-position-y: 6px;
-  background-size: 11px;
-  width: 18%!important;
-  margin-right:10px!important;
+  background-image: unset;
+  width: 100%!important;
+  margin-right:0px!important;
+  margin-top: 0px!important;
 }
 ng-multiselect-dropdown.drop-sixth .multiselect-dropdown{
-  background-image: url(../../assets/img/downloadlist.png);
-  background-repeat: no-repeat;
-  background-position-x: 10px;
-  background-position-y: 6px;
-  background-size: 11px;
-  width: 16%!important;
-  margin-right:10px!important;
+  background-image: unset;
+  width: 100%!important;
+  margin-right:0px!important;
+  margin-top: 0px!important;
+}
+ng-multiselect-dropdown.drop-seven .multiselect-dropdown{
+  background-image: unset;
+  width: 100%!important;
+  margin-right:0px!important;
 }
 /** RM Payment Dropdown end**/
 
