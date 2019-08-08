@@ -543,11 +543,16 @@ if(confirmation==true){
   }
 
   backbilldetails(){
+    this.amountpay=0;
+    this.checkedValueArray=[]
     this.billdetails=true;
     this.billertype=false;
     this.conf=false;
     this.success=false;
     this.reviewCard=false;
+    console.log(this.checkedValueArray)
+    console.log(this.amountpay)
+   
   }
   review(){
     this.billdetails=false;

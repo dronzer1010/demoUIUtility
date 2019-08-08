@@ -7,6 +7,15 @@ import { Router,ActivatedRoute } from '@angular/router';
 import {UserserviceService} from '../../api/userservice.service'
 import{CardserviceService} from '../../api/cardservice.service'
 import{DashboardService} from '../../api/dashboard.service'
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4charts from "@amcharts/amcharts4/charts";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+import am4themes_dark from "@amcharts/amcharts4/themes/dark";
+import { DatePipe } from '@angular/common'
+// Importing translations
+import am4lang_lt_LT from "@amcharts/amcharts4/lang/lt_LT";
+
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -40,14 +49,16 @@ export class DashboardComponent implements OnInit {
   checkeraprpaylen:number=0
   checkerrejpaylen:number=0
   todate:Date = new Date();
-  fromdate:Date = new Date();
+  fromdate:Date = new Date('2019-07-10 06:40:03');
+  fromfilterstring:any;
+  tofilterstring:any;
   displayWelcomModal:string='none'
   userdata:any={};
   username:string="Authorised Signatory"
   settings = {
     bigBanner: true,
     timePicker: false,
-    format: 'MM-yyyy',
+    format: 'dd-MM-yyyy',
     defaultOpen: false
 }
 public utilityparams:string;
@@ -60,7 +71,9 @@ lastpayments:any=[];
   approverDetails:any=[];
 selectedIndex = -1;
 cardsize:any;
-  constructor(private cards:CardserviceService,private httpService: HttpClient,private router: Router,private activatedRoute: ActivatedRoute,private usrservice:UserserviceService,private dashservice: DashboardService) { }
+spenddata:any=[];
+totalspendamt:any;
+  constructor(private cards:CardserviceService,private httpService: HttpClient,private router: Router,private activatedRoute: ActivatedRoute,private usrservice:UserserviceService,private dashservice: DashboardService,public datepipe: DatePipe) { }
 
   ngOnInit() {
     this.getUserDetail()
@@ -73,10 +86,12 @@ cardsize:any;
     
     }
 console.log(this.approvedcard)
-
+this.loadtotalspends()
    // this.loadallcards()
    this.lastpaymentsdetails()
    this.loadApprovedCards()
+
+ this.loadBarChart()
     // this.httpService.get('./assets/cards.json').subscribe(data=>{
     //   this.carddata=data;
     //   console.log(this.carddata)
@@ -87,6 +102,15 @@ console.log(this.approvedcard)
   fun() {
     this.owlElement.next([200])
     //duration 200ms
+}
+
+// events
+public chartClicked(e:any):void {
+  console.log(e);
+}
+
+public chartHovered(e:any):void {
+  console.log(e);
 }
 
 closemodal(){
@@ -116,6 +140,128 @@ private loadallcards(){
  
 
 
+}
+
+private loadchart(){
+ 
+  /* Chart code */
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+// Create chart instance
+let chart = am4core.create("chartdiv", am4charts.PieChart);
+
+// Add data
+chart.data = this.spenddata;
+
+// Add and configure Series
+let pieSeries = chart.series.push(new am4charts.PieSeries());
+pieSeries.dataFields.value = "spends";
+pieSeries.dataFields.category = "utility";
+pieSeries.innerRadius = am4core.percent(50);
+pieSeries.ticks.template.disabled = true;
+pieSeries.labels.template.disabled = true;
+
+let rgm = new am4core.RadialGradientModifier();
+rgm.brightnesses.push(-0.8, -0.8, -0.5, 0, - 0.5);
+pieSeries.slices.template.fillModifier = rgm;
+pieSeries.slices.template.strokeModifier = rgm;
+pieSeries.slices.template.strokeOpacity = 0.4;
+pieSeries.slices.template.strokeWidth = 0;
+
+chart.legend = new am4charts.Legend();
+chart.legend.position = "right";
+}
+
+
+private loadBarChart(){
+  am4core.useTheme(am4themes_animated);
+// Themes end
+
+// Create chart instance
+let chart = am4core.create("chartdivcolumn", am4charts.XYChart);
+chart.scrollbarX = new am4core.Scrollbar();
+
+// Add data
+chart.data = [{
+  "month": "Jan",
+  "spends": 3025
+}, {
+  "month": "Feb",
+  "spends": 1882
+}, {
+  "month": "Mar",
+  "spends": 1809
+}, {
+  "month": "April",
+  "spends": 1322
+}, {
+  "month": "May",
+  "spends": 1122
+}, {
+  "month": "June",
+  "spends": 1114
+}, {
+  "month": "July",
+  "spends": 984
+}, {
+  "month": "Aug",
+  "spends": 711
+}, {
+  "month": "Sep",
+  "spends": 665
+}, {
+  "month": "Oct",
+  "spends": 580
+}, {
+  "month": "Nov",
+  "spends": 443
+}, {
+  "month": "Dec",
+  "spends": 441
+}];
+
+// Create axes
+let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+categoryAxis.dataFields.category = "month";
+categoryAxis.renderer.grid.template.location = 0;
+categoryAxis.renderer.minGridDistance = 30;
+categoryAxis.renderer.labels.template.horizontalCenter = "right";
+categoryAxis.renderer.labels.template.verticalCenter = "middle";
+categoryAxis.renderer.labels.template.rotation = 270;
+categoryAxis.tooltip.disabled = true;
+categoryAxis.renderer.minHeight = 110;
+
+let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.renderer.minWidth = 50;
+
+// Create series
+let series = chart.series.push(new am4charts.ColumnSeries());
+series.sequencedInterpolation = true;
+series.dataFields.valueY = "spends";
+series.dataFields.categoryX = "month";
+series.tooltipText = "[{categoryX}: bold]{valueY}[/]";
+series.columns.template.strokeWidth = 0;
+
+series.tooltip.pointerOrientation = "vertical";
+
+series.columns.template.column.cornerRadiusTopLeft = 10;
+series.columns.template.column.cornerRadiusTopRight = 10;
+series.columns.template.column.fillOpacity = 0.8;
+
+// on hover, make corner radiuses bigger
+let hoverState = series.columns.template.column.states.create("hover");
+hoverState.properties.cornerRadiusTopLeft = 0;
+hoverState.properties.cornerRadiusTopRight = 0;
+hoverState.properties.fillOpacity = 1;
+
+series.columns.template.adapter.add("fill", function(fill, target) {
+  return chart.colors.getIndex(target.dataItem.index);
+});
+
+// Cursor
+chart.cursor = new am4charts.XYCursor();
 }
 
 private getUserDetail(){
@@ -255,6 +401,39 @@ private getUserDetail(){
         console.log(error)
       })
   
+    }
+
+    private loadtotalspends(){
+      this.fromfilterstring=this.datepipe.transform(this.fromdate, 'yyyy-MM-dd');
+      this.tofilterstring=this.datepipe.transform(this.todate, 'yyyy-MM-dd');
+      var daterange={
+        "from":this.fromfilterstring,
+        "to":this.tofilterstring
+      }
+      this.dashservice.gettotalspends(daterange).then(resp=>{
+        
+        this.spenddata=resp['data']
+        this.totalspendamt=resp['total_amount']
+        this.loadchart()
+        console.log(this.spenddata)
+      },error=>{
+        console.log(error)
+      })
+    }
+
+    gettotalspends(){
+      this.spenddata=[];
+      this.fromfilterstring=this.datepipe.transform(this.fromdate, 'yyyy-MM-dd');
+      this.tofilterstring=this.datepipe.transform(this.todate, 'yyyy-MM-dd');
+      var daterange={
+        "from":this.fromfilterstring,
+        "to":this.tofilterstring
+      }
+      this.dashservice.gettotalspends(daterange).then(resp=>{
+        console.log(resp)
+      },error=>{
+        console.log(error)
+      })
     }
 
 

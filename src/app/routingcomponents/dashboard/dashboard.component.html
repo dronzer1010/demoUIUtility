@@ -63,7 +63,8 @@
     <div class="row mb-4 mt-4">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="card">
-          <div class="card-body"><img src="assets/img/main-graph.png" alt="" width="100%" class="graph"></div>
+          <!-- <div class="card-body"><img src="assets/img/main-graph.png" alt="" width="100%" class="graph"></div> -->
+          <div id="chartdivcolumn" style="height:400px;width:100%;"></div>
         </div>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -251,29 +252,36 @@
               <table>
                 <tr>
                   <td style="padding:0px; width:10%">From</td>
-                  <td style="padding:0px; width:28%"><angular2-date-picker [(ngModel)]="formdate" [settings]="settings"></angular2-date-picker></td>
+                  <td style="padding:0px; width:28%">
+                    <angular2-date-picker [(ngModel)]="formdate" [settings]="settings"></angular2-date-picker>
+                  </td>
                   <td style="padding-left:7px; width:10%">To</td>
-                  <td style="padding-right:10px; width:31%"><angular2-date-picker [(ngModel)]="todate" [settings]="settings"></angular2-date-picker></td>
+                  <td style="padding-right:10px; width:31%">
+                    <angular2-date-picker [(ngModel)]="todate" [settings]="settings"></angular2-date-picker>
+                  </td>
                 </tr>
               </table>
             </div>
           </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 text-center" style="position:relative;margin-top: 6%;">
-                <h3>1.45 Cr</h3>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12 text-center">
+                <h3>{{totalspendamt}}</h3>
                 <h6 class="spent">Total Spent</h6>
               </div>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6"><img src="assets/img/doughnut1.png" alt=""></div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12">
+                <div id="chartdiv" style="height:260px;width:100%;"></div>
+              </div>
             </div>
             <div class="row">
               <div class="col-lg-3 col-md-3 col-sm-3 col-sm-3"></div>
               <div class="col-lg-9 col-md-12 col-sm-9 col-sm-9 text-center">
-                <span class="spn-red">.</span><span class="graph-ratio">Electricity</span>
+                <!-- <span class="spn-red">.</span><span class="graph-ratio">Electricity</span>
                 <span class="spn-ocean">.</span><span class="graph-ratio">Telecom</span>
                 <span class="spn-blue">.</span><span class="graph-ratio">Gas</span>
                 <span class="spn-orange">.</span><span class="graph-ratio">Insurance</span>
-                <span class="spn-yellow">.</span><span class="graph-ratio">Water</span></div>
+                <span class="spn-yellow">.</span><span class="graph-ratio">Water</span> -->
+              </div>
             </div>
           </div>
         </div>
