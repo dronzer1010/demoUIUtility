@@ -78,7 +78,7 @@ filterfromdate:any;
   filterstatus:any="0";
 filterinterval:any="0";
 filtercategory:any="6f6af57a-5c48-442e-b5b8-8b3559b10cd9";
-
+organisation_id:any;
   constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,public datepipe: DatePipe,private authService : AuthService, private http: Http,private toaster:ToastrService,private auth: AuthService) { }
 
   ngOnInit() {
@@ -288,6 +288,7 @@ deletebill(){
     this.userdata=res['Data'];
     console.log(this.userdata)
     this.rolename=this.userdata['dualrole']
+    this.organisation_id=this.userdata['orgid']
    // this.username=this.userdata['firstname']+" "+this.userdata['lastname']
   },error=>{
     console.log(error)
@@ -331,7 +332,8 @@ deletebill(){
       "created_by":this.initiatedby,
       "created_on":this.initiatedon,
       "status":this.status,
-      "state":this.location
+      "state":this.location,
+      "orgid":this.organisation_id
       
     };
     let date =new Date()

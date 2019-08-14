@@ -111,7 +111,7 @@ custapproved_on: boolean=false;
 custcomment:  boolean=false;
 custorderid:  boolean=false;
 custshort_name:boolean=false;
-organization_id=any;
+organization_id:any;
   constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,public datepipe: DatePipe,private toaster:ToastrService,private auth: AuthService,private http: Http) { }
 
   ngOnInit() {
@@ -491,6 +491,7 @@ this.paymentservice.getAllPayments().then(resp=>{
       this.filterfromdate=this.datepipe.transform(this.filterfromdate, 'yyyy-MM-dd');
       this.filtertodate=this.datepipe.transform(this.filtertodate, 'yyyy-MM-dd');
       let headers = new Headers();
+      console.log(this.filterfromdate+"+++++"+this.filtertodate)
       var paymentdata={
         "Fromdate":this.filterfromdate,
         "Todate":this.filtertodate,

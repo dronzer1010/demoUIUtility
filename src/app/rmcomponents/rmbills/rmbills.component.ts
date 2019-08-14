@@ -5,6 +5,12 @@ import{LoaderService} from '../../api/loader.service'
 import {RmservicesService} from '../../api/rmservices.service'
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr'
+import {Config} from '../../config'
+const path = new Config().getutilityBaseUrl();
+import {saveAs as importedSaveAs} from "file-saver";
+import {Observable} from 'rxjs/Rx';
+import { Http, ResponseContentType , Headers,RequestOptions} from '@angular/http';
+import { DatePipe } from '@angular/common'
 @Component({
   selector: 'app-rmbills',
   templateUrl: './rmbills.component.html',
@@ -34,7 +40,7 @@ rolename:any;
 settings = {
   bigBanner: true,
   timePicker: false,
-  format: 'MM-yyyy',
+  format: 'dd-MM-yyyy',
   defaultOpen: false
 }
 todate:Date = new Date();
@@ -54,10 +60,30 @@ filterstatus:any="0";
 filterinterval:any="0";
 filtercategory:any="6f6af57a-5c48-442e-b5b8-8b3559b10cd9";
 filterorgid:any;
-  constructor(private excelservice : ExcelService,private loaderService: LoaderService,private billservice:BillerserviceService,private rmservice:RmservicesService,private route: ActivatedRoute,private toastr: ToastrService) { }
+organisation_id:any;
+selectallpara:boolean=false;
+filterfromdate:any;
+  filtertodate:any
+  billername:boolean=false;
+consumerno:boolean=false;
+duedate:boolean=false;
+billdate:boolean=false;
+glexpensecode:boolean=false;
+shortname:boolean=false;
+email:boolean=false;
+contactno:boolean=false;
+contactaddress:boolean=false;
+utilityname:boolean=false;
+status:boolean=false;
+location:boolean=false;
+initiatedby:boolean=false;
+initiatedon:boolean=false;
+  constructor(private excelservice : ExcelService,private loaderService: LoaderService,private billservice:BillerserviceService,private rmservice:RmservicesService,private route: ActivatedRoute,private toastr: ToastrService,private http: Http,public datepipe: DatePipe) { }
 
   ngOnInit() {
     this.filterorgid = this.route.snapshot.paramMap.get('id');
+    this.filterfromdate=this.fromdate
+    this.filtertodate=this.todate;
     this.dropdownList = [
       { item_id: 0, item_text: 'All' },
       { item_id: 1, item_text: 'Today' },
@@ -278,5 +304,87 @@ getfilterdata(){
     }
   })
 }
+
+
+getcustomreport(){
+  this.filterfromdate=this.datepipe.transform(this.filterfromdate, 'yyyy-MM-dd');
+this.filtertodate=this.datepipe.transform(this.filtertodate, 'yyyy-MM-dd');
+let headers = new Headers();
+let billsdata={
+  "Fromdate":this.filterfromdate,
+  "Todate":this.filtertodate,
+  "utility_type":this.utilityname,
+  "consumer_no":this.consumerno,
+  "name":this.billername,
+  "short_name":this.shortname,
+  "gl_expense_code":this.glexpensecode,
+  "bill_date":this.billdate,
+  "due_date":this.duedate,
+  "email":this.email,
+  "contact_no":this.contactno,
+  "contact_address":this.contactaddress,
+  "created_by":this.initiatedby,
+  "created_on":this.initiatedon,
+  "status":this.status,
+  "location":this.location,
+  "orgid":this.filterorgid
+  
+};
+let date =new Date()
+this.downloadFile(billsdata).subscribe(blob=>{
+  importedSaveAs(blob, "bills_"+date+".xlsx");
+})
+
+
+}
+
+downloadFile(arr:any): Observable<Blob> {
+let options = new RequestOptions({responseType: ResponseContentType.Blob });
+return this.http.post(path+`api/v1/bill_report`,arr, options)
+  .map(res => res.blob())
+  .catch(this.handleError)
+}
+handleError(handleError: any): Observable<Blob> {
+throw new Error("Method not implemented.");
+}
+
+
+
+selectllpara(){
+  if(this.selectallpara==true){
+    this.utilityname=true;
+    this.consumerno=true;
+    this.billername=true;
+    this.shortname=true;
+    this.glexpensecode=true;
+    this.billdate=true;
+    this.duedate=true;
+    this.email=true;
+    this.contactno=true;
+    this.contactaddress=true;
+    this.initiatedby=true;
+    this.initiatedon=true;
+    this.status=true;
+    this.location=true;
+  }else{
+    this.utilityname=false;
+    this.consumerno=false;
+    this.billername=false;
+    this.shortname=false;
+    this.glexpensecode=false;
+    this.billdate=false;
+    this.duedate=false;
+    this.email=false;
+    this.contactno=false;
+    this.contactaddress=false;
+    this.initiatedby=false;
+    this.initiatedon=false;
+    this.status=false;
+    this.location=false;
+  }
+
+}
+
+
 
 }
