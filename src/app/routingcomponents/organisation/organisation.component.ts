@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {OrgserviceService} from '../../api/orgservice.service'
+import {AuthService} from '../../api/auth.service';
 @Component({
   selector: 'app-organisation',
   templateUrl: './organisation.component.html',
@@ -10,7 +11,7 @@ export class OrganisationComponent implements OnInit {
   address:string;
   city:string;
   state:string;
-  constructor(private orgservice: OrgserviceService) { }
+  constructor(private orgservice: OrgserviceService,private auth: AuthService) { }
 
   ngOnInit() {
 
@@ -24,6 +25,9 @@ export class OrganisationComponent implements OnInit {
       this.orgdata=resp['data']
     },error=>{
       console.log(error)
+      if(error['status']==401){
+        this.auth.expiresession();
+      }
     })
   }
 

@@ -7,6 +7,7 @@ import { Router,ActivatedRoute } from '@angular/router';
 import {UserserviceService} from '../../api/userservice.service'
 import{CardserviceService} from '../../api/cardservice.service'
 import{DashboardService} from '../../api/dashboard.service'
+import {AuthService} from '../../api/auth.service';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
@@ -72,8 +73,17 @@ lastpayments:any=[];
 selectedIndex = -1;
 cardsize:any;
 spenddata:any=[];
+utilexpensedata:any=[];
 totalspendamt:any;
-  constructor(private cards:CardserviceService,private httpService: HttpClient,private router: Router,private activatedRoute: ActivatedRoute,private usrservice:UserserviceService,private dashservice: DashboardService,public datepipe: DatePipe) { }
+dropdownYear = [];
+selectedYear = [];
+ddSettingsyear = {};
+dropdowncat = [];
+selectedCat = [];
+ddSettingscat = {};
+filteryear:any=2019;
+filtercategory:any="6f6af57a-5c48-442e-b5b8-8b3559b10cd9";
+  constructor(private cards:CardserviceService,private httpService: HttpClient,private router: Router,private activatedRoute: ActivatedRoute,private usrservice:UserserviceService,private dashservice: DashboardService,public datepipe: DatePipe,private auth: AuthService) { }
 
   ngOnInit() {
     this.getUserDetail()
@@ -87,6 +97,7 @@ totalspendamt:any;
     }
 console.log(this.approvedcard)
 this.loadtotalspends()
+this.utilityexpnse()
    // this.loadallcards()
    this.lastpaymentsdetails()
    this.loadApprovedCards()
@@ -98,6 +109,40 @@ this.loadtotalspends()
      
       
     // })
+    this.dropdownYear = [
+     
+      { item_id: 2019, item_text: 'This Year' },
+      { item_id: 2018, item_text: '2018' },
+      
+    ];
+    this.ddSettingsyear = {
+      singleSelection: true,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: false,
+      enableCheckAll:false
+    };
+
+
+    this.dropdowncat = [
+     
+   
+      { item_id: "6f6af57a-5c48-442e-b5b8-8b3559b10cd9", item_text: 'Electricity' },
+      
+    ];
+    this.ddSettingscat = {
+      singleSelection: true,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: false,
+      enableCheckAll:false
+    };
   }
   fun() {
     this.owlElement.next([200])
@@ -174,6 +219,61 @@ chart.legend = new am4charts.Legend();
 chart.legend.position = "right";
 }
 
+private loadPieChart(){
+  /* Chart code */
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+// Create chart instance
+let chart = am4core.create("chartdiv", am4charts.PieChart);
+
+// Add and configure Series
+let pieSeries = chart.series.push(new am4charts.PieSeries());
+pieSeries.dataFields.value = "spends";
+pieSeries.dataFields.category = "utility";
+
+// Let's cut a hole in our Pie chart the size of 30% the radius
+chart.innerRadius = am4core.percent(30);
+
+// Put a thick white border around each Slice
+pieSeries.slices.template.stroke = am4core.color("#fff");
+pieSeries.slices.template.strokeWidth = 2;
+pieSeries.slices.template.strokeOpacity = 1;
+pieSeries.slices.template
+  // change the cursor on hover to make it apparent the object can be interacted with
+  .cursorOverStyle = [
+    {
+      "property": "cursor",
+      "value": "pointer"
+    }
+  ];
+
+pieSeries.alignLabels = false;
+pieSeries.labels.template.bent = true;
+pieSeries.labels.template.radius = 3;
+pieSeries.labels.template.padding(0,0,0,0);
+
+pieSeries.ticks.template.disabled = true;
+
+// Create a base filter effect (as if it's not there) for the hover to return to
+let shadow = pieSeries.slices.template.filters.push(new am4core.DropShadowFilter);
+shadow.opacity = 0;
+
+// Create hover state
+let hoverState = pieSeries.slices.template.states.getKey("hover"); // normally we have to create the hover state, in this case it already exists
+
+// Slightly shift the shadow and make it more prominent on hover
+let hoverShadow = hoverState.filters.push(new am4core.DropShadowFilter);
+hoverShadow.opacity = 0.7;
+hoverShadow.blur = 5;
+
+// Add a legend
+chart.legend = new am4charts.Legend();
+
+chart.data =this.spenddata;
+}
+
 
 private loadBarChart(){
   am4core.useTheme(am4themes_animated);
@@ -184,43 +284,7 @@ let chart = am4core.create("chartdivcolumn", am4charts.XYChart);
 chart.scrollbarX = new am4core.Scrollbar();
 
 // Add data
-chart.data = [{
-  "month": "Jan",
-  "spends": 3025
-}, {
-  "month": "Feb",
-  "spends": 1882
-}, {
-  "month": "Mar",
-  "spends": 1809
-}, {
-  "month": "April",
-  "spends": 1322
-}, {
-  "month": "May",
-  "spends": 1122
-}, {
-  "month": "June",
-  "spends": 1114
-}, {
-  "month": "July",
-  "spends": 984
-}, {
-  "month": "Aug",
-  "spends": 711
-}, {
-  "month": "Sep",
-  "spends": 665
-}, {
-  "month": "Oct",
-  "spends": 580
-}, {
-  "month": "Nov",
-  "spends": 443
-}, {
-  "month": "Dec",
-  "spends": 441
-}];
+chart.data = this.utilexpensedata;
 
 // Create axes
 let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
@@ -239,7 +303,7 @@ valueAxis.renderer.minWidth = 50;
 // Create series
 let series = chart.series.push(new am4charts.ColumnSeries());
 series.sequencedInterpolation = true;
-series.dataFields.valueY = "spends";
+series.dataFields.valueY = "amount";
 series.dataFields.categoryX = "month";
 series.tooltipText = "[{categoryX}: bold]{valueY}[/]";
 series.columns.template.strokeWidth = 0;
@@ -279,7 +343,10 @@ private getUserDetail(){
       this.getDefbillLength()
     }
   },error=>{
-    console.log(error)
+    console.log(error['status'])
+    if(error['status']==401){
+      this.auth.expiresession();
+    }
   })
     }
 
@@ -388,6 +455,9 @@ private getUserDetail(){
         this.apprPaydata=resp['data']
       },error=>{
         console.log(error)
+        if(error['status']==401){
+          this.auth.expiresession();
+        }
       })
     }
 
@@ -414,8 +484,43 @@ private getUserDetail(){
         
         this.spenddata=resp['data']
         this.totalspendamt=resp['total_amount']
-        this.loadchart()
+        this.loadPieChart()
         console.log(this.spenddata)
+      },error=>{
+        console.log(error['status'])
+        if(error['status']==401){
+          this.auth.expiresession();
+        }
+      })
+    }
+
+
+    private utilityexpnse(){
+      var params={
+        "year":this.filteryear,
+        "utility_id":this.filtercategory
+      }
+      this.dashservice.getUtilityExpense(params).then(resp=>{
+      //  console.log(resp)
+       this.utilexpensedata=resp['data']
+       console.log(this.utilexpensedata)
+       this.loadBarChart()
+      },error=>{
+        console.log(error)
+      })
+    }
+
+
+    getutilityexpnse(){
+      var params={
+        "year":this.filteryear,
+        "utility_id":this.filtercategory
+      }
+      this.dashservice.getUtilityExpense(params).then(resp=>{
+      //  console.log(resp)
+       this.utilexpensedata=resp['data']
+       console.log(this.utilexpensedata)
+       this.loadBarChart()
       },error=>{
         console.log(error)
       })
@@ -431,9 +536,26 @@ private getUserDetail(){
       }
       this.dashservice.gettotalspends(daterange).then(resp=>{
         console.log(resp)
+        this.spenddata=resp['data']
+        this.totalspendamt=resp['total_amount']
+        this.loadPieChart()
+        
       },error=>{
-        console.log(error)
+        console.log(error['status'])
+
       })
+    }
+
+    onYearSelectDown(year:any){
+      console.log(year)
+      this.filteryear=year['item_id']
+        console.log(this.filteryear)
+    }
+
+    oncatSelectDown(cat:any){
+      console.log(cat)
+      this.filtercategory=cat['item_id']
+        console.log(this.filtercategory)
     }
 
 

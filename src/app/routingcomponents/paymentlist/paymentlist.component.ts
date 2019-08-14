@@ -6,6 +6,14 @@ import {UserserviceService} from '../../api/userservice.service'
 import {PaymentserviceService} from '../../api/paymentservice.service'
 import { DatePipe } from '@angular/common'
 import { ToastrService } from 'ngx-toastr'
+import {AuthService} from '../../api/auth.service';
+import {Config} from '../../config'
+const path = new Config().getutilityBaseUrl();
+import {saveAs as importedSaveAs} from "file-saver";
+import { e } from '@angular/core/src/render3';
+import {Observable} from 'rxjs/Rx';
+import { Http, ResponseContentType , Headers,RequestOptions} from '@angular/http';
+import { any } from '@amcharts/amcharts4/.internal/core/utils/Array';
 @Component({
   selector: 'app-paymentlist',
   templateUrl: './paymentlist.component.html',
@@ -43,6 +51,8 @@ export class PaymentListComponent implements OnInit {
   fromdate:Date = new Date();
   tofilter:Date = new Date();
   fromfilter: Date = new Date();
+  filterfromdate:any;
+  filtertodate:any
   fromfilterstring:any;
   tofilterstring:any;
 rolename:any;
@@ -77,13 +87,39 @@ psdddata = [];
 tsselected = [];
 psselected = [];
 paymentstatus:any;
-  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,public datepipe: DatePipe,private toaster:ToastrService) { }
+selectallpara:boolean=false;
+custbill_name: boolean=false;
+custconsumer_name: boolean=false;
+custconsumer_no: boolean=false;
+custamount:  boolean=false;
+custreference_no:  boolean=false;
+custstatus:  boolean=false;
+custpayment_status: boolean=false;
+custbill_consumer_no: boolean=false;
+custbill_date:  boolean=false;
+custdue_date:  boolean=false;
+custlocation:  boolean=false;
+custbill_no:  boolean=false;
+custcard_no:  boolean=false;
+custmobile_no: boolean=false;
+custemail:  boolean=false;
+custaddress: boolean=false;
+custcrn:  boolean=false;
+custinitiated_by:  boolean=false;
+custinitiated_at: boolean=false;
+custapproved_on: boolean=false;
+custcomment:  boolean=false;
+custorderid:  boolean=false;
+custshort_name:boolean=false;
+organization_id=any;
+  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,public datepipe: DatePipe,private toaster:ToastrService,private auth: AuthService,private http: Http) { }
 
   ngOnInit() {
     //this.rolename=localStorage.getItem('rolename')
     this.getUserDetail();
     this.laodpayments();
-
+    this.filterfromdate=this.fromdate
+    this.filtertodate=this.todate;
     this.dropdownList = [
       { item_id: 0, item_text: 'All' },
       { item_id: 1, item_text: 'Today' },
@@ -295,6 +331,9 @@ this.paymentservice.getAllPayments().then(resp=>{
 },error=>{
   this.loaderService.display(false)
   console.log(error)
+  if(error['status']==401){
+    this.auth.expiresession();
+  }
 })
 
   }
@@ -316,9 +355,13 @@ this.paymentservice.getAllPayments().then(resp=>{
       this.userdata=res['Data'];
       console.log(this.userdata)
       this.rolename=this.userdata['dualrole']
+      this.organization_id=this.userdata['orgid']
      // this.username=this.userdata['firstname']+" "+this.userdata['lastname']
     },error=>{
       console.log(error)
+      if(error['status']==401){
+        this.auth.expiresession();
+      }
     })
       }
 
@@ -347,9 +390,29 @@ this.paymentservice.getAllPayments().then(resp=>{
     getpaymentlogs(carddebittime,paystatustime,rejectreason,paymentstat){
       this.paymentstatus=paymentstat
   console.log(this.paymentstatus)
-      console.log(paystatustime)
+      console.log(carddebittime)
+      
+     
       this.displayLogs='block';
       if(carddebittime!=null){
+        // var utcdate = new Date(carddebittime);
+        // var nowUtc = new Date(utcdate.getTime() + utcdate.getTimezoneOffset() * 60000);
+        // var d=new Date(nowUtc)
+        // console.log(d.toUTCString)
+        //var event = new Date(carddebittime);
+//console.log(event.toLocaleString('en-GB', { timeZone: 'Europe/London' }));
+//         var usaTime = new Date(carddebittime).toLocaleString("en-GB", {timeZone: "Europe/London"});
+// var usaTime1 = new Date(usaTime);
+
+// var nowUtc= usaTime1.toLocaleString()
+// console.log(nowUtc)
+// var indiaTime = new Date(nowUtc).toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
+// var indiaTime1 = new Date(indiaTime);
+// console.log('India time: '+indiaTime1.toLocaleString())
+
+// var nowist=indiaTime1.toLocaleString()
+
+//console.log(nowist)
         carddebittime=this.datepipe.transform(carddebittime, 'M/d/yy, h:mm a');
         console.log(carddebittime)
      var crddate = carddebittime.split(", ")[0];
@@ -424,6 +487,57 @@ this.paymentservice.getAllPayments().then(resp=>{
 
     }
 
+    getcustomreport(){
+      this.filterfromdate=this.datepipe.transform(this.filterfromdate, 'yyyy-MM-dd');
+      this.filtertodate=this.datepipe.transform(this.filtertodate, 'yyyy-MM-dd');
+      let headers = new Headers();
+      var paymentdata={
+        "Fromdate":this.filterfromdate,
+        "Todate":this.filtertodate,
+        "bill_name": this.custbill_name,
+"consumer_name": this.custconsumer_name,
+"consumer_no": this.custconsumer_no,
+"amount": this.custamount,
+"reference_no": this.custconsumer_no,
+"status": this.custstatus,
+"payment_status": this.custpayment_status,
+"short_name": this.custshort_name,
+"bill_date": this.custbill_date,
+"due_date": this.custdue_date,
+"location": this.custlocation,
+"bill_no": this.custbill_no,
+"card_no": this.custcard_no,
+"mobile_no": this.custmobile_no,
+"email": this.custemail,
+"address": this.custaddress,
+"crn": this.custcrn,
+"initiated_by": this.custinitiated_by,
+"initiated_at": this.custinitiated_at,
+"approved_on": this.custapproved_on,
+"comment": this.custcomment,
+"order_id": this.custorderid,
+"orgid":this.organization_id
+      }
+
+      let date =new Date()
+      this.downloadFile(paymentdata).subscribe(blob=>{
+        importedSaveAs(blob, "payments_"+date+".xlsx");
+      })
+
+      console.log(JSON.stringify(paymentdata))
+    }
+
+    downloadFile(arr:any): Observable<Blob> {
+      let options = new RequestOptions({responseType: ResponseContentType.Blob });
+      return this.http.post(path+`api/v1/payment_report`,arr, options)
+          .map(res => res.blob())
+          .catch(this.handleError)
+    }
+      handleError(handleError: any): Observable<Blob> {
+        throw new Error("Method not implemented.");
+      }
+    
+
     getfilterdata(){
       this.paymentData=[]
       this.totalamount=0;
@@ -454,5 +568,59 @@ this.paymentservice.getAllPayments().then(resp=>{
         this.loaderService.display(false)
         console.log(error)
       })
+    }
+
+    selectllpara(){
+      if(this.selectallpara==true){
+        this.custbill_name=true;
+        this.custamount=true;
+        this.custreference_no=true;
+        this.custconsumer_name=true;
+        this.custstatus=true;
+        this.custpayment_status=true;
+        this.custshort_name=true;
+        this.custdue_date=true;
+        this.custbill_date=true;
+        this.custcard_no=true;
+        this.custlocation=true;
+        this.custbill_no=true;
+        this.custemail=true;
+        this.custaddress=true;
+        this.custmobile_no=true;
+        this.custinitiated_by=true;
+        this.custinitiated_at=true;
+        this.custorderid=true;
+        this.custcrn=true;
+        this.custcomment=true;
+        this.custreference_no=true;
+        this.custapproved_on=true;
+        this.custshort_name=true;
+        this.custconsumer_no=true;
+      }else{
+        this.custbill_name=false;
+        this.custamount=false;
+        this.custreference_no=false;
+        this.custconsumer_name=false;
+        this.custstatus=false;
+        this.custpayment_status=false;
+        this.custshort_name=false;
+        this.custdue_date=false;
+        this.custbill_date=false;
+        this.custcard_no=false;
+        this.custlocation=false;
+        this.custbill_no=false;
+        this.custemail=false;
+        this.custaddress=false;
+        this.custmobile_no=false;
+        this.custinitiated_by=false;
+        this.custinitiated_at=false;
+        this.custorderid=false;
+        this.custcrn=false;
+        this.custcomment=false;
+        this.custreference_no=false;
+        this.custapproved_on=false;
+        this.custshort_name=false;
+        this.custconsumer_no=false;
+      }
     }
 }
