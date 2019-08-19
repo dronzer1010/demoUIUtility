@@ -425,21 +425,31 @@ export class MakeprepaidpaymentsComponent implements OnInit {
   }
 
   succesadd(){
-    // this.billdetails=false;
-    // this.billertype=false;
-    // this.conf=false;
-    // this.success=true;
-    // this.reviewCard=false;
-    this.date= new Date((new Date()).getTime() + 24*60*60*1000);
-    console.log(this.date)
-    var date=this.datepipe.transform(this.date, 'HH:MM:SS')
-    console.log(date)
-    if(date<'14:00:00' && date>'08:00:00'){
+    var d = new Date();
+    var nd = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()
+    console.log(nd)
+    var d = new Date();
+    var weekday = new Array(7);
+      weekday[0] = "Sunday";
+      weekday[1] = "Monday";
+      weekday[2] = "Tuesday";
+      weekday[3] = "Wednesday";
+      weekday[4] = "Thursday";
+      weekday[5] = "Friday";
+      weekday[6] = "Saturday";
+    var n = weekday[d.getDay()];
+    if(nd<'13:58:00' && nd>'08:00:00'){
       console.log("Time for initiate transaction")
     }else{
       console.log("Transaction time passed")
     }
-    if(date<'13:58:00' && date>'08:00:00'){
+    if(n=='Saturday' || n=='Sunday'){
+      this.toaster.error("You can't initiate payments on Satrurday and Sunday, please try to initiate between Monday and Friday !","Alert",{
+        timeOut:8000,
+        positionClass:'toast-top-center'
+        })
+    }else{
+    if(nd<'13:58:00' && nd>'08:00:00'){
     this.loader.display(true);
     this.paymentData={
       "card_id":this.selectedcard['id'],
@@ -507,6 +517,7 @@ export class MakeprepaidpaymentsComponent implements OnInit {
       positionClass:'toast-top-center'
       })
   }
+}
     
    
    

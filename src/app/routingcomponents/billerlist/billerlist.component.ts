@@ -322,7 +322,7 @@ deletebill(){
       "utility_type":this.utilityname,
       "consumer_no":this.consumerno,
       "name":this.billername,
-      "bill_name":this.shortname,
+      "short_name":this.shortname,
       "gl_expense_code":this.glexpensecode,
       "bill_date":this.billdate,
       "due_date":this.duedate,
@@ -332,7 +332,7 @@ deletebill(){
       "created_by":this.initiatedby,
       "created_on":this.initiatedon,
       "status":this.status,
-      "state":this.location,
+      "location":this.location,
       "orgid":this.organisation_id
       
     };
