@@ -110,6 +110,47 @@ export class DashboardService {
     return promise;
   }
 
+  gettotalspends(daterange:any): Promise<any> {
+    let promise = new Promise((resolve, reject) => {
+        this.http.post(path+"api/v3/total_spend",daterange)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                    console.log("Error occured : " + err);
+                    reject(err);
+                    console.log(err['error'])
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
+
+  getUtilityExpense(params:any): Promise<any> {
+    let promise = new Promise((resolve, reject) => {
+        this.http.post(path+"api/v3/utility_expense",params)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                    console.log("Error occured : " + err);
+                    reject(err);
+                    console.log(err['error'])
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
   getlast5payments(): Promise<any> {
     let promise = new Promise((resolve, reject) => {
         this.http.get(path+"api/v1/top_payments")

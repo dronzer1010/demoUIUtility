@@ -7,7 +7,12 @@ import {PaymentserviceService} from '../../api/paymentservice.service'
 import { DatePipe } from '@angular/common'
 import {RmservicesService} from '../../api/rmservices.service'
 import { ToastrService } from 'ngx-toastr'
-
+import {saveAs as importedSaveAs} from "file-saver";
+import { e } from '@angular/core/src/render3';
+import {Observable} from 'rxjs/Rx';
+import { Http, ResponseContentType , Headers,RequestOptions} from '@angular/http';
+import {Config} from '../../config'
+const path = new Config().getutilityBaseUrl();
 @Component({
   selector: 'app-rmpayments',
   templateUrl: './rmpayments.component.html',
@@ -55,6 +60,8 @@ export class RmpaymentsComponent implements OnInit {
   fromfilter: Date = new Date('2019-07-10 06:40:03');
   fromfilterstring:any;
   tofilterstring:any;
+  filterfromdate:any;
+  filtertodate:any
 rolename:any;
 key: string = 'status'; //set default
 reverse: boolean = true;
@@ -86,10 +93,37 @@ filterts:any="0";
 filterps:any="0";
 arrayorgid:any=[];
 paymentstatus:any;
-  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,public datepipe: DatePipe,private rmservice:RmservicesService,private toastr: ToastrService) { }
+selectallpara:boolean=false;
+custbill_name: boolean=false;
+custconsumer_name: boolean=false;
+custconsumer_no: boolean=false;
+custamount:  boolean=false;
+custreference_no:  boolean=false;
+custstatus:  boolean=false;
+custpayment_status: boolean=false;
+custbill_consumer_no: boolean=false;
+custbill_date:  boolean=false;
+custdue_date:  boolean=false;
+custlocation:  boolean=false;
+custbill_no:  boolean=false;
+custcard_no:  boolean=false;
+custmobile_no: boolean=false;
+custemail:  boolean=false;
+custaddress: boolean=false;
+custcrn:  boolean=false;
+custinitiated_by:  boolean=false;
+custinitiated_at: boolean=false;
+custapproved_on: boolean=false;
+custcomment:  boolean=false;
+custorderid:  boolean=false;
+custshort_name:boolean=false;
+
+  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,public datepipe: DatePipe,private rmservice:RmservicesService,private toastr: ToastrService,private http: Http) { }
 
   ngOnInit() {
     this.getAllOrg()
+    this.filterfromdate=this.fromdate
+    this.filtertodate=this.todate;
     this.dropdownSettings3 = {
       singleSelection: false,
       idField: 'OrgId',
@@ -489,6 +523,110 @@ private loadPayments(){
     }
   })
 }
+
+getcustomreport(){
+  this.filterfromdate=this.datepipe.transform(this.filterfromdate, 'yyyy-MM-dd');
+  this.filtertodate=this.datepipe.transform(this.filtertodate, 'yyyy-MM-dd');
+  let headers = new Headers();
+  var paymentdata={
+    "Fromdate":this.filterfromdate,
+    "Todate":this.filtertodate,
+    "bill_name": this.custbill_name,
+"consumer_name": this.custconsumer_name,
+"consumer_no": this.custconsumer_no,
+"amount": this.custamount,
+"reference_no": this.custconsumer_no,
+"status": this.custstatus,
+"payment_status": this.custpayment_status,
+"short_name": this.custshort_name,
+"bill_date": this.custbill_date,
+"due_date": this.custdue_date,
+"location": this.custlocation,
+"bill_no": this.custbill_no,
+"card_no": this.custcard_no,
+"mobile_no": this.custmobile_no,
+"email": this.custemail,
+"address": this.custaddress,
+"crn": this.custcrn,
+"initiated_by": this.custinitiated_by,
+"initiated_at": this.custinitiated_at,
+"approved_on": this.custapproved_on,
+"comment": this.custcomment,
+"order_id": this.custorderid,
+"org_ids":this.filterorgid
+  }
+
+  let date =new Date()
+  this.downloadFile(paymentdata).subscribe(blob=>{
+    importedSaveAs(blob, "payments_"+date+".xlsx");
+  })
+
+  console.log(JSON.stringify(paymentdata))
+}
+
+downloadFile(arr:any): Observable<Blob> {
+  let options = new RequestOptions({responseType: ResponseContentType.Blob });
+  return this.http.post(path+`api/v3/rm_payment_report`,arr, options)
+      .map(res => res.blob())
+      .catch(this.handleError)
+}
+  handleError(handleError: any): Observable<Blob> {
+    throw new Error("Method not implemented.");
+  }
+
+  selectllpara(){
+    if(this.selectallpara==true){
+      this.custbill_name=true;
+      this.custamount=true;
+      this.custreference_no=true;
+      this.custconsumer_name=true;
+      this.custstatus=true;
+      this.custpayment_status=true;
+      this.custshort_name=true;
+      this.custdue_date=true;
+      this.custbill_date=true;
+      this.custcard_no=true;
+      this.custlocation=true;
+      this.custbill_no=true;
+      this.custemail=true;
+      this.custaddress=true;
+      this.custmobile_no=true;
+      this.custinitiated_by=true;
+      this.custinitiated_at=true;
+      this.custorderid=true;
+      this.custcrn=true;
+      this.custcomment=true;
+      this.custreference_no=true;
+      this.custapproved_on=true;
+      this.custshort_name=true;
+      this.custconsumer_no=true;
+    }else{
+      this.custbill_name=false;
+      this.custamount=false;
+      this.custreference_no=false;
+      this.custconsumer_name=false;
+      this.custstatus=false;
+      this.custpayment_status=false;
+      this.custshort_name=false;
+      this.custdue_date=false;
+      this.custbill_date=false;
+      this.custcard_no=false;
+      this.custlocation=false;
+      this.custbill_no=false;
+      this.custemail=false;
+      this.custaddress=false;
+      this.custmobile_no=false;
+      this.custinitiated_by=false;
+      this.custinitiated_at=false;
+      this.custorderid=false;
+      this.custcrn=false;
+      this.custcomment=false;
+      this.custreference_no=false;
+      this.custapproved_on=false;
+      this.custshort_name=false;
+      this.custconsumer_no=false;
+    }
+  }
 
 
 

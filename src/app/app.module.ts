@@ -145,6 +145,7 @@ import { HttpModule } from '@angular/http';
 import { AngularFileUploaderModule } from "angular-file-uploader";
 import { ResetpwduserComponent } from './supportingcomponents/resetpwduser/resetpwduser.component';
 import { RefundviewComponent } from './supportingcomponents/refundview/refundview.component';
+
 // import { FusionChartsModule } from 'angular-fusioncharts';
 // import FusionCharts from 'fusioncharts/core';
 // import Column2D from 'fusioncharts/viz/column2d';
@@ -294,7 +295,8 @@ import { RefundviewComponent } from './supportingcomponents/refundview/refundvie
     Ng2SearchPipeModule,
     SelectDropDownModule,
     PageSliderModule,
-    AngularFileUploaderModule
+    AngularFileUploaderModule,
+
 
   ],
  

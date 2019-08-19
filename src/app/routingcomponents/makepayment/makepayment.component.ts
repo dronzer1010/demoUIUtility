@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr'
 import {ExcelService} from '../../excelservice/excel.service'
 import { DatePipe } from '@angular/common'
 import {Config} from '../../config'
+import {AuthService} from '../../api/auth.service';
 const path = new Config().getutilityBaseUrl();
 @Component({
   selector: 'app-makepayment',
@@ -81,7 +82,7 @@ export class MakePaymentComponent implements OnInit {
   public downloadFileName:string;
   fileUpload:File;
 @Output() public onUploadFinished = new EventEmitter();
-  constructor(private httpService: HttpClient,private cards:CardserviceService,private billservice: BillerserviceService, private loader: LoaderService, private users: UserserviceService,private router: Router,private paymentservice: PaymentserviceService,private toaster:ToastrService,private excelservice : ExcelService,public datepipe: DatePipe,) { }
+  constructor(private httpService: HttpClient,private cards:CardserviceService,private billservice: BillerserviceService, private loader: LoaderService, private users: UserserviceService,private router: Router,private paymentservice: PaymentserviceService,private toaster:ToastrService,private excelservice : ExcelService,public datepipe: DatePipe,private auth: AuthService) { }
 
   ngOnInit() {
     this.billrdetails();
@@ -118,6 +119,9 @@ private getuserdetails(){
     console.log(this.userdata)
   },error=>{
     console.log(error)
+    if(error['status']==401){
+      this.auth.expiresession();
+    }
   })
 }
 
@@ -171,6 +175,9 @@ private getuserdetails(){
    },error=>{
      console.log(error)
      this.loader.display(false)
+     if(error['status']==401){
+      this.auth.expiresession();
+    }
    })
   
 
@@ -243,6 +250,9 @@ private getuserdetails(){
       }
     },error=>{
       console.log(error)
+      if(error['status']==401){
+        this.auth.expiresession();
+      }
     })
   }
 
@@ -543,11 +553,16 @@ if(confirmation==true){
   }
 
   backbilldetails(){
+    this.amountpay=0;
+    this.checkedValueArray=[]
     this.billdetails=true;
     this.billertype=false;
     this.conf=false;
     this.success=false;
     this.reviewCard=false;
+    console.log(this.checkedValueArray)
+    console.log(this.amountpay)
+   
   }
   review(){
     this.billdetails=false;

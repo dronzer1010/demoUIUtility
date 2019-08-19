@@ -118,6 +118,15 @@ this.router.navigate(['/']);
  
 }
 
+expiresession(){
+localStorage.removeItem(this.TOKEN_KEY)
+this.router.navigate(['/']);
+this.toastr.warning("Your session has been expired, please login again to continue!",'Alert',{
+  timeOut:8000,
+  positionClass:'toast-top-center'
+  })
+}
+
 requestPassword(email:any,org:any){
   let body = new URLSearchParams();
   body.set('email', email);

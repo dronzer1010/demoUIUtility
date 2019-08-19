@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import {LoaderService} from '../../api/loader.service';
 import {ExcelService} from '../../excelservice/excel.service'
 import {UserserviceService} from '../../api/userservice.service'
+import { AuthService } from '../../api/auth.service';
 @Component({
   selector: 'app-userview',
   templateUrl: './userview.component.html',
@@ -53,7 +54,7 @@ export class UserviewComponent implements OnInit {
   dropdownList = [];
   selectedItems1 = [];
   dropdownSettings1 = {};
-  constructor(private loaderService: LoaderService, private excelservice : ExcelService,private toastr: ToastrService,private route:Router, private userservice: UserserviceService) { }
+  constructor(private loaderService: LoaderService, private excelservice : ExcelService,private toastr: ToastrService,private route:Router, private userservice: UserserviceService,private auth: AuthService) { }
 
   ngOnInit() {
     this.loadAllUsers()
@@ -87,6 +88,10 @@ export class UserviewComponent implements OnInit {
       this.loaderService.display(false);
        this.users = users['data']; 
        console.log(this.users);
+      },error=>{
+        if(error['status']==401){
+          this.auth.expiresession();
+        }
       });
     
 

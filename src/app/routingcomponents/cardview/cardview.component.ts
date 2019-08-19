@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CardserviceService} from '../../api/cardservice.service'
 import{LoaderService} from '../../api/loader.service';
 import {UserserviceService} from '../../api/userservice.service'
+import { AuthService } from '../../api/auth.service';
 @Component({
   selector: 'app-cardview',
   templateUrl: './cardview.component.html',
@@ -23,7 +24,7 @@ export class CardviewComponent implements OnInit {
     rejcrd:boolean=false;
     pencrd=false;
     rolename:any;
-  constructor(private cardservice: CardserviceService,private userservice: UserserviceService,private loader:LoaderService) { }
+  constructor(private cardservice: CardserviceService,private userservice: UserserviceService,private loader:LoaderService,private auth: AuthService) { }
 
   ngOnInit() {
     this.getUserDetail();
@@ -59,6 +60,9 @@ export class CardviewComponent implements OnInit {
       this.rolename=this.userdata['dualrole']
     },error=>{
       console.log(error)
+      if(error['status']==401){
+        this.auth.expiresession();
+      }
     })
       }
 
@@ -93,6 +97,9 @@ export class CardviewComponent implements OnInit {
         },error=>{
           this.loader.display(false);
             console.log("Failed to Fetch")
+            if(error['status']==401){
+              this.auth.expiresession();
+            }
         }
       
         )
