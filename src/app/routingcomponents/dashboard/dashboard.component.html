@@ -69,8 +69,8 @@
                         <td style="font-weight: bold;" class="title">
                             Utility Expense Statistics
                         </td>
-                        <td style="padding:0px; width:28%">
-                            <ng-multiselect-dropdown
+                        <td style="padding:0px; width:32%">
+                            <ng-multiselect-dropdown style="width: 92%!important;"
                               [placeholder]="'This Year'"
                               [data]="dropdownYear"
                               [(ngModel)]="selectedYear"
@@ -79,8 +79,9 @@
                              >
                             </ng-multiselect-dropdown>
                         </td>
-                        <td style="padding-right:0px; width:30%">
-                            <ng-multiselect-dropdown
+                        <td style="padding-right:0px; width:34%">
+                            <ng-multiselect-dropdown style="width: 92%!important;"
+                              [ngClass]="'dash'"
                               [placeholder]="'Categories'"
                               [data]="dropdowncat"
                               [(ngModel)]="selectedCat"
@@ -309,7 +310,7 @@
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12">
        
-                <span style="font-size: 20px;font-weight: bold;">Total Spent:</span><span style="font-size: 20px;"><i class="fa fa-rupee"></i>{{totalspendamt}}</span>
+                <span style="font-size: 20px;font-weight: bold;">Total Spent&nbsp;:</span>&nbsp;&nbsp;<span style="font-size: 20px;"><i class="fa fa-rupee"></i>{{totalspendamt}}</span>
               </div>
               <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12">
                 <div id="chartdiv" style="height:260px;width:100%;"></div>
@@ -367,7 +368,7 @@
                         <tr class="rowShow grayStrip" *ngIf="payment.collapsed && selectedIndex==i">
                           <td class="custmtd" colspan="8">
                             <div class="tablediv">
-                              <h5>Biller Details</h5>
+                              <h5 style="padding:2% 0%">Biller Details</h5>
                               <div class="mb-1">
                                 <div class="span_width">Short Name</div> <span> : </span> &nbsp;
                                 <div class="bold_span">{{payment.short_name}}</div>
@@ -415,7 +416,7 @@
                                 </div>
                             </div>
                             <div class="tablediv">
-                              <h5>Contact Details</h5>
+                              <h5 style="padding:2% 0%">Contact Details</h5>
                               <div class="mb-1">
                                 <div class="span_width">Mobile No</div> <span> : </span> &nbsp;
                                 <div class="bold_span">{{payment.contact_no}}</div>
@@ -430,7 +431,7 @@
                               </div>
                             </div>
                             <div class="tablediv noborder">
-                              <h5>Other Details</h5>
+                              <h5 style="padding:2% 0%">Other Details</h5>
                               <div class="mb-1">
                                 <div class="span_width">File Name</div> <span> : </span> &nbsp;
                                 <div class="bold_span">Unitary</div>

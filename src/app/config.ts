@@ -13,10 +13,10 @@ export class Config{
   //this.utilityapiUrl="http://13.233.114.106:9999/"
 
   //  NGrock URL
-    // this.utilityapiUrl="http://d52c3e71.ngrok.io/"
+  //  this.utilityapiUrl="http://d52c3e71.ngrok.io/"
 
      this.backurl="https://utility-rest.aquapay.in"
-    // this.backurl="http://utilityrest.ap-south-1.elasticbeanstalk.com"
+ //this.backurl="http://utilityrest.ap-south-1.elasticbeanstalk.com"
     }
 
     getBaseURL(){
