@@ -78,11 +78,31 @@ export class OtpapproveBillerComponent implements OnInit {
     this.ids = JSON.parse(this.route.snapshot.paramMap.get('ids'));
     this.billservice.sendOtp(this.ids).then(resp => {
       this.validateOPT = resp.data;
+      console.log(resp.msg)
+      if(resp.msg=='OTP disabled'){
+        this.billservice.validateOTP(resp.msg).then(resp => {
+          this.approveBills = resp;
+          if (!!this.approveBills.msg && this.approveBills.msg == "Bill successfully approved") {
+           
+            this.router.navigate(['/main/successmsg'],{queryParams:{msg:'billapprsuccess'}});
+            this.loaderService.display(false)
+          }
+          else {
+            this.loaderService.display(false)
+            this.toastr.warning("Failed to approve!!","Alert",{
+              timeOut:3000,
+              positionClass:'toast-top-center'
+              })
+          }
+        }); 
+      }else{
+        this.loaderService.display(false);
+      }
       // if(resp['venotpvalue']==0){
       //   this.loaderService.display(false);
       //   this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
       // }
-      this.loaderService.display(false);
+      
     },error=>{
       console.log(error)
       this.loaderService.display(false);

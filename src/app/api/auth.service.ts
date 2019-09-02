@@ -57,11 +57,21 @@ this.http.post(this.utilitypatah+'api/auth/signin',body.toString(), options).sub
     
   }else{
   console.log(data)
-  this.id=data['id']
-  this.saveToken(data['data']['secure_set'])
-  this.id=data['data']['admin_role_id']
-  console.log(this.id)
-  this.router.navigate(['/otp']);
+  if(data['data']['msg']=='OTP disabled'){
+    this.saveToken(data['data']['secure_set']);
+    this.id=data['data']['admin_role_id']
+    if(this.id==1){
+      this.router.navigate(['/rmdashboard']);
+    }else{
+    this.router.navigate(['/main/dashboard']);
+    }
+  }else{
+    this.id=data['id']
+    this.saveToken(data['data']['secure_set'])
+    this.id=data['data']['admin_role_id']
+    console.log(this.id)
+    this.router.navigate(['/otp']);
+  }
   }
 },error=>{
   console.log(error)

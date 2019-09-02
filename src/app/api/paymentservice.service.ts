@@ -405,5 +405,23 @@ export class PaymentserviceService {
   
     return promise;
   }
+
+  getHolidays(){
+    let promise = new Promise((resolve, reject) => {
+      this.http.get(path+"api/v3/get_holidays")
+          .subscribe(
+              res => {
+                  console.log(res);
+                  resolve(res);
+              },
+              err => {
+                  console.log("Error occured : " + err);
+                  reject(err);
+              }
+          );
+  
+  });
+  return promise;
+  }
   
 }

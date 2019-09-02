@@ -26,7 +26,7 @@ export class OtpapprovePaymentComponent implements OnInit {
 
   ngOnInit() {
     this.otprepsonse();
-    this.getuserdetails();
+  
   }
 
   backClicked() {
@@ -111,14 +111,60 @@ export class OtpapprovePaymentComponent implements OnInit {
 
   private otprepsonse(){
     this.loaderService.display(true);
+    this.getuserdetails();
     this.ids = JSON.parse(this.route.snapshot.paramMap.get('ids'));
     this.paymentservice.sendOtp(this.ids).then(resp => {
       this.validateOPT = resp.data;
+      console.log(resp)
+      if(resp['msg']=='OTP disabled'){
+        if(this.userdata['isseq']==0){
+          this.paymentservice.validateOTP(resp['msg']).then(resp => {
+            this.approvePayments = resp;
+            if (!!this.approvePayments.msg && this.approvePayments.msg == "Payments Approved") {
+              this.router.navigate(['/main/successmsg'],{queryParams:{msg:'paymentapprsuccess'}});
+              this.loaderService.display(false)
+            }
+            else {
+              this.loaderService.display(false)
+              this.toastr.warning("Failed to approve payments!!","Alert",{
+                timeOut:3000,
+                positionClass:'toast-top-center'
+                })
+            }
+          });
+        }else if(this.userdata['isseq']==1){
+          this.paymentservice.validateOTPSeq(resp['msg']).then(resp => {
+            this.approvePayments = resp;
+            if (!!this.approvePayments.msg && (this.approvePayments.msg == "Payments Approved" || this.approvePayments.msg == "Payment added successfully")) {
+              this.router.navigate(['/main/successmsg'],{queryParams:{msg:'paymentapprsuccess'}});
+              this.loaderService.display(false)
+            }
+            else {
+              this.loaderService.display(false)
+              this.toastr.warning("Failed to approve payments!!","Alert",{
+                timeOut:3000,
+                positionClass:'toast-top-center'
+                })
+            }
+          });
+        }else{
+          this.loaderService.display(false)
+          this.toastr.error("Internal Server Error!!","Alert",{
+            timeOut:3000,
+            positionClass:'toast-top-center'
+            })
+        }
+      }else{
+        this.loaderService.display(false);
+      }
+      
+
+
       // if(resp['venotpvalue']==0){
       //   this.loaderService.display(false);
       //   this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
       // }
-      this.loaderService.display(false);
+     
     },error=>{
       console.log(error)
       this.loaderService.display(false);

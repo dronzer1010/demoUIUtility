@@ -81,6 +81,7 @@ export class MakePaymentComponent implements OnInit {
   public message: string;
   public downloadFileName:string;
   fileUpload:File;
+  holidays:any=[];
 @Output() public onUploadFinished = new EventEmitter();
   constructor(private httpService: HttpClient,private cards:CardserviceService,private billservice: BillerserviceService, private loader: LoaderService, private users: UserserviceService,private router: Router,private paymentservice: PaymentserviceService,private toaster:ToastrService,private excelservice : ExcelService,public datepipe: DatePipe,private auth: AuthService) { }
 
@@ -88,6 +89,7 @@ export class MakePaymentComponent implements OnInit {
     this.billrdetails();
     this.loadApprovedCards();
     this.getuserdetails();
+    this.getholidaysforpay();
     
   }
 
@@ -240,6 +242,8 @@ private getuserdetails(){
         if(this.cardData[i].status == "Approved"){
             this.approvedcard.push(this.cardData[i]);
         }
+
+  
     }
 
     console.log(this.approvedcard)
@@ -447,7 +451,32 @@ if(confirmation==true){
   }
 
   succesadd(){
+
     var d = new Date();
+    var hm = d.getMonth()+1;
+    var hday = d.getDate();
+    var hm1="";
+    var hday1="";
+    if(hm<10) 
+      {
+        hm1='0'+hm;
+      }else{
+        hm1=''+hm;
+      } 
+
+      if(hday<10) 
+      {
+        hday1='0'+hday;
+      }else{
+        hday1=''+hday;
+      } 
+    var hd = d.getFullYear()+"-"+hm1+"-"+hday1;
+    console.log(hd)
+    if(this.holidays.includes(hd)){
+      console.log("today is holiday")
+    }else{
+      console.log("You Can Initiate payments")
+    }
     var nd = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()
     console.log(nd)
     var d = new Date();
@@ -460,11 +489,17 @@ if(confirmation==true){
       weekday[5] = "Friday";
       weekday[6] = "Saturday";
     var n = weekday[d.getDay()];
-    if(nd<'13:58:00' && nd>'08:00:00'){
-      console.log("Time for initiate transaction")
+    // if(nd<'13:58:00' && nd>'08:00:00'){
+    //   console.log("Time for initiate transaction")
+    // }else{
+    //   console.log("Transaction time passed")
+    // }
+    if(this.holidays.includes(hd)){
+      this.toaster.error("You can't initiate payments on holidays, please try to initiate on working days !","Alert",{
+        timeOut:8000,
+        positionClass:'toast-top-center'
+        })
     }else{
-      console.log("Transaction time passed")
-    }
     if(n=='Saturday' || n=='Sunday'){
       this.toaster.error("You can't initiate payments on Satrurday and Sunday, please try to initiate between Monday and Friday !","Alert",{
         timeOut:8000,
@@ -541,6 +576,7 @@ if(confirmation==true){
        })
    }
   }
+}
    
     
    
@@ -631,6 +667,15 @@ if(confirmation==true){
       }
       this.excelservice.exportAsExcelFile( this.downloadArray, 'Payment List');
     
+  }
+
+  private getholidaysforpay(){
+    this.paymentservice.getHolidays().then(resp=>{
+      console.log(resp)
+      this.holidays=resp['dates']
+    },error=>{
+      console.log(error)
+    })
   }
 
   
