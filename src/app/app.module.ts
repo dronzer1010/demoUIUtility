@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { TooltipModule } from 'ng2-tooltip-directive';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,35 +10,35 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './routingcomponents/dashboard/dashboard.component';
 import { PendingBillerComponent } from './routingcomponents/pendingbiller/pendingbiller.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule} from '@angular/material/dialog';
 //import {  } from './routingcomponents/checker-approve-biller/checker-approve-biller.component';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http'; 
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatButtonModule} from '@angular/material/button';
+import { MatInputModule} from '@angular/material/input';
 // import * as $ from 'jquery';
 import { BillerUnitaryComponent } from './routingcomponents/billerunitary/billerunitary.component';
 import { BillerlistComponent } from './routingcomponents/billerlist/billerlist.component';
 import { HeaderComponent } from './supportingcomponents/header/header.component';
-import {DataTableModule} from "angular2-datatable";
+import { DataTableModule} from "angular2-datatable";
 import { PaymentListComponent } from './routingcomponents/paymentlist/paymentlist.component';
 import { MakePaymentComponent } from './routingcomponents/makepayment/makepayment.component';
 import { MatRadioModule, MatCheckboxModule, MatSelectModule} from '@angular/material';
-import {MatCardModule} from '@angular/material/card';
-import {MatIconModule} from '@angular/material/icon';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatCardModule} from '@angular/material/card';
+import { MatIconModule} from '@angular/material/icon';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatAutocompleteModule} from '@angular/material/autocomplete';
 //import {MatDialogModule} from '@angular/material/dialog';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material';
+import { MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule} from '@angular/material';
 import { PendingPaymentsComponent } from './routingcomponents/pendingpayments/pendingpayments.component';
 import { MakerBillerBulkComponent } from './routingcomponents/maker-biller-bulk/maker-biller-bulk.component';
 // import { OwlModule } from 'ngx-owl-carousel';
 import { LoginComponent } from './authentication/login/login.component';
 import { OtpComponent } from './authentication/otp/otp.component';
 import { StartpageComponent } from './startpage/startpage.component';
-import {AutoTabDirective} from './directives/autotab.directive';
+import { AutoTabDirective} from './directives/autotab.directive';
 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -69,7 +69,7 @@ import { PendingcardsComponent } from './routingcomponents/pendingcards/pendingc
 import { ExcelService } from './excelservice/excel.service';
 import { DataFilterPipeUser } from './routingcomponents/userview/data-filter-user.pipe';
 import { OtpuserComponent } from './routingcomponents/otpuser/otpuser.component';
-import {AspendingusersFilterPipe} from './routingcomponents/pendingusers/Aspendingusers-filter.pipe';
+import { AspendingusersFilterPipe} from './routingcomponents/pendingusers/Aspendingusers-filter.pipe';
 import { RejectmsgComponent } from './supportingcomponents/rejectmsg/rejectmsg.component';
 import { OtpCardComponent } from './routingcomponents/otp-card/otp-card.component';
 import { OtpRuleComponent } from './routingcomponents/otp-rule/otp-rule.component';
@@ -82,11 +82,11 @@ import { RepositoryComponent } from './supportingcomponents/repository/repositor
 import { SamplebillsComponent } from './supportingcomponents/samplebills/samplebills.component';
 import { TemplatesComponent } from './supportingcomponents/templates/templates.component';
 import { BillerBulkComponent } from './routingcomponents/billerbulk/billerbulk.component';
-import {AuthService} from './api/auth.service'
-import{UserserviceService} from './api/userservice.service'
-import{CardserviceService} from './api/cardservice.service'
-import{GroupserviceService} from './api/groupservice.service'
-import{RuleserviceService} from './api/ruleservice.service'
+import { AuthService} from './api/auth.service'
+import { UserserviceService} from './api/userservice.service'
+import { CardserviceService} from './api/cardservice.service'
+import { GroupserviceService} from './api/groupservice.service'
+import { RuleserviceService} from './api/ruleservice.service'
 import { AuthinterceptorService} from './api/authinterceptor.service'
 import { SetupserviceService} from './api/setupservice.service'
 import { AccoutsetupService} from './api/accoutsetup.service'
@@ -107,8 +107,8 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { GeneratepasswordComponent } from './authentication/generatepassword/generatepassword.component'
 import { BackusrupComponent } from './supportingcomponents/backusrup/backusrup.component';
 import { DatePipeFormat} from './directives/formatdate.pipe';
-import {BillerserviceService} from './api/billerservice.service'
-import {PaymentserviceService} from './api/paymentservice.service';
+import { BillerserviceService } from './api/billerservice.service'
+import { PaymentserviceService } from './api/paymentservice.service';
 import { RmheaderComponent } from './rmcomponents/rmheader/rmheader.component';
 import { RmprofileComponent } from './rmcomponents/rmprofile/rmprofile.component';
 import { RmusersComponent } from './rmcomponents/rmusers/rmusers.component';
@@ -139,7 +139,7 @@ import { IfscVerificationService } from './api/ifsc-verification.service';
 import { BackgrpregComponent } from './supportingcomponents/backgrpreg/backgrpreg.component';
 import { BackruleregComponent } from './supportingcomponents/backrulereg/backrulereg.component';
 import { BackorgregComponent } from './supportingcomponents/backorgreg/backorgreg.component';
-import {PageSliderModule}    from 'ng2-page-slider';
+import { PageSliderModule }    from 'ng2-page-slider';
 import { MakeprepaidpaymentsComponent } from './routingcomponents/makeprepaidpayments/makeprepaidpayments.component';
 import { HttpModule } from '@angular/http';
 import { AngularFileUploaderModule } from "angular-file-uploader";

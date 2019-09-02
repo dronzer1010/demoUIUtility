@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr'
 import { Routes, RouterModule,Router,ActivatedRoute } from '@angular/router';
-import {HttpClient } from '@angular/common/http'
-import {AuthService} from '../../api/auth.service'
+import { HttpClient } from '@angular/common/http'
+import { AuthService} from '../../api/auth.service'
 
 @Component({
   selector: 'app-otp',

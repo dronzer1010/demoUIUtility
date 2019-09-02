@@ -24,7 +24,7 @@
   border-right: 1px solid #c0bebe;
   padding: 14px 0px 14px 3%;
   vertical-align: top;
-  height: 210px;
+  height: 260px;
 }
 
 #chartdiv > div:nth-child(2) > svg > g > g:nth-child(2) > g:nth-child(2) > g > g:nth-child(3){
@@ -175,6 +175,8 @@ input[type="checkbox"]:checked {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 6px;
+  width: 100px;
+  height: 100px;
 }
 
 .round1 {
@@ -258,7 +260,7 @@ input {
 }
 
 .title {
-  font-size: 1.20rem;
+  font-size: 1rem;
   padding: 2% 6%;
 }
 .btn-ok {
