@@ -82,6 +82,9 @@ export class MakePaymentComponent implements OnInit {
   public downloadFileName:string;
   fileUpload:File;
   holidays:any=[];
+  apprcrd:boolean=true;
+  rejcrd:boolean=false;
+  pencrd=false;
 @Output() public onUploadFinished = new EventEmitter();
   constructor(private httpService: HttpClient,private cards:CardserviceService,private billservice: BillerserviceService, private loader: LoaderService, private users: UserserviceService,private router: Router,private paymentservice: PaymentserviceService,private toaster:ToastrService,private excelservice : ExcelService,public datepipe: DatePipe,private auth: AuthService) { }
 
@@ -676,6 +679,20 @@ if(confirmation==true){
     },error=>{
       console.log(error)
     })
+  }
+
+  apprcard(){
+   
+    this.apprcrd=true;
+    this.pencrd=false;
+
+  }
+
+  pencard(){
+    
+    this.apprcrd=false;
+    this.pencrd=true;
+
   }
 
   

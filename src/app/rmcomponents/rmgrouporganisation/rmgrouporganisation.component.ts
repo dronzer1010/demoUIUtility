@@ -15,6 +15,7 @@ export class RmgrouporganisationComponent implements OnInit {
     private location: Location) { }
 
   ngOnInit() {
+    this.loadAllOrg();
   }
 
   private loadAllOrg(){

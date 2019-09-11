@@ -31,6 +31,9 @@ export class PaymentListComponent implements OnInit {
   sortOrder = "asc";
   payments : any =[]
   paymentData: any =[];
+  pendingpaymentdata:any=[]
+  successpaymentData:any=[]
+  failedpaymentdata:any=[]
   dropdownList = [];
   dropdownCat = [];
   dropdownDownload = [];
@@ -59,6 +62,8 @@ rolename:any;
 key: string = 'status'; //set default
 reverse: boolean = true;
 totalamount:any=0;
+successtotalamount:any=0;
+failedtotalamount:any=0;
 downloadArray:any=[];
 approverDetails:any=[];
 selectedIndex = -1;
@@ -112,6 +117,9 @@ custcomment:  boolean=false;
 custorderid:  boolean=false;
 custshort_name:boolean=false;
 organization_id:any;
+apprcrd:boolean=true;
+rejcrd:boolean=false;
+pencrd:boolean=false;
   constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,public datepipe: DatePipe,private toaster:ToastrService,private auth: AuthService,private http: Http) { }
 
   ngOnInit() {
@@ -264,7 +272,79 @@ organization_id:any;
     if(items['item_id']==2){
       this.display='block';
     }else if(items['item_id']==1){
-      for(let data of this.paymentData){
+      for(let data of this.pendingpaymentdata){
+        var obj={
+          Biller:data['biller_name'],
+          Amount:data['amount'],
+          Consumer_No:data['consumer_no'],
+          Consumer_Name:data['consumer_name'],
+          Status:data['transaction_status'],
+          Payment_Status:data['payment_status'],
+          Short_Name:data['short_name'],
+          GL_Expense_Code:data['gl_expense_code'],
+          Bill_Date:data['bill_date'],
+          Due_Date:data['due_date'],
+          State:data['state'],
+          Bill_Number:String(data['bill_number']),
+          Card_Number:data['card_last_digits'],
+          Order_Id:data['order_id'],
+          Contact:data['contact_no'],
+          Bill_Address:data['contact_address'],
+          Email:data['email'],
+          CRN:data['transaction_ref_no'],
+          Initiated_by:data['initiated_by'],
+          Initiated_On:data['initiated_date'],
+       
+  
+        }
+        this.downloadArray.push(obj)
+      }
+      this.excelservice.exportAsExcelFile( this.downloadArray, 'Payment List');
+    }
+  }
+
+  onItemSelectDown1(items:any){
+    console.log(items);
+    if(items['item_id']==2){
+      this.display='block';
+    }else if(items['item_id']==1){
+      for(let data of this.successpaymentData){
+        var obj={
+          Biller:data['biller_name'],
+          Amount:data['amount'],
+          Consumer_No:data['consumer_no'],
+          Consumer_Name:data['consumer_name'],
+          Status:data['transaction_status'],
+          Payment_Status:data['payment_status'],
+          Short_Name:data['short_name'],
+          GL_Expense_Code:data['gl_expense_code'],
+          Bill_Date:data['bill_date'],
+          Due_Date:data['due_date'],
+          State:data['state'],
+          Bill_Number:String(data['bill_number']),
+          Card_Number:data['card_last_digits'],
+          Order_Id:data['order_id'],
+          Contact:data['contact_no'],
+          Bill_Address:data['contact_address'],
+          Email:data['email'],
+          CRN:data['transaction_ref_no'],
+          Initiated_by:data['initiated_by'],
+          Initiated_On:data['initiated_date'],
+       
+  
+        }
+        this.downloadArray.push(obj)
+      }
+      this.excelservice.exportAsExcelFile( this.downloadArray, 'Payment List');
+    }
+  }
+
+  onItemSelectDown2(items:any){
+    console.log(items);
+    if(items['item_id']==2){
+      this.display='block';
+    }else if(items['item_id']==1){
+      for(let data of this.failedpaymentdata){
         var obj={
           Biller:data['biller_name'],
           Amount:data['amount'],
@@ -324,9 +404,27 @@ this.paymentservice.getAllPayments().then(resp=>{
   console.log(this.paymentData)
   this.loaderService.display(false)
   if(this.paymentData!=null){
-  for(var total of this.paymentData){
-    this.totalamount+=parseFloat(total['amount'])
-  }
+  // for(var total of this.paymentData){
+  //   this.totalamount+=parseFloat(total['amount'])
+  // }
+  for(let i = 0; i < this.paymentData.length; i++){
+    if(this.paymentData[i].payment_status == "Pending" || this.paymentData[i].payment_status == "Card Debited" || this.paymentData[i].payment_status == "In Process" || this.paymentData[i].payment_status == "REJECT" || this.paymentData[i].payment_status == "ERROR" || this.paymentData[i].payment_status == "Unspecified Failure"){
+        this.pendingpaymentdata.push(this.paymentData[i]);
+        this.totalamount+=parseFloat(this.paymentData[i]['amount'])
+    }
+}
+  for(let i = 0; i < this.paymentData.length; i++){
+    if(this.paymentData[i].payment_status == "Payment Success"){
+        this.successpaymentData.push(this.paymentData[i]);
+        this.successtotalamount+=parseFloat(this.paymentData[i]['amount'])
+    }
+}
+for(let i = 0; i < this.paymentData.length; i++){
+    if(this.paymentData[i].payment_status == "Payment Failed" || this.paymentData[i].payment_status == "Payment Returned"){
+        this.failedpaymentdata.push(this.paymentData[i]);
+        this.failedtotalamount+=parseFloat(this.paymentData[i]['amount'])
+    }
+}
 }
 },error=>{
   this.loaderService.display(false)
@@ -541,7 +639,9 @@ this.paymentservice.getAllPayments().then(resp=>{
 
     getfilterdata(){
       this.paymentData=[]
+      this.pendingpaymentdata=[];
       this.totalamount=0;
+      
       this.fromfilterstring=this.datepipe.transform(this.fromfilter, 'yyyy-MM-dd');
       this.tofilterstring=this.datepipe.transform(this.tofilter, 'yyyy-MM-dd');
       this.loaderService.display(true)
@@ -561,8 +661,86 @@ this.paymentservice.getAllPayments().then(resp=>{
         console.log(this.paymentData)
         this.loaderService.display(false)
         if(this.paymentData!=null){
-        for(var total of this.paymentData){
-          this.totalamount+=parseFloat(total['amount'])
+        // for(var total of this.paymentData){
+        //   this.totalamount+=parseFloat(total['amount'])
+        // }
+        for(let i = 0; i < this.paymentData.length; i++){
+          if(this.paymentData[i].payment_status == "Pending" || this.paymentData[i].payment_status == "Card Debited" || this.paymentData[i].payment_status == "In Process" || this.paymentData[i].payment_status == "REJECT" || this.paymentData[i].payment_status == "ERROR" || this.paymentData[i].payment_status == "Unspecified Failure"){
+              this.pendingpaymentdata.push(this.paymentData[i]);
+              this.totalamount+=parseFloat(this.paymentData[i]['amount'])
+          }
+      }
+      }
+      },error=>{
+        this.loaderService.display(false)
+        console.log(error)
+      })
+    }
+
+    getfilterdata1(){
+      this.paymentData=[]
+      this.successpaymentData=[]
+      this.successtotalamount=0
+      this.fromfilterstring=this.datepipe.transform(this.fromfilter, 'yyyy-MM-dd');
+      this.tofilterstring=this.datepipe.transform(this.tofilter, 'yyyy-MM-dd');
+      this.loaderService.display(true)
+      var payparams={
+        // "interval":this.filterinterval,
+        "payment_status":this.filterps,
+        "transaction_status":this.filterts,
+        "category":this.filtercategory,
+        "from":this.fromfilterstring,
+        "to":this.tofilterstring
+      }
+
+      this.paymentservice.filterpayment(payparams).then(resp=>{
+        this.successtotalamount=0
+        console.log(resp)
+        this.paymentData=resp['data'];
+        console.log(this.paymentData)
+        this.loaderService.display(false)
+        if(this.paymentData!=null){
+          for(let i = 0; i < this.paymentData.length; i++){
+            if(this.paymentData[i].payment_status == "Payment Success"){
+                this.successpaymentData.push(this.paymentData[i]);
+                this.successtotalamount+=parseFloat(this.paymentData[i]['amount'])
+            }
+        }
+      }
+      },error=>{
+        this.loaderService.display(false)
+        console.log(error)
+      })
+    }
+
+    getfilterdata2(){
+      this.paymentData=[]
+      this.failedpaymentdata=[]
+      this.failedtotalamount=0;
+      this.fromfilterstring=this.datepipe.transform(this.fromfilter, 'yyyy-MM-dd');
+      this.tofilterstring=this.datepipe.transform(this.tofilter, 'yyyy-MM-dd');
+      this.loaderService.display(true)
+      var payparams={
+        // "interval":this.filterinterval,
+        "payment_status":this.filterps,
+        "transaction_status":this.filterts,
+        "category":this.filtercategory,
+        "from":this.fromfilterstring,
+        "to":this.tofilterstring
+      }
+
+      this.paymentservice.filterpayment(payparams).then(resp=>{
+        this.failedtotalamount=0
+        console.log(resp)
+        this.paymentData=resp['data'];
+        console.log(this.paymentData)
+        this.loaderService.display(false)
+        if(this.paymentData!=null){
+          for(let i = 0; i < this.paymentData.length; i++){
+            if(this.paymentData[i].payment_status == "Payment Failed" || this.paymentData[i].payment_status == "Payment Returned"){
+                this.failedpaymentdata.push(this.paymentData[i]);
+                this.failedtotalamount+=parseFloat(this.paymentData[i]['amount'])
+            }
         }
       }
       },error=>{
@@ -623,5 +801,28 @@ this.paymentservice.getAllPayments().then(resp=>{
         this.custshort_name=false;
         this.custconsumer_no=false;
       }
+    }
+
+    apprcard(){
+   
+      this.apprcrd=true;
+      this.pencrd=false;
+      this.rejcrd=false;
+  
+    }
+  
+    pencard(){
+      
+      this.apprcrd=false;
+      this.pencrd=true;
+      this.rejcrd=false;
+    }
+
+    
+    rejcard(){
+      
+      this.apprcrd=false;
+      this.pencrd=false;
+      this.rejcrd=true;
     }
 }
