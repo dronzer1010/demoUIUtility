@@ -9,6 +9,7 @@ import {UserserviceService} from '../../api/userservice.service'
 import {PaymentserviceService} from '../../api/paymentservice.service'
 import { ToastrService } from 'ngx-toastr'
 import { DatePipe } from '@angular/common'
+
 @Component({
   selector: 'app-pendingpayments',
   templateUrl: './pendingpayments.component.html',
@@ -74,13 +75,13 @@ latecharges:string;
 remarks:string;
 incentives:string;
 meterreading:string;
-
+holidays:any=[];
   constructor(private router:Router , private aRouter : ActivatedRoute,private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,private toastr: ToastrService,public datepipe: DatePipe) { }
 
   ngOnInit() {
     this.getUserDetail();
     this.loadPayments()
-
+    this.getholidaysforpay();
     this.aRouter.queryParams
       .filter(params => params.otp)
       .subscribe(params => {
@@ -415,15 +416,69 @@ private getUserDetail(){
     }
 
     gotoOTP(): void {
-      if (this.temp == true) {
-    
-        this.router.navigate(['/main/otp-approve-payment', JSON.stringify(this.checkedValueArray)]);
-      } else {
-        this.toastr.warning("Please select atleast one Payment!","Alert",{
-          timeOut:3000,
-          positionClass:'toast-top-center'
-          })
+      var d = new Date();
+    var hm = d.getMonth()+1;
+    var hday = d.getDate();
+    var hm1="";
+    var hday1="";
+    if(hm<10) 
+      {
+        hm1='0'+hm;
+      }else{
+        hm1=''+hm;
+      } 
+
+      if(hday<10) 
+      {
+        hday1='0'+hday;
+      }else{
+        hday1=''+hday;
+      } 
+    var hd = d.getFullYear()+"-"+hm1+"-"+hday1;
+    console.log(hd)
+    if(this.holidays.includes(hd)){
+      console.log("today is holiday")
+    }else{
+      console.log("You Can Initiate payments")
+    }
+    var nd = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()
+    console.log(nd)
+    var d = new Date();
+    var weekday = new Array(7);
+      weekday[0] = "Sunday";
+      weekday[1] = "Monday";
+      weekday[2] = "Tuesday";
+      weekday[3] = "Wednesday";
+      weekday[4] = "Thursday";
+      weekday[5] = "Friday";
+      weekday[6] = "Saturday";
+    var n = weekday[d.getDay()];
+    if(this.holidays.includes(hd)){
+        this.toastr.error("You can't initiate payments on holidays, please try to initiate on working days !","Alert",{
+        timeOut:8000,
+        positionClass:'toast-top-center'
+        })
+    }else{
+      if(n=='Saturday' || n=='Sunday'){
+        this.toastr.error("You can't initiate payments on Satrurday and Sunday, please try to initiate between Monday and Friday !","Alert",{timeOut:8000,positionClass:'toast-top-center'})
+      }else{
+        if(nd<'13:58:00' && nd>'08:00:00'){
+          if (this.temp == true) {
+            this.router.navigate(['/main/otp-approve-payment', JSON.stringify(this.checkedValueArray)]);
+          }else {
+            this.toastr.warning("Please select atleast one Payment!","Alert",{
+              timeOut:3000,
+              positionClass:'toast-top-center'
+              })
+          }
+        }else{
+          this.toastr.error("Todays batch has passed now, you cannot initiate payment now. Please fetch the bills tomorrow between 08:00 AM and 01:58 PM and initiate the payments !","Alert",{
+            timeOut:8000,
+            positionClass:'toast-top-center'
+            })
+        }
       }
+    }
     
     }
 
@@ -445,5 +500,14 @@ private getUserDetail(){
         console.log(error)
       })
 
+    }
+
+    private getholidaysforpay(){
+      this.paymentservice.getHolidays().then(resp=>{
+        console.log(resp)
+        this.holidays=resp['dates']
+      },error=>{
+        console.log(error)
+      })
     }
 }
