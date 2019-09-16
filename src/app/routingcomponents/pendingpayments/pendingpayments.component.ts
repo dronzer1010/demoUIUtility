@@ -462,7 +462,7 @@ private getUserDetail(){
       if(n=='Saturday' || n=='Sunday'){
         this.toastr.error("You can't initiate payments on Satrurday and Sunday, please try to initiate between Monday and Friday !","Alert",{timeOut:8000,positionClass:'toast-top-center'})
       }else{
-        if(nd<'13:58:00' && nd>'08:00:00'){
+      //  if(nd<'13:58:00' && nd>'08:00:00'){
           if (this.temp == true) {
             this.router.navigate(['/main/otp-approve-payment', JSON.stringify(this.checkedValueArray)]);
           }else {
@@ -471,12 +471,12 @@ private getUserDetail(){
               positionClass:'toast-top-center'
               })
           }
-        }else{
-          this.toastr.error("Todays batch has passed now, you cannot initiate payment now. Please fetch the bills tomorrow between 08:00 AM and 01:58 PM and initiate the payments !","Alert",{
-            timeOut:8000,
-            positionClass:'toast-top-center'
-            })
-        }
+        // }else{
+        //   this.toastr.error("Todays batch has passed now, you cannot initiate payment now. Please fetch the bills tomorrow between 08:00 AM and 01:58 PM and initiate the payments !","Alert",{
+        //     timeOut:8000,
+        //     positionClass:'toast-top-center'
+        //     })
+        // }
       }
     }
     
