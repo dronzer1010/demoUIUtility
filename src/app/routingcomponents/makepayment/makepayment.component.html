@@ -166,8 +166,8 @@
               <div class="col-md-12 tab text-center centra">
                   <div class="col-md-3"></div>
                   <div class="col-md-6">
-                      <button class="tablinks" [ngClass]="apprcrd?'active':''" id="mycard" (click)="apprcard()">PAYABLE BILLS</button>
-                      <button class="tablinks" [ngClass]="pencrd?'active':''" id="pendcard" (click)="pencard()" >NON-PAYABLE BILLS</button>
+                      <button class="tablinks" [ngClass]="apprcrd?'active':''" id="mycard" (click)="apprcard();getValidBillers()">PAYABLE BILLS</button>
+                      <button class="tablinks" [ngClass]="pencrd?'active':''" id="pendcard" (click)="pencard();getInvalidBillers()" >NON-PAYABLE BILLS</button>
                      
                   </div>
                  
@@ -191,8 +191,8 @@
                       <td class="unitheaders">Amount payable</td>
                     </tr>
                     <tr>
-                      <td>{{bills.length}}</td>
-                      <td><i class="fa fa-rupee"></i>{{totalamount | numberfr}}</td>
+                      <td>{{validbillsforpay.length}}</td>
+                      <td><i class="fa fa-rupee"></i>{{validbillamount | numberfr}}</td>
                       <td>{{checkedValueArray.length}}</td>
                       <td><i class="fa fa-rupee"></i>{{amountpay | numberfr}}</td>
                     </tr>
@@ -210,7 +210,7 @@
               <div class="row" id="">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
-                    <table id="main-table" [mfData]="bills" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                    <table id="main-table" [mfData]="validbillsforpay" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                       <thead>
                         <tr>
                           <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(bills)"></td>
@@ -433,8 +433,8 @@
                            
                           </tr>
                           <tr>
-                            <td>{{bills.length}}</td>
-                            <td><i class="fa fa-rupee"></i>{{totalamount | numberfr}}</td>
+                            <td>{{invalidbillsforpay.length}}</td>
+                            <td><i class="fa fa-rupee"></i>{{invalidbillamount | numberfr}}</td>
                           
                           </tr>
                         </table>
@@ -449,7 +449,7 @@
                     <div class="row" id="">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
-                          <table id="main-table" [mfData]="bills" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                          <table id="main-table" [mfData]="invalidbillsforpay" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                             <thead>
                               <tr>
                               
@@ -521,7 +521,7 @@
                                     <h5>Other Details</h5>
                                     <div class="mb-1">
                                         <div class="span_width">Comment</div> <span class="no-vert"> : </span> &nbsp;
-                                        <div class="bold_span" tooltip="There are no pending dues for the details entered with Bangalore Electricity supply company Ltd." placement="top" show-delay="500">There are no pending dues for the details entered with Bangalore Electricity supply company Ltd.</div>
+                                        <div class="bold_span" tooltip="{{payment.front_end_error}}" placement="top" show-delay="500">{{payment.front_end_error}}</div>
                                       </div>
                                     <div class="mb-1">
                                       <div class="span_width">File Name</div> <span class="no-vert"> : </span> &nbsp;

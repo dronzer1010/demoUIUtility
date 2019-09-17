@@ -85,14 +85,21 @@ export class MakePaymentComponent implements OnInit {
   apprcrd:boolean=true;
   rejcrd:boolean=false;
   pencrd=false;
+  validbillsforpay:any=[];
+  invalidbillsforpay:any=[];
+  validbillamount:number=0;
+  invalidbillamount:number=0;
 @Output() public onUploadFinished = new EventEmitter();
   constructor(private httpService: HttpClient,private cards:CardserviceService,private billservice: BillerserviceService, private loader: LoaderService, private users: UserserviceService,private router: Router,private paymentservice: PaymentserviceService,private toaster:ToastrService,private excelservice : ExcelService,public datepipe: DatePipe,private auth: AuthService) { }
 
   ngOnInit() {
-    this.billrdetails();
+    //this.billrdetails();
     this.loadApprovedCards();
     this.getuserdetails();
     this.getholidaysforpay();
+
+    this.getValidBillers();
+    
     
   }
 
@@ -187,6 +194,59 @@ private getuserdetails(){
   
 
 
+  }
+
+
+getValidBillers(){
+    this.loader.display(true)
+    this.billertype=false;
+    this.billdetails=true;
+    this.reviewCard=false;
+    this.currentdate= new Date((new Date()).getTime() + 24*60*60*1000);
+    this.billservice.getvalidbillsforpay().then(resp=>{
+      console.log(resp)
+      if(resp!=null){
+        this.validbillsforpay=resp;
+        for(var i=0;i<this.validbillsforpay.length;i++){
+          if(this.validbillsforpay[i]['amount']!=null)
+          this.validbillamount+=parseInt(this.validbillsforpay[i]['amount'])
+        }
+
+        this.loader.display(false)
+      }
+    },error=>{
+      console.log(error)
+     this.loader.display(false)
+     if(error['status']==401){
+      this.auth.expiresession();
+    }
+    })
+  }
+
+ getInvalidBillers(){
+  this.loader.display(true)
+  this.billertype=false;
+  this.billdetails=true;
+  this.reviewCard=false;
+  this.currentdate= new Date((new Date()).getTime() + 24*60*60*1000);
+    this.billservice.getinvalidbillsforpay().then(resp=>{
+      console.log(resp)
+      if(resp!=null){
+        this.invalidbillsforpay=resp;
+        for(var i=0;i<this.invalidbillsforpay.length;i++){
+          if(this.invalidbillsforpay[i]['amount']!=null)
+          this.invalidbillamount+=parseInt(this.invalidbillsforpay[i]['amount'])
+        }
+
+        this.loader.display(false)
+      }
+    },error=>{
+      console.log(error)
+      this.loader.display(false)
+      if(error['status']==401){
+       this.auth.expiresession();
+     }
+    })
   }
 
   filtervalidamount(){
