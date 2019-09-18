@@ -403,29 +403,49 @@ this.paymentservice.getAllPayments().then(resp=>{
   this.paymentData=resp['data'];
   console.log(this.paymentData)
   this.loaderService.display(false)
-  if(this.paymentData!=null){
+  if(resp!=null){
+  if(resp['inprocess_payment']!=null){
+    this.pendingpaymentdata=resp['inprocess_payment']
+    for(let i = 0; i < this.pendingpaymentdata.length; i++){
+      this.totalamount+=parseFloat(this.pendingpaymentdata[i]['amount'])
+    }
+  }
+  if(resp['successful_payment']!=null){
+    this.successpaymentData=resp['successful_payment']
+    for(let i = 0; i < this.successpaymentData.length; i++){
+      this.successtotalamount+=parseFloat(this.successpaymentData[i]['amount'])
+    }
+  }
+  if(resp['fail_payment']!=null){
+    this.failedpaymentdata=resp['fail_payment']
+    for(let i = 0; i < this.failedpaymentdata.length; i++){
+      this.failedtotalamount+=parseFloat(this.failedpaymentdata[i]['amount'])
+    }
+  }
+}
+  //if(this.paymentData!=null){
   // for(var total of this.paymentData){
   //   this.totalamount+=parseFloat(total['amount'])
   // }
-  for(let i = 0; i < this.paymentData.length; i++){
-    if(this.paymentData[i].payment_status == "Pending" || this.paymentData[i].payment_status == "Card Debited" || this.paymentData[i].payment_status == "In Process" || this.paymentData[i].payment_status == "REJECT" || this.paymentData[i].payment_status == "ERROR" || this.paymentData[i].payment_status == "Unspecified Failure"){
-        this.pendingpaymentdata.push(this.paymentData[i]);
-        this.totalamount+=parseFloat(this.paymentData[i]['amount'])
-    }
-}
-  for(let i = 0; i < this.paymentData.length; i++){
-    if(this.paymentData[i].payment_status == "Payment Success"){
-        this.successpaymentData.push(this.paymentData[i]);
-        this.successtotalamount+=parseFloat(this.paymentData[i]['amount'])
-    }
-}
-for(let i = 0; i < this.paymentData.length; i++){
-    if(this.paymentData[i].payment_status == "Payment Failed" || this.paymentData[i].payment_status == "Payment Returned"){
-        this.failedpaymentdata.push(this.paymentData[i]);
-        this.failedtotalamount+=parseFloat(this.paymentData[i]['amount'])
-    }
-}
-}
+//   for(let i = 0; i < this.paymentData.length; i++){
+//     if(this.paymentData[i].payment_status == "Pending" || this.paymentData[i].payment_status == "Card Debited" || this.paymentData[i].payment_status == "In Process" || this.paymentData[i].payment_status == "REJECT" || this.paymentData[i].payment_status == "ERROR" || this.paymentData[i].payment_status == "Unspecified Failure"){
+//         this.pendingpaymentdata.push(this.paymentData[i]);
+//         this.totalamount+=parseFloat(this.paymentData[i]['amount'])
+//     }
+// }
+//   for(let i = 0; i < this.paymentData.length; i++){
+//     if(this.paymentData[i].payment_status == "Payment Success"){
+//         this.successpaymentData.push(this.paymentData[i]);
+//         this.successtotalamount+=parseFloat(this.paymentData[i]['amount'])
+//     }
+// }
+// for(let i = 0; i < this.paymentData.length; i++){
+//     if(this.paymentData[i].payment_status == "Payment Failed" || this.paymentData[i].payment_status == "Payment Returned"){
+//         this.failedpaymentdata.push(this.paymentData[i]);
+//         this.failedtotalamount+=parseFloat(this.paymentData[i]['amount'])
+//     }
+// }
+//}
 },error=>{
   this.loaderService.display(false)
   console.log(error)
@@ -638,7 +658,7 @@ for(let i = 0; i < this.paymentData.length; i++){
     
 
     getfilterdata(){
-      this.paymentData=[]
+      
       this.pendingpaymentdata=[];
       this.totalamount=0;
       
@@ -657,20 +677,29 @@ for(let i = 0; i < this.paymentData.length; i++){
       this.paymentservice.filterpayment(payparams).then(resp=>{
         this.totalamount=0
         console.log(resp)
-        this.paymentData=resp['data'];
-        console.log(this.paymentData)
+        if(resp!=null){
+          if(resp['inprocess_payment']!=null){
+            this.pendingpaymentdata=resp['inprocess_payment']
+            for(let i = 0; i < this.pendingpaymentdata.length; i++){
+              this.totalamount+=parseFloat(this.pendingpaymentdata[i]['amount'])
+            }
+          }
+        }
+      //  this.paymentData=resp['data'];
+        //console.log(this.paymentData)
         this.loaderService.display(false)
-        if(this.paymentData!=null){
+       // if(this.paymentData!=null){
         // for(var total of this.paymentData){
         //   this.totalamount+=parseFloat(total['amount'])
         // }
-        for(let i = 0; i < this.paymentData.length; i++){
-          if(this.paymentData[i].payment_status == "Pending" || this.paymentData[i].payment_status == "Card Debited" || this.paymentData[i].payment_status == "In Process" || this.paymentData[i].payment_status == "REJECT" || this.paymentData[i].payment_status == "ERROR" || this.paymentData[i].payment_status == "Unspecified Failure"){
-              this.pendingpaymentdata.push(this.paymentData[i]);
-              this.totalamount+=parseFloat(this.paymentData[i]['amount'])
-          }
-      }
-      }
+      //   for(let i = 0; i < this.paymentData.length; i++){
+      //     if(this.paymentData[i].payment_status == "Pending" || this.paymentData[i].payment_status == "Card Debited" || this.paymentData[i].payment_status == "In Process" || this.paymentData[i].payment_status == "REJECT" || this.paymentData[i].payment_status == "ERROR" || this.paymentData[i].payment_status == "Unspecified Failure"){
+      //         this.pendingpaymentdata.push(this.paymentData[i]);
+      //         this.totalamount+=parseFloat(this.paymentData[i]['amount'])
+      //     }
+      // }
+     // }
+
       },error=>{
         this.loaderService.display(false)
         console.log(error)
@@ -678,7 +707,7 @@ for(let i = 0; i < this.paymentData.length; i++){
     }
 
     getfilterdata1(){
-      this.paymentData=[]
+      //this.paymentData=[]
       this.successpaymentData=[]
       this.successtotalamount=0
       this.fromfilterstring=this.datepipe.transform(this.fromfilter, 'yyyy-MM-dd');
@@ -696,17 +725,25 @@ for(let i = 0; i < this.paymentData.length; i++){
       this.paymentservice.filterpayment(payparams).then(resp=>{
         this.successtotalamount=0
         console.log(resp)
-        this.paymentData=resp['data'];
-        console.log(this.paymentData)
+        //this.paymentData=resp['data'];
+       // console.log(this.paymentData)
         this.loaderService.display(false)
-        if(this.paymentData!=null){
-          for(let i = 0; i < this.paymentData.length; i++){
-            if(this.paymentData[i].payment_status == "Payment Success"){
-                this.successpaymentData.push(this.paymentData[i]);
-                this.successtotalamount+=parseFloat(this.paymentData[i]['amount'])
+        if(resp!=null){
+          if(resp['successful_payment']!=null){
+            this.successpaymentData=resp['successful_payment']
+            for(let i = 0; i < this.successpaymentData.length; i++){
+              this.successtotalamount+=parseFloat(this.successpaymentData[i]['amount'])
             }
+          }
         }
-      }
+      //   if(this.paymentData!=null){
+      //     for(let i = 0; i < this.paymentData.length; i++){
+      //       if(this.paymentData[i].payment_status == "Payment Success"){
+      //           this.successpaymentData.push(this.paymentData[i]);
+      //           this.successtotalamount+=parseFloat(this.paymentData[i]['amount'])
+      //       }
+      //   }
+      // }
       },error=>{
         this.loaderService.display(false)
         console.log(error)
@@ -714,7 +751,7 @@ for(let i = 0; i < this.paymentData.length; i++){
     }
 
     getfilterdata2(){
-      this.paymentData=[]
+     
       this.failedpaymentdata=[]
       this.failedtotalamount=0;
       this.fromfilterstring=this.datepipe.transform(this.fromfilter, 'yyyy-MM-dd');
@@ -732,15 +769,23 @@ for(let i = 0; i < this.paymentData.length; i++){
       this.paymentservice.filterpayment(payparams).then(resp=>{
         this.failedtotalamount=0
         console.log(resp)
-        this.paymentData=resp['data'];
-        console.log(this.paymentData)
+        //this.paymentData=resp['data'];
+        //console.log(this.paymentData)
         this.loaderService.display(false)
-        if(this.paymentData!=null){
-          for(let i = 0; i < this.paymentData.length; i++){
-            if(this.paymentData[i].payment_status == "Payment Failed" || this.paymentData[i].payment_status == "Payment Returned"){
-                this.failedpaymentdata.push(this.paymentData[i]);
-                this.failedtotalamount+=parseFloat(this.paymentData[i]['amount'])
-            }
+      //   if(this.paymentData!=null){
+      //     for(let i = 0; i < this.paymentData.length; i++){
+      //       if(this.paymentData[i].payment_status == "Payment Failed" || this.paymentData[i].payment_status == "Payment Returned"){
+      //           this.failedpaymentdata.push(this.paymentData[i]);
+      //           this.failedtotalamount+=parseFloat(this.paymentData[i]['amount'])
+      //       }
+      //   }
+      // }
+      if(resp!=null){
+        if(resp['fail_payment']!=null){
+          this.failedpaymentdata=resp['fail_payment']
+          for(let i = 0; i < this.failedpaymentdata.length; i++){
+            this.failedtotalamount=parseFloat(this.failedpaymentdata[i]['amount'])
+          }
         }
       }
       },error=>{

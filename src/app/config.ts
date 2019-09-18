@@ -15,7 +15,7 @@ export class Config{
  // this.utilityapiUrl="http://13.233.114.106:9999/"
 
   //  NGrock URL
-   this.utilityapiUrl="http://999644d0.ngrok.io/"
+   this.utilityapiUrl="http://dd48c449.ngrok.io/"
 
     this.backurl="https://utility-rest.aquapay.in"
  //this.backurl="http://utilityrest.ap-south-1.elasticbeanstalk.com"

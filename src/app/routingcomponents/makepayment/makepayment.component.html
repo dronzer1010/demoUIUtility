@@ -469,7 +469,7 @@
                                 <td>{{payment.utility}}</td>
                                 <td>{{payment.biller_name}}</td>
                                 <td><i class="fa fa-rupee"></i>{{payment.amount}}</td>
-                                <td>No Data</td>
+                                <td>{{(payment.fetch_due_date)?payment.fetch_due_date:"No Data"}}</td>
                                 <td>{{payment.consumer_no}}</td>
                                 <td style="padding: 0 5px;"><img alt="" src="assets/img/tb_downarrow.png" (click)="payment.collapsed=!payment.collapsed;"></td>
                               </tr>
