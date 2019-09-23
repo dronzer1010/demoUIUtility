@@ -222,7 +222,7 @@
                         <td>{{bill.bill_date}}</td>
                         <td>{{bill.due_date}}</td>
                         <td><a href="javascript:void(0);" class="btn"
-                            [ngClass]="{'appoved': bill.status === 'Registered','appoved': bill.status === 'Approved', 'Rejected': bill.status  === 'Rejected', 'Pending': bill.status  === 'Pending'}"
+                            [ngClass]="{'appoved': bill.status === 'Registered', 'Rejected': bill.status  === 'Rejected', 'Pending': bill.status  === 'Pending'}"
                             role="button">{{bill.status}}</a></td>
                         <td *ngIf="rolename=='ccmaker' || rolename=='maker'" style="padding-left: 1%;"><a
                             data-toggle="modal" id="openBtn" (click)="opendeletemodal(bill.id)"><img src="assets/img/delete.png"></a></td>
