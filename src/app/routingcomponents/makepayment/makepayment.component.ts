@@ -700,7 +700,7 @@ if(confirmation==true){
   onItemSelectDown(){
     
     
-      for(let data of this.bills){
+      for(let data of this.validbillsforpay){
         var obj={
           Biller:data['biller_name'],
           Amount:data['amount'],
@@ -728,9 +728,45 @@ if(confirmation==true){
         }
         this.downloadArray.push(obj)
       }
-      this.excelservice.exportAsExcelFile( this.downloadArray, 'Payment List');
+      this.excelservice.exportAsExcelFile( this.downloadArray, 'Payable Bills list List');
     
   }
+
+
+  onItemSelectDowninvalid(){
+    
+    
+    for(let data of this.invalidbillsforpay){
+      var obj={
+        Biller:data['biller_name'],
+        Amount:data['amount'],
+        Consumer_No:data['consumer_no'],
+       
+        Status:data['transaction_status'],
+        Payment_Status:data['payment_status'],
+        Short_Name:data['short_name'],
+        GL_Expense_Code:data['gl_expense_code'],
+      
+        State:data['state'],
+        Bill_Number:String(data['fetch_bill_no']),
+        Card_Number:data['card_last_digits'],
+        Order_Id:data['order_id'],
+        Contact:data['contact_no'],
+        Bill_Address:data['contact_address'],
+        Email:data['email'],
+       
+        Initiated_by:data['initiated_by'],
+        Initiated_On:data['initiated_date'],
+     Due_date:data['fetch_due_date'],
+     Bill_date:data['fetch_bill_date'],
+        Commnet:data['front_end_error']
+
+      }
+      this.downloadArray.push(obj)
+    }
+    this.excelservice.exportAsExcelFile( this.downloadArray, 'Non Payable Bills List');
+  
+}
 
   private getholidaysforpay(){
     this.paymentservice.getHolidays().then(resp=>{
