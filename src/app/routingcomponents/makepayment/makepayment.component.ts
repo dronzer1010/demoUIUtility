@@ -759,7 +759,7 @@ if(confirmation==true){
         Initiated_On:data['initiated_date'],
      Due_date:data['fetch_due_date'],
      Bill_date:data['fetch_bill_date'],
-        Commnet:data['front_end_error']
+        Comment:data['front_end_error']
 
       }
       this.downloadArray.push(obj)
