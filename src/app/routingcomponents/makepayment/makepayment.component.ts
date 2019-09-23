@@ -72,6 +72,7 @@ export class MakePaymentComponent implements OnInit {
   cardData:any=[];
   paymentdata:any={}
   downloadArray:any=[];
+  downloadArray1:any=[];
   filteredbills:any=[];
   date:Date;
   currentdate:Date;
@@ -698,7 +699,7 @@ if(confirmation==true){
   }
 
   onItemSelectDown(){
-    
+    this.downloadArray=[];
     
       for(let data of this.validbillsforpay){
         var obj={
@@ -734,7 +735,7 @@ if(confirmation==true){
 
 
   onItemSelectDowninvalid(){
-    
+    this.downloadArray1=[];
     
     for(let data of this.invalidbillsforpay){
       var obj={
@@ -762,9 +763,9 @@ if(confirmation==true){
         Comment:data['front_end_error']
 
       }
-      this.downloadArray.push(obj)
+      this.downloadArray1.push(obj)
     }
-    this.excelservice.exportAsExcelFile( this.downloadArray, 'Non Payable Bills List');
+    this.excelservice.exportAsExcelFile( this.downloadArray1, 'Non Payable Bills List');
   
 }
 
