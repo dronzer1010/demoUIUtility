@@ -69,6 +69,7 @@ import { BackgrpregComponent } from './supportingcomponents/backgrpreg/backgrpre
 import { MakeprepaidpaymentsComponent } from './routingcomponents/makeprepaidpayments/makeprepaidpayments.component';
 import { ResetpwduserComponent } from './supportingcomponents/resetpwduser/resetpwduser.component';
 import { RefundviewComponent } from './supportingcomponents/refundview/refundview.component';
+import { RmfetchreportComponent } from './rmcomponents/rmfetchreport/rmfetchreport.component';
 const appRoutes: Routes = [ 
     { path:'main',component:UserhomeComponent,
     children:[
@@ -143,6 +144,7 @@ const appRoutes: Routes = [
     { path : 'rmrepository', component: RmrepositoryComponent,canActivate: [AuthGuard]},
     { path : 'rmtemplates', component: RmtemplatesComponent,canActivate: [AuthGuard]},
     { path : 'rmsample-bills', component: RmsamplebillsComponent,canActivate: [AuthGuard]},
+    { path : 'rmfetch-report', component: RmfetchreportComponent,canActivate: [AuthGuard]},
     { path: '**', redirectTo: '' }
 ];
 

@@ -145,6 +145,7 @@ import { HttpModule } from '@angular/http';
 import { AngularFileUploaderModule } from "angular-file-uploader";
 import { ResetpwduserComponent } from './supportingcomponents/resetpwduser/resetpwduser.component';
 import { RefundviewComponent } from './supportingcomponents/refundview/refundview.component';
+import { RmfetchreportComponent } from './rmcomponents/rmfetchreport/rmfetchreport.component';
 
 // import { FusionChartsModule } from 'angular-fusioncharts';
 // import FusionCharts from 'fusioncharts/core';
@@ -246,7 +247,8 @@ import { RefundviewComponent } from './supportingcomponents/refundview/refundvie
     BackorgregComponent,
     MakeprepaidpaymentsComponent,
     ResetpwduserComponent,
-    RefundviewComponent
+    RefundviewComponent,
+    RmfetchreportComponent
   ],
 
   imports: [

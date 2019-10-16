@@ -1,0 +1,342 @@
+<app-rmheader></app-rmheader>
+
+<div class="container ">
+  <section class="content ">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 heading">
+        Bill Fetch Report Organisation-Wise
+      </div>
+    </div>
+ 
+    <div class="clearfix"></div>
+    <div class="clearfix"></div>
+    <form role="form" class="contact-form">
+      
+      <div class="row">
+       
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="row form_bg" id="" *ngIf="billdetails">
+              <div class="col-md-12 tab text-center centra">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-6">
+                      <button class="tablinks" [ngClass]="apprcrd?'active':''" id="mycard" (click)="apprcard();getValidBillers()">PAYABLE BILLS</button>
+                      <button class="tablinks" [ngClass]="pencrd?'active':''" id="pendcard" (click)="pencard();getInValidBillers()" >NON-PAYABLE BILLS</button>
+                     
+                  </div>
+                 
+              </div>
+              <div class="clear10"></div>
+              <div class="clear10"></div>
+              <div id="London" class="tabcontent" *ngIf="apprcrd">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="row" >
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                      <img src="assets/img/search-icon.png" alt="" width="5%;"> <input type="search" placeholder="Search for Location, Biller Type or Utility" [(ngModel)]="filter" name="search">
+                    </div>
+              </div>
+              <div class="row" style="margin-top:30px; font-size:13px; margin-bottom: 10px">
+                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 txt text-left">
+                  <table class="entry-table">
+                    <tr>
+                      <td class="unitheaders">No. of bills</td>
+                      <td class="unitheaders">Total amount</td>
+                 
+                    </tr>
+                    <tr>
+                      <td>{{validbillsforpay.length}}</td>
+                      <td><i class="fa fa-rupee"></i>{{validbillamount | numberfr}}</td>
+                   
+                    </tr>
+                  </table>
+                <!-- <button class="btn bg-primary nextpay buttonpad" type="button" (click)="fetchAllBills()" style="padding: 3px 25px!important;">Fetch All Bills</button> -->
+                </div>
+                <!-- <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div> -->
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-right">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <ng-multiselect-dropdown
+                        [ngClass]="'rmdrop-first'"
+                        [placeholder]="'Select Organisation'"
+                        [data]="organisationlist"
+                        [(ngModel)]="selectedItems3"
+                        [settings]="dropdownSettings3"
+                        (onSelect)="onOrgSelect($event)"
+                        (onSelectAll)="onSelectAllOrg($event)"
+                        (onDeSelect)="onItemDeSelect($event)"
+                        [ngModelOptions]="{standalone: true}">
+                      </ng-multiselect-dropdown>
+                      <button class="btn btn-primary btn-outline ResponsiveBtnWidth btnspace" type="button" style="padding: 3px 25px!important;" (click)="getfilterdata()">Filter Organisation</button>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <button class="btn btn-primary btn-outline ResponsiveBtnWidth btnspace" type="button" (click)="onItemSelectDown()" style="padding: 3px 25px!important;"><img src="assets/img/downloadlist.png"></button>
+                    </div>
+                  </div>
+                   
+                
+                  <!-- <button class="btn bg-primary buttonpad btnspace" type="button" (click)="filtervalidamount()" style="padding: 3px 25px!important;">Valid Amount</button> -->
+                 
+                
+                </div>
+              </div>
+              <div class="row" id="">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
+                    <table id="main-table" [mfData]="validbillsforpay" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                      <thead>
+                        <tr>
+                         <td>Organisation Name</td>
+                          <td>Utility&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td>Biller Name &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td>Amount&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                         
+                          <td>Due Date &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td>Reference No. &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                          <td>&nbsp;</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          <ng-container  *ngFor="let payment of mf.data|orderBy: key : reverse|filter:filter; let i=index;">
+                        <tr>
+                         <td>{{payment.organization_name}}</td>
+                          <td>{{payment.utility}}</td>
+                          <td>{{payment.biller_name}}</td>
+                          <td><i class="fa fa-rupee"></i>{{payment.amount}}</td>
+                          <td>{{(payment.fetch_due_date)?payment.fetch_due_date:"No Data"}}</td>
+                          <td>{{payment.consumer_no}}</td>
+                          <td style="padding: 0 5px;"><img alt="" src="assets/img/tb_downarrow.png" (click)="payment.collapsed=!payment.collapsed;"></td>
+                        </tr>
+                        <tr class="rowShow grayStrip" *ngIf="payment.collapsed">
+                          <td class="custmtd" colspan="8">
+                            <div class="tablediv">
+                              <h5>Biller Details</h5>
+                              <div class="mb-1">
+                                <div class="span_width">Short Name</div> <span class="no-vert"> : </span> &nbsp;
+                                <div class="bold_span">{{payment.short_name}}</div>
+                              </div>
+                              <div class="mb-1">
+                                <div class="span_width">GL/Expense Code</div> <span class="no-vert"> : </span> &nbsp;
+                                <div class="bold_span">{{payment.gl_expense_code}}</div>
+                              </div>
+                              <div class="mb-1">
+                                  <div class="span_width">{{payment.parameter_1}}</div> <span class="no-vert"> : </span> &nbsp;
+                                  <div class="bold_span">{{payment.consumer_no}}</div>
+                                </div>
+                              <div class="mb-1">
+                                <div class="span_width">Bill Date</div> <span class="no-vert"> : </span> &nbsp;
+                                <div class="bold_span">{{(payment.fetch_bill_date)?payment.fetch_bill_date:"No Data"}}</div>
+                              </div>
+                              <!-- <div class="mb-1">
+                                <div class="span_width">Due Date</div> <span class="no-vert"> : </span> &nbsp;
+                                <div class="bold_span">{{(payment.fetch_due_date)?payment.fetch_due_date:"No Data"}}</div>
+                              </div> -->
+                              <!-- <div>
+                                <div class="span_width">Ref No 2:</div>
+                                <div class="bold_span">358507</div>
+                              </div> -->
+                            </div>
+                            <div class="tablediv table2">
+                              <h5>Contact Details</h5>
+                              <div class="mb-1">
+                                <div class="span_width">Mobile No</div> <span class="no-vert"> : </span> &nbsp;
+                                <div class="bold_span">{{payment.contact_no}}</div>
+                              </div>
+                              <div class="mb-1">
+                                <div class="span_width">Address</div> <span class="no-vert"> : </span> &nbsp;
+                                <span class="bold_span" tooltip="{{payment.contact_address}}" placement="top" show-delay="500">{{payment.contact_address}}</span>
+                              </div>
+                              <div>
+                                <div class="span_width">Email</div> <span class="no-vert"> : </span> &nbsp;
+                                <span class="bold_span" tooltip="{{payment.email}}" placement="top" show-delay="500">{{payment.email}}</span>
+                              </div>
+                            </div>
+                            <div class="tablediv noborder table3">
+                              <h5>Other Details</h5>
+                              <div class="mb-1">
+                                <div class="span_width">File Name</div> <span class="no-vert"> : </span> &nbsp;
+                                <div class="bold_span">Unitary</div>
+                              </div>
+                              <div class="mb-1">
+                                <div class="span_width" tooltip="{{payment.created_by}}" placement="top" show-delay="500">Initiated by</div> <span class="no-vert"> : </span> &nbsp;
+                                <div class="bold_span">{{payment.created_by}}</div>
+                              </div>
+                              <div class="mb-1">
+                                <div class="span_width">Initiated on</div> <span class="no-vert"> : </span> &nbsp;
+                                <div class="bold_span">{{payment.created_on | date:'dd-MM-yyyy hh:mm a'}}</div>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                       
+                        </ng-container>
+                      </tbody>
+                    </table>
+                  </div>
+               
+              
+                </div>
+              </div>
+            </div>
+            </div>
+            <div id="Paris" class="tabcontent" *ngIf="pencrd">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row" >
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            <img src="assets/img/search-icon.png" alt="" width="5%;"> <input type="search" placeholder="Search for Location, Biller Type or Utility" [(ngModel)]="filter" name="search">
+                          </div>
+                    </div>
+                    <div class="row" style="margin-top:30px; font-size:13px; margin-bottom: 10px">
+                      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 txt text-left">
+                        <table class="entry-table">
+                          <tr>
+                            <td class="unitheaders">No. of bills</td>
+                           
+                           
+                          </tr>
+                          <tr>
+                            <td>{{invalidbillsforpay.length}}</td>
+                        
+                          
+                          </tr>
+                        </table>
+                      
+                      </div>
+                      <!-- <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div> -->
+                      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-right">
+                          <div class="row">
+                              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                  <ng-multiselect-dropdown
+                                  [ngClass]="'rmdrop-first'"
+                                  [placeholder]="'Select Organisation'"
+                                  [data]="organisationlist"
+                                  [(ngModel)]="selectedItems4"
+                                  [settings]="indropdownSettings3"
+                                  (onSelect)="onOrgSelectIn($event)"
+                                  (onSelectAll)="onSelectAllInOrg($event)"
+                                  (onDeSelect)="onItemDeinSelect($event)"
+                                  [ngModelOptions]="{standalone: true}">
+                                </ng-multiselect-dropdown>
+                                <button class="btn btn-primary btn-outline ResponsiveBtnWidth btnspace" type="button" style="padding: 3px 25px!important;" (click)="getInfilterdata()">Filter Organisation</button>
+                              </div>
+                              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                  <button class="btn btn-primary btn-outline ResponsiveBtnWidth btnspace" type="button" (click)="onItemSelectDowninvalid()" style="padding: 3px 25px!important;"><img src="assets/img/downloadlist.png"></button>
+                              </div>
+                            </div>
+                       
+                      <!-- <button class="btn bg-primary buttonpad btnspace" type="button" (click)="filtervalidamount()" style="padding: 3px 25px!important;">Valid Amount</button> -->
+                     
+                    
+                    </div>
+                    </div>
+                    <div class="row" id="">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
+                          <table id="main-table" [mfData]="invalidbillsforpay" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                            <thead>
+                              <tr>
+                              <td>Organisation</td>
+                                <td>Utility&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                                <td>Biller Name &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                                <td>Amount&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                               
+                                <td>Due Date &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                                <td>Reference No. &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                                <td>&nbsp;</td>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container  *ngFor="let payment of mf.data|orderBy: key : reverse|filter:filter; let i=index;">
+                              <tr>
+                               <td>{{payment.organization_name}}</td>
+                                <td>{{payment.utility}}</td>
+                                <td>{{payment.biller_name}}</td>
+                                <td><i class="fa fa-rupee"></i>{{payment.amount}}</td>
+                                <td>{{(payment.fetch_due_date)?payment.fetch_due_date:"No Data"}}</td>
+                                <td>{{payment.consumer_no}}</td>
+                                <td style="padding: 0 5px;"><img alt="" src="assets/img/tb_downarrow.png" (click)="payment.collapsed=!payment.collapsed;"></td>
+                              </tr>
+                              <tr class="rowShow grayStrip" *ngIf="payment.collapsed">
+                                <td class="custmtd" colspan="8">
+                                  <div class="tablediv">
+                                    <h5>Biller Details</h5>
+                                    <div class="mb-1">
+                                      <div class="span_width">Short Name</div> <span class="no-vert"> : </span> &nbsp;
+                                      <div class="bold_span">{{payment.short_name}}</div>
+                                    </div>
+                                    <div class="mb-1">
+                                      <div class="span_width">GL/Expense Code</div> <span class="no-vert"> : </span> &nbsp;
+                                      <div class="bold_span">{{payment.gl_expense_code}}</div>
+                                    </div>
+                                    <div class="mb-1">
+                                        <div class="span_width">{{payment.parameter_1}}</div> <span class="no-vert"> : </span> &nbsp;
+                                        <div class="bold_span">{{payment.consumer_no}}</div>
+                                      </div>
+                                    <div class="mb-1">
+                                      <div class="span_width">Bill Date</div> <span class="no-vert"> : </span> &nbsp;
+                                      <div class="bold_span">{{(payment.fetch_bill_date)?payment.fetch_bill_date:"No Data"}}</div>
+                                    </div>
+                                    <!-- <div class="mb-1">
+                                      <div class="span_width">Due Date</div> <span class="no-vert"> : </span> &nbsp;
+                                      <div class="bold_span">{{(payment.fetch_due_date)?payment.fetch_due_date:"No Data"}}</div>
+                                    </div> -->
+                                    <!-- <div>
+                                      <div class="span_width">Ref No 2:</div>
+                                      <div class="bold_span">358507</div>
+                                    </div> -->
+                                  </div>
+                                  <div class="tablediv table2">
+                                    <h5>Contact Details</h5>
+                                    <div class="mb-1">
+                                      <div class="span_width">Mobile No</div> <span class="no-vert"> : </span> &nbsp;
+                                      <div class="bold_span">{{payment.contact_no}}</div>
+                                    </div>
+                                    <div class="mb-1">
+                                      <div class="span_width">Address</div> <span class="no-vert"> : </span> &nbsp;
+                                      <span class="bold_span" tooltip="{{payment.contact_address}}" placement="top" show-delay="500">{{payment.contact_address}}</span>
+                                    </div>
+                                    <div>
+                                      <div class="span_width">Email</div> <span class="no-vert"> : </span> &nbsp;
+                                      <span class="bold_span" tooltip="{{payment.email}}" placement="top" show-delay="500">{{payment.email}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="tablediv noborder table3">
+                                    <h5>Other Details</h5>
+                                    <div class="mb-1">
+                                        <div class="span_width">Comment</div> <span class="no-vert"> : </span> &nbsp;
+                                        <div class="bold_span" tooltip="{{payment.front_end_error}}" placement="top" show-delay="500">{{payment.front_end_error}}</div>
+                                      </div>
+                                    <div class="mb-1">
+                                      <div class="span_width">File Name</div> <span class="no-vert"> : </span> &nbsp;
+                                      <div class="bold_span">Unitary</div>
+                                    </div>
+                                    <div class="mb-1">
+                                      <div class="span_width" tooltip="{{payment.created_by}}" placement="top" show-delay="500">Initiated by</div> <span class="no-vert"> : </span> &nbsp;
+                                      <div class="bold_span">{{payment.created_by}}</div>
+                                    </div>
+                                    <div class="mb-1">
+                                      <div class="span_width">Initiated on</div> <span class="no-vert"> : </span> &nbsp;
+                                      <div class="bold_span">{{payment.created_on | date:'dd-MM-yyyy hh:mm a'}}</div>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                           
+                              </ng-container>
+                            </tbody>
+                          </table>
+                        </div>
+                    
+                       
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+       
+      </div>
+  
+      <div class="clearfix"></div>
+      <div class="clearfix"></div>
+    </form>
+  </section>
+</div>

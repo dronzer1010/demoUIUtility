@@ -203,7 +203,7 @@
                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-right">
                     <button class="btn btn-primary btn-outline ResponsiveBtnWidth btnspace" type="button" (click)="onItemSelectDown()" style="padding: 3px 25px!important;"><img src="assets/img/downloadlist.png"></button>
                   <!-- <button class="btn bg-primary buttonpad btnspace" type="button" (click)="filtervalidamount()" style="padding: 3px 25px!important;">Valid Amount</button> -->
-                  <button class="btn bg-primary nextpay buttonpad" type="button" (click)="prompt()" style="padding: 3px 25px!important;">Next</button>
+                  <button class="btn bg-primary nextpay buttonpad" type="button" style="padding: 3px 25px!important;" (click)="cnfsend()">Next</button>
                 
                 </div>
               </div>
@@ -213,7 +213,7 @@
                     <table id="main-table" [mfData]="validbillsforpay" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                       <thead>
                         <tr>
-                          <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(bills)"></td>
+                          <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(validbillsforpay)"></td>
                           <td>Utility&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td>Biller Name &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td>Amount&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>

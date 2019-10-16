@@ -34,6 +34,10 @@
           <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="clickPayEvent()" [routerLink]="['/rmpayment']">Payments
           </a>
         </li>
+        <li class="menu_sel" [ngClass]="fetchActive ? 'active' : ''">
+          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="clickFetchEvent()" [routerLink]="['/rmfetch-report']">Bill Fetch Report
+          </a>
+        </li>
       </ul>
       <ul class="[ nav navbar-nav navbar-right menu_sel]">
  

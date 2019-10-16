@@ -325,7 +325,7 @@ getValidBillers(){
   }
 
   changeAll(pendingbillerpage): void {    
-    if(this.checkedValueArray.length==this.bills.length){
+    if(this.checkedValueArray.length==this.validbillsforpay.length){
     this.cntChk=1
     }else{
     this.checkedValueArray = [];
@@ -397,20 +397,20 @@ getValidBillers(){
       }
       this.checkedValueArray.push(obj);     
     }
-    for(var i=0;i<this.bills.length;i++){
-      if(this.bills[i]['id'] == payment["id"]){
+    for(var i=0;i<this.validbillsforpay.length;i++){
+      if(this.validbillsforpay[i]['id'] == payment["id"]){
         if(this.flag==0){
-          if(this.bills[i]['amount']!=null)
-          this.amountpay+=parseInt(this.bills[i]['amount'])
+          if(this.validbillsforpay[i]['amount']!=null)
+          this.amountpay+=parseInt(this.validbillsforpay[i]['amount'])
         }else{
-          if(this.bills[i]['amount']!=null)
-          this.amountpay-=parseInt(this.bills[i]['amount'])
+          if(this.validbillsforpay[i]['amount']!=null)
+          this.amountpay-=parseInt(this.validbillsforpay[i]['amount'])
         }
       }
     }
     if (this.checkedValueArray.length > 0) {
       this.temp = true;
-      if(this.checkedValueArray.length<this.bills.length){
+      if(this.checkedValueArray.length<this.validbillsforpay.length){
         this.selectall=false
       }else{
         this.selectall=true;
@@ -420,7 +420,7 @@ getValidBillers(){
     }
     else {
       this.temp = false;
-      if(this.checkedValueArray.length<this.bills.length){
+      if(this.checkedValueArray.length<this.validbillsforpay.length){
         this.selectall=false
       }else{
         this.selectall=true;
@@ -460,27 +460,13 @@ getValidBillers(){
   
 
   prompt(){
-    this.duedatepassd=[];
-    if(this.checkedValueArray.length>0){
-    for(var i=0;i<this.checkedValueArray.length;i++){
-     
-        this.duedatepassd.push(this.checkedValueArray[i].fetch_due_date_status)
-      
-    }
-    console.log(this.duedatepassd)
-    if(this.duedatepassd.indexOf("Due date passed") > -1){
-        console.log("Prompt For Due Date Passed")
-        this.displayprompt='block'
-    }else{
+
+ 
+ 
       this.cnfsend()
       console.log("Go to Next Step")
-    }
-  }else{
-    this.toaster.warning("Please Select Bills first!","Alert",{
-      timeOut:3000,
-      positionClass:'toast-top-center'
-      })
-  }
+  
+ 
     
   }
   confirmprompt(confirmation){
@@ -570,7 +556,7 @@ if(confirmation==true){
         positionClass:'toast-top-center'
         })
     }else{
-    if(nd<'13:58:00' && nd>'08:00:00'){
+  //  if(nd<'13:58:00' && nd>'08:00:00'){
     this.loader.display(true);
     this.paymentData={
       "card_id":this.selectedcard['id'],
@@ -633,12 +619,12 @@ if(confirmation==true){
       positionClass:'toast-top-center'
       })
   }
-   }else{
-     this.toaster.error("Todays batch has passed now, you cannot initiate payment now. Please fetch the bills tomorrow between 08:00 AM and 01:58 PM and initiate the payments !","Alert",{
-       timeOut:8000,
-       positionClass:'toast-top-center'
-       })
-   }
+  //  }else{
+  //    this.toaster.error("Todays batch has passed now, you cannot initiate payment now. Please fetch the bills tomorrow between 08:00 AM and 01:58 PM and initiate the payments !","Alert",{
+  //      timeOut:8000,
+  //      positionClass:'toast-top-center'
+  //      })
+  //  }
   }
 }
    
