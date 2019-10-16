@@ -25,6 +25,7 @@ export class RmheaderComponent implements OnInit {
   userActive:boolean=false;
   groupActive:boolean=false;
   ruleActive:boolean=false;
+  fetchActive:boolean=false;
   orgActive:boolean=false;
   faqActive:boolean=false;
   notActive:boolean=false;
@@ -49,7 +50,10 @@ export class RmheaderComponent implements OnInit {
         this.clickOrgEvent()
       }else if(this.pathroute=='/rmprofile' || this.pathroute=='/rmrepository' || this.pathroute=='/rmnotificationmatrix' || this.pathroute=='/rmsample-bills' || this.pathroute=='/rmtemplates'){
 this.clickNotEvent()
-      }
+      }else if(this.pathroute=='/rmfetch-report'){
+        this.clickFetchEvent()
+              }
+
   
   });
   }
@@ -73,6 +77,7 @@ this.clickNotEvent()
     this.userActive=false;
     this.groupActive=false;
     this.ruleActive=false;
+    this.fetchActive=false;
   }
 
   clickOrgEvent(){
@@ -88,12 +93,31 @@ this.clickNotEvent()
     this.userActive=false;
     this.groupActive=false;
     this.ruleActive=false;
+    this.fetchActive=false;
   }
 
   clickPayEvent(){
     this.orgActive=false;
     this.dashActive=false;
     this.payActive=true;
+    this.billActive=false;
+    this.faqActive=false;
+    this.quickActive=false;
+    this.notActive=false;
+    this.profActive=false;
+    this.cardActive=false;
+    this.userActive=false;
+    this.groupActive=false;
+    this.ruleActive=false;
+    this.fetchActive=false;
+
+  }
+
+  clickFetchEvent(){
+    this.orgActive=false;
+    this.dashActive=false;
+    this.payActive=false;
+    this.fetchActive=true;
     this.billActive=false;
     this.faqActive=false;
     this.quickActive=false;
@@ -118,6 +142,7 @@ this.clickNotEvent()
     this.userActive=false;
     this.groupActive=false;
     this.ruleActive=false;
+    this.fetchActive=false;
   }
   clickCardEvent(){
     this.orgActive=false;
@@ -132,6 +157,7 @@ this.clickNotEvent()
     this.userActive=false;
     this.groupActive=false;
     this.ruleActive=false;
+    this.fetchActive=false;
   }
 
   
@@ -149,6 +175,7 @@ this.clickNotEvent()
     this.notActive=false;
     this.profActive=false;
     this.cardActive=false;
+    this.fetchActive=false;
   }
 
   clickNotEvent(){
@@ -163,6 +190,7 @@ this.clickNotEvent()
     this.userActive=false;
     this.groupActive=false;
     this.ruleActive=false;
+    this.fetchActive=false;
   }
 
   clickGroupEvent(){
@@ -177,6 +205,7 @@ this.clickNotEvent()
     this.userActive=false;
     this.groupActive=true;
     this.ruleActive=false;
+    this.fetchActive=false;
   }
 
 
@@ -192,6 +221,7 @@ this.clickNotEvent()
     this.userActive=true;
     this.groupActive=false;
     this.ruleActive=false;
+    this.fetchActive=false;
   }
 
 
@@ -207,6 +237,7 @@ this.clickNotEvent()
     this.userActive=false;
     this.groupActive=false;
     this.ruleActive=true;
+    this.fetchActive=false;
   }
 
   openmyprofile(){

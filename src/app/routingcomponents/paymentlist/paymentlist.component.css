@@ -8,6 +8,41 @@
   position: relative;
   padding: 15px 0 15px 15px;
 }
+.tabcontent {
+    
+  padding: 6px 12px;
+  border-top: none;
+}
+.centra {
+  float:none!important;
+}
+.tab {
+  overflow: hidden;
+  background-color: #ffffff;
+  height: 79px;
+  box-shadow: 0 0 4.7px 0.4px rgba(88, 103, 195, 0.27);
+}
+  .tab button {
+  margin-top: 38px;
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  transition: 0.3s;
+  font-size: 13px;
+  font-weight: 300;
+  color: #575962;
+}
+.tab button:hover {
+border-bottom: 3px solid #fff33b;
+color: #52178b;
+}
+.tab button.active {
+  border-bottom: 4px solid #fff33b;
+font-size: 14px;
+font-weight: 600;
+}
 #modal-table{
   border: 1px solid #e4dbe4;
 }

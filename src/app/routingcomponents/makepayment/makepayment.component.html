@@ -163,6 +163,18 @@
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
           <div class="row form_bg" id="" *ngIf="billdetails">
+              <div class="col-md-12 tab text-center centra">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-6">
+                      <button class="tablinks" [ngClass]="apprcrd?'active':''" id="mycard" (click)="apprcard();getValidBillers()">PAYABLE BILLS</button>
+                      <button class="tablinks" [ngClass]="pencrd?'active':''" id="pendcard" (click)="pencard();getInvalidBillers()" >NON-PAYABLE BILLS</button>
+                     
+                  </div>
+                 
+              </div>
+              <div class="clear10"></div>
+              <div class="clear10"></div>
+              <div id="London" class="tabcontent" *ngIf="apprcrd">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="row" >
                   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -179,8 +191,8 @@
                       <td class="unitheaders">Amount payable</td>
                     </tr>
                     <tr>
-                      <td>{{bills.length}}</td>
-                      <td><i class="fa fa-rupee"></i>{{totalamount | numberfr}}</td>
+                      <td>{{validbillsforpay.length}}</td>
+                      <td><i class="fa fa-rupee"></i>{{validbillamount | numberfr}}</td>
                       <td>{{checkedValueArray.length}}</td>
                       <td><i class="fa fa-rupee"></i>{{amountpay | numberfr}}</td>
                     </tr>
@@ -191,17 +203,17 @@
                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-right">
                     <button class="btn btn-primary btn-outline ResponsiveBtnWidth btnspace" type="button" (click)="onItemSelectDown()" style="padding: 3px 25px!important;"><img src="assets/img/downloadlist.png"></button>
                   <!-- <button class="btn bg-primary buttonpad btnspace" type="button" (click)="filtervalidamount()" style="padding: 3px 25px!important;">Valid Amount</button> -->
-                  <button class="btn bg-primary nextpay buttonpad" type="button" (click)="prompt()" style="padding: 3px 25px!important;">Next</button>
+                  <button class="btn bg-primary nextpay buttonpad" type="button" style="padding: 3px 25px!important;" (click)="cnfsend()">Next</button>
                 
                 </div>
               </div>
               <div class="row" id="">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
-                    <table id="main-table" [mfData]="bills" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                    <table id="main-table" [mfData]="validbillsforpay" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                       <thead>
                         <tr>
-                          <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(bills)"></td>
+                          <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(validbillsforpay)"></td>
                           <td>Utility&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td>Biller Name &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
                           <td>Amount&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
@@ -404,6 +416,252 @@
                 </div>
               </div>
             </div>
+            </div>
+            <div id="Paris" class="tabcontent" *ngIf="pencrd">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row" >
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            <img src="assets/img/search-icon.png" alt="" width="5%;"> <input type="search" placeholder="Search for Location, Biller Type or Utility" [(ngModel)]="filter" name="search">
+                          </div>
+                    </div>
+                    <div class="row" style="margin-top:30px; font-size:13px; margin-bottom: 10px">
+                      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 txt text-left">
+                        <table class="entry-table">
+                          <tr>
+                            <td class="unitheaders">No. of bills</td>
+                            <td class="unitheaders">Total amount</td>
+                           
+                          </tr>
+                          <tr>
+                            <td>{{invalidbillsforpay.length}}</td>
+                            <td><i class="fa fa-rupee"></i>{{invalidbillamount | numberfr}}</td>
+                          
+                          </tr>
+                        </table>
+                      
+                      </div>
+                      <!-- <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div> -->
+                      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-right">
+                        <button class="btn btn-primary btn-outline ResponsiveBtnWidth btnspace" type="button" (click)="onItemSelectDowninvalid()" style="padding: 3px 25px!important;"><img src="assets/img/downloadlist.png"></button>
+                      <!-- <button class="btn bg-primary buttonpad btnspace" type="button" (click)="filtervalidamount()" style="padding: 3px 25px!important;">Valid Amount</button> -->
+                     
+                    
+                    </div>
+                    </div>
+                    <div class="row" id="">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
+                          <table id="main-table" [mfData]="invalidbillsforpay" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                            <thead>
+                              <tr>
+                              
+                                <td>Utility&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                                <td>Biller Name &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                                <td>Amount&nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                               
+                                <td>Due Date &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                                <td>Reference No. &nbsp;<img alt="" src="assets/img/Filter.png" style="vertical-align:2px;"></td>
+                                <td>&nbsp;</td>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container  *ngFor="let payment of mf.data|orderBy: key : reverse|filter:filter; let i=index;">
+                              <tr>
+                               
+                                <td>{{payment.utility}}</td>
+                                <td>{{payment.biller_name}}</td>
+                                <td><i class="fa fa-rupee"></i>{{payment.amount}}</td>
+                                <td>{{(payment.fetch_due_date)?payment.fetch_due_date:"No Data"}}</td>
+                                <td>{{payment.consumer_no}}</td>
+                                <td style="padding: 0 5px;"><img alt="" src="assets/img/tb_downarrow.png" (click)="payment.collapsed=!payment.collapsed;"></td>
+                              </tr>
+                              <tr class="rowShow grayStrip" *ngIf="payment.collapsed">
+                                <td class="custmtd" colspan="8">
+                                  <div class="tablediv">
+                                    <h5>Biller Details</h5>
+                                    <div class="mb-1">
+                                      <div class="span_width">Short Name</div> <span class="no-vert"> : </span> &nbsp;
+                                      <div class="bold_span">{{payment.short_name}}</div>
+                                    </div>
+                                    <div class="mb-1">
+                                      <div class="span_width">GL/Expense Code</div> <span class="no-vert"> : </span> &nbsp;
+                                      <div class="bold_span">{{payment.gl_expense_code}}</div>
+                                    </div>
+                                    <div class="mb-1">
+                                        <div class="span_width">{{payment.parameter_1}}</div> <span class="no-vert"> : </span> &nbsp;
+                                        <div class="bold_span">{{payment.consumer_no}}</div>
+                                      </div>
+                                    <div class="mb-1">
+                                      <div class="span_width">Bill Date</div> <span class="no-vert"> : </span> &nbsp;
+                                      <div class="bold_span">{{(payment.fetch_bill_date)?payment.fetch_bill_date:"No Data"}}</div>
+                                    </div>
+                                    <!-- <div class="mb-1">
+                                      <div class="span_width">Due Date</div> <span class="no-vert"> : </span> &nbsp;
+                                      <div class="bold_span">{{(payment.fetch_due_date)?payment.fetch_due_date:"No Data"}}</div>
+                                    </div> -->
+                                    <!-- <div>
+                                      <div class="span_width">Ref No 2:</div>
+                                      <div class="bold_span">358507</div>
+                                    </div> -->
+                                  </div>
+                                  <div class="tablediv table2">
+                                    <h5>Contact Details</h5>
+                                    <div class="mb-1">
+                                      <div class="span_width">Mobile No</div> <span class="no-vert"> : </span> &nbsp;
+                                      <div class="bold_span">{{payment.contact_no}}</div>
+                                    </div>
+                                    <div class="mb-1">
+                                      <div class="span_width">Address</div> <span class="no-vert"> : </span> &nbsp;
+                                      <span class="bold_span" tooltip="{{payment.contact_address}}" placement="top" show-delay="500">{{payment.contact_address}}</span>
+                                    </div>
+                                    <div>
+                                      <div class="span_width">Email</div> <span class="no-vert"> : </span> &nbsp;
+                                      <span class="bold_span" tooltip="{{payment.email}}" placement="top" show-delay="500">{{payment.email}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="tablediv noborder table3">
+                                    <h5>Other Details</h5>
+                                    <div class="mb-1">
+                                        <div class="span_width">Comment</div> <span class="no-vert"> : </span> &nbsp;
+                                        <div class="bold_span" tooltip="{{payment.front_end_error}}" placement="top" show-delay="500">{{payment.front_end_error}}</div>
+                                      </div>
+                                    <div class="mb-1">
+                                      <div class="span_width">File Name</div> <span class="no-vert"> : </span> &nbsp;
+                                      <div class="bold_span">Unitary</div>
+                                    </div>
+                                    <div class="mb-1">
+                                      <div class="span_width" tooltip="{{payment.created_by}}" placement="top" show-delay="500">Initiated by</div> <span class="no-vert"> : </span> &nbsp;
+                                      <div class="bold_span">{{payment.created_by}}</div>
+                                    </div>
+                                    <div class="mb-1">
+                                      <div class="span_width">Initiated on</div> <span class="no-vert"> : </span> &nbsp;
+                                      <div class="bold_span">{{payment.created_on | date:'dd-MM-yyyy hh:mm a'}}</div>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr class="rowShow grayStrip bottom_images" *ngIf="payment.collapsed">
+                                <td colspan="8">   
+                                    <span class="pull-right"><!-- <img style="cursor:pointer;" src="../../../assets/img/attach.png">-->
+                                  
+                                  <img style="cursor:pointer;" src="assets/img/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                   
+                                  <a data-toggle="modal" href="#myModal" id="openBtn"><img src="assets/img/delete.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a id="button" class="anchor-bill openModal" (click)="closeModalDialog(payment.id)">Add
+                                      Details</a></span>
+                                    <!-- <span><button  *ngIf="!fetchingBill" (click)="fetchBill(payment.id)" class="anchor-bill">Fetch Bill</button> </span>
+                                    <span><a  *ngIf="fetchingBill" class="anchor-bill"><img src="assets/img/loading.svg" class="loading-svg" /></a></span> -->
+                                    </td>                                
+                                <div class="backdrop" [ngStyle]="{'display':display}"></div>
+                                <!-- modal -->
+                                <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+                                  <!-- modal-dialog -->
+                                  <div class="modal-dialog" id="mod" role="document">
+                                    <!-- modal-content -->
+                                    <div class="modal-content">
+                                      <!-- modal-header -->
+                                      <div class="modal-header">
+                                        Add Details<button type="button" class="close" aria-label="Close" (click)="openModalDialog()"><span
+                                            aria-hidden="true">&times;</span></button>
+                                        <!-- <h4 class="modal-title">Login</h4> -->
+                                      </div>
+                                      <!-- modal-body -->
+                                      <div class="modal-body">
+                                          <div class="row mb-2">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 data">
+                                              <table style="width:100%">
+                                                <tr>
+                                                  <td>Late Payment Charges</td>
+                                                  <td>:</td>
+                                                  <td><input type="text" class="model-inputs" [(ngModel)]="late_pay_charges" name="late_pay_charges"></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Meter Reading</td>
+                                                  <td>:</td>
+                                                  <td><input type="text" class="model-inputs" [(ngModel)]="meter_reading" name="meter_reading"></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Promt Payment Incentives</td>
+                                                  <td>:</td>
+                                                  <td><input type="text" class="model-inputs" [(ngModel)]="promt_pay_incentives" name="promt_pay_incentives"></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Remarks</td>
+                                                  <td>:</td>
+                                                  <td><input type="text" class="model-inputs" [(ngModel)]="remarks" name="remarks"></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Attachment</td>
+                                                  <td>:</td>
+                                                  <td>
+                                                      <div class="upload-btn-wrapper">
+                                                          <button class="" style="border: 1px solid #fff; background-color: white;"><img src="assets/img/attachments.png"
+                                                              alt=""></button>
+                                                              {{downloadFileName}}
+                                                          <input type="file" [(ngModel)]="fileUpload" name="fileUpload"  (change)="UploadFile($event)" />
+                                                          <!-- <input class="btn bg-primary nextpay buttonpad" type="file" [(ngModel)]="fileUpload" name="fileUpload"
+                                                          (change)="UploadFile($event)" /> -->
+                                                     
+      
+                                                        </div>
+                                                  </td>
+                                                </tr>
+                                              </table>
+                                           
+                                          </div>
+                                     
+                                        </div>
+                                        </div>
+                                      <!-- modal-footer -->
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" (click)="submitextradetails()">Submit</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              
+                                
+                              </tr>
+                              </ng-container>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="backdrop" [ngStyle]="{'display':displayprompt}"></div>
+                         <!-- modal -->
+                         <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayprompt}">
+                            <!-- modal-dialog -->
+                            <div class="modal-dialog" id="mod" role="document">
+                              <!-- modal-content -->
+                              <div class="modal-content">
+                                <!-- modal-header -->
+                                <div class="modal-header popupheadeer">
+                                  Alert!<button type="button" class="close" aria-label="Close"><span
+                                      aria-hidden="true">&times;</span></button>
+                                  <!-- <h4 class="modal-title">Login</h4> -->
+                                </div>
+                                <!-- modal-body -->
+                                <div class="modal-body">
+                                    <div class="row mb-2">
+                                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 data">
+                                    
+                                     <p>You are initiating payments for bills with past due dates. Please validate these entires. 
+                                        Click ok to continue  or cancel to go back to list view</p>
+                                    </div>
+                               
+                                  </div>
+                                  </div>
+                                <!-- modal-footer -->
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-default popupheadeer" (click)="confirmprompt(true)">Ok</button>
+                                  <button type="button" class="btn btn-default popupheadeer" (click)="confirmprompt(false)">Cancel</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
           </div>
         </div>
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>

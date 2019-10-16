@@ -72,6 +72,7 @@ export class MakePaymentComponent implements OnInit {
   cardData:any=[];
   paymentdata:any={}
   downloadArray:any=[];
+  downloadArray1:any=[];
   filteredbills:any=[];
   date:Date;
   currentdate:Date;
@@ -82,14 +83,24 @@ export class MakePaymentComponent implements OnInit {
   public downloadFileName:string;
   fileUpload:File;
   holidays:any=[];
+  apprcrd:boolean=true;
+  rejcrd:boolean=false;
+  pencrd=false;
+  validbillsforpay:any=[];
+  invalidbillsforpay:any=[];
+  validbillamount:number=0;
+  invalidbillamount:number=0;
 @Output() public onUploadFinished = new EventEmitter();
   constructor(private httpService: HttpClient,private cards:CardserviceService,private billservice: BillerserviceService, private loader: LoaderService, private users: UserserviceService,private router: Router,private paymentservice: PaymentserviceService,private toaster:ToastrService,private excelservice : ExcelService,public datepipe: DatePipe,private auth: AuthService) { }
 
   ngOnInit() {
-    this.billrdetails();
+    //this.billrdetails();
     this.loadApprovedCards();
     this.getuserdetails();
     this.getholidaysforpay();
+
+    this.getValidBillers();
+    
     
   }
 
@@ -186,6 +197,59 @@ private getuserdetails(){
 
   }
 
+
+getValidBillers(){
+    this.loader.display(true)
+    this.billertype=false;
+    this.billdetails=true;
+    this.reviewCard=false;
+    this.currentdate= new Date((new Date()).getTime() + 24*60*60*1000);
+    this.billservice.getvalidbillsforpay().then(resp=>{
+      console.log(resp)
+      if(resp!=null){
+        this.validbillsforpay=resp;
+        for(var i=0;i<this.validbillsforpay.length;i++){
+          if(this.validbillsforpay[i]['amount']!=null)
+          this.validbillamount+=parseInt(this.validbillsforpay[i]['amount'])
+        }
+
+        this.loader.display(false)
+      }
+    },error=>{
+      console.log(error)
+     this.loader.display(false)
+     if(error['status']==401){
+      this.auth.expiresession();
+    }
+    })
+  }
+
+ getInvalidBillers(){
+  this.loader.display(true)
+  this.billertype=false;
+  this.billdetails=true;
+  this.reviewCard=false;
+  this.currentdate= new Date((new Date()).getTime() + 24*60*60*1000);
+    this.billservice.getinvalidbillsforpay().then(resp=>{
+      console.log(resp)
+      if(resp!=null){
+        this.invalidbillsforpay=resp;
+        for(var i=0;i<this.invalidbillsforpay.length;i++){
+          if(this.invalidbillsforpay[i]['amount']!=null)
+          this.invalidbillamount+=parseInt(this.invalidbillsforpay[i]['amount'])
+        }
+
+        this.loader.display(false)
+      }
+    },error=>{
+      console.log(error)
+      this.loader.display(false)
+      if(error['status']==401){
+       this.auth.expiresession();
+     }
+    })
+  }
+
   filtervalidamount(){
     this.loader.display(true)
     this.totalamount=0
@@ -261,7 +325,7 @@ private getuserdetails(){
   }
 
   changeAll(pendingbillerpage): void {    
-    if(this.checkedValueArray.length==this.bills.length){
+    if(this.checkedValueArray.length==this.validbillsforpay.length){
     this.cntChk=1
     }else{
     this.checkedValueArray = [];
@@ -333,20 +397,20 @@ private getuserdetails(){
       }
       this.checkedValueArray.push(obj);     
     }
-    for(var i=0;i<this.bills.length;i++){
-      if(this.bills[i]['id'] == payment["id"]){
+    for(var i=0;i<this.validbillsforpay.length;i++){
+      if(this.validbillsforpay[i]['id'] == payment["id"]){
         if(this.flag==0){
-          if(this.bills[i]['amount']!=null)
-          this.amountpay+=parseInt(this.bills[i]['amount'])
+          if(this.validbillsforpay[i]['amount']!=null)
+          this.amountpay+=parseInt(this.validbillsforpay[i]['amount'])
         }else{
-          if(this.bills[i]['amount']!=null)
-          this.amountpay-=parseInt(this.bills[i]['amount'])
+          if(this.validbillsforpay[i]['amount']!=null)
+          this.amountpay-=parseInt(this.validbillsforpay[i]['amount'])
         }
       }
     }
     if (this.checkedValueArray.length > 0) {
       this.temp = true;
-      if(this.checkedValueArray.length<this.bills.length){
+      if(this.checkedValueArray.length<this.validbillsforpay.length){
         this.selectall=false
       }else{
         this.selectall=true;
@@ -356,7 +420,7 @@ private getuserdetails(){
     }
     else {
       this.temp = false;
-      if(this.checkedValueArray.length<this.bills.length){
+      if(this.checkedValueArray.length<this.validbillsforpay.length){
         this.selectall=false
       }else{
         this.selectall=true;
@@ -396,27 +460,13 @@ private getuserdetails(){
   
 
   prompt(){
-    this.duedatepassd=[];
-    if(this.checkedValueArray.length>0){
-    for(var i=0;i<this.checkedValueArray.length;i++){
-     
-        this.duedatepassd.push(this.checkedValueArray[i].fetch_due_date_status)
-      
-    }
-    console.log(this.duedatepassd)
-    if(this.duedatepassd.indexOf("Due date passed") > -1){
-        console.log("Prompt For Due Date Passed")
-        this.displayprompt='block'
-    }else{
+
+ 
+ 
       this.cnfsend()
       console.log("Go to Next Step")
-    }
-  }else{
-    this.toaster.warning("Please Select Bills first!","Alert",{
-      timeOut:3000,
-      positionClass:'toast-top-center'
-      })
-  }
+  
+ 
     
   }
   confirmprompt(confirmation){
@@ -506,7 +556,7 @@ if(confirmation==true){
         positionClass:'toast-top-center'
         })
     }else{
- //  if(nd<'13:58:00' && nd>'08:00:00'){
+  //  if(nd<'13:58:00' && nd>'08:00:00'){
     this.loader.display(true);
     this.paymentData={
       "card_id":this.selectedcard['id'],
@@ -635,9 +685,9 @@ if(confirmation==true){
   }
 
   onItemSelectDown(){
+    this.downloadArray=[];
     
-    
-      for(let data of this.bills){
+      for(let data of this.validbillsforpay){
         var obj={
           Biller:data['biller_name'],
           Amount:data['amount'],
@@ -665,9 +715,45 @@ if(confirmation==true){
         }
         this.downloadArray.push(obj)
       }
-      this.excelservice.exportAsExcelFile( this.downloadArray, 'Payment List');
+      this.excelservice.exportAsExcelFile( this.downloadArray, 'Payable Bills list List');
     
   }
+
+
+  onItemSelectDowninvalid(){
+    this.downloadArray1=[];
+    
+    for(let data of this.invalidbillsforpay){
+      var obj={
+        Biller:data['biller_name'],
+        Amount:data['amount'],
+        Consumer_No:data['consumer_no'],
+       
+        Status:data['transaction_status'],
+        Payment_Status:data['payment_status'],
+        Short_Name:data['short_name'],
+        GL_Expense_Code:data['gl_expense_code'],
+      
+        State:data['state'],
+        Bill_Number:String(data['fetch_bill_no']),
+        Card_Number:data['card_last_digits'],
+        Order_Id:data['order_id'],
+        Contact:data['contact_no'],
+        Bill_Address:data['contact_address'],
+        Email:data['email'],
+       
+        Initiated_by:data['initiated_by'],
+        Initiated_On:data['initiated_date'],
+     Due_date:data['fetch_due_date'],
+     Bill_date:data['fetch_bill_date'],
+        Comment:data['front_end_error']
+
+      }
+      this.downloadArray1.push(obj)
+    }
+    this.excelservice.exportAsExcelFile( this.downloadArray1, 'Non Payable Bills List');
+  
+}
 
   private getholidaysforpay(){
     this.paymentservice.getHolidays().then(resp=>{
@@ -676,6 +762,20 @@ if(confirmation==true){
     },error=>{
       console.log(error)
     })
+  }
+
+  apprcard(){
+   
+    this.apprcrd=true;
+    this.pencrd=false;
+
+  }
+
+  pencard(){
+    
+    this.apprcrd=false;
+    this.pencrd=true;
+
   }
 
   

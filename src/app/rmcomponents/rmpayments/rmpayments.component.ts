@@ -24,7 +24,7 @@ export class RmpaymentsComponent implements OnInit {
   displayLogs='none';
   noofrole="No billers available"
   filterQuery = "";
-  rowsOnPage = 300;
+  rowsOnPage = 2000;
   sortBy = "email";
   public searchText : string;
   sortOrder = "asc";
@@ -418,6 +418,7 @@ console.log(this.selectedItems3)
 getfilterdata(){
   this.loaderService.display(true);
 this.paymentData=[];
+this.totalamount=0
 this.fromfilterstring=this.datepipe.transform(this.fromfilter, 'yyyy-MM-dd');
       this.tofilterstring=this.datepipe.transform(this.tofilter, 'yyyy-MM-dd');
   if(this.filterps=='All')
@@ -436,6 +437,11 @@ this.fromfilterstring=this.datepipe.transform(this.fromfilter, 'yyyy-MM-dd');
    
     console.log(resp)
     this.paymentData=resp['data']
+    if(this.paymentData!=null){
+      for(var total of this.paymentData){
+        this.totalamount+=parseFloat(total['amount'])
+      }
+    }
     this.loaderService.display(false);
   },error=>{
     console.log(error)

@@ -364,6 +364,54 @@ getAllPayments(params:any): Promise<any> {
   return promise;
 }
 
+getValidFetchBills(params:any): Promise<any> {
+    // let token = this.storage.getData("rmlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+    
+    let promise = new Promise((resolve, reject) => {
+        this.http.post(utilpath+"api/v2/rm_payble_payment_bills",params)
+            .subscribe(
+                res => {
+                    //console.log(res);
+                    resolve(res);
+                },
+                err => {
+                    console.log("Error occured : " + err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
+  getinValidFetchBills(params:any): Promise<any> {
+    // let token = this.storage.getData("rmlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+    
+    let promise = new Promise((resolve, reject) => {
+        this.http.post(utilpath+"api/v2/rm_non_payble_payment_bills",params)
+            .subscribe(
+                res => {
+                    //console.log(res);
+                    resolve(res);
+                },
+                err => {
+                    console.log("Error occured : " + err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
 
 
 getAllBills(params:any,id:any): Promise<any> {
