@@ -387,7 +387,7 @@ h5 {
 .multiselect-dropdown .dropdown-btn {
   display: inline-block;
   border: 1px solid #d9cee6!important;
-  width: 100%;
+/*   width: 100%; */
   padding: 2px 15px!important;
   margin-bottom: 0;
   font-weight: 400;
@@ -426,7 +426,7 @@ h5 {
   color: red!important;
 }
 ng-multiselect-dropdown:nth-child(1) .multiselect-dropdown{
-  width: 77%!important;
+  width: 77%;
   margin-right: 0px!important;
   background-repeat: no-repeat!important;
   background-position-x: 10px!important;
@@ -561,7 +561,7 @@ ng-multiselect-dropdown.drop-seven .multiselect-dropdown{
 /** RM Payment Dropdown start**/
 ng-multiselect-dropdown.rmdrop-second .multiselect-dropdown, ng-multiselect-dropdown.rmdrop-first .multiselect-dropdown, ng-multiselect-dropdown.rmdrop-fifth .multiselect-dropdown{
   background-image: unset;
-  width: 100%!important;
+  width: 45%!important;
   margin-right:0px!important;
 }
 ng-multiselect-dropdown.rmdrop-sixth .multiselect-dropdown{
