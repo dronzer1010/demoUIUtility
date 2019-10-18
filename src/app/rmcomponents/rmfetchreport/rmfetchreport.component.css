@@ -1,3 +1,20 @@
+
+ng-multiselect-dropdown:nth-child(1) .multiselect-dropdown{
+  width: 48%!important;
+}
+.multiselect-dropdown .dropdown-btn .dropdown-down {
+  height: 28px;
+  font-size: 13px;
+}
+.btn-filter{
+  margin-left: 6%;
+  padding: 3px 25px!important;
+    background-color: rebeccapurple;
+    color: #fff;
+    border-radius: 20px;
+    height: 27px;
+    margin-left: 21px;
+}
 .pop-input-text {
     display: block;
     color: #807199;
