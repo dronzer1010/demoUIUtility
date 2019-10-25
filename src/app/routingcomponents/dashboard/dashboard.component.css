@@ -1,7 +1,26 @@
 .main-bg {
   background-color: #f4f4f4;
 }
-
+ng-multiselect-dropdown:nth-child(1) .multiselect-dropdown{
+  width: 77%;
+    margin-right: 0px!important;
+    background-repeat: no-repeat!important;
+    background-position-x: 10px!important;
+    background-position-y: 6px!important;
+    background-size: 11px!important;
+}
+.multiselect-dropdown {
+  position: relative;
+  width: 80%!important;
+  font-size: 12px!important;
+  font-family: inherit;
+  background-image: url(/assets/img/datepicker.png);
+  background-repeat: no-repeat;
+  background-position-x: 10px;
+  background-position-y: 4px;
+  display: inline-block!important;
+  margin-right: 10px!important;
+}
 .wc-date-popover{
   left:-85%!important;
 }

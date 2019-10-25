@@ -6,6 +6,11 @@ ng-multiselect-dropdown:nth-child(1) .multiselect-dropdown{
   height: 28px;
   font-size: 13px;
 }
+ng-multiselect-dropdown.rmdrop-second .multiselect-dropdown, ng-multiselect-dropdown.rmdrop-first .multiselect-dropdown, ng-multiselect-dropdown.rmdrop-fifth .multiselect-dropdown {
+  background-image: unset;
+  width: 45%!important;
+  margin-right: 0px!important;
+}
 .btn-filter{
   margin-left: 6%;
   padding: 3px 25px!important;

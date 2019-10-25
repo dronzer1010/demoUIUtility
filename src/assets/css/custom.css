@@ -338,7 +338,7 @@ h5 {
 /* Multiselect Dropdown */
 .multiselect-dropdown{
   position: relative;
-  width: 30%!important;
+  width: 80%;
   font-size: 12px!important;
   font-family: inherit;
   background-image: url('/assets//img/datepicker.png');
@@ -561,7 +561,7 @@ ng-multiselect-dropdown.drop-seven .multiselect-dropdown{
 /** RM Payment Dropdown start**/
 ng-multiselect-dropdown.rmdrop-second .multiselect-dropdown, ng-multiselect-dropdown.rmdrop-first .multiselect-dropdown, ng-multiselect-dropdown.rmdrop-fifth .multiselect-dropdown{
   background-image: unset;
-  width: 45%!important;
+  width: 100%;
   margin-right:0px!important;
 }
 ng-multiselect-dropdown.rmdrop-sixth .multiselect-dropdown{
