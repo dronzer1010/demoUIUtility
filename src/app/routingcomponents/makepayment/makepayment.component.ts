@@ -550,12 +550,12 @@ if(confirmation==true){
         positionClass:'toast-top-center'
         })
     }else{
-    if(n=='Saturday' || n=='Sunday'){
-      this.toaster.error("You can't initiate payments on Satrurday and Sunday, please try to initiate between Monday and Friday !","Alert",{
-        timeOut:8000,
-        positionClass:'toast-top-center'
-        })
-    }else{
+    // if(n=='Saturday' || n=='Sunday'){
+    //   this.toaster.error("You can't initiate payments on Satrurday and Sunday, please try to initiate between Monday and Friday !","Alert",{
+    //     timeOut:8000,
+    //     positionClass:'toast-top-center'
+    //     })
+    // }else{
   //  if(nd<'13:58:00' && nd>'08:00:00'){
     this.loader.display(true);
     this.paymentData={
@@ -625,7 +625,7 @@ if(confirmation==true){
   //      positionClass:'toast-top-center'
   //      })
   //  }
-  }
+  //}
 }
    
     
