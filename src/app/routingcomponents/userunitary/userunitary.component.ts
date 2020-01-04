@@ -79,7 +79,7 @@ export class UserunitaryComponent implements OnInit {
   settings = {
     bigBanner: true,
     timePicker: false,
-    format: 'MM-yyyy',
+    format: 'dd-MM-yyyy',
     defaultOpen: false
 }
 //   public myDatePickerOptions: IMyDpOptions = {
