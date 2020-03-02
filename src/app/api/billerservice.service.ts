@@ -467,4 +467,49 @@ getattachment(id:any){
   });
   return promise;
   }
+
+  getbillerbyid(id:any){
+    let promise = new Promise((resolve, reject) => {
+      this.http.get(path+`api/v3/get_bill/${id}`)
+          .subscribe(
+              res => {
+                  console.log(res);
+                  resolve(res);
+              },
+              err => {
+                  console.log("Error occured : " + err);
+                  reject(err);
+              }
+          );
+  
+  });
+  return promise;
+  }
+
+  updatebills(billdata:any,id:any): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+    let promise = new Promise((resolve, reject) => {
+        // let paramsValue = {
+        //     "regcmt": comment,
+        //     "checkval": ids
+        // };
+        this.http.post(`${path}api/v3/update_bill/${id}`, billdata)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                    console.log("Error occured : " + err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
 }

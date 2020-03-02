@@ -5,7 +5,7 @@ import { Lightbox } from 'ngx-lightbox';
 import { BillerserviceService } from '../../api/billerservice.service'
 import { ToastrService } from 'ngx-toastr'
 import{LoaderService} from '../../api/loader.service'
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import {Config} from '../../config'
 import { e } from '@angular/core/src/render3';
 const path = new Config().getutilityBaseUrl();
@@ -37,14 +37,17 @@ export class BillerUnitaryComponent implements OnInit {
   statename:string;
   public downloadFileName:string;
   fileUpload:File;
-  constructor(private httpService: HttpClient,private _lightbox: Lightbox,private billerservice: BillerserviceService,private toastr: ToastrService,private loaderService: LoaderService,private router: Router,) { }
+  
+  constructor(private httpService: HttpClient,private _lightbox: Lightbox,private billerservice: BillerserviceService,private toastr: ToastrService,private loaderService: LoaderService,private router: Router,private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    
     // this.httpService.get('./assets/states.json').subscribe(
     //   data=>{
     //     this.states=data;
     //   }
     // )
+   
 this.getallStates()
 
     
@@ -59,6 +62,7 @@ this.getallStates()
     // close lightbox programmatically
     this._lightbox.close();
   }
+  
 
 
 private getallStates(){

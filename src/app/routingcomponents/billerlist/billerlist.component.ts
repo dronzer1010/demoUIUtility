@@ -12,6 +12,7 @@ const path = new Config().getutilityBaseUrl();
 import {saveAs as importedSaveAs} from "file-saver";
 import {Observable} from 'rxjs/Rx';
 import { ToastrService } from 'ngx-toastr'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-billerlist',
   templateUrl: './billerlist.component.html',
@@ -20,6 +21,7 @@ import { ToastrService } from 'ngx-toastr'
 export class BillerlistComponent implements OnInit {
   display='none'; 
   billdata:any=[];
+  billerdata:any={};
   billerlength:number=0;
   noofrole="No bills available"
   filterQuery = "";
@@ -74,12 +76,20 @@ filterfromdate:any;
   selectallpara:boolean=false;
   token : string;
   deletemodal:string='none';
+  editmodal:string='none';
   deleteid:any;
   filterstatus:any="0";
 filterinterval:any="0";
 filtercategory:any="6f6af57a-5c48-442e-b5b8-8b3559b10cd9";
 organisation_id:any;
-  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,public datepipe: DatePipe,private authService : AuthService, private http: Http,private toaster:ToastrService,private auth: AuthService) { }
+id:string;
+consumer_no:string;
+gl_expense_code:string;
+b_email:string;
+b_contact:string;
+b_addresss:string;
+edit_id:string;
+  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,public datepipe: DatePipe,private authService : AuthService, private http: Http,private toaster:ToastrService,private auth: AuthService,private router: Router) { }
 
   ngOnInit() {
     this.getUserDetail();
@@ -199,6 +209,20 @@ organisation_id:any;
     }
   }
 
+  getBillerbyId(){
+    if(this.id!=undefined || this.id!=null){
+      this.billservice.getbillerbyid(this.id).then(resp=>{
+          this.billerdata=resp
+          console.log(resp)
+      },error=>{
+          console.log(error)
+      })
+    }else{
+        this.billdata={}
+    }
+    
+}
+
   onStatusSelect(status:any){
     if(status['item_text']=='All')
     this.filterstatus="0"
@@ -236,6 +260,30 @@ organisation_id:any;
 
 }
 
+openeditmodal(id){
+  console.log(this.editmodal)
+  console.log(id)
+ this.editmodal='block'; //Set block css
+ this.edit_id=id;
+ this.billservice.getbillerbyid(this.edit_id).then(resp=>{
+ // this.billerdata=resp
+  console.log(resp)
+  this.consumer_no=resp['consumer_no']
+  this.gl_expense_code=resp['gl_expense_code']
+  this.b_email=resp['email']
+  this.b_addresss=resp['contact_address']
+  this.b_contact=resp['contact_no']
+},error=>{
+  console.log(error)
+})
+
+}
+
+closeeditmodal(){
+  this.editmodal='none'; //set none css after close dialog
+
+ }
+
 deletebill(){
   this.loaderService.display(true)
   this.billservice.deletebill(this.deleteid).then(resp=>{
@@ -254,6 +302,38 @@ deletebill(){
       positionClass:'toast-top-center'
       })
   })
+}
+
+submitediteddetails(){
+  this.loaderService.display(true)
+this.editmodal='none';
+let params={
+  "consumer_no":this.consumer_no,
+  "gl_expense_code":this.gl_expense_code,
+  "email":this.b_email,
+  "contact_no":this.b_contact,
+  "contact_address":this.b_addresss
+}
+
+this.billservice.updatebills(params,this.edit_id).then(resp=>{
+  console.log(resp)
+  this.loaderService.display(false)
+  if(resp['message']=='Bill updated successfully!'){
+    this.loadbills();
+    this.toaster.success("Bill parameters has been updated and sent for approval!","Alert",{
+      timeOut:3000,
+      positionClass:'toast-top-center'
+      })
+  }else{
+    this.toaster.error("Failed to update bills!","Alert",{
+      timeOut:3000,
+      positionClass:'toast-top-center'
+      })
+  }
+},error=>{
+  console.log(error)
+  this.loaderService.display(false)
+})
 }
 
  private loadbills(){
@@ -352,6 +432,10 @@ downloadFile(arr:any): Observable<Blob> {
 }
   handleError(handleError: any): Observable<Blob> {
     throw new Error("Method not implemented.");
+  }
+
+  editbiller(id){
+    this.router.navigate(['/main/unitary-biller'],{queryParams:{id:id}});
   }
 
    
