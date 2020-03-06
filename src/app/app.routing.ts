@@ -82,7 +82,7 @@ const appRoutes: Routes = [
     {path:'pending-payments',component:PendingPaymentsComponent,canActivate: [AuthGuard]},
     //{path:'maker-biller-bulk',component:MakerBillerBulkComponent},  
     {path:'biller-bulk',component:BillerBulkComponent,canActivate: [AuthGuard]}, 
-    {path:'dashboard',component:DashboardComponent,canActivate: [AuthGuard]},                                                                                                              
+    {path:'dashboard',component:DashboardComponent},                                                                                                              
     {path:'otp-approve-payment/:ids',component:OtpapprovePaymentComponent,canActivate: [AuthGuard]},
     {path:'otp-approve-biller/:ids',component:OtpapproveBillerComponent,canActivate: [AuthGuard]},
     {path:'cardview',component:CardviewComponent,canActivate: [AuthGuard]},

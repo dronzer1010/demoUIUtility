@@ -21,7 +21,7 @@ export class SetpasswordComponent implements OnInit {
     if(!!this.password && !!this.cnfpassword && this.password.length >= 6){
       //
       if (this.password == this.cnfpassword) {
-        this.auth.setnewpassword(this.password,this.params)
+        this.auth.setnewpassword(this.password,this.cnfpassword,this.params)
       }else{
         this.toastr.warning("Password and Confirm Password not matched!",'Alert',{
           timeOut:3000,

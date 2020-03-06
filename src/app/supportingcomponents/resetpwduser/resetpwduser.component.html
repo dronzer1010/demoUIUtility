@@ -14,18 +14,18 @@
                   <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 extra_padd">
                      <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6">
                         <div class="lft_div">
-                            <form (ngSubmit)="onSubmit()" #f="ngForm">
+                            <form #f="ngForm">
                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                               <div class="form-field col x-50">
                                
-                                 <input class="input-text js-input" type="password" [(ngModel)]="resetdata.password" name="password" #name="ngModel" required autocomplete='off'>
+                                 <input class="input-text js-input" type="password" [(ngModel)]="enterpwd" name="enterpwd" #name="ngModel" required autocomplete='off'>
                                  <label class="label" for="grpname">Enter New Password</label>
                               </div>
                            </div>
                            <div class="clearfix"></div>
                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                               <div class="form-field col x-50"> 
-                                 <input class="input-text js-input" type="password" [(ngModel)]="resetdata.confirm_password" name="confirm_password"  #name="ngModel" required autocomplete='off'>
+                                 <input class="input-text js-input" type="password" [(ngModel)]="reenterpwd" name="reenterpwd"  #name="ngModel" required autocomplete='off'>
                                  <label class="label" for="lwrlimit">Enter New Password Again</label>
                               </div>
                            </div>
@@ -37,7 +37,7 @@
                            </div>
                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 ">
                               <div class="form-field col x-50">
-                                 <button type="submit" class="btn bg-primary nextBtn nxt2 submit" [disabled]="!f.form.valid">Submit for Approval</button>
+                                 <button type="submit" class="btn bg-primary nextBtn nxt2 submit" [disabled]="!f.form.valid" (click)="setnewpwd()">Submit for Approval</button>
                               </div>
                            </div>
                            </form>

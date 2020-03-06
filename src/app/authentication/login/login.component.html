@@ -57,9 +57,9 @@
                 <tr>
                   <td>Email</td>
                   <td>:</td>
-                  <td><input type="text" class="model-inputs" [(ngModel)]="email" name="email"></td>
+                  <td><input type="text" class="model-inputs" [(ngModel)]="email" name="email" (change)="getorglist(email)"></td>
                 </tr>
-                <tr>
+                <tr *ngIf="showorg">
                   <td>Organization Name</td>
                   <td>:</td>
                   <td>
@@ -68,7 +68,8 @@
                       <option *ngFor="let org of orgdata" [value]="org.id">{{org.org_name}}</option>
                     </datalist> -->
                     <select class="model-inputs" (change)="selectOption($event.target.value)" name="orgid" required>
-                      <option [value]="org.id" *ngFor="let org of orgdata">{{org.org_name}}</option>
+                      <option value="">Select Organization</option>
+                      <option [value]="org.corp_id" *ngFor="let org of orgdata">{{org.org_name}}</option>
                     </select>
                    </td>
                 </tr>

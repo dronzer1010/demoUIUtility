@@ -18,9 +18,11 @@ export class HeaderComponent implements OnInit {
   displayuserdrop='none';
   displaygroupdrop='none';
   displayruledrop='none';
+  displayotherdrop='none';
   rolename:any;
   dashActive:boolean=true;
   cardActive:boolean=false;
+  otherActive:boolean=false;
   payActive:boolean=false;
   billActive:boolean=false;
   userActive:boolean=false;
@@ -35,6 +37,16 @@ export class HeaderComponent implements OnInit {
   authmatrix:string;
   userdata:any={};
   pathroute: string;
+  redirecttoken:string;
+  redirectmodules:any=[]
+  localstoragetoken:string;
+  localstoragemodules:any=[];
+  supplierurl:string;
+  gsturl:string;
+  modules:any=[];
+  showsuppliermodule:boolean=false;
+  showgstmodule:boolean=false;
+  showsolutions:boolean=false;
   constructor(location: Location,private route: ActivatedRoute,private router: Router,private usrservice:UserserviceService,private auth:AuthService,) { 
     router.events.subscribe((val) => {
       this.pathroute=location.path();
@@ -63,13 +75,23 @@ this.clickNotEvent()
   }
 
   ngOnInit() {
-    this.getUserDetail()
-    this.utilityparams=this.route.snapshot.queryParams["token"];
-    console.log(this.utilityparams)
-    if(this.utilityparams!=null || this.utilityparams!=undefined)
-    this.savetoken()
-    //this.rolename=localStorage.getItem('rolename')
+   
+    this.redirecttoken=this.route.snapshot.queryParams["token"];
+    this.redirectmodules=this.route.snapshot.queryParams["modules"];
+    if(this.redirecttoken!=undefined){
+      console.log("hello")
+      this.auth.saveToken(this.redirecttoken)
+    }
+    if(this.redirectmodules!=undefined){
+      localStorage.setItem('modules',this.redirectmodules)
+    }
+    this.localstoragemodules=localStorage.getItem('modules')
+    this.localstoragetoken=localStorage.getItem('token')
+    this.supplierurl='http://localhost:4200/main?token='+this.localstoragetoken+'&modules='+this.localstoragemodules;
+    this.gsturl='http://localhost:4000/main/dashboard?token='+this.localstoragetoken+'&modules='+this.localstoragemodules;
     console.log(this.rolename)
+    this.getModules()
+    this.getUserDetail()
   }
 
   clickDashEvent(){
@@ -85,6 +107,7 @@ this.clickNotEvent()
     this.userActive=false;
     this.groupActive=false;
     this.ruleActive=false;
+    this.otherActive=false;
   }
 
   clickOrgEvent(){
@@ -100,6 +123,7 @@ this.clickNotEvent()
     this.userActive=false;
     this.groupActive=false;
     this.ruleActive=false;
+    this.otherActive=false;
   }
 
   clickPayEvent(){
@@ -115,6 +139,7 @@ this.clickNotEvent()
     this.userActive=false;
     this.groupActive=false;
     this.ruleActive=false;
+    this.otherActive=false;
 
   }
   clickBillEvent(){
@@ -130,6 +155,7 @@ this.clickNotEvent()
     this.userActive=false;
     this.groupActive=false;
     this.ruleActive=false;
+    this.otherActive=false;
   }
   clickCardEvent(){
     this.orgActive=false;
@@ -144,6 +170,23 @@ this.clickNotEvent()
     this.userActive=false;
     this.groupActive=false;
     this.ruleActive=false;
+    this.otherActive=false;
+  }
+
+  clickOtherEvent(){
+    this.orgActive=false;
+    this.dashActive=false;
+    this.payActive=false;
+    this.billActive=false;
+    this.faqActive=false;
+    this.quickActive=false;
+    this.notActive=false;
+    this.profActive=false;
+    this.cardActive=false;
+    this.userActive=false;
+    this.groupActive=false;
+    this.ruleActive=false;
+    this.otherActive=true;
   }
 
   
@@ -161,6 +204,7 @@ this.clickNotEvent()
     this.notActive=false;
     this.profActive=false;
     this.cardActive=false;
+    this.otherActive=false;
   }
 
   clickNotEvent(){
@@ -175,6 +219,7 @@ this.clickNotEvent()
     this.userActive=false;
     this.groupActive=false;
     this.ruleActive=false;
+    this.otherActive=false;
   }
 
   clickGroupEvent(){
@@ -189,6 +234,7 @@ this.clickNotEvent()
     this.userActive=false;
     this.groupActive=true;
     this.ruleActive=false;
+    this.otherActive=false;
   }
 
 
@@ -204,6 +250,7 @@ this.clickNotEvent()
     this.userActive=true;
     this.groupActive=false;
     this.ruleActive=false;
+    this.otherActive=false;
   }
 
 
@@ -219,6 +266,7 @@ this.clickNotEvent()
     this.userActive=false;
     this.groupActive=false;
     this.ruleActive=true;
+    this.otherActive=false;
   }
 
   openbilldrop(){
@@ -230,6 +278,18 @@ this.clickNotEvent()
     this.displayuserdrop='none';
     this.displaygroupdrop='none';
     this.displayruledrop='none'
+    this.displayotherdrop='none'
+  }
+  openotherdrop(){
+    this.displaybilldrop='none'
+    this.displaypaydrop='none';
+    this.displaycarddrop='none';
+    this.displayprofile='none';
+    this.displaynotdrop='none'
+    this.displayuserdrop='none';
+    this.displaygroupdrop='none';
+    this.displayruledrop='none'
+    this.displayotherdrop='block'
   }
 
   openpaydrop(){
@@ -241,6 +301,7 @@ this.clickNotEvent()
     this.displayuserdrop='none';
     this.displaygroupdrop='none';
     this.displayruledrop='none'
+    this.displayotherdrop='none'
   }
 
   opencarddrop(){
@@ -252,6 +313,7 @@ this.clickNotEvent()
     this.displayuserdrop='none';
     this.displaygroupdrop='none';
     this.displayruledrop='none'
+    this.displayotherdrop='none'
   }
   clickDash(){
     this.displaybilldrop='none'
@@ -262,6 +324,7 @@ this.clickNotEvent()
     this.displayuserdrop='none';
     this.displaygroupdrop='none';
     this.displayruledrop='none'
+    this.displayotherdrop='none'
   }
 
   clickOrg(){
@@ -273,6 +336,7 @@ this.clickNotEvent()
     this.displayuserdrop='none';
     this.displaygroupdrop='none';
     this.displayruledrop='none'
+    this.displayotherdrop='none'
   }
 
   openmyprofile(){
@@ -284,6 +348,7 @@ this.clickNotEvent()
     this.displayuserdrop='none';
     this.displaygroupdrop='none';
     this.displayruledrop='none'
+    this.displayotherdrop='none'
   }
 
   opennoti(){
@@ -295,6 +360,7 @@ this.clickNotEvent()
     this.displayuserdrop='none';
     this.displaygroupdrop='none';
     this.displayruledrop='none'
+    this.displayotherdrop='none'
   }
 
   opennuser(){
@@ -306,6 +372,7 @@ this.clickNotEvent()
     this.displayuserdrop='block';
     this.displaygroupdrop='none';
     this.displayruledrop='none'
+    this.displayotherdrop='none'
   }
 
   openrule(){
@@ -317,6 +384,7 @@ this.clickNotEvent()
     this.displayuserdrop='none';
     this.displaygroupdrop='none';
     this.displayruledrop='block'
+    this.displayotherdrop='none'
   }
 
 
@@ -329,6 +397,7 @@ this.clickNotEvent()
     this.displayuserdrop='none';
     this.displaygroupdrop='block';
     this.displayruledrop='none'
+    this.displayotherdrop='none'
   }
 
 
@@ -341,6 +410,7 @@ this.clickNotEvent()
     this.displayuserdrop='none';
     this.displaygroupdrop='none';
     this.displayruledrop='none'
+    this.displayotherdrop='none'
   }
 
   logout(){
@@ -362,6 +432,29 @@ this.usrservice.getUserDetails().subscribe(res=>{
 },error=>{
   console.log(error)
 })
+  }
+
+  private getModules(){
+    this.modules=localStorage.getItem('modules')
+    if(this.modules.length>0){
+      if(this.modules.includes('GST-Payments') || this.modules.includes('Supplier_module')){
+        this.showsolutions=true;
+        if(this.modules.includes('Supplier_module')){
+          this.showsuppliermodule=true;
+        }else{
+          this.showsuppliermodule=false;
+        }
+        if(this.modules.includes('GST-Payments')){
+          this.showgstmodule=true;
+        }else{
+          this.showgstmodule=false;
+        }
+      }else{
+        this.showsolutions=false;
+      }
+    }else{
+      this.showsolutions=false;
+    }
   }
 
 }

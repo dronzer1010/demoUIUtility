@@ -29,10 +29,11 @@ maxdate:Date=new Date("2000-01-01")
 multiple: boolean=false 
 options:any;
 config = {}
+showorg:boolean=false;
   constructor(private http: HttpClient,private router: Router,private toastr: ToastrService,private auth:AuthService,public datepipe: DatePipe) { }
 
   ngOnInit() {
-    this.getorglist()
+   
   
 }
 
@@ -48,11 +49,14 @@ console.log($event)
 console.log($event)
  }
 
- private getorglist(){
-this.auth.getAllOrg().then(data=>{
+getorglist(email){
+this.auth.getorganisationbyemail(email).then(data=>{
+  if(data['data'].length>0 && data['data']!=undefined){
+    this.showorg=true
+    this.orgdata=data['data']
+    console.log(this.orgdata)
+  }
   
-  this.orgdata=data['organizations']
-  console.log(this.orgdata)
 })
  }
 
