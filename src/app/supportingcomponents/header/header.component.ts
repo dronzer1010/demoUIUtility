@@ -87,8 +87,8 @@ this.clickNotEvent()
     }
     this.localstoragemodules=localStorage.getItem('modules')
     this.localstoragetoken=localStorage.getItem('token')
-    this.supplierurl='http://localhost:4200/main?token='+this.localstoragetoken+'&modules='+this.localstoragemodules;
-    this.gsturl='http://localhost:4000/main/dashboard?token='+this.localstoragetoken+'&modules='+this.localstoragemodules;
+    this.supplierurl='http://test-supplier.aquapay.in/main?token='+this.localstoragetoken+'&modules='+this.localstoragemodules;
+    this.gsturl='http://test-gst.aquapay.in/main/dashboard?token='+this.localstoragetoken+'&modules='+this.localstoragemodules;
     console.log(this.rolename)
     this.getModules()
     this.getUserDetail()
