@@ -10,7 +10,7 @@ export class Config{
    //this.baseUrl = "https://utility-rest.aquapay.in/api/"
 
       //Production URL
-    //  this.utilityapiUrl = "https://billtree.aquapay.in:3002/";
+      this.utilityapiUrl = "https://billtree.aquapay.in:3002/";
        
         // Test URL
  this.utilityapiUrl="http://13.233.114.106:9999/"
