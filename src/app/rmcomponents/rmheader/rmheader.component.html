@@ -18,6 +18,18 @@
       <ul class="[ nav navbar-nav ] customLeftMargin nav">
         <li class="dash" [ngClass]="dashActive ? 'active' : ''" (click)="clickDash();clickDashEvent()"><a class="[ animate ]"
             [routerLink]="['/rmdashboard']"><i class="nav-ico-menu"> </i>Dashboard</a></li>
+            <li class="menu_sel profilink" [ngClass]="notActive ? 'active' : ''">
+              <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="openotherdrop();clickOtherEvent()">
+                Solutions
+              </a>
+              <ul class="[ dropdown-menu dropdown-menu4 ]" role="menu" [ngStyle]="{'display':displayotherdrop}">
+                <li class="col-md-12 cust" *ngIf="showsuppliermodule"><a class="[ animate ]" href="{{supplierurl}}" target="_blank" (click)="closealldrop()">
+                  Supplier Module</a></li>
+              <li class="col-md-12 cust" *ngIf="showgstmodule"><a class="[ animate ]"  href="{{gsturl}}" target="_blank" (click)="closealldrop()"
+                href="javascript:void(0)">
+                  GST Module </a></li>
+              </ul>
+            </li>
         <li class="dash" [ngClass]="orgActive ? 'active' : ''" (click)="clickOrg();clickOrgEvent()"><a class="[ animate ]"
             [routerLink]="['/rmorganisation']"><i class="nav-ico-menu"> </i>Organisation</a></li>
         

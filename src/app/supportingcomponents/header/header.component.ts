@@ -3,7 +3,10 @@ import { Location } from '@angular/common';
 import { Router, ActivatedRoute,NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
 import {UserserviceService} from '../../api/userservice.service'
 import {AuthService} from '../../api/auth.service'
-
+import {Urlconfig} from '../../urlconfig'
+const billtreepath= new Urlconfig().getBilltreeURL()
+const gstpath= new Urlconfig().getGstURL()
+const supplierpath = new Urlconfig().getSupplierURL()
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -87,9 +90,9 @@ this.clickNotEvent()
     }
     this.localstoragemodules=localStorage.getItem('modules')
     this.localstoragetoken=localStorage.getItem('token')
-    this.supplierurl='http://test-supplier.aquapay.in/main?token='+this.localstoragetoken+'&modules='+this.localstoragemodules;
-    this.gsturl='http://test-gst.aquapay.in/main/dashboard?token='+this.localstoragetoken+'&modules='+this.localstoragemodules;
-    console.log(this.rolename)
+    this.supplierurl=supplierpath+'main?token='+this.localstoragetoken+'&modules='+this.localstoragemodules;
+    this.gsturl=gstpath+'main/dashboard?token='+this.localstoragetoken+'&modules='+this.localstoragemodules;
+   
     this.getModules()
     this.getUserDetail()
   }

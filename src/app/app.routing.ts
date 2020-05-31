@@ -138,7 +138,7 @@ const appRoutes: Routes = [
     { path: 'rmgrouporganisation', component: RmgrouporganisationComponent,canActivate:[AuthGuard] },
     { path: 'rmgrouplist/:id/:authmatrix', component: RmgrouplistComponent ,canActivate:[AuthGuard]},
     { path: 'rmfaq', component: RmfaqComponent ,canActivate:[AuthGuard]},
-    { path: 'rmdashboard', component: RmdashboardComponent ,canActivate:[AuthGuard]},
+    { path: 'rmdashboard', component: RmdashboardComponent },
     { path : 'rmcards/:id', component: RmcardsComponent,canActivate: [AuthGuard]},
     { path : 'rmbills/:id', component: RmbillsComponent,canActivate: [AuthGuard]},
     { path : 'rmrepository', component: RmrepositoryComponent,canActivate: [AuthGuard]},

@@ -3,6 +3,7 @@
   color:#ccc0d4;
   font-weight: bold;
 }
+
 @media only screen and (max-width: 1920px){ 
   .navbar-bootsnipp .navbar-nav>li:not(.dropdown-right)>.dropdown-menu {
     margin-left: -1px;

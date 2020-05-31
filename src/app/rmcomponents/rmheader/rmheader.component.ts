@@ -3,6 +3,10 @@ import { Location } from '@angular/common';
 import { Router, ActivatedRoute,NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
 import {UserserviceService} from '../../api/userservice.service'
 import {AuthService} from '../../api/auth.service'
+import {Urlconfig} from '../../urlconfig'
+const billtreepath= new Urlconfig().getBilltreeURL()
+const gstpath= new Urlconfig().getGstURL()
+const supplierpath = new Urlconfig().getSupplierURL()
 @Component({
   selector: 'app-rmheader',
   templateUrl: './rmheader.component.html',
@@ -17,7 +21,9 @@ export class RmheaderComponent implements OnInit {
   displayuserdrop='none';
   displaygroupdrop='none';
   displayruledrop='none';
+  displayotherdrop='none';
   rolename:any;
+  otherActive:boolean=false;
   dashActive:boolean=true;
   cardActive:boolean=false;
   payActive:boolean=false;
@@ -34,6 +40,16 @@ export class RmheaderComponent implements OnInit {
   public utilityparams:string;
   userdata:any={};
   pathroute: string;
+  redirecttoken:string;
+  redirectmodules:any=[]
+  localstoragetoken:string;
+  localstoragemodules:any=[];
+  supplierurl:string;
+  gsturl:string;
+  modules:any=[];
+  showsuppliermodule:boolean=false;
+  showgstmodule:boolean=false;
+  showsolutions:boolean=false;
   constructor(location: Location,private route: ActivatedRoute,private router: Router,private usrservice:UserserviceService,private auth:AuthService) { 
 
     router.events.subscribe((val) => {
@@ -59,6 +75,21 @@ this.clickNotEvent()
   }
 
   ngOnInit() {
+    this.redirecttoken=this.route.snapshot.queryParams["token"];
+    this.redirectmodules=this.route.snapshot.queryParams["modules"];
+    if(this.redirecttoken!=undefined){
+      console.log("hello")
+      this.auth.saveToken(this.redirecttoken)
+    }
+    if(this.redirectmodules!=undefined){
+      localStorage.setItem('modules',this.redirectmodules)
+    }
+    this.localstoragemodules=localStorage.getItem('modules')
+    this.localstoragetoken=localStorage.getItem('token')
+    this.supplierurl=supplierpath+'rmdashboard?token='+this.localstoragetoken+'&modules='+this.localstoragemodules;
+    this.gsturl=gstpath+'rm-dashboard?token='+this.localstoragetoken+'&modules='+this.localstoragemodules;
+    console.log(this.rolename)
+    this.getModules()
     this.getUserDetail()
 
   }
@@ -240,6 +271,22 @@ this.clickNotEvent()
     this.fetchActive=false;
   }
 
+  clickOtherEvent(){
+    this.orgActive=false;
+    this.dashActive=false;
+    this.payActive=false;
+    this.billActive=false;
+    this.faqActive=false;
+    this.quickActive=false;
+    this.notActive=false;
+    this.profActive=false;
+    this.cardActive=false;
+    this.userActive=false;
+    this.groupActive=false;
+    this.ruleActive=false;
+    this.otherActive=true;
+  }
+
   openmyprofile(){
     this.displaybilldrop='none'
     this.displaypaydrop='none';
@@ -249,6 +296,7 @@ this.clickNotEvent()
     this.displayuserdrop='none';
     this.displaygroupdrop='none';
     this.displayruledrop='none'
+    this.displayotherdrop='none'
   }
 
   opennoti(){
@@ -260,7 +308,10 @@ this.clickNotEvent()
     this.displayuserdrop='none';
     this.displaygroupdrop='none';
     this.displayruledrop='none'
+    this.displayotherdrop='none'
   }
+
+  
   closealldrop(){
     this.displaybilldrop='none'
     this.displaypaydrop='none';
@@ -270,7 +321,21 @@ this.clickNotEvent()
     this.displayuserdrop='none';
     this.displaygroupdrop='none';
     this.displayruledrop='none'
+    this.displayotherdrop='none'
   }
+
+  openotherdrop(){
+    this.displaybilldrop='none'
+    this.displaypaydrop='none';
+    this.displaycarddrop='none';
+    this.displayprofile='none';
+    this.displaynotdrop='none'
+    this.displayuserdrop='none';
+    this.displaygroupdrop='none';
+    this.displayruledrop='none'
+    this.displayotherdrop='block'
+  }
+
 
   logout(){
     this.auth.logout();
@@ -291,6 +356,29 @@ this.clickNotEvent()
 
       savetoken(){
         localStorage.setItem("rolename",this.utilityparams)
+      }
+
+      private getModules(){
+        this.modules=localStorage.getItem('modules')
+        if(this.modules.length>0){
+          if(this.modules.includes('GST-Payments') || this.modules.includes('Supplier_module')){
+            this.showsolutions=true;
+            if(this.modules.includes('Supplier_module')){
+              this.showsuppliermodule=true;
+            }else{
+              this.showsuppliermodule=false;
+            }
+            if(this.modules.includes('GST-Payments')){
+              this.showgstmodule=true;
+            }else{
+              this.showgstmodule=false;
+            }
+          }else{
+            this.showsolutions=false;
+          }
+        }else{
+          this.showsolutions=false;
+        }
       }
 
 }
