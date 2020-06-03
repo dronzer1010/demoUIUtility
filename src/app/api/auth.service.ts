@@ -160,12 +160,12 @@ if(data['data']['msg']=='OTP disabled'){
     timeOut:3000,
     positionClass:'toast-top-center'
     })
-}else if(data['data']['msg']=='Something went wrong')
+}else if(data['data']['msg']=='Something went wrong'){
 this.toastr.error(data['data']['msg'],'Error',{
   timeOut:3000,
   positionClass:'toast-top-center'
   })
-else if(data['data']['msg']=='OTP enabled'){
+}else if(data['data']['msg']=='OTP enabled'){
   this.id=data['id']
   this.saveToken(data['data']['secure_set'])
   localStorage.setItem("modules", JSON.stringify(data['data']['access']));
