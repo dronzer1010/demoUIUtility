@@ -70,6 +70,12 @@ import { MakeprepaidpaymentsComponent } from './routingcomponents/makeprepaidpay
 import { ResetpwduserComponent } from './supportingcomponents/resetpwduser/resetpwduser.component';
 import { RefundviewComponent } from './supportingcomponents/refundview/refundview.component';
 import { RmfetchreportComponent } from './rmcomponents/rmfetchreport/rmfetchreport.component';
+import { AddBillerComponent } from './customcomponents/add-biller/add-biller.component';
+import { AddBillPaymentComponent } from './customcomponents/add-bill-payment/add-bill-payment.component';
+import { ViewBillerComponent } from './customcomponents/view-biller/view-biller.component';
+import { ViewBillPaymentsComponent } from './customcomponents/view-bill-payments/view-bill-payments.component';
+import { PendingBillPaymentsComponent } from './customcomponents/pending-bill-payments/pending-bill-payments.component';
+import { PendingBillsComponent } from './customcomponents/pending-bills/pending-bills.component';
 const appRoutes: Routes = [ 
     { path:'main',component:UserhomeComponent,
     children:[
@@ -110,7 +116,13 @@ const appRoutes: Routes = [
     {path:'repository',component:RepositoryComponent,canActivate: [AuthGuard]},
     {path:'sample-bills',component:SamplebillsComponent,canActivate: [AuthGuard]},
     {path:'templates',component:TemplatesComponent,canActivate: [AuthGuard]},
-    {path:'reset-password-user',component:ResetpwduserComponent,canActivate: [AuthGuard]}
+    {path:'reset-password-user',component:ResetpwduserComponent,canActivate: [AuthGuard]},
+    {path:'add-custom-biller',component:AddBillerComponent},
+    {path:'add-custom-bill-payment',component:AddBillPaymentComponent},
+    {path:'view-custom-biller',component:ViewBillerComponent},
+    {path:'view-custom-bill-payments',component:ViewBillPaymentsComponent},
+    {path:'custom-pending-bills',component:PendingBillsComponent},
+    {path:'custom-pending-bill-payments',component: PendingBillPaymentsComponent}
     
 ]},
 

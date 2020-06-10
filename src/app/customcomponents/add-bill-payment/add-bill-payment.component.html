@@ -1,0 +1,330 @@
+<div class="container">
+  <section class="content">
+    <div class="col-md-2 col-sm-2 top_back no-show2">
+      <h5 class="blu-color" *ngIf="step2 || step3"> <a class="backBtnpay_sup" *ngIf="step2" (click)="gotostep1()"><img src="assets/img/left-arrow.png"> Back </a>
+        <a class="sndback" *ngIf="step3" (click)="gotostep2()"><img src="assets/img/left-arrow.png"> Back </a></h5>
+    </div>
+    <div class="col-md-10 col-sm-9">
+      <div class="stepwizard ">
+        <div class="stepwizard-row stepwizard-row2 setup-panel" *ngIf="step1">
+          <div class="stepwizard-step">
+            <a href="#step-4" class="btn bg-primary btn-circle" id="fourth"></a>
+            <h6 id="p1">Select a Biller</h6>
+          </div>
+          <div class="stepwizard-step">
+            <a href="#step-5" class="btn bg-default btn-circle " id="fifth"></a>
+            <h6 id="p2">Payment Details</h6>
+          </div>
+          <div class="stepwizard-step">
+            <a href="#step-6" class="btn bg-default btn-circle " id="sixth"></a>
+            <h6 id="p3">Review Details</h6>
+          </div>
+        </div>
+        <div class="stepwizard-row stepwizard-row2 setup-panel" *ngIf="step2">
+          <div class="stepwizard-step">
+            <a href="#step-4" class="btn bg-primary btn-circle big-circle" id="fourth"><img class="img-responsive tick2" src="assets/img/tick.png"></a>
+            <h6 id="p1">Select a Biller</h6>
+          </div>
+          <div class="stepwizard-step">
+            <a href="#step-5" class="btn bg-default btn-circle bg-primary" id="fifth"></a>
+            <h6 id="p2">Payment Details</h6>
+          </div>
+          <div class="stepwizard-step">
+            <a href="#step-6" class="btn bg-default btn-circle " id="sixth"></a>
+            <h6 id="p3">Review Details</h6>
+          </div>
+        </div>
+        <div class="stepwizard-row stepwizard-row2 setup-panel" *ngIf="step3">
+          <div class="stepwizard-step">
+            <a href="#step-4" class="btn bg-primary btn-circle big-circle" id="fourth"><img class="img-responsive tick2" src="assets/img/tick.png"></a>
+            <h6 id="p1">Select a Biller</h6>
+          </div>
+          <div class="stepwizard-step">
+            <a href="#step-5" class="btn bg-default btn-circle bg-primary big-circle" id="fifth"><img class="img-responsive tick3" src="assets/img/tick.png"></a>
+            <h6 id="p2">Payment Details</h6>
+          </div>
+          <div class="stepwizard-step">
+            <a href="#step-6" class="btn bg-default btn-circle bg-primary" id="sixth"></a>
+            <h6 id="p3">Review Details</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2 col-sm-2 top_back no-show">
+      <!-- <h5 class="blu-color"> 
+        <a href="#" class="backBtnpay_sup" *ngIf="step2" (click)="gotostep1()"><img src="assets/images/left-arrow.png">Back</a>
+        <a class="sndback" *ngIf="step3" (click)="gotostep2()"><img src="assets/images/left-arrow.png">Back</a>
+      </h5> -->
+    </div>
+    <div class="clearfix"></div>
+    <form role="form" class="contact-form" #f="ngForm">
+      <div class="col-md-12">
+        <div class="row setup-content form_bg" id="step-4" *ngIf="step1">
+          <h4 class="Top5Heading111" style="padding: 1.5% 3%!important;">Select a Biller</h4>
+          <div class="BorderBottom"></div>
+          <div class="col-md-12 extra_padd">
+            <div class="row">
+              <div class="form-group col-md-4">
+                <input id="name" class="input-text search leftpad" name="search" type="text" placeholder="Search Biller Name" [(ngModel)]="filter">
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-offset-1 col-md-10">
+              <h5>Recent Payment made to</h5>
+              <div class="carousel slide media-carousel" id="media">
+                <div class="carousel-inner">
+                  <div class="item  active">
+                    <ng-container *ngFor="let recent of recentBiller">
+                      <div class="sliddiv">
+                        <a class="thumbnail" (click)="billerById(recent.id)">{{recent.name}}</a>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+                <a data-slide="prev" id="prev" href="#media" class="left carousel-control"><img src="assets/img/L_arrow.png"></a>
+                <a data-slide="next" id="next" href="#media" class="right carousel-control"><img src="assets/img/slider-left.png"></a>
+              </div>
+              <div class="btn-toolbar">
+                <div class="btn-group btn-group-sm">
+                  <ng-container *ngFor="let char of charArray">
+                    <button class="btn btn-default myfil" data-target="#item1" data-toggle="tab" (click)="filterBillerByChar(char)">{{char}}</button>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="clear20"></div>
+              <div class="clear20"></div>
+              <div class="row tab-content">
+                <div class="col-md-12 tab-pane active" id="item1">
+                  <ng-container *ngFor="let biller of filteredBillers|filter:filter">
+                    <div class="col-md-3">
+                      <div class="texta"><a class="blu-color" (click)="billerById(biller.id);changeSupColor(biller.id)" [ngClass]="biller.id === activeSupEle ? 'activeSupplier' : 'none'">{{biller.biller_name}} {{biller.bu_code_bu_name}}</a></div>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="form-field col x-50">
+                <button class="btn bg-primary nextpay nxt2" type="button" (click)="gotostep2()">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row setup-content form_bg" id="step-5" *ngIf="step2">
+          <h4 class="Top5Heading111 " style="padding: 1.5% 3%!important;">Payment Details</h4>
+          <div class="BorderBottom"></div>
+          <div class="clearfix"></div>
+          <div class="clear20"></div>
+          <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+              <div class="row">
+                <div class="col-md-offset-1 col-md-11">
+                  <ng-container *ngFor="let card of approvedcards">
+                    <div class="activeCard" [ngClass]="card.id === activeElement ? 'shad' : 'none'" id="card"
+                      data-toggle="tab" href="#menu">
+                      <div class="innercard addborder" (click)="cardById(card.id)">
+                        <img class="cardimg" src="assets/img/paycard.png">
+                        <div class="clear10"></div>
+                        <p class="smallfont">{{card.digits}}</p>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="BorderBottom"></div>
+          <div class="clear20"></div>
+          <div class="col-md-offset-1 col-md-10">
+            <div class="row">
+              <div class="tab-content">
+                <div id="menu" class="tab-pane fade in active">
+                    <div class="clear20"></div>
+                  <div class="col-md-12">
+                    <div class="col-md-7 rtrspac">
+                      <div class="clear20"></div>                      
+                      <div class="uk-card uk-card-primary uk-card-hover uk-card-body uk-light fontsize">
+                        <h3 class="uk-card-title">{{cardHolder}}</h3>
+                        <h1>{{cardNumber}}</h1>
+                        <p class="textsmall">
+                          VALID
+                        </p>
+                        <p class="textsmall textsmall1">
+                          UP TO {{cardExpiry}}
+                        </p>
+                        <div class="clear10"></div>
+                        <!-- <p class="textsmall3 textsmall1">Credit Limit</p> -->
+                        <div class="clear10"></div>
+                        <div class="col-sm-12 padnone">
+                          <!-- example starts here -->
+                          <!-- <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+                              aria-valuemax="100" style="width: 60%;">
+                              <span>1.7Cr</span>
+                              <span class="rightBarText">2Cr</span>
+                            </div>
+                          </div> -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-5">
+                      <h4 class="nopad">Enter Details</h4>
+                      <div class="form-field col x-50">
+                        <input id="invnumber" class="input-text js-input" type="text" name="bill_date" [(ngModel)]="paymentData.bill_date"
+                          #bill_date="ngModel" required>
+                        <label class="label" for="invnumber">Bill Date</label>
+                        <div class="form-control-feedback" *ngIf="bill_date.errors && (bill_date.dirty || bill_date.touched)">
+                          <span class="email" *ngIf="bill_date.errors.required">Bill Date is required</span>
+                        </div>
+                      </div>
+                      <div class="form-field col x-50">
+                        <input id="invnumber" class="input-text js-input" type="text" name="due_date" [(ngModel)]="paymentData.due_date"
+                          #due_date="ngModel" required>
+                        <label class="label" for="due_date">Due Date</label>
+                        <div class="form-control-feedback" *ngIf="due_date.errors && (due_date.dirty || due_date.touched)">
+                          <span class="email" *ngIf="due_date.errors.required">Due date is required</span>
+                        </div>
+                      </div>
+                      <div class="form-field col x-50">
+                        <input id="invnumber" class="input-text js-input" type="text" name="bill_number" [(ngModel)]="paymentData.bill_number"
+                          #bill_number="ngModel" required>
+                        <label class="label" for="bill_number">Bill Number</label>
+                        <div class="form-control-feedback" *ngIf="bill_number.errors && (bill_number.dirty || bill_number.touched)">
+                          <span class="email" *ngIf="bill_number.errors.required">Bill Number is required</span>
+                        </div>
+                      </div>
+                      <div class="form-field col x-50">
+                        <input id="amount"  class="input-text js-input" numeric decimals="8" type="text" name="amount" #amount="ngModel"
+                          [(ngModel)]="paymentData.amount" required autocomplete=off>
+                        <label class="label" for="amount">Amount</label>
+                        <div class="form-control-feedback" *ngIf="amount.errors && (amount.dirty || amount.touched)">
+                          <span class="email" *ngIf="amount.errors.required">Amount is required</span>
+                        </div>
+                      </div>
+                      <div class="input-group up-file">
+                        <input type="text" class="input-text input-text_up" id="uploadinfo5" placeholder="Upload Invoice"
+                          readonly>
+                        <label class="input-group-btn">
+                          <span class="btn my-btn">
+                            <img src="assets/img/upload-symbol.png">
+                            <input class="myselector5" style="display:none;" type="file">
+                          </span>
+                        </label>
+                      </div>
+                      <div class="form-field col x-50">
+                        <button class="btn bg-primary ntxpayment nxt2" type="button" (click)="gotostep3()">Next</button>
+                      </div>
+                      <div class="clear20"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row setup-content form_bg" id="step-6" *ngIf="step3">
+          <div class="col-xs-12">
+            <div class="col-md-12 extra_padd">
+              <div class="clear20"></div>
+              <div class="clear20"></div>
+              <div class="col-md-offset-2 col-md-9">
+                <div class="col-md-6 bor-right">
+                  <h4>Biller Details</h4>
+                  <div class="clear20"></div>
+              
+                  <table>
+                    <tr>
+                      <td class="review_lable">Biller Name</td>
+                      <td>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td class="review_value">{{billerName}}</td>
+                    </tr>
+                    <tr>
+                      <td class="review_lable">Consumer No</td>
+                      <td>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td class="review_value">{{consumerNo}}</td>
+                    </tr>
+                    <tr>
+                      <td class="review_lable">BU Code BU Name</td>
+                      <td>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td class="review_value">4320 Wadhi SN/DN.</td>
+                    </tr>
+                    <tr>
+                      <td class="review_lable">Bill date</td>
+                      <td>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td class="review_value">{{paymentData.bill_date}}</td>
+                    </tr>
+                    <tr>
+                      <td class="review_lable">Due Date</td>
+                      <td>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td class="review_value">{{paymentData.due_date}}</td>
+                    </tr>
+                    <tr>
+                      <td class="review_lable">Bill Number</td>
+                      <td>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td class="review_value">123534543</td>
+                    </tr>
+                    <tr>
+                      <td class="review_lable">State</td>
+                      <td>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td class="review_value">Maharashtra</td>
+                    </tr>
+                  </table>
+                </div>
+
+                <div class="col-md-6 pull-right">
+                  <h4>Payment Details</h4>
+                  <div class="clear20"></div>
+                  <table>
+                    <tr>
+                      <td class="review_lable">Nick Name</td>
+                      <td>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td class="review_value">{{cardHolder}}</td>
+                    </tr>
+                    <tr>
+                      <td class="review_lable">Card Number</td>
+                      <td>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td class="review_value">{{cardNumber}}</td>
+                    </tr>
+                    <tr>
+                      <td class="review_lable">Card Valid up to</td>
+                      <td>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td class="review_value">{{cardExpiry}}</td>
+                    </tr>
+                    <tr>
+                      <td class="review_lable">Amount</td>
+                      <td>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td class="review_value">Rs.{{paymentData.amount}}</td>
+                    </tr>
+                    <tr>
+                      <td class="review_lable">Account Number</td>
+                      <td>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td class="review_value">{{billerAcc}}</td>
+                    </tr>
+                    <tr>
+                      <td class="review_lable">IFSC</td>
+                      <td>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td class="review_value">{{billerIfsc}}</td>
+                    </tr>
+                    <tr>
+                      <td class="review_lable">Bank Name</td>
+                      <td>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td class="review_value">{{billerBankName}}</td>
+                    </tr>
+                  </table>
+               
+                </div>
+              </div>
+              <div class="clearfix"></div>
+              <div class="col-md-offset-1 col-md-11">
+                <div class="form-field col x-50">
+                  <button class="btn bg-primary" type="submit">Send for approval</button>
+                </div>
+              </div>
+              <div class="clear20"></div>
+              <div class="clear20"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+</div>

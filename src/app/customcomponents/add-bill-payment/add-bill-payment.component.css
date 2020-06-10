@@ -1,0 +1,198 @@
+.tick2,.tick3,.tick4{
+    margin-top: -3px;
+    width: 10px;
+    height: 10px;
+    /* display: none; */
+    margin-left: 3px;
+}
+.pull-right{
+  text-align: unset!important;
+}
+.form_bg h4 {
+  padding: 1.5% 0%!important;
+}
+.activeCard{
+    width: 17%;
+    display: inline-block;
+    margin-right: 2%;
+    /*border-bottom: 3px solid #fff33b;*/
+}
+
+.form-control-feedback {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    display: block;    
+    height: 34px;
+    width: 100%;
+    line-height: 90px;
+    text-align: left;
+    pointer-events: none;
+}
+
+.email{
+    color: red;
+}
+
+.stepwizard-row2:before {
+    width: 66%;
+    right: 112px;
+}
+/* carousel */
+.sliddiv {
+    width: 19%;
+    display: inline-block;
+    margin-left: 5px;
+    text-align: center;
+    /* height: 98px; */
+    /* vertical-align: text-bottom; */
+  }
+  .thumbnail {
+    display: table-cell;
+    width: 200px;
+    height: 60px;
+    vertical-align: middle;
+    color: #3f4245;
+    border-color: rgba(65, 59, 70, 0.05);
+    box-shadow: 0px 0px 2px #3333331f;
+  }
+  .media-carousel 
+  {
+    margin-bottom: 0;
+    padding: 0 40px 30px 40px;
+    margin-top: 30px;
+  }
+  /* Previous button  */
+  .media-carousel .carousel-control.left 
+  {
+    background-image: none;
+    height: 40px;
+    width: 40px;
+    margin-top: 10px;
+  }
+  /* Next button  */
+  .media-carousel .carousel-control.right 
+  {
+    background-image: none;
+    height: 40px;
+    width: 40px;
+    margin-top: 12px;
+  }
+  /* Changes the position of the indicators */
+  .media-carousel .carousel-indicators 
+  {
+    right: 50%;
+    top: auto;
+    bottom: 0px;
+    margin-right: -19px;
+  }
+  /* Changes the colour of the indicators */
+  .media-carousel .carousel-indicators li 
+  {
+    background: #c0c0c0;
+  }
+  .media-carousel .carousel-indicators .active 
+  {
+    background: #333333;
+  }
+  
+  a.thumbnail:hover {
+    border-color: #533979!important;
+  }
+  .bluebr{border: 1px solid #533979!important}
+  /* End carousel */
+
+  .btn-default.focus, .btn-default:focus {
+    color: #fff;
+    background-color: #533979;
+    border-color: #8c8c8c;
+}
+button.btn.btn-default.myfil {
+    padding: 3px 6px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 4px!important;
+    height: 26px;
+    width: 26px;
+    text-align: center;
+    margin-left: 4px
+}
+/* .blu-color:hover{background-color: #52178b;color: #ffffff;padding: 3px;border-radius: 3px} */
+.texta {
+    margin-bottom: 20px;
+    font-weight: 600
+}
+.bluebg{
+    background-color: #52178b;
+    color: #ffffff;
+    padding: 3px;
+    border-radius: 3px;
+}
+.shad {
+    border-bottom: 3px solid #fff33b;
+}
+.paycard{
+    width: 17%;
+    display: inline-block;
+    margin-right: 2%;
+}
+.innercard {
+    width: 100%;
+    border: 1px solid rgba(151, 121, 186, 0.24);
+    padding: 4px 14px 0px 14px;
+    font-size: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px
+}
+.addborder{border: 2px solid rgba(20, 65, 148, 0.57)}
+.uk-card-primary{
+    height: 240px!important; 
+    width: 100%;
+    background-image: url("../../../assets/img/new-cred-card.png");
+}
+.uk-card-title{margin-top: 0px}
+.my-btn {
+    width: 26px;
+}
+.rtrspac{padding-right: 5%}
+.textsmall{margin-bottom: 0px}
+h4.nopad {
+    padding: 0px;
+}
+.up-file {
+    width: 140px;
+}
+.form-field {
+    margin: 30px 0;
+}
+
+.bor-right{border-right:1px solid #707070}
+.bottom-spac{margin-bottom: 10px}
+
+.activeSupplier{
+  background-color:#52178b;
+  color:#fff;
+  padding:2px;
+}
+
+.review_lable{
+  width: 100%;
+    display: inline-block;
+    /* vertical-align: top; */
+    font-size: 13px;
+    color: #000;
+    padding-bottom: 10px;
+}
+.review_value{
+    display: inline-block;
+    vertical-align: bottom;
+    font-weight: 600;
+    font-size: 13px;
+    width: 50%;
+    word-wrap: break-word;
+    color: #000;
+    white-space: nowrap;
+   padding-bottom: 10px;
+    text-overflow: ellipsis;
+}

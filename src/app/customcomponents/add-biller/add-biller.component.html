@@ -1,0 +1,577 @@
+
+<div class="container ">
+   <section class="content ">
+     <div class="row">
+       <div class="col-md-2 col-sm-2 top_back no-show2">
+         <!-- <h5 class="blu-color">
+           <a *ngIf="billdetails" class="backBtnpay_sup" (click)="backbilltype()">
+             <img src="../../../assets/img/left-arrow.png">Back</a>
+           <a *ngIf="conf" class="sndback" (click)="backbilldetails()">
+             <img src="../../../assets/img/left-arrow.png">Back</a>
+         </h5> -->
+       </div>
+       <div class="col-md-10 col-sm-9">
+         <div class="stepwizard" *ngIf="billertype">
+           <div class="stepwizard-row stepwizard-row2 setup-panel">
+             <div class="stepwizard-step">
+               <a class="btn bg-primary btn-circle" id="fourth">
+ 
+               </a>
+               <h6 class="blu-color stepmrgnlft" id="p1">Bill Type</h6>
+             </div>
+             <div class="stepwizard-step">
+               <a class="btn bg-default btn-circle" id="fifth">
+ 
+               </a>
+               <h6 id="p2">Bill Details</h6>
+             </div>
+             <div class="stepwizard-step">
+               <a class="btn bg-default btn-circle" id="sixth">
+ 
+               </a>
+               <h6 id="p3">Confirm & Send</h6>
+             </div>
+           </div>
+         </div>
+         <div class="stepwizard" *ngIf="billdetails">
+           <div class="stepwizard-row stepwizard-row2 setup-panel">
+             <div class="stepwizard-step">
+               <a class="btn bg-primary btn-circle-big" id="fourth">
+                 <img class="img-responsive tick2" src="assets/img/tick.png">
+               </a>
+               <h6 class="blu-color stepmrgnlft" id="p1">Bill Type</h6>
+             </div>
+             <div class="stepwizard-step">
+               <a class="btn bg-primary btn-circle" id="fifth">
+ 
+               </a>
+               <h6 id="p2">Bill Details</h6>
+             </div>
+             <div class="stepwizard-step">
+               <a class="btn bg-default btn-circle" id="sixth">
+ 
+               </a>
+               <h6 id="p3">Confirm & Send</h6>
+             </div>
+           </div>
+         </div>
+         <div class="stepwizard" *ngIf="conf">
+           <div class="stepwizard-row stepwizard-row2 setup-panel">
+             <div class="stepwizard-step">
+               <a class="btn bg-primary btn-circle-big" id="fourth">
+                 <img class="img-responsive tick2" src="assets/img/tick.png">
+               </a>
+               <h6 class="blu-color stepmrgnlft" id="p1">Bill Type</h6>
+             </div>
+             <div class="stepwizard-step">
+               <a class="btn bg-primary btn-circle-big" id="fifth">
+                 <img class="img-responsive tick2" src="assets/img/tick.png">
+               </a>
+               <h6 id="p2">Bill Details</h6>
+             </div>
+             <div class="stepwizard-step">
+               <a class="btn bg-primary btn-circle" id="sixth">
+ 
+               </a>
+               <h6 id="p3">Confirm & Send</h6>
+             </div>
+           </div>
+         </div>
+         <div class="stepwizard" *ngIf="success">
+           <div class="stepwizard-row stepwizard-row2 setup-panel">
+             <div class="stepwizard-step">
+               <a class="btn bg-primary btn-circle-big" id="fourth">
+                 <img class="img-responsive tick2" src="assets/img/tick.png">
+               </a>
+               <h6 class="blu-color stepmrgnlft" id="p1">Bill Type</h6>
+             </div>
+             <div class="stepwizard-step">
+               <a class="btn bg-primary btn-circle-big" id="fifth">
+                 <img class="img-responsive tick2" src="assets/img/tick.png">
+               </a>
+               <h6 id="p2">Bill Details</h6>
+             </div>
+             <div class="stepwizard-step">
+               <a class="btn bg-primary btn-circle-big" id="sixth">
+                 <img class="img-responsive tick2" src="assets/img/tick.png">
+               </a>
+               <h6 id="p3">Confirm & Send</h6>
+             </div>
+           </div>
+         </div>
+       </div>
+       <div class="col-md-2 col-sm-2 top_back no-show">
+         <h5 class="blu-color">
+           <a href="#" class="backBtnpay_sup">
+             <img src="assets/img/left-arrow.png"> Back </a>
+           <a class="sndback">
+             <img src="assets/img/left-arrow.png"> Back </a>
+         </h5>
+       </div>
+     </div>
+     <div class="clearfix"></div>
+     <form role="form" class="contact-form">
+       <div class="row">
+         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+           <div class="row setup-content form_bg" id="" *ngIf="billertype">
+             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-bottom: 1px solid #e9e9e9;">
+               <h4 class="Top5Heading111 ">Select Biller Type</h4>
+             </div>
+             <div class="BorderBottom"></div>
+             <div class="col-md-12 extra_padd detail_bill">
+               <div class="col-xs-12 col-sm-6 col-md-6">
+                 <div>
+                   <div class="clear20"></div>
+                   <div class="clear20"></div>
+                   <div class="col-xs-12 col-sm-12 col-md-12 padln">
+                     <select class="input-text js-input inptxt form-control" required [(ngModel)]="billdata.board" name="board">
+                       <option value="Electricity">Electricity</option>
+                       <!-- <option value="Telecom" >Telecom</option>
+                       <option value="Gas">Gas</option>
+                       <option value="Insurance">Insurance</option>
+                       <option value="Water">Water</option> -->
+                     </select>
+                     <label class="label" for="usertitle">Select Type of Utility</label>
+                   </div>
+                   <div class="clear20"></div>
+                   <div class="clear20"></div>
+                   <div class="col-xs-12 col-sm-12 col-md-12 padln">
+                     <select class="input-text js-input inptxt form-control" required [(ngModel)]="billdata.state" name="state"
+                       (change)="getBiller($event.target.value)">
+                       <option *ngFor="let state of states" value="{{state._id}}">{{state.name}}</option>
+                     </select>
+                     <label class="label" for="usertitle">Select State</label>
+                   </div>
+                   <div class="clear20"></div>
+                   <div class="clear20"></div>
+ 
+                   <div class="col-xs-12 col-sm-12 col-md-12 padln">
+                     <select class="input-text js-input inptxt form-control" (change)="showBillSample();getBillerDetails($event.target.value)" required [(ngModel)]="billdata.biller_name" name="biller_name">
+                       <option *ngFor="let bilr of billerlist" value="{{bilr.name}}">{{bilr.name|titlecase}}</option>
+                     </select>
+                     <label class="label" for="usertitle">Select Biller</label>
+                   </div>
+                   <div class="clear20"></div>
+                   <div class="clear20"></div>
+                   <!-- <div class="col-xs-12 col-sm-12 col-md-12" *ngIf="showsamplebill">
+                      <div *ngFor="let image of samplebill;let i=index">
+                         <img [src]="image.thumb" (click)="open(i)" *ngIf="image.id==32"/>
+                      </div>
+                     </div>
+                     <div class="clear20" *ngIf="showsamplebill"></div>
+                     <div class="clear20" *ngIf="showsamplebill"></div> -->
+                 </div>
+               </div>
+               <div class="clearfix"></div>
+               <div class="col-xs-12 col-sm-12 col-md-12">
+                 <div class="clear20"></div>
+                 <button class="btn bg-primary nextpay buttonpad" type="button" (click)="billrdetails()">Next</button>
+                 <div class="clear20"></div>
+                 <div class="clear20"></div>
+               </div>
+             </div>
+           </div>
+         </div>
+         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+       </div>
+       <div class="row">
+         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+           <div class="row setup-content form_bg" id="" *ngIf="billdetails">
+             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-bottom: 1px solid #e9e9e9;">
+               <h4 class="Top5Heading111 ">Bill Details</h4>
+             </div>
+             <div class="BorderBottom"></div>
+             <form action="">
+                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 extra_padd detail_bill">
+                   <div class="row">
+                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                       <div class="lft_div">
+                         <div class="clear20"></div>
+                         <div class="clear20"></div>
+                         <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                           <input type="text" class="input-text js-input inptxt form-control" [value]="billdata.biller_name"
+                               autocomplete='off' disabled>
+                           <label class="label" for="usertitle">Biller Name <sup>*</sup></label>
+                         </div>
+                         <div class="clear20" *ngIf="showcircles"></div>
+                         <div class="clear20" *ngIf="showcircles"></div>
+                         <div class="col-xs-12 col-sm-12 col-md-12  padln" *ngIf="showcircles">
+                           <!-- <input type="date" value="" class="input-text js-input inptxt form-control" name="duedate" [(ngModel)]="billdata.duedate" #name="ngModel"> -->
+                           <input list="circle" class="input-text js-input inptxt form-control" required
+                             [(ngModel)]="billdata.circle" name="circle">
+                           <datalist id="circle">
+                             <option  *ngFor="let item of circles" 
+                             value={{item}}></option>
+                             
+                           </datalist>
+                           <label class="label" for="usertitle">{{para3}}</label>
+                         </div>
+                         
+                         <div class="clear20"></div>
+                         <div class="clear20"></div>
+                     
+                         <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                           <input type="phone" value="" class="input-text js-input inptxt form-control" name="contact_no"
+                             [(ngModel)]="billdata.contact_no" #name="ngModel" autocomplete='off' maxlength="10">
+                           <label class="label" for="usertitle">Contact Number <sup>*</sup></label>
+                         </div>
+                         <div class="clear20"></div>
+                         <div class="clear20"></div>
+                   
+                     
+                         <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                           <input type="text" value="" class="input-text js-input inptxt form-control" name="account_number"
+                             [(ngModel)]="billdata.account_number" #name="ngModel" autocomplete='off'>
+                           <label class="label" for="usertitle">Account Number <sup>*</sup></label>
+                         </div>
+                         <div class="clear20"></div>
+                         <div class="clear20"></div>
+                         <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                          <input type="text" value="" class="input-text js-input inptxt form-control" name="ifsc"
+                            [(ngModel)]="billdata.ifsc" #name="ngModel" autocomplete='off'   (ngModelChange)="getIfsc(billdata.ifsc)">
+                          <label class="label" for="usertitle">IFSC</label>
+                        </div>
+                        <div class="clear20"></div>
+                        <div class="clear20"></div>
+                        <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                          <input type="text" value="" class="input-text js-input inptxt form-control" name="bank_name"
+                            [(ngModel)]="billdata.bank_name" #name="ngModel" autocomplete='off'>
+                          <label class="label" for="usertitle">Bank Name <sup>*</sup></label>
+                        </div>
+                        <div class="clear20"></div>
+                        <div class="clear20"></div>
+                       </div>
+                     </div>
+                     <div class="clearfix"></div>
+                     <div class="col-xs-12 col-sm-12 col-md-12">
+                       <div class="clear20"></div>
+                       <div class="clear20"></div>
+                       <div class="col-md-3 col-sm-3 top_back no-show2">
+                         <h5 class="blu-color">
+                           <a *ngIf="billdetails" class="backBtnpay_sup" (click)="backbilltype()">
+                             <img style="vertical-align: 3px;" src="assets/img/left-arrow.png">Back</a>
+                         </h5>
+                       </div>
+                       <button class="btn bg-primary nextpay buttonpad" type="button" (click)="cnfsend();getStateName(billdata.state)" [disabled]="valid">Next</button>
+                       <div class="clear20"></div>
+                       <div class="clear20"></div>
+                     </div>
+                   </div>
+                 </div>
+                 </form>
+                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 extra_padd detail_bill">
+                   <div class="row">
+                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                       <div>
+                         <!-- <div class="clear20"></div>
+                         <div class="clear20"></div> -->
+                         <!-- <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                           <select class="input-text js-input inptxt form-control" name="usertitle" required>
+                             <option value="" selected></option>
+                             <option value="Mr.">Mr.</option>
+                             <option value="Ms.">Ms.</option>
+                           </select>
+                           <label class="label" for="usertitle">Reference No. 2</label>
+                         </div> -->
+                         <div class="clear20"></div>
+                         <div class="clear20"></div>
+                         <div class="col-xs-7 col-sm-7 col-md-7  padln">
+                           <input type="text" value="" class="input-text js-input inptxt form-control" name="consumer_no"
+                             [(ngModel)]="billdata.consumer_no" #name="ngModel" autocomplete='off' required>
+                           <label class="label" for="usertitle">{{para1}} <sup>*</sup></label>
+                         </div>
+                         <div class="col-xs-5 col-sm-5 col-md-5" style="margin-top: 27px;">
+                             <div *ngFor="let image of samplebill;let i=index">
+                                 <!-- <img [src]="image.thumb" (click)="open(i)" *ngIf="image.id==32"/> -->
+                                 <a (click)="open(i)" *ngIf="image.id==32">View Sample Bill</a>
+                              </div>
+                         </div>
+                         <div class="clear20" *ngIf="showbus"></div>
+                         <div class="clear20" *ngIf="showbus"></div>
+                         <div class="col-xs-12 col-sm-12 col-md-12  padln" *ngIf="showbus">
+                           <!-- <input type="date" value="" class="input-text js-input inptxt form-control" name="duedate" [(ngModel)]="billdata.duedate" #name="ngModel"> -->
+                           <input list="bu" class="input-text js-input inptxt form-control" required
+                             [(ngModel)]="billdata.bu" name="bu">
+                           <datalist id="bu">
+                             <option *ngFor="let item of bus" 
+                             value={{item}}></option>
+                             
+                           </datalist>
+                           <label class="label" for="usertitle">{{para2}}</label>
+                         </div>
+                         <div class="clear20"></div>
+                         <div class="clear20"></div>
+                       
+                         <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                           <input type="email" value="" class="input-text js-input inptxt form-control" name="email"
+                             [(ngModel)]="billdata.email" #name="ngModel" autocomplete='off'>
+                           <label class="label" for="usertitle">Email <sup>*</sup></label>
+                         </div>
+                         <div class="clear20"></div>
+                         <div class="clear20"></div>
+                         <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                           <input type="text" value="" class="input-text js-input inptxt form-control" name="gl_expense_code"
+                             [(ngModel)]="billdata.gl_expense_code" #name="ngModel" autocomplete='off'>
+                           <label class="label" for="usertitle">GL/Expense Code</label>
+                         </div>
+                         <div class="clear20"></div>
+                         <div class="clear20"></div>
+                      
+                         <div class="col-xs-12 col-sm-12 col-md-12  padln">
+                           <input type="text" value="" class="input-text js-input inptxt form-control" name="branch_name"
+                             [(ngModel)]="billdata.branch_name" #name="ngModel" autocomplete='off'>
+                           <label class="label" for="usertitle">Branch Name</label>
+                         </div>
+                         <div class="clear20"></div>
+                         <!-- <div class="col-xs-12 col-sm-12 col-md-12 padln">
+                           <label class="label" for="usertitle" style="position:relative;display: block;
+                           text-align: left;margin-bottom: 10px;">Attachment <sup>*</sup></label>
+                           <div class="upload-btn-wrapper">
+                             <button class="" style="border: 1px solid #fff; background-color: white;"><img src="assets/img/attachments.png"
+                                 alt=""></button>
+                                 {{downloadFileName}}
+                             <input type="file" name="fileUpload" [(ngModel)]="fileUpload"  (change)="UploadFile($event)" ng-reflect-name="fileUpload"/>
+                           </div>
+                         </div> -->
+                         <div class="clear20"></div>
+                         <div class="clear20"></div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+           </div>
+           <div class="row setup-content form_bg" id="" *ngIf="conf">
+             <h4 class="Top5Heading111">Bill Information</h4>
+             <div class="BorderBottom"></div>
+             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 extra_padd detail_bill">
+               <div class="row">
+                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                   <div class="lft_div">
+                     <div class="clear20"></div>
+                     <div class="clear20"></div>
+                     <div class="col-xs-5 col-sm-5 col-md-5">
+                       <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Type
+                           of Utility</strong></label>
+                     </div>
+                     <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                     <div class="col-xs-6 col-sm-6 col-md-6">
+                       <span> {{billdata.board}}</span>
+                     </div>
+                     <div class="clear20"></div>
+                     <div class="col-xs-5 col-sm-5 col-md-5">
+                       <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Location</strong></label>
+                     </div>
+                     <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                     <div class="col-xs-6 col-sm-6 col-md-6">
+                       <span> {{statename}}</span>
+                      
+                     </div>
+                     <div class="clear20"></div>
+                     <div class="col-xs-5 col-sm-5 col-md-5">
+                       <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Bill
+                           Name</strong></label>
+                     </div>
+                     <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                     <div class="col-xs-6 col-sm-6 col-md-6">
+                       <span> {{billdata.biller_name}}</span>
+                     </div>
+                     <div class="clear20" *ngIf="showcircles"></div>
+                     <div class="col-xs-5 col-sm-5 col-md-5" *ngIf="showcircles">
+                       <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">{{para3}}</strong></label>
+                     </div>
+                     <div class="col-xs-1 col-sm-1 col-md-1" *ngIf="showcircles"><span> : </span></div>
+                     <div class="col-xs-6 col-sm-6 col-md-6" *ngIf="showcircles">
+                       <span> {{billdata.circle}}</span>
+                     </div>
+                     <div class="clear20"></div>
+                     <div class="col-xs-5 col-sm-5 col-md-5">
+                       <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">{{para1}}</strong></label>
+                     </div>
+                     <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                     <div class="col-xs-6 col-sm-6 col-md-6">
+                       <span> {{billdata.consumer_no}}</span>
+                     </div>
+                     <div class="clear20"></div>
+                     <div class="col-xs-5 col-sm-5 col-md-5">
+                       <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Bill
+                           Date</strong></label>
+                     </div>
+                     <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                     <div class="col-xs-6 col-sm-6 col-md-6">
+                       <span> {{billdata.bill_date}}</span> <span class="span1">of every month</span>
+                     </div>
+                     <div class="clear20"></div>
+                     <div class="col-xs-5 col-sm-5 col-md-5">
+                       <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Biller
+                           Address</strong></label>
+                     </div>
+                     <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                     <div class="col-xs-6 col-sm-6 col-md-6">
+                       <span> {{billdata.contact_address}}</span>
+                     </div>
+                     <div class="clear20"></div>
+                     <div class="col-xs-5 col-sm-5 col-md-5">
+                        <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">
+                            Acount Number</strong></label>
+                      </div>
+                      <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                        <span> {{billdata.account_number}}</span>
+                      </div>
+                      <div class="clear20"></div>
+                      <div class="col-xs-5 col-sm-5 col-md-5">
+                        <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Bank
+                            Name</strong></label>
+                      </div>
+                      <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                      <div class="col-xs-6 col-sm-6 col-md-6">
+                        <span> {{billdata.bank_name}}</span>
+                      </div>
+                      <div class="clear20"></div>
+ 
+                     <div class="clear20"></div>
+                   </div>
+                 </div>
+                 <div class="clearfix"></div>
+                 <div class="col-xs-12 col-sm-12 col-md-12">
+                   <div class="clear20"></div>
+                   <div class="clear20"></div>
+                   <div class="col-md-3 col-sm-3 top_back no-show2">
+                     <h5 class="blu-color">
+                       <a *ngIf="conf" class="sndback" (click)="backbilldetails()">
+                         <img style="vertical-align: 3px;" src="assets/img/left-arrow.png">Back</a>
+                     </h5>
+                   </div>
+                   <button class="btn bg-primary nextpay buttonpad" type="button" (click)="succesadd();submitbilldata()">Submit
+                     for
+                     Approval</button>
+                   <div class="clear20"></div>
+                   <div class="clear20"></div>
+                 </div>
+               </div>
+             </div>
+             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 extra_padd detail_bill">
+               <div class="row">
+                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                   <div class="row">
+                     <div class="lft_div">
+                       <div class="clear20"></div>
+                       <div class="clear20"></div>
+                       <div class="col-xs-4 col-sm-4 col-md-4">
+                         <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Email</strong></label>
+                       </div>
+                       <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                       <div class="col-xs-7 col-sm-7 col-md-7">
+                         <span> {{billdata.email}}</span>
+                       </div>
+                       <div class="clear20"></div>
+ 
+                       <div class="col-xs-4 col-sm-4 col-md-4">
+                         <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Short
+                             Name</strong></label>
+                       </div>
+                       <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                       <div class="col-xs-7 col-sm-7 col-md-7">
+                         <span> {{billdata.short_name}}</span>
+                       </div>
+                       <div class="clear20"></div>
+                       <div class="col-xs-4 col-sm-4 col-md-4">
+                         <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">GL/Expense
+                             Code</strong></label>
+                       </div>
+                       <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                       <div class="col-xs-7 col-sm-7 col-md-7">
+                         <span> {{billdata.gl_expense_code}}</span>
+                       </div>
+                       <div class="clear20"></div>
+                       <div class="col-xs-4 col-sm-4 col-md-4">
+                         <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Due
+                             Date</strong></label>
+                       </div>
+                       <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                       <div class="col-xs-7 col-sm-7 col-md-7">
+                         <span> {{billdata.due_date}}</span> <span class="span1">of every month</span>
+                       </div>
+                       <div class="clear20" *ngIf="showbus"></div>
+                       <div class="col-xs-4 col-sm-4 col-md-4" *ngIf="showbus">
+                         <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">{{para2}}</strong></label>
+                       </div>
+                       <div class="col-xs-1 col-sm-1 col-md-1" *ngIf="showbus"><span *ngIf="showbus"> : </span></div>
+                       <div class="col-xs-7 col-sm-7 col-md-7" *ngIf="showbus">
+                         <span> {{billdata.bu}}</span>
+                       </div>
+                       <div class="clear20"></div>
+                       <div class="col-xs-4 col-sm-4 col-md-4">
+                         <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Contact
+                             Number</strong></label>
+                       </div>
+                       <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                       <div class="col-xs-7 col-sm-7 col-md-7">
+                         <span> {{billdata.contact_no}}</span>
+                       </div>
+                       <div class="clear20"></div>
+                       <div class="col-xs-4 col-sm-4 col-md-4">
+                        <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">IFSC</strong></label>
+                      </div>
+                      <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                      <div class="col-xs-7 col-sm-7 col-md-7">
+                        <span> {{billdata.ifsc}}</span>
+                      </div>
+                      <div class="clear20"></div>
+                      <div class="col-xs-4 col-sm-4 col-md-4">
+                        <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Branch Name</strong></label>
+                      </div>
+                      <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
+                      <div class="col-xs-7 col-sm-7 col-md-7">
+                        <span> {{billdata.branch_name}}</span>
+                      </div>
+                      <div class="clear20"></div>
+                 
+                      
+                       <div class="clear20"></div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+           <!-- <div class="row setup-content form_bg" id="" *ngIf="success">
+             <div class="BorderBottom"></div>
+             <div class="col-md-12 text-center">
+               <div class="col-xs-12 col-sm-12 col-md-12">
+                 <div>
+                   <div class="clear30"></div>
+                   <div class="clear20"></div>
+                   <div class="clear20"></div>
+                   <img src="assets/img/done-tick.png" alt="">
+                   <div class="clear20"></div>
+                   <div class="clear20"></div>
+                   <label class="successhedtxt">Bill has been submited for approval and notification has been sent</label>
+                   <div class="clear20"></div>
+                   <div class="clear20"></div>
+                   <div class="col-xs-3 col-sm-3 col-md-3"></div>
+                   <div class="col-xs-3 col-sm-3 col-md-3">
+                     <a class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog" [routerLink]="['/main/billerlist']">View
+                       Bills</a>
+                   </div>
+                   <div class="col-xs-3 col-sm-3 col-md-3">
+                     <a class="btn btn-primary btn-outline Btn_Width2" [routerLink]="['/main/dashboard']">Go to Dashboard</a>
+                   </div>
+                   <div class="clear30"></div>
+                   <div class="clear20"></div>
+                   <div class="clear20"></div>
+                   <div class="col-xs-3 col-sm-3 col-md-3"></div>
+                 </div>
+               </div>
+               <div class="clearfix"></div>
+ 
+             </div>
+           </div> -->
+         </div>
+         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+       </div>
+     </form>
+   </section>
+ </div>

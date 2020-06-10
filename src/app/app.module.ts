@@ -146,6 +146,13 @@ import { AngularFileUploaderModule } from "angular-file-uploader";
 import { ResetpwduserComponent } from './supportingcomponents/resetpwduser/resetpwduser.component';
 import { RefundviewComponent } from './supportingcomponents/refundview/refundview.component';
 import { RmfetchreportComponent } from './rmcomponents/rmfetchreport/rmfetchreport.component';
+import { AddBillerComponent } from './customcomponents/add-biller/add-biller.component';
+import { AddBillPaymentComponent } from './customcomponents/add-bill-payment/add-bill-payment.component';
+import { ViewBillerComponent } from './customcomponents/view-biller/view-biller.component';
+import { ViewBillPaymentsComponent } from './customcomponents/view-bill-payments/view-bill-payments.component';
+import { PendingBillPaymentsComponent } from './customcomponents/pending-bill-payments/pending-bill-payments.component';
+import { PendingBillsComponent } from './customcomponents/pending-bills/pending-bills.component';
+
 
 // import { FusionChartsModule } from 'angular-fusioncharts';
 // import FusionCharts from 'fusioncharts/core';
@@ -248,7 +255,13 @@ import { RmfetchreportComponent } from './rmcomponents/rmfetchreport/rmfetchrepo
     MakeprepaidpaymentsComponent,
     ResetpwduserComponent,
     RefundviewComponent,
-    RmfetchreportComponent
+    RmfetchreportComponent,
+    AddBillerComponent,
+    AddBillPaymentComponent,
+    ViewBillerComponent,
+    ViewBillPaymentsComponent,
+    PendingBillPaymentsComponent,
+    PendingBillsComponent
   ],
 
   imports: [
