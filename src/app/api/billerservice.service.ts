@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 const path = new Config().getutilityBaseUrl();
+const path2 = new Config().getBaseURL();
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,33 @@ export class BillerserviceService {
         //     "checkval": ids
         // };
         this.http.post(path+"api/v1/bill", billdata)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                    console.log("Error occured : " + err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
+  registerbillsNew(billdata:any[]): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+    let promise = new Promise((resolve, reject) => {
+        // let paramsValue = {
+        //     "regcmt": comment,
+        //     "checkval": ids
+        // };
+        this.http.post(path2+"maker/vendor", billdata)
             .subscribe(
                 res => {
                     console.log(res);
@@ -186,6 +214,25 @@ getAllStates(){
 return promise;
 }
 
+
+getAllStates_new(){
+    let promise = new Promise((resolve, reject) => {
+      this.http.get(path+"api/v1/states_new")
+          .subscribe(
+              res => {
+                  console.log(res);
+                  resolve(res);
+              },
+              err => {
+                  console.log("Error occured : " + err);
+                  reject(err);
+              }
+          );
+  
+  });
+  return promise;
+  }
+
 getbillersbystate(stateid:any){
   let promise = new Promise((resolve, reject) => {
     this.http.get(path+`api/v1/billers?state=${stateid}`)
@@ -203,6 +250,26 @@ getbillersbystate(stateid:any){
 });
 return promise;
 }
+
+
+getbillersbystateNew(stateid:any){
+    let promise = new Promise((resolve, reject) => {
+      this.http.get(path+`api/v1/billers_new?state=${stateid}`)
+          .subscribe(
+              res => {
+                  console.log(res);
+                  resolve(res);
+              },
+              err => {
+                  console.log("Error occured : " + err);
+                  reject(err);
+              }
+          );
+  
+  });
+  return promise;
+  } 
+
 getbillerdetails(name:any){
   let promise = new Promise((resolve, reject) => {
     this.http.get(path+`api/v1/biller_data?name=${name}`)
@@ -220,6 +287,25 @@ getbillerdetails(name:any){
 });
 return promise;
 }
+
+
+getbillerdetailsNew(name:any){
+    let promise = new Promise((resolve, reject) => {
+      this.http.get(path+`api/v1/biller_data_new?name=${name}`)
+          .subscribe(
+              res => {
+                  console.log(res);
+                  resolve(res);
+              },
+              err => {
+                  console.log("Error occured : " + err);
+                  reject(err);
+              }
+          );
+  
+  });
+  return promise;
+  }
 
 sendOtp(ids: any): Promise<any> {
     // let token = this.storage.getData("chlogin_data").token;

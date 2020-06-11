@@ -15,6 +15,8 @@ export class RejectmsgComponent implements OnInit {
   userreject:boolean=false;
   billreject:boolean=false;
   payreject:boolean=false;
+  billnewreject:boolean=false;
+  paynewreject:boolean=false;
   constructor(private router: Router,private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -33,6 +35,12 @@ export class RejectmsgComponent implements OnInit {
     }else if(this.params=='payreject'){
       this.payreject=true;
     }
+    else if(this.params=='billnewreject'){
+      this.billnewreject=true;
+    }
+    else if(this.params=='paynewreject'){
+      this.paynewreject=true;
+    }
     else{
       this.groupreject=false;
       this.cardreject=false;
@@ -40,6 +48,8 @@ export class RejectmsgComponent implements OnInit {
       this.userreject=false;
       this.billreject=false;
       this.payreject=false;
+      this.billnewreject=false;
+      this.paynewreject=false;
     }
   }
 

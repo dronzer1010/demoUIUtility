@@ -125,8 +125,8 @@
                    <div class="clear20"></div>
                    <div class="clear20"></div>
                    <div class="col-xs-12 col-sm-12 col-md-12 padln">
-                     <select class="input-text js-input inptxt form-control" required [(ngModel)]="billdata.board" name="board">
-                       <option value="Electricity">Electricity</option>
+                     <select class="input-text js-input inptxt form-control" required [(ngModel)]="billdata.utilitytype" name="utilitytype">
+                       <option value=2>Electricity</option>
                        <!-- <option value="Telecom" >Telecom</option>
                        <option value="Gas">Gas</option>
                        <option value="Insurance">Insurance</option>
@@ -139,7 +139,7 @@
                    <div class="col-xs-12 col-sm-12 col-md-12 padln">
                      <select class="input-text js-input inptxt form-control" required [(ngModel)]="billdata.state" name="state"
                        (change)="getBiller($event.target.value)">
-                       <option *ngFor="let state of states" value="{{state._id}}">{{state.name}}</option>
+                       <option *ngFor="let state of states" value={{state.id}}>{{state.name}}</option>
                      </select>
                      <label class="label" for="usertitle">Select State</label>
                    </div>
@@ -147,7 +147,7 @@
                    <div class="clear20"></div>
  
                    <div class="col-xs-12 col-sm-12 col-md-12 padln">
-                     <select class="input-text js-input inptxt form-control" (change)="showBillSample();getBillerDetails($event.target.value)" required [(ngModel)]="billdata.biller_name" name="biller_name">
+                     <select class="input-text js-input inptxt form-control" (change)="showBillSample();getBillerDetails($event.target.value)" required [(ngModel)]="billdata.billername" name="billername">
                        <option *ngFor="let bilr of billerlist" value="{{bilr.name}}">{{bilr.name|titlecase}}</option>
                      </select>
                      <label class="label" for="usertitle">Select Biller</label>
@@ -191,7 +191,7 @@
                          <div class="clear20"></div>
                          <div class="clear20"></div>
                          <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                           <input type="text" class="input-text js-input inptxt form-control" [value]="billdata.biller_name"
+                           <input type="text" class="input-text js-input inptxt form-control" [value]="billdata.billername"
                                autocomplete='off' disabled>
                            <label class="label" for="usertitle">Biller Name <sup>*</sup></label>
                          </div>
@@ -213,8 +213,8 @@
                          <div class="clear20"></div>
                      
                          <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                           <input type="phone" value="" class="input-text js-input inptxt form-control" name="contact_no"
-                             [(ngModel)]="billdata.contact_no" #name="ngModel" autocomplete='off' maxlength="10">
+                           <input type="phone" value="" class="input-text js-input inptxt form-control" name="contact"
+                             [(ngModel)]="billdata.contact" #name="ngModel" autocomplete='off' maxlength="10">
                            <label class="label" for="usertitle">Contact Number <sup>*</sup></label>
                          </div>
                          <div class="clear20"></div>
@@ -222,8 +222,8 @@
                    
                      
                          <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                           <input type="text" value="" class="input-text js-input inptxt form-control" name="account_number"
-                             [(ngModel)]="billdata.account_number" #name="ngModel" autocomplete='off'>
+                           <input type="text" value="" class="input-text js-input inptxt form-control" name="accno"
+                             [(ngModel)]="billdata.accno" #name="ngModel" autocomplete='off'>
                            <label class="label" for="usertitle">Account Number <sup>*</sup></label>
                          </div>
                          <div class="clear20"></div>
@@ -236,8 +236,8 @@
                         <div class="clear20"></div>
                         <div class="clear20"></div>
                         <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                          <input type="text" value="" class="input-text js-input inptxt form-control" name="bank_name"
-                            [(ngModel)]="billdata.bank_name" #name="ngModel" autocomplete='off'>
+                          <input type="text" value="" class="input-text js-input inptxt form-control" name="bank"
+                            [(ngModel)]="billdata.bank" #name="ngModel" autocomplete='off'>
                           <label class="label" for="usertitle">Bank Name <sup>*</sup></label>
                         </div>
                         <div class="clear20"></div>
@@ -278,8 +278,8 @@
                          <div class="clear20"></div>
                          <div class="clear20"></div>
                          <div class="col-xs-7 col-sm-7 col-md-7  padln">
-                           <input type="text" value="" class="input-text js-input inptxt form-control" name="consumer_no"
-                             [(ngModel)]="billdata.consumer_no" #name="ngModel" autocomplete='off' required>
+                           <input type="text" value="" class="input-text js-input inptxt form-control" name="consumerno"
+                             [(ngModel)]="billdata.consumerno" #name="ngModel" autocomplete='off' required>
                            <label class="label" for="usertitle">{{para1}} <sup>*</sup></label>
                          </div>
                          <div class="col-xs-5 col-sm-5 col-md-5" style="margin-top: 27px;">
@@ -292,9 +292,9 @@
                          <div class="clear20" *ngIf="showbus"></div>
                          <div class="col-xs-12 col-sm-12 col-md-12  padln" *ngIf="showbus">
                            <!-- <input type="date" value="" class="input-text js-input inptxt form-control" name="duedate" [(ngModel)]="billdata.duedate" #name="ngModel"> -->
-                           <input list="bu" class="input-text js-input inptxt form-control" required
-                             [(ngModel)]="billdata.bu" name="bu">
-                           <datalist id="bu">
+                           <input list="bucode" class="input-text js-input inptxt form-control" required
+                             [(ngModel)]="billdata.bucode" name="bucode">
+                           <datalist id="bucode">
                              <option *ngFor="let item of bus" 
                              value={{item}}></option>
                              
@@ -312,16 +312,16 @@
                          <div class="clear20"></div>
                          <div class="clear20"></div>
                          <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                           <input type="text" value="" class="input-text js-input inptxt form-control" name="gl_expense_code"
-                             [(ngModel)]="billdata.gl_expense_code" #name="ngModel" autocomplete='off'>
+                           <input type="text" value="" class="input-text js-input inptxt form-control" name="glexpensecode"
+                             [(ngModel)]="billdata.glexpensecode" #name="ngModel" autocomplete='off'>
                            <label class="label" for="usertitle">GL/Expense Code</label>
                          </div>
                          <div class="clear20"></div>
                          <div class="clear20"></div>
                       
                          <div class="col-xs-12 col-sm-12 col-md-12  padln">
-                           <input type="text" value="" class="input-text js-input inptxt form-control" name="branch_name"
-                             [(ngModel)]="billdata.branch_name" #name="ngModel" autocomplete='off'>
+                           <input type="text" value="" class="input-text js-input inptxt form-control" name="branch"
+                             [(ngModel)]="billdata.branch" #name="ngModel" autocomplete='off'>
                            <label class="label" for="usertitle">Branch Name</label>
                          </div>
                          <div class="clear20"></div>
@@ -357,7 +357,7 @@
                      </div>
                      <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                      <div class="col-xs-6 col-sm-6 col-md-6">
-                       <span> {{billdata.board}}</span>
+                       <span> Electricity</span>
                      </div>
                      <div class="clear20"></div>
                      <div class="col-xs-5 col-sm-5 col-md-5">
@@ -375,7 +375,7 @@
                      </div>
                      <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                      <div class="col-xs-6 col-sm-6 col-md-6">
-                       <span> {{billdata.biller_name}}</span>
+                       <span> {{billdata.billername}}</span>
                      </div>
                      <div class="clear20" *ngIf="showcircles"></div>
                      <div class="col-xs-5 col-sm-5 col-md-5" *ngIf="showcircles">
@@ -391,26 +391,10 @@
                      </div>
                      <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                      <div class="col-xs-6 col-sm-6 col-md-6">
-                       <span> {{billdata.consumer_no}}</span>
+                       <span> {{billdata.consumerno}}</span>
                      </div>
-                     <div class="clear20"></div>
-                     <div class="col-xs-5 col-sm-5 col-md-5">
-                       <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Bill
-                           Date</strong></label>
-                     </div>
-                     <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
-                     <div class="col-xs-6 col-sm-6 col-md-6">
-                       <span> {{billdata.bill_date}}</span> <span class="span1">of every month</span>
-                     </div>
-                     <div class="clear20"></div>
-                     <div class="col-xs-5 col-sm-5 col-md-5">
-                       <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Biller
-                           Address</strong></label>
-                     </div>
-                     <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
-                     <div class="col-xs-6 col-sm-6 col-md-6">
-                       <span> {{billdata.contact_address}}</span>
-                     </div>
+                   
+                  
                      <div class="clear20"></div>
                      <div class="col-xs-5 col-sm-5 col-md-5">
                         <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">
@@ -418,7 +402,7 @@
                       </div>
                       <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                       <div class="col-xs-6 col-sm-6 col-md-6">
-                        <span> {{billdata.account_number}}</span>
+                        <span> {{billdata.accno}}</span>
                       </div>
                       <div class="clear20"></div>
                       <div class="col-xs-5 col-sm-5 col-md-5">
@@ -427,7 +411,7 @@
                       </div>
                       <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                       <div class="col-xs-6 col-sm-6 col-md-6">
-                        <span> {{billdata.bank_name}}</span>
+                        <span> {{billdata.bank}}</span>
                       </div>
                       <div class="clear20"></div>
  
@@ -468,39 +452,23 @@
                        </div>
                        <div class="clear20"></div>
  
-                       <div class="col-xs-4 col-sm-4 col-md-4">
-                         <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Short
-                             Name</strong></label>
-                       </div>
-                       <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
-                       <div class="col-xs-7 col-sm-7 col-md-7">
-                         <span> {{billdata.short_name}}</span>
-                       </div>
-                       <div class="clear20"></div>
+                    
                        <div class="col-xs-4 col-sm-4 col-md-4">
                          <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">GL/Expense
                              Code</strong></label>
                        </div>
                        <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                        <div class="col-xs-7 col-sm-7 col-md-7">
-                         <span> {{billdata.gl_expense_code}}</span>
+                         <span> {{billdata.glexpensecode}}</span>
                        </div>
-                       <div class="clear20"></div>
-                       <div class="col-xs-4 col-sm-4 col-md-4">
-                         <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">Due
-                             Date</strong></label>
-                       </div>
-                       <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
-                       <div class="col-xs-7 col-sm-7 col-md-7">
-                         <span> {{billdata.due_date}}</span> <span class="span1">of every month</span>
-                       </div>
+                       
                        <div class="clear20" *ngIf="showbus"></div>
                        <div class="col-xs-4 col-sm-4 col-md-4" *ngIf="showbus">
                          <label class="label" for="usertitle" style="position:relative"><strong style="font-weight:bold;">{{para2}}</strong></label>
                        </div>
                        <div class="col-xs-1 col-sm-1 col-md-1" *ngIf="showbus"><span *ngIf="showbus"> : </span></div>
                        <div class="col-xs-7 col-sm-7 col-md-7" *ngIf="showbus">
-                         <span> {{billdata.bu}}</span>
+                         <span> {{billdata.bucode}}</span>
                        </div>
                        <div class="clear20"></div>
                        <div class="col-xs-4 col-sm-4 col-md-4">
@@ -509,7 +477,7 @@
                        </div>
                        <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                        <div class="col-xs-7 col-sm-7 col-md-7">
-                         <span> {{billdata.contact_no}}</span>
+                         <span> {{billdata.contact}}</span>
                        </div>
                        <div class="clear20"></div>
                        <div class="col-xs-4 col-sm-4 col-md-4">
@@ -525,7 +493,7 @@
                       </div>
                       <div class="col-xs-1 col-sm-1 col-md-1"><span> : </span></div>
                       <div class="col-xs-7 col-sm-7 col-md-7">
-                        <span> {{billdata.branch_name}}</span>
+                        <span> {{billdata.branch}}</span>
                       </div>
                       <div class="clear20"></div>
                  

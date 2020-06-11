@@ -66,7 +66,7 @@ this.getallStates()
 
 
 private getallStates(){
-    this.billerservice.getAllStates().then(resp=>{
+    this.billerservice.getAllStates_new().then(resp=>{
         console.log(resp)
         this.states=resp;
     },error=>{
@@ -423,7 +423,7 @@ private getallStates(){
 
   getBiller(stateid){
   this.billerlist=[];
-   this.billerservice.getbillersbystate(stateid).then(resp=>{
+   this.billerservice.getbillersbystateNew(stateid).then(resp=>{
        console.log(resp)
        this.billerlist=resp;
    },error=>{
@@ -438,7 +438,7 @@ private getallStates(){
       this.para3="";
       this.showbus=false;
       this.showcircles=false;
-this.billerservice.getbillerdetails(billername).then(resp=>{
+this.billerservice.getbillerdetailsNew(billername).then(resp=>{
     console.log(resp)
     this.parameters=resp['data'];
     
@@ -490,7 +490,7 @@ this.billerservice.getbillerdetails(billername).then(resp=>{
       console.log(id)
       console.log(this.states)
 for(var i=0;i<=this.states.length;i++){
-    if(this.states[i]['_id']==id){
+    if(this.states[i]['id']==id){
         this.statename=this.states[i]['name']
         break;
     }else{
@@ -501,7 +501,7 @@ for(var i=0;i<=this.states.length;i++){
 
   billrdetails(){
     
-    if(this.billdata['biller_name']==undefined|| this.billdata['biller_name']==null){
+    if(this.billdata['billername']==undefined|| this.billdata['billername']==null){
         this.toastr.warning("Select biller first!","Alert",{
             timeOut:3000,
             positionClass:'toast-top-center'
@@ -511,7 +511,7 @@ for(var i=0;i<=this.states.length;i++){
             timeOut:3000,
             positionClass:'toast-top-center'
             })
-    }else if(this.billdata['board']==undefined|| this.billdata['board']==null){
+    }else if(this.billdata['utilitytype']==undefined|| this.billdata['utilitytype']==null){
         this.toastr.warning("Select category first!","Alert",{
             timeOut:3000,
             positionClass:'toast-top-center'
@@ -575,28 +575,78 @@ for(var i=0;i<=this.states.length;i++){
 //   }
 
   submitbilldata(){
-//     this.loaderService.display(true);
-//     console.log(this.billdata)
-// this.billerservice.registerbills(this.billdata).then(resp=>{
-//     console.log(resp)
-//     this.loaderService.display(false);
-//     this.router.navigate(['/main/successmsg'],{queryParams:{msg:'billsuccess'}});
-//     this.billdetails=false;
-//     this.billertype=false;
-//     this.conf=false;
+      
+    this.loaderService.display(true);
+this.billdata['parameter']=this.para1
+this.billdata['state']=parseInt(this.billdata['state'])
+this.billdata['utilitytype']=parseInt(this.billdata['utilitytype'])
+if(this.billdata['bucode']==undefined || this.billdata['bucode']==null){
+    this.billdata['bucode']="";
+}else{
+    this.billdata['bucode']=this.billdata['bucode']
+}
+if(this.billdata['circle']==undefined || this.billdata['circle']==null){
+    console.log("set Circle blank")
+    this.billdata['circle']="";
+}else{
+    this.billdata['circle']=this.billdata['circle']
+}
+    console.log(this.billdata)
+    var array=[
+        this.billdata
+    ]
+this.billerservice.registerbillsNew(array).then(resp=>{
+    console.log(resp)
+    if(resp['msg']=='BillerDetails Added successfully' || resp['msg']=='BillerDetails Added Successfully'){
+        this.loaderService.display(false);
+        this.router.navigate(['/main/successmsg'],{queryParams:{msg:'billnewsuccess'}});
+        this.billdetails=false;
+        this.billertype=false;
+        this.conf=false;
+    }else{
+        this.loaderService.display(false);
+        this.toastr.error("Something went wrong!","Alert",{
+            timeOut:3000,
+            positionClass:'toast-top-center'
+            })
+    }
    
-// },error=>{
-//     console.log(error)
-//     this.loaderService.display(false);
-//     this.toastr.error("Failed to register biller!","Alert",{
-//         timeOut:3000,
-//         positionClass:'toast-top-center'
-//         })
+   
+},(error: HttpErrorResponse)=>{
+    console.log(error['error']['msg'])
+    
+    if(error['error']['msg']=='Biller Details Already Exists'){
+        this.loaderService.display(false);
+        this.toastr.error(error['error']['msg'],"Alert",{
+            timeOut:3000,
+            positionClass:'toast-top-center'
+            }) 
+            this.billdetails=false;
+            this.conf=true;
+            this.billertype=false;
+    }else if(error['error']['msg']=='Biller Details Not Available'){
+        this.loaderService.display(false);
+        this.toastr.error(error['error']['msg'],"Alert",{
+            timeOut:3000,
+            positionClass:'toast-top-center'
+            }) 
+            this.billdetails=false;
+            this.conf=true;
+            this.billertype=false;
+    }else{
+        this.toastr.error("Failed to register biller!","Alert",{
+            timeOut:3000,
+            positionClass:'toast-top-center'
+            })
+            this.billdetails=false;
+            this.conf=true;
+            this.billertype=false;
+    }
   
-//     this.billdetails=false;
-//     this.conf=true;
-//     this.billertype=false;
-// })
+   
+  
+   
+})
   }
 
   getIfsc(ifsc:string){
@@ -604,8 +654,8 @@ for(var i=0;i<=this.states.length;i++){
     //console.log(ifsc);
     this.billerservice.getIfscDetails(ifsc).subscribe(data=>{
       //console.log(data['data'])
-      this.billdata['bank_name']=data['data']['bank']
-      this.billdata['branch_name']=data['data']['branch']
+      this.billdata['bank']=data['data']['bank']
+      this.billdata['branch']=data['data']['branch']
       
     },error=>{
       console.log(error)

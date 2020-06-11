@@ -27,12 +27,17 @@
               <label *ngIf="paymentsuccess" class="successhedtxt">Bill payment has been submited for approval and notification has been sent</label>
               <label *ngIf="paymentapprsuccess" class="successhedtxt">Bill payment are approved and notification has been sent</label>
               <div class="clear20"></div>
+              <label *ngIf="billnewsuccess" class="successhedtxt">Bill has been submited for approval and notification has been sent</label>
+              <label *ngIf="billnewapprsuccess" class="successhedtxt">Bills are approved and notification has been sent.</label>
+              <label *ngIf="paymentnewsuccess" class="successhedtxt">Bill payment has been submited for approval and notification has been sent</label>
+              <label *ngIf="paymentnewapprsuccess" class="successhedtxt">Bill payment are approved and notification has been sent</label>
+              <div class="clear20"></div>
               <label *ngIf="groupsuccess || grpapprsuccess" class="smrinstatustxt">You can view the summary and status of your request in the group page  </label>
               <label *ngIf="cardsuccess || crdapprsuccess" class="smrinstatustxt">You can view the summary and status of your request in the card page  </label>
               <label *ngIf="rulesuccess || ruleapprsuccess" class="smrinstatustxt">You can view the summary and status of your request in the rule page  </label>
               <label *ngIf="usersucess || usrapprsuccess" class="smrinstatustxt">You can view the summary and status of your request in the user page  </label>
-              <label *ngIf="billsuccess || billapprsuccess" class="smrinstatustxt">You can view the summary and status of your request in the bill page  </label>
-              <label *ngIf="paymentsuccess || paymentapprsuccess" class="smrinstatustxt">You can view the summary and status of your request in the bill payment page  </label>
+              <label *ngIf="billsuccess || billapprsuccess || billnewsuccess || billnewapprsuccess" class="smrinstatustxt">You can view the summary and status of your request in the bill page  </label>
+              <label *ngIf="paymentsuccess || paymentapprsuccess || paymentnewsuccess || paymentnewapprsuccess" class="smrinstatustxt">You can view the summary and status of your request in the bill payment page  </label>
               
               <div class="col-md-12 col-sm-12 top-spac margin20">
                  <a *ngIf="groupsuccess || grpapprsuccess" [routerLink]="['/main/groupview']" class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Groups</a>
@@ -40,7 +45,9 @@
                  <a *ngIf="rulesuccess || ruleapprsuccess" [routerLink]="['/main/ruleview']"  class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Rules</a>
                  <a *ngIf="usersucess || usrapprsuccess" [routerLink]="['/main/userview']" class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Users</a>
                  <a *ngIf="billsuccess || billapprsuccess"  [routerLink]="['/main/billerlist']" class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Bills</a>
+                 <a *ngIf="billnewsuccess || billnewapprsuccess"  [routerLink]="['/main/view-custom-biller']" class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Bills</a>
                  <a *ngIf="paymentsuccess || paymentapprsuccess"  [routerLink]="['/main/paymentlist']" class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Payments</a>
+                 <a *ngIf="paymentnewsuccess || paymentnewapprsuccess"  [routerLink]="['/main/view-custom-bill-payments']" class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog">Go to Payments</a>
                 
                   <a [routerLink]="['/main/dashboard']" class="btn btn-primary btn-outline Btn_Width2">Go to Dashboard</a>
               </div>

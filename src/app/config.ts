@@ -5,7 +5,7 @@ export class Config{
     loginurl:string;
     constructor(){
 
-      // this.baseUrl="http://ddf5b6a032c3.ngrok.io/api/"
+     //  this.baseUrl="http://9b4b1aa097a3.ngrok.io/api/"
    this.baseUrl="http://utilityrest.ap-south-1.elasticbeanstalk.com/api/"
  //  this.baseUrl = "https://utility-rest.aquapay.in/api/"
 
@@ -18,7 +18,7 @@ export class Config{
   //  NGrock URL
  // this.utilityapiUrl="http://0c55bf5c6a4c.ngrok.io/"
 
-   // this.backurl="http://ddf5b6a032c3.ngrok.io" //ngrok
+  //  this.backurl="http://ddf5b6a032c3.ngrok.io" //ngrok
  this.backurl="http://utilityrest.ap-south-1.elasticbeanstalk.com" //test
 //this.backurl="https://utility-rest.aquapay.in" //live
      //   this.loginurl="http://6d473a2cff48.ngrok.io/" //ngrok
