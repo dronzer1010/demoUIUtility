@@ -5,7 +5,8 @@
       <a class="[ navbar-brand ][ animate ]" [routerLink]="['/main']">
         <img src="assets/img/logo.png" />
       </a>
-      <button type="button" class="[ navbar-toggle ]" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <button type="button" class="[ navbar-toggle ]" data-toggle="collapse"
+        data-target="#bs-example-navbar-collapse-1">
         <span class="[ sr-only ]">Toggle navigation</span>
         <span class="[ icon-bar ]"></span>
         <span class="[ icon-bar ]"></span>
@@ -16,124 +17,215 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="[ collapse navbar-collapse ]" id="bs-example-navbar-collapse-1">
       <ul class="[ nav navbar-nav ] customLeftMargin nav">
-        <li class="dash" [ngClass]="dashActive ? 'active' : ''" (click)="clickDash();clickDashEvent()"><a class="[ animate ]"
-            [routerLink]="['/main/dashboard']"><i class="nav-ico-menu"> </i>Dashboard</a></li>
+        <li class="dash" [ngClass]="dashActive ? 'active' : ''" (click)="clickDash();clickDashEvent()"><a
+            class="[ animate ]" [routerLink]="['/main/dashboard']"><i class="nav-ico-menu"> </i>Dashboard</a></li>
 
         <li class="menu_sel" [ngClass]="otherActive ? 'active' : ''" *ngIf="showsolutions">
-          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="openotherdrop();clickOtherEvent()">Solutions
+          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown"
+            (click)="openotherdrop()">Solutions
           </a>
           <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displayotherdrop}">
-            <li class="col-md-12 cust" *ngIf="showsuppliermodule"><a class="[ animate ]" href="{{supplierurl}}" target="_blank" (click)="closealldrop()">
+            <li class="col-md-12 cust" *ngIf="showsuppliermodule"><a class="[ animate ]" href="{{supplierurl}}"
+                target="_blank" (click)="closealldrop();clickOtherEvent()">
                 Supplier Module</a></li>
-            <li class="col-md-12 cust" *ngIf="showgstmodule"><a class="[ animate ]"  href="{{gsturl}}" target="_blank" (click)="closealldrop()"
-              href="javascript:void(0)">
+            <li class="col-md-12 cust" *ngIf="showgstmodule"><a class="[ animate ]" href="{{gsturl}}" target="_blank"
+                (click)="closealldrop();clickOtherEvent()" href="javascript:void(0)">
                 GST Module </a></li>
           </ul>
         </li>
-        <li *ngIf="rolename=='as' || rolename=='ccadmin' || rolename=='ccchecker' || rolename=='ccmaker' || rolename=='aschecker'"
+        <li
+          *ngIf="rolename=='as' || rolename=='ccadmin' || rolename=='ccchecker' || rolename=='ccmaker' || rolename=='aschecker'"
           class="dash" [ngClass]="orgActive ? 'active' : ''" (click)="clickOrg();clickOrgEvent()"><a class="[ animate ]"
             [routerLink]="['/main/organisation']"><i class="nav-ico-menu"> </i>Organisation</a></li>
-        <li *ngIf="rolename=='as' || rolename=='ccadmin' || rolename=='ccchecker' || rolename=='ccmaker' || rolename=='aschecker'"
+        <li
+          *ngIf="rolename=='as' || rolename=='ccadmin' || rolename=='ccchecker' || rolename=='ccmaker' || rolename=='aschecker'"
           class="menu_sel" [ngClass]="userActive ? 'active' : ''">
-          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="opennuser();clickUserEvent()">Users
+          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="opennuser()">Users
           </a>
           <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displayuserdrop}">
-            <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/userview']">
+            <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop();clickUserEvent()"
+                [routerLink]="['/main/userview']">
                 <span> <img id="user" src="assets/img/person.png" /></span>
                 View Users </a></li>
             <li *ngIf="rolename=='ccadmin' || rolename=='ccchecker' || rolename=='ccmaker'" class="col-md-12 cust"><a
-                class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/unitary-user']"><span>
+                class="[ animate ]" (click)="closealldrop();clickUserEvent()" [routerLink]="['/main/unitary-user']"><span>
                   <img id="user" src="assets/img/person.png" /></span>
                 Add Unitary </a></li>
             <li *ngIf="rolename=='ccadmin' || rolename=='ccchecker' || rolename=='ccmaker'" class="col-md-12 cust"><a
-                class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/user-bulk']"><span>
+                class="[ animate ]" (click)="closealldrop();clickUserEvent()" [routerLink]="['/main/user-bulk']"><span>
                   <img id="user" src="assets/img/person.png" /></span>
                 Add Bulk </a></li>
-            <li *ngIf="rolename=='as' || rolename=='aschecker'" class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()"
-                [routerLink]="['/main/pending-user']"><span>
+            <li *ngIf="rolename=='as' || rolename=='aschecker'" class="col-md-12 cust"><a class="[ animate ]"
+                (click)="closealldrop();clickUserEvent()" [routerLink]="['/main/pending-user']"><span>
                   <img id="user" src="assets/img/person.png" /></span>
                 Pending Users </a></li>
           </ul>
         </li>
-        <li *ngIf="authmatrix=='Complex'"
-          class="menu_sel" [ngClass]="groupActive ? 'active' : ''">
-          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="opengroup();clickGroupEvent()">Groups
+        <li *ngIf="authmatrix=='Complex'" class="menu_sel" [ngClass]="groupActive ? 'active' : ''">
+          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown"
+            (click)="opengroup()">Groups
           </a>
           <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displaygroupdrop}">
-            <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/groupview']">
+            <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop();clickGroupEvent()"
+                [routerLink]="['/main/groupview']">
                 <span> <img id="user" src="assets/img/group.png" /></span>
                 View Groups </a></li>
             <li *ngIf="rolename=='ccadmin' || rolename=='ccchecker' || rolename=='ccmaker'" class="col-md-12 cust"><a
-                class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/unitary-group']"><span>
+                class="[ animate ]" (click)="closealldrop();clickGroupEvent()" [routerLink]="['/main/unitary-group']"><span>
                   <img id="user" src="assets/img/group.png" /></span>
                 Add Unitary </a></li>
 
-            <li *ngIf="rolename=='as' || rolename=='aschecker'" class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()"
-                [routerLink]="['/main/pending-group']"><span>
+            <li *ngIf="rolename=='as' || rolename=='aschecker'" class="col-md-12 cust"><a class="[ animate ]"
+                (click)="closealldrop();clickGroupEvent()" [routerLink]="['/main/pending-group']"><span>
                   <img id="user" src="assets/img/group.png" /></span>
                 Pending Groups </a></li>
           </ul>
         </li>
-        <li *ngIf="authmatrix=='Complex'"
-          class="menu_sel" [ngClass]="ruleActive ? 'active' : ''">
-          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="openrule();clickRuleEvent()">Rules
+        <li *ngIf="authmatrix=='Complex'" class="menu_sel" [ngClass]="ruleActive ? 'active' : ''">
+          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="openrule()">Rules
           </a>
           <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displayruledrop}">
-            <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/ruleview']">
+            <li class="col-md-12 cust"><a class="[ animate ]" (click)="clickRuleEvent();closealldrop()"
+                [routerLink]="['/main/ruleview']">
                 <span> <img id="user" src="assets/img/gavel.png" /></span>
                 Rule Validator </a></li>
             <li *ngIf="rolename=='ccadmin' || rolename=='ccchecker' || rolename=='ccmaker'" class="col-md-12 cust"><a
-                class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/unitary-rule']"><span>
+                class="[ animate ]" (click)="clickRuleEvent();closealldrop()" [routerLink]="['/main/unitary-rule']"><span>
                   <img id="user" src="assets/img/gavel.png" /></span>
                 Add Unitary </a></li>
-            <li *ngIf="rolename=='as' || rolename=='aschecker'" class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()"
-                [routerLink]="['/main/pending-rules']"><span>
+            <li *ngIf="rolename=='as' || rolename=='aschecker'" class="col-md-12 cust"><a class="[ animate ]"
+                (click)="clickRuleEvent();closealldrop()" [routerLink]="['/main/pending-rules']"><span>
                   <img id="user" src="assets/img/gavel.png" /></span>
                 Pending Rules </a></li>
           </ul>
         </li>
-        <li *ngIf="rolename=='as' || rolename=='ccchecker' || rolename=='ccmaker' || rolename=='aschecker' || rolename=='maker' || rolename=='checker'"
+        <li
+          *ngIf="rolename=='as' || rolename=='ccchecker' || rolename=='ccmaker' || rolename=='aschecker' || rolename=='maker' || rolename=='checker'"
           class="menu_sel" [ngClass]="billActive ? 'active' : ''">
-          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="openbilldrop();clickBillEvent()">Bill
+          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown"
+            (click)="openbilldrop()">Bills
           </a>
           <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displaybilldrop}">
-            <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/billerlist']">
+            <li class="dropdown-submenu drop1 col-md-12 cust">
+              <a class="dropdown-item animate " (click)="closealldrop()" [routerLink]="['/main/billerlist']">
                 <span> <img id="user" src="assets/img/view-bills.png" /></span>
-                View Bills </a></li>
-            <li *ngIf="rolename=='maker' || rolename=='ccmaker'" class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()"
-                [routerLink]="['/main/unitary-biller']"><span>
+                View Bills
+              </a>
+              <ul class="dropdown-menu menu1">
+                <li routerLink="" (click)="clickBillEvent()">
+                  <a>Fetch and Pay Bills</a>
+                </li>
+                <li routerLink='' (click)="clickBillEvent()">
+                  <a>Direct Pay Bills</a>
+                </li>
+              </ul>
+            </li>
+
+
+            <li *ngIf="rolename=='maker' || rolename=='ccmaker'" class=" drop2 col-md-12 cust"><a class="[ animate ]"
+                (click)="closealldrop()" [routerLink]="['/main/unitary-biller']"><span>
                   <img id="user" src="assets/img/add-unitary-bills.png" /></span>
-                Add Unitary </a></li>
-            <li *ngIf="rolename=='maker' || rolename=='ccmaker'"  class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/biller-bulk']"><span>
+                Add Unitary </a>
+
+                <ul class="dropdown-menu menu2">
+                  <li routerLink="" (click)="clickBillEvent()">
+                    <a>Fetch and Pay Bills</a>
+                  </li>
+                  <li routerLink='' (click)="clickBillEvent()">
+                    <a>Direct Pay Bills</a>
+                  </li>
+                </ul>
+
+            </li>
+
+
+
+            <li *ngIf="rolename=='maker' || rolename=='ccmaker'" class="drop3 col-md-12 cust"><a class="[ animate ]"
+                (click)="closealldrop()" [routerLink]="['/main/biller-bulk']"><span>
                   <img id="user" src="assets/img/add-bulk.png" /></span>
-                Add Bulk </a></li>
-            <li *ngIf="rolename=='aschecker' || rolename=='checker' || rolename=='ccchecker'" class="col-md-12 cust"><a
+                Add Bulk </a>
+                <ul class="dropdown-menu menu3">
+                  <li routerLink="" (click)="clickBillEvent()">
+                    <a>Fetch and Pay Bills</a>
+                  </li>
+                  <li routerLink='' (click)="clickBillEvent()">
+                    <a>Direct Pay Bills</a>
+                  </li>
+                </ul>
+            </li>
+            <li *ngIf="rolename=='aschecker' || rolename=='checker' || rolename=='ccchecker'" class="drop4 col-md-12 cust"><a
                 class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/pending-biller']"><span>
                   <img id="user" src="assets/img/add-unitary-bills.png" /></span>
-                Pending Bills </a></li>
+                Pending Billers </a>
+                <ul class="dropdown-menu menu4">
+                  <li routerLink="" (click)="clickBillEvent()">
+                    <a>Fetch and Pay Bills</a>
+                  </li>
+                  <li routerLink='' (click)="clickBillEvent()">
+                    <a>Direct Pay Bills</a>
+                  </li>
+                </ul>
+            </li>
           </ul>
         </li>
 
-        <li *ngIf="rolename=='as' || rolename=='ccchecker' || rolename=='ccmaker' || rolename=='aschecker' || rolename=='maker' || rolename=='checker'"
+        <li
+          *ngIf="rolename=='as' || rolename=='ccchecker' || rolename=='ccmaker' || rolename=='aschecker' || rolename=='maker' || rolename=='checker'"
           class="menu_sel" [ngClass]="payActive ? 'active' : ''">
-          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="openpaydrop();clickPayEvent()">Payments
+          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown"
+            (click)="openpaydrop()">Payments
           </a>
           <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displaypaydrop}">
-            <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/paymentlist']">
-                <span> <img id="user" src="assets/img/view-payment.png" style="height:20px; width:25px;"/></span>
-                View Payments </a></li>
-            <li *ngIf="rolename=='maker' || rolename=='ccmaker'" class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()"
-                [routerLink]="['/main/make-payment']"><span>
+            <li class="drop1 col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()"
+                [routerLink]="['/main/paymentlist']">
+                <span> <img id="user" src="assets/img/view-payment.png" style="height:20px; width:25px;" /></span>
+                View Payments </a>
+                <ul class="dropdown-menu menu1">
+                  <li routerLink="" (click)="clickPayEvent()">
+                    <a>Fetch and Pay Payments</a>
+                  </li>
+                  <li routerLink='' (click)="clickPayEvent()">
+                    <a>Direct Pay Payments</a>
+                  </li>
+                </ul>
+            </li>
+            <li *ngIf="rolename=='maker' || rolename=='ccmaker'" class="drop2 col-md-12 cust"><a class="[ animate ]"
+                (click)="closealldrop()" [routerLink]="['/main/make-payment']"><span>
                   <img id="user" src="assets/img/make-payment.png" style="height:16px; width:35px;" /></span>
-                Make Payments </a></li>
-            <li *ngIf="rolename=='maker' || rolename=='ccmaker'" class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()"
-              [routerLink]="['/main/make-prepaid-payment']"><span>
-                <img id="user" src="assets/img/make-payment.png" style="height:16px; width:35px;" /></span>
-              Make Prepaid Payments </a></li>
-            <li *ngIf="rolename=='aschecker' || rolename=='checker' || rolename=='ccchecker'"  class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/pending-payments']"><span>
-                <img id="user" src="assets/img/make-payment.png" style="height:16px; width:35px;"/></span>
-              Pending Payments </a></li>
-                
+                Make Payments </a>
+                <ul class="dropdown-menu menu2">
+                  <li routerLink="" (click)="clickPayEvent()">
+                    <a>Fetch and Pay</a>
+                  </li>
+                  <li routerLink='' (click)="clickPayEvent()">
+                    <a>Direct Pay</a>
+                  </li>
+                </ul>
+            </li>
+            <li *ngIf="rolename=='maker' || rolename=='ccmaker'" class="drop3 col-md-12 cust"><a class="[ animate ]"
+                (click)="closealldrop()" [routerLink]="['/main/make-prepaid-payment']"><span>
+                  <img id="user" src="assets/img/make-payment.png" style="height:16px; width:35px;" /></span>
+                Add Bulk Payments</a>
+                <ul class="dropdown-menu menu3">
+                  <li routerLink='' (click)="clickPayEvent()">
+                    <a>Direct Pay</a>
+                  </li>
+                </ul>
+            </li>
+            <li *ngIf="rolename=='aschecker' || rolename=='checker' || rolename=='ccchecker'" class="drop4 col-md-12 cust"><a
+                class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/pending-payments']"><span>
+                  <img id="user" src="assets/img/make-payment.png" style="height:16px; width:35px;" /></span>
+                Pending Payments </a>
+                <ul class="dropdown-menu menu4">
+                  <li routerLink="" (click)="clickPayEvent()">
+                    <a>Fetch and Pay Payments</a>
+                  </li>
+                  <li routerLink='' (click)="clickPayEvent()">
+                    <a>Direct Pay Payments</a>
+                  </li>
+                </ul>
+            </li>
+
             <!-- <li class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()"><span> <img id="user"
                     src="assets/img/user.png" /></span>
                 Add Bulk Payment </a></li> -->
@@ -141,17 +233,19 @@
         </li>
 
         <li class="menu_sel" [ngClass]="cardActive ? 'active' : ''">
-          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="opencarddrop();clickCardEvent()">Cards
+          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown"
+            (click)="opencarddrop()">Cards
           </a>
           <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displaycarddrop}">
-            <li class="col-md-12 cust"><a class="[ animate ]" [routerLink]="['/main/cardview']" (click)="closealldrop()">
+            <li class="col-md-12 cust" (click)="clickCardEvent()"><a class="[ animate ]" [routerLink]="['/main/cardview']"
+                (click)="closealldrop()">
                 <span> <img src="assets/img/credit-card1.png" /></span>
                 View Cards </a></li>
-            <li *ngIf="rolename=='as' || rolename=='aschecker'" class="col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()"
-                [routerLink]="['/main/pending-card']">
+            <li *ngIf="rolename=='as' || rolename=='aschecker'" class="col-md-12 cust" (click)="clickCardEvent()"><a class="[ animate ]"
+                (click)="closealldrop()" [routerLink]="['/main/pending-card']">
                 <span> <img src="assets/img/credit-card1.png" /></span>
                 Pending Cards </a></li>
-            <li *ngIf="rolename=='ccadmin' || rolename=='ccchecker' || rolename=='ccmaker'" class="col-md-12 cust"><a
+            <li *ngIf="rolename=='ccadmin' || rolename=='ccchecker' || rolename=='ccmaker'" class="col-md-12 cust" (click)="clickCardEvent()"><a
                 class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/unitary-card']">
                 <span> <img src="assets/img/credit-card1.png" /></span>
                 Unitary Card </a>
