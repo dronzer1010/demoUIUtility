@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute,NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
 import {UserserviceService} from '../../api/userservice.service'
@@ -10,7 +10,10 @@ const supplierpath = new Urlconfig().getSupplierURL()
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  host: {
+    '(document:click)': 'closeAllDropdown($event)',
+  },
 })
 export class HeaderComponent implements OnInit {
   displaybilldrop='none';
@@ -50,7 +53,7 @@ export class HeaderComponent implements OnInit {
   showsuppliermodule:boolean=false;
   showgstmodule:boolean=false;
   showsolutions:boolean=false;
-  constructor(location: Location,private route: ActivatedRoute,private router: Router,private usrservice:UserserviceService,private auth:AuthService,) { 
+  constructor(location: Location,private route: ActivatedRoute,private router: Router,private usrservice:UserserviceService,private auth:AuthService,private _eref: ElementRef) { 
     router.events.subscribe((val) => {
       this.pathroute=location.path();
       if(this.pathroute=='/dashboard'){
@@ -458,6 +461,11 @@ this.usrservice.getUserDetails().subscribe(res=>{
     }else{
       this.showsolutions=false;
     }
+  }
+
+  closeAllDropdown(){
+    if (!this._eref.nativeElement.contains(event.target)) // or some similar check
+    this.closealldrop()
   }
 
 }

@@ -4,6 +4,40 @@
   font-weight: bold;
 }
 
+/* Bill and Payment multiple dropdown */
+.menu1 li,
+.menu2 li,
+.menu3 li,
+.menu4 li{
+  color: #555;
+  letter-spacing: 0.5px;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+  padding: 0px 10px;
+}
+.menu1 li a,
+.menu2 li a,
+.menu3 li a,
+.menu4 li a{
+  color: #555;
+}
+.drop1:hover>.menu1,
+.drop2:hover>.menu2,
+.drop3:hover>.menu3,
+.drop4:hover>.menu4{
+  display: block;
+  padding: 0;
+}
+.drop1>.menu1,
+.drop2>.menu2,
+.drop3>.menu3,
+.drop4>.menu4{
+  position: absolute;
+  left: 225px;
+  top: 4%;
+}
+/* Bill and Payment multiple dropdown */
+
 @media only screen and (max-width: 1920px){ 
   .navbar-bootsnipp .navbar-nav>li:not(.dropdown-right)>.dropdown-menu {
     margin-left: -1px;
