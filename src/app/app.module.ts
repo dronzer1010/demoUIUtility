@@ -45,7 +45,6 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OtpapprovePaymentComponent } from './routingcomponents/otpapprovepayment/otpapprovepayment.component';
 import { OtpapproveBillerComponent } from './routingcomponents/otpapprovebiller/otpapprovebiller.component';
 import { ToastrModule } from 'ngx-toastr';
-import { NgDatepickerModule } from 'ng2-datepicker';
 import { CardviewComponent } from './routingcomponents/cardview/cardview.component';
 import { MyprofileComponent } from './supportingcomponents/myprofile/myprofile.component';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
@@ -152,7 +151,11 @@ import { ViewBillerComponent } from './customcomponents/view-biller/view-biller.
 import { ViewBillPaymentsComponent } from './customcomponents/view-bill-payments/view-bill-payments.component';
 import { PendingBillPaymentsComponent } from './customcomponents/pending-bill-payments/pending-bill-payments.component';
 import { PendingBillsComponent } from './customcomponents/pending-bills/pending-bills.component';
-
+import { OtpBillsNewComponent } from './customcomponents/otp-bills-new/otp-bills-new.component';
+import { OtpBillpaymentsNewComponent } from './customcomponents/otp-billpayments-new/otp-billpayments-new.component';
+import { NgDatepickerModule } from 'ng2-datepicker';
+import { AddBulkBillerComponent } from './customcomponents/add-bulk-biller/add-bulk-biller.component';
+import { AddBulkBillPaymentComponent } from './customcomponents/add-bulk-bill-payment/add-bulk-bill-payment.component';
 
 // import { FusionChartsModule } from 'angular-fusioncharts';
 // import FusionCharts from 'fusioncharts/core';
@@ -261,7 +264,11 @@ import { PendingBillsComponent } from './customcomponents/pending-bills/pending-
     ViewBillerComponent,
     ViewBillPaymentsComponent,
     PendingBillPaymentsComponent,
-    PendingBillsComponent
+    PendingBillsComponent,
+    OtpBillsNewComponent,
+    OtpBillpaymentsNewComponent,
+    AddBulkBillerComponent,
+    AddBulkBillPaymentComponent
   ],
 
   imports: [
@@ -310,7 +317,7 @@ import { PendingBillsComponent } from './customcomponents/pending-bills/pending-
     Ng2SearchPipeModule,
     SelectDropDownModule,
     PageSliderModule,
-    AngularFileUploaderModule,
+    AngularFileUploaderModule
 
 
   ],

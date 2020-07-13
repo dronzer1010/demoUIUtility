@@ -10,6 +10,7 @@ import {RmservicesService} from '../../api/rmservices.service'
 export class RmorganisationComponent implements OnInit {
   orgList: any = [];
   selectedOrg: any;
+  selectedOrgValue:any;
   constructor(private rmservice:RmservicesService,private router: Router,
     private location: Location) { }
 

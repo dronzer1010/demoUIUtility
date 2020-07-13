@@ -26,6 +26,7 @@ export class RmcardsliderComponent implements OnInit {
     public currentCard: any=0;
     approvedcard:any=[];
     cards:any=[];
+    selectedRuleValue:any;
   constructor(private rmservice: RmservicesService) { }
 
   ngOnInit() {

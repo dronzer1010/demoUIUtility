@@ -6,6 +6,8 @@ import { BillerserviceService } from '../../api/billerservice.service'
 import { ToastrService } from 'ngx-toastr'
 import{LoaderService} from '../../api/loader.service'
 import { Router,ActivatedRoute } from '@angular/router';
+import {UserserviceService} from '../../api/userservice.service'
+import {AuthService} from '../../api/auth.service'
 import {Config} from '../../config'
 import { e } from '@angular/core/src/render3';
 const path = new Config().getutilityBaseUrl();
@@ -38,7 +40,13 @@ export class AddBillerComponent implements OnInit {
   statename:string;
   public downloadFileName:string;
   fileUpload:File;
-  constructor(private httpService: HttpClient,private _lightbox: Lightbox,private billerservice: BillerserviceService,private toastr: ToastrService,private loaderService: LoaderService,private router: Router,private activatedRoute: ActivatedRoute) { }
+  users: any[] = [];
+  dropdownSettings1 = {};
+  selectedItems1 = [];
+  dropdownCat = [];
+  params:string;
+  updatebiller:boolean=false;
+  constructor(private httpService: HttpClient,private _lightbox: Lightbox,private billerservice: BillerserviceService,private toastr: ToastrService,private loaderService: LoaderService,private router: Router,private activatedRoute: ActivatedRoute,private userservice:UserserviceService,private auth:AuthService) { }
 
   ngOnInit() {
     
@@ -47,9 +55,58 @@ export class AddBillerComponent implements OnInit {
     //     this.states=data;
     //   }
     // )
-   
+    this.params = this.activatedRoute.snapshot.queryParams["id"];  
 this.getallStates()
-
+this.loadAllUsers()
+if(this.params!=undefined || this.params!=null){
+    this.loaderService.display(true)
+    this.updatebiller=true
+    this.billerservice.getBillerDetailsByiId(this.params).then(resp=>{
+      console.log(resp)
+      if(resp['msg']=='succes'){
+        this.loaderService.display(true)
+        this.billdata['utilitytype']=resp['billers']['utilitytype']
+        this.billdata['state']=resp['billers']['state']
+        this.billdata['billername']=resp['billers']['billername']
+        this.billdata['circle']=resp['billers']['circle']
+        this.billdata['contact']=resp['billers']['contact']
+        this.billdata['accno']=resp['billers']['accno']
+        this.billdata['ifsc']=resp['billers']['ifsc']
+        this.billdata['bank']=resp['billers']['bank']
+        this.billdata['consumerno']=resp['billers']['consumerno']
+        this.billdata['bucode']=resp['billers']['bucode']
+        this.billdata['email']=resp['billers']['email']
+        this.billdata['branch']=resp['billers']['branch']
+        this.billdata['glexpensecode']=resp['billers']['glexpensecode']
+        this.billdata['id']=resp['billers']['id']
+        this.loaderService.display(false)
+        this.getBiller(resp['billers']['state'])
+        this.getBillerDetails(resp['billers']['billername'])
+        
+      }else{
+          console.log("Unable to fetch Details")
+      }
+      
+    },error=>{
+      console.log(error)
+      this.loaderService.display(false)
+    })
+  }else{
+    this.updatebiller=false;
+  }
+this.dropdownSettings1 = {
+    singleSelection: false,
+    idField: 'item_id',
+    textField: 'item_text',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 10,
+    allowSearchFilter: false,
+    enableCheckAll:true
+  };
+//   this.dropdownCat = [
+//     { item_id: "6f6af57a-5c48-442e-b5b8-8b3559b10cd9", item_text: 'Electricity' }
+//   ];
     
   }
 
@@ -499,6 +556,21 @@ for(var i=0;i<=this.states.length;i++){
 }
   }
 
+  onCatSelect(approver:any){
+      console.log("Single Selection")
+    console.log(approver)
+   // console.log(this.selectedItems1)
+    //var checkerid=approver.map(checker=>checker['item_id']).join(',');
+   // console.log(checkerid)
+    //this.supplierData['selectcheckertemp'] = this.supplierData['selectchecker'].map(checker => checker['id']).join(','); 
+  }
+
+  onSelectAll(approver:any){
+      console.log("Select All")
+      console.log(approver)
+     // console.log(this.selectedItems1)
+  }
+
   billrdetails(){
     
     if(this.billdata['billername']==undefined|| this.billdata['billername']==null){
@@ -523,6 +595,10 @@ for(var i=0;i<=this.states.length;i++){
   }
 
   cnfsend(){
+      console.log(this.selectedItems1)
+       var checkerid=this.selectedItems1.map(checker=>checker['item_id']).join(',');
+   console.log(checkerid)
+   this.billdata['selectcheckertemp']=checkerid
     this.billdetails=false;
     this.conf=true;
     this.billertype=false;
@@ -649,6 +725,82 @@ this.billerservice.registerbillsNew(array).then(resp=>{
 })
   }
 
+
+  updatetbilldata(){
+      
+    this.loaderService.display(true);
+this.billdata['parameter']=this.para1
+this.billdata['state']=parseInt(this.billdata['state'])
+this.billdata['utilitytype']=parseInt(this.billdata['utilitytype'])
+if(this.billdata['bucode']==undefined || this.billdata['bucode']==null){
+    this.billdata['bucode']="";
+}else{
+    this.billdata['bucode']=this.billdata['bucode']
+}
+if(this.billdata['circle']==undefined || this.billdata['circle']==null){
+    console.log("set Circle blank")
+    this.billdata['circle']="";
+}else{
+    this.billdata['circle']=this.billdata['circle']
+}
+    console.log(this.billdata)
+    var array=[
+        this.billdata
+    ]
+this.billerservice.updatebillsNew(array).then(resp=>{
+    console.log(resp)
+    if(resp['msg']=='BillerDetails Added successfully' || resp['msg']=='BillerDetails Added Successfully'){
+        this.loaderService.display(false);
+        this.router.navigate(['/main/successmsg'],{queryParams:{msg:'billnewsuccess'}});
+        this.billdetails=false;
+        this.billertype=false;
+        this.conf=false;
+    }else{
+        this.loaderService.display(false);
+        this.toastr.error("Something went wrong!","Alert",{
+            timeOut:3000,
+            positionClass:'toast-top-center'
+            })
+    }
+   
+   
+},(error: HttpErrorResponse)=>{
+    console.log(error['error']['msg'])
+    
+    if(error['error']['msg']=='Biller Details Already Exists'){
+        this.loaderService.display(false);
+        this.toastr.error(error['error']['msg'],"Alert",{
+            timeOut:3000,
+            positionClass:'toast-top-center'
+            }) 
+            this.billdetails=false;
+            this.conf=true;
+            this.billertype=false;
+    }else if(error['error']['msg']=='Biller Details Not Available'){
+        this.loaderService.display(false);
+        this.toastr.error(error['error']['msg'],"Alert",{
+            timeOut:3000,
+            positionClass:'toast-top-center'
+            }) 
+            this.billdetails=false;
+            this.conf=true;
+            this.billertype=false;
+    }else{
+        this.toastr.error("Failed to register biller!","Alert",{
+            timeOut:3000,
+            positionClass:'toast-top-center'
+            })
+            this.billdetails=false;
+            this.conf=true;
+            this.billertype=false;
+    }
+  
+   
+  
+   
+})
+  }
+
   getIfsc(ifsc:string){
     //ifsc=this.supplierData['ifsc']
     //console.log(ifsc);
@@ -661,5 +813,31 @@ this.billerservice.registerbillsNew(array).then(resp=>{
       console.log(error)
     })
   }
+
+  private loadAllUsers() {
+    this.loaderService.display(true);
+    this.userservice.getAll().subscribe(users => {
+      console.log(users);
+      this.loaderService.display(false);
+      var userlist=users['data']; 
+      this.users=userlist.filter((user)=>{
+        return (user['status']=='Approved' && (user['dualrole']=='checker' || user['dualrole']=='ccchecker' || user['dualrole']=='aschecker'))
+      })
+      for(var data of this.users){
+          var obj={
+            item_id:data['id'],
+            item_text:data['employeename']
+          }
+          this.dropdownCat.push(obj)
+      }
+      },error=>{
+        if(error['status']==401){
+          this.auth.expiresession();
+        }
+      });
+    
+
+      this.loaderService.display(false);
+}
 
 }

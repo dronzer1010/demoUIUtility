@@ -16,7 +16,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="[ collapse navbar-collapse ]" id="bs-example-navbar-collapse-1">
       <ul class="[ nav navbar-nav ] customLeftMargin nav">
-        <li class="dash" [ngClass]="dashActive ? 'active' : ''" (click)="clickDash();clickDashEvent()"><a class="[ animate ]"
+        <li class="dash" [ngClass]="dashActive ? 'active' : ''" (click)="clickDashEvent()"><a class="[ animate ]"
             [routerLink]="['/rmdashboard']"><i class="nav-ico-menu"> </i>Dashboard</a></li>
             <li class="menu_sel profilink" [ngClass]="notActive ? 'active' : ''">
               <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="openotherdrop();clickOtherEvent()">
@@ -30,7 +30,7 @@
                   GST Module </a></li>
               </ul>
             </li>
-        <li class="dash" [ngClass]="orgActive ? 'active' : ''" (click)="clickOrg();clickOrgEvent()"><a class="[ animate ]"
+        <li class="dash" [ngClass]="orgActive ? 'active' : ''" (click)="clickOrgEvent()"><a class="[ animate ]"
             [routerLink]="['/rmorganisation']"><i class="nav-ico-menu"> </i>Organisation</a></li>
         
         <li class="menu_sel" [ngClass]="groupActive ? 'active' : ''">

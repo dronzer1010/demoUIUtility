@@ -14,7 +14,7 @@
               
             <div class="row" style="margin-bottom:20px;">
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                <img src="assets/img/search-icon.png" alt="" width="5%;"> <input type="search" placeholder="Search for Location, Biller Type or Utility" [(ngModel)]="searchText">
+                <img src="assets/img/search-icon.png" alt="" width="5%;"> <input type="search" placeholder="Search for Location, Biller Type or Utility" [(ngModel)]="filter">
               </div>
 
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
@@ -30,7 +30,7 @@
                 </ng-multiselect-dropdown>
               </div>
 
-              <div class="col-half-offset text-center" id="p1">
+              <!-- <div class="col-half-offset text-center" id="p1">
                 <ng-multiselect-dropdown
                   [ngClass]="'drop-seven'"
                   [placeholder]="'All Categories'"
@@ -40,8 +40,8 @@
                   (onSelect)="onCatSelect($event)"
                   [(ngClass)]="all-cat">
                 </ng-multiselect-dropdown>
-              </div>
-              <div class="col-half-offset text-center" id="p2">
+              </div> -->
+              <!-- <div class="col-half-offset text-center" id="p2">
                 <angular2-date-picker [ngClass]="'popup-datepicker'" [(ngModel)]="fromfilter" [settings]="settings"></angular2-date-picker>
               </div>
               <div class="col-half-offset text-center" id="p3">
@@ -56,8 +56,8 @@
                 [settings]="tsdropdownsettings"
                 (onSelect)="ontsselect($event)">
               </ng-multiselect-dropdown>
-              </div>
-              <div class="col-half-offset text-center" id="p5">
+              </div> -->
+              <!-- <div class="col-half-offset text-center" id="p5">
                 <ng-multiselect-dropdown
                 [ngClass]="'drop-sixth'"
                 [placeholder]="'Payment Status'"
@@ -66,7 +66,7 @@
                 [settings]="psdropdownsettings"
                 (onSelect)="onpsSelect($event)">
               </ng-multiselect-dropdown>
-              </div>
+              </div> -->
 
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
                 <!-- <ng-multiselect-dropdown
@@ -234,19 +234,19 @@
                   <td class="unitheaders">Total amount</td>
                 </tr>
                 <tr>
-                  <td>1</td>
-                  <td><i class="fa fa-rupee"></i>1000.00</td>
+                  <td>{{paymentData.length}}</td>
+                  <td><i class="fa fa-rupee"></i>{{totalamount| numberfr}}</td>
                 </tr>
               </table>
               </div>
               <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right txt"></div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right txt">
-                <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="getfilterdata()" type="button" style="border-radius:25px;">Filter Payment</button>
+                <!-- <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="getfilterdata()" type="button" style="border-radius:25px;">Filter Payment</button> -->
               </div>
             </div>
             <div class="row" style="margin:0px;">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
-                <table id="main-table" [mfData]="pendingpaymentdata" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                <table id="main-table" [mfData]="paymentData" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                   <thead>
                     <tr>
                       <td>Sr.No.</td>
@@ -260,103 +260,109 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <ng-container>
+                    <ng-container *ngFor="let payment of mf.data|filter:filter;let i=index;">
                     <tr>
-                      <td>1</td>
-                      <td>Maharashtra State Electricity</td>
-                      <td><i class="fa fa-rupee"></i> 1000</td>
-                      <td>3423435454</td>
-                      <td>202006050203294</td>
-                      <td><a href="javascript:void(0);" class="btn appoved"  role="button">Approved</a></td>
+                      <td>{{i+1}}</td>
+                      <td>{{payment.billername}}</td>
+                      <td><i class="fa fa-rupee"></i> {{payment.amount}}</td>
+                      <td>{{payment.consumernumber}}</td>
+                      <td>{{payment.crn}}</td>
+                      <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.transstatus === 'Approved', 'Rejected': payment.transstatus  === 'Rejected', 'Pending': payment.transstatus  === 'Pending'}"  role="button">{{payment.transstatus}}</a></td>
                     
-                      <td><a href="javascript:void(0);" class="btn appoved"  role="button">Card Debited</a></td>
-                      <td style="padding:0 5px;"><img src="assets/img/tb_downarrow.png" alt=""></td>
+                      <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.paymentstatus === 'Card Debited','Pending': payment.paymentstatus  === 'Pending','Rejected': payment.paymentstatus  === 'REJECT'}"  role="button">{{payment.paymentstatus}}</a></td>
+                      <td style="padding:0 5px;"><img src="assets/img/tb_downarrow.png" alt="" (click)="payment.collapsed=!payment.collapsed;getapproverdetails(payment.id,i)"></td>
                     </tr>
-                    <tr class="rowShow grayStrip">
+                    <tr class="rowShow grayStrip" *ngIf="payment.collapsed && selectedIndex==i">
                       <td class="custmtd" colspan="8">
                         <div class="tablediv">
                           <h5>Biller Details</h5>
-                          <div class="mb-1">
-                            <div class="span_width">Short Name</div> <span> : </span> &nbsp;
-                            <div class="bold_span">MSEDCL</div>
-                          </div>
+                        
                           <div class="mb-1">
                             <div class="span_width">GL/Expense Code</div> <span> : </span> &nbsp;
-                            <div class="bold_span">23455/333243</div>
+                            <div class="bold_span">{{payment.glexpensecode}}</div>
                           </div>
                           <div class="mb-1">
-                              <div class="span_width">Consumer No.</div> <span> : </span> &nbsp;
-                              <div class="bold_span">3423435454</div>
+                              <div class="span_width">{{payment.parameter1}}</div> <span> : </span> &nbsp;
+                              <div class="bold_span">{{payment.consumernumber}}</div>
                             </div>
                           <div class="mb-1">
                             <div class="span_width">Bill Date</div> <span> : </span> &nbsp;
-                            <div class="bold_span">01-06-2020</div>
+                            <div class="bold_span">{{payment.billdate}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Due Date</div> <span> : </span> &nbsp;
-                            <div class="bold_span">14-06-2020</div>
+                            <div class="bold_span">{{payment.duedate}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">UTR</div> <span> : </span> &nbsp;
-                            <div class="bold_span">NA</div>
+                            <div class="bold_span">{{payment.utr}}</div>
+                          </div>
+                          <div class="mb-1">
+                            <div class="span_width">Cut-Off Date</div> <span> : </span> &nbsp;
+                            <div class="bold_span">{{payment.cutoffdate}}</div>
+                          </div>
+                          <div class="mb-1">
+                            <div class="span_width">Batch</div> <span> : </span> &nbsp;
+                            <div class="bold_span" *ngIf="payment.cutofftime=='12:00 AM'">4</div>
+                            <div class="bold_span" *ngIf="payment.cutofftime=='12:00 PM'">1</div>
+                            <div class="bold_span" *ngIf="payment.cutofftime=='02:00 PM'">2</div>
+                            <div class="bold_span" *ngIf="payment.cutofftime=='05:00 PM'">3</div>
+                            <div class="bold_span" *ngIf="payment.cutofftime=='--'">--</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Location</div> <span> : </span> &nbsp;
-                            <div class="bold_span">Maharashtra</div>
+                            <div class="bold_span">{{payment.location}}</div>
                            
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Bill No</div> <span> : </span> &nbsp;
-                            <div class="bold_span">235345436</div>
+                            <div class="bold_span">{{payment.billno}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Card No</div> <span> : </span> &nbsp;
-                            <div class="bold_span">1234 XXXX XXXX 3434</div>
+                            <div class="bold_span">{{payment.cardno}}</div>
                           </div>
                           <div class="mb-1">
-                            <div class="span_width">BU Name BU Code</div> <span> : </span> &nbsp;
-                            <div class="bold_span">4323 Wadhi SN/Dn.</div>
+                            <div class="span_width" *ngIf="payment.displaynamebu.length>0">{{payment.displaynamebu}}</div> <span *ngIf="payment.displaynamebu.length>0"> : </span> &nbsp;
+                            <div class="bold_span" *ngIf="payment.bucodebuname.length>0">{{payment.bucodebuname}}</div>
                           </div>
-                          <!-- <div class="mb-1">
-                            <div class="span_width">{{payment.display_name_circle}}</div> <span> : </span> &nbsp;
-                            <div class="bold_span">{{payment.circle}}</div>
-                          </div> -->
+                          <div class="mb-1">
+                            <div class="span_width" *ngIf="payment.displaynamecircle.length>0">{{payment.displaynamecircle}}</div> <span *ngIf="payment.displaynamecircle.length>0"> : </span> &nbsp;
+                            <div class="bold_span" *ngIf="payment.circle.length>0">{{payment.circle}}</div>
+                          </div>
       
                         </div>
                         <div class="tablediv table2">
                           <h5>Contact Details</h5>
                           <div class="mb-1">
                             <div class="span_width">Mobile No</div> <span> : </span> &nbsp;
-                            <div class="bold_span">8960777767</div>
+                            <div class="bold_span">{{payment.mobileno}}</div>
                           </div>
-                          <div class="mb-1">
-                            <div class="span_width">Address</div> <span> : </span> &nbsp;
-                            <span class="bold_span" tooltip="Andheri East MIDC" placement="top" show-delay="500">Andheri East MIDC</span>
-                          </div>
+                         
                           <div>
                             <div class="span_width">Email</div> <span> : </span> &nbsp;
-                            <span class="bold_span" tooltip="deepanshu@aquapay.in.com" placement="top" show-delay="500">deepanshu@aquapay.in</span>
+                            <span class="bold_span" tooltip="{{payment.email}}" placement="top" show-delay="500">{{payment.email}}</span>
                           </div>
                           <h5>Bank Details</h5>
                           <div>
                             <div class="span_width">Account Number</div> <span> : </span> &nbsp;
-                            <span class="bold_span" tooltip="deepanshu@aquapay.in" placement="top"
-                              show-delay="500">346457657456</span>
+                            <span class="bold_span" tooltip="{{payment.accountno}}" placement="top"
+                              show-delay="500">{{payment.accountno}}</span>
                           </div>
                           <div>
                             <div class="span_width">IFSC</div> <span> : </span> &nbsp;
-                            <span class="bold_span" tooltip="deepanshu@aquapay.in" placement="top"
-                              show-delay="500">SBIN0011607</span>
+                            <span class="bold_span" tooltip="{{payment.ifsc}}" placement="top"
+                              show-delay="500">{{payment.ifsc}}</span>
                           </div>
                           <div>
                             <div class="span_width">Bank Name</div> <span> : </span> &nbsp;
-                            <span class="bold_span" tooltip="deepanshu@aquapay.in" placement="top"
-                              show-delay="500">SBI</span>
+                            <span class="bold_span" tooltip="{{payment.ifsc}}" placement="top"
+                              show-delay="500">{{payment.bankname}}</span>
                           </div>
                           <div>
                             <div class="span_width">Branch Name</div> <span> : </span> &nbsp;
-                            <span class="bold_span" tooltip="deepanshu@aquapay.in" placement="top"
-                              show-delay="500">Panki</span>
+                            <span class="bold_span" tooltip="{{payment.ifsc}}" placement="top"
+                              show-delay="500">{{payment.branchname}}</span>
                           </div>
                         </div>
                         <div class="tablediv noborder table3">
@@ -367,97 +373,53 @@
                           </div> -->
                           <div class="mb-1">
                             <div class="span_width">File Name</div> <span> : </span> &nbsp;
-                            <div class="bold_span">Unitary</div>
+                            <div class="bold_span" tooltip="{{payment.uploadfilename}}" placement="top"
+                            show-delay="500">{{payment.uploadfilename}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Initiated by</div> <span> : </span> &nbsp;
-                            <div class="bold_span">Mr. Dipanshu Pathak</div>
+                            <div class="bold_span">{{payment.initiatedby}}</div>
                           </div>
                           <div class="mb-1">
                             <div class="span_width">Initiated on</div> <span> : </span> &nbsp;
-                            <div class="bold_span" tooltip="04-06-2020 | 03:20 PM" placement="top"
-                            show-delay="500">04-06-2020 | 03:20 PM</div>
+                            <div class="bold_span" tooltip="{{payment.initiateddate}} | {{payment.initiatedtime}}" placement="top"
+                            show-delay="500">{{payment.initiateddate}} | {{payment.initiatedtime}}</div>
                           </div>
-                          <ng-container>
-                          <div class="mb-1">
-                              <div class="span_width">Approved by </div>  <span> : &nbsp;</span> 
-                              
-                              <div class="bold_span" tooltip="Mr. Pankaj Barhate" placement="top"
-                              show-delay="500">Mr. Pankaj Barhate</div>
-                            
-                            </div>
+                          <ng-container *ngFor="let approver of approverDetails">
                             <div class="mb-1">
-                              <div class="span_width">Approved on  </div>  <span> :  &nbsp;</span>
+                              <div class="span_width" *ngIf="approver.ischecked==1">Approved by</div> <span *ngIf="approver.ischecked==1"> : &nbsp;</span> 
+                              <div class="span_width" *ngIf="approver.ischecked==0">Rejected by</div> <span *ngIf="approver.ischecked==0"> : &nbsp;</span> 
                             
-                              <div class="bold_span" tooltip="04-06-2020 | 04:34 PM" placement="top"
-                              show-delay="500">04-06-2020 | 04:34 PM</div>
+                              <div class="bold_span" tooltip="{{approver.approvedby}}" placement="top"
+                              show-delay="500">{{approver.approvedby}} <span *ngIf="approver.group.length>0" tooltip="{{approver.group}}" placement="top"
+                                show-delay="500">({{approver.group}})</span></div>
+                             
                             </div>
-                          </ng-container>
+                            <div>
+                              <div class="span_width" *ngIf="approver.ischecked==1">Approved on</div> <span *ngIf="approver.ischecked==1"> : &nbsp;</span> 
+                              <div class="span_width" *ngIf="approver.ischecked==0">Rejected on</div> <span *ngIf="approver.ischecked==0"> : &nbsp;</span>
+                              <div class="bold_span"  tooltip="{{approver.approveddate}} | {{approver.approvedtime}}" placement="top"
+                              show-delay="500">{{approver.approveddate}} | {{approver.approvedtime}}</div>
+                            </div>
+                           
+                            </ng-container>
                         </div>
                       </td>
                     </tr>
-                    <tr class="rowShow grayStrip">
+                    <tr class="rowShow grayStrip" *ngIf="payment.collapsed && selectedIndex==i">
                       <td colspan="8">
                           <span class="text-left"><label style="color: #64289d;">Comment : &nbsp;</label></span>
                        
-                      <span class="pull-right"><a><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="javascript:void(0)"><img src="assets/img/edit.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="javascript:void(0)"><img src="assets/img/delete.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span class="pull-right"><a><img src="assets/img/popup.png" style="width:25px;" (click)="getpaymentlogs(payment.carddebiteddate,payment.carddebitedtime,payment.utrdate,payment.utrtime,payment.payrefundreason,payment.paymentstatus)"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <!-- <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                        <!-- <a href="javascript:void(0)" *ngIf="payment.transstatus=='Pending' && (rolename=='maker' || rolename=='ccmaker')"><img src="assets/img/edit.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                        <a href="javascript:void(0)" *ngIf="payment.transstatus=='Pending' && (rolename=='maker' || rolename=='ccmaker')" (click)="opendeletemodal(payment.id)"><img src="assets/img/delete.png" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a><img src="assets/img/page.png"></a>
                       </span>
                       </td>
                     </tr>
-                      <div class="backdrop" [ngStyle]="{'display':displayBillDetails}"></div>
-                      <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayBillDetails}">
-                        <!-- modal-dialog -->
-                        <div class="modal-dialog" id="logs" role="document">
-                          <!-- modal-content -->
-                          <div class="modal-content">
-                            <!-- modal-header -->
-                            <div class="modal-header">
-                              Bill Details<button type="button" class="close" aria-label="Close" (click)="openModalDialog1()"><span
-                                  aria-hidden="true">&times;</span></button>
-                              <!-- <h4 class="modal-title">Login</h4> -->
-                            </div>
-                            <!-- modal-body -->
-                            <div class="modal-body">
-                              <div class="row mb-2">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <table style="width:100%" id="modal-table">
-                                  <tbody>
-                                    <tr>
-                                      <td>Late Payment Charges</td>
-                                      <td>:</td>
-                                      <td><i class="fa fa-rupee"></i>{{latecharges | numberfr}}</td>
-                                    </tr>
-                                    <tr>
-                                      <td>Meter Reading</td>
-                                      <td>:</td>
-                                      <td>{{meterreading}}</td>
-                                      
-                                    </tr>
-                                    <tr>
-                                      <td>Promt Payment Incentives</td>
-                                      <td>:</td>
-                                      <td><i class="fa fa-rupee"></i>{{incentives | numberfr}}</td>
-                                    </tr>
-                                    <tr>
-                                      <td>Remarks</td>
-                                      <td>:</td>
-                                      <td>{{remarks}}</td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </div>                                
-                              </div>
-                              <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"><button class="btn btn-default" (click)="openModalDialog2()">Close</button></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                     
+                     
                       <div class="backdrop" [ngStyle]="{'display':displayLogs}"></div>
                       <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayLogs}">
                         <!-- modal-dialog -->
@@ -485,26 +447,26 @@
                                     <tbody>
                                       <tr>
                                         <td>Card Debited</td>
-                                        <td>--</td>
-                                        <td>--</td>
+                                        <td>{{carddebitdate}}</td>
+                                        <td>{{carddebittime}}</td>
                                        
                                       </tr>
                                       <tr>
                                         <td>UTR</td>
-                                        <td>--</td>
-                                        <td>--</td>
+                                        <td>{{paysuccessdate}}</td>
+                                        <td>{{paysuccesstime}}</td>
                                       
                                       </tr>
                                      
                                       <tr>
                                         <td>Card Refunded</td>
-                                        <td>--</td>
-                                        <td>--</td>
+                                        <td>{{payfaildate}}</td>
+                                        <td>{{payfailtime}}</td>
                                        
                                       </tr>
                                       <tr>
                                         <td>Refund Reason</td>
-                                        <td colspan="2">--</td>
+                                        <td colspan="2">{{rejectreason}}</td>
                                        
                                       </tr>
                                     </tbody>

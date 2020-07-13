@@ -1,3 +1,523 @@
-<p>
-  pending-bill-payments works!
-</p>
+
+<div class="row h-100" style="background-color:#f4f4f4;">
+  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 heading">Pending Payments</div>
+    </div>
+    <div class="row" *ngIf="pendingList">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row" style="margin-bottom:20px;margin-right: -15px!important;">
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <img src="../../../assets/img/search-icon.png" alt="" width="5%;"> <input type="search" placeholder="Search for Location, Biller Type or Utility" [(ngModel)]="filter">
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
+                  <!-- <ng-multiselect-dropdown [ngClass]="first"
+                  [placeholder]="'All Categories'"
+                  [data]="dropdownCat"
+                  [(ngModel)]="selectedItems1"
+                  [settings]="dropdownSettings1"
+                  (onSelect)="onItemSelect($event)"
+                  [(ngClass)]="all-cat"
+                  (onSelectAll)="onSelectAll($event)">
+                </ng-multiselect-dropdown>
+                <ng-multiselect-dropdown
+                  [placeholder]="'This Month'"
+                  [data]="dropdownList"
+                  [(ngModel)]="selectedItems2"
+                  [settings]="dropdownSettings2"
+                  (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll($event)">
+                </ng-multiselect-dropdown> -->
+                <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png" alt="">Download File</button> -->
+                <!-- <ng-multiselect-dropdown
+                  [placeholder]="'Download List'"
+                  [data]="dropdownDownload"
+                  [(ngModel)]="selectedItems"
+                  [settings]="dropdownSettings"
+                  (onSelect)="onItemSelectDown($event)"
+                  (onSelectAll)="onSelectAllDown($event)">
+                </ng-multiselect-dropdown> -->
+                <div class="backdrop" [ngStyle]="{'display':display}"></div>
+                <!-- modal -->
+                <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+                    <!-- modal-dialog -->
+                    <div class="modal-dialog" role="document">
+                      <!-- modal-content -->
+                      <div class="modal-content">
+                        <!-- modal-header -->
+                        <div class="modal-header">
+                          Generate Customize Report<button type="button" class="close" aria-label="Close" (click)="closeModalDialog()"><span
+                              aria-hidden="true">&times;</span></button>
+                          <!-- <h4 class="modal-title">Login</h4> -->
+                        </div>
+                        <!-- modal-body -->
+                        <div class="modal-body">
+                          <div class="row mb-4 text-left">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                              <label for="" class="pop-input-text">Report Name :</label>
+                              <input type="text" class="pop-input" placeholder="Eg. Quarterly Report">
+                            </div>
+                          </div>
+                          <div class="row mb-4 text-left">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                              <label for="">Select the field to create a report</label>
+                            </div>
+                          </div>
+                          <div class="row mb-2 text-left">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Bill Name</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Amount</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Bill" value="Bill"> <span class="spn-modal">Reference No</span>
+                            </div>
+                          </div>
+                          <div class="row mb-2 text-left">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Consumer Name</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Status</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Bill" value="Bill"> <span class="spn-modal">Payment Status</span>
+                            </div>
+                          </div>
+                          <div class="row mb-2 text-left">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Short Name</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Consumer No</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Bill" value="Bill"> <span class="spn-modal">Bill Date</span>
+                            </div>
+                          </div>
+                          <div class="row mb-2 text-left">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Due Date</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                              <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Location</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Bill No</span>
+                              </div>
+                          </div>
+                          <div class="row mb-2 text-left">
+                              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Card No</span>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Mobile No</span>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                  <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Address</span>
+                                </div>
+                            </div>
+                            <div class="row mb-2 text-left">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                  <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Email</span>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                  <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">CRN</span>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">File Name</span>
+                                  </div>
+                              </div>
+                              <div class="row mb-2 text-left">
+                                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Initiated by</span>
+                                  </div>
+                                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Initiated on</span>
+                                  </div>
+                                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                      <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Approved by</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-2 text-left">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                      <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Approved on</span>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                      <input type="checkbox" name="Reference" value="Reference"> <span class="spn-modal">Comment</span>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                      
+                                      </div>
+                                  </div>
+                          <div class="row mb-4 text-left">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <table>
+                                    <tr>
+                                      <td style="padding:0px; width:10%">From</td>
+                                      <td style="padding:0px; width:28%"><angular2-date-picker [ngClass]="'popup-datepicker'" [(ngModel)]="fromdate" [settings]="settings"></angular2-date-picker></td>
+                                      <td style="padding-left:7px; width:10%">To</td>
+                                      <td style="padding-right:10px; width:31%"><angular2-date-picker [ngClass]="'popup-datepicker'" [(ngModel)]="todate" [settings]="settings"></angular2-date-picker></td>
+                                    </tr>
+                                  </table>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
+                          </div>
+                          <div class="row text-left">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button (click)="closeModalDialog()" class="btn-ok" style="margin-right:10px;">OK</button></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>                
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:20px;margin-right: -15px!important;">
+              <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 txt">
+                  <table class="entry-table">
+                    <tr>
+                      <td class="unitheaders">No. of bills</td>
+                      <td class="unitheaders">Total amount</td>
+                      <td class="unitheaders">No. of selected bills</td>
+                      <td class="unitheaders">Amount payable</td>
+                    </tr>
+                    <tr>
+                      <td>{{paymentData.length}}</td>
+                      <td><i class="fa fa-rupee"></i>{{totalamount | numberfr}}</td>
+                      <td>{{checkedValueArray.length}}</td>
+                      <td><i class="fa fa-rupee"></i>{{amountpay | numberfr}}</td>
+                    </tr>
+                  </table>
+                </div>
+              <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right"><button class="btn1" style="margin-right:10px;"
+                  (click)="gotoOTP()">Approve
+                  Payments</button>
+                <button class="btn2 ml-2" (click)="closeModalDialog2()">Reject Payments</button></div>
+            </div>
+            <div class="row" style="margin:0px;">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
+                  <table id="main-table" [mfData]="paymentData" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                      <thead>
+                        <tr>
+                          <td><input type="checkbox" name="vehicle1" value="Bike" [checked]="selectall" (change)="changeAll(paymentData)"></td>
+                          <td>Biller Name <img src="../../../assets/img/Filter.png" alt=""></td>
+                          <!-- <td>Consumer No <img src="../../../utility/assets/img/Filter.png" alt=""></td> -->
+                          <td>Amount <img src="../../../assets/img/Filter.png" alt=""></td>
+                          <td>Reference No <img src="../../../assets/img/Filter.png" alt=""></td>
+                          <td>TRN <img src="../../../assets/img/Filter.png" alt=""></td>
+                          <td>Status</td>
+                          <!-- <td style="text-align:center;">Payment Status</td> -->
+                          <td>&nbsp;</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <ng-container *ngFor="let payment of mf.data|filter:filter; let i=index;">
+                        <tr>
+                          <td><input type="checkbox" name="submenu" [checked]="select" (change)="change(payment.id) "></td>
+                          <td>{{payment.vendorname}}</td>
+                          <!-- <td>{{payment.bill.consumerno}}</td> -->
+                          <td><i class="fa fa-rupee"></i>{{payment.amount | numberfr}}</td>
+                          <td>{{payment.consumerno}}</td>
+                          <td>{{payment.customerrefno}}</td>
+                          <td><a href="javascript:void(0);" class="btn Pending"  role="button">Pending</a></td>
+                         
+                          <!-- <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': payment.payment_status === 'Approved', 'Rejected': payment.payment_status  === 'Rejected', 'Pending': payment.payment_status  === 'Pending'}" role="button">{{payment.payment_status}}</a></td> -->
+                          <td style="padding:0px 10px;"><img src="assets/img/tb_downarrow.png" alt="" (click)="payment.collapsed=!payment.collapsed;getpaylogs(payment.invid,i)"></td>
+                        </tr>
+                        <tr class="rowShow grayStrip" *ngIf="payment.collapsed && selectedIndex==i">
+                          <td class="custmtd" colspan="8">
+                            <div class="tablediv">
+                              <h5>Biller Details</h5>
+                             
+                                <div class="mb-1">
+                                  <div class="span_width">GL/Expense Code </div>  <span> : </span> &nbsp;
+                                  <div class="bold_span">{{payment.glexpensecode}}</div>
+                                </div>
+                                <div class="mb-1">
+                                    <div class="span_width">{{payment.parameter}}</div> <span> : </span> &nbsp;
+                                    <div class="bold_span">{{payment.consumerno}}</div>
+                                  </div>
+                                  <div class="mb-1" *ngIf="payment.displaynamebu.length>0">
+                                    <div class="span_width">{{payment.displaynamebu}}</div> <span> : </span> &nbsp;
+                                    <div class="bold_span">{{payment.bucode}}</div>
+                                  </div>
+                                  <div class="mb-1" *ngIf="payment.displaynamecircle.length>0">
+                                    <div class="span_width">{{payment.displaynamecircle}}</div> <span> : </span> &nbsp;
+                                    <div class="bold_span">{{payment.circle}}</div>
+                                  </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Bill Date </div>  <span> : </span> &nbsp;
+                                  <div class="bold_span">{{payment.billdate}}</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Due Date </div>  <span> : </span> &nbsp;
+                                  <div class="bold_span">{{payment.duedate}}</div>
+                                </div>
+                                <!-- <div class="mb-1" *ngIf="payment.utr.length>0">
+                                  <div class="span_width">UTR</div> <span> : </span> &nbsp;
+                                  <div class="bold_span">{{payment.utr}}</div>
+                                </div> -->
+                                <div class="mb-1">
+                                    <div class="span_width">Location</div> <span> : </span> &nbsp;
+                                    <div class="bold_span" >{{payment.location}}</div>
+                                   
+                                  </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Bill No</div> <span> : </span> &nbsp;
+                                  <div class="bold_span">{{payment.billno}}</div>
+                                </div>
+                                <div class="mb-1">
+                                  <div class="span_width">Card No</div> <span> : </span> &nbsp;
+                                  <div class="bold_span">{{payment.cardno}}</div>
+                                </div>
+                            </div>
+                            <div class="tablediv table2">
+                                <div class="mb-1">
+                                    <h5>Contact Details</h5>
+                                    <div class="span_width">Mobile No</div>  <span> : </span> &nbsp;
+                                    <div class="bold_span">{{payment.mobileno}}</div>
+                                  </div>
+                                
+                                  <div>
+                                    <div class="span_width">Email</div>  <span> : </span> &nbsp;
+                                    <span class="bold_span" tooltip="{{payment.email}}" placement="top" show-delay="500">{{payment.email}}</span>
+                                  </div>
+                                  <h5>Bank Details</h5>
+                          <div>
+                            <div class="span_width">Account Number</div> <span> : </span> &nbsp;
+                            <span class="bold_span" tooltip="{{payment.vaccno}}" placement="top"
+                              show-delay="500">{{payment.vaccno}}</span>
+                          </div>
+                          <div>
+                            <div class="span_width">IFSC</div> <span> : </span> &nbsp;
+                            <span class="bold_span" tooltip="{{payment.ifsc}}" placement="top"
+                              show-delay="500">{{payment.ifsc}}</span>
+                          </div>
+                          <div>
+                            <div class="span_width">Bank Name</div> <span> : </span> &nbsp;
+                            <span class="bold_span" tooltip="{{payment.vendbankname}}" placement="top"
+                              show-delay="500">{{payment.vendbankname}}</span>
+                          </div>
+                          <div>
+                            <div class="span_width">Branch Name</div> <span> : </span> &nbsp;
+                            <span class="bold_span" tooltip="{{payment.branchname}}" placement="top"
+                              show-delay="500">{{payment.branchname}}</span>
+                          </div>
+                            </div>
+                            <div class="tablediv noborder table3">
+                              <h5>Other Details</h5>
+
+                                 
+                                  <div class="mb-1">
+                                    <div class="span_width">File Name </div>  <span> : </span> &nbsp;
+                                    <div class="bold_span">{{payment.uploadfilename}}</div>
+                                  </div>
+                                  <div class="mb-1">
+                                    <div class="span_width">Initiated by </div>  <span> : </span> &nbsp;
+                                    <div class="bold_span">{{payment.addedby}}</div>
+                                  </div>
+                                  <div class="mb-1">
+                                    <div class="span_width">Initiated on  </div>  <span> : </span> &nbsp;
+                                    <div class="bold_span">{{payment.dateadded}} | {{payment.timeadded}}</div>
+                                  </div>
+                                  <ng-container *ngFor="let approver of approverDetails">
+                                    <div class="mb-1">
+                                      <div class="span_width" *ngIf="approver.ischecked==1">Approved by</div> <span *ngIf="approver.ischecked==1"> : &nbsp;</span> 
+                                      <div class="span_width" *ngIf="approver.ischecked==0">Rejected by</div> <span *ngIf="approver.ischecked==0"> : &nbsp;</span> 
+                                    
+                                      <div class="bold_span" tooltip="{{approver.approvedby}}" placement="top"
+                                      show-delay="500">{{approver.approvedby}} <span *ngIf="approver.group.length>0" tooltip="{{approver.group}}" placement="top"
+                                        show-delay="500">({{approver.group}})</span></div>
+                                     
+                                    </div>
+                                    <div>
+                                      <div class="span_width" *ngIf="approver.ischecked==1">Approved on</div> <span *ngIf="approver.ischecked==1"> : &nbsp;</span> 
+                                      <div class="span_width" *ngIf="approver.ischecked==0">Rejected on</div> <span *ngIf="approver.ischecked==0"> : &nbsp;</span>
+                                      <div class="bold_span"  tooltip="{{approver.approveddate}} | {{approver.approvedtime}}" placement="top"
+                                      show-delay="500">{{approver.approveddate}} | {{approver.approvedtime}}</div>
+                                    </div>
+                                   
+                                    </ng-container>
+                            </div>
+                          </td>
+                        </tr>
+                        <!-- <tr class="rowShow grayStrip" *ngIf="payment.collapsed && selectedIndex==i">
+                          <td colspan="8">
+                            <span class="pull-right">
+                              <a (click)="closeModalDialog3()"><img src="assets/img/page.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                              <a data-toggle="modal" href="#myModal" id="openBtn" (click)="downloadattachment(payment.id)"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                              <a (click)="getextradetails(payment.late_pay_charges,payment,promt_pay_incentives,payment.remarks,payment.meter_reading)"><img src="assets/img/popup.png" alt="" style="width: 23px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </span>
+                          </td>
+                        </tr> -->
+                      
+                        <div class="backdrop" [ngStyle]="{'display':displaypopup}"></div>
+                        <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displaypopup}">
+                          <!-- modal-dialog -->
+                          <div class="modal-dialog" id="logs" role="document">
+                            <!-- modal-content -->
+                            <div class="modal-content">
+                              <!-- modal-header -->
+                              <div class="modal-header">
+                                  Transaction Logs<button type="button" class="close" aria-label="Close" (click)="openModalDialog1()"><span
+                                    aria-hidden="true">&times;</span></button>
+                                <!-- <h4 class="modal-title">Login</h4> -->
+                              </div>
+                              <!-- modal-body -->
+                              <div class="modal-body">
+                                <div class="row mb-2">
+                                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                  <table style="width:100%" id="modal-table">
+                                    <thead>
+                                      <tr>
+                                        <td>State</td>
+                                        <td>Date</td>
+                                        <td>Time</td>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td>Card Debited</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Payment Success</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Payment Failed</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Card Refunded</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Refund Reason</td>
+                                        <td colspan="2">-</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>                                
+                                </div>
+                                <div class="row">
+                                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"><button class="btn btn-default" (click)="openModalDialog1()">Close</button></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="backdrop" [ngStyle]="{'display':displayreason}"></div>
+                        <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayreason}">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                Comment<button type="button" class="close" aria-label="Close" (click)="openModalDialog2()"><span
+                                    aria-hidden="true">&times;</span></button>
+                                <!-- <h4 class="modal-title">Login</h4> -->
+                              </div>
+                              <div class="modal-body">
+                                <div class="row mb-4 mb-4 mt-3">
+                                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <label class="pop-input-text">Reject Reason : </label>&nbsp;
+                                    <input type="text" [(ngModel)]="rejectcomnt" name="rejectcomnt" class="pop-input" placeholder="Reject Comment">
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"><button class="btn-ok" (click)="rejectBtn(); openModalDialog2()">OK</button></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+                      </tbody>
+                    </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4" *ngIf="pendingList">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
+        
+      </div>
+    </div>
+    <div class="row setup-content form_bg" id="" *ngIf="approve">
+      <div class="BorderBottom"></div>
+      <div class="col-md-12 text-center">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div>
+            <div class="clear30"></div>
+            <div class="clear20"></div>
+            <div class="clear20"></div>
+            <img src="assets/img/done-tick.png" alt="">
+            <div class="clear20"></div>
+            <div class="clear20"></div>
+            <label class="successhedtxt">The payments are appproved and notification has been sent.</label>
+            <div class="clear20"></div>
+            <div class="clear20"></div>
+            <div class="col-xs-3 col-sm-3 col-md-3"></div>
+            <div class="col-xs-3 col-sm-3 col-md-3">
+              <a class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog" [routerLink]="['/main/paymentlist']">View
+                Payments</a>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-3">
+              <a class="btn btn-primary btn-outline Btn_Width2" [routerLink]="['/main/dashboard']">Go to Dashboard</a>
+            </div>
+            <div class="clear30"></div>
+            <div class="clear20"></div>
+            <div class="clear20"></div>
+            <div class="col-xs-3 col-sm-3 col-md-3"></div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="row setup-content form_bg" id="" *ngIf="reject">
+      <div class="BorderBottom"></div>
+      <div class="col-md-12 text-center">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div>
+            <div class="clear30"></div>
+            <div class="clear20"></div>
+            <div class="clear20"></div>
+            <img src="../../../utility/assets/img/wrong.png" alt="">
+            <div class="clear20"></div>
+            <div class="clear20"></div>
+            <label class="successhedtxt">Payment has been rejected, Email notification has been sent to initiator.</label>
+            <div class="clear20"></div>
+            <div class="clear20"></div>
+            <div class="col-xs-3 col-sm-3 col-md-3"></div>
+            <div class="col-xs-3 col-sm-3 col-md-3">
+              <a class="btn btn-primary  btn-outline btn-spac2 Btn_Width2 gtog" [routerLink]="['/main/checker-payments']">View
+                Payments</a>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-3">
+              <a class="btn btn-primary btn-outline Btn_Width2" [routerLink]="['/main/dashboard']">Go to Dashboard</a>
+            </div>
+            <div class="clear30"></div>
+            <div class="clear20"></div>
+            <div class="clear20"></div>
+            <div class="col-xs-3 col-sm-3 col-md-3"></div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+</div>

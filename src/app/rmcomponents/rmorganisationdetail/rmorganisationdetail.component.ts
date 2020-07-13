@@ -15,6 +15,7 @@ export class RmorganisationdetailComponent implements OnInit {
   authmatrix:string="";
   corporatename:string="";
   public authvalue: any;
+  selectedOrgValue:any;
   constructor(private rmservice: RmservicesService,
     private router: Router,
     private route: ActivatedRoute) { }

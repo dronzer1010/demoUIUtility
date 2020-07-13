@@ -117,7 +117,7 @@ custapproved_on: boolean=false;
 custcomment:  boolean=false;
 custorderid:  boolean=false;
 custshort_name:boolean=false;
-
+filter:any;
   constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,public datepipe: DatePipe,private rmservice:RmservicesService,private toastr: ToastrService,private http: Http) { }
 
   ngOnInit() {

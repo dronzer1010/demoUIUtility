@@ -12,7 +12,7 @@
             <div class="card-body">
               <div class="row" style="margin-bottom:20px;">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                  <img src="assets/img/search-icon.png" alt="" width="5%;"> <input type="search" placeholder="Search for Location, Biller Type or Utility" [(ngModel)]="searchText">
+                  <img src="assets/img/search-icon.png" alt="" width="5%;"> <input type="search" placeholder="Search for Location, Biller Type or Utility" [(ngModel)]="filter">
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
@@ -35,7 +35,7 @@
                     [(ngModel)]="selectedItems1"
                     [settings]="dropdownSettings1"
                     (onSelect)="onCatSelect($event)"
-                    [(ngClass)]="all-cat">
+                   >
                   </ng-multiselect-dropdown>
                 </div>
                 <div class="col-half-offset">
@@ -267,7 +267,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <ng-container *ngFor="let payment of mf.data|orderBy: key : reverse|rMpayamentFilter: {biller_name: searchText,amount:searchText,consumer_no:searchText,consumer_name:searchText,transaction_status:searchText,payment_status:searchText,short_name:searchText,gl_expense_code:searchText,consumer_no:searchText,bill_date:searchText,due_date:searchText,order_id:searchText,bill_number:searchText,state:searchText,card_last_digits:searchText,contact_no:searchText,email:searchText,contact_address:searchText,initiated_by:searchText,initiated_at:searchText,transaction_ref_no:searchText}; let i=index;">
+                      <ng-container *ngFor="let payment of mf.data|orderBy: key : reverse|filter:filter; let i=index;">
                       <tr>
                         <td>{{i+1}}</td>
                         <td>{{payment.biller_name}}</td>

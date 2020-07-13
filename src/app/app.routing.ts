@@ -76,6 +76,10 @@ import { ViewBillerComponent } from './customcomponents/view-biller/view-biller.
 import { ViewBillPaymentsComponent } from './customcomponents/view-bill-payments/view-bill-payments.component';
 import { PendingBillPaymentsComponent } from './customcomponents/pending-bill-payments/pending-bill-payments.component';
 import { PendingBillsComponent } from './customcomponents/pending-bills/pending-bills.component';
+import { OtpBillsNewComponent } from './customcomponents/otp-bills-new/otp-bills-new.component';
+import { OtpBillpaymentsNewComponent } from './customcomponents/otp-billpayments-new/otp-billpayments-new.component';
+import { AddBulkBillerComponent } from './customcomponents/add-bulk-biller/add-bulk-biller.component';
+import { AddBulkBillPaymentComponent } from './customcomponents/add-bulk-bill-payment/add-bulk-bill-payment.component';
 const appRoutes: Routes = [ 
     { path:'main',component:UserhomeComponent,
     children:[
@@ -117,12 +121,17 @@ const appRoutes: Routes = [
     {path:'sample-bills',component:SamplebillsComponent,canActivate: [AuthGuard]},
     {path:'templates',component:TemplatesComponent,canActivate: [AuthGuard]},
     {path:'reset-password-user',component:ResetpwduserComponent,canActivate: [AuthGuard]},
-    {path:'add-custom-biller',component:AddBillerComponent},
-    {path:'add-custom-bill-payment',component:AddBillPaymentComponent},
-    {path:'view-custom-biller',component:ViewBillerComponent},
-    {path:'view-custom-bill-payments',component:ViewBillPaymentsComponent},
-    {path:'custom-pending-bills',component:PendingBillsComponent},
-    {path:'custom-pending-bill-payments',component: PendingBillPaymentsComponent}
+    {path:'add-custom-biller',component:AddBillerComponent,canActivate: [AuthGuard]},
+    {path:'add-custom-bill-payment',component:AddBillPaymentComponent,canActivate: [AuthGuard]},
+    {path:'view-custom-biller',component:ViewBillerComponent,canActivate: [AuthGuard]},
+    {path:'view-custom-bill-payments',component:ViewBillPaymentsComponent,canActivate: [AuthGuard]},
+    {path:'custom-pending-bills',component:PendingBillsComponent,canActivate: [AuthGuard]},
+    {path:'custom-pending-bill-payments',component: PendingBillPaymentsComponent,canActivate: [AuthGuard]},
+    {path:'otp-approve-paymentnew/:ids',component:OtpBillpaymentsNewComponent,canActivate: [AuthGuard]},
+    {path:'otp-approve-billernew/:ids',component:OtpBillsNewComponent,canActivate: [AuthGuard]},
+    {path:'custom-bulk-payments',component:AddBulkBillPaymentComponent,canActivate: [AuthGuard]},
+    {path:'custom-bulk-bills',component:AddBulkBillerComponent,canActivate: [AuthGuard]},
+    
     
 ]},
 

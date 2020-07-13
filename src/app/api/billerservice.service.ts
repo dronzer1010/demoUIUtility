@@ -73,6 +73,63 @@ export class BillerserviceService {
   
     return promise;
   }
+
+
+  getBillerDetailsByiId(billerid:any): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+    let promise = new Promise((resolve, reject) => {
+        // let paramsValue = {
+        //     "regcmt": comment,
+        //     "checkval": ids
+        // };
+        this.http.get(`${path2}maker/editbiller?billerid=${billerid}`)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                    console.log("Error occured : " + err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
+  updatebillsNew(billdata:any[]): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+    let promise = new Promise((resolve, reject) => {
+        // let paramsValue = {
+        //     "regcmt": comment,
+        //     "checkval": ids
+        // };
+        this.http.post(path2+"maker/vendor", billdata)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                    console.log("Error occured : " + err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
+
   getIfscDetails(ifsc:string){
     return this.http.get<any>('https://ifsc.aquapay.in/api/ifsc/'+ifsc);
   }
@@ -108,6 +165,24 @@ export class BillerserviceService {
   getAllbillers(){
     let promise = new Promise((resolve, reject) => {
       this.http.get(path+"api/v1/maker_bills")
+          .subscribe(
+              res => {
+                  console.log(res);
+                  resolve(res);
+              },
+              err => {
+                  console.log("Error occured : " + err);
+                  reject(err);
+              }
+          );
+  
+  });
+  return promise;
+  }
+
+  getAllbillersNew(date,pageno,pagesize){
+    let promise = new Promise((resolve, reject) => {
+      this.http.get(`${path2}maker/billersfilterednpage?dateformat=${date}&pageno=${pageno}&pagesize=${pagesize}`)
           .subscribe(
               res => {
                   console.log(res);
@@ -181,6 +256,24 @@ export class BillerserviceService {
   getPendingbillers(){
     let promise = new Promise((resolve, reject) => {
       this.http.get(path+"api/v1/checker_bills")
+          .subscribe(
+              res => {
+                  console.log(res);
+                  resolve(res);
+              },
+              err => {
+                  console.log("Error occured : " + err);
+                  reject(err);
+              }
+          );
+  
+  });
+  return promise;
+  }
+
+  getPendingbillersNew(){
+    let promise = new Promise((resolve, reject) => {
+      this.http.get(`${path2}maker/billerdetail-pendingPaged?pageno=0&pagesize=2000`)
           .subscribe(
               res => {
                   console.log(res);
@@ -340,6 +433,40 @@ sendOtp(ids: any): Promise<any> {
     return promise;
   }
 
+
+  sendOtpNew(ids: any): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+    let paramsValue = {
+        "vendorIds":ids
+    }
+
+    console.log("param id" + ids);
+    let promise = new Promise((resolve, reject) => {
+        this.http.post(`${path2}checker/sendotpforbiller`, ids)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                   if(ids!=null){
+                    // this.loader.display(false);
+                    // this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                   }
+                    console.log("Error occured :")
+                    console.log(err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
   validateOTP(otp: any): Promise<any> {
     // let token = this.storage.getData("chlogin_data").token;
     // let headers = new HttpHeaders().set('Content-Type', 'application/json')
@@ -372,6 +499,38 @@ sendOtp(ids: any): Promise<any> {
   }
 
 
+  validateOTPNew(otp: any): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+    let paramsValue = {
+        "otp":otp
+    }
+    console.log("param id" + otp);
+    let promise = new Promise((resolve, reject) => {
+        this.http.post(`${path2}checker/validatebillerotp`, otp)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                   // this.loader.display(false);
+                    //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                    
+                    console.log("Error occured :")
+                    console.log(err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
+
   rejectbills(rejectdata:any): Promise<any> {
     // let token = this.storage.getData("chlogin_data").token;
     // let headers = new HttpHeaders().set('Content-Type', 'application/json')
@@ -380,6 +539,34 @@ sendOtp(ids: any): Promise<any> {
    console.log(JSON.stringify(rejectdata))
     let promise = new Promise((resolve, reject) => {
         this.http.post(path+"api/v2/reject_bills", rejectdata)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                   // this.loader.display(false);
+                    //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                    
+                    console.log("Error occured :")
+                    console.log(err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
+  rejectbillsNew(rejectdata:any): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+   console.log(JSON.stringify(rejectdata))
+    let promise = new Promise((resolve, reject) => {
+        this.http.post(`${path2}checker/rejectbillers`, rejectdata)
             .subscribe(
                 res => {
                     console.log(res);
@@ -458,6 +645,34 @@ sendOtp(ids: any): Promise<any> {
     return promise;
   }
 
+  deletebillNew(deleteteddata:any): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+  // console.log(JSON.stringify(rejectdata))
+    let promise = new Promise((resolve, reject) => {
+        this.http.post(`${path2}maker/deletebiller`,deleteteddata)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                   // this.loader.display(false);
+                    //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                    
+                    console.log("Error occured :")
+                    console.log(err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
   suplogs(id: any): Promise<any> {
     // let token = this.storage.getData("chlogin_data").token;
     // let headers = new HttpHeaders().set('Content-Type', 'application/json')
@@ -468,6 +683,34 @@ sendOtp(ids: any): Promise<any> {
     let promise = new Promise((resolve, reject) => {
         this.http.get(path+`api/v1/bill_approver_detail/${id}`)
             .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                   // this.loader.display(false);
+                    //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                    
+                    console.log("Error occured :")
+                    console.log(err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
+  billapprlogs(id: any): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+    
+
+    let promise = new Promise((resolve, reject) => {
+        this.http.get(`${path2}maker/Biller-approverDetail?billerid=${id}`).subscribe(
                 res => {
                     console.log(res);
                     resolve(res);

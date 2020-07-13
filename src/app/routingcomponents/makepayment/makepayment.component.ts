@@ -556,7 +556,8 @@ if(confirmation==true){
         positionClass:'toast-top-center'
         })
     }else{
-   if(nd<'13:58:00' && nd>'08:00:00'){
+    
+   if(nd<'13:58:00'){
     this.loader.display(true);
     this.paymentData={
       "card_id":this.selectedcard['id'],

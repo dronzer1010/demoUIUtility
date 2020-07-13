@@ -18,14 +18,14 @@
         <div class="white-bg">
            <h4 class="col-md-9 col-sm-6 Top5Heading111 mrgnone">List of Users</h4>
            <div class="form-group col-md-3 col-sm-6 top-spac text-right right-spac">
-               <ng-multiselect-dropdown [ngClass]="'second'"
+               <!-- <ng-multiselect-dropdown [ngClass]="'second'"
                   [placeholder]="'This Month'"
                   [data]="dropdownList"
                   [(ngModel)]="selectedItems1"
                   [settings]="dropdownSettings1"
                   (onSelect)="onItemSelect($event)"
                   (onSelectAll)="onSelectAll($event)">
-               </ng-multiselect-dropdown>
+               </ng-multiselect-dropdown> -->
               <!-- <div class="btn-group">
                  <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right2" role="menu">
                    <li class="input-text-center">
@@ -74,202 +74,22 @@
                        </td>
                        <td>
                           <span class="bold-txt">Employee Name</span> &nbsp;
-                          <div class="btn-group dropdown">
-                             <button type="button" class="btn dropdown-toggle caret2" data-toggle="dropdown" (click)="sort('employeename')">
-                             <span class="sr-only">Toggle Dropdown</span>
-                             </button>
-                             <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right1" role="menu">
-                                <li>
-                                   <a href="javascript:void(0);" (click)="sortByAsc('vendorcode')">
-                                   <img src="assets/img/Sort_Ascending.png"> &nbsp;&nbsp;Sort Ascending</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                   <a href="javascript:void(0);" (click)="sortByDesc('vendorcode')">
-                                   <img src="assets/img/Sort_Descending.png"> &nbsp;&nbsp;Sort Descending</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                   <a href="javascript:void(0);">
-                                   <img src="assets/img/search-icon.png"> &nbsp;&nbsp;
-                                   <input class="search_box" type="text" placeholder="Search" [(ngModel)]="supplierName">
-                                   </a>
-                                </li>
-                                <!-- <li class="divider"></li>
-                                <li>
-                                   <a href="javascript:void(0);">
-                                      <div class="place"></div>
-                                      <div class="txt-div">All</div>
-                                   </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                   <a href="javascript:void(0);">
-                                      <div class="place"></div>
-                                      <div class="txt-div">Amit Mishra</div>
-                                   </a>
-                                </li> -->
-                                <!-- <li class="divider"></li> -->
-                             </ul>
-                          </div>
+                         
                        </td>
                        <td>
                           <span class="bold-txt">Designation</span> 
-                          <div class="btn-group dropdown">
-                             <button type="button" class="btn dropdown-toggle caret2" data-toggle="dropdown" (click)="sort('designation')">
-                             <span class="sr-only">Toggle Dropdown</span>
-                             </button>
-                             <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right1" role="menu">
-                                <li>
-                                   <a href="javascript:void(0);" (click)="sortByAsc('vendorcode')">
-                                   <img src="assets/img/Sort_Ascending.png"> &nbsp;&nbsp;Sort Ascending</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                   <a href="javascript:void(0);" (click)="sortByDesc('vendorcode')">
-                                   <img src="assets/img/Sort_Descending.png"> &nbsp;&nbsp;Sort Descending</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                   <a href="javascript:void(0);">
-                                   <img src="assets/img/search-icon.png"> &nbsp;&nbsp;
-                                   <input class="search_box" type="text" placeholder="Search" [(ngModel)]="description">
-                                   </a>
-                                </li>
-                                <!-- <li class="divider"></li>
-                                <li>
-                                   <a href="javascript:void(0);">
-                                      <div class="place"></div>
-                                      <div class="txt-div">Manager</div>
-                                   </a>
-                                </li>
-                                <li class="divider"></li> -->
-                             </ul>
-                          </div>
+                          
                        </td>
                        <td>
                           <span class="bold-txt">Department</span>
-                          <div class="btn-group">
-                             <button type="button" class="btn dropdown-toggle caret2" data-toggle="dropdown" (click)="sort('department')">
-                             <span class="sr-only">Toggle Dropdown</span>
-                             </button>
-                             <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right2" role="menu">
-                                <li>
-                                   <a href="javascript:void(0);" (click)="sortByAsc('vendorcode')">
-                                   <img src="assets/img/Sort_Ascending.png"> &nbsp;&nbsp;Sort Ascending</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                   <a href="javascript:void(0);" (click)="sortByAsc('vendorcode')">
-                                   <img src="assets/img/Sort_Descending.png"> &nbsp;&nbsp;Sort Descending</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                   <a href="javascript:void(0);">
-                                   <img src="assets/img/search-icon.png"> &nbsp;&nbsp;
-                                   <input class="search_box" type="text" placeholder="Search" [(ngModel)]="department">
-                                   </a>
-                                </li>
-                                <!-- <li class="divider"></li>
-                                <li>
-                                   <a href="javascript:void(0);">
-                                      <div class="place"></div>
-                                      <div class="txt-div">Design</div>
-                                   </a>
-                                </li> -->
-                             </ul>
-                          </div>
+                         
                        <td>
                           <span class="bold-txt">Role</span>
-                          <div class="btn-group">
-                             <button type="button" class="btn dropdown-toggle caret2" data-toggle="dropdown" (click)="sort('role')">
-                             <span class="sr-only">Toggle Dropdown</span>
-                             </button>
-                             <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right2" role="menu">
-                                <li>
-                                   <a href="javascript:void(0);" (click)="sortByAsc('vendorcode')">
-                                   <img src="assets/img/Sort_Ascending.png"> &nbsp;&nbsp;Sort Ascending</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                   <a href="javascript:void(0);" (click)="sortByDesc('vendorcode')">
-                                   <img src="assets/img/Sort_Descending.png"> &nbsp;&nbsp;Sort Descending</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                   <a href="javascript:void(0);">
-                                   <img src="assets/img/search-icon.png"> &nbsp;&nbsp;
-                                   <input class="search_box" type="text" placeholder="Search" [(ngModel)]="role">
-                                   </a>
-                                </li>
-                                <!-- <li class="divider"></li>
-                                <li>
-                                   <a href="javascript:void(0);">
-                                      <div class="place"></div>
-                                      <div class="txt-div">Authorised Signatory</div>
-                                   </a>
-                                </li>
-                                <li>
-                                   <a href="javascript:void(0);">
-                                      <div class="place"></div>
-                                      <div class="txt-div">Corporate Admin</div>
-                                   </a>
-                                </li>
-                                <li>
-                                   <a href="javascript:void(0);">
-                                      <div class="place"></div>
-                                      <div class="txt-div">Maker</div>
-                                   </a>
-                                </li>
-                                <li>
-                                   <a href="javascript:void(0);">
-                                      <div class="place"></div>
-                                      <div class="txt-div">Checker</div>
-                                   </a>
-                                </li> -->
-                             </ul>
-                          </div>
+                         
                        </td>
                        <td>
                           <span class="bold-txt"> Status</span>
-                          <div class="btn-group">
-                             <button type="button" class="btn dropdown-toggle caret2" data-toggle="dropdown" (click)="sort('status')">
-                             <span class="sr-only">Toggle Dropdown</span>
-                             </button>
-                             <ul class="dropdown-menu dropdown-menuu dropdown-menu-right dropdown-menu-right1" role="menu">
-                                   <li>
-                                         <a href="javascript:void(0);">
-                                         <img src="assets/img/search-icon.png"> &nbsp;&nbsp;
-                                         <input class="search_box" type="text" placeholder="Search" [(ngModel)]="status">
-                                         </a>
-                                      </li>
-                                <!-- <li>
-                                   <a href="javascript:void(0);">
-                                      <div class="place"></div>
-                                      <div class="txt-div">All</div>
-                                   </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                   <a href="javascript:void(0);">
-                                      <div class="place"></div>
-                                      <div class="txt-div">Pending</div>
-                                   </a>
-                                 </li>
-                                 <li>
-                                   <a href="javascript:void(0);">
-                                      <div class="place"></div>
-                                      <div class="txt-div">Approved</div>
-                                   </a>
-                                 </li>
-                                 <li>
-                                   <a href="javascript:void(0);">
-                                      <div class="place"></div>
-                                      <div class="txt-div">Rejected</div>
-                                   </a>
-                                 </li> -->
-                             </ul>
-                          </div>
+                         
                        </td>
                        <td></td>
                     </tr>

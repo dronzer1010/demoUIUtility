@@ -196,3 +196,13 @@ h4.nopad {
    padding-bottom: 10px;
     text-overflow: ellipsis;
 }
+
+.date-pickerclass{
+  height: 36px;
+    border-width: 0 0 1px 0;
+    border-color: #53397957;
+    font-size: 14px;
+    line-height: 26px;
+    font-weight: 400;
+    width: 88%;
+}

@@ -1,0 +1,540 @@
+<div class="container ">
+  <section class="content ">
+    <!-- <div class="col-md-2 col-sm-2 top_back no-show2">
+    <h5 class="blu-color"> <a  class="backBtnpay_sup"><img src="assets/images/left-arrow.png"> Back </a>
+        <a  class="sndback"><img src="assets/images/left-arrow.png"> Back </a></h5>
+    </div> -->
+    <div class="col-md-12">
+      <div class="stepwizard ">
+        <div class="stepwizard-row stepwizard-row2 setup-panel">
+          <div class="stepwizard-step">
+            <a *ngIf="step2==0" href="#step-4" class="btn bg-primary btn-circle" id="fourth">
+              <img class="img-responsive tick2"src="assets/img/tick.png">
+            </a>
+            <a *ngIf="step2==1 || step2==2" href="#step-4" class="btn bg-primary btn-circle-big" id="fourth">
+              <img class="img-responsive tick2" src="assets/img/tick.png">
+            </a>
+            <h6 class="blu-color" id="p1">Upload File</h6>
+          </div>
+          <div class="stepwizard-step">
+            <a *ngIf="step2==0" href="#step-5" class="btn bg-default btn-circle " id="fifth">
+              <img class="img-responsive tick3"src="assets/img/tick.png">
+            </a>
+            <a *ngIf="step2==1" href="#step-5" class="btn bg-primary btn-circle " id="fifth">
+              <img class="img-responsive tick3"src="assets/img/tick.png">
+            </a>
+            <a *ngIf="step2==2" href="#step-5" class="btn bg-primary btn-circle-big" id="fifth">
+              <img class="img-responsive tick3"src="assets/img/tick.png">
+            </a>
+            <h6 id="p2">Select Card</h6>
+          </div>
+          <div class="stepwizard-step">
+            <a *ngIf="step2==0 || step2==1" href="#step-6" class="btn bg-default btn-circle " id="sixth">
+              <img class="img-responsive tick4" src="assets/img/tick.png">
+              </a>
+              <a *ngIf="step2==2" href="#step-6" class="btn bg-primary btn-circle " id="sixth">
+                <img class="img-responsive tick4" src="assets/img/tick.png">
+                </a>
+               
+            <h6 id="p3">Review Details</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--<div class="col-md-2 col-sm-2 top_back no-show">
+    <h5 class="blu-color"> <a href="#" class="backBtnpay_sup"><img src="assets/images/left-arrow.png"> Back </a>
+    <a  class="sndback"><img src="assets/images/left-arrow.png"> Back </a></h5></div>-->
+    <div class="clearfix"></div>
+    <form role="form" class="contact-form ">
+      <div class="col-md-12">
+        <div *ngIf="step2==0" class="row setup-content form_bg">
+          <div class="col-md-12 padlft">
+            <a class="btn btn-primary btn-outline ResponsiveBtnWidth pull-right" href="assets/templates/Sample_bill_payment_upload_file.csv" target="_blank"><img
+                src="assets/img/downloadlist.png"> Download Template</a>
+          </div>
+          <div class="col-md-12 extra_padd">
+            <div
+              class="col-xs-10 col-xs-offset-1 col-md-offset-3 col-sm-offset-2 col-sm-8 col-md-6 col-lg-offset-4 col-lg-4 text-center">
+              <div class="uploadimg"> <img src="assets/img/upload.png" class="zin" /></div>
+              <div class=" row">
+                <div class="col-xs-12 col-sm-12 col-md-12 text-center nextpay dnddive" id="file-drag">
+                  <form id="file-upload-form">
+                    <input id="file-upload" type="file" name="fileUpload" />
+                    <label for="file-upload">
+                      <span class="blu-color dndlabel">
+                        Drag n Drop
+                      </span>
+                      <span class="blu-color chota">
+                        to Upload your File or
+                      </span>
+                    </label>
+                    <div class="clear20"></div>
+                    <label class="btn bg-primary nextBtn">
+                      <span>{{filename}}
+                        <input type="file" [(ngModel)]="fileUpload" name="fileUpload" (change)="UploadFile($event)"
+                          accept=".csv" /></span>
+                    </label>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="clear20"></div>
+            <div class="clear20"></div>
+            <div class="clear20"></div>
+          </div>
+          <div class="clear20"></div>
+          <div class="clear20"></div>
+        </div>
+        <div *ngIf="step2==1" class="row setup-content form_bg">
+          <h4 class="Top5Heading111 col-md-6 col-sm-6">Review uploaded file</h4>
+          <div class="col-md-6 col-sm-6 text-right topspace">
+            <a class="btn btn-primary btn-outline ResponsiveBtnWidth " *ngIf="unSuccessTabShow"
+              (click)="exportAsXLSX()"><img src="assets/img/downloadlist.png"> Download List</a>
+          </div>
+          <div class="clearfix"></div>
+          <div class="BorderBottom"></div>
+          <div class="clearfix"></div>
+          <div class="clear20"></div>
+          <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+              <div class="row">
+                <div class="col-md-offset-3-5 col-md-9" style="margin-left: 22%;">
+                  <div [ngClass]="tabSuccessColor" id="succes" href="#succesmenu" (click)="showSuccessTab()" style="width: 35% !important;">
+                    <h5>SUCCESSFUL PAYMENTS ({{validpaycount}}) </h5>
+                  </div>
+                  <div [ngClass]="tabUnsucessColor" id="unsucces" href="#unsuccesmenu" (click)="showUnsuccessTab()" style="width: 35% !important;">
+                    <h5>UNSUCCESSFUL PAYMENTS ({{invalipaycount}}) </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="BorderBottom"></div>
+          <div class="clear20"></div>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="tab-content">
+                <div id="succesmenu" *ngIf="tabShow">
+                  <div class="col-md-12">
+                    <span class="col-md-3">No of Payment Requests <span class="big-txt lftspac">:
+                      {{validpaycount}}</span>|</span>
+                    <span class="col-md-4">Total Amount <span class="big-txt">: Rs. {{totaSuccessAmount| number : '1.2-2'}}</span></span>
+                    <span class="col-md-5 text-right"></span>
+                    <div class="clear10"></div>
+                    <div class="table-responsive">
+                      <table id="fold-table" class="table table-hover fold-table" [mfData]="successpaymentData"
+                        #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                        <thead>
+                          <tr class="cust-color">
+                            <td>
+                              <span>Utility Name</span> &nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td><span>State</span>
+                            <td>
+                              <span>Biller Name</span> &nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td>
+                              <span>Reference No.</span> &nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td>
+                              <span>Amount</span> &nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td></td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <ng-container *ngFor="let paybulk of mf.data; let i=index;">
+                            <tr class="view grayStrip" (click)="paybulk.selected=!paybulk.selected">
+                              <td>{{paybulk.utilityname}}</td>
+                              <td>{{paybulk.location}}</td>
+                              <td>{{paybulk.billername}}</td>
+                              <td>{{paybulk.consumerno}}</td>
+                              <td>Rs. {{paybulk.amount}}</td>
+                              <td><i class="fa fa-angle-down"></i></td>
+                            </tr>
+                            <tr class="fold grayStrip" *ngIf="paybulk.selected">
+                              <td colspan="6" class="custmtd">
+                                <div class="tablediv detaildiv1">
+                                  <h5>Biller Details</h5>
+                                  <div>
+                                  <div class="span_width" style="width:25%;">{{paybulk.parameter}}</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                  <div class="bold_span" tooltip="{{paybulk.consumerno}}" placement="top" show-delay="500">{{paybulk.consumerno}}</div>
+                                </div>
+                                <div>
+                                  <div class="span_width" style="width:25%;" *ngIf="paybulk.displaynamebu!=null">{{paybulk.displaynamebu}}</div> <span *ngIf="paybulk.displaynamebu!=null">:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                  <div class="bold_span" tooltip="{paybulk.bucode}}" placement="top" show-delay="500" *ngIf="paybulk.bucode!=null">{{paybulk.bucode}}</div>
+                                </div>
+                                <div>
+                                  <div class="span_width" style="width:25%;" *ngIf="paybulk.displaynamecircle!=null">{{paybulk.displaynamecircle}}</div> <span *ngIf="paybulk.displaynamecircle!=null">:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                  <div class="bold_span" tooltip="{{paybulk.circle}}" placement="top" show-delay="500" *ngIf="paybulk.displaynamebu!=null">{{paybulk.circle}}</div>
+                                </div>
+                                <div>
+                                  <div class="span_width" style="width:25%;">Bill-Date</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                  <div class="bold_span" tooltip="{{paybulk.bill_date}}" placement="top" show-delay="500">{{paybulk.bill_date}}</div>
+                                </div>
+                                <div>
+                                  <div class="span_width" style="width:25%;">Due-Date</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                  <div class="bold_span" tooltip="{{paybulk.due_date}}" placement="top" show-delay="500">{{paybulk.due_date}}</div>
+                                </div>
+                                <div>
+                                  <div class="span_width" style="width:25%;">Bill No.</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                  <div class="bold_span" tooltip="{{paybulk.billnumber}}" placement="top" show-delay="500">{{paybulk.billnumber}}</div>
+                                </div>
+                            
+                                <div>
+                                  <div class="span_width" style="width:25%;">File Name</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                  <div class="bold_span" tooltip="{{paybulk.uploadfilename}}" placement="top" show-delay="500">{{paybulk.uploadfilename}}</div>
+                                </div>
+                              </div>
+                                <div class="tablediv detaildiv1">
+                                  <h5>Bank Details</h5>
+                                  <div>
+                                  <div class="span_width" style="width:30%;">Account No</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                  <div class="bold_span" tooltip="{{paybulk.vaccno}}" placement="top" show-delay="500">{{paybulk.vaccno}}</div>
+                                </div>
+                                <div>
+                                  <div class="span_width" style="width:30%;">IFSC</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                  <div class="bold_span" tooltip="{{paybulk.ifsc}}" placement="top" show-delay="500">{{paybulk.ifsc}}</div>
+                                </div>
+                                <div>
+                                  <div class="span_width" style="width:30%;">Bank Name</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                  <div class="bold_span" tooltip="{{paybulk.vendbankname}}" placement="top" show-delay="500">{{paybulk.vendbankname}}</div>
+                                </div>
+                              </div>
+                                <!-- <div class="tablediv noborder">
+                                    <h5>Other Details</h5>
+                                    <div class="span_width">Initiated by:</div>
+                                    <div class="bold_span">Sammer</div>
+                                    <div class="span_width">Initiated on:</div>
+                                    <div class="bold_span">21/01/2017 | 12:00PM</div>
+                                </div> -->
+                                <!-- <div class="clearfix"></div>
+                                <div class="bottomdiv">
+                                    <span class="borda text-right pull-right">
+                                        <img  src="assets/images/delete.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <img src="assets/images/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </span>
+                                </div> -->
+                              </td>
+                            </tr>
+                          </ng-container>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div id="unsuccesmenu" *ngIf="unSuccessTabShow">
+                  <div class="col-md-12">
+                    <span class="col-md-3">No of Payment Requests <span class="big-txt lftspac">:
+                      {{invalipaycount}}</span> | </span>
+                    <span class="col-md-4">Total Amount <span class="big-txt">: Rs.
+                      {{totaUnSuccessAmount| number : '1.2-2'}}</span></span>
+                    <span class="col-md-5 text-right">
+                      <!-- <label>Show: <select name="example_length" aria-controls="example" class=" input-sm bbor"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select></label> -->
+                    </span>
+                    <div class="clear10"></div>
+                    <div class="table-responsive">
+                      <table id="fold-table" class="table table-hover fold-table" [mfData]="uncuccespaymentData"
+                        #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                        <thead>
+                          <tr class="cust-color">
+                            <td>
+                              <span>Utility Name</span> &nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td><span>State</span>
+                            <td>
+                              <span>Biller Name</span> &nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td>
+                              <span>Reference No.</span> &nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td>
+                              <span>Amount</span> &nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td></td>
+                          </tr>
+                        </thead>
+                        <ng-container *ngFor="let paybulk of mf.data; let i=index;">
+                          <tr class="view grayStrip" (click)="paybulk.selected=!paybulk.selected">
+                            <td>{{paybulk.utilityname}}</td>
+                            <td>{{paybulk.location}}</td>
+                            <td>{{paybulk.billername}}</td>
+                            <td>{{paybulk.consumerno}}</td>
+                            <td>Rs. {{paybulk.amount}}</td>
+                            <td><i class="fa fa-angle-down"></i></td>
+                          </tr>
+                          <tr class="fold grayStrip" *ngIf="paybulk.selected">
+                            <td colspan="6" class="custmtd">
+                              <div class="tablediv detaildiv1">
+                                <h5>Biller Details</h5>
+                                <div>
+                                <div class="span_width" style="width:25%;">{{paybulk.parameter}}</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="bold_span" tooltip="33545443" placement="top" show-delay="500">{{paybulk.consumerno}}</div>
+                              </div>
+                              <div>
+                                <div class="span_width" style="width:25%;" *ngIf="paybulk.displaynamebu!=null">{{paybulk.displaynamebu}}</div> <span *ngIf="paybulk.displaynamebu!=null">:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="bold_span" tooltip="{paybulk.bucode}}" placement="top" show-delay="500" *ngIf="paybulk.bucode!=null">{{paybulk.bucode}}</div>
+                              </div>
+                              <div>
+                                <div class="span_width" style="width:25%;" *ngIf="paybulk.displaynamecircle!=null">{{paybulk.displaynamecircle}}</div> <span *ngIf="paybulk.displaynamecircle!=null">:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="bold_span" tooltip="{{paybulk.circle}}" placement="top" show-delay="500" *ngIf="paybulk.displaynamebu!=null">{{paybulk.circle}}</div>
+                              </div>
+                              <div>
+                                <div class="span_width" style="width:25%;">Bill-Date</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="bold_span" tooltip="{{paybulk.bill_date}}" placement="top" show-delay="500">{{paybulk.bill_date}}</div>
+                              </div>
+                              <div>
+                                <div class="span_width" style="width:25%;">Due-Date</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="bold_span" tooltip="{{paybulk.due_date}}" placement="top" show-delay="500">{{paybulk.due_date}}</div>
+                              </div>
+                              <div>
+                                <div class="span_width" style="width:25%;">Bill No.</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="bold_span" tooltip="{{paybulk.billnumber}}" placement="top" show-delay="500">{{paybulk.billnumber}}</div>
+                              </div>
+                              <div>
+                                <div class="span_width" style="width:25%;">File Name</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="bold_span" tooltip="{{paybulk.uploadfilename}}" placement="top" show-delay="500">{{paybulk.uploadfilename}}</div>
+                              </div>
+                            </div>
+                            <div class="tablediv detaildiv1">
+                              <h5>Bank Details</h5>
+                              <div>
+                              <div class="span_width" style="width:30%;">Account No</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                              <div class="bold_span" tooltip="{{paybulk.vaccno}" placement="top" show-delay="500">{{paybulk.vaccno}}</div>
+                            </div>
+                            <div>
+                              <div class="span_width" style="width:30%;">IFSC</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                              <div class="bold_span" tooltip="{{paybulk.ifsc}}" placement="top" show-delay="500">{{paybulk.ifsc}}</div>
+                            </div>
+                            <div>
+                              <div class="span_width" style="width:30%;">Bank Name</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                              <div class="bold_span" tooltip="{{paybulk.vendbankname}}" placement="top" show-delay="500">{{paybulk.vendbankname}}</div>
+                            </div>
+                            <h5>Other Details</h5>
+                                <div>
+                                <div class="span_width" style="width:30%;">Rejection Reason</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="bold_span" tooltip="{{paybulk.rejpayreason}}" placement="top" show-delay="500">{{paybulk.rejpayreason}}</div>
+                              </div>
+                          </div>
+                              
+                              <!-- <div class="clearfix"></div>
+                              <div class="bottomdiv">
+                                  <span class="borda text-right pull-right">
+                                      <img  src="assets/images/delete.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      <img src="assets/images/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  </span>
+                              </div> -->
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 extpad">
+            <div class="col x-50">
+              <button class="btn bg-primary  ntxpayment nxt2" type="button" (click)="nextstep()">Next</button>
+            </div>
+          </div>
+          <div class="clear20"></div>
+        </div>
+        <div *ngIf="step2==2" class="row setup-content">
+          <div class="white-bg">
+            <h4 class="Top5Heading111 col-md-6 col-sm-6">Select Card</h4>
+            <div class="clearfix"></div>
+            <div class="BorderBottom"></div>
+            <div class="clear20"></div>
+            <div class="row">
+              <div class="col-md-offset-1 col-md-10">
+                <div class="row">
+                  <div class="col-md-offset-1 col-md-11">
+                    <ng-container *ngFor="let card of approvedcards">
+                      <div class="paycard">
+                        <div [ngClass]="card.id === activeElement ? 'shad' : 'none'" id="card" data-toggle="tab"
+                          href="#menu">
+                          <div class="innercard addborder" (click)="cardById(card.id)">
+                            <img class="cardimg" src="assets/img/paycard.png">
+                            <div class="clear10"></div>
+                            <p class="smallfont">{{card.digits}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="BorderBottom"></div>
+            <div class="col-md-offset-1 col-md-10">
+              <div class="row">
+                <div class="tab-content">
+                  <div id="menu" class="tab-pane fade in active">
+                    <div class="col-md-12">
+                      <div class="col-md-6">
+                        <div class="clear20"></div>
+                        <div class="clear20"></div>
+                        <div class="uk-card uk-card-primary uk-card-hover uk-card-body uk-light fontsize">
+                          <h3 class="uk-card-title">{{cardHolder}}</h3>
+                          <h1>{{cardNumber.toUpperCase()}}</h1>
+                          <p class="textsmall">
+                            VALID
+                          </p>
+                          <p class="textsmall textsmall1">
+                            UP TO {{cardExpiry}}
+                          </p>
+                          <div class="clear10"></div>
+                          <!-- <p class="textsmall3 textsmall1">Credit Limit</p> -->
+                          <div class="clear10"></div>
+                          <div class="col-sm-12 padnone">
+                            <!-- example starts here -->
+                            <!-- <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                    <span>1.7Cr</span>
+                                    <span class="rightBarText">2Cr</span>
+                                </div>
+                            </div> -->
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 padlft">
+                        <div class="clear20"></div>
+                        <h4>Payment Details </h4>
+                        <div class="col x-50 margbot">
+                          <span class="span_widthn" style="width: 210px;">Total Amount</span>
+                          <span>:</span>&nbsp;&nbsp;&nbsp;&nbsp; <span class="fntwt">Rs.  {{totalamount| number : '1.2-2'}}</span>
+                          <br>
+                        </div>
+                        <div class="col x-50 margbot">
+                          <span class="span_widthn" style="width: 210px;">Number of Payment Requests</span>
+                          <span>:</span>&nbsp;&nbsp;&nbsp;&nbsp; <span class="fntwt">{{totalpayments}}</span>
+                        </div>
+                        <div class="col x-50 margbot">
+                          <span class="span_widthn" style="width: 210px;">Amount Payable</span>
+                          <span>:</span>&nbsp;&nbsp;&nbsp;&nbsp; <span class="fntwt">Rs.  {{totalamount| number : '1.2-2'}}</span>
+                        </div>
+                        <div class="form-field col x-50">
+                          <button class="btn bg-primary finalpay nxt2" type="button"
+                            (click)="submitBulk(cardId,cardNumber)">Send for approval</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <!-- <div class="clear20"></div>-->
+          <div class="clear20"></div>
+          <div class="white-bg">
+            <h4 class="Top5Heading111 col-md-6 col-sm-6">Select Payment</h4>
+            <div class="clearfix"></div>
+            <div class="BorderBottom"></div>
+            <div class="table-responsive">
+              <table id="fold-table" class="table table-hover fold-table" [mfData]="successpaymentData"
+                #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                <thead>
+                  <tr class="cust-color">
+                    <td>
+                      <div><input type="checkbox" name="all" (change)="checkAll(isSelected)"
+                          [checked]="selectall"></div>
+                    </td>
+                    <td>
+                      <span>Utility Name</span> &nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td><span>State</span>
+                    <td>
+                      <span>Biller Name</span> &nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                      <span>Reference No.</span> &nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                      <span>Amount</span> &nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let paybulk of mf.data; let i=index;">
+                    <tr class="view grayStrip">
+                      <td><input type="checkbox" name="submenu"
+                          [checked]="isSelected"  (change)="updatePaymentList(paybulk , i)"></td>
+                          <td>{{paybulk.utilityname}}</td>
+                              <td>{{paybulk.location}}</td>
+                              <td>{{paybulk.billername}}</td>
+                              <td>{{paybulk.consumerno}}</td>
+                              <td>Rs. {{paybulk.amount}}</td>
+                          <td (click)="paybulk.selected=!paybulk.selected"><i class="fa fa-angle-down"></i></td>
+                    </tr>
+                    <tr class="fold grayStrip" *ngIf="paybulk.selected">
+                      <td colspan="7" class="custmtd">
+                        <div class="tablediv detaildiv1">
+                          <h5>Biller Details</h5>
+                          <div>
+                          <div class="span_width" style="width:18%!important;">{{paybulk.parameter}}</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                          <div class="bold_span" style="width:65%!important;" tooltip="{{paybulk.consumerno}}" placement="top" show-delay="500">{{paybulk.consumerno}}</div>
+                        </div>
+                        <div>
+                          <div class="span_width" style="width:18%!important;" *ngIf="paybulk.displaynamebu!=null">{{paybulk.displaynamebu}}</div> <span *ngIf="paybulk.displaynamebu!=null">:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                          <div class="bold_span" style="width:65%!important;" tooltip="" placement="top" show-delay="500" *ngIf="paybulk.bucode!=null">{{paybulk.bucode}}</div>
+                        </div>
+                        <div>
+                          <div class="span_width" style="width:18%!important;" *ngIf="paybulk.displaynamecircle!=null">Circle</div> <span *ngIf="paybulk.displaynamecircle!=null">:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                          <div class="bold_span" style="width:65%!important;" tooltip="" placement="top" show-delay="500" *ngIf="paybulk.circle!=null">{{paybulk.circle}}</div>
+                        </div>
+                        <div>
+                          <div class="span_width" style="width:18%!important;">Bill-Date</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                          <div class="bold_span" style="width:65%!important;" tooltip="{{paybulk.bill_date}}" placement="top" show-delay="500">{{paybulk.bill_date}}</div>
+                        </div>
+                        <div>
+                          <div class="span_width" style="width:18%!important;">Due-Date</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                          <div class="bold_span" style="width:65%!important;" tooltip="{{paybulk.due_date}}" placement="top" show-delay="500">{{paybulk.due_date}}</div>
+                        </div>
+                        <div>
+                          <div class="span_width" style="width:18%!important;">Bill No.</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                          <div class="bold_span" style="width:65%!important;" tooltip="{{paybulk.billnumber}}" placement="top" show-delay="500">{{paybulk.billnumber}}</div>
+                        </div>
+                        <div>
+                          <div class="span_width" style="width:18%!important;">File Name</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                          <div class="bold_span" style="width:65%!important;" tooltip="{{paybulk.uploadfilename}}" placement="top" show-delay="500">{{paybulk.uploadfilename}}</div>
+                        </div>
+                      </div>
+                      <div class="tablediv detaildiv1">
+                        <h5>Bank Details</h5>
+                        <div>
+                        <div class="span_width" style="width:18%!important;">Account No</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="bold_span" style="width:65%!important;" tooltip="{{paybulk.vaccno}}" placement="top" show-delay="500">{{paybulk.vaccno}}</div>
+                      </div>
+                      <div>
+                        <div class="span_width" style="width:18%!important;">IFSC</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="bold_span" style="width:65%!important;" tooltip="{{paybulk.ifsc}}" placement="top" show-delay="500">{{paybulk.ifsc}}</div>
+                      </div>
+                      <div>
+                        <div class="span_width" style="width:18%!important;">Bank Name</div> <span>:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="bold_span" style="width:65%!important;" tooltip="{{paybulk.vendbankname}}" placement="top" show-delay="500">{{paybulk.vendbankname}}</div>
+                      </div>
+                    </div>
+                        <!-- <div class="clearfix"></div>
+                                <div class="bottomdiv">
+                                    <span class="borda text-right pull-right">
+                            <img  src="assets/images/delete.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <img src="assets/images/edit.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span>
+                        </div> -->
+                      </td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="clear20"></div>
+      </div>
+    </form>
+  </section>
+</div>

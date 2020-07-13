@@ -11,6 +11,7 @@ export class RmuserreportsComponent implements OnInit {
   public id: string;
   usersList: any = [];
   filterQuery = "";
+  filter:any;
   rowsOnPage = 5;
   sortBy = "email";
   sortOrder = "asc";

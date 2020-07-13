@@ -14,7 +14,7 @@ import { e } from '@angular/core/src/render3';
 import {Observable} from 'rxjs/Rx';
 import { Http, ResponseContentType , Headers,RequestOptions} from '@angular/http';
 import { any } from '@amcharts/amcharts4/.internal/core/utils/Array';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-view-bill-payments',
   templateUrl: './view-bill-payments.component.html',
@@ -121,7 +121,8 @@ organization_id:any;
 apprcrd:boolean=true;
 rejcrd:boolean=false;
 pencrd:boolean=false;
-  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,public datepipe: DatePipe,private toaster:ToastrService,private auth: AuthService,private http: Http) { }
+filter:any;
+  constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,public datepipe: DatePipe,private toaster:ToastrService,private auth: AuthService,private http: Http,private router: Router) { }
 
   ngOnInit() {
      //this.rolename=localStorage.getItem('rolename')
@@ -160,8 +161,8 @@ pencrd:boolean=false;
        enableCheckAll:false
      };
      this.dropdownDownload = [
-       { item_id: 1, item_text: 'Standard List' },
-       { item_id: 2, item_text: 'Customise List' }
+       { item_id: 1, item_text: 'Standard List' }
+      //  { item_id: 2, item_text: 'Customise List' }
      ];
     
      this.dropdownSettings = {
@@ -273,28 +274,32 @@ pencrd:boolean=false;
     if(items['item_id']==2){
       this.display='block';
     }else if(items['item_id']==1){
-      for(let data of this.pendingpaymentdata){
+      for(let data of this.paymentData){
         var obj={
-          Biller:data['biller_name'],
+          Biller:data['billername'],
           Amount:data['amount'],
           Consumer_No:data['consumer_no'],
-          Consumer_Name:data['consumer_name'],
-          Status:data['transaction_status'],
-          Payment_Status:data['payment_status'],
-          Short_Name:data['short_name'],
-          GL_Expense_Code:data['gl_expense_code'],
-          Bill_Date:data['bill_date'],
-          Due_Date:data['due_date'],
-          State:data['state'],
-          Bill_Number:String(data['bill_number']),
-          Card_Number:data['card_last_digits'],
-          Order_Id:data['order_id'],
-          Contact:data['contact_no'],
-          Bill_Address:data['contact_address'],
+          Consumer_Name:data['consumernumber'],
+          Status:data['transstatus'],
+          Payment_Status:data['paymentstatus'],
+          GL_Expense_Code:data['glexpensecode'],
+          Bill_Date:data['billdate'],
+          Due_Date:data['duedate'],
+          State:data['location'],
+          Ref1:data['bucodebuname'],
+          Ref2:data['circle'],
+          Bill_Number:String(data['billno']),
+          Card_Number:data['cardno'],
+          UTR:data['utr'],
+          Contact:data['mobileno'],
           Email:data['email'],
-          CRN:data['transaction_ref_no'],
-          Initiated_by:data['initiated_by'],
-          Initiated_On:data['initiated_date'],
+          CRN:data['crn'],
+          BankAccountNo:data['accountno'],
+          IFSC:data['ifsc'],
+          BankName:data['bankname'],
+          BranchName:data['branchname'],
+          Initiated_by:data['initiatedby'],
+          Initiated_On:data['initiateddate']+"|"+data['initiatedtime'],
        
   
         }
@@ -304,77 +309,7 @@ pencrd:boolean=false;
     }
   }
 
-  onItemSelectDown1(items:any){
-    console.log(items);
-    if(items['item_id']==2){
-      this.display='block';
-    }else if(items['item_id']==1){
-      for(let data of this.successpaymentData){
-        var obj={
-          Biller:data['biller_name'],
-          Amount:data['amount'],
-          Consumer_No:data['consumer_no'],
-          Consumer_Name:data['consumer_name'],
-          Status:data['transaction_status'],
-          Payment_Status:data['payment_status'],
-          Short_Name:data['short_name'],
-          GL_Expense_Code:data['gl_expense_code'],
-          Bill_Date:data['bill_date'],
-          Due_Date:data['due_date'],
-          State:data['state'],
-          Bill_Number:String(data['bill_number']),
-          Card_Number:data['card_last_digits'],
-          Order_Id:data['order_id'],
-          Contact:data['contact_no'],
-          Bill_Address:data['contact_address'],
-          Email:data['email'],
-          CRN:data['transaction_ref_no'],
-          Initiated_by:data['initiated_by'],
-          Initiated_On:data['initiated_date'],
-       
-  
-        }
-        this.downloadArray.push(obj)
-      }
-      this.excelservice.exportAsExcelFile( this.downloadArray, 'Payment List');
-    }
-  }
-
-  onItemSelectDown2(items:any){
-    console.log(items);
-    if(items['item_id']==2){
-      this.display='block';
-    }else if(items['item_id']==1){
-      for(let data of this.failedpaymentdata){
-        var obj={
-          Biller:data['biller_name'],
-          Amount:data['amount'],
-          Consumer_No:data['consumer_no'],
-          Consumer_Name:data['consumer_name'],
-          Status:data['transaction_status'],
-          Payment_Status:data['payment_status'],
-          Short_Name:data['short_name'],
-          GL_Expense_Code:data['gl_expense_code'],
-          Bill_Date:data['bill_date'],
-          Due_Date:data['due_date'],
-          State:data['state'],
-          Bill_Number:String(data['bill_number']),
-          Card_Number:data['card_last_digits'],
-          Order_Id:data['order_id'],
-          Contact:data['contact_no'],
-          Bill_Address:data['contact_address'],
-          Email:data['email'],
-          CRN:data['transaction_ref_no'],
-          Initiated_by:data['initiated_by'],
-          Initiated_On:data['initiated_date'],
-       
-  
-        }
-        this.downloadArray.push(obj)
-      }
-      this.excelservice.exportAsExcelFile( this.downloadArray, 'Payment List');
-    }
-  }
+ 
 
   onSelectAllDown(items:any){
     console.log(items);
@@ -382,71 +317,21 @@ pencrd:boolean=false;
 
 
   private laodpayments(){
-  //   this.payments=JSON.parse(localStorage.getItem('payments'));
-  //   if(this.rolename=='maker' || this.rolename=='ccmaker' || this.rolename=='as'){
-  //   this.apprrejpay=this.payments.filter((payment)=>{
-  //     return (payment.status == "Approved" || payment.status == "Rejected"  || payment.status == "Pending")
-  //   })
-  // }else if(this.rolename=='checker' || this.rolename=='aschecker' || this.rolename=='ccchecker'){
-  //   this.apprrejpay=this.payments.filter((payment)=>{
-  //     return (payment.status == "Approved" || payment.status == "Rejected")
-  //   })
-  // }
-   
-
-    // for(var total of this.paymentData){
-    //     this.totalamount+=parseFloat(total['amount'])
-    // }
-    //console.log(this.totalamount)
+ 
     this.loaderService.display(true)
-this.paymentservice.getAllPayments().then(resp=>{
+this.paymentservice.getAllPaymentsNew().then(resp=>{
   console.log(resp)
-  this.paymentData=resp['data'];
-  console.log(this.paymentData)
-  this.loaderService.display(false)
-  if(resp!=null){
-  if(resp['inprocess_payment']!=null){
-    this.pendingpaymentdata=resp['inprocess_payment']
-    for(let i = 0; i < this.pendingpaymentdata.length; i++){
-      this.totalamount+=parseFloat(this.pendingpaymentdata[i]['amount'])
+    if(resp['data']!=null){
+      this.paymentData=resp['data'];
+      console.log(this.paymentData)
+      for(var data of this.paymentData){
+        this.totalamount+=parseFloat(data['amount'])
+      }
+      this.loaderService.display(false)
+    }else{
+      this.loaderService.display(false)
     }
-  }
-  if(resp['successful_payment']!=null){
-    this.successpaymentData=resp['successful_payment']
-    for(let i = 0; i < this.successpaymentData.length; i++){
-      this.successtotalamount+=parseFloat(this.successpaymentData[i]['amount'])
-    }
-  }
-  if(resp['fail_payment']!=null){
-    this.failedpaymentdata=resp['fail_payment']
-    for(let i = 0; i < this.failedpaymentdata.length; i++){
-      this.failedtotalamount+=parseFloat(this.failedpaymentdata[i]['amount'])
-    }
-  }
-}
-  //if(this.paymentData!=null){
-  // for(var total of this.paymentData){
-  //   this.totalamount+=parseFloat(total['amount'])
-  // }
-//   for(let i = 0; i < this.paymentData.length; i++){
-//     if(this.paymentData[i].payment_status == "Pending" || this.paymentData[i].payment_status == "Card Debited" || this.paymentData[i].payment_status == "In Process" || this.paymentData[i].payment_status == "REJECT" || this.paymentData[i].payment_status == "ERROR" || this.paymentData[i].payment_status == "Unspecified Failure"){
-//         this.pendingpaymentdata.push(this.paymentData[i]);
-//         this.totalamount+=parseFloat(this.paymentData[i]['amount'])
-//     }
-// }
-//   for(let i = 0; i < this.paymentData.length; i++){
-//     if(this.paymentData[i].payment_status == "Payment Success"){
-//         this.successpaymentData.push(this.paymentData[i]);
-//         this.successtotalamount+=parseFloat(this.paymentData[i]['amount'])
-//     }
-// }
-// for(let i = 0; i < this.paymentData.length; i++){
-//     if(this.paymentData[i].payment_status == "Payment Failed" || this.paymentData[i].payment_status == "Payment Returned"){
-//         this.failedpaymentdata.push(this.paymentData[i]);
-//         this.failedtotalamount+=parseFloat(this.paymentData[i]['amount'])
-//     }
-// }
-//}
+
 },error=>{
   this.loaderService.display(false)
   console.log(error)
@@ -458,7 +343,7 @@ this.paymentservice.getAllPayments().then(resp=>{
   }
   getapproverdetails(id,index){
     this.selectedIndex = index;
-    this.paymentservice.paylogs(id).then(resp=>{
+    this.paymentservice.paylogsNew(id).then(resp=>{
       console.log(resp)
       this.approverDetails=resp['data']
       console.log(this.approverDetails)
@@ -506,62 +391,44 @@ this.paymentservice.getAllPayments().then(resp=>{
       }
 
       
-    getpaymentlogs(carddebittime,paystatustime,rejectreason,paymentstat){
-      this.paymentstatus=paymentstat
-  console.log(this.paymentstatus)
-      console.log(carddebittime)
-      
-     
+    getpaymentlogs(carddebiteddate,carddebittime,paymentstatusdate,paystatustime,rejectreason,paymentstat){
       this.displayLogs='block';
-      if(carddebittime!=null){
-        // var utcdate = new Date(carddebittime);
-        // var nowUtc = new Date(utcdate.getTime() + utcdate.getTimezoneOffset() * 60000);
-        // var d=new Date(nowUtc)
-        // console.log(d.toUTCString)
-        //var event = new Date(carddebittime);
-//console.log(event.toLocaleString('en-GB', { timeZone: 'Europe/London' }));
-//         var usaTime = new Date(carddebittime).toLocaleString("en-GB", {timeZone: "Europe/London"});
-// var usaTime1 = new Date(usaTime);
-
-// var nowUtc= usaTime1.toLocaleString()
-// console.log(nowUtc)
-// var indiaTime = new Date(nowUtc).toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
-// var indiaTime1 = new Date(indiaTime);
-// console.log('India time: '+indiaTime1.toLocaleString())
-
-// var nowist=indiaTime1.toLocaleString()
-
-//console.log(nowist)
-        carddebittime=this.datepipe.transform(carddebittime, 'M/d/yy, h:mm a');
-        console.log(carddebittime)
-     var crddate = carddebittime.split(", ")[0];
-     var crdtime= carddebittime.split(", ")[1];
-       // var crddate1 = crddate
-        this.carddebitdate=crddate;
-        //this.carddebittime=this.datepipe.transform(crdtime, 'h:mm a');;
-        this.carddebittime=crdtime
-        console.log(this.carddebittime)
+        if(carddebiteddate=='--'){
+          this.carddebitdate='--'
+        }else{
+          this.carddebitdate=carddebiteddate
+        }
+        if(carddebittime=='--'){
+          this.carddebittime='--'
+        }else{
+          this.carddebittime=carddebittime
+        }
+        if(paymentstat=='Payment Returned'){
+          this.rejectreason=rejectreason
+          if(paymentstatusdate=='--'){
+            this.payfaildate='--'
+          }else{
+            this.payfaildate=paymentstatusdate
+          }
+          if(paystatustime=='--'){
+            this.payfailtime='--'
+          }else{
+            this.payfailtime=paystatustime
+          }
+        }else{
+          this.rejectreason='--'
+          if(paymentstatusdate=='--'){
+            this.paysuccessdate='--'
+          }else{
+            this.paysuccessdate=paymentstatusdate
+          }
+          if(paystatustime=='--'){
+            this.paysuccesstime='--'
+          }else{
+            this.paysuccesstime=paystatustime
+          }
+        }
         
-      }else{
-        this.carddebitdate="--"
-        this.carddebittime="--"
-      }
-      if(paystatustime!=null){
-        paystatustime=this.datepipe.transform(paystatustime, 'M/d/yy, h:mm a');
-        var psdate = paystatustime.split(", ")[0];
-        var pstime= paystatustime.split(", ")[1];
-        this.paysuccessdate=psdate;
-        //this.carddebittime=this.datepipe.transform(crdtime, 'h:mm a');;
-        this.paysuccesstime=pstime
-         }else{
-           this.paysuccessdate="--"
-           this.paysuccesstime="--"
-         }
-         if(rejectreason!=null || rejectreason!=undefined){
-           this.rejectreason=rejectreason;
-         }else{
-           this.rejectreason="--"
-         }
     }
 
     closedelmodal(){
@@ -579,14 +446,31 @@ this.paymentservice.getAllPayments().then(resp=>{
 
     deletepayment(){
       this.loaderService.display(true)
-      this.paymentservice.deletepayment(this.deleteid).then(resp=>{
+      var params={
+        "checkval":[this.deleteid],
+        "regcmt":`Deleted by ${this.userdata['firstname']} ${this.userdata['lastname']}`
+      }
+      
+      
+      this.paymentservice.deletepaymentNew(params).then(resp=>{
         console.log(resp)
-        this.loaderService.display(false)
-        this.toaster.success("Payment Deleted Successfully!","Alert",{
-          timeOut:3000,
-          positionClass:'toast-top-center'
-          })
-          this.laodpayments()
+        
+        if(resp['msg']=='delete bill payment Succes'){
+          this.loaderService.display(false)
+          this.toaster.success("Payment Deleted Successfully!","Alert",{
+            timeOut:3000,
+            positionClass:'toast-top-center'
+            })
+            this.laodpayments()
+        }else{
+          this.loaderService.display(false)
+          this.toaster.error("Something went wrong!","Alert",{
+            timeOut:3000,
+            positionClass:'toast-top-center'
+            })
+        }
+       
+          
       },error=>{
         console.log(error)
         this.loaderService.display(false)
@@ -604,6 +488,10 @@ this.paymentservice.getAllPayments().then(resp=>{
         console.log(error)
       })
 
+    }
+
+    editbiller(id){
+      this.router.navigate(['/main/add-custom-bill-payment'],{queryParams:{id:id}});
     }
 
     getcustomreport(){

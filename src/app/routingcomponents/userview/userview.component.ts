@@ -54,6 +54,7 @@ export class UserviewComponent implements OnInit {
   dropdownList = [];
   selectedItems1 = [];
   dropdownSettings1 = {};
+  filter:any;
   constructor(private loaderService: LoaderService, private excelservice : ExcelService,private toastr: ToastrService,private route:Router, private userservice: UserserviceService,private auth: AuthService) { }
 
   ngOnInit() {

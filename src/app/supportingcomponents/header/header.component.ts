@@ -58,9 +58,9 @@ export class HeaderComponent implements OnInit {
       this.pathroute=location.path();
       if(this.pathroute=='/dashboard'){
         this.clickDashEvent()
-      }else if(this.pathroute=='/main/make-payment' || this.pathroute=='/main/paymentlist' || this.pathroute=='/main/pending-payments' || this.pathroute=='/main/pending-payments' || this.pathroute=='/main/otp-approve-payment'){
+      }else if(this.pathroute=='/main/make-payment' || this.pathroute=='/main/paymentlist' || this.pathroute=='/main/pending-payments' || this.pathroute=='/main/pending-payments' || this.pathroute=='/main/otp-approve-payment' || this.pathroute=='/main/add-custom-bill-payment' || this.pathroute=='/main/view-custom-bill-payments' || this.pathroute=='/main/custom-pending-bill-payments' || this.pathroute=='/main/custom-bulk-payments'){
         this.clickPayEvent();
-      }else if(this.pathroute=='/main/billerlist' || this.pathroute=='/main/unitary-biller' || this.pathroute=='/main/biller-bulk' || this.pathroute=='/main/otp-approve-biller' || this.pathroute=='/main/pending-biller'){
+      }else if(this.pathroute=='/main/billerlist' || this.pathroute=='/main/unitary-biller' || this.pathroute=='/main/biller-bulk' || this.pathroute=='/main/otp-approve-biller' || this.pathroute=='/main/pending-biller' || this.pathroute=='/main/add-custom-biller' || this.pathroute=='/main/view-custom-biller' || this.pathroute=='/main/custom-pending-bills' || this.pathroute=='/main/custom-bulk-bills'){
         this.clickBillEvent()
       }
       else if(this.pathroute=='/main/cardview' || this.pathroute=='/unitary-card' || this.pathroute=='/main/pending-card' ||this.pathroute=='/main/cardview?msg=crdapprsuccess' ||this.pathroute=='/main/cardview?msg=cardsuccess'){

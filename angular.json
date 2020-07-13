@@ -23,6 +23,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
               "src/assets/css/bootstrap.min.css",
               "./node_modules/w3-css/3/w3.css",
@@ -49,7 +50,6 @@
               "src/assets/js/uikit-icons.min.js",
               "src/assets/js/myscript.js",
               "src/assets/js/custom.charts.js"
-
             ]
           },
           "configurations": {
@@ -97,6 +97,9 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "src/styles.css"
             ],
             "scripts": [],

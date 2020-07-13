@@ -1,0 +1,401 @@
+.tick2,.tick3,.tick4{
+    margin-top: -5px;
+    width: 12px;
+    height: 12px;
+    display: none;
+}
+.padlft {
+    padding: 3%;
+}
+.topspace {
+    padding-top: 20px;
+}
+input[type="file"] {
+    display: none;
+}
+.extpad {
+    padding: 0 2%;
+}
+
+#file-drag {
+    border-radius: 6px;
+    background-color: #f2f6f7;
+    border: dashed 2px #b69ef6;
+    cursor: pointer;
+    display: block;
+    margin: 1em 0;
+    padding: 3em;
+    text-align: center;
+    
+}
+
+
+#file-progress {
+    display: none;
+    margin: 1em auto;
+    width: 100%;
+}
+
+#file-upload-btn {
+    margin: auto;
+}
+.blu-color.dndlabel {
+    font-size: 16px;
+    font-weight: 600;
+    display: block;
+}
+.blu-color.chota {
+    font-size: 16px;
+}
+#file-upload-form {
+    margin: auto;
+    width: 100%;
+}
+
+.zin {
+    position: relative;
+    margin-bottom: -45px;
+    z-index: 21;
+}
+.stepwizard-row2:before {
+    width: 65%;
+    right: 135px;
+}
+.stepwizard {
+    /* margin-top: 30px; */
+    display: table;
+    width: 60%;
+    position: relative;
+    margin: 15px auto;
+}
+.big-txt{
+    font-size: 16px;
+    font-weight: 600;
+}
+.amtBox  {
+    font-size: 16px;
+    font-weight: 300;
+    color: #575962;
+    margin-bottom:5px;
+    padding-left: 5px;
+  }
+
+.amtBox span {
+font-weight: 600;padding-left: 5px;
+}
+#listRule .nxt2{
+min-width:100px;margin-right: 4%;
+}
+.restText{
+font-size: 14px;
+font-weight: 300;
+color: #575962;
+}
+a.restText:focus, a.restText:hover {
+color: #575962;
+text-decoration: none;
+}
+.refresh {
+font-size: 20px;
+color: #575962;padding-right: 1%;
+}
+
+
+table.fold-table thead tr td{
+font-size: 15.8px;
+font-weight: 600;
+color: #3f4245;
+}
+table.fold-table > tbody > tr td {
+font-size: 14.2px;
+font-weight: 300;
+color: #3f4245;
+}
+table.fold-table > tbody > tr.view td, table.fold-table > tbody > tr.view th {
+cursor: pointer;
+}
+
+table.fold-table > tbody > tr.view.open .fa-angle-down {
+transform: rotate(-180deg);
+}
+/* table.fold-table > tbody > tr.fold {
+display: none;
+} */
+table.fold-table > tbody > tr.fold.open {
+display: table-row;
+}
+#fold-table .fa-angle-down {
+opacity: 0.47;
+font-size: 22px;
+}
+#listRule {
+padding: 0px 10px;
+}
+.grayStrip{
+background-color: #f8f7f9;
+border: solid 1px #ebedf2;
+}
+.whiteStrip{
+background-color: #ffffff;
+border: solid 1px #ebedf2;
+}
+
+.fold.grayStrip.open,.fold.whiteStrip.open{
+border-top: 0px;
+}
+.view.grayStrip.open td, .fold.grayStrip.open td,.view.whiteStrip.open td, .fold.whiteStrip.open td  {border:0px;}
+.foldInner{
+display:flex;
+}
+.foldInner1, .foldInner2, .foldInner3, .foldInner4 {
+width: 27%;margin: 0px 20px;
+padding: 0px 7px;
+}
+.foldInner2{
+border-right: 1px solid #e4e1e4;
+}
+.foldInnerBox h5 {  
+font-size: 13.9px;
+font-weight: 600;
+color: #2c2e30;
+}
+.clear20{height:20px;margin-top: 10px;margin-bottom: 10px;}
+.foldInnerBox ul {
+padding-left:0px;
+}
+.foldInnerBox ul li {
+list-style:none;
+font-size: 12.5px;
+font-weight: 300;
+line-height: 2;
+color: #3f4245;
+}
+.span_width{width: 50%}
+
+.paycard.shad h5 {
+    color: #533979;
+}
+.paycard h5 {
+    color: #575962;
+}
+.bottomdiv {
+    width: 100%;
+    padding: 20px 0px;
+    border-top: 1px solid #c0bebe;
+}
+.borda {
+    padding-bottom: 20px;
+    width: 100%;
+}
+.table tbody tr td.custmtd{padding: 0px}
+.tablediv{height: 170px;}
+.detaildiv{
+    width:33% !important;
+}
+
+.detaildiv1{
+    width:50% !important;
+}
+.shad {
+    border-bottom: 3px solid #fff33b;
+}
+.paycard{
+    width: 20%;
+    display: inline-block;
+    margin-right: 2%;
+    text-align: center;
+    margin-bottom:20px;
+}
+paycardsuunsu{
+    width: 32 !important;
+    display: inline-block;
+    margin-right: 2%;
+    text-align: center;
+    margin-bottom:20px;
+}
+#unsuccesmenu{}
+.uk-card-primary{height: 100%!important; width: 100%}
+.uk-card-title{margin-top: 0px}
+.my-btn {
+    width: 26px;
+}
+.big-txt.lftspac {
+    font-size: 16px;
+    font-weight: 600;
+    padding-right: 28px;
+}
+.big-txt{
+    font-size: 16px;
+    font-weight: 600;
+}
+.amtBox  {
+    font-size: 16px;
+    font-weight: 300;
+    color: #575962;
+    margin-bottom:5px;
+    padding-left: 5px;
+  }
+
+.amtBox span {
+font-weight: 600;padding-left: 5px;
+}
+#listRule .nxt2{
+min-width:100px;margin-right: 4%;
+}
+.restText{
+font-size: 14px;
+font-weight: 300;
+color: #575962;
+}
+a.restText:focus, a.restText:hover {
+color: #575962;
+text-decoration: none;
+}
+.refresh {
+font-size: 20px;
+color: #575962;padding-right: 1%;
+}
+
+
+table.fold-table thead tr td{
+font-size: 15.8px;
+font-weight: 600;
+color: #3f4245;
+}
+table.fold-table > tbody > tr td {
+font-size: 14.2px;
+font-weight: 300;
+color: #3f4245;
+}
+table.fold-table > tbody > tr.view td, table.fold-table > tbody > tr.view th {
+cursor: pointer;
+}
+
+table.fold-table > tbody > tr.view.open .fa-angle-down {
+transform: rotate(-180deg);
+}
+/* table.fold-table > tbody > tr.fold {
+display: none;
+} */
+table.fold-table > tbody > tr.fold.open {
+display: table-row;
+}
+#fold-table .fa-angle-down {
+opacity: 0.47;
+font-size: 22px;
+}
+#listRule {
+padding: 0px 10px;
+}
+.grayStrip{
+background-color: #f8f7f9;
+border: solid 1px #ebedf2;
+}
+.whiteStrip{
+background-color: #ffffff;
+border: solid 1px #ebedf2;
+}
+
+.fold.grayStrip.open,.fold.whiteStrip.open{
+border-top: 0px;
+}
+.view.grayStrip.open td, .fold.grayStrip.open td,.view.whiteStrip.open td, .fold.whiteStrip.open td  {border:0px;}
+.foldInner{
+display:flex;
+}
+.foldInner1, .foldInner2, .foldInner3, .foldInner4 {
+width: 27%;margin: 0px 20px;
+padding: 0px 7px;
+}
+.foldInner2{
+border-right: 1px solid #e4e1e4;
+}
+.foldInnerBox h5 {  
+font-size: 13.9px;
+font-weight: 600;
+color: #2c2e30;
+}
+.clear20{height:20px;margin-top: 10px;margin-bottom: 10px;}
+.foldInnerBox ul {
+padding-left:0px;
+}
+.foldInnerBox ul li {
+list-style:none;
+font-size: 12.5px;
+font-weight: 300;
+line-height: 2;
+color: #3f4245;
+}
+.span_width{width: 50%}
+.table-responsive {
+    overflow-x: unset;
+    padding: 1%;
+}
+.paycard.shad{
+    color: #533979;
+}
+
+.paycard{
+    color: #575962;
+    cursor: pointer;
+}
+.bottomdiv {
+    width: 100%;
+    padding: 20px 0px;
+    border-top: 1px solid #c0bebe;
+}
+.borda {
+    padding-bottom: 20px;
+    width: 100%;
+}
+.table tbody tr td.custmtd{padding: 0px}
+.tablediv{height: 200px;}
+
+.shad {
+    border-bottom: 3px solid #fff33b;
+}
+/* .paycard{
+    width: 17%;
+    display: inline-block;
+    margin-right: 2%;
+} */
+.innercard {
+    width: 100%;
+    border: 1px solid rgba(151, 121, 186, 0.24);
+    padding: 4px 14px 0px 14px;
+    font-size: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+.addborder{border: 2px solid rgba(20, 65, 148, 0.57)}
+.uk-card-primary{height: 100%!important; width: 100%}
+.uk-card-title{margin-top: 0px}
+.my-btn {
+    width: 26px;
+}
+.fntwt {
+    font-weight: 600;
+}
+.margbot {
+    margin-bottom: 15px;
+}
+.padlft {
+    padding-left: 40px;
+}
+
+input[type="checkbox"]{
+    
+    -webkit-appearance: initial;
+    width: 16px;
+    height: 16px;
+    background-color: #c7c7c7;
+    display: inline-block;
+    border-radius: 5px;
+    margin-right: 6px;
+    vertical-align: sub;
+    outline: none
+    
+}
+input[type="checkbox"]:hover, input[type="checkbox"]:checked {
+    background: #64289d;
+}

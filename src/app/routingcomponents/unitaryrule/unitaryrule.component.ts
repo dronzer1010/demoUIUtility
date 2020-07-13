@@ -19,6 +19,9 @@ export class UnitaryruleComponent implements OnInit {
   _rules:any[]=[];
   isSelected = false;
   usergroups:any=[];
+  group1:any;
+  group2:any;
+  condition:any;
   constructor(private router: Router,private ruleservice:RuleserviceService,private groupservice:GroupserviceService) { }
 
   ngOnInit() {

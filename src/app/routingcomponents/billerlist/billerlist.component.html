@@ -17,7 +17,7 @@
               <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 text-right">
                 <ng-multiselect-dropdown [ngClass]="'first-multiselect1'" [placeholder]="'All Categories'"
                   [data]="dropdownCat" [(ngModel)]="selectedItems1" [settings]="dropdownSettings1"
-                  (onSelect)="onCatSelect($event)" [(ngClass)]="all-cat">
+                  (onSelect)="onCatSelect($event)">
                 </ng-multiselect-dropdown>
                 <ng-multiselect-dropdown [ngClass]="'first-multiselect2'" [placeholder]="'This Month'"
                   [data]="dropdownList" [(ngModel)]="selectedItems2" [settings]="dropdownSettings2"
@@ -330,9 +330,9 @@
                           <span class="text-left" *ngIf="bill.status=='Rejected'"><label style="color: #64289d;">Comment
                               : &nbsp;</label>{{bill.rejection_reson}}</span>
                           <span class="pull-right">
-                            <img style="cursor:pointer;"
-                              src="assets/img/attach.png" (click)="downloadattachment(bill.id)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a *ngIf="rolename=='ccmaker' || rolename=='maker'" data-toggle="modal" id="openBtn" (click)="openeditmodal(bill.id)"><img
+                            <!-- <img style="cursor:pointer;"
+                              src="assets/img/attach.png" (click)="downloadattachment(bill.id)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                            <a *ngIf="rolename=='ccmaker' || rolename=='maker'"><img
                                 src="assets/img/edit.png"></a>
                           </span></td>
                       </tr>

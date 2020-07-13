@@ -90,6 +90,7 @@ b_email:string;
 b_contact:string;
 b_addresss:string;
 edit_id:string;
+filter:any;
   constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,public datepipe: DatePipe,private authService : AuthService, private http: Http,private toaster:ToastrService,private auth: AuthService,private router: Router) { }
 
   ngOnInit() {
@@ -143,8 +144,8 @@ edit_id:string;
       enableCheckAll:false
     };
     this.dropdownDownload = [
-      { item_id: 1, item_text: 'Standard List' },
-      { item_id: 2, item_text: 'Customise List' }
+      { item_id: 1, item_text: 'Standard List' }
+      // { item_id: 2, item_text: 'Customise List' }
     ];
    
     this.dropdownSettings = {
@@ -185,23 +186,21 @@ edit_id:string;
     }else if(items['item_id']==1){
       for(let data of this.billdata){
         var obj={
-          Biller:data['biller_name'],
-          Consumer_No:data['consumer_no'],
+          State:data['location'],
+          Biller:data['name'],
+          Consumer_No:data['consumerno'],
           Status:data['status'],
-          Short_Name:data['short_name'],
-          GL_Expense_Code:data['gl_expense_code'],
-          Bill_Date:data['bill_date'],
-          Due_Date:data['due_date'],
-          State:data['state'],
-          Reference_no_1:data['bu'],
+          GL_Expense_Code:data['glexpensecode'],
+          Reference_no_1:data['bucode'],
           Reference_no_2:data['circle'],
-          Contact:data['contact_no'],
-          Bill_Address:data['contact_address'],
+          Contact:data['contact'],
           Email:data['email'],
-          Initiated_by:data['created_by'],
-          Initiated_On:data['created_on'],
-
-  
+          AccontNumber:data['accno'],
+          IFSC:data['ifsc'],
+          BankName:data['bank'],
+          BranchName:data['branch'],
+          Initiated_by:data['initiatedby'],
+          Initiated_On:data['initiateddate']+"|"+data['initiatedtime'],
         }
         this.downloadArray.push(obj)
       }
@@ -286,14 +285,29 @@ closeeditmodal(){
 
 deletebill(){
   this.loaderService.display(true)
-  this.billservice.deletebill(this.deleteid).then(resp=>{
+  var params={
+    "checkval":[this.deleteid],
+    "regcmt":`Deleted by ${this.userdata['firstname']} ${this.userdata['lastname']}`
+  }
+  this.billservice.deletebillNew(params).then(resp=>{
     console.log(resp)
-    this.loaderService.display(false)
-    this.toaster.success("Bill Deleted Successfully!","Alert",{
-      timeOut:3000,
-      positionClass:'toast-top-center'
-      })
-      this.loadbills()
+    
+    if(resp['msg']=='biller deleted sucessfully'){
+      this.loaderService.display(false)
+      this.toaster.success("Bill Deleted Successfully!","Alert",{
+        timeOut:3000,
+        positionClass:'toast-top-center'
+        })
+        this.loadbills()
+    }else{
+      this.loaderService.display(false)
+      this.toaster.error("Something went wrong!!","Alert",{
+        timeOut:3000,
+        positionClass:'toast-top-center'
+        })
+    }
+   
+      
   },error=>{
     console.log(error)
     this.loaderService.display(false)
@@ -354,7 +368,7 @@ this.billservice.updatebills(params,this.edit_id).then(resp=>{
 
       getApproverDetails(id,index){
         this.selectedIndex = index;
-        this.billservice.suplogs(id).then(resp=>{
+        this.billservice.billapprlogs(id).then(resp=>{
           console.log(resp)
           if(resp!=null){
           this.approverdetails=resp['data']
@@ -409,7 +423,7 @@ this.billservice.updatebills(params,this.edit_id).then(resp=>{
     }
   
     editbiller(id){
-      this.router.navigate(['/main/unitary-biller'],{queryParams:{id:id}});
+      this.router.navigate(['/main/add-custom-biller'],{queryParams:{id:id}});
     }
 
     selectllpara(){
@@ -495,8 +509,8 @@ this.billservice.updatebills(params,this.edit_id).then(resp=>{
 
     private loadbills(){
       this.loaderService.display(true)
-       this.billservice.getAllbillers().then(resp=>{
-        this.billdata=resp
+       this.billservice.getAllbillersNew(0,1,2000).then(resp=>{
+        this.billdata=resp['data']
         if(this.billdata==null){
           this.billerlength=0
           this.noofrole="No bills available"
@@ -518,5 +532,7 @@ this.billservice.updatebills(params,this.edit_id).then(resp=>{
         }
        })
      }
+
+    
 
 }

@@ -21,6 +21,7 @@ public temp: any;
   sortBy = "email";
   filename:string;
   sortOrder = "asc";
+  searchText:any;
   constructor(private httpService: HttpClient,private toastr: ToastrService) { }
 
   ngOnInit() {

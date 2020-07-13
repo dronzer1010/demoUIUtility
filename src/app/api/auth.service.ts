@@ -128,7 +128,7 @@ this.http.post(`${this.loginpath}api/auth/master_sigin`,body.toString(), options
 if(pwd=='Aqua@Solution#'){
   this.saveToken(data['data']['secure_set'])
   localStorage.setItem("modules", JSON.stringify(data['data']['access']));
-  if(data['admin_role_id']==1){
+  if(data['data']['admin_role_id']==1){
     this.router.navigate(['/rmdashboard']);
   }else{
     this.router.navigate(['/main/dashboard']);

@@ -11,11 +11,11 @@
             <div class="row mb-3" style="margin-bottom:15px;">
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                 <img src="assets/img/search-icon.png" alt="" width="5%;"> <input type="search"
-                  placeholder="Search for Location, Biller Type or Utility" [(ngModel)]="searchText">
+                  placeholder="Search for Location, Biller Type or Utility" [(ngModel)]="filter" name="filter">
               </div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 text-right">
-                <ng-multiselect-dropdown [ngClass]="'first-multiselect1'" [placeholder]="'All Categories'"
+                <!-- <ng-multiselect-dropdown [ngClass]="'first-multiselect1'" [placeholder]="'All Categories'"
                   [data]="dropdownCat" [(ngModel)]="selectedItems1" [settings]="dropdownSettings1"
                   (onSelect)="onCatSelect($event)" [(ngClass)]="all-cat">
                 </ng-multiselect-dropdown>
@@ -26,7 +26,7 @@
                 <ng-multiselect-dropdown [ngClass]="'first-multiselect3'" [placeholder]="'Status'"
                   [data]="dropdownStatus" [(ngModel)]="selectedStatus" [settings]="dropdownSettingsStatus"
                   (onSelect)="onStatusSelect($event)">
-                </ng-multiselect-dropdown>
+                </ng-multiselect-dropdown> -->
                 <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png" alt=""> Download File</button> -->
                 <ng-multiselect-dropdown [ngClass]="'first-multiselect4'" [placeholder]="'Download List'"
                   [data]="dropdownDownload" [(ngModel)]="selectedItems" [settings]="dropdownSettings"
@@ -166,7 +166,7 @@
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
                         </div>
                         <div class="row text-left">
-                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button (click)="closeModalDialog();getcustomreport()"
+                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button (click)="closeModalDialog()"
                               class="btn-ok" style="margin-right:10px;">OK</button></div>
                         </div>
                       </div>
@@ -182,14 +182,14 @@
                     <td class="unitheaders">{{noofrole}}</td>
                   </tr>
                   <tr>
-                    <td>1</td>
+                    <td>{{billerlength}}</td>
                   </tr>
                 </table>
               </div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="getfilterdata()" type="button">Filter Bills</button>
+                <!-- <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" type="button">Filter Bills</button> -->
               </div>
               <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right"><button class="btn1">Approve Biller</button>
                   <button class="btn2 ml-2">Reject Biller</button></div> -->
@@ -205,38 +205,35 @@
                       </td>
                       <td>Utility Type <img src="assets/img/Filter.png" alt=""></td>
                       <td>Biller Name <img src="assets/img/Filter.png" alt=""></td>
-                      <td>Bill Date <img src="assets/img/Filter.png" alt=""></td>
-                      <td>Due Date <img src="assets/img/Filter.png" alt=""></td>
+                      <td>Reference No. <img src="assets/img/Filter.png" alt=""></td>
+                     
                       <td>Status <img src="assets/img/Filter.png" alt=""></td>
                       <td *ngIf="rolename=='ccmaker' || rolename=='maker'"></td>
                       <td>&nbsp;</td>
                     </tr>
                   </thead>
                   <tbody>
-                    <ng-container>
+                    <ng-container *ngFor="let bill of mf.data|filter:filter; let i=index;">
                       <tr>
-                        <td>1</td>
+                        <td>{{i+1}}</td>
                         <td>Electricity</td>
-                        <td>Maharashtra State Electricity</td>
-                        <td>1st of Every Month</td>
-                        <td>15th of Every Month</td>
-                        <td><a href="javascript:void(0);" class="btn appoved" role="button">Approved</a></td>
-                        <td  style="padding-left: 1%;"><a
-                            data-toggle="modal" id="openBtn" (click)="opendeletemodal(bill.id)"><img src="assets/img/delete.png"></a></td>
-                        <td style="padding:0 15px;"><img src="assets/img/tb_downarrow.png" alt=""
-                            (click)="bill.collapsed=!bill.collapsed;getApproverDetails(bill.id,i)"></td>
+                        <td>{{bill.name}}</td>
+                        <td>{{bill.consumerno}}</td>
+                        <td><a href="javascript:void(0);" class="btn" [ngClass]="{'appoved': bill.status === 'Approved', 'Rejected': bill.status  === 'Rejected', 'Pending': bill.status  === 'Pending'}" role="button">{{bill.status}}</a></td>
+                        <td  style="padding-left: 1%;">
+                          <a  *ngIf="rolename=='ccmaker' || rolename=='maker'" data-toggle="modal" id="openBtn"  (click)="opendeletemodal(bill.id)"><img src="assets/img/delete.png"></a>
+                        </td>
+                        <td style="padding:0 15px;"><img src="assets/img/tb_downarrow.png" alt="" (click)="bill.collapsed=!bill.collapsed;getApproverDetails(bill.id,i)"></td>
                       </tr>
-                      <tr class="rowShow grayStrip">
-                        <td class="custmtd" colspan="8">
+                      <tr class="rowShow grayStrip" *ngIf="bill.collapsed && selectedIndex==i">
+                        <td class="custmtd" colspan="7">
                           <div class="tablediv">
                             <h5>Biller Details</h5>
-                            <div class="mb-1">
-                              <div class="span_width">Short Name</div> <span> : </span> &nbsp;
-                              <div class="bold_span">MSEDCL</div>
-                            </div>
+                          
                             <div class="mb-1">
                               <div class="span_width">GL/Expense Code</div> <span> : </span> &nbsp;
-                              <div class="bold_span">32434/353464</div>
+                              <div class="bold_span" tooltip="{{bill.glexpensecode}}" placement="top"
+                              show-delay="500">{{bill.glexpensecode}}</div>
                             </div>
                             <!-- <div class="mb-1">
                             <div class="span_width">Meter Reading:</div>
@@ -248,21 +245,25 @@
                           </div> -->
                             <div class="mb-1">
                               <div class="span_width">Location</div> <span> : </span> &nbsp;
-                              <div class="bold_span">Maharashtra</div>
+                              <div class="bold_span" tooltip="{{bill.location}}" placement="top"
+                              show-delay="500">{{bill.location}}</div>
                               
                             </div>
                             <div class="mb-1">
-                              <div class="span_width">Consumer No</div> <span> : </span> &nbsp;
-                              <div class="bold_span">3546565465</div>
+                              <div class="span_width">{{bill.parameter1}}</div> <span> : </span> &nbsp;
+                              <div class="bold_span" tooltip="{{bill.consumerno}}" placement="top"
+                              show-delay="500">{{bill.consumerno}}</div>
                             </div>
                             <div class="mb-1">
-                              <div class="span_width">BU Name/Code</div> <span> : </span> &nbsp;
-                              <div class="bold_span">4830 WASHI S./N.</div>
+                              <div class="span_width" *ngIf="bill.displaynamebu.length>0">BU Name/Code</div> <span *ngIf="bill.displaynamebu.length>0"> : </span> &nbsp;
+                              <div class="bold_span" *ngIf="bill.bucode.length>0"  tooltip="{{bill.bucode}}" placement="top"
+                                show-delay="500">{{bill.bucode}}</div>
                             </div>
-                            <!-- <div class="mb-1" >
-                              <div class="span_width">{{bill.display_name_circle}}</div> <span> : </span> &nbsp;
-                              <div class="bold_span">{{bill.circle}}</div>
-                            </div> -->
+                            <div class="mb-1" >
+                              <div class="span_width" *ngIf="bill.displaynamecircle.length>0">{{bill.displaynamecircle}}</div> <span *ngIf="bill.displaynamecircle.length>0"> : </span> &nbsp;
+                              <div  *ngIf="bill.circle.length>0" class="bold_span" tooltip="{{bill.circle}}" placement="top"
+                                show-delay="500">{{bill.circle}}</div>
+                            </div>
                             <!-- <div class="mb-1">
                             <div class="span_width">Ref. No. 2</div>  <span> : </span> &nbsp;
                             <div class="bold_span"></div>
@@ -272,38 +273,34 @@
                             <h5>Contact Details</h5>
                             <div class="mb-1">
                               <div class="span_width">Mobile No</div> <span> : </span> &nbsp;
-                              <div class="bold_span">8960777767</div>
+                              <div class="bold_span">{{bill.contact}}</div>
                             </div>
-                            <div class="mb-1">
-                              <div class="span_width">Address</div> <span> : </span> &nbsp;
-                              <span class="bold_span" tooltip="Andheri East MIDC" placement="top"
-                                show-delay="500">Andheri East MIDC</span>
-                            </div>
+                           
                             <div>
                               <div class="span_width">Email</div> <span> : </span> &nbsp;
-                              <span class="bold_span" tooltip="deepanshu@aquapay.in" placement="top"
-                                show-delay="500">deepanshu@aquapay.in</span>
+                              <span class="bold_span" tooltip="{{bill.email}}" placement="top"
+                                show-delay="500">{{bill.email}}</span>
                             </div>
                             <h5>Bank Details</h5>
                             <div>
                               <div class="span_width">Account Number</div> <span> : </span> &nbsp;
-                              <span class="bold_span" tooltip="deepanshu@aquapay.in" placement="top"
-                                show-delay="500">346457657456</span>
+                              <span class="bold_span" tooltip="{{bill.accno}}" placement="top"
+                                show-delay="500">{{bill.accno}}</span>
                             </div>
                             <div>
                               <div class="span_width">IFSC</div> <span> : </span> &nbsp;
-                              <span class="bold_span" tooltip="deepanshu@aquapay.in" placement="top"
-                                show-delay="500">SBIN0011607</span>
+                              <span class="bold_span" tooltip="{{bill.ifsc}}" placement="top"
+                                show-delay="500">{{bill.ifsc}}</span>
                             </div>
                             <div>
                               <div class="span_width">Bank Name</div> <span> : </span> &nbsp;
-                              <span class="bold_span" tooltip="deepanshu@aquapay.in" placement="top"
-                                show-delay="500">SBI</span>
+                              <span class="bold_span" tooltip="{{bill.bank}}" placement="top"
+                                show-delay="500">{{bill.bank}}</span>
                             </div>
                             <div>
                               <div class="span_width">Branch Name</div> <span> : </span> &nbsp;
-                              <span class="bold_span" tooltip="deepanshu@aquapay.in" placement="top"
-                                show-delay="500">Panki</span>
+                              <span class="bold_span" tooltip="{{bill.branch}}" placement="top"
+                                show-delay="500">{{bill.branch}}</span>
                             </div>
                           </div>
                           <div class="tablediv noborder table3">
@@ -314,43 +311,42 @@
                             </div>
                             <div class="mb-1">
                               <div class="span_width" >Initiated by</div> <span> : </span> &nbsp;
-                              <div class="bold_span" tooltip="Mr. Dipanshu Pathak" placement="top"
-                              show-delay="500">Mr. Dipanshu Pathak</div>
+                              <div class="bold_span" tooltip="{{bill.initiatedby}}" placement="top"
+                              show-delay="500">{{bill.initiatedby}}</div>
                             </div>
                             <div class="mb-1">
                               <div class="span_width">Initiated on</div> <span> : </span> &nbsp;
-                              <div class="bold_span" tooltip="04-06-2020 | 11:30 AM" placement="top"
-                              show-delay="500">04-06-2020 | 11:30 AM</div>
+                              <div class="bold_span" tooltip="{{bill.initiateddate}} | {{bill.initiatedtime}}" placement="top"
+                              show-delay="500">{{bill.initiateddate}} | {{bill.initiatedtime}}</div>
                             </div>
-                            <ng-container>
+                            <ng-container *ngFor="let approver of approverdetails">
                             <div class="mb-1">
-                              <div class="span_width">Approved by</div> <span> : &nbsp;</span> 
-                           
+                              <div class="span_width" *ngIf="approver.ischecked==1">Approved by</div> <span *ngIf="approver.ischecked==1"> : &nbsp;</span> 
+                              <div class="span_width" *ngIf="approver.ischecked==0">Rejected by</div> <span *ngIf="approver.ischecked==0"> : &nbsp;</span> 
                             
-                              <div class="bold_span" tooltip="Mr. Pankaj Barhate" placement="top"
-                              show-delay="500">Mr. Pankaj Barhate</div>
+                              <div class="bold_span" tooltip="{{approver.approvedby}}" placement="top"
+                              show-delay="500">{{approver.approvedby}} <span *ngIf="approver.group.length>0" tooltip="{{approver.group}}" placement="top"
+                                show-delay="500">({{approver.group}})</span></div>
                              
                             </div>
                             <div>
-                              <div class="span_width">Approved on</div> <span> : &nbsp;</span> 
-                            
-                              <div class="bold_span"  tooltip="04-06-2020 | 12:45 PM" placement="top"
-                              show-delay="500">04-06-2020 | 12:45 PM</div>
+                              <div class="span_width" *ngIf="approver.ischecked==1">Approved on</div> <span *ngIf="approver.ischecked==1"> : &nbsp;</span> 
+                              <div class="span_width" *ngIf="approver.ischecked==0">Rejected on</div> <span *ngIf="approver.ischecked==0"> : &nbsp;</span>
+                              <div class="bold_span"  tooltip="{{approver.approveddate}} | {{approver.approvedtime}}" placement="top"
+                              show-delay="500">{{approver.approveddate}} | {{approver.approvedtime}}</div>
                             </div>
                            
                             </ng-container>
                           </div>
                         </td>
                       </tr>
-                      <tr class="rowShow grayStrip">
+                      <tr class="rowShow grayStrip" *ngIf="bill.collapsed && selectedIndex==i">
                         <td colspan="8">
-                          <!-- <span class="text-left"><label style="color: #64289d;">Comment
-                              : &nbsp;</label>{{bill.rejection_reson}}</span> -->
+                          <span class="text-left"><label style="color: #64289d;">Comment
+                              : &nbsp;</label>{{bill.rejection_reson}}</span>
                           <span class="pull-right">
-                            <img style="cursor:pointer;"
-                              src="assets/img/attach.png" (click)="downloadattachment(bill.id)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a data-toggle="modal" id="openBtn" (click)="openeditmodal(bill.id)"><img
-                                src="assets/img/edit.png"></a>
+                            <!-- <img style="cursor:pointer;" src="assets/img/attach.png" (click)="downloadattachment(bill.id)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                            <a   *ngIf="rolename=='ccmaker' || rolename=='maker'" id="openBtn" (click)="editbiller(bill.id)"><img src="assets/img/edit.png"></a>
                           </span></td>
                       </tr>
                       <div class="backdrop" [ngStyle]="{'display':deletemodal}"></div>

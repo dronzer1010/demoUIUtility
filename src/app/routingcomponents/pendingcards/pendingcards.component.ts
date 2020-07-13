@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import{LoaderService} from '../../api/loader.service'
 // import * as $ from 'jquery';
  import { CardserviceService } from '../../api/cardservice.service';
 declare var jquery: any;
@@ -19,7 +20,7 @@ export class PendingcardsComponent implements OnInit {
   public currentCard: any;
   public newpendingcards:any = [];
   displayrejmodal:string='none';
-  constructor(private router: Router,private cardservice: CardserviceService) { }
+  constructor(private router: Router,private cardservice: CardserviceService,private loader: LoaderService) { }
 
   ngOnInit() {
     this.currentCard = 0;
@@ -60,12 +61,20 @@ this.loadpendingcards();
   }
 
   rejectGroupById(id: any): void {
+    this.loader.display(true)
     this.cardservice.rejectedCard(id, this.comment).then(resp => {
       this.rejectedgroupdata = resp.data;
       this.rejectedgroupmsg = resp.msg;
       if (this.rejectedgroupmsg == "succes") {
+        this.loader.display(false)
          this.router.navigate(['/main/rejectmsg'],{queryParams:{msg:'cardreject'}});
+      }else{
+        this.loader.display(false)
+        console.log("Something went wrong")
       }
+    },error=>{
+      console.log(error)
+      this.loader.display(false)
     });
    // this.router.navigate(['/main/rejectmsg'],{queryParams:{msg:'cardreject'}});
   }
@@ -79,13 +88,25 @@ this.loadpendingcards();
 
 
   private loadpendingcards(){
+    this.loader.display(true)
     this.cardservice.getAllCards().then(resp => {
       this.pendingCards = resp.data;
+      if(this.pendingCards!=null){
+        
       for (let i = 0; i < this.pendingCards.length; i++) {
         if (this.pendingCards[i].status == "Pending") {
           this.newpendingcards.push(this.pendingCards[i]);
         }
       }
+      this.loader.display(false)
+    }else{
+      
+      this.loader.display(false)
+    }
+     
+    },error=>{
+      console.log(error)
+      this.loader.display(false)
     });
   }
 }

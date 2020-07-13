@@ -70,8 +70,8 @@
             </div>
             <div class="clearfix"></div>
             <div class="col-md-offset-1 col-md-10">
-              <h5>Recent Payment made to</h5>
-              <div class="carousel slide media-carousel" id="media">
+              <!-- <h5>Recent Payment made to</h5> -->
+              <!-- <div class="carousel slide media-carousel" id="media">
                 <div class="carousel-inner">
                   <div class="item  active">
                     <ng-container *ngFor="let recent of recentBiller">
@@ -83,7 +83,7 @@
                 </div>
                 <a data-slide="prev" id="prev" href="#media" class="left carousel-control"><img src="assets/img/L_arrow.png"></a>
                 <a data-slide="next" id="next" href="#media" class="right carousel-control"><img src="assets/img/slider-left.png"></a>
-              </div>
+              </div> -->
               <div class="btn-toolbar">
                 <div class="btn-group btn-group-sm">
                   <ng-container *ngFor="let char of charArray">
@@ -97,7 +97,7 @@
                 <div class="col-md-12 tab-pane active" id="item1">
                   <ng-container *ngFor="let biller of filteredBillers|filter:filter">
                     <div class="col-md-3">
-                      <div class="texta"><a class="blu-color" (click)="billerById(biller.id);changeSupColor(biller.id)" [ngClass]="biller.id === activeSupEle ? 'activeSupplier' : 'none'">{{biller.biller_name}} {{biller.bu_code_bu_name}}</a></div>
+                      <div class="texta"><a class="blu-color" (click)="billerById(biller.id);changeSupColor(biller.id)" [ngClass]="biller.id === activeSupEle ? 'activeSupplier' : 'none'">{{biller.name}} {{biller.bucode}} {{biller.circle}}</a></div>
                     </div>
                   </ng-container>
                 </div>
@@ -168,36 +168,32 @@
                     <div class="col-md-5">
                       <h4 class="nopad">Enter Details</h4>
                       <div class="form-field col x-50">
-                        <input id="invnumber" class="input-text js-input" type="text" name="bill_date" [(ngModel)]="paymentData.bill_date"
-                          #bill_date="ngModel" required>
-                        <label class="label" for="invnumber">Bill Date</label>
-                        <div class="form-control-feedback" *ngIf="bill_date.errors && (bill_date.dirty || bill_date.touched)">
-                          <span class="email" *ngIf="bill_date.errors.required">Bill Date is required</span>
-                        </div>
+                       
+                        <input matInput [matDatepicker]="picker1" [(ngModel)]="paymentData.billdate" name="billdate" class="date-pickerclass js-input" (ngModelChange)="getbillBillDate($event)">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                        <label class="label" for="billdate">Bill Date</label>
+                      
                       </div>
                       <div class="form-field col x-50">
-                        <input id="invnumber" class="input-text js-input" type="text" name="due_date" [(ngModel)]="paymentData.due_date"
-                          #due_date="ngModel" required>
-                        <label class="label" for="due_date">Due Date</label>
-                        <div class="form-control-feedback" *ngIf="due_date.errors && (due_date.dirty || due_date.touched)">
-                          <span class="email" *ngIf="due_date.errors.required">Due date is required</span>
-                        </div>
+                       
+                        <input matInput [matDatepicker]="picker2" [(ngModel)]="paymentData.duedate" name="duedate" class="date-pickerclass js-input" (ngModelChange)="getbilldueDate($event)">
+                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                 <mat-datepicker #picker2></mat-datepicker>
+                        <label class="label" for="duedate">Due Date</label>
+                       
                       </div>
                       <div class="form-field col x-50">
-                        <input id="invnumber" class="input-text js-input" type="text" name="bill_number" [(ngModel)]="paymentData.bill_number"
-                          #bill_number="ngModel" required>
-                        <label class="label" for="bill_number">Bill Number</label>
-                        <div class="form-control-feedback" *ngIf="bill_number.errors && (bill_number.dirty || bill_number.touched)">
-                          <span class="email" *ngIf="bill_number.errors.required">Bill Number is required</span>
-                        </div>
+                        <input id="invnumber" class="input-text js-input" type="text" name="billnumber" [(ngModel)]="paymentData.billnumber"
+                          #billnumber="ngModel" required>
+                        <label class="label" for="billnumber">Bill Number</label>
+                       
                       </div>
                       <div class="form-field col x-50">
                         <input id="amount"  class="input-text js-input" numeric decimals="8" type="text" name="amount" #amount="ngModel"
                           [(ngModel)]="paymentData.amount" required autocomplete=off>
                         <label class="label" for="amount">Amount</label>
-                        <div class="form-control-feedback" *ngIf="amount.errors && (amount.dirty || amount.touched)">
-                          <span class="email" *ngIf="amount.errors.required">Amount is required</span>
-                        </div>
+                       
                       </div>
                       <div class="input-group up-file">
                         <input type="text" class="input-text input-text_up" id="uploadinfo5" placeholder="Upload Invoice"
@@ -238,34 +234,39 @@
                       <td class="review_value">{{billerName}}</td>
                     </tr>
                     <tr>
-                      <td class="review_lable">Consumer No</td>
+                      <td class="review_lable">{{billerpara1}}</td>
                       <td>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
                       <td class="review_value">{{consumerNo}}</td>
                     </tr>
-                    <tr>
-                      <td class="review_lable">BU Code BU Name</td>
-                      <td>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                      <td class="review_value">4320 Wadhi SN/DN.</td>
+                    <tr *ngIf="billerpara2.length>0">
+                      <td class="review_lable" *ngIf="billerpara2.length>0">{{billerpara2}}</td>
+                      <td *ngIf="billerpara2.length>0">&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td class="review_value" *ngIf="billerbucode.length>0">{{billerbucode}}</td>
+                    </tr>
+                    <tr *ngIf="billerpara3.length>0">
+                      <td class="review_lable" *ngIf="billerpara3.length>0">{{billerpara3}}</td>
+                      <td *ngIf="billerpara3.length>0">&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td class="review_value" *ngIf="billercircle.length>0">{{billercircle}}</td>
                     </tr>
                     <tr>
                       <td class="review_lable">Bill date</td>
                       <td>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                      <td class="review_value">{{paymentData.bill_date}}</td>
+                      <td class="review_value">{{billbilldate}}</td>
                     </tr>
                     <tr>
                       <td class="review_lable">Due Date</td>
                       <td>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                      <td class="review_value">{{paymentData.due_date}}</td>
+                      <td class="review_value">{{billduedate}}</td>
                     </tr>
                     <tr>
                       <td class="review_lable">Bill Number</td>
                       <td>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                      <td class="review_value">123534543</td>
+                      <td class="review_value">{{paymentData.billnumber}}</td>
                     </tr>
                     <tr>
                       <td class="review_lable">State</td>
                       <td>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                      <td class="review_value">Maharashtra</td>
+                      <td class="review_value">{{billerState}}</td>
                     </tr>
                   </table>
                 </div>
@@ -316,7 +317,7 @@
               <div class="clearfix"></div>
               <div class="col-md-offset-1 col-md-11">
                 <div class="form-field col x-50">
-                  <button class="btn bg-primary" type="submit">Send for approval</button>
+                  <button class="btn bg-primary" type="submit" (click)="submitpayment()">Send for approval</button>
                 </div>
               </div>
               <div class="clear20"></div>

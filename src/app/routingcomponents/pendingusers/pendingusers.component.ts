@@ -18,8 +18,10 @@ export class PendingusersComponent implements OnInit {
   rowsOnPage = 1000;
   sortBy = "email";
   sortOrder = "asc";
+  filter:any;
   step1:boolean=true;
   step2:boolean=false;
+  step3:boolean=false
   public pendingPayment: any;
   public checkedValue: any;
   public flag: any;

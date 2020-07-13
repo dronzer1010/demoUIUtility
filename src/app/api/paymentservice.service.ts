@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 const path = new Config().getutilityBaseUrl();
+const path2 = new Config().getBaseURL();
 @Injectable({
   providedIn: 'root'
 })
@@ -42,6 +43,43 @@ export class PaymentserviceService {
     return promise;
   }
 
+  makepaymentNew(paymentdata:any): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+    let promise = new Promise((resolve, reject) => {
+        // let paramsValue = {
+        //     "regcmt": comment,
+        //     "checkval": ids
+        // };
+        this.http.post(`${path2}maker/bill-payment`, paymentdata)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                    console.log("Error occured : " + err);
+                    reject(err);
+                    }
+            );
+  
+    });
+  
+    return promise;
+  }
+  uploadpayment(file:File){
+    let data ={};
+    const formdata: FormData = new FormData();
+    formdata.append('file', file);
+    //console.log(file);
+    return this.http.post(`${path2}maker/billpaymentbulk`, formdata);
+}
+
+regBulkPayment(payments:any[]){
+    return this.http.post(`${path2}maker/savebulkbillpayment`,payments)
+  }
 
   makeseqpayment(paymentdata:any): Promise<any> {
     // let token = this.storage.getData("chlogin_data").token;
@@ -89,6 +127,25 @@ export class PaymentserviceService {
   }
 
 
+  getAllPaymentsNew(){
+    let promise = new Promise((resolve, reject) => {
+      this.http.get(`${path2}maker/billpaymentsfilternpage?pageno=0&pagesize=2000&dateformat=0&batch=0`)
+          .subscribe(
+              res => {
+                  console.log(res);
+                  resolve(res);
+              },
+              err => {
+                  console.log("Error occured : " + err);
+                  reject(err);
+              }
+          );
+  
+  });
+  return promise;
+  }
+
+
   deletepayment(deleteid:any): Promise<any> {
     // let token = this.storage.getData("chlogin_data").token;
     // let headers = new HttpHeaders().set('Content-Type', 'application/json')
@@ -117,9 +174,57 @@ export class PaymentserviceService {
     return promise;
   }
 
+
+  deletepaymentNew(deleteteddata:any): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+  // console.log(JSON.stringify(rejectdata))
+    let promise = new Promise((resolve, reject) => {
+        this.http.post(`${path2}maker/deletebillpayment`,deleteteddata)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                   // this.loader.display(false);
+                    //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                    
+                    console.log("Error occured :")
+                    console.log(err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
   getPendingPayments(){
     let promise = new Promise((resolve, reject) => {
       this.http.get(path+"api/v1/checker_payments")
+          .subscribe(
+              res => {
+                  console.log(res);
+                  resolve(res);
+              },
+              err => {
+                  console.log("Error occured : " + err);
+                  reject(err);
+              }
+          );
+  
+  });
+  return promise;
+  }
+
+
+  getPendingPaymentsNew(){
+    let promise = new Promise((resolve, reject) => {
+      this.http.get(`${path2}maker/billinvoice-pendingpaged?pageno=0&pagesize=2000`)
           .subscribe(
               res => {
                   console.log(res);
@@ -187,6 +292,40 @@ export class PaymentserviceService {
     return promise;
   }
 
+
+  sendOtpNew(ids: any): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+    let paramsValue = {
+        "payment_arr":ids
+    }
+
+    console.log("param id" + ids);
+    let promise = new Promise((resolve, reject) => {
+        this.http.post(`${path2}checker/sendotpforbillpayment`, ids)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                   if(ids!=null){
+                    // this.loader.display(false);
+                    // this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                   }
+                    console.log("Error occured :")
+                    console.log(err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
   validateOTP(otp: any): Promise<any> {
     // let token = this.storage.getData("chlogin_data").token;
     // let headers = new HttpHeaders().set('Content-Type', 'application/json')
@@ -217,6 +356,38 @@ export class PaymentserviceService {
   
     return promise;
   }
+
+  validateOTPNew(otp: any): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+    let paramsValue = {
+        "otp":otp
+    }
+    console.log("param id" + otp);
+    let promise = new Promise((resolve, reject) => {
+        this.http.post(`${path2}checker/validatebillinvoiceotp`, otp)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                   // this.loader.display(false);
+                    //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                    
+                    console.log("Error occured :")
+                    console.log(err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
 
   validateOTPSeq(otp: any): Promise<any> {
     // let token = this.storage.getData("chlogin_data").token;
@@ -278,6 +449,35 @@ export class PaymentserviceService {
     return promise;
   }
 
+
+  rejectpaymentsNew(rejectdata:any): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+   console.log(JSON.stringify(rejectdata))
+    let promise = new Promise((resolve, reject) => {
+        this.http.post(`${path2}checker/rejectbillinvoices`, rejectdata)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                   // this.loader.display(false);
+                    //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                    
+                    console.log("Error occured :")
+                    console.log(err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
   updateprepaidamt(amtdata){
     console.log(JSON.stringify(amtdata))
     let promise = new Promise((resolve, reject) => {
@@ -312,6 +512,35 @@ export class PaymentserviceService {
 
     let promise = new Promise((resolve, reject) => {
         this.http.get(path+`api/v1/payment_approver_detail/${id}`)
+            .subscribe(
+                res => {
+                    console.log(res);
+                    resolve(res);
+                },
+                err => {
+                   // this.loader.display(false);
+                    //this.router.navigate(['/main/successmsg'],{queryParams:{msg:'supplierapprsuccess'}});
+                    
+                    console.log("Error occured :")
+                    console.log(err);
+                    reject(err);
+                }
+            );
+  
+    });
+  
+    return promise;
+  }
+
+  paylogsNew(id: any): Promise<any> {
+    // let token = this.storage.getData("chlogin_data").token;
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+    //     .set('authorization', 'Bearer ' + token);
+    // let options = { headers: headers };
+    
+
+    let promise = new Promise((resolve, reject) => {
+        this.http.get(`${path2}maker/approver-details?invid=${id}`)
             .subscribe(
                 res => {
                     console.log(res);

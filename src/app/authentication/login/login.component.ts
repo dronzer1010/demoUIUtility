@@ -3,6 +3,8 @@ import { ToastrService } from 'ngx-toastr'
 import { Routes, RouterModule,Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http'
 import { AuthService} from '../../api/auth.service'
+import {ExcelService} from '../../excelservice/excel.service'
+
 import { DatePipe } from '@angular/common'
 @Component({
   selector: 'app-login',
@@ -12,6 +14,9 @@ import { DatePipe } from '@angular/common'
 export class LoginComponent implements OnInit {
 username:string=""
 password:string=""
+billerlist:any=[]
+downloadArray:any=[]
+fiunalArray:any=[]
 display='none';
 dob:any;
 orgid:any;
@@ -30,10 +35,13 @@ multiple: boolean=false
 options:any;
 config = {}
 showorg:boolean=false;
-  constructor(private http: HttpClient,private router: Router,private toastr: ToastrService,private auth:AuthService,public datepipe: DatePipe) { }
+  constructor(private http: HttpClient,private router: Router,private toastr: ToastrService,private auth:AuthService,public datepipe: DatePipe,private excelservice : ExcelService) { }
 
   ngOnInit() {
-   
+   this.auth.logout()
+  localStorage.removeItem('rolename');
+  //this.loadbilldeskbillers()
+  
   
 }
 
@@ -116,6 +124,32 @@ this.auth.getorganisationbyemail(email).then(data=>{
 this.orgid=id;
   }
 
+  // private loadbilldeskbillers(){
+    
   
+  //  this.getStateCity().subscribe(resp=>{
+     
+  //    this.billerlist=resp
+  //    console.log(this.billerlist)
+  //     for(var data of this.billerlist){
+  //       var obj={
+  //         BillerId:data['billerid'],
+  //         billerName:data['biller_name'],
+  //         State:data['biller_reg_state'],
+  //         BillerCatagory:data['biller_category'],
+  //         MaxLimit:Object.values(data['payment_channels'])[5]
+  //       }
+  //       this.downloadArray.push(obj)
+  //     }
+
+   
+  //     console.log(JSON.stringify(this.downloadArray))
+     
+  //   })
+  // }
+
+  // getStateCity(){
+  //    return this.http.get('../../../assets/biller_response.json');
+  //  }
 
 }

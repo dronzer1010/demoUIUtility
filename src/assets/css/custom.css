@@ -584,14 +584,16 @@ ng-multiselect-dropdown.rmdrop-seven .multiselect-dropdown{
 ng-multiselect-dropdown.first-multiselect1 .multiselect-dropdown, 
 ng-multiselect-dropdown.first-multiselect2 .multiselect-dropdown, 
 ng-multiselect-dropdown.first-multiselect3 .multiselect-dropdown, 
-ng-multiselect-dropdown.first-multiselect4 .multiselect-dropdown{
+ng-multiselect-dropdown.first-multiselect4 .multiselect-dropdown,
+ng-multiselect-dropdown.checker-multiselect1 .multiselect-dropdown{
   margin-bottom: 5px!important;
   margin-top:0px!important;
 }
 ng-multiselect-dropdown.first-multiselect1 .multiselect-dropdown .dropdown-down, 
 ng-multiselect-dropdown.first-multiselect2 .multiselect-dropdown .dropdown-down, 
 ng-multiselect-dropdown.first-multiselect3 .multiselect-dropdown .dropdown-down, 
-ng-multiselect-dropdown.first-multiselect4 .multiselect-dropdown .dropdown-down{ 
+ng-multiselect-dropdown.first-multiselect4 .multiselect-dropdown .dropdown-down,
+ng-multiselect-dropdown.checker-multiselect1 .multiselect-dropdown .dropdown-down{ 
   margin-left: 7px;
 }
 ng-multiselect-dropdown.first-multiselect1 .multiselect-dropdown{
@@ -603,6 +605,27 @@ ng-multiselect-dropdown.first-multiselect1 .multiselect-dropdown{
   background: unset!important;
   width: 21%!important;
   margin-right:10px!important;
+}
+
+ng-multiselect-dropdown.checker-multiselect1 .multiselect-dropdown{
+  background-image: url(../../assets/img/downloadlist.png);
+  background-repeat: no-repeat;
+  background-position-x: 10px;
+  background-position-y: 6px;
+  background-size: 11px;
+  background: unset!important;
+  width: 100%!important;
+  margin-right:10px!important;
+}
+
+ng-multiselect-dropdown.checker-multiselect1 .multiselect-dropdown .dropdown-btn{
+  border-radius: 0px !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  text-align: left !important;
+  font-weight: bold !important;
+  font-size: 15px !important;
 }
 ng-multiselect-dropdown.first-multiselect2 .multiselect-dropdown{
   background-image: url(../../assets/img/datepicker.png);

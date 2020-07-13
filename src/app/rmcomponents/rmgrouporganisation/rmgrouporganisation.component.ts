@@ -10,6 +10,7 @@ import { Location } from '@angular/common';
 export class RmgrouporganisationComponent implements OnInit {
   orgList: any = [];
   selectedOrg: any;
+  selectedOrgValue:any;
   constructor(private rmservice: RmservicesService,
     private router: Router,
     private location: Location) { }

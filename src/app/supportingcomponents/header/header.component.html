@@ -107,32 +107,32 @@
           </a>
           <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displaybilldrop}">
             <li class="dropdown-submenu drop1 col-md-12 cust">
-              <a class="dropdown-item animate " (click)="closealldrop()" [routerLink]="['/main/billerlist']">
+              <a class="dropdown-item animate " (click)="closealldrop()">
                 <span> <img id="user" src="assets/img/view-bills.png" /></span>
                 View Bills
               </a>
               <ul class="dropdown-menu menu1">
-                <li routerLink="" (click)="clickBillEvent()">
-                  <a>Fetch and Pay Bills</a>
+                <li (click)="clickBillEvent()">
+                  <a [routerLink]="['/main/billerlist']">Fetch and Pay Bills</a>
                 </li>
-                <li routerLink='' (click)="clickBillEvent()">
-                  <a>Direct Pay Bills</a>
+                <li  (click)="clickBillEvent()">
+                  <a [routerLink]="['/main/view-custom-biller']">Direct Pay Bills</a>
                 </li>
               </ul>
             </li>
 
 
             <li *ngIf="rolename=='maker' || rolename=='ccmaker'" class=" drop2 col-md-12 cust"><a class="[ animate ]"
-                (click)="closealldrop()" [routerLink]="['/main/unitary-biller']"><span>
+                (click)="closealldrop()"><span>
                   <img id="user" src="assets/img/add-unitary-bills.png" /></span>
                 Add Unitary </a>
 
                 <ul class="dropdown-menu menu2">
-                  <li routerLink="" (click)="clickBillEvent()">
-                    <a>Fetch and Pay Bills</a>
+                  <li  (click)="clickBillEvent()">
+                    <a [routerLink]="['/main/unitary-biller']">Fetch and Pay Bills</a>
                   </li>
-                  <li routerLink='' (click)="clickBillEvent()">
-                    <a>Direct Pay Bills</a>
+                  <li (click)="clickBillEvent()">
+                    <a [routerLink]="['/main/add-custom-biller']">Direct Pay Bills</a>
                   </li>
                 </ul>
 
@@ -141,28 +141,28 @@
 
 
             <li *ngIf="rolename=='maker' || rolename=='ccmaker'" class="drop3 col-md-12 cust"><a class="[ animate ]"
-                (click)="closealldrop()" [routerLink]="['/main/biller-bulk']"><span>
+                (click)="closealldrop()"><span>
                   <img id="user" src="assets/img/add-bulk.png" /></span>
                 Add Bulk </a>
                 <ul class="dropdown-menu menu3">
-                  <li routerLink="" (click)="clickBillEvent()">
-                    <a>Fetch and Pay Bills</a>
-                  </li>
-                  <li routerLink='' (click)="clickBillEvent()">
-                    <a>Direct Pay Bills</a>
-                  </li>
+                  <li (click)="clickBillEvent()">
+                    <a [routerLink]="['/main/biller-bulk']">Fetch and Pay Bills</a>
+                  </li>  
+                  <!-- <li (click)="clickBillEvent()">
+                    <a [routerLink]="['/main/biller-bulk']">Direct Pay Bills</a>
+                  </li> -->
                 </ul>
             </li>
             <li *ngIf="rolename=='aschecker' || rolename=='checker' || rolename=='ccchecker'" class="drop4 col-md-12 cust"><a
-                class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/pending-biller']"><span>
+                class="[ animate ]" (click)="closealldrop()"><span>
                   <img id="user" src="assets/img/add-unitary-bills.png" /></span>
-                Pending Billers </a>
+                Pending Bills </a>
                 <ul class="dropdown-menu menu4">
-                  <li routerLink="" (click)="clickBillEvent()">
-                    <a>Fetch and Pay Bills</a>
+                  <li (click)="clickBillEvent()">
+                    <a [routerLink]="['/main/pending-biller']">Fetch and Pay Bills</a>
                   </li>
-                  <li routerLink='' (click)="clickBillEvent()">
-                    <a>Direct Pay Bills</a>
+                  <li (click)="clickBillEvent()">
+                    <a [routerLink]="['/main/custom-pending-bills']">Direct Pay Bills</a>
                   </li>
                 </ul>
             </li>
@@ -175,53 +175,59 @@
           <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown"
             (click)="openpaydrop()">Payments
           </a>
-          <ul class="[ dropdown-menu ]" role="menu" [ngStyle]="{'display':displaypaydrop}">
+          <ul class="dropdown-menu dropdown-menu-pay" role="menu" [ngStyle]="{'display':displaypaydrop}">
             <li class="drop1 col-md-12 cust"><a class="[ animate ]" (click)="closealldrop()"
-                [routerLink]="['/main/paymentlist']">
+               >
                 <span> <img id="user" src="assets/img/view-payment.png" style="height:20px; width:25px;" /></span>
                 View Payments </a>
                 <ul class="dropdown-menu menu1">
-                  <li routerLink="" (click)="clickPayEvent()">
-                    <a>Fetch and Pay Payments</a>
+                  <li (click)="clickPayEvent()">
+                    <a [routerLink]="['/main/paymentlist']">Fetch and Pay</a>
                   </li>
-                  <li routerLink='' (click)="clickPayEvent()">
-                    <a>Direct Pay Payments</a>
+                  <li (click)="clickPayEvent()">
+                    <a [routerLink]="['/main/view-custom-bill-payments']">Direct Pay</a>
                   </li>
                 </ul>
             </li>
             <li *ngIf="rolename=='maker' || rolename=='ccmaker'" class="drop2 col-md-12 cust"><a class="[ animate ]"
-                (click)="closealldrop()" [routerLink]="['/main/make-payment']"><span>
+                (click)="closealldrop()"><span>
                   <img id="user" src="assets/img/make-payment.png" style="height:16px; width:35px;" /></span>
                 Make Payments </a>
                 <ul class="dropdown-menu menu2">
-                  <li routerLink="" (click)="clickPayEvent()">
-                    <a>Fetch and Pay</a>
+                  <li (click)="clickPayEvent()">
+                    <a [routerLink]="['/main/make-payment']">Fetch and Pay</a>
                   </li>
-                  <li routerLink='' (click)="clickPayEvent()">
-                    <a>Direct Pay</a>
+                  <li (click)="clickPayEvent()">
+                    <a [routerLink]="['/main/add-custom-bill-payment']">Direct Pay</a>
                   </li>
                 </ul>
             </li>
+            <li *ngIf="rolename=='maker' || rolename=='ccmaker'" class="drop2 col-md-12 cust"><a class="[ animate ]"
+              (click)="closealldrop()" [routerLink]="['/main/make-prepaid-payment']"><span>
+                <img id="user" src="assets/img/make-payment.png" style="height:16px; width:35px;" /></span>
+              Make Prepaid Payments </a>
+            
+          </li>
             <li *ngIf="rolename=='maker' || rolename=='ccmaker'" class="drop3 col-md-12 cust"><a class="[ animate ]"
-                (click)="closealldrop()" [routerLink]="['/main/make-prepaid-payment']"><span>
+                (click)="closealldrop()"><span>
                   <img id="user" src="assets/img/make-payment.png" style="height:16px; width:35px;" /></span>
                 Add Bulk Payments</a>
                 <ul class="dropdown-menu menu3">
-                  <li routerLink='' (click)="clickPayEvent()">
-                    <a>Direct Pay</a>
+                  <li (click)="clickPayEvent()">
+                    <a [routerLink]="['/main/custom-bulk-payments']">Direct Pay</a>
                   </li>
                 </ul>
             </li>
             <li *ngIf="rolename=='aschecker' || rolename=='checker' || rolename=='ccchecker'" class="drop4 col-md-12 cust"><a
-                class="[ animate ]" (click)="closealldrop()" [routerLink]="['/main/pending-payments']"><span>
+                class="[ animate ]" (click)="closealldrop()"><span>
                   <img id="user" src="assets/img/make-payment.png" style="height:16px; width:35px;" /></span>
                 Pending Payments </a>
                 <ul class="dropdown-menu menu4">
-                  <li routerLink="" (click)="clickPayEvent()">
-                    <a>Fetch and Pay Payments</a>
+                  <li (click)="clickPayEvent()">
+                    <a [routerLink]="['/main/pending-payments']">Fetch and Pay</a>
                   </li>
-                  <li routerLink='' (click)="clickPayEvent()">
-                    <a>Direct Pay Payments</a>
+                  <li (click)="clickPayEvent()">
+                    <a [routerLink]="['/main/custom-pending-bill-payments']">Direct Pay</a>
                   </li>
                 </ul>
             </li>
