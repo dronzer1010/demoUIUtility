@@ -162,6 +162,7 @@ initiatedon:boolean=false;
     console.log(this.filterinterval)
   }
   onItemSelectDown(items:any){
+    this.downloadArray=[]
     console.log(items);
     if(items['item_id']==2){
       this.display='block';

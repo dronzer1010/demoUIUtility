@@ -407,6 +407,7 @@ console.log("File Upload Started")
   }
 
   downloadreport(){
+    this.downloadarray=[]
     this.downloaddone=true;
     for(let data of this.rejectbill){
       var obj={

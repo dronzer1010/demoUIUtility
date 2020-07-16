@@ -270,6 +270,7 @@ filter:any;
   }
 
   onItemSelectDown(items:any){
+    this.downloadArray=[]
     console.log(items);
     if(items['item_id']==2){
       this.display='block';
