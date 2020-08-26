@@ -599,9 +599,53 @@ for(var i=0;i<=this.states.length;i++){
        var checkerid=this.selectedItems1.map(checker=>checker['item_id']).join(',');
    console.log(checkerid)
    this.billdata['selectcheckertemp']=checkerid
+   console.log(this.billdata['selectcheckertemp'])
+   console.log(this.showbus)
+   console.log(this.showcircles)
+   if(this.showbus==true){
+   if(this.billdata['consumerno']==undefined && this.billdata['glexpensecode']==undefined && this.billdata['email']==undefined && this.billdata['ifsc']==undefined && this.billdata['accno']==undefined && this.billdata['contact']==undefined && this.billdata['bucode']==undefined ){
+    this.toastr.warning("Please fill all the details first!","Alert",{
+        timeOut:3000,
+        positionClass:'toast-top-center'
+        })
+   }else{
     this.billdetails=false;
     this.conf=true;
     this.billertype=false;
+   }
+}else if(this.showcircles==true){
+    if(this.billdata['consumerno']==undefined && this.billdata['glexpensecode']==undefined && this.billdata['email']==undefined && this.billdata['ifsc']==undefined && this.billdata['accno']==undefined && this.billdata['contact']==undefined && this.billdata['cirle']==undefined){
+        this.toastr.warning("Please fill all the details first!","Alert",{
+            timeOut:3000,
+            positionClass:'toast-top-center'
+            })
+    }else{
+        this.billdetails=false;
+        this.conf=true;
+        this.billertype=false;
+    }
+}else{
+    if(this.billdata['consumerno']==undefined && this.billdata['glexpensecode']==undefined && this.billdata['email']==undefined && this.billdata['ifsc']==undefined && this.billdata['accno']==undefined && this.billdata['contact']==undefined){
+        this.toastr.warning("Please fill all the details first!","Alert",{
+            timeOut:3000,
+            positionClass:'toast-top-center'
+            })
+    }else{
+        this.billdetails=false;
+        this.conf=true;
+        this.billertype=false;
+    }
+}
+   console.log(this.billdata['consumerno'])
+   console.log(this.billdata['glexpensecode'])
+   console.log(this.billdata['email'])
+   console.log(this.billdata['ifsc'])
+   console.log(this.billdata['accno'])
+   console.log(this.billdata['contact'])
+   console.log(this.billdata['circle'])
+   console.log(this.billdata['bucode'])
+   console.log(this.billdata['selectcheckertemp'])
+
   }
 
   succesadd(){
@@ -776,7 +820,7 @@ this.billerservice.updatebillsNew(array).then(resp=>{
             this.billdetails=false;
             this.conf=true;
             this.billertype=false;
-    }else if(error['error']['msg']=='Biller Details Not Available'){
+    }else if(error['error']['msg']=='Biller Details Not Available, Please fill all the details, All fields are mandatory'){
         this.loaderService.display(false);
         this.toastr.error(error['error']['msg'],"Alert",{
             timeOut:3000,

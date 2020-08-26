@@ -601,7 +601,7 @@ this.paymentservice.getAllPayments().then(resp=>{
       this.paymentservice.getattachment(id).then(resp=>{
         console.log(resp)
       },error=>{
-        console.log(error)
+        console.log(JSON.parse(error))
       })
 
     }
