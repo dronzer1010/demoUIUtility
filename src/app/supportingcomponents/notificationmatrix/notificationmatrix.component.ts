@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-//import { NotificationMatrixService } from './notificationmatrix.service';
+import { NotificationMatrixService } from './notificationmatrix.service';
 import { Users } from '../../models/users';
-// import{UserService} from '../../api/user.service'
-// import * as $ from 'jquery';
+ import{UserserviceService} from '../../api/userservice.service';
+
 declare var jquery: any;
 declare var $: any;
 @Component({
@@ -193,7 +193,7 @@ export class NotificationmatrixComponent implements OnInit {
   public enableMe: any;
   public enableLogin:boolean=false;
   public Showme: any;
-  constructor() { }
+  constructor(private asNotificationMatrixService: NotificationMatrixService,private userservice: UserserviceService) { }
 
   ngOnInit() {
     this.enableMe = false;
@@ -279,10 +279,12 @@ console.log(this.currentUser)
   }
 
   private loadNoticationMatrix(){
-    //this.asNotificationMatrixService.getNotificationDetails().then(resp => {
-     // this.asNotificationDetails = resp.data;
-     this.asNotificationDetails ="nmblist NULL";
+    this.asNotificationMatrixService.getNotificationDetails().then(resp => {
+      this.asNotificationDetails = resp.data;
+     //this.asNotificationDetails ="nmblist NULL";
       console.log(this.asNotificationDetails)
+      console.log('supplier app otp value');
+      //console.log(this.asNotificationDetails.suppliers.suppliersaotp);
       if(this.asNotificationDetails!="nmblist NULL"){
       if (this.asNotificationDetails.user.userpotp == 2) {
         this.regOtpUserPending = true;
@@ -537,10 +539,11 @@ console.log(this.currentUser)
       this.regOtpLoginApprove=true;
       }
     
-    //});
+    });
   }
 
   savematrixdata(): void {
+    console.log('save matrix called')
     let obj: any = {};
     if (this.regOtpUserPending == true) {
       obj.userpotp = 2;
@@ -882,9 +885,9 @@ console.log(this.currentUser)
     this.enableMe = false;
     this.Showme = false;
     console.log(obj)
-    // this.asNotificationMatrixService.sendNotificationDetails(obj).then(resp => {
-    //   this.myNotificationDetails = resp.data;
-    // });
+     this.asNotificationMatrixService.sendNotificationDetails(obj).then(resp => {
+      this.myNotificationDetails = resp.data;
+     });
   }
 
   resetmatrixdata():void {
