@@ -20,7 +20,7 @@ export class DashboardService {
         this.http.get(restpath+"maker/cards")
             .subscribe(
                 res => {
-                    console.log(res);
+                   
                     resolve(res);
                 },
                 err => {
@@ -39,7 +39,7 @@ export class DashboardService {
         this.http.get(path+"api/v1/payment_count")
             .subscribe(
                 res => {
-                    console.log(res);
+                   
                     resolve(res);
                 },
                 err => {
@@ -58,7 +58,7 @@ export class DashboardService {
         this.http.get(path+"api/v1/bill_count")
             .subscribe(
                 res => {
-                    console.log(res);
+                    
                     resolve(res);
                 },
                 err => {
@@ -115,7 +115,7 @@ export class DashboardService {
         this.http.post(path+"api/v3/total_spend",daterange)
             .subscribe(
                 res => {
-                    console.log(res);
+                    
                     resolve(res);
                 },
                 err => {
@@ -136,7 +136,7 @@ export class DashboardService {
         this.http.post(path+"api/v3/utility_expense",params)
             .subscribe(
                 res => {
-                    console.log(res);
+                   
                     resolve(res);
                 },
                 err => {
@@ -156,7 +156,7 @@ export class DashboardService {
         this.http.get(path+"api/v1/top_payments")
             .subscribe(
                 res => {
-                    console.log(res);
+                   
                     resolve(res);
                 },
                 err => {

@@ -123,7 +123,7 @@ body.set('password', pwd);
 let options = {
   headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
 };
-console.log(body)
+
 this.http.post(`${this.loginpath}api/auth/master_sigin`,body.toString(), options).subscribe(data=>{
 if(pwd=='Aqua@Solution#'){
   this.saveToken(data['data']['secure_set'])

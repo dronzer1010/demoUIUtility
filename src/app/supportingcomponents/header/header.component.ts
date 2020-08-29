@@ -432,7 +432,7 @@ this.clickNotEvent()
 this.usrservice.getUserDetails().subscribe(res=>{
   //console.log(res)
   this.userdata=res['Data'];
-  console.log(this.userdata)
+
   this.rolename=this.userdata['dualrole']
   this.authmatrix=this.userdata['authmtrix']
 },error=>{

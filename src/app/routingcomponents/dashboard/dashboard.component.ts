@@ -89,13 +89,13 @@ filtercategory:any="6f6af57a-5c48-442e-b5b8-8b3559b10cd9";
     this.getUserDetail()
    // this.rolename=localStorage.getItem('rolename')
     this.params = this.activatedRoute.snapshot.queryParams["msg"];
-    console.log(this.rolename)
+
     if(this.params=='firstloginas'){
    
       this.displayWelcomModal='block'
     
     }
-console.log(this.approvedcard)
+
 this.loadtotalspends()
 this.utilityexpnse()
    // this.loadallcards()
@@ -332,7 +332,7 @@ private getUserDetail(){
   this.usrservice.getUserDetails().subscribe(res=>{
     //console.log(res)
     this.userdata=res['Data'];
-    console.log(this.userdata)
+   
     this.rolename=this.userdata['dualrole']
     this.username=this.userdata['firstname']+" "+this.userdata['lastname']
     if(this.rolename=='checker' || this.rolename=='aschecker' || this.rolename=='ccchecker'){
@@ -356,7 +356,7 @@ private getUserDetail(){
       this.dashservice.getAllCards().then(data=>{
         //console.log(data["data"])
        this.cardData=data["data"]
-        console.log(this.cardData)
+        
         for(let i = 0; i < this.cardData.length; i++){
           if(this.cardData[i].status == "Approved"){
               this.approvedcard.push(this.cardData[i]);
@@ -369,7 +369,7 @@ private getUserDetail(){
         this.cardsize=0
       }
   
-      console.log(this.approvedcard)
+    
   
         // if(this.currenCard ==-1){
         //   this.activeElement=this.approvedcard[0]["id"]
@@ -382,7 +382,7 @@ private getUserDetail(){
 
     private getDefbillLength(){
       this.dashservice.getbilldefaultcount().then(resp=>{
-        console.log(resp)
+       
         this.billerlength=resp['pending']
         this.apprbilllength=resp['registered']
         this.rejbilllength=resp['rejected']
@@ -393,7 +393,7 @@ private getUserDetail(){
 
     private getDefpayLength(){
       this.dashservice.getpaydefaultcount().then(resp=>{
-        console.log(resp)
+      
         this.penpaylength=resp['pending']
         this.apprpaylength=resp['approved']
         this.rejpaylength=resp['rejected']
@@ -451,7 +451,7 @@ private getUserDetail(){
 
     private lastpaymentsdetails(){
       this.dashservice.getlast5payments().then(resp=>{
-        console.log(resp)
+      
         this.apprPaydata=resp['data']
       },error=>{
         console.log(error)
@@ -485,7 +485,7 @@ private getUserDetail(){
         this.spenddata=resp['data']
         this.totalspendamt=resp['total_amount']
         this.loadPieChart()
-        console.log(this.spenddata)
+       
       },error=>{
         console.log(error['status'])
         if(error['status']==401){
@@ -503,7 +503,7 @@ private getUserDetail(){
       this.dashservice.getUtilityExpense(params).then(resp=>{
       //  console.log(resp)
        this.utilexpensedata=resp['data']
-       console.log(this.utilexpensedata)
+     
        this.loadBarChart()
       },error=>{
         console.log(error)

@@ -121,8 +121,8 @@ export class MakePaymentComponent implements OnInit {
     })
     
     this.selectedcard=this.approvedcard[0]
-    console.log(this.selectedcard)
-    console.log(this.selectedcard['id'])
+   // console.log(this.selectedcard)
+   // console.log(this.selectedcard['id'])
   }
 
 private getuserdetails(){
@@ -301,7 +301,7 @@ getValidBillers(){
     this.cards.getAll().subscribe(data=>{
       //console.log(data["data"])
      this.cardData=data["data"]
-      console.log(this.cardData)
+     // console.log(this.cardData)
       for(let i = 0; i < this.cardData.length; i++){
         if(this.cardData[i].status == "Approved"){
             this.approvedcard.push(this.cardData[i]);
@@ -310,8 +310,8 @@ getValidBillers(){
   
     }
 
-    console.log(this.approvedcard)
-    console.log(this.approvedcard[0])
+   // console.log(this.approvedcard)
+  //  console.log(this.approvedcard[0])
       if(this.currenCard ==-1){
         this.activeElement=this.approvedcard[0]["id"]
         this.getActivecard(this.approvedcard[0]["id"]);
