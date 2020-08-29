@@ -156,7 +156,8 @@ import { OtpBillpaymentsNewComponent } from './customcomponents/otp-billpayments
 import { NgDatepickerModule } from 'ng2-datepicker';
 import { AddBulkBillerComponent } from './customcomponents/add-bulk-biller/add-bulk-biller.component';
 import { AddBulkBillPaymentComponent } from './customcomponents/add-bulk-bill-payment/add-bulk-bill-payment.component';
-
+import { NotificationMatrixService } from './supportingcomponents/notificationmatrix/notificationmatrix.service';
+import { SessionService } from './sessionservice/storage.service';
 // import { FusionChartsModule } from 'angular-fusioncharts';
 // import FusionCharts from 'fusioncharts/core';
 // import Column2D from 'fusioncharts/viz/column2d';
@@ -322,7 +323,7 @@ import { AddBulkBillPaymentComponent } from './customcomponents/add-bulk-bill-pa
 
   ],
  
-  providers: [LoaderService,ExcelService,DatePipe,AuthService,UserserviceService,CardserviceService,GroupserviceService,RuleserviceService,SetupserviceService,AccoutsetupService,BillerserviceService,PaymentserviceService,RmservicesService,IfscVerificationService,{
+  providers: [LoaderService,ExcelService,SessionService,DatePipe,AuthService,UserserviceService,CardserviceService,GroupserviceService,RuleserviceService,SetupserviceService,AccoutsetupService,BillerserviceService,PaymentserviceService,RmservicesService,IfscVerificationService,NotificationMatrixService,{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthinterceptorService,
     multi: true

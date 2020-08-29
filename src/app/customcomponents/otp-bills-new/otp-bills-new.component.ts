@@ -80,22 +80,22 @@ export class OtpBillsNewComponent implements OnInit {
     this.billservice.sendOtpNew(this.ids).then(resp => {
       this.validateOPT = resp.data;
       console.log(resp.msg)
-      if(resp.msg=='OTP disabled'){
-        this.billservice.validateOTPNew(resp.msg).then(resp => {
-          this.approveBills = resp;
-          if (!!this.approveBills.msg && this.approveBills.msg == "Bill successfully approved") {
+      if(resp.venotpvalue==0 && resp.Msg == 'Vendor approved '){
+        // this.billservice.validateOTPNew(resp.msg).then(resp => {
+        //   this.approveBills = resp;
+        //   if (!!this.approveBills.msg && this.approveBills.msg == "Bill successfully approved") {
            
             this.router.navigate(['/main/successmsg'],{queryParams:{msg:'billnewapprsuccess'}});
-            this.loaderService.display(false)
-          }
-          else {
-            this.loaderService.display(false)
-            this.toastr.warning("Failed to approve!!","Alert",{
-              timeOut:3000,
-              positionClass:'toast-top-center'
-              })
-          }
-        }); 
+          this.loaderService.display(false)
+        //   }
+        //   else {
+        //     this.loaderService.display(false)
+        //     this.toastr.warning("Failed to approve!!","Alert",{
+        //       timeOut:3000,
+        //       positionClass:'toast-top-center'
+        //       })
+        //   }
+        // }); 
       }else{
         this.loaderService.display(false);
       }

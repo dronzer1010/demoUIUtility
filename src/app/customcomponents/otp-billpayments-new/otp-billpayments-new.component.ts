@@ -49,25 +49,33 @@ export class OtpBillpaymentsNewComponent implements OnInit {
     this.paymentservice.sendOtpNew(this.ids).then(resp => {
       this.validateOPT = resp.data;
       console.log(resp)
-      if(resp['msg']=='OTP disabled'){
+      if(resp.payotpvalue==0 && resp.data == 'Bill Payment Approved Successfully'){
       
-          this.paymentservice.validateOTPNew(resp['msg']).then(resp => {
-            this.approvePayments = resp;
-            if (!!this.approvePayments.msg && this.approvePayments.msg == "Succes") {
+          // this.paymentservice.validateOTPNew(resp['msg']).then(resp => {
+          //   this.approvePayments = resp;
+          //   if (!!this.approvePayments.msg && this.approvePayments.msg == "Succes") {
               this.router.navigate(['/main/successmsg'],{queryParams:{msg:'paymentnewapprsuccess'}});
               this.loaderService.display(false)
-            }
-            else {
-              this.loaderService.display(false)
-              this.toastr.warning("Failed to approve payments!!","Alert",{
-                timeOut:3000,
-                positionClass:'toast-top-center'
-                })
-            }
-          });
+          //   }
+          //   else {
+          //     this.loaderService.display(false)
+          //     this.toastr.warning("Failed to approve payments!!","Alert",{
+          //       timeOut:3000,
+          //       positionClass:'toast-top-center'
+          //       })
+          //   }
+          // });
       
-      }else{
+      }else if(resp.payotpvalue==1 && resp.data == 'otp sent SucessFully'){
+       
         this.loaderService.display(false);
+      }else{
+
+        this.loaderService.display(false);
+        this.toastr.warning("Failed to send otp!!","Alert",{
+                 timeOut:3000,
+                 positionClass:'toast-top-center'
+        })
       }
       
 
