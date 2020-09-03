@@ -72,7 +72,7 @@ export class RmdashboardComponent implements OnInit {
   private loadUserDetails(){
     this.rmservice.getUserDetails().then(res => {
       this.dashboardData = res.Data;
-      console.log("User Data..." + this.dashboardData);
+     
     });
 
   }

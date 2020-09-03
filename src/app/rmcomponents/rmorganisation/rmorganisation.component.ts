@@ -17,15 +17,14 @@ export class RmorganisationComponent implements OnInit {
   ngOnInit() {
     this.rmservice.getAllOrganizations().then(resp => {
       this.orgList = resp.data;
-      console.log(this.orgList);
+     
     });
   }
 
   onOrganizationChange(orgName) {
-    console.log('orgName : ' + orgName);
+   
     this.selectedOrg = this.getSelectedOrgByName(orgName);
-    console.log('selectedOrg : ');
-    console.log(this.selectedOrg)
+  
   }
 
   getSelectedOrgByName(selectedName: string): any {

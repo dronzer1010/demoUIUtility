@@ -15,18 +15,9 @@
                     placeholder="Search for Location, Biller Type or Utility" [(ngModel)]="searchText">
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 text-right">
-                  <ng-multiselect-dropdown [ngClass]="'first-multiselect1'" [placeholder]="'All Categories'"
-                    [data]="dropdownCat" [(ngModel)]="selectedItems1" [settings]="dropdownSettings1"
-                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
-                  </ng-multiselect-dropdown>
-                  <ng-multiselect-dropdown [ngClass]="'first-multiselect2'" [placeholder]="'This Month'"
-                    [data]="dropdownList" [(ngModel)]="selectedItems2" [settings]="dropdownSettings2"
-                    (onSelect)="onIntervalSelect($event)">
-                  </ng-multiselect-dropdown>
-                  <ng-multiselect-dropdown [ngClass]="'first-multiselect3'" [placeholder]="'Status'"
-                    [data]="dropdownStatus" [(ngModel)]="statusselected" [settings]="statusddSettings"
-                    (onSelect)="onSelectStatus($event)" (onSelectAll)="onSelectAllStatus($event)">
-                  </ng-multiselect-dropdown>
+                 
+            
+                
                   <!-- <button id="button" type="button" class="ml-2"><img src="../../../assets/img/downloadlist.png" alt=""> Download File</button> -->
                   <ng-multiselect-dropdown [ngClass]="'first-multiselect4'" [placeholder]="'Download List'"
                     [data]="dropdownDownload" [(ngModel)]="selectedItems" [settings]="dropdownSettings"
@@ -188,7 +179,7 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right">
-                  <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="getfilterdata()" type="button">Filter Bills</button>
+                  <!-- <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="getfilterdata()" type="button">Filter Bills</button> -->
                 </div>
                 <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right"><button class="btn1">Approve Biller</button>
                     <button class="btn2 ml-2">Reject Biller</button></div> -->
@@ -207,37 +198,37 @@
                         <td>Bill Date <img src="assets/img/Filter.png" alt=""></td>
                         <td>Due Date <img src="assets/img/Filter.png" alt=""></td>
                         <td>Status <img src="assets/img/Filter.png" alt=""></td>
-                      
+                        <td></td>
                         <td>&nbsp;</td>
                       </tr>
                     </thead>
                     <tbody>
                       <ng-container
-                        *ngFor="let bill of mf.data |orderBy: key : reverse|rMbillerFilter :{utility: searchText,biller_name:searchText,bill_date:searchText,due_date:searchText,status:searchText,short_name:searchText,gl_expense_code:searchText,consumer_no:searchText,display_name_bu:searchText,state:searchText,display_name_circle:searchText,contact_no:searchText,contact_address:searchText,email:searchText,created_by:searchText,created_on:searchText,approvedby:searchText,approvedon:searchText}; let i=index;">
+                       >
                         <tr>
-                          <td>{{i+1}}</td>
-                          <td>{{bill.utility}}</td>
-                          <td>{{bill.biller_name}}</td>
-                          <td>{{bill.bill_date}}</td>
-                          <td>{{bill.due_date}}</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
                           <td><a href="javascript:void(0);" class="btn"
-                              [ngClass]="{'appoved': bill.status === 'Registered', 'Rejected': bill.status  === 'Rejected', 'Pending': bill.status  === 'Pending'}"
-                              role="button">{{bill.status}}</a></td>
-                     
+                             
+                              role="button"></a></td>
+                          <td style="padding-left: 1%;"></td>
                           <td style="padding:0 15px;"><img src="assets/img/tb_downarrow.png" alt=""
-                              (click)="bill.collapsed=!bill.collapsed;getApproverDetails(bill.id,i)"></td>
+                            ></td>
                         </tr>
-                        <tr class="rowShow grayStrip" *ngIf="bill.collapsed && selectedIndex==i">
-                          <td class="custmtd" colspan="7">
+                        <tr class="rowShow grayStrip">
+                          <td class="custmtd" colspan="8">
                             <div class="tablediv">
                               <h5>Biller Details</h5>
                               <div class="mb-1">
                                 <div class="span_width">Short Name</div> <span> : </span> &nbsp;
-                                <div class="bold_span">{{bill.short_name}}</div>
+                                <div class="bold_span"></div>
                               </div>
                               <div class="mb-1">
                                 <div class="span_width">GL/Expense Code</div> <span> : </span> &nbsp;
-                                <div class="bold_span">{{bill.gl_expense_code}}</div>
+                                <div class="bold_span"></div>
                               </div>
                               <!-- <div class="mb-1">
                               <div class="span_width">Meter Reading:</div>
@@ -249,20 +240,20 @@
                             </div> -->
                               <div class="mb-1">
                                 <div class="span_width">Location</div> <span> : </span> &nbsp;
-                                <div class="bold_span">{{bill.state}}</div>
+                                <div class="bold_span"></div>
                                 
                               </div>
                               <div class="mb-1">
-                                <div class="span_width">{{bill.parameter_1}}</div> <span> : </span> &nbsp;
-                                <div class="bold_span">{{bill.consumer_no}}</div>
+                                <div class="span_width"></div> <span> : </span> &nbsp;
+                                <div class="bold_span"></div>
                               </div>
-                              <div class="mb-1" *ngIf="bill.display_name_bu!=null">
-                                <div class="span_width">{{bill.display_name_bu}}</div> <span> : </span> &nbsp;
-                                <div class="bold_span">{{bill.bu}}</div>
+                              <div class="mb-1">
+                                <div class="span_width"></div> <span> : </span> &nbsp;
+                                <div class="bold_span"></div>
                               </div>
-                              <div class="mb-1" *ngIf="bill.display_name_circle!=null">
-                                <div class="span_width">{{bill.display_name_circle}}</div> <span> : </span> &nbsp;
-                                <div class="bold_span">{{bill.circle}}</div>
+                              <div class="mb-1">
+                                <div class="span_width"></div> <span> : </span> &nbsp;
+                                <div class="bold_span"></div>
                               </div>
                               <!-- <div class="mb-1">
                               <div class="span_width">Ref. No. 2</div>  <span> : </span> &nbsp;
@@ -273,17 +264,17 @@
                               <h5>Contact Details</h5>
                               <div class="mb-1">
                                 <div class="span_width">Mobile No</div> <span> : </span> &nbsp;
-                                <div class="bold_span">{{bill.contact_no}}</div>
+                                <div class="bold_span"></div>
                               </div>
                               <div class="mb-1">
                                 <div class="span_width">Address</div> <span> : </span> &nbsp;
-                                <span class="bold_span" tooltip="{{bill.contact_address}}" placement="top"
-                                  show-delay="500">{{bill.contact_address}}</span>
+                                <span class="bold_span" tooltip="" placement="top"
+                                  show-delay="500"></span>
                               </div>
                               <div>
                                 <div class="span_width">Email</div> <span> : </span> &nbsp;
-                                <span class="bold_span" tooltip="{{bill.email}}" placement="top"
-                                  show-delay="500">{{bill.email}}</span>
+                                <span class="bold_span" tooltip="" placement="top"
+                                  show-delay="500"></span>
                               </div>
                             </div>
                             <div class="tablediv noborder table3">
@@ -294,38 +285,38 @@
                               </div>
                               <div class="mb-1">
                                 <div class="span_width" >Initiated by</div> <span> : </span> &nbsp;
-                                <div class="bold_span" tooltip="{{bill.created_by}}" placement="top"
-                                show-delay="500">{{bill.created_by}}</div>
+                                <div class="bold_span" tooltip="" placement="top"
+                                show-delay="500"></div>
                               </div>
                               <div class="mb-1">
                                 <div class="span_width">Initiated on</div> <span> : </span> &nbsp;
-                                <div class="bold_span" tooltip="{{bill.created_on | formatDate}}" placement="top"
-                                show-delay="500">{{bill.created_on | formatDate}}</div>
+                                <div class="bold_span" tooltip="" placement="top"
+                                show-delay="500"></div>
                               </div>
-                              <ng-container *ngFor="let approver of approverdetails">
+                              <ng-container>
                               <div class="mb-1">
                                 <div class="span_width">Approved by</div> <span> : </span> &nbsp;
-                                <div class="bold_span" tooltip="{{approver.approved_by}}" placement="top"
-                                show-delay="500">{{approver.approved_by}}</div>
+                                <div class="bold_span" tooltip="" placement="top"
+                                show-delay="500"></div>
                               </div>
                               <div>
                                 <div class="span_width">Approved on</div> <span> : </span> &nbsp;
                                 
-                                <div class="bold_span"  tooltip="{{approver.approved_on | formatDate}}" placement="top"
-                                show-delay="500">{{approver.approved_on | formatDate}}</div>
+                                <div class="bold_span"  tooltip="" placement="top"
+                                show-delay="500"></div>
                               </div>
                               </ng-container>
                             </div>
                           </td>
                         </tr>
-                        <tr class="rowShow grayStrip" *ngIf="bill.collapsed && selectedIndex==i">
-                          <td colspan="7">
-                            <span class="text-left" *ngIf="bill.status=='Rejected'"><label style="color: #64289d;">Comment
-                                : &nbsp;</label>{{bill.rejection_reson}}</span>
+                        <tr class="rowShow grayStrip">
+                          <td colspan="8">
+                            <span class="text-left"><label style="color: #64289d;">Comment
+                                : &nbsp;</label></span>
                             <span class="pull-right">
                               <img style="cursor:pointer;"
                                 src="assets/img/attach.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                              
+                             
                             </span></td>
                         </tr>
                       </ng-container>

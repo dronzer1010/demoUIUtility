@@ -18,7 +18,7 @@ export class RmhomeComponent implements OnInit {
   ngOnInit() {
     this.rmservice.getUserDetails().then(res => {
       this.currentUser = res['Data'];
-      console.log(this.currentUser);
+     
       if(this.currentUser!=null || this.currentUser!=undefined){
         this.designation=this.currentUser['designation']
         this.rolename=this.currentUser['rolename']

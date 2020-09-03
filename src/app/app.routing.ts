@@ -80,6 +80,8 @@ import { OtpBillsNewComponent } from './customcomponents/otp-bills-new/otp-bills
 import { OtpBillpaymentsNewComponent } from './customcomponents/otp-billpayments-new/otp-billpayments-new.component';
 import { AddBulkBillerComponent } from './customcomponents/add-bulk-biller/add-bulk-biller.component';
 import { AddBulkBillPaymentComponent } from './customcomponents/add-bulk-bill-payment/add-bulk-bill-payment.component';
+import { RmdirpaypaymentsComponent } from './rmcomponents/rmdirpaypayments/rmdirpaypayments.component';
+import { RmdirpaybillersComponent } from './rmcomponents/rmdirpaybillers/rmdirpaybillers.component';
 const appRoutes: Routes = [ 
     { path:'main',component:UserhomeComponent,
     children:[
@@ -166,6 +168,8 @@ const appRoutes: Routes = [
     { path : 'rmtemplates', component: RmtemplatesComponent,canActivate: [AuthGuard]},
     { path : 'rmsample-bills', component: RmsamplebillsComponent,canActivate: [AuthGuard]},
     { path : 'rmfetch-report', component: RmfetchreportComponent,canActivate: [AuthGuard]},
+    { path : 'rm-directpay-billers/:id', component: RmdirpaybillersComponent,canActivate: [AuthGuard]},
+    { path : 'rm-directpay-payments', component: RmdirpaypaymentsComponent,canActivate: [AuthGuard]},
     { path: '**', redirectTo: '' }
 ];
 

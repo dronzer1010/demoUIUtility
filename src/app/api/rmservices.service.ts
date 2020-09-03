@@ -55,7 +55,7 @@ private groupUrl:any;
         this.http.get(path+"adminuser/whois")
             .subscribe(
                 res => {
-                    console.log(res);
+                    // console.log(res);
                     resolve(res);
                 },
                 err => {
@@ -107,7 +107,7 @@ getAllOrganizations(): Promise<any> {
       this.http.get(path+"rm/rmorganisations")
           .subscribe(
               res => {
-                  console.log(res);
+                //   console.log(res);
                   resolve(res);
               },
               err => {

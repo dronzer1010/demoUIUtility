@@ -15,11 +15,11 @@ import {Config} from '../../config'
 const path = new Config().getutilityBaseUrl();
 
 @Component({
-  selector: 'app-rmpayments',
-  templateUrl: './rmpayments.component.html',
-  styleUrls: ['./rmpayments.component.css']
+  selector: 'app-rmdirpaypayments',
+  templateUrl: './rmdirpaypayments.component.html',
+  styleUrls: ['./rmdirpaypayments.component.css']
 })
-export class RmpaymentsComponent implements OnInit {
+export class RmdirpaypaymentsComponent implements OnInit {
   display='none';
   displayBillDetails='none';
   displayLogs='none';
@@ -44,10 +44,13 @@ export class RmpaymentsComponent implements OnInit {
   dropdownSettings3 = {};
   tsdropdownsettings = {};
   psdropdownsettings = {};
+  batchdropdownsettings = {};
   tsdddata = [];
   psdddata = [];
+  batchdddata = [];
   tsselected = [];
   psselected = [];
+  batchselected = [];
   apprrejpay:any=[];
   settings = {
     bigBanner: true,
@@ -90,8 +93,9 @@ organisationid:any=[];
 filterorgid:any=[];
 filterinterval:any="0";
 filtercategory:any="6f6af57a-5c48-442e-b5b8-8b3559b10cd9";
-filterts:any="0";
-filterps:any="0";
+filterts:any=10;
+filterps:any=10;
+filterbatch:any=10;
 arrayorgid:any=[];
 paymentstatus:any;
 selectallpara:boolean=false;
@@ -166,7 +170,7 @@ filter:any;
     };
     this.dropdownDownload = [
       { item_id: 1, item_text: 'Standard List' },
-      { item_id: 2, item_text: 'Customise List' }
+    
     ];
    
     this.dropdownSettings = {
@@ -192,10 +196,10 @@ filter:any;
     };
 
     this.tsdddata = [
-      { item_id: 1, item_text: 'All' },
-      { item_id: 2, item_text: 'Approved' },
-      { item_id: 3, item_text: 'Rejected' },
-      { item_id: 4, item_text: 'Pending' }
+      { item_id: 10, item_text: 'All' },
+      { item_id: 1, item_text: 'Approved' },
+      { item_id: 2, item_text: 'Rejected' },
+      { item_id: 3, item_text: 'Pending' }
     ];
 
     this.psdropdownsettings = {
@@ -210,16 +214,34 @@ filter:any;
     };
 
     this.psdddata = [
-      { item_id: 1, item_text: 'All' },
-      { item_id: 2, item_text: 'Card Debited' },
-      { item_id: 3, item_text: 'Pending' },
-      { item_id: 4, item_text: 'Payment Success' },
-      { item_id: 5, item_text: 'Payment Failed' },
-      { item_id: 6, item_text: 'Rejected' },
-      { item_id: 7, item_text: 'Insufficient funds' },
+      { item_id: 10, item_text: 'All' },
+      { item_id: 1, item_text: 'Card Debited' },
+      { item_id: 2, item_text: 'Pending' },
+      { item_id: 3, item_text: 'Payment Returned' },
+      { item_id: 4, item_text: 'Insufficient Funds' },
+      { item_id: 5, item_text: 'Card Declined' },
     ];
 
+    this.batchdropdownsettings = {
+      singleSelection: true,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 1,
+      allowSearchFilter: false,
+      enableCheckAll:false
+    };
+
+    this.batchdddata = [
+      { item_id: 10, item_text: 'All' },
+      { item_id: 1, item_text: 'Batch 1' },
+      { item_id: 2, item_text: 'Batch 2' },
+      { item_id: 3, item_text: 'Batch 3' },
+      { item_id: 4, item_text: 'Batch 4' },
     
+    ];
+
   }
 
   private getAllOrg(){
@@ -240,7 +262,7 @@ filter:any;
         }
         this.organisationid.push(obj1)
       }
-      this.loadPayments();
+     // this.loadPayments();
       console.log(this.organisationid)
      
     });
@@ -379,265 +401,53 @@ console.log(this.selectedItems3)
     console.log(this.filterps)
   }
 
+  onbatchSelect(batch:any){
+    console.log(batch)
+    this.filterbatch=batch['item_text']
+    console.log(this.filterbatch)
+  }
+
   onpsselectall(ps:any){
     console.log(ps)
     this.filterps=ps['item_text']
     console.log(this.filterps)
   }
 
-  getapproverdetails(id,index){
-    this.selectedIndex = index;
-    this.paymentservice.paylogs(id).then(resp=>{
-      console.log(resp)
-      this.approverDetails=resp['data']
-      console.log(this.approverDetails)
-    },error=>{
-      console.log(error)
-    })
-
-  }
-
-  getextradetails(latepaycharge,incentives,remarks,meterreading){
-    this.displayBillDetails='block';
-    if(latepaycharge!=null)
-    this.latecharges=latepaycharge;
-    else
-    this.latecharges="--";
-    if(incentives!=null)
-    this.incentives=incentives;
-    else
-    this.incentives="--"
-    if(remarks!=null)
-    this.remarks=remarks
-    else
-    this.remarks="--"
-    if(meterreading)
-    this.meterreading=meterreading;
-    else
-    this.meterreading="--"
-}
-
-getfilterdata(){
-  this.loaderService.display(true);
-this.paymentData=[];
-this.totalamount=0
-this.fromfilterstring=this.datepipe.transform(this.fromfilter, 'yyyy-MM-dd');
-      this.tofilterstring=this.datepipe.transform(this.tofilter, 'yyyy-MM-dd');
-  if(this.filterps=='All')
-  this.filterps="0"
-  if(this.filterts=='All')
-  this.filterts="0"
-  this.payparams={
-    "org_ids":this.filterorgid,
-    "from":this.fromfilterstring,
-    "to": this.tofilterstring,
-    "payment_status":this.filterps,
-    "transaction_status":this.filterts,
-    "category":this.filtercategory
-  }
-  this.rmservice.getAllPayments(this.payparams).then(resp=>{
-   
-    console.log(resp)
-    this.paymentData=resp['data']
-    if(this.paymentData!=null){
-      for(var total of this.paymentData){
-        this.totalamount+=parseFloat(total['amount'])
+  getpaymentlogs(carddebittime,paystatustime,rejectreason,paymentstat){
+    this.paymentstatus=paymentstat
+      console.log(this.paymentstatus)
+      this.displayLogs='block';
+      if(carddebittime!=null){
+        carddebittime=this.datepipe.transform(carddebittime, 'M/d/yy, h:mm a');
+        console.log(carddebittime)
+     var crddate = carddebittime.split(", ")[0];
+     var crdtime= carddebittime.split(", ")[1];
+       // var crddate1 = crddate
+        this.carddebitdate=crddate;
+        //this.carddebittime=this.datepipe.transform(crdtime, 'h:mm a');;
+        this.carddebittime=crdtime
+        console.log(this.carddebittime)
+        
+      }else{
+        this.carddebitdate="--"
+        this.carddebittime="--"
       }
+      if(paystatustime!=null){
+        paystatustime=this.datepipe.transform(paystatustime, 'M/d/yy, h:mm a');
+        var psdate = paystatustime.split(", ")[0];
+        var pstime= paystatustime.split(", ")[1];
+        this.paysuccessdate=psdate;
+        //this.carddebittime=this.datepipe.transform(crdtime, 'h:mm a');;
+        this.paysuccesstime=pstime
+         }else{
+           this.paysuccessdate="--"
+           this.paysuccesstime="--"
+         }
+         if(rejectreason!=null || rejectreason!=undefined){
+           this.rejectreason=rejectreason;
+         }else{
+           this.rejectreason="--"
+         }
     }
-    this.loaderService.display(false);
-  },error=>{
-    console.log(error)
-    this.loaderService.display(false);
-    if(error['error']['msg']=='Payment not found'){
-      this.paymentData=[];
-      this.toastr.error("Payment not found for your filtered criteria!",'Alert',{
-        timeOut:3000,
-        positionClass:'toast-top-center'
-        })
-    }
-  })
-}
-
-getpaymentlogs(carddebittime,paystatustime,rejectreason,paymentstat){
-this.paymentstatus=paymentstat
-  console.log(this.paymentstatus)
-  this.displayLogs='block';
-  if(carddebittime!=null){
-    carddebittime=this.datepipe.transform(carddebittime, 'M/d/yy, h:mm a');
-    console.log(carddebittime)
- var crddate = carddebittime.split(", ")[0];
- var crdtime= carddebittime.split(", ")[1];
-   // var crddate1 = crddate
-    this.carddebitdate=crddate;
-    //this.carddebittime=this.datepipe.transform(crdtime, 'h:mm a');;
-    this.carddebittime=crdtime
-    console.log(this.carddebittime)
-    
-  }else{
-    this.carddebitdate="--"
-    this.carddebittime="--"
-  }
-  if(paystatustime!=null){
-    paystatustime=this.datepipe.transform(paystatustime, 'M/d/yy, h:mm a');
-    var psdate = paystatustime.split(", ")[0];
-    var pstime= paystatustime.split(", ")[1];
-    this.paysuccessdate=psdate;
-    //this.carddebittime=this.datepipe.transform(crdtime, 'h:mm a');;
-    this.paysuccesstime=pstime
-     }else{
-       this.paysuccessdate="--"
-       this.paysuccesstime="--"
-     }
-     if(rejectreason!=null || rejectreason!=undefined){
-       this.rejectreason=rejectreason;
-     }else{
-       this.rejectreason="--"
-     }
-}
-
-private loadPayments(){
-  this.loaderService.display(true);
-  console.log(this.organisationid)
-  this.filterorgid = this.organisationid.map(function(val) {
-    return val.OrgId;
-  })
-  console.log(this.filterorgid)
-  this.payparams={
-    "org_ids":this.filterorgid,
-    "from":this.datepipe.transform(this.fromfilter, 'yyyy-MM-dd'),
-    "to":this.datepipe.transform(this.tofilter, 'yyyy-MM-dd'),
-    "payment_status":"0",
-    "transaction_status":"0",
-    "category":"6f6af57a-5c48-442e-b5b8-8b3559b10cd9"
-  }
-  this.rmservice.getAllPayments(this.payparams).then(resp=>{
-    console.log(resp)
-    this.paymentData=resp['data']
-    if(this.paymentData!=null){
-      for(var total of this.paymentData){
-        this.totalamount+=parseFloat(total['amount'])
-      }
-    }
-    this.loaderService.display(false);
-  },error=>{
-    console.log(error)
-    this.loaderService.display(false);
-    if(error['error']['msg']=='Payment not found'){
-      this.paymentData=[];
-      this.toastr.error("Payment not found for these organisations!",'Alert',{
-        timeOut:3000,
-        positionClass:'toast-top-center'
-        })
-    }
-  })
-}
-
-getcustomreport(){
-  this.filterfromdate=this.datepipe.transform(this.filterfromdate, 'yyyy-MM-dd');
-  this.filtertodate=this.datepipe.transform(this.filtertodate, 'yyyy-MM-dd');
-  let headers = new Headers();
-  var paymentdata={
-    "Fromdate":this.filterfromdate,
-    "Todate":this.filtertodate,
-    "bill_name": this.custbill_name,
-"consumer_name": this.custconsumer_name,
-"consumer_no": this.custconsumer_no,
-"amount": this.custamount,
-"reference_no": this.custconsumer_no,
-"status": this.custstatus,
-"payment_status": this.custpayment_status,
-"short_name": this.custshort_name,
-"bill_date": this.custbill_date,
-"due_date": this.custdue_date,
-"location": this.custlocation,
-"bill_no": this.custbill_no,
-"card_no": this.custcard_no,
-"mobile_no": this.custmobile_no,
-"email": this.custemail,
-"address": this.custaddress,
-"crn": this.custcrn,
-"initiated_by": this.custinitiated_by,
-"initiated_at": this.custinitiated_at,
-"approved_on": this.custapproved_on,
-"comment": this.custcomment,
-"order_id": this.custorderid,
-"org_ids":this.filterorgid
-  }
-
-  let date =new Date()
-  this.downloadFile(paymentdata).subscribe(blob=>{
-    importedSaveAs(blob, "payments_"+date+".xlsx");
-  })
-
-  console.log(JSON.stringify(paymentdata))
-}
-
-downloadFile(arr:any): Observable<Blob> {
-  let options = new RequestOptions({responseType: ResponseContentType.Blob });
-  return this.http.post(path+`api/v3/rm_payment_report`,arr, options)
-      .map(res => res.blob())
-      .catch(this.handleError)
-}
-  handleError(handleError: any): Observable<Blob> {
-    throw new Error("Method not implemented.");
-  }
-
-  selectllpara(){
-    if(this.selectallpara==true){
-      this.custbill_name=true;
-      this.custamount=true;
-      this.custreference_no=true;
-      this.custconsumer_name=true;
-      this.custstatus=true;
-      this.custpayment_status=true;
-      this.custshort_name=true;
-      this.custdue_date=true;
-      this.custbill_date=true;
-      this.custcard_no=true;
-      this.custlocation=true;
-      this.custbill_no=true;
-      this.custemail=true;
-      this.custaddress=true;
-      this.custmobile_no=true;
-      this.custinitiated_by=true;
-      this.custinitiated_at=true;
-      this.custorderid=true;
-      this.custcrn=true;
-      this.custcomment=true;
-      this.custreference_no=true;
-      this.custapproved_on=true;
-      this.custshort_name=true;
-      this.custconsumer_no=true;
-    }else{
-      this.custbill_name=false;
-      this.custamount=false;
-      this.custreference_no=false;
-      this.custconsumer_name=false;
-      this.custstatus=false;
-      this.custpayment_status=false;
-      this.custshort_name=false;
-      this.custdue_date=false;
-      this.custbill_date=false;
-      this.custcard_no=false;
-      this.custlocation=false;
-      this.custbill_no=false;
-      this.custemail=false;
-      this.custaddress=false;
-      this.custmobile_no=false;
-      this.custinitiated_by=false;
-      this.custinitiated_at=false;
-      this.custorderid=false;
-      this.custcrn=false;
-      this.custcomment=false;
-      this.custreference_no=false;
-      this.custapproved_on=false;
-      this.custshort_name=false;
-      this.custconsumer_no=false;
-    }
-  }
-
-
-
-
 
 }

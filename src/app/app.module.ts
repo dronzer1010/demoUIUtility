@@ -158,6 +158,9 @@ import { AddBulkBillerComponent } from './customcomponents/add-bulk-biller/add-b
 import { AddBulkBillPaymentComponent } from './customcomponents/add-bulk-bill-payment/add-bulk-bill-payment.component';
 import { NotificationMatrixService } from './supportingcomponents/notificationmatrix/notificationmatrix.service';
 import { SessionService } from './sessionservice/storage.service';
+import { RmdirpaypaymentsComponent } from './rmcomponents/rmdirpaypayments/rmdirpaypayments.component';
+import { RmdirpaybillersComponent } from './rmcomponents/rmdirpaybillers/rmdirpaybillers.component';
+
 // import { FusionChartsModule } from 'angular-fusioncharts';
 // import FusionCharts from 'fusioncharts/core';
 // import Column2D from 'fusioncharts/viz/column2d';
@@ -269,7 +272,9 @@ import { SessionService } from './sessionservice/storage.service';
     OtpBillsNewComponent,
     OtpBillpaymentsNewComponent,
     AddBulkBillerComponent,
-    AddBulkBillPaymentComponent
+    AddBulkBillPaymentComponent,
+    RmdirpaypaymentsComponent,
+    RmdirpaybillersComponent
   ],
 
   imports: [
@@ -318,7 +323,7 @@ import { SessionService } from './sessionservice/storage.service';
     Ng2SearchPipeModule,
     SelectDropDownModule,
     PageSliderModule,
-    AngularFileUploaderModule
+    AngularFileUploaderModule,
 
 
   ],

@@ -27,6 +27,7 @@ export class RmheaderComponent implements OnInit {
   dashActive:boolean=true;
   cardActive:boolean=false;
   payActive:boolean=false;
+  dirpayActive:boolean=false;
   billActive:boolean=false;
   userActive:boolean=false;
   groupActive:boolean=false;
@@ -88,7 +89,7 @@ this.clickNotEvent()
     this.localstoragetoken=localStorage.getItem('token')
     this.supplierurl=supplierpath+'rmdashboard?token='+this.localstoragetoken+'&modules='+this.localstoragemodules;
     this.gsturl=gstpath+'rm-dashboard?token='+this.localstoragetoken+'&modules='+this.localstoragemodules;
-    console.log(this.rolename)
+   
     this.getModules()
     this.getUserDetail()
 
@@ -109,6 +110,7 @@ this.clickNotEvent()
     this.groupActive=false;
     this.ruleActive=false;
     this.fetchActive=false;
+    this.dirpayActive=false;
   }
 
   clickOrgEvent(){
@@ -125,12 +127,32 @@ this.clickNotEvent()
     this.groupActive=false;
     this.ruleActive=false;
     this.fetchActive=false;
+    this.dirpayActive=false;
   }
 
   clickPayEvent(){
     this.orgActive=false;
     this.dashActive=false;
     this.payActive=true;
+    this.billActive=false;
+    this.faqActive=false;
+    this.quickActive=false;
+    this.notActive=false;
+    this.profActive=false;
+    this.cardActive=false;
+    this.userActive=false;
+    this.groupActive=false;
+    this.ruleActive=false;
+    this.fetchActive=false;
+    this.dirpayActive=false;
+
+  }
+
+  clickDirPayEvent(){
+    this.orgActive=false;
+    this.dashActive=false;
+    this.payActive=false;
+    this.dirpayActive=true;
     this.billActive=false;
     this.faqActive=false;
     this.quickActive=false;
@@ -158,6 +180,7 @@ this.clickNotEvent()
     this.userActive=false;
     this.groupActive=false;
     this.ruleActive=false;
+    this.dirpayActive=false;
 
   }
   clickBillEvent(){
@@ -174,6 +197,7 @@ this.clickNotEvent()
     this.groupActive=false;
     this.ruleActive=false;
     this.fetchActive=false;
+    this.dirpayActive=false;
   }
   clickCardEvent(){
     this.orgActive=false;
@@ -189,6 +213,7 @@ this.clickNotEvent()
     this.groupActive=false;
     this.ruleActive=false;
     this.fetchActive=false;
+    this.dirpayActive=false;
   }
 
   
@@ -207,6 +232,7 @@ this.clickNotEvent()
     this.profActive=false;
     this.cardActive=false;
     this.fetchActive=false;
+    this.dirpayActive=false;
   }
 
   clickNotEvent(){
@@ -222,6 +248,7 @@ this.clickNotEvent()
     this.groupActive=false;
     this.ruleActive=false;
     this.fetchActive=false;
+    this.dirpayActive=false;
   }
 
   clickGroupEvent(){
@@ -237,6 +264,7 @@ this.clickNotEvent()
     this.groupActive=true;
     this.ruleActive=false;
     this.fetchActive=false;
+    this.dirpayActive=false;
   }
 
 
@@ -253,6 +281,7 @@ this.clickNotEvent()
     this.groupActive=false;
     this.ruleActive=false;
     this.fetchActive=false;
+    this.dirpayActive=false;
   }
 
 
@@ -269,6 +298,7 @@ this.clickNotEvent()
     this.groupActive=false;
     this.ruleActive=true;
     this.fetchActive=false;
+    this.dirpayActive=false;
   }
 
   clickOtherEvent(){
@@ -285,6 +315,7 @@ this.clickNotEvent()
     this.groupActive=false;
     this.ruleActive=false;
     this.otherActive=true;
+    this.dirpayActive=false;
   }
 
   openmyprofile(){
@@ -347,7 +378,7 @@ this.clickNotEvent()
     this.usrservice.getUserDetails().subscribe(res=>{
       //console.log(res)
       this.userdata=res['Data'];
-      console.log(this.userdata)
+      
       this.rolename=this.userdata['dualrole']
     },error=>{
       console.log(error)

@@ -544,20 +544,20 @@ if(confirmation==true){
     // }else{
     //   console.log("Transaction time passed")
     // }
-    if(this.holidays.includes(hd)){
-      this.toaster.error("You can't initiate payments on holidays, please try to initiate on working days !","Alert",{
-        timeOut:8000,
-        positionClass:'toast-top-center'
-        })
-    }else{
-    if(n=='Saturday' || n=='Sunday'){
-      this.toaster.error("You can't initiate payments on Satrurday and Sunday, please try to initiate between Monday and Friday !","Alert",{
-        timeOut:8000,
-        positionClass:'toast-top-center'
-        })
-    }else{
+    // if(this.holidays.includes(hd)){
+    //   this.toaster.error("You can't initiate payments on holidays, please try to initiate on working days !","Alert",{
+    //     timeOut:8000,
+    //     positionClass:'toast-top-center'
+    //     })
+    // }else{
+    // if(n=='Saturday' || n=='Sunday'){
+    //   this.toaster.error("You can't initiate payments on Satrurday and Sunday, please try to initiate between Monday and Friday !","Alert",{
+    //     timeOut:8000,
+    //     positionClass:'toast-top-center'
+    //     })
+    // }else{
     
-   if(nd<'13:58:00'){
+   //if(nd<'13:58:00'){
     this.loader.display(true);
     this.paymentData={
       "card_id":this.selectedcard['id'],
@@ -620,14 +620,14 @@ if(confirmation==true){
       positionClass:'toast-top-center'
       })
   }
-   }else{
-     this.toaster.error("Todays batch has passed now, you cannot initiate payment now. Please fetch the bills tomorrow between 08:00 AM and 01:58 PM and initiate the payments !","Alert",{
-       timeOut:8000,
-       positionClass:'toast-top-center'
-       })
-   }
-  }
-}
+  //  }else{
+  //    this.toaster.error("Todays batch has passed now, you cannot initiate payment now. Please fetch the bills tomorrow between 08:00 AM and 01:58 PM and initiate the payments !","Alert",{
+  //      timeOut:8000,
+  //      positionClass:'toast-top-center'
+  //      })
+  //  }
+ // }
+//}
    
     
    

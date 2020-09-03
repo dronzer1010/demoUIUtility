@@ -33,17 +33,21 @@
         <li class="dash" [ngClass]="orgActive ? 'active' : ''" (click)="clickOrgEvent()"><a class="[ animate ]"
             [routerLink]="['/rmorganisation']"><i class="nav-ico-menu"> </i>Organisation</a></li>
         
-        <li class="menu_sel" [ngClass]="groupActive ? 'active' : ''">
+        <!-- <li class="menu_sel" [ngClass]="groupActive ? 'active' : ''">
           <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="clickGroupEvent()"  [routerLink]="['/rmgrouporganisation']">Groups
           </a>
-        </li>
-        <li class="menu_sel" [ngClass]="ruleActive ? 'active' : ''">
+        </li> -->
+        <!-- <li class="menu_sel" [ngClass]="ruleActive ? 'active' : ''">
           <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="clickRuleEvent()" [routerLink]="['/rmrulevalidation']">Rules
           </a>
-        </li>
+        </li> -->
  
         <li class="menu_sel" [ngClass]="payActive ? 'active' : ''">
-          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="clickPayEvent()" [routerLink]="['/rmpayment']">Payments
+          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="clickPayEvent()" [routerLink]="['/rmpayment']">Fetch & Pay
+          </a>
+        </li>
+        <li class="menu_sel" [ngClass]="dirpayActive ? 'active' : ''">
+          <a class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" (click)="clickDirPayEvent()" [routerLink]="['/rm-directpay-payments']">Direct Pay
           </a>
         </li>
         <li class="menu_sel" [ngClass]="fetchActive ? 'active' : ''">
