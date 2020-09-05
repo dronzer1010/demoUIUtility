@@ -170,11 +170,19 @@
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 txt">
                   <table class="entry-table">
                     <tr>
-                      <td class="unitheaders">{{noofrole}}</td>
+                      <td class="unitheaders">No. of Bills</td>
+                      <td class="unitheaders">Organisation Name</td>
                     </tr>
                     <tr>
-                      <td>{{billerlength}}</td>
+                      <td>{{totalsupplier}}</td>
+                      <td>{{orgname}}</td>
                     </tr>
+                    <!-- <tr>
+                      <td class="unitheaders">Organisation Name</td>
+                    </tr>
+                    <tr>
+                      <td>{{orgname}}</td>
+                    </tr> -->
                   </table>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
@@ -186,7 +194,7 @@
               </div>
               <div class="row" style="margin:0px;">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
-                  <table id="main-table" [mfData]="billdata" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage"
+                  <table id="main-table" [mfData]="supplyList" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage"
                     [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                     <thead>
                       <tr>
@@ -195,40 +203,36 @@
                         </td>
                         <td>Utility Type <img src="assets/img/Filter.png" alt=""></td>
                         <td>Biller Name <img src="assets/img/Filter.png" alt=""></td>
-                        <td>Bill Date <img src="assets/img/Filter.png" alt=""></td>
-                        <td>Due Date <img src="assets/img/Filter.png" alt=""></td>
+                        <td>Location <img src="assets/img/Filter.png" alt=""></td>
+                        <td>Refernce No. <img src="assets/img/Filter.png" alt=""></td>
                         <td>Status <img src="assets/img/Filter.png" alt=""></td>
-                        <td></td>
+                       
                         <td>&nbsp;</td>
                       </tr>
                     </thead>
                     <tbody>
-                      <ng-container
-                       >
+                      <ng-container *ngFor="let bill of mf.data |orderBy: key : reverse|filter:filter; let i=index;">
                         <tr>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td><a href="javascript:void(0);" class="btn"
-                             
-                              role="button"></a></td>
-                          <td style="padding-left: 1%;"></td>
-                          <td style="padding:0 15px;"><img src="assets/img/tb_downarrow.png" alt=""
-                            ></td>
+                          <td>{{i+1}}</td>
+                          <td>{{bill.utilitynmae}}</td>
+                          <td>{{bill.name}}</td>
+                          <td>{{bill.location}}</td>
+                          <td>{{bill.consumerno}}</td>
+                          <td><a href="javascript:void(0);" class="btn"  [ngClass]="{'appoved': bill.status === 'Approved', 'Rejected': bill.status  === 'Rejected', 'Pending': bill.status  === 'Pending'}"role="button">{{bill.status}}</a></td>
+                         
+                          <td style="padding:0 15px;"><img src="assets/img/tb_downarrow.png" alt="" (click)="bill.collapsed=!bill.collapsed;getApproverDetails(bill.id,i)"></td>
                         </tr>
-                        <tr class="rowShow grayStrip">
-                          <td class="custmtd" colspan="8">
+                        <tr class="rowShow grayStrip" *ngIf="bill.collapsed && selectedIndex==i">
+                          <td class="custmtd" colspan="7">
                             <div class="tablediv">
                               <h5>Biller Details</h5>
                               <div class="mb-1">
-                                <div class="span_width">Short Name</div> <span> : </span> &nbsp;
-                                <div class="bold_span"></div>
+                                <div class="span_width">{{bill.parameter1}}</div> <span> : </span> &nbsp;
+                                <div class="bold_span">{{bill.consumerno}}</div>
                               </div>
                               <div class="mb-1">
                                 <div class="span_width">GL/Expense Code</div> <span> : </span> &nbsp;
-                                <div class="bold_span"></div>
+                                <div class="bold_span">{{bill.glexpensecode}}</div>
                               </div>
                               <!-- <div class="mb-1">
                               <div class="span_width">Meter Reading:</div>
@@ -238,23 +242,25 @@
                               <div class="span_width">Bill Date:</div>
                               <div class="bold_span">10/12/2018</div>
                             </div> -->
-                              <div class="mb-1">
+                              <!-- <div class="mb-1">
                                 <div class="span_width">Location</div> <span> : </span> &nbsp;
                                 <div class="bold_span"></div>
                                 
+                              </div> -->
+                              <div class="mb-1">
+                                <div class="span_width" *ngIf="bill.bucode.length>0">{{bill.displaynamebu}}</div> <span *ngIf="bill.bucode.length>0"> : </span> &nbsp;
+                                <div class="bold_span" *ngIf="bill.bucode.length>0" tooltip="{{bill.bucode}}" placement="top"
+                                  show-delay="500">{{bill.bucode}}</div>
                               </div>
                               <div class="mb-1">
+                                <div class="span_width" *ngIf="bill.circle.length>0">{{bill.displaynamecircle}}</div> <span *ngIf="bill.circle.length>0"> : </span> &nbsp;
+                                <div class="bold_span" *ngIf="bill.circle.length>0" tooltip="{{bill.circle}}" placement="top"
+                                  show-delay="500">{{bill.circle}}</div>
+                              </div>
+                              <!-- <div class="mb-1">
                                 <div class="span_width"></div> <span> : </span> &nbsp;
                                 <div class="bold_span"></div>
-                              </div>
-                              <div class="mb-1">
-                                <div class="span_width"></div> <span> : </span> &nbsp;
-                                <div class="bold_span"></div>
-                              </div>
-                              <div class="mb-1">
-                                <div class="span_width"></div> <span> : </span> &nbsp;
-                                <div class="bold_span"></div>
-                              </div>
+                              </div> -->
                               <!-- <div class="mb-1">
                               <div class="span_width">Ref. No. 2</div>  <span> : </span> &nbsp;
                               <div class="bold_span"></div>
@@ -264,52 +270,80 @@
                               <h5>Contact Details</h5>
                               <div class="mb-1">
                                 <div class="span_width">Mobile No</div> <span> : </span> &nbsp;
-                                <div class="bold_span"></div>
+                                <div class="bold_span">{{bill.contact}}</div>
                               </div>
-                              <div class="mb-1">
+                              <!-- <div class="mb-1">
                                 <div class="span_width">Address</div> <span> : </span> &nbsp;
                                 <span class="bold_span" tooltip="" placement="top"
                                   show-delay="500"></span>
-                              </div>
+                              </div> -->
                               <div>
                                 <div class="span_width">Email</div> <span> : </span> &nbsp;
                                 <span class="bold_span" tooltip="" placement="top"
-                                  show-delay="500"></span>
+                                  show-delay="500">{{bill.email}}</span>
+                              </div>
+                              <h5>Bank Details</h5>
+                              <div>
+                                <div class="span_width">Bank Account No</div> <span> : </span> &nbsp;
+                                <span class="bold_span" tooltip="{{bill.accno}}" placement="top"
+                                  show-delay="500">{{bill.accno}}</span>
+                              </div>
+                              <div>
+                                <div class="span_width">Bank Name</div> <span> : </span> &nbsp;
+                                <span class="bold_span" tooltip="{{bill.bank}}" placement="top"
+                                  show-delay="500">{{bill.bank}}</span>
+                              </div>
+                              <div>
+                                <div class="span_width">IFSC</div> <span> : </span> &nbsp;
+                                <span class="bold_span" tooltip="{{bill.ifsc}}" placement="top"
+                                  show-delay="500">{{bill.ifsc}}</span>
+                              </div>
+                              <div>
+                                <div class="span_width">Branch Name</div> <span> : </span> &nbsp;
+                                <span class="bold_span" tooltip="{{bill.branch}}" placement="top"
+                                  show-delay="500">{{bill.branch}}</span>
                               </div>
                             </div>
                             <div class="tablediv noborder table3">
                               <h5>Other Details</h5>
                               <div class="mb-1">
                                 <div class="span_width">File Name</div> <span> : </span> &nbsp;
-                                <div class="bold_span">Unitary</div>
+                                <div class="bold_span" *ngIf="bill.uploadfilename.length>0">{{bill.uploadfilename}}</div>
+                                <div class="bold_span" *ngIf="bill.uploadfilename.length<=0">Unitary</div>
                               </div>
                               <div class="mb-1">
                                 <div class="span_width" >Initiated by</div> <span> : </span> &nbsp;
                                 <div class="bold_span" tooltip="" placement="top"
-                                show-delay="500"></div>
+                                show-delay="500">{{bill.initiatedby}}</div>
                               </div>
                               <div class="mb-1">
                                 <div class="span_width">Initiated on</div> <span> : </span> &nbsp;
                                 <div class="bold_span" tooltip="" placement="top"
-                                show-delay="500"></div>
+                                show-delay="500">{{bill.initiateddate}} | {{bill.initiatedtime}}</div>
                               </div>
-                              <ng-container>
-                              <div class="mb-1">
-                                <div class="span_width">Approved by</div> <span> : </span> &nbsp;
-                                <div class="bold_span" tooltip="" placement="top"
-                                show-delay="500"></div>
-                              </div>
-                              <div>
-                                <div class="span_width">Approved on</div> <span> : </span> &nbsp;
-                                
-                                <div class="bold_span"  tooltip="" placement="top"
-                                show-delay="500"></div>
-                              </div>
+                              <ng-container *ngFor="let approvers of approverdetails" >
+                                <div *ngIf = "bill.status != 'Pending'">
+                                    <div class="span_width" *ngIf="bill.status=='Approved'">Approved by</div>
+                                    <div class="span_width" *ngIf="bill.status=='Rejected'">Rejected by</div> <span>:</span>&nbsp;&nbsp;&nbsp;
+                                    <div class="bold_span" *ngIf="approvers.group<=0" tooltip="{{approvers.approvedby}}{{approvers.group}}" placement="top" show-delay="500">{{approvers.approvedby}}</div>
+                                    <div class="bold_span" *ngIf="approvers.group>0" tooltip="{{approvers.approvedby}}{{approvers.group}}" placement="top" show-delay="500">{{approvers.approvedby}}({{approvers.group}})</div>
+                                </div>
+                                <div *ngIf = "bill.status != 'Pending'">
+                                    <div class="span_width" *ngIf="bill.status=='Approved'">Approved on</div><span *ngIf="bill.status=='Approved'">:</span>&nbsp;&nbsp;&nbsp;
+                                    <div class="bold_span" *ngIf="bill.status=='Approved'" tooltip="{{approvers.approveddate}} |
+                                    {{approvers.approvedtime}}" placement="top" show-delay="500">{{approvers.approveddate}} |
+                                      {{approvers.approvedtime}}</div>
+                                    <div class="span_width" *ngIf="bill.status=='Rejected'">Rejected on</div> <span *ngIf="bill.status=='Rejected'">:</span>&nbsp;&nbsp;&nbsp;
+                                    <div class="bold_span" *ngIf="bill.status=='Rejected'" tooltip="{{approvers.approveddate}} |
+                                    {{approvers.approvedtime}}" placement="top" show-delay="500">{{approvers.approveddate}} |
+                                      {{approvers.approvedtime}}</div>
+                                </div>
                               </ng-container>
+
                             </div>
                           </td>
                         </tr>
-                        <tr class="rowShow grayStrip">
+                        <!-- <tr class="rowShow grayStrip">
                           <td colspan="8">
                             <span class="text-left"><label style="color: #64289d;">Comment
                                 : &nbsp;</label></span>
@@ -318,7 +352,7 @@
                                 src="assets/img/attach.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                              
                             </span></td>
-                        </tr>
+                        </tr> -->
                       </ng-container>
                     </tbody>
                     <tfoot>
