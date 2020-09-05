@@ -123,6 +123,19 @@ custcomment:  boolean=false;
 custorderid:  boolean=false;
 custshort_name:boolean=false;
 filter:any;
+totalPages:number;
+startIndex:number;
+endIndex:number;
+pages:any;
+last:number;
+start:number;
+paymentlist: any = [];
+pageNumber:number=1;
+pageSize:number=300;
+totalinvoice:number=0;
+currentUser :any;
+rmid:number;
+filtertrue:boolean=false;
   constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,public datepipe: DatePipe,private rmservice:RmservicesService,private toastr: ToastrService,private http: Http) { }
 
   ngOnInit() {
@@ -242,7 +255,19 @@ filter:any;
     
     ];
 
+    // this.rmservice.getUserDetails().then(res => {
+    //   this.currentUser = res.Data;
+    //   this.rmid=this.currentUser['id']
+    //   this.loadDefaultPayments(this.rmid,this.pageNumber,this.pageSize)
+    //   },error=>{
+    //   console.log(error)
+    //   });
+
+      this.loadFilterPayments(1300,1,300,'2020-05-01','2020-09-05','ALL',10,10,10,'DEFAULT',"0");
+
   }
+
+  
 
   private getAllOrg(){
     this.rmservice.getAllOrganizations().then(resp => {
@@ -449,5 +474,174 @@ console.log(this.selectedItems3)
            this.rejectreason="--"
          }
     }
+
+    loadDefaultPayments(rmid,pagenumber,pagesize){
+      this.pageNumber= pagenumber
+      console.log("Default Load")
+     // this.spinner.show()
+      //console.log(rmid+" "+pagenumber+" "+pagesize)
+      this.rmservice.getdefrmpaynew(rmid,pagenumber,pagesize).then(resp=>{
+      // console.log(resp['data'][0]['data'])
+      this.totalinvoice=resp['data'][0]['data']['TotalCount']['TotalCount']
+      //console.log(this.totalinvoice)
+      // calculate total pages
+      let totalPages = Math.ceil(this.totalinvoice / this.pageSize);
+      // console.log(totalPages)
+      // ensure current page isn't out of range
+      if (this.pageNumber < 1) {
+      this.pageNumber = 1;
+     // this.spinner.hide()
+      return;
+      } else if (this.pageNumber > totalPages) {
+      this.pageNumber = totalPages;
+     // this.spinner.hide()
+      return;
+      }
+      
+      let startPage: number, endPage: number;
+      if (totalPages <= 10) {
+      // less than 10 total pages so show all
+      startPage = 1;
+      endPage = totalPages;
+      } else {
+      // more than 10 total pages so calculate start and end pages
+      if (this.pageNumber <= 6) {
+      startPage = 1;
+      endPage = 10;
+      } else if (this.pageNumber + 4 >= totalPages) {
+      startPage = totalPages - 9;
+      endPage = totalPages;
+      } else {
+      startPage = this.pageNumber - 5;
+      endPage = this.pageNumber + 4;
+      }
+      }
+      
+      // calculate start and end item indexes
+      let startIndex = (this.pageNumber - 1) * this.pageSize;
+      let endIndex = Math.min(startIndex + this.pageSize - 1, this.totalinvoice - 1);
+      
+       // create an array of pages to ng-repeat in the pager control
+      let pages = Array.from(Array((endPage + 1) - startPage).keys()).map(i => startPage + i);
+      this.totalPages=totalPages;
+      this.start=startPage;
+      this.last=endPage;
+      this.startIndex=startIndex;
+      this.endIndex=endIndex;
+      this.pages=pages;
+      //console.log(this.totalPages+" "+this.start+" "+this.last+" "+this.startIndex+" "+this.endIndex+" "+this.pages);
+      // console.log(data['data']);
+      this.paymentlist = resp['data'][0]['data']['PaymentData']
+      //this.spinner.hide()
+      // this.loaderService.display(false);
+      },error=>{
+      //this.spinner.hide()
+      console.log("Error in fetching")
+      console.log(error);
+      // this.loaderService.display(false);
+      })
+      }
+
+      loadFilterPayments(rmid,pagenumber,pagesize,fromdate,todate,orgid,status,paystatus,batch,utrno,amount){
+        if(pagenumber==0){
+        pagenumber=1;
+        }
+        this.pageNumber= pagenumber
+        this.paymentlist= null;
+        this.filtertrue=true
+        if(orgid==undefined || orgid==null){
+        orgid='ALL'
+        }else if(orgid.includes(undefined)){
+        orgid=this.removeValue(orgid,undefined)
+        }
+        else{
+        orgid=this.removeValue(orgid,undefined)
+        }
+        
+        if(utrno==undefined ||utrno.length<1 || utrno==null){
+        utrno='DEFAULT'
+        }else{
+        utrno=utrno
+        }
+        if(amount==undefined ||amount.length<1 || amount==null){
+        amount=0
+        }else{
+        amount=amount
+        }
+        console.log(orgid)
+        console.log("filter true")
+        
+        console.log(rmid+" "+pagenumber+" "+pagesize+" "+fromdate+" "+todate+" "+orgid+" "+status+" "+paystatus+" "+batch+" "+utrno+" "+amount)
+        fromdate=this.datepipe.transform(fromdate, 'yyyy-MM-dd');
+        todate=this.datepipe.transform(todate, 'yyyy-MM-dd');
+       // this.spinner.show()
+        //console.log(rmid+" "+pagenumber+" "+pagesize)
+        this.rmservice.getfilrmpaynew(rmid,pagenumber,pagesize,fromdate,todate,orgid,status,paystatus,batch,utrno,amount).then(resp=>{
+        //console.log(resp['data'][0]['data']['TotalCount']['TotalCount'])
+        for(let i=0;i<resp['data'].length; i++){
+        this.totalinvoice=resp['data'][i]['data']['TotalCount']['TotalCount']
+        }
+        //console.log(this.totalinvoice)
+        // calculate total pages
+        let totalPages = Math.ceil(this.totalinvoice / this.pageSize);
+        // console.log(totalPages)
+        // ensure current page isn't out of range
+        if (this.pageNumber < 1) {
+        this.pageNumber = 1;
+       // this.spinner.hide()
+        return;
+        } else if (this.pageNumber > totalPages) {
+        this.pageNumber = totalPages;
+        //this.spinner.hide()
+        return;
+        }
+        
+        let startPage: number, endPage: number;
+        if (totalPages <= 10) {
+        // less than 10 total pages so show all
+        startPage = 1;
+        endPage = totalPages;
+        } else {
+        // more than 10 total pages so calculate start and end pages
+        if (this.pageNumber <= 6) {
+        startPage = 1;
+        endPage = 10;
+        } else if (this.pageNumber + 4 >= totalPages) {
+        startPage = totalPages - 9;
+        endPage = totalPages;
+        } else {
+        startPage = this.pageNumber - 5;
+        endPage = this.pageNumber + 4;
+        }
+        }
+        
+        // calculate start and end item indexes
+        let startIndex = (this.pageNumber - 1) * this.pageSize;
+        let endIndex = Math.min(startIndex + this.pageSize - 1, this.totalinvoice - 1);
+        
+         // create an array of pages to ng-repeat in the pager control
+        let pages = Array.from(Array((endPage + 1) - startPage).keys()).map(i => startPage + i);
+        this.totalPages=totalPages;
+        this.start=startPage;
+        this.last=endPage;
+        this.startIndex=startIndex;
+        this.endIndex=endIndex;
+        this.pages=pages;
+        //console.log(this.totalPages+" "+this.start+" "+this.last+" "+this.startIndex+" "+this.endIndex+" "+this.pages);
+        console.log(resp['data']);
+        this.paymentlist = resp['data'][0]['data']['PaymentData']
+        //this.spinner.hide()
+        // this.loaderService.display(false);
+        },error=>{
+        //this.spinner.hide()
+        console.log("Error in fetching")
+        console.log(error);
+        // this.loaderService.display(false);
+        })
+        }
+
+        removeValue(list, value) {
+          return list.replace(new RegExp(value + ',?'), '')
+        }
 
 }

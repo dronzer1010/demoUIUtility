@@ -79,11 +79,28 @@ status:boolean=false;
 location:boolean=false;
 initiatedby:boolean=false;
 initiatedon:boolean=false;
+last:number;
+start:number; 
+dateformat:number=0;
+totalPages:number;
+startIndex:number;
+endIndex:number;
+pageNumber:number=1;
+pageSize:number=300;
+totalsupplier:number=0;
+supplyList: any = [];
+supplylists: any = [];
+pages:any;
   constructor(private excelservice : ExcelService,private loaderService: LoaderService,private billservice:BillerserviceService,private rmservice:RmservicesService,private route: ActivatedRoute,private toastr: ToastrService,private http: Http,public datepipe: DatePipe) { }
 
   ngOnInit() {
 
+    
+
     this.filterorgid = this.route.snapshot.paramMap.get('id');
+
+    this.loadPaginatedSuppliers(this.filterorgid,this.dateformat,this.pageNumber,this.pageSize);
+
     this.filterfromdate=this.fromdate
     this.filtertodate=this.todate;
     this.dropdownList = [
@@ -181,6 +198,8 @@ initiatedon:boolean=false;
       }
       this.excelservice.exportAsExcelFile( this.downloadArray, 'Biller List');
     }
+
+
   }
 
   getApproverDetails(id,index){
@@ -197,6 +216,67 @@ initiatedon:boolean=false;
     })
   }
   
-  
+  loadPaginatedSuppliers(id,dateformat,pageno,pagesize){
+    this.dateformat=dateformat;
+    this.pageNumber=pageno;
+    this.pageSize=pagesize;
+    //this.spinner.show()
+    this.rmservice.getFilterdNPagedData(this.filterorgid,this.dateformat,this.pageNumber,this.pageSize).then(data=>{
+    this.totalsupplier=data['TotalCount'][0];
+    console.log(this.totalsupplier)
+    // calculate total pages
+    let totalPages = Math.ceil(this.totalsupplier / this.pageSize);
+    // ensure current page isn't out of range
+    if (this.pageNumber < 1) {
+    this.pageNumber = 1;
+   // this.spinner.hide()
+    return;
+    } else if (this.pageNumber > totalPages) {
+    this.pageNumber = totalPages;
+  //  this.spinner.hide()
+    return;
+    }
+    
+    let startPage: number, endPage: number;
+    if (totalPages <= 10) {
+    // less than 10 total pages so show all
+    startPage = 1;
+    endPage = totalPages;
+    } else {
+    // more than 10 total pages so calculate start and end pages
+    if (this.pageNumber <= 6) {
+    startPage = 1;
+    endPage = 10;
+    } else if (this.pageNumber + 4 >= totalPages) {
+    startPage = totalPages - 9;
+    endPage = totalPages;
+    } else {
+    startPage = this.pageNumber - 5;
+    endPage = this.pageNumber + 4;
+    }
+    }
+    
+    // calculate start and end item indexes
+    let startIndex = (this.pageNumber - 1) * this.pageSize;
+    let endIndex = Math.min(startIndex + this.pageSize - 1, this.totalsupplier - 1);
+    
+     // create an array of pages to ng-repeat in the pager control
+            let pages = Array.from(Array((endPage + 1) - startPage).keys()).map(i => startPage + i);
+    this.totalPages=totalPages;
+    this.start=startPage;
+    this.last=endPage;
+    this.startIndex=startIndex;
+    this.endIndex=endIndex;
+    this.pages=pages;
+    console.log(this.totalPages+" "+this.start+" "+this.last+" "+this.startIndex+" "+this.endIndex+" "+this.pages);
+    console.log(data['data']);
+    this.supplyList = data['data'];
+   // this.spinner.hide()
+    },error=>{
+    console.log("Error in fetching")
+    console.log(error);
+   // this.spinner.hide()
+    })
+    }
 
 }

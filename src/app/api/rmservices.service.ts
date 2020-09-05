@@ -638,7 +638,79 @@ getPaylogs(id:number): Promise<any> {
   getSupAppr(id:number){
     return this.http.get(path+`/maker/approverDetailSup?venid=${id}`);
   }
-  
 
+  getdefrmpaynew(rmuserid:any,pageno:any,pagesize:any): Promise<any> {
+
+    // var a = new Date();
+    // var months = [1,2,3,4,5,6,7,8,9,10,11,12];
+    // var r = months[a.getMonth()];
+    // console.log(r)
+    // var y = a.getFullYear();
+  // let token = this.storage.getData("rmlogin_data").token;
+  // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+  //     .set('authorization', 'Bearer ' + token);
+  // let options = { headers: headers };
+  let promise = new Promise((resolve, reject) => {
+
+      this.http.get(path+`/rm/rmdirpaybyrmid?rmid=${rmuserid}&pagesize=${pagesize}&pagenumber=${pageno}`)
+          .subscribe(
+              res => {
+                  console.log(res);
+                  resolve(res);
+              },
+              err => {
+                  console.log("Error occured : " + err);
+                  reject(err);
+              }
+          );
+
+  });
+  return promise;
+}
+  
+getfilrmpaynew(rmuserid:any,pageno:any,pagesize:any,fromdate:any,todate:any,orgid:any,status:any,paystatus:any,batch:any,utrno:any,amount:any): Promise<any> {
+
+    let promise = new Promise((resolve, reject) => {
+    
+    this.http.get(path+`/rm/rmdirpaybyfilter?rmid=${rmuserid}&pagesize=${pagesize}&pagenumber=${pageno}&fromdate=${fromdate}&todate=${todate}&orgid=${orgid}&status=${status}&paystatus=${paystatus}&batch=${batch}&utrno=${utrno}&amount=${amount}`)
+    .subscribe(
+    res => {
+    console.log(res);
+    resolve(res);
+    },
+    err => {
+    console.log("Error occured : " + err);
+    reject(err);
+    }
+    );
+    
+    });
+    return promise;
+    }
+    
+    getFilterdNPagedData(id,dateformat,pageno,pagesize): Promise<any> {
+        let url = path+'/rm/rmbillerFilteredNPage?id='+id+'&dateformat='+ dateformat+'&pageno='+pageno+'&pagesize='+pagesize;
+        // let token = this.storage.getData("chlogin_data").token;
+        // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+        // .set('authorization', 'Bearer ' + token);
+        // let options = { headers: headers };
+        
+        let promise = new Promise((resolve, reject) => {
+        this.http.get(url)
+        .subscribe(
+        res => {
+        //console.log(res);
+        resolve(res);
+        },
+        err => {
+        console.log("Error occured : " + err);
+        reject(err);
+        }
+        );
+        
+        });
+        return promise;
+        }
+    
 
 }
