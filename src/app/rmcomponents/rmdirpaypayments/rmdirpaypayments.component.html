@@ -252,8 +252,8 @@
                     <td class="unitheaders">Total amount</td>
                   </tr>
                   <tr>
-                    <td></td>
-                    <td><i class="fa fa-rupee"></i></td>
+                    <td>{{totalinvoice}}</td>
+                    <td><i class="fa fa-rupee">{{totalamount | numberfr}}</i></td>
                   </tr>
                 </table>
                 </div>
@@ -263,79 +263,79 @@
               </div>
               <div class="row" style="margin:0px;">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
-                  <table id="main-table" [mfData]="paymentData" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                  <table id="main-table" [mfData]="paymentlist" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                     <thead>
                       <tr>
                         <td>Sr. No.</td>
-                        <td>Bill Name <img src="assets/img/Filter.png" alt=""></td>
-                        <td>Amount <img src="assets/img/Filter.png" alt=""></td>
-                        <td>Reference No<img src="assets/img/Filter.png" alt=""></td>
-                        <td>Consumer Name<img src="assets/img/Filter.png" alt=""></td>
-                        <td>Status <img src="assets/img/Filter.png" alt=""></td>
-                        <td class="text-center">Payment Status <img src="assets/img/Filter.png" alt=""></td>
+                        <td>Bill Name </td>
+                        <td>Amount </td>
+                        <td>Reference No</td>
+                        <td>Consumer Name</td>
+                        <td>Status</td>
+                        <td class="text-center">Payment Status</td>
                         <td>&nbsp;</td>
                       </tr>
                     </thead>
                     <tbody>
-                      <ng-container >
+                      <ng-container  *ngFor="let p of mf.data  |filter:filter;let i=index">
                       <tr>
-                        <td></td>
-                        <td></td>
-                        <td><i class="fa fa-rupee"></i></td>
-                        <td></td>
-                        <td></td>
-                        <td><a href="javascript:void(0);" class="btn" role="button"></a></td>
-                        <td class="text-center" ></td>
-                        <td style="padding:0 5px;"><img src="assets/img/tb_downarrow.png" alt="" ></td>
+                        <td>{{i+1}}</td>
+                        <td>{{p.billername}}</td>
+                        <td><i class="fa fa-rupee">&nbsp;{{p.amount | numberfr}}</i></td>
+                        <td>{{p.consumerno}}</td>
+                        <td>{{p.orgname}}</td>
+                        <td><a href="javascript:void(0);" [ngClass]="{'appoved': p.transstatus === 'Approved', 'Rejected': p.transstatus  === 'Rejected', 'Pending': p.transstatus  === 'Pending'}" class="btn" role="button">{{p.transstatus}}</a></td>
+                        <td class="text-center" > <a href="javascript:void(0);" class="btn" [ngClass]="p.paymentstatus==='Pending'?'Pending':p.paymentstatus==='Card Debited'?'appoved':p.paymentstatus==='Insufficient Funds'?'Rejected':'appoved'" role="button">{{ p.paymentstatus }} </a></td>
+                        <td style="padding:0 5px;"><img src="assets/img/tb_downarrow.png" alt=""  (click)="p.collapsed=!p.collapsed;loadPayLogs(p.id,i)"></td>
                       </tr>
-                      <tr class="rowShow grayStrip" >
+                      <tr class="rowShow grayStrip" *ngIf="p.collapsed && selectedIndex == i">
                         <td class="custmtd" colspan="8">
                           <div class="tablediv">
                             <h5>Biller Details</h5>
-                            <div class="mb-1">
+                            <!-- <div class="mb-1">
                               <div class="span_width">Short Name</div> <span> : </span> &nbsp;
                               <div class="bold_span"></div>
-                            </div>
-                            <div class="mb-1">
+                            </div> -->
+                            <!-- <div class="mb-1">
                               <div class="span_width">GL/Expense Code</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
-                            </div>
+                              <div class="bold_span">{{p.}}</div>
+                            </div> -->
                             <div class="mb-1">
-                                <div class="span_width">Consumer No</div> <span> : </span> &nbsp;
-                                <div class="bold_span"></div>
+                                <div class="span_width">{{p.parameter1}}</div> <span> : </span> &nbsp;
+                                <div class="bold_span">{{p.consumerno}}</div>
                               </div>
                             <div class="mb-1">
                               <div class="span_width">Bill Date</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span">{{p.billdate}}</div>
                             </div>
                             <div class="mb-1">
                               <div class="span_width">Due Date</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span">{{p.duedate}}</div>
                             </div>
                             <div class="mb-1" >
                               <div class="span_width">UTR</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span">{{p.utr}}</div>
                             </div>
                             <div class="mb-1">
                               <div class="span_width">Location</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span">{{p.statename}}</div>
                              
                             </div>
                             <div class="mb-1">
                               <div class="span_width">Bill No</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span">{{p.billnumber}}</div>
                             </div>
                             <div class="mb-1">
                               <div class="span_width">Card No</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span">{{p.cardno}}</div>
                             </div>
                             <div class="mb-1">
-                              <div class="span_width">Bu Code Bu Name</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="span_width" *ngIf="p.bucode_buname.length>0">{{p.displaynamebu}}</div> <span *ngIf="p.bucode_buname.length>0"> : </span> &nbsp;
+                              <div class="bold_span" *ngIf="p.bucode_buname.length>0">{{p.bucode_buname}}</div>
                             </div>
                             <div class="mb-1">
-                              <div class="span_width">Circle</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="span_width" *ngIf="p.circle.length>0">{{p.displaynamecircle}}</div> <span *ngIf="p.circle.length>0"> : </span> &nbsp;
+                              <div class="bold_span" *ngIf="p.circle.length>0">{{p.circle}}</div>
                             </div>
         
                           </div>
@@ -346,10 +346,10 @@
                               <div class="span_width">Mobile No</div> <span> : </span> &nbsp;
                               <div class="bold_span"></div>
                             </div>
-                            <div class="mb-1">
+                            <!-- <div class="mb-1">
                               <div class="span_width">Address</div> <span> : </span> &nbsp;
                               <span class="bold_span" tooltip="" placement="top" show-delay="500"></span>
-                            </div>
+                            </div> -->
                             <div>
                               <div class="span_width">Email</div> <span> : </span> &nbsp;
                               <span class="bold_span" tooltip="" placement="top" show-delay="500"></span>
@@ -357,26 +357,26 @@
                             <h5>Bank Details</h5>
                             <div class="mb-1">
                               <div class="span_width">Account No</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span">{{p.accountno}}</div>
                             </div>
                             <div class="mb-1">
                               <div class="span_width">Bank Name</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span">{{p.bankname}}</div>
                             </div>
                             <div class="mb-1">
                               <div class="span_width">Branch Name</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span">{{p.branchname}}</div>
                             </div>
                           </div>
                           <div class="tablediv noborder table3">
                             <h5>Other Details</h5>
                             <div class="mb-1">
                               <div class="span_width">CRN</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span">{{p.crn}}</div>
                             </div>
                             <div class="mb-1">
                               <div class="span_width">File Name</div> <span> : </span> &nbsp;
-                              <div class="bold_span">Unitary</div>
+                              <div class="bold_span">{{p.uploadfilename}}</div>
                             </div>
                             <div class="mb-1">
                               <div class="span_width">Initiated by</div> <span> : </span> &nbsp;
@@ -385,35 +385,40 @@
                             <div class="mb-1">
                               <div class="span_width">Initiated on</div> <span> : </span> &nbsp;
                               <div class="bold_span" tooltip="" placement="top"
-                              show-delay="500"></div>
+                              show-delay="500">{{p.initiateddate}} | {{p.initiatedtime}}</div>
                             </div>
-                            <ng-container>
+                            <ng-container *ngFor="let approvers of approverdetails">
                             <div class="mb-1">
-                                <div class="span_width">Approved by </div>  <span> : </span> &nbsp;
-                                <div class="bold_span"></div>
+                              <div class="span_width" *ngIf="p.transstatus=='Pending'">Approver By</div> <span *ngIf="p.transstatus=='Pending'">:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <div class="span_width" *ngIf="p.transstatus=='Approved'">Approver By</div> <span *ngIf="p.transstatus=='Approved'">:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <div class="span_width" *ngIf="p.transstatus=='Rejected'">Rejected By</div> <span *ngIf="p.transstatus=='Rejected'">:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <div class="bold_span" *ngIf="grouplength<=0">{{approvers.approvedby}}</div>
+                              <div class="bold_span" *ngIf="grouplength>0">{{approvers.approvedby}}({{approvers.group}})</div>
                               </div>
                               <div class="mb-1">
-                                <div class="span_width">Approved on  </div>  <span> : </span> &nbsp;
-                                <div class="bold_span"></div>
+                                <div class="span_width" *ngIf="p.transstatus=='Pending'">Approver on</div> <span *ngIf="p.transstatus=='Pending'">:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <div class="span_width" *ngIf="p.transstatus=='Approved'">Approved on</div> <span *ngIf="p.transstatus=='Approved'">:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <div class="span_width" *ngIf="p.transstatus=='Rejected'">Rejected on</div> <span *ngIf="p.transstatus=='Rejected'">:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <div class="bold_span">{{approvers.approveddate}} | {{approvers.approvedtime}}</div>
                               </div>
                             </ng-container>
                           </div>
                         </td>
                       </tr>
-                      <tr class="rowShow grayStrip">
+                      <tr class="rowShow grayStrip" *ngIf="p.collapsed && selectedIndex == i">
                         <td colspan="8">
                             <span class="text-left"><label style="color: #64289d;">Comment : &nbsp;</label></span>
-                          <span class="pull-right">
+                          <!-- <span class="pull-right">
                           <a ><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           
                           <a (click)="closeModalDialog1()"><img src="assets/img/page.png"></a>
-                        </span>
-                        <!-- <span class="pull-right"><a (click)="getpaymentlogs(payment.card_debited_date,payment.payment_status_time,payment.rejection_reason)"><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                         
-                          <a (click)="getextradetails(payment.late_pay_charges,promt_pay_incentives,remarks,meter_reading)"><img src="assets/img/page.png"></a>
                         </span> -->
+                        <span class="pull-right"><a (click)="sendPaymentStatus(p.carddebiteddate,p.carddebitedtime,p.paymentstatus,p.utrdate,p.utrtime,p.utr,p.refundreason)"><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <!-- <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                         
+                          <!-- <a (click)="getextradetails(payment.late_pay_charges,promt_pay_incentives,remarks,meter_reading)"><img src="assets/img/page.png"></a> -->
+                        </span>
                         </td>
                       </tr>
                        
@@ -444,37 +449,28 @@
                                       <tbody>
                                         <tr>
                                           <td>Card Debited</td>
-                                          <!-- <td *ngIf="payment.transaction_status=='Approved'">{{carddebitdate}}</td>
-                                          <td *ngIf="payment.transaction_status=='Approved'">{{carddebittime}}</td>
-                                          <td *ngIf="payment.transaction_status=='Pending' || payment.transaction_status=='Rejected'">--</td>
-                                          <td *ngIf="payment.transaction_status=='Pending' || payment.transaction_status=='Rejected'">--</td> -->
+                                          <td *ngIf="p.transstatus=='Approved'">{{carddebitdate}}</td>
+                                          <td *ngIf="p.transstatus=='Approved'">{{carddebittime}}</td>
+                                          <td *ngIf="p.transstatus=='Pending' || p.transstatus=='Rejected'">--</td>
+                                          <td *ngIf="p.transstatus=='Pending' || p.transstatus=='Rejected'">--</td>
                                         </tr>
                                         <tr>
-                                          <td>Payment Success</td>
-                                          <!-- <td *ngIf="paymentstatus=='Payment Success'">{{paysuccessdate}}</td>
-                                          <td *ngIf="paymentstatus=='Payment Success'">{{paysuccesstime}}</td>
-                                          <td *ngIf="paymentstatus=='Payment Failed' ||paymentstatus=='Payment Returned' || paymentstatus=='Pending' || paymentstatus=='Rejected'">--</td>
-                                          <td *ngIf="paymentstatus=='Payment Failed' || paymentstatus=='Payment Returned' || paymentstatus=='Pending' || paymentstatus=='Rejected'">--</td> -->
+                                          <td>UTR</td>
+                                          <td>{{paysuccessdate}}</td>
+                                          <td>{{paysuccesstime}}</td>
+                                       
                                         </tr>
                                         <tr>
-                                          <td>Payment Failed</td>
-                                          <!-- <td *ngIf="paymentstatus=='Payment Failed'">{{paysuccessdate}}</td>
-                                          <td *ngIf="paymentstatus=='Payment Failed'">{{paysuccesstime}}</td>
-                                          <td *ngIf="paymentstatus=='Payment Success' || paymentstatus=='Payment Returned' || paymentstatus=='Pending' || paymentstatus=='Rejected'">--</td>
-                                          <td *ngIf="paymentstatus=='Payment Success' || paymentstatus=='Payment Returned' || paymentstatus=='Pending' || paymentstatus=='Rejected'">--</td> -->
+                                          <td>Payment Returned</td>
+                                          <td>{{payfaildate}}</td>
+                                          <td>{{payfailtime}}</td>
+                                       
                                         </tr>
-                                        <tr>
-                                          <td>Card Refunded</td>
-                                         
-                                        <!-- <td *ngIf="paymentstatus=='Payment Returned'">{{paysuccessdate}}</td>
-                                        <td *ngIf="paymentstatus=='Payment Returned'">{{paysuccesstime}}</td>
-                                        <td *ngIf="paymentstatus=='Payment Success' || paymentstatus=='Payment Failed' || paymentstatus=='Pending' || paymentstatus=='Rejected'">--</td>
-                                        <td *ngIf="paymentstatus=='Payment Success' || paymentstatus=='Payment Failed' || paymentstatus=='Pending' || paymentstatus=='Rejected'">--</td> -->
-                                        </tr>
+                                      
                                         <tr>
                                           <td>Refund Reason</td>
-                                          <!-- <td *ngIf="paymentstatus=='Payment Returned'" colspan="2">{{rejectreason}}</td>
-                                          <td *ngIf="paymentstatus=='Payment Success' || paymentstatus=='Payment Failed' || paymentstatus=='Pending' || paymentstatus=='Rejected'" colspan="2">--</td> -->
+                                          <td colspan="2">{{rejectreason}}</td>
+                                      
                                         </tr>
                                       </tbody>
                                     </table>

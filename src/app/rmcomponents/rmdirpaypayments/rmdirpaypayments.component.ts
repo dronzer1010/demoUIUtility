@@ -12,6 +12,7 @@ import { e } from '@angular/core/src/render3';
 import {Observable} from 'rxjs/Rx';
 import { Http, ResponseContentType , Headers,RequestOptions} from '@angular/http';
 import {Config} from '../../config'
+import { repeat } from 'rxjs/operators';
 const path = new Config().getutilityBaseUrl();
 
 @Component({
@@ -82,6 +83,7 @@ carddebittime:string;
 carddebitdate:string;
 paysuccessdate:string;
 paysuccesstime:string;
+
 payfaildate:string;
 payfailtime:string;
 rejectreason:string;
@@ -136,6 +138,7 @@ totalinvoice:number=0;
 currentUser :any;
 rmid:number;
 filtertrue:boolean=false;
+grouplength:number;
   constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,public datepipe: DatePipe,private rmservice:RmservicesService,private toastr: ToastrService,private http: Http) { }
 
   ngOnInit() {
@@ -255,15 +258,15 @@ filtertrue:boolean=false;
     
     ];
 
-    // this.rmservice.getUserDetails().then(res => {
-    //   this.currentUser = res.Data;
-    //   this.rmid=this.currentUser['id']
-    //   this.loadDefaultPayments(this.rmid,this.pageNumber,this.pageSize)
-    //   },error=>{
-    //   console.log(error)
-    //   });
+    this.rmservice.getUserDetails().then(res => {
+      this.currentUser = res.Data;
+      this.rmid=this.currentUser['id']
+      this.loadDefaultPayments(this.rmid,this.pageNumber,this.pageSize)
+      },error=>{
+      console.log(error)
+      });
 
-      this.loadFilterPayments(1300,1,300,'2020-05-01','2020-09-05','ALL',10,10,10,'DEFAULT',"0");
+    //  this.loadFilterPayments(1300,1,300,'2020-05-01','2020-09-05','ALL',10,10,10,'DEFAULT',"0");
 
   }
 
@@ -272,7 +275,7 @@ filtertrue:boolean=false;
   private getAllOrg(){
     this.rmservice.getAllOrganizations().then(resp => {
       this.organisationlist = resp.data;
-      console.log(this.organisationlist);
+     // console.log(this.organisationlist);
       for(var data of this.organisationlist){
         var obj={
           OrgId:data['OrgId'],
@@ -288,10 +291,10 @@ filtertrue:boolean=false;
         this.organisationid.push(obj1)
       }
      // this.loadPayments();
-      console.log(this.organisationid)
+     // console.log(this.organisationid)
      
     });
-    console.log(this.orglist)
+   // console.log(this.orglist)
   }
 
   openModalDialog(){
@@ -438,6 +441,33 @@ console.log(this.selectedItems3)
     console.log(this.filterps)
   }
 
+  sendPaymentStatus(debiteddate: string, debitedtime: string, paystatus: string, dateutr: string, timeutr: string, utrno: string,refundreason:string) {
+    console.log(paystatus)
+    if (paystatus == 'Insufficient Funds' || paystatus == 'Card Declined' || paystatus == 'Pending' || paystatus == 'E009-Invalid Cardnumber' || paystatus == 'ERROR' || paystatus == 'REJECT') {
+      this.carddebitdate = "--";
+      this.carddebittime = "--";
+    } else {
+      this.carddebitdate = debiteddate;
+      this.carddebittime = debitedtime;
+    }
+    if (utrno != 'NA' && paystatus != 'Payment Returned') {
+      this.paysuccessdate = dateutr;
+      this.paysuccesstime = timeutr;
+    } else {
+      this.paysuccessdate = "--";
+      this.paysuccesstime = "--";
+    }
+    if (paystatus == 'Payment Returned') {
+      this.payfaildate = dateutr;
+      this.payfailtime = timeutr;
+      this.rejectreason = refundreason
+    } else {
+      this.payfaildate = "--";
+      this.payfailtime = "--";
+      this.rejectreason = "--"
+    }
+  }
+
   getpaymentlogs(carddebittime,paystatustime,rejectreason,paymentstat){
     this.paymentstatus=paymentstat
       console.log(this.paymentstatus)
@@ -530,8 +560,14 @@ console.log(this.selectedItems3)
       this.endIndex=endIndex;
       this.pages=pages;
       //console.log(this.totalPages+" "+this.start+" "+this.last+" "+this.startIndex+" "+this.endIndex+" "+this.pages);
-      // console.log(data['data']);
+      // console.log(this.paymentlist);
       this.paymentlist = resp['data'][0]['data']['PaymentData']
+       console.log(this.paymentlist);
+       if(this.paymentlist!=null){
+        for(var total of this.paymentlist){
+          this.totalamount+=parseFloat(total['amount'])
+        }
+      }
       //this.spinner.hide()
       // this.loaderService.display(false);
       },error=>{
@@ -630,6 +666,11 @@ console.log(this.selectedItems3)
         //console.log(this.totalPages+" "+this.start+" "+this.last+" "+this.startIndex+" "+this.endIndex+" "+this.pages);
         console.log(resp['data']);
         this.paymentlist = resp['data'][0]['data']['PaymentData']
+        if(this.paymentlist!=null){
+          for(var total of this.paymentlist){
+            this.totalamount+=parseFloat(total['amount'])
+          }
+        }
         //this.spinner.hide()
         // this.loaderService.display(false);
         },error=>{
@@ -642,6 +683,20 @@ console.log(this.selectedItems3)
 
         removeValue(list, value) {
           return list.replace(new RegExp(value + ',?'), '')
+        }
+
+        loadPayLogs(id:number,index){
+          this.selectedIndex = index;
+         
+         this.paymentservice.paylogsNew(id).then(resp=>{
+          this.approverDetails=resp['data']
+          console.log(this.approverDetails)
+          for(let data of this.approverDetails)
+          this.grouplength= data['group'].length;
+          
+         },error=>{
+           console.log(error)
+         })
         }
 
 }
