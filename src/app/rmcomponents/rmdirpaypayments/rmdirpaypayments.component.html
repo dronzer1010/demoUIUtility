@@ -98,150 +98,7 @@
               </ng-multiselect-dropdown>
             
                   
-                  <div class="backdrop" [ngStyle]="{'display':display}"></div>
-                  <!-- modal -->
-                  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
-                      <!-- modal-dialog -->
-                      <div class="modal-dialog" role="document">
-                        <!-- modal-content -->
-                        <div class="modal-content">
-                          <!-- modal-header -->
-                          <div class="modal-header">
-                            Generate Customize Report<button type="button" class="close" aria-label="Close" (click)="closeModalDialog()"><span
-                                aria-hidden="true">&times;</span></button>
-                            <!-- <h4 class="modal-title">Login</h4> -->
-                          </div>
-                          <!-- modal-body -->
-                          <div class="modal-body">
-                            <div class="row mb-4 text-left">
-                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <label for="" class="pop-input-text">Report Name :</label>
-                                <input type="text" class="pop-input" placeholder="Eg. Quarterly Report">
-                              </div>
-                            </div>
-                            <div class="row mb-4 text-left">
-                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <label for="">Select the field to create a report</label>
-                              </div>
-                            </div>
-                            <div class="row mb-2 text-left">
-                              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                  <input type="checkbox" (change)="selectllpara()" name="selectallpara"  [(ngModel)]="selectallpara"> <span class="spn-modal">Select All
-                                      Type</span>
-                              </div>
-                          </div>
-                          <div class="row mb-2 text-left">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="checkbox" name="custbill_name" [(ngModel)]="custbill_name"> <span class="spn-modal">Bill Name</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="checkbox" name="custamount" [(ngModel)]="custamount"> <span class="spn-modal">Amount</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="checkbox" name="custconsumer_no" [(ngModel)]="custconsumer_no"> <span class="spn-modal">Reference No</span>
-                            </div>
-                          </div>
-                          <div class="row mb-2 text-left">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="checkbox" name="custconsumer_name" [(ngModel)]="custconsumer_name"> <span class="spn-modal">Consumer Name</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="checkbox" name="custstatus" [(ngModel)]="custstatus"> <span class="spn-modal">Status</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="checkbox" name="custpayment_status" [(ngModel)]="custpayment_status"> <span class="spn-modal">Payment Status</span>
-                            </div>
-                          </div>
-                          <div class="row mb-2 text-left">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="checkbox" name="custshort_name" [(ngModel)]="custshort_name"> <span class="spn-modal">Short Name</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" name="custdue_date" [(ngModel)]="custdue_date"> <span class="spn-modal">Due Date</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="checkbox" name="custbill_date" [(ngModel)]="custbill_date"> <span class="spn-modal">Bill Date</span>
-                            </div>
-                          </div>
-                          <div class="row mb-2 text-left">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" name="custcard_no" [(ngModel)]="custcard_no"> <span class="spn-modal">Card No</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="checkbox" name="custlocation" [(ngModel)]="custlocation"> <span class="spn-modal">Location</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" name="custbill_no" [(ngModel)]="custbill_no"> <span class="spn-modal">Bill No</span>
-                              </div>
-                          </div>
-                          <div class="row mb-2 text-left">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" name="custemail" [(ngModel)]="custemail"> <span class="spn-modal">Email</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="checkbox" name="custmobile_no" [(ngModel)]="custmobile_no"> <span class="spn-modal">Mobile No</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" name="custaddress" [(ngModel)]="custaddress"> <span class="spn-modal">Address</span>
-                              </div>
-                          </div>
-                          <div class="row mb-2 text-left">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              
-                                <input type="checkbox" name="custcrn" [(ngModel)]="custcrn"> <span class="spn-modal">CRN</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" name="custinitiated_by" [(ngModel)]="custinitiated_by"> <span class="spn-modal">Initiated by</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <!-- <input type="checkbox" name="custbill_name" [(ngModel)]="custbill_name"> <span class="spn-modal">File Name</span> -->
-                                <input type="checkbox" name="custinitiated_at" [(ngModel)]="custinitiated_at"> <span class="spn-modal">Initiated on</span>
-                              </div>
-                          </div>
-                          <div class="row mb-2 text-left">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" name="custorderid" [(ngModel)]="custorderid"> <span class="spn-modal">Order Id</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" name="custcomment" [(ngModel)]="custcomment"> <span class="spn-modal">Comment</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" name="custapproved_on" [(ngModel)]="custapproved_on"> <span class="spn-modal">Approved on</span>
-                              </div>
-                          </div>
-                          <div class="row mb-2 text-left">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                           
-                              <!-- <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Approved on</span> -->
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              
-                              </div>
-                          </div>
-                                 
-                            <div class="row mb-4 text-left">
-                              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                  <table>
-                                      <tr>
-                                        <td style="padding:0px; width:10%">From</td>
-                                        <td style="padding:0px; width:28%"><angular2-date-picker [ngClass]="'popup-datepicker'" [(ngModel)]="filterfromdate" [settings]="settings"></angular2-date-picker></td>
-                                        <td style="padding-left:7px; width:10%">To</td>
-                                        <td style="padding-right:10px; width:31%"><angular2-date-picker [ngClass]="'popup-datepicker'" [(ngModel)]="filtertodate" [settings]="settings"></angular2-date-picker></td>
-                                      </tr>
-                                    </table>
-                              </div>
-                              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
-                            </div>
-                            <div class="row text-left">
-                              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button (click)="closeModalDialog();getcustomreport()" class="btn-ok" style="margin-right:10px;">OK</button></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                 
                 </div>
               </div>
               <div class="row mb-3" style="margin-bottom:15px;">
@@ -253,12 +110,12 @@
                   </tr>
                   <tr>
                     <td>{{totalinvoice}}</td>
-                    <td><i class="fa fa-rupee">{{totalamount | numberfr}}</i></td>
+                    <td><i class="fa fa-rupee">&nbsp;{{totalamount | numberfr}}</i></td>
                   </tr>
                 </table>
                 </div>
                 <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 text-right txt">
-                  <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="getfilterdata()" type="button" style="border-radius:25px;">Filter Payment</button>
+                  <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="loadFilterPayments(rmid,pageNumber,pageSize)" type="button" style="border-radius:25px;">Filter Payment</button>
                 </div>
               </div>
               <div class="row" style="margin:0px;">
@@ -387,7 +244,7 @@
                               <div class="bold_span" tooltip="" placement="top"
                               show-delay="500">{{p.initiateddate}} | {{p.initiatedtime}}</div>
                             </div>
-                            <ng-container *ngFor="let approvers of approverdetails">
+                            <ng-container *ngFor="let approvers of approverDetails">
                             <div class="mb-1">
                               <div class="span_width" *ngIf="p.transstatus=='Pending'">Approver By</div> <span *ngIf="p.transstatus=='Pending'">:&nbsp;&nbsp;&nbsp;&nbsp;</span>
                               <div class="span_width" *ngIf="p.transstatus=='Approved'">Approver By</div> <span *ngIf="p.transstatus=='Approved'">:&nbsp;&nbsp;&nbsp;&nbsp;</span>
