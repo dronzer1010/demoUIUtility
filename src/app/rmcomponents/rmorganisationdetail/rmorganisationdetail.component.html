@@ -131,37 +131,35 @@
                                     </div>
 
                             </div>
+                           
                             <div class="col-sm-4">
-                                    <div class="col-sm-12 text-left cardsecond nopad">
-                                            <div class="clear20"></div>
-                                            <h4 class="crdpdlft">Groups</h4>
-                                            <hr>
-                                            <div class="clear20"></div>
-                                            <div class="col-sm-12">
-                                                    <div class="col-sm-3">
-                                                            <img src="assets/img/rs.png">
-                                                    </div>
-                                                    <div class="col-sm-9">
-                                                            <p class="orcardtxt">{{corporatename || ''}} Groups</p>
-                                                    </div>
+                                <div class="col-sm-12 text-left cardsecond nopad">
+                                        <div class="clear20"></div>
+                                        <h4 class="crdpdlft">Direct-Pay Bills</h4>
+                                        <hr>
+                                        <div class="clear20"></div>
+                                        <div class="col-sm-12">
+                                                <div class="col-sm-3">
+                                                        <img src="assets/img/layer.png">
+                                                </div>
+                                                <div class="col-sm-9">
+                                                        <p class="orcardtxt">{{corporatename || ''}} Direct-Pay Bills Registered
+                                                        </p>
+                                                </div>
 
-                                            </div>
-                                            <div class="clear10"></div>
-                                            <div  *ngIf="authmatrix=='Complex'" class="col-sm-12 text-center">
-                                                    <!-- <a class="vallg" routerLink="../rmgroups"> -->
-                                                            <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="gotoGroupsDetail()" type="button">View All Groups</button>
-                                                           
-                                                    <!-- </a> -->
-                                            </div>
-                                            <div *ngIf="authmatrix=='Standard'" class="col-sm-12 text-center">
-                                                    <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor"  type="button">Not Applicable</button>
-                                            </div>
-                                            <div class="clear20"></div>
-                                            <div class="clear20"></div>
+                                        </div>
+                                        <div class="clear10"></div>
+                                        <div class="col-sm-12 text-center">
+                                                <!-- <a routerLink="/rmsuppliers"> -->
+                                                        <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor custnextbtn" (click)="gotoDirectPaybillsDetail()" type="button">View All Direct-Pay Bills</button>
+                                                <!-- </a> -->
+                                        </div>
+                                        <div class="clear20"></div>
+                                        <div class="clear20"></div>
 
 
-                                    </div>
-                            </div>
+                                </div>
+                        </div>
                             <div class="col-sm-4">
                                     <div class="col-sm-12 text-left cardsecond nopad">
                                             <div class="clear20"></div>
@@ -248,35 +246,40 @@
 
                                     </div>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="col-sm-12 text-left cardsecond nopad">
-                                        <div class="clear20"></div>
-                                        <h4 class="crdpdlft">Direct-Pay Bills</h4>
-                                        <hr>
-                                        <div class="clear20"></div>
-                                        <div class="col-sm-12">
-                                                <div class="col-sm-3">
-                                                        <img src="assets/img/layer.png">
+                            <div>
+                                <!-- <div class="col-sm-4"></div> -->
+                                <div class="col-sm-4">
+                                        <div class="col-sm-12 text-left cardsecond nopad">
+                                                <div class="clear20"></div>
+                                                <h4 class="crdpdlft">Groups</h4>
+                                                <hr>
+                                                <div class="clear20"></div>
+                                                <div class="col-sm-12">
+                                                        <div class="col-sm-3">
+                                                                <img src="assets/img/rs.png">
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                                <p class="orcardtxt">{{corporatename || ''}} Groups</p>
+                                                        </div>
+    
                                                 </div>
-                                                <div class="col-sm-9">
-                                                        <p class="orcardtxt">{{corporatename || ''}} Direct-Pay Bills Registered
-                                                        </p>
+                                                <div class="clear10"></div>
+                                                <div  *ngIf="authmatrix=='Complex'" class="col-sm-12 text-center">
+                                                        <!-- <a class="vallg" routerLink="../rmgroups"> -->
+                                                                <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="gotoGroupsDetail()" type="button">View All Groups</button>
+                                                               
+                                                        <!-- </a> -->
                                                 </div>
-
+                                                <div *ngIf="authmatrix=='Standard'" class="col-sm-12 text-center">
+                                                        <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor"  type="button">Not Applicable</button>
+                                                </div>
+                                                <div class="clear20"></div>
+                                                <div class="clear20"></div>
+    
+    
                                         </div>
-                                        <div class="clear10"></div>
-                                        <div class="col-sm-12 text-center">
-                                                <!-- <a routerLink="/rmsuppliers"> -->
-                                                        <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor custnextbtn" (click)="gotoDirectPaybillsDetail()" type="button">View All Direct-Pay Bills</button>
-                                                <!-- </a> -->
-                                        </div>
-                                        <div class="clear20"></div>
-                                        <div class="clear20"></div>
-
-
                                 </div>
                         </div>
-
                     </div>
             </div>
     </div>

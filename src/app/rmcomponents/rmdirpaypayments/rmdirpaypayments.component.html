@@ -148,19 +148,12 @@
                       <tr class="rowShow grayStrip" *ngIf="p.collapsed && selectedIndex == i">
                         <td class="custmtd" colspan="8">
                           <div class="tablediv">
-                            <h5>Biller Details</h5>
+                            <h5>Transaction Details</h5>
                             <!-- <div class="mb-1">
                               <div class="span_width">Short Name</div> <span> : </span> &nbsp;
                               <div class="bold_span"></div>
                             </div> -->
-                            <!-- <div class="mb-1">
-                              <div class="span_width">GL/Expense Code</div> <span> : </span> &nbsp;
-                              <div class="bold_span">{{p.}}</div>
-                            </div> -->
-                            <div class="mb-1">
-                                <div class="span_width">{{p.parameter1}}</div> <span> : </span> &nbsp;
-                                <div class="bold_span">{{p.consumerno}}</div>
-                              </div>
+                           
                             <div class="mb-1">
                               <div class="span_width">Bill Date</div> <span> : </span> &nbsp;
                               <div class="bold_span">{{p.billdate}}</div>
@@ -169,47 +162,71 @@
                               <div class="span_width">Due Date</div> <span> : </span> &nbsp;
                               <div class="bold_span">{{p.duedate}}</div>
                             </div>
-                            <div class="mb-1" >
-                              <div class="span_width">UTR</div> <span> : </span> &nbsp;
-                              <div class="bold_span">{{p.utr}}</div>
-                            </div>
-                            <div class="mb-1">
-                              <div class="span_width">Location</div> <span> : </span> &nbsp;
-                              <div class="bold_span">{{p.statename}}</div>
-                             
-                            </div>
+                          
+                           
                             <div class="mb-1">
                               <div class="span_width">Bill No</div> <span> : </span> &nbsp;
-                              <div class="bold_span">{{p.billnumber}}</div>
+                              <div class="bold_span" tooltip="{{p.billnumber}}" placement="top" show-delay="500">{{p.billnumber}}</div>
                             </div>
                             <div class="mb-1">
                               <div class="span_width">Card No</div> <span> : </span> &nbsp;
                               <div class="bold_span">{{p.cardno}}</div>
                             </div>
                             <div class="mb-1">
-                              <div class="span_width" *ngIf="p.bucode_buname.length>0">{{p.displaynamebu}}</div> <span *ngIf="p.bucode_buname.length>0"> : </span> &nbsp;
-                              <div class="bold_span" *ngIf="p.bucode_buname.length>0">{{p.bucode_buname}}</div>
+                              <div class="span_width">Cut-Off Date</div> <span> : </span> &nbsp;
+                              <div class="bold_span">{{p.cutoffdate}}</div>
                             </div>
                             <div class="mb-1">
-                              <div class="span_width" *ngIf="p.circle.length>0">{{p.displaynamecircle}}</div> <span *ngIf="p.circle.length>0"> : </span> &nbsp;
-                              <div class="bold_span" *ngIf="p.circle.length>0">{{p.circle}}</div>
+                              <div class="span_width">Batch</div> <span> : </span> &nbsp;
+                              <div class="bold_span" *ngIf="p.cutofftime=='12:00 PM'">Batch 1</div>
+                              <div class="bold_span" *ngIf="p.cutofftime=='02:00 PM'">Batch 2</div>
+                              <div class="bold_span" *ngIf="p.cutofftime=='05:00 PM'">Batch 3</div>
+                              <div class="bold_span" *ngIf="p.cutofftime=='12:00 AM'">Batch 4</div>
+                            </div>
+                            <div class="mb-1">
+                              <div class="span_width">CRN</div> <span> : </span> &nbsp;
+                              <div class="bold_span">{{p.crn}}</div>
+                            </div>
+                            <div class="mb-1" >
+                              <div class="span_width">UTR</div> <span> : </span> &nbsp;
+                              <div class="bold_span" tooltip="{{p.utr}}" placement="top" show-delay="500">{{p.utr}}</div>
+                            </div>
+                            <div class="mb-1">
+                              <div class="span_width">File Name</div> <span> : </span> &nbsp;
+                              <div class="bold_span">{{p.uploadfilename}}</div>
                             </div>
         
                           </div>
                           <div class="tablediv table2">
-                            <h5>Contact Details</h5>
-                            
+                            <h5>Biller Details</h5>
+                            <div class="mb-1">
+                              <div class="span_width">GL/Expense Code</div> <span> : </span> &nbsp;
+                              <div class="bold_span">{{p.glexpensecode}}</div>
+                            </div>
+                            <div class="mb-1">
+                                <div class="span_width">{{p.parameter1}}</div> <span> : </span> &nbsp;
+                                <div class="bold_span">{{p.consumerno}}</div>
+                              </div>
                             <div class="mb-1">
                               <div class="span_width">Mobile No</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span">{{p.contactno}}</div>
                             </div>
-                            <!-- <div class="mb-1">
-                              <div class="span_width">Address</div> <span> : </span> &nbsp;
-                              <span class="bold_span" tooltip="" placement="top" show-delay="500"></span>
-                            </div> -->
+                          
                             <div>
                               <div class="span_width">Email</div> <span> : </span> &nbsp;
-                              <span class="bold_span" tooltip="" placement="top" show-delay="500"></span>
+                              <span class="bold_span" tooltip="{{p.email}}" placement="top" show-delay="500">{{p.email}}</span>
+                            </div>
+                            <div class="mb-1">
+                              <div class="span_width">Location</div> <span> : </span> &nbsp;
+                              <div class="bold_span" tooltip="{{p.statename}}" placement="top" show-delay="500">{{p.statename}}</div>
+                            </div>
+                            <div class="mb-1">
+                              <div class="span_width" *ngIf="p.bucode_buname.length>0">{{p.displaynamebu}}</div> <span *ngIf="p.bucode_buname.length>0"> : </span> &nbsp;
+                              <div class="bold_span" *ngIf="p.bucode_buname.length>0" tooltip="{{p.bucode_buname}}" placement="top" show-delay="500">{{p.bucode_buname}}</div>
+                            </div>
+                            <div class="mb-1">
+                              <div class="span_width" *ngIf="p.circle.length>0">{{p.displaynamecircle}}</div> <span *ngIf="p.circle.length>0"> : </span> &nbsp;
+                              <div class="bold_span" *ngIf="p.circle.length>0" tooltip="{{p.circle}}" placement="top" show-delay="500">{{p.circle}}</div>
                             </div>
                             <h5>Bank Details</h5>
                             <div class="mb-1">
@@ -227,17 +244,10 @@
                           </div>
                           <div class="tablediv noborder table3">
                             <h5>Other Details</h5>
-                            <div class="mb-1">
-                              <div class="span_width">CRN</div> <span> : </span> &nbsp;
-                              <div class="bold_span">{{p.crn}}</div>
-                            </div>
-                            <div class="mb-1">
-                              <div class="span_width">File Name</div> <span> : </span> &nbsp;
-                              <div class="bold_span">{{p.uploadfilename}}</div>
-                            </div>
+                            
                             <div class="mb-1">
                               <div class="span_width">Initiated by</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span">{{p.initiatedfname}} {{p.initiatedlname}}</div>
                             </div>
                             <div class="mb-1">
                               <div class="span_width">Initiated on</div> <span> : </span> &nbsp;
@@ -264,7 +274,7 @@
                       </tr>
                       <tr class="rowShow grayStrip" *ngIf="p.collapsed && selectedIndex == i">
                         <td colspan="8">
-                            <span class="text-left"><label style="color: #64289d;">Comment : &nbsp;</label></span>
+                            <span class="text-left" *ngIf="p.transstatus=='Rejected'"><label style="color: #64289d;">Comment : &nbsp;{{p.regcmt}}</label></span>
                           <!-- <span class="pull-right">
                           <a ><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

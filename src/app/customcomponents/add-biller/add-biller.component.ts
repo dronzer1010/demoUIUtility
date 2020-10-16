@@ -55,6 +55,17 @@ export class AddBillerComponent implements OnInit {
     //     this.states=data;
     //   }
     // )
+this.billdata={
+    "contact":"8960777767",
+    "accno":"873779734973",
+    "ifsc":"SBIN0000539",
+    "bank":"State Bank of India",
+    "consumerno":"8458499545",
+    "email":"deepanshu@aquapay.in",
+    "glexpensecode":"484849/333",
+    "branch":"Andheri East MIDC",
+}
+
     this.params = this.activatedRoute.snapshot.queryParams["id"];  
 this.getallStates()
 this.loadAllUsers()

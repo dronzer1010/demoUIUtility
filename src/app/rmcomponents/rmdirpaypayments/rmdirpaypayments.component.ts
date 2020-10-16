@@ -348,14 +348,14 @@ Organisation: any = [];
           CardDebitedtime:data['carddebitedtime'],
           CuttOffdate:data['cutoffdate'],
           CutOffTime:data['cutofftime'],
-          // GL_Expense_Code:data['gl_expense_code'],
+          GL_Expense_Code:data['glexpensecode'],
           Bill_Date:data['billdate'],
           Due_Date:data['duedate'],
           Bill_Number:data['billnumber'],
           State:data['statename'],
           Card_Number:data['cardno'],
-          // Contact:data['contact_no'],
-          // Email:data['email'],
+          Contact:data['contactno'],
+          Email:data['email'],
           Account_No:data['accountno'],
           Bank_Name:data['bankname'],
           Branch_Name:data['branchname'],
@@ -366,8 +366,8 @@ Organisation: any = [];
           RefundReason:data['refundreason'],
           Reference_No_1:data['bucode_buname'],
           Reference_No_2:data['circle'],
-          //Comment:data['']
-          // Initiated_by:data['initiated_by'],
+          Comment:data['regcmt'],
+          Initiated_by:`${data['initiatedfname']} ${data['initiatedlname']}`,
           Initiated_On:`${data['initiateddate']}|${data['initiatedtime']}`,
           UploadFileName:data['uploadfilename']
        
@@ -620,7 +620,7 @@ Organisation: any = [];
       //console.log(this.totalPages+" "+this.start+" "+this.last+" "+this.startIndex+" "+this.endIndex+" "+this.pages);
       // console.log(this.paymentlist);
       this.paymentlist = resp['data'][0]['data']['PaymentData']
-       console.log(this.paymentlist);
+      // console.log(this.paymentlist);
        if(this.paymentlist!=null){
         for(var total of this.paymentlist){
           this.totalamount+=parseFloat(total['amount'])

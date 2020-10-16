@@ -6,7 +6,7 @@ export class Config{
     constructor(){
 
       //this.baseUrl="http://4239837fb792.ngrok.io/api/"
-  // this.baseUrl="http://utilityrest.ap-south-1.elasticbeanstalk.com/api/"
+   //this.baseUrl="http://utilityrest.ap-south-1.elasticbeanstalk.com/api/"
   this.baseUrl = "https://utility-rest.aquapay.in/api/"
   //this.baseUrl="http://localhost:8080/api/"
 
