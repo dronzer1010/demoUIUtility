@@ -11,7 +11,8 @@ import {AuthService} from '../../api/auth.service'
 import {Config} from '../../config'
 import { e } from '@angular/core/src/render3';
 const path = new Config().getutilityBaseUrl();
-
+const gravitaOrgId = new Config().getGravitaOrgId()
+const gravitUserId = new Config().getGravitaUserId()
 @Component({
   selector: 'app-add-biller',
   templateUrl: './add-biller.component.html',
@@ -46,6 +47,7 @@ export class AddBillerComponent implements OnInit {
   dropdownCat = [];
   params:string;
   updatebiller:boolean=false;
+  orgId:any;
   constructor(private httpService: HttpClient,private _lightbox: Lightbox,private billerservice: BillerserviceService,private toastr: ToastrService,private loaderService: LoaderService,private router: Router,private activatedRoute: ActivatedRoute,private userservice:UserserviceService,private auth:AuthService) { }
 
   ngOnInit() {
@@ -55,25 +57,25 @@ export class AddBillerComponent implements OnInit {
     //     this.states=data;
     //   }
     // )
-this.billdata={
-    "contact":"8960777767",
-    "accno":"873779734973",
-    "ifsc":"SBIN0000539",
-    "bank":"State Bank of India",
-    "consumerno":"8458499545",
-    "email":"deepanshu@aquapay.in",
-    "glexpensecode":"484849/333",
-    "branch":"Andheri East MIDC",
-}
+// this.billdata={
+//     "contact":"8960777767",
+//     "accno":"873779734973",
+//     "ifsc":"SBIN0000539",
+//     "bank":"State Bank of India",
+//     "consumerno":"8458499545",
+//     "email":"deepanshu@aquapay.in",
+//     "glexpensecode":"484849/333",
+//     "branch":"Andheri East MIDC",
+// }
 
     this.params = this.activatedRoute.snapshot.queryParams["id"];  
 this.getallStates()
-this.loadAllUsers()
+this.loadCurrentUserDetails()
 if(this.params!=undefined || this.params!=null){
     this.loaderService.display(true)
     this.updatebiller=true
     this.billerservice.getBillerDetailsByiId(this.params).then(resp=>{
-      console.log(resp)
+      //console.log(resp)
       if(resp['msg']=='succes'){
         this.loaderService.display(true)
         this.billdata['utilitytype']=resp['billers']['utilitytype']
@@ -132,10 +134,18 @@ this.dropdownSettings1 = {
   }
   
 
-
+private loadCurrentUserDetails(){
+    this.userservice.getUserDetails().subscribe(resp=>{
+       // console.log(resp)
+        this.orgId=resp['Data']['orgid']
+        this.loadAllUsers()
+    },error=>{
+        console.log(error)
+    })
+}
 private getallStates(){
     this.billerservice.getAllStates_new().then(resp=>{
-        console.log(resp)
+       // console.log(resp)
         this.states=resp;
     },error=>{
         console.log(error)
@@ -458,7 +468,7 @@ private getallStates(){
 
   UploadFile(files): void {
     this.loaderService.display(true);
-    console.log("File Upload Started")
+    //console.log("File Upload Started")
     if (files.length === 0) {
         return;
       }
@@ -469,15 +479,15 @@ private getallStates(){
       this.httpService.post(path+`api/v2/bill_attachment_upload`, formData, {reportProgress: true, observe: 'events'})
         .subscribe(event => {
             
-            console.log(event['body'])
+           // console.log(event['body'])
             if(event['body']!=undefined){
             var attachment = Object.values(event['body'])[1]
              this.billdata['bill_attachment']=attachment
-             console.log(this.billdata['bill_attachment'])
+             //console.log(this.billdata['bill_attachment'])
              this.loaderService.display(false);
             }else{
                 this.billdata['bill_attachment']="Not Uploaded yet"; 
-                console.log(this.billdata['bill_attachment'])
+                //console.log(this.billdata['bill_attachment'])
             }
             
         },error=>{
@@ -492,7 +502,7 @@ private getallStates(){
   getBiller(stateid){
   this.billerlist=[];
    this.billerservice.getbillersbystateNew(stateid).then(resp=>{
-       console.log(resp)
+       //console.log(resp)
        this.billerlist=resp;
    },error=>{
        console.log(error)
@@ -507,34 +517,34 @@ private getallStates(){
       this.showbus=false;
       this.showcircles=false;
 this.billerservice.getbillerdetailsNew(billername).then(resp=>{
-    console.log(resp)
+    //console.log(resp)
     this.parameters=resp['data'];
     
     if(this.parameters['bus'].length>0){
         this.bus=this.parameters.bus;
        this.showbus=true;
         
-        console.log(this.bus)
+        //console.log(this.bus)
     }else{
         this.bus=[];
         this.showbus=false;
-        console.log(this.bus)
+       // console.log(this.bus)
     }
     if(this.parameters['circles'].length>0){
         this.circles=this.parameters.circles
         this.showcircles=true;
-        console.log(this.circles)
+       // console.log(this.circles)
     }else{
         this.circles=[];
         this.showcircles=false;
-        console.log(this.circles)
+       // console.log(this.circles)
     }
     if(this.parameters['parameter'].length>0){
         this.para1=this.parameters['parameter']
-        console.log(this.para1)
+       // console.log(this.para1)
     }else{
         
-        console.log(this.para1)
+      //  console.log(this.para1)
     }
     if(this.parameters['display_name_bu']!=null){
         this.showbus=true;
@@ -555,8 +565,8 @@ this.billerservice.getbillerdetailsNew(billername).then(resp=>{
   }
 
   getStateName(id:any){
-      console.log(id)
-      console.log(this.states)
+     // console.log(id)
+      //console.log(this.states)
 for(var i=0;i<=this.states.length;i++){
     if(this.states[i]['id']==id){
         this.statename=this.states[i]['name']
@@ -568,8 +578,8 @@ for(var i=0;i<=this.states.length;i++){
   }
 
   onCatSelect(approver:any){
-      console.log("Single Selection")
-    console.log(approver)
+    //  console.log("Single Selection")
+    //console.log(approver)
    // console.log(this.selectedItems1)
     //var checkerid=approver.map(checker=>checker['item_id']).join(',');
    // console.log(checkerid)
@@ -577,8 +587,8 @@ for(var i=0;i<=this.states.length;i++){
   }
 
   onSelectAll(approver:any){
-      console.log("Select All")
-      console.log(approver)
+    //  console.log("Select All")
+     // console.log(approver)
      // console.log(this.selectedItems1)
   }
 
@@ -606,13 +616,13 @@ for(var i=0;i<=this.states.length;i++){
   }
 
   cnfsend(){
-      console.log(this.selectedItems1)
+     // console.log(this.selectedItems1)
        var checkerid=this.selectedItems1.map(checker=>checker['item_id']).join(',');
-   console.log(checkerid)
+   //console.log(checkerid)
    this.billdata['selectcheckertemp']=checkerid
-   console.log(this.billdata['selectcheckertemp'])
-   console.log(this.showbus)
-   console.log(this.showcircles)
+//    console.log(this.billdata['selectcheckertemp'])
+//    console.log(this.showbus)
+//    console.log(this.showcircles)
    if(this.showbus==true){
    if(this.billdata['consumerno']==undefined && this.billdata['glexpensecode']==undefined && this.billdata['email']==undefined && this.billdata['ifsc']==undefined && this.billdata['accno']==undefined && this.billdata['contact']==undefined && this.billdata['bucode']==undefined ){
     this.toastr.warning("Please fill all the details first!","Alert",{
@@ -647,15 +657,15 @@ for(var i=0;i<=this.states.length;i++){
         this.billertype=false;
     }
 }
-   console.log(this.billdata['consumerno'])
-   console.log(this.billdata['glexpensecode'])
-   console.log(this.billdata['email'])
-   console.log(this.billdata['ifsc'])
-   console.log(this.billdata['accno'])
-   console.log(this.billdata['contact'])
-   console.log(this.billdata['circle'])
-   console.log(this.billdata['bucode'])
-   console.log(this.billdata['selectcheckertemp'])
+//    console.log(this.billdata['consumerno'])
+//    console.log(this.billdata['glexpensecode'])
+//    console.log(this.billdata['email'])
+//    console.log(this.billdata['ifsc'])
+//    console.log(this.billdata['accno'])
+//    console.log(this.billdata['contact'])
+//    console.log(this.billdata['circle'])
+//    console.log(this.billdata['bucode'])
+//    console.log(this.billdata['selectcheckertemp'])
 
   }
 
@@ -717,17 +727,17 @@ if(this.billdata['bucode']==undefined || this.billdata['bucode']==null){
     this.billdata['bucode']=this.billdata['bucode']
 }
 if(this.billdata['circle']==undefined || this.billdata['circle']==null){
-    console.log("set Circle blank")
+    //console.log("set Circle blank")
     this.billdata['circle']="";
 }else{
     this.billdata['circle']=this.billdata['circle']
 }
-    console.log(this.billdata)
+   // console.log(this.billdata)
     var array=[
         this.billdata
     ]
 this.billerservice.registerbillsNew(array).then(resp=>{
-    console.log(resp)
+    //console.log(resp)
     if(resp['msg']=='BillerDetails Added successfully' || resp['msg']=='BillerDetails Added Successfully'){
         this.loaderService.display(false);
         this.router.navigate(['/main/successmsg'],{queryParams:{msg:'billnewsuccess'}});
@@ -793,17 +803,17 @@ if(this.billdata['bucode']==undefined || this.billdata['bucode']==null){
     this.billdata['bucode']=this.billdata['bucode']
 }
 if(this.billdata['circle']==undefined || this.billdata['circle']==null){
-    console.log("set Circle blank")
+   // console.log("set Circle blank")
     this.billdata['circle']="";
 }else{
     this.billdata['circle']=this.billdata['circle']
 }
-    console.log(this.billdata)
+    //console.log(this.billdata)
     var array=[
         this.billdata
     ]
 this.billerservice.updatebillsNew(array).then(resp=>{
-    console.log(resp)
+    //console.log(resp)
     if(resp['msg']=='BillerDetails Added successfully' || resp['msg']=='BillerDetails Added Successfully'){
         this.loaderService.display(false);
         this.router.navigate(['/main/successmsg'],{queryParams:{msg:'billnewsuccess'}});
@@ -859,11 +869,23 @@ this.billerservice.updatebillsNew(array).then(resp=>{
   getIfsc(ifsc:string){
     //ifsc=this.supplierData['ifsc']
     //console.log(ifsc);
-    this.billerservice.getIfscDetails(ifsc).subscribe(data=>{
+    this.billerservice.getIfscDetailsnew(ifsc).subscribe(data=>{
       //console.log(data['data'])
-      this.billdata['bank']=data['data']['bank']
-      this.billdata['branch']=data['data']['branch']
-      
+    //   this.billdata['bank']=data['data']['bank']
+    //   this.billdata['branch']=data['data']['branch']
+         /**New API Response**/
+    // console.log(data['msg'])
+    // console.log(data['data'][0])
+    if(data['data'].length>0 && data['msg']=='success'){
+        this.billdata['bank']=data['data'][0]['bank']
+        this.billdata['branch']=data['data'][0]['branch']
+    }else{
+       
+        this.toastr.warning("Bank Details not available","Alert",{
+          timeOut:3000,
+          positionClass:'toast-top-center'
+          })
+    }
     },error=>{
       console.log(error)
     })
@@ -872,12 +894,19 @@ this.billerservice.updatebillsNew(array).then(resp=>{
   private loadAllUsers() {
     this.loaderService.display(true);
     this.userservice.getAll().subscribe(users => {
-      console.log(users);
+     // console.log(users);
       this.loaderService.display(false);
       var userlist=users['data']; 
-      this.users=userlist.filter((user)=>{
-        return (user['status']=='Approved' && (user['dualrole']=='checker' || user['dualrole']=='ccchecker' || user['dualrole']=='aschecker'))
-      })
+      if(this.orgId==gravitaOrgId){
+        this.users=userlist.filter((user)=>{
+            return (user['status']=='Approved' && user['id']==gravitUserId)
+          })
+      }else{
+        this.users=userlist.filter((user)=>{
+            return (user['status']=='Approved' && (user['dualrole']=='checker' || user['dualrole']=='ccchecker' || user['dualrole']=='aschecker'))
+          })
+      }
+      
       for(var data of this.users){
           var obj={
             item_id:data['id'],

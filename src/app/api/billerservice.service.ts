@@ -134,6 +134,10 @@ export class BillerserviceService {
     return this.http.get<any>('https://ifsc.aquapay.in/api/ifsc/'+ifsc);
   }
 
+  getIfscDetailsnew(ifsc:string){
+    return this.http.get<any>('https://rest.aquapay.in/api/bank/'+ifsc);
+  }
+
   submitbulkbill(billdata:any[]): Promise<any> {
     // let token = this.storage.getData("chlogin_data").token;
     // let headers = new HttpHeaders().set('Content-Type', 'application/json')

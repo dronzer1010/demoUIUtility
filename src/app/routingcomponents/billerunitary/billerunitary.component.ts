@@ -50,16 +50,7 @@ export class BillerUnitaryComponent implements OnInit {
    
 this.getallStates()
 
-this.billdata={
-    "due_date":"15th",
-    "contact_no":"8960777767",
-    "short_name":"BILLER1",
-    "contact_address":"Andheri East MIDC",
-    "consumer_no":"765393795795",
-    "bill_date":"4th",
-    "email":"deepanshu@aquapay.in",
-    "gl_expense_code":"77383/3833"
-}
+
     
   }
 
