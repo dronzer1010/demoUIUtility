@@ -160,7 +160,10 @@ import { NotificationMatrixService } from './supportingcomponents/notificationma
 import { SessionService } from './sessionservice/storage.service';
 import { RmdirpaypaymentsComponent } from './rmcomponents/rmdirpaypayments/rmdirpaypayments.component';
 import { RmdirpaybillersComponent } from './rmcomponents/rmdirpaybillers/rmdirpaybillers.component';
-
+import { AuthcodesetupComponent } from './firstloginComponents/authcodesetup/authcodesetup.component';
+import { FirstTimeOtpComponent } from './firstloginComponents/first-time-otp/first-time-otp.component';
+import { FirstTimeSetPasswordComponent } from './firstloginComponents/first-time-set-password/first-time-set-password.component';
+import {FirstLoginService} from './api/first-login.service'
 // import { FusionChartsModule } from 'angular-fusioncharts';
 // import FusionCharts from 'fusioncharts/core';
 // import Column2D from 'fusioncharts/viz/column2d';
@@ -274,7 +277,10 @@ import { RmdirpaybillersComponent } from './rmcomponents/rmdirpaybillers/rmdirpa
     AddBulkBillerComponent,
     AddBulkBillPaymentComponent,
     RmdirpaypaymentsComponent,
-    RmdirpaybillersComponent
+    RmdirpaybillersComponent,
+    AuthcodesetupComponent,
+    FirstTimeOtpComponent,
+    FirstTimeSetPasswordComponent
   ],
 
   imports: [
@@ -328,7 +334,7 @@ import { RmdirpaybillersComponent } from './rmcomponents/rmdirpaybillers/rmdirpa
 
   ],
  
-  providers: [LoaderService,ExcelService,SessionService,DatePipe,AuthService,UserserviceService,CardserviceService,GroupserviceService,RuleserviceService,SetupserviceService,AccoutsetupService,BillerserviceService,PaymentserviceService,RmservicesService,IfscVerificationService,NotificationMatrixService,{
+  providers: [LoaderService,ExcelService,SessionService,DatePipe,AuthService,UserserviceService,CardserviceService,GroupserviceService,RuleserviceService,SetupserviceService,AccoutsetupService,BillerserviceService,PaymentserviceService,RmservicesService,IfscVerificationService,NotificationMatrixService,FirstLoginService,{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthinterceptorService,
     multi: true
