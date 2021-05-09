@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NoopAnimationsModule} from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routing } from './app.routing';
@@ -163,6 +163,7 @@ import { RmdirpaybillersComponent } from './rmcomponents/rmdirpaybillers/rmdirpa
 import { AuthcodesetupComponent } from './firstloginComponents/authcodesetup/authcodesetup.component';
 import { FirstTimeOtpComponent } from './firstloginComponents/first-time-otp/first-time-otp.component';
 import { FirstTimeSetPasswordComponent } from './firstloginComponents/first-time-set-password/first-time-set-password.component';
+
 import {FirstLoginService} from './api/first-login.service'
 // import { FusionChartsModule } from 'angular-fusioncharts';
 // import FusionCharts from 'fusioncharts/core';
@@ -329,11 +330,11 @@ import {FirstLoginService} from './api/first-login.service'
     Ng2SearchPipeModule,
     SelectDropDownModule,
     PageSliderModule,
-    AngularFileUploaderModule,
+    AngularFileUploaderModule
 
 
   ],
- 
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [LoaderService,ExcelService,SessionService,DatePipe,AuthService,UserserviceService,CardserviceService,GroupserviceService,RuleserviceService,SetupserviceService,AccoutsetupService,BillerserviceService,PaymentserviceService,RmservicesService,IfscVerificationService,NotificationMatrixService,FirstLoginService,{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthinterceptorService,

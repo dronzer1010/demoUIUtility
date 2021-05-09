@@ -5,7 +5,7 @@ import {FormControl, Validators} from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr'
 import {FirstLoginService} from '../../api/first-login.service'
-import { NgxUiLoaderService } from 'ngx-ui-loader'; // Import NgxUiLoaderService
+
 
 @Component({
   selector: 'app-first-time-otp',
@@ -23,22 +23,22 @@ export class FirstTimeOtpComponent implements OnInit {
   otp3:string;
   otp4:string;
   otp5:string;
-  constructor(private authService: AuthService,private route: ActivatedRoute,private router: Router,private toastr: ToastrService,private firstLogin:FirstLoginService,private ngxService: NgxUiLoaderService) { }
+  constructor(private authService: AuthService,private route: ActivatedRoute,private router: Router,private toastr: ToastrService,private firstLogin:FirstLoginService) { }
 
   ngOnInit() {
   }
 
   otpPost(){
-    this.ngxService.start()
+    
     this.otpstring=this.otp1+this.otp2+this.otp3+this.otp4+this.otp5
     if(this.otpstring==undefined||this.otpstring==null||this.otpstring==""){
-      this.ngxService.stop()
+  
       this.toastr.warning("Please Enter OTP!","Alert",{
         timeOut:3000,
         positionClass:'toast-top-center'
         })
     }else if(this.otpstring.length>5){
-      this.ngxService.stop()
+    
       this.toastr.warning("Please Enter 5 Digit OTP!","Alert",{
         timeOut:3000,
         positionClass:'toast-top-center'
@@ -48,16 +48,16 @@ export class FirstTimeOtpComponent implements OnInit {
         if(resp['msg']=='OTP validated successfully!'){
           this.firstLogin.saveToken(resp['data']['token'])
           this.router.navigate(['/first-time-set-pwd']);
-          this.ngxService.stop()
+        
         }else{
-          this.ngxService.stop()
+        
           this.toastr.warning("Something went wrong, please contact Aquapay Support!","Alert",{
             timeOut:3000,
             positionClass:'toast-top-center'
             })
         }
       },error=>{
-        this.ngxService.stop()
+     
           this.toastr.warning("Failed to validate OTP, please contact Aquapay Support!","Alert",{
             timeOut:3000,
             positionClass:'toast-top-center'

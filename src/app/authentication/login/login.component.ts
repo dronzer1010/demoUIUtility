@@ -117,7 +117,7 @@ this.auth.getorganisationbyemail(email).then(data=>{
   }
 
   reqpwd(){
-    this.auth.requestPassword(this.email,this.orgid);
+    this.auth.requestPasswordNew(this.email,this.orgid);
   }
 
   selectOption(id: number){

@@ -331,6 +331,36 @@ requestPassword(email:any,org:any){
   });
 }
 
+requestPasswordNew(email:any,org:any){
+  let body = new URLSearchParams();
+  body.set('email', email);
+  body.set('corp_id', org);
+  body.set('no','0')
+  let options = {
+    headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+  };
+  this.http.post(`${this.loginpath}api/user/send_forget_password`,body.toString(), options).subscribe(data=>{
+    console.log(data)
+    if(data['msg']=='User not found'){
+      this.toastr.error("User not found please check and try again!",'Alert',{
+        timeOut:3000,
+        positionClass:'toast-top-center'
+        })
+    }else{
+      this.toastr.success("Password reset link has been sent on your mail!",'Alert',{
+        timeOut:3000,
+        positionClass:'toast-top-center'
+        })
+    }
+   // this.saveToken(data['data']['secure_set'])
+  
+   
+  },error=>{
+    console.log(error)
+  });
+}
+
+
 
 
 

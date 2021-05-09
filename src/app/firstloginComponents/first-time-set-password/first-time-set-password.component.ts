@@ -3,7 +3,7 @@ import { Router, ActivatedRoute,NavigationEnd,RoutesRecognized   } from '@angula
 import { ToastrService } from 'ngx-toastr'
 import {AuthService} from '../../api/auth.service'
 import {FirstLoginService} from '../../api/first-login.service'
-import { NgxUiLoaderService } from 'ngx-ui-loader'; // Import NgxUiLoaderService
+
 
 @Component({
   selector: 'app-first-time-set-password',
@@ -16,13 +16,13 @@ export class FirstTimeSetPasswordComponent implements OnInit {
   password:string;
   cnfpassword:string;
   validPassword:boolean=false;
-  constructor(private router: Router,private activatedRoute: ActivatedRoute,private toastr: ToastrService,private auth:AuthService,private firstLogin:FirstLoginService,private ngxService: NgxUiLoaderService) { }
+  constructor(private router: Router,private activatedRoute: ActivatedRoute,private toastr: ToastrService,private auth:AuthService,private firstLogin:FirstLoginService) { }
 
   ngOnInit() {
   }
 
   setnewpwd(){
-    this.ngxService.start()
+  
     if(this.validPassword==true){
       if(!!this.password && !!this.cnfpassword && this.password.length >= 8){
         if (this.password == this.cnfpassword) {
@@ -33,21 +33,21 @@ export class FirstTimeSetPasswordComponent implements OnInit {
           this.firstLogin.setUserPassword(params).then(resp=>{
             if(resp['msg']=='Password updated successfully'){
               this.router.navigate(['/']);
-              this.ngxService.stop()
+             
               localStorage.clear();
               this.toastr.success("Your password has been updated successfully, please login to continue!",'Success',{
                 timeOut:3000,
                 positionClass:'toast-top-center'
                 })
             }else{
-              this.ngxService.stop()
+           
               this.toastr.warning("Something Went wrong, Please contact Aquapay Support!",'Alert',{
                 timeOut:3000,
                 positionClass:'toast-top-center'
                 })
             }
           },error=>{
-            this.ngxService.stop()
+         
             console.log(error)
             this.toastr.warning("Failed to update password, Please contact Aquapay Support!",'Alert',{
               timeOut:3000,
@@ -55,21 +55,21 @@ export class FirstTimeSetPasswordComponent implements OnInit {
               })
           })
         }else{
-          this.ngxService.stop()
+       
           this.toastr.warning("Password and Confirm Password not matched!",'Alert',{
             timeOut:3000,
             positionClass:'toast-top-center'
             })
         }
       }else{
-        this.ngxService.stop()
+     
         this.toastr.warning("Please enter atleast 8-character in password field!",'Alert',{
           timeOut:3000,
           positionClass:'toast-top-center'
           })
       }
     }else{
-      this.ngxService.stop()
+     
         this.toastr.warning("Please enter the valid password as mentioned on the screen!",'Alert',{
           timeOut:3000,
           positionClass:'toast-top-center'
