@@ -12,6 +12,7 @@ import { e } from '@angular/core/src/render3';
 import {Observable} from 'rxjs/Rx';
 import { Http, ResponseContentType , Headers,RequestOptions} from '@angular/http';
 import {Config} from '../../config'
+import { repeat } from 'rxjs/operators';
 const path = new Config().getutilityBaseUrl();
 
 @Component({
@@ -61,7 +62,7 @@ export class RmdirpaypaymentsComponent implements OnInit {
   todate:Date = new Date();
   fromdate:Date = new Date();
   tofilter:Date = new Date();
-  fromfilter: Date = new Date('2019-07-10 06:40:03');
+  fromfilter: Date = new Date('2020-04-01 00:00:00');
   fromfilterstring:any;
   tofilterstring:any;
   filterfromdate:any;
@@ -82,6 +83,7 @@ carddebittime:string;
 carddebitdate:string;
 paysuccessdate:string;
 paysuccesstime:string;
+
 payfaildate:string;
 payfailtime:string;
 rejectreason:string;
@@ -131,17 +133,29 @@ last:number;
 start:number;
 paymentlist: any = [];
 pageNumber:number=1;
-pageSize:number=300;
+pageSize:number=1000;
 totalinvoice:number=0;
 currentUser :any;
 rmid:number;
 filtertrue:boolean=false;
+grouplength:number;
+orgpara:string='ALL'
+tstatuspara:number=10
+pstatuspara:number=10
+batchpara:number=10
+utrpara:string='DEFAULT'
+amountpara:string='0'
+fromdatepara:string;
+todatepara:string;
+Organisation: any = [];
   constructor(private excelservice : ExcelService,private billservice:BillerserviceService,private userservice:UserserviceService,private loaderService: LoaderService,private paymentservice: PaymentserviceService,public datepipe: DatePipe,private rmservice:RmservicesService,private toastr: ToastrService,private http: Http) { }
 
   ngOnInit() {
     this.getAllOrg()
     this.filterfromdate=this.fromdate
     this.filtertodate=this.todate;
+    this.fromdatepara=this.datepipe.transform(this.fromfilter, 'yyyy-MM-dd');
+    this.todatepara=this.datepipe.transform(this.tofilter, 'yyyy-MM-dd');
     this.dropdownSettings3 = {
       singleSelection: false,
       idField: 'OrgId',
@@ -255,15 +269,15 @@ filtertrue:boolean=false;
     
     ];
 
-    // this.rmservice.getUserDetails().then(res => {
-    //   this.currentUser = res.Data;
-    //   this.rmid=this.currentUser['id']
-    //   this.loadDefaultPayments(this.rmid,this.pageNumber,this.pageSize)
-    //   },error=>{
-    //   console.log(error)
-    //   });
+    this.rmservice.getUserDetails().then(res => {
+      this.currentUser = res.Data;
+      this.rmid=this.currentUser['id']
+      this.loadDefaultPayments(this.rmid,this.pageNumber,this.pageSize)
+      },error=>{
+      console.log(error)
+      });
 
-      this.loadFilterPayments(1300,1,300,'2020-05-01','2020-09-05','ALL',10,10,10,'DEFAULT',"0");
+    //  this.loadFilterPayments(1300,1,300,'2020-05-01','2020-09-05','ALL',10,10,10,'DEFAULT',"0");
 
   }
 
@@ -272,7 +286,7 @@ filtertrue:boolean=false;
   private getAllOrg(){
     this.rmservice.getAllOrganizations().then(resp => {
       this.organisationlist = resp.data;
-      console.log(this.organisationlist);
+     // console.log(this.organisationlist);
       for(var data of this.organisationlist){
         var obj={
           OrgId:data['OrgId'],
@@ -288,10 +302,10 @@ filtertrue:boolean=false;
         this.organisationid.push(obj1)
       }
      // this.loadPayments();
-      console.log(this.organisationid)
+     // console.log(this.organisationid)
      
     });
-    console.log(this.orglist)
+   // console.log(this.orglist)
   }
 
   openModalDialog(){
@@ -320,34 +334,48 @@ filtertrue:boolean=false;
     if(items['item_id']==2){
       this.display='block';
     }else if(items['item_id']==1){
-      for(let data of this.paymentData){
+      for(let data of this.paymentlist){
         var obj={
-          Biller:data['biller_name'],
+          UtilityName:data['utilityname'],
+          Biller:data['billername'],
           Amount:data['amount'],
-          Consumer_No:data['consumer_no'],
-          Consumer_Name:data['consumer_name'],
-          Status:data['transaction_status'],
-          Payment_Status:data['payment_status'],
-          Short_Name:data['short_name'],
-          GL_Expense_Code:data['gl_expense_code'],
-          Bill_Date:data['bill_date'],
-          Due_Date:data['due_date'],
-          State:data['state'],
-          Bill_Number:String(data['bill_number']),
-          Card_Number:data['card_last_digits'],
-          Order_Id:data['order_id'],
-          Contact:data['contact_no'],
-          Bill_Address:data['contact_address'],
+          Consumer_No:data['consumerno'],
+          Consumer_Name:data['orgname'],
+          CRN:data['crn'],
+          Status:data['transstatus'],
+          Payment_Status:data['paymentstatus'],
+          CardDebiteddate:data['carddebiteddate'],
+          CardDebitedtime:data['carddebitedtime'],
+          CuttOffdate:data['cutoffdate'],
+          CutOffTime:data['cutofftime'],
+          GL_Expense_Code:data['glexpensecode'],
+          Bill_Date:data['billdate'],
+          Due_Date:data['duedate'],
+          Bill_Number:data['billnumber'],
+          State:data['statename'],
+          Card_Number:data['cardno'],
+          Contact:data['contactno'],
           Email:data['email'],
-          CRN:data['transaction_ref_no'],
-          Initiated_by:data['initiated_by'],
-          Initiated_On:data['initiated_date'],
+          Account_No:data['accountno'],
+          Bank_Name:data['bankname'],
+          Branch_Name:data['branchname'],
+          IFSC:data['ifsc'],
+          UTR:data['utr'],
+          UTRDate:data['utrdate'],
+          UTRTime:data['utrtime'],
+          RefundReason:data['refundreason'],
+          Reference_No_1:data['bucode_buname'],
+          Reference_No_2:data['circle'],
+          Comment:data['regcmt'],
+          Initiated_by:`${data['initiatedfname']} ${data['initiatedlname']}`,
+          Initiated_On:`${data['initiateddate']}|${data['initiatedtime']}`,
+          UploadFileName:data['uploadfilename']
        
   
         }
         this.downloadArray.push(obj)
       }
-      this.excelservice.exportAsExcelFile( this.downloadArray, 'Payment List');
+      this.excelservice.exportAsExcelFile( this.downloadArray, 'Direct Payment List');
     }
   }
 
@@ -367,29 +395,28 @@ filtertrue:boolean=false;
   }
 
   onOrgSelect(org:any){
-
-  
-console.log(this.selectedItems3)
+//console.log(this.selectedItems3)
     this.filterorgid = this.selectedItems3.map(function(val) {
       return val.OrgId;
     })
-
-  
-    console.log(this.filterorgid)
+    this.orgpara=this.filterorgid.toString()
+   // console.log(this.orgpara)
   }
 
   onItemDeSelect(org:any){
-    this.filterorgid.pop(org)
-    console.log(this.filterorgid)
+    this.filterorgid.pop(org) 
+    this.orgpara=this.filterorgid.toString()
+   // console.log(this.orgpara)
   }
 
   onSelectAllOrg(org:any){
-   
-    console.log(org)
+    //console.log(org)
     this.filterorgid = org.map(function(val) {
       return val.OrgId;
     })
-    console.log(this.filterorgid)
+   
+    this.orgpara=this.filterorgid.toString()
+   // console.log(this.orgpara)
   }
 
   onSelectAllCat(cat:any){
@@ -412,6 +439,15 @@ console.log(this.selectedItems3)
     // }).join(',');
     this.filterts=ts['item_text']
     console.log(this.filterts)
+    if(this.filterts=='Approved'){
+      this.tstatuspara=1
+    }else if(this.filterts=='Pending'){
+      this.tstatuspara=2
+    }else if(this.filterts=='Rejected'){
+      this.tstatuspara=0
+    }else{
+      this.tstatuspara=10
+    }
   }
 
   ontsselectall(ts:any){
@@ -424,18 +460,70 @@ console.log(this.selectedItems3)
     console.log(ps)
     this.filterps=ps['item_text']
     console.log(this.filterps)
+    if(this.filterps=='Card Debited'){
+      this.tstatuspara=1
+    }else if(this.filterps=='Pending'){
+      this.tstatuspara=2
+    }else if(this.filterps=='Payment Returned'){
+      this.tstatuspara=3
+    }else if(this.filterps=='Insufficient Funds'){
+      this.tstatuspara=4
+    }else if(this.filterps=='Card Declined'){
+      this.tstatuspara=5
+    }else{
+      this.tstatuspara=10
+    }
   }
 
   onbatchSelect(batch:any){
     console.log(batch)
     this.filterbatch=batch['item_text']
     console.log(this.filterbatch)
+    if(this.filterbatch=='Batch 1'){
+      this.tstatuspara=1
+    }else if(this.filterbatch=='Batch 2'){
+      this.tstatuspara=2
+    }else if(this.filterbatch=='Batch 3'){
+      this.tstatuspara=3
+    }else if(this.filterbatch=='Batch 4'){
+      this.tstatuspara=4
+    }else{
+      this.tstatuspara=10
+    }
   }
 
   onpsselectall(ps:any){
     console.log(ps)
     this.filterps=ps['item_text']
     console.log(this.filterps)
+  }
+
+  sendPaymentStatus(debiteddate: string, debitedtime: string, paystatus: string, dateutr: string, timeutr: string, utrno: string,refundreason:string) {
+    this.displayLogs='block';
+   
+    if (paystatus == 'Insufficient Funds' || paystatus == 'Card Declined' || paystatus == 'Pending' || paystatus == 'E009-Invalid Cardnumber' || paystatus == 'ERROR' || paystatus == 'REJECT') {
+      this.carddebitdate = "--";
+      this.carddebittime = "--";
+    } else {
+      this.carddebitdate = debiteddate;
+      this.carddebittime = debitedtime;
+    }
+    if (utrno != 'NA' && paystatus != 'Payment Returned') {
+      this.paysuccessdate = dateutr;
+      this.paysuccesstime = timeutr;
+    } else {
+      this.paysuccessdate = "--";
+      this.paysuccesstime = "--";
+    }
+    if (paystatus == 'Payment Returned') {
+      this.payfaildate = dateutr;
+      this.payfailtime = timeutr;
+      this.rejectreason = refundreason
+    } else {
+      this.payfaildate = "--";
+      this.payfailtime = "--";
+      this.rejectreason = "--"
+    }
   }
 
   getpaymentlogs(carddebittime,paystatustime,rejectreason,paymentstat){
@@ -530,8 +618,14 @@ console.log(this.selectedItems3)
       this.endIndex=endIndex;
       this.pages=pages;
       //console.log(this.totalPages+" "+this.start+" "+this.last+" "+this.startIndex+" "+this.endIndex+" "+this.pages);
-      // console.log(data['data']);
+      // console.log(this.paymentlist);
       this.paymentlist = resp['data'][0]['data']['PaymentData']
+      // console.log(this.paymentlist);
+       if(this.paymentlist!=null){
+        for(var total of this.paymentlist){
+          this.totalamount+=parseFloat(total['amount'])
+        }
+      }
       //this.spinner.hide()
       // this.loaderService.display(false);
       },error=>{
@@ -542,41 +636,39 @@ console.log(this.selectedItems3)
       })
       }
 
-      loadFilterPayments(rmid,pagenumber,pagesize,fromdate,todate,orgid,status,paystatus,batch,utrno,amount){
+      loadFilterPayments(rmid,pagenumber,pagesize){
         if(pagenumber==0){
         pagenumber=1;
         }
         this.pageNumber= pagenumber
-        this.paymentlist= null;
+        this.paymentlist= [];
+        this.totalamount=0;
         this.filtertrue=true
-        if(orgid==undefined || orgid==null){
-        orgid='ALL'
-        }else if(orgid.includes(undefined)){
-        orgid=this.removeValue(orgid,undefined)
-        }
-        else{
-        orgid=this.removeValue(orgid,undefined)
+        if(this.orgpara.length<=0){
+        this.orgpara='ALL'
+        }else{
+          this.orgpara=this.orgpara
         }
         
-        if(utrno==undefined ||utrno.length<1 || utrno==null){
-        utrno='DEFAULT'
+        if(this.utrpara.length<=0){
+          this.utrpara='DEFAULT'
         }else{
-        utrno=utrno
+          this.utrpara=this.utrpara
         }
-        if(amount==undefined ||amount.length<1 || amount==null){
-        amount=0
+        if(this.amountpara.length<=0){
+          this.amountpara='0'
         }else{
-        amount=amount
+          this.amountpara='0'
         }
-        console.log(orgid)
-        console.log("filter true")
+       // console.log("filter true")
         
-        console.log(rmid+" "+pagenumber+" "+pagesize+" "+fromdate+" "+todate+" "+orgid+" "+status+" "+paystatus+" "+batch+" "+utrno+" "+amount)
-        fromdate=this.datepipe.transform(fromdate, 'yyyy-MM-dd');
-        todate=this.datepipe.transform(todate, 'yyyy-MM-dd');
+        
+        this.fromdatepara=this.datepipe.transform(this.fromfilter, 'yyyy-MM-dd');
+        this.todatepara=this.datepipe.transform(this.tofilter, 'yyyy-MM-dd');
        // this.spinner.show()
         //console.log(rmid+" "+pagenumber+" "+pagesize)
-        this.rmservice.getfilrmpaynew(rmid,pagenumber,pagesize,fromdate,todate,orgid,status,paystatus,batch,utrno,amount).then(resp=>{
+       // console.log(rmid+" "+pagenumber+" "+pagesize+" "+this.fromdatepara+" "+this.todatepara+" "+this.orgpara+" "+this.tstatuspara+" "+this.pstatuspara+" "+this.batchpara+" "+this.utrpara+" "+this.amountpara)
+        this.rmservice.getfilrmpaynew(rmid,pagenumber,pagesize,this.fromdatepara,this.todatepara,this.orgpara,this.tstatuspara,this.pstatuspara,this.batchpara,this.utrpara,this.amountpara).then(resp=>{
         //console.log(resp['data'][0]['data']['TotalCount']['TotalCount'])
         for(let i=0;i<resp['data'].length; i++){
         this.totalinvoice=resp['data'][i]['data']['TotalCount']['TotalCount']
@@ -628,8 +720,14 @@ console.log(this.selectedItems3)
         this.endIndex=endIndex;
         this.pages=pages;
         //console.log(this.totalPages+" "+this.start+" "+this.last+" "+this.startIndex+" "+this.endIndex+" "+this.pages);
-        console.log(resp['data']);
+      
         this.paymentlist = resp['data'][0]['data']['PaymentData']
+        if(this.paymentlist!=null){
+          for(var total of this.paymentlist){
+            this.totalamount+=parseFloat(total['amount'])
+          }
+        }
+        console.log(this.paymentlist);
         //this.spinner.hide()
         // this.loaderService.display(false);
         },error=>{
@@ -642,6 +740,20 @@ console.log(this.selectedItems3)
 
         removeValue(list, value) {
           return list.replace(new RegExp(value + ',?'), '')
+        }
+
+        loadPayLogs(id:number,index){
+          this.selectedIndex = index;
+         
+         this.paymentservice.paylogsNew(id).then(resp=>{
+          this.approverDetails=resp['data']
+         // console.log(this.approverDetails)
+          for(let data of this.approverDetails)
+          this.grouplength= data['group'].length;
+          
+         },error=>{
+           console.log(error)
+         })
         }
 
 }

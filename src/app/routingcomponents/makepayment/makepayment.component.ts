@@ -203,6 +203,7 @@ getValidBillers(){
     this.billertype=false;
     this.billdetails=true;
     this.reviewCard=false;
+    this.validbillamount=0
     this.currentdate= new Date((new Date()).getTime() + 24*60*60*1000);
     this.billservice.getvalidbillsforpay().then(resp=>{
       console.log(resp)
@@ -229,6 +230,7 @@ getValidBillers(){
   this.billertype=false;
   this.billdetails=true;
   this.reviewCard=false;
+  this.invalidbillamount=0
   this.currentdate= new Date((new Date()).getTime() + 24*60*60*1000);
     this.billservice.getinvalidbillsforpay().then(resp=>{
       console.log(resp)
@@ -312,10 +314,18 @@ getValidBillers(){
 
    // console.log(this.approvedcard)
   //  console.log(this.approvedcard[0])
-      if(this.currenCard ==-1){
-        this.activeElement=this.approvedcard[0]["id"]
-        this.getActivecard(this.approvedcard[0]["id"]);
-      }
+  if(this.approvedcard.length>0){
+    if(this.currenCard ==-1){
+      this.activeElement=this.approvedcard[0]["id"]
+      this.getActivecard(this.approvedcard[0]["id"]);
+    }
+  }else{
+    this.toaster.error("You don't have any approved card to initiate payments please register and approve the card first","Alert",{
+      timeOut:3000,
+      positionClass:'toast-top-center'
+      })
+  }
+      
     },error=>{
       console.log(error)
       if(error['status']==401){
@@ -501,7 +511,7 @@ if(confirmation==true){
   }
 
   succesadd(){
-
+   
     var d = new Date();
     var hm = d.getMonth()+1;
     var hday = d.getDate();
@@ -539,26 +549,27 @@ if(confirmation==true){
       weekday[5] = "Friday";
       weekday[6] = "Saturday";
     var n = weekday[d.getDay()];
-    // if(nd<'13:58:00' && nd>'08:00:00'){
-    //   console.log("Time for initiate transaction")
-    // }else{
-    //   console.log("Transaction time passed")
-    // }
-    // if(this.holidays.includes(hd)){
-    //   this.toaster.error("You can't initiate payments on holidays, please try to initiate on working days !","Alert",{
-    //     timeOut:8000,
-    //     positionClass:'toast-top-center'
-    //     })
-    // }else{
-    // if(n=='Saturday' || n=='Sunday'){
-    //   this.toaster.error("You can't initiate payments on Satrurday and Sunday, please try to initiate between Monday and Friday !","Alert",{
-    //     timeOut:8000,
-    //     positionClass:'toast-top-center'
-    //     })
-    // }else{
+    if(nd<'13:58:00' && nd>'08:00:00'){
+      console.log("Time for initiate transaction")
+    }else{
+      console.log("Transaction time passed")
+    }
+    if(this.holidays.includes(hd)){
+      this.toaster.error("You can't initiate payments on holidays, please try to initiate on working days !","Alert",{
+        timeOut:8000,
+        positionClass:'toast-top-center'
+        })
+    }else{
+    if(n=='Saturday' || n=='Sunday'){
+      this.toaster.error("You can't initiate payments on Satrurday and Sunday, please try to initiate between Monday and Friday !","Alert",{
+        timeOut:8000,
+        positionClass:'toast-top-center'
+        })
+    }else{
     
-   //if(nd<'13:58:00'){
+   if(nd<'13:58:00'){
     this.loader.display(true);
+    if(this.selectedcard['id']!=undefined){
     this.paymentData={
       "card_id":this.selectedcard['id'],
       "bills":this.checkedValueArray,
@@ -567,6 +578,7 @@ if(confirmation==true){
     }
     console.log(this.paymentData)
     if(this.userdata['isseq']==0){
+
     this.paymentservice.makepayment(this.paymentData).then(resp=>{
       console.log(resp)
       if(resp['msg']=='Bill payment already initiated for these due date'){
@@ -620,14 +632,21 @@ if(confirmation==true){
       positionClass:'toast-top-center'
       })
   }
-  //  }else{
-  //    this.toaster.error("Todays batch has passed now, you cannot initiate payment now. Please fetch the bills tomorrow between 08:00 AM and 01:58 PM and initiate the payments !","Alert",{
-  //      timeOut:8000,
-  //      positionClass:'toast-top-center'
-  //      })
-  //  }
- // }
-//}
+}else{
+  this.loader.display(false)
+  this.toaster.error("Please approve cards first then initiate payments!","Alert",{
+    timeOut:3000,
+    positionClass:'toast-top-center'
+    })
+}
+   }else{
+     this.toaster.error("Todays batch has passed now, you cannot initiate payment now. Please fetch the bills tomorrow between 08:00 AM and 01:58 PM and initiate the payments !","Alert",{
+       timeOut:8000,
+       positionClass:'toast-top-center'
+       })
+   }
+ }
+}
    
     
    

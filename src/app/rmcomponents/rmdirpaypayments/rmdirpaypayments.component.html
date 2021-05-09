@@ -98,150 +98,7 @@
               </ng-multiselect-dropdown>
             
                   
-                  <div class="backdrop" [ngStyle]="{'display':display}"></div>
-                  <!-- modal -->
-                  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
-                      <!-- modal-dialog -->
-                      <div class="modal-dialog" role="document">
-                        <!-- modal-content -->
-                        <div class="modal-content">
-                          <!-- modal-header -->
-                          <div class="modal-header">
-                            Generate Customize Report<button type="button" class="close" aria-label="Close" (click)="closeModalDialog()"><span
-                                aria-hidden="true">&times;</span></button>
-                            <!-- <h4 class="modal-title">Login</h4> -->
-                          </div>
-                          <!-- modal-body -->
-                          <div class="modal-body">
-                            <div class="row mb-4 text-left">
-                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <label for="" class="pop-input-text">Report Name :</label>
-                                <input type="text" class="pop-input" placeholder="Eg. Quarterly Report">
-                              </div>
-                            </div>
-                            <div class="row mb-4 text-left">
-                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <label for="">Select the field to create a report</label>
-                              </div>
-                            </div>
-                            <div class="row mb-2 text-left">
-                              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                  <input type="checkbox" (change)="selectllpara()" name="selectallpara"  [(ngModel)]="selectallpara"> <span class="spn-modal">Select All
-                                      Type</span>
-                              </div>
-                          </div>
-                          <div class="row mb-2 text-left">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="checkbox" name="custbill_name" [(ngModel)]="custbill_name"> <span class="spn-modal">Bill Name</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="checkbox" name="custamount" [(ngModel)]="custamount"> <span class="spn-modal">Amount</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="checkbox" name="custconsumer_no" [(ngModel)]="custconsumer_no"> <span class="spn-modal">Reference No</span>
-                            </div>
-                          </div>
-                          <div class="row mb-2 text-left">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="checkbox" name="custconsumer_name" [(ngModel)]="custconsumer_name"> <span class="spn-modal">Consumer Name</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="checkbox" name="custstatus" [(ngModel)]="custstatus"> <span class="spn-modal">Status</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="checkbox" name="custpayment_status" [(ngModel)]="custpayment_status"> <span class="spn-modal">Payment Status</span>
-                            </div>
-                          </div>
-                          <div class="row mb-2 text-left">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="checkbox" name="custshort_name" [(ngModel)]="custshort_name"> <span class="spn-modal">Short Name</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" name="custdue_date" [(ngModel)]="custdue_date"> <span class="spn-modal">Due Date</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="checkbox" name="custbill_date" [(ngModel)]="custbill_date"> <span class="spn-modal">Bill Date</span>
-                            </div>
-                          </div>
-                          <div class="row mb-2 text-left">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" name="custcard_no" [(ngModel)]="custcard_no"> <span class="spn-modal">Card No</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="checkbox" name="custlocation" [(ngModel)]="custlocation"> <span class="spn-modal">Location</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" name="custbill_no" [(ngModel)]="custbill_no"> <span class="spn-modal">Bill No</span>
-                              </div>
-                          </div>
-                          <div class="row mb-2 text-left">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" name="custemail" [(ngModel)]="custemail"> <span class="spn-modal">Email</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="checkbox" name="custmobile_no" [(ngModel)]="custmobile_no"> <span class="spn-modal">Mobile No</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" name="custaddress" [(ngModel)]="custaddress"> <span class="spn-modal">Address</span>
-                              </div>
-                          </div>
-                          <div class="row mb-2 text-left">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              
-                                <input type="checkbox" name="custcrn" [(ngModel)]="custcrn"> <span class="spn-modal">CRN</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" name="custinitiated_by" [(ngModel)]="custinitiated_by"> <span class="spn-modal">Initiated by</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <!-- <input type="checkbox" name="custbill_name" [(ngModel)]="custbill_name"> <span class="spn-modal">File Name</span> -->
-                                <input type="checkbox" name="custinitiated_at" [(ngModel)]="custinitiated_at"> <span class="spn-modal">Initiated on</span>
-                              </div>
-                          </div>
-                          <div class="row mb-2 text-left">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" name="custorderid" [(ngModel)]="custorderid"> <span class="spn-modal">Order Id</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" name="custcomment" [(ngModel)]="custcomment"> <span class="spn-modal">Comment</span>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" name="custapproved_on" [(ngModel)]="custapproved_on"> <span class="spn-modal">Approved on</span>
-                              </div>
-                          </div>
-                          <div class="row mb-2 text-left">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                           
-                              <!-- <input type="checkbox" name="Utility" value="Utility"> <span class="spn-modal">Approved on</span> -->
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              
-                              </div>
-                          </div>
-                                 
-                            <div class="row mb-4 text-left">
-                              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                  <table>
-                                      <tr>
-                                        <td style="padding:0px; width:10%">From</td>
-                                        <td style="padding:0px; width:28%"><angular2-date-picker [ngClass]="'popup-datepicker'" [(ngModel)]="filterfromdate" [settings]="settings"></angular2-date-picker></td>
-                                        <td style="padding-left:7px; width:10%">To</td>
-                                        <td style="padding-right:10px; width:31%"><angular2-date-picker [ngClass]="'popup-datepicker'" [(ngModel)]="filtertodate" [settings]="settings"></angular2-date-picker></td>
-                                      </tr>
-                                    </table>
-                              </div>
-                              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
-                            </div>
-                            <div class="row text-left">
-                              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><button (click)="closeModalDialog();getcustomreport()" class="btn-ok" style="margin-right:10px;">OK</button></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                 
                 </div>
               </div>
               <div class="row mb-3" style="margin-bottom:15px;">
@@ -252,168 +109,183 @@
                     <td class="unitheaders">Total amount</td>
                   </tr>
                   <tr>
-                    <td></td>
-                    <td><i class="fa fa-rupee"></i></td>
+                    <td>{{totalinvoice}}</td>
+                    <td><i class="fa fa-rupee">&nbsp;{{totalamount | numberfr}}</i></td>
                   </tr>
                 </table>
                 </div>
                 <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 text-right txt">
-                  <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="getfilterdata()" type="button" style="border-radius:25px;">Filter Payment</button>
+                  <button class="btn bg-primary mrtfi nextBtn nxt2 ruleNextBtn mrg0Auto nxtbbgcolor" (click)="loadFilterPayments(rmid,pageNumber,pageSize)" type="button" style="border-radius:25px;">Filter Payment</button>
                 </div>
               </div>
               <div class="row" style="margin:0px;">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-border">
-                  <table id="main-table" [mfData]="paymentData" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                  <table id="main-table" [mfData]="paymentlist" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                     <thead>
                       <tr>
                         <td>Sr. No.</td>
-                        <td>Bill Name <img src="assets/img/Filter.png" alt=""></td>
-                        <td>Amount <img src="assets/img/Filter.png" alt=""></td>
-                        <td>Reference No<img src="assets/img/Filter.png" alt=""></td>
-                        <td>Consumer Name<img src="assets/img/Filter.png" alt=""></td>
-                        <td>Status <img src="assets/img/Filter.png" alt=""></td>
-                        <td class="text-center">Payment Status <img src="assets/img/Filter.png" alt=""></td>
+                        <td>Bill Name </td>
+                        <td>Amount </td>
+                        <td>Reference No</td>
+                        <td>Consumer Name</td>
+                        <td>Status</td>
+                        <td class="text-center">Payment Status</td>
                         <td>&nbsp;</td>
                       </tr>
                     </thead>
                     <tbody>
-                      <ng-container >
+                      <ng-container  *ngFor="let p of mf.data  |filter:filter;let i=index">
                       <tr>
-                        <td></td>
-                        <td></td>
-                        <td><i class="fa fa-rupee"></i></td>
-                        <td></td>
-                        <td></td>
-                        <td><a href="javascript:void(0);" class="btn" role="button"></a></td>
-                        <td class="text-center" ></td>
-                        <td style="padding:0 5px;"><img src="assets/img/tb_downarrow.png" alt="" ></td>
+                        <td>{{i+1}}</td>
+                        <td>{{p.billername}}</td>
+                        <td><i class="fa fa-rupee">&nbsp;{{p.amount | numberfr}}</i></td>
+                        <td>{{p.consumerno}}</td>
+                        <td>{{p.orgname}}</td>
+                        <td><a href="javascript:void(0);" [ngClass]="{'appoved': p.transstatus === 'Approved', 'Rejected': p.transstatus  === 'Rejected', 'Pending': p.transstatus  === 'Pending'}" class="btn" role="button">{{p.transstatus}}</a></td>
+                        <td class="text-center" > <a href="javascript:void(0);" class="btn" [ngClass]="p.paymentstatus==='Pending'?'Pending':p.paymentstatus==='Card Debited'?'appoved':p.paymentstatus==='Insufficient Funds'?'Rejected':'appoved'" role="button">{{ p.paymentstatus }} </a></td>
+                        <td style="padding:0 5px;"><img src="assets/img/tb_downarrow.png" alt=""  (click)="p.collapsed=!p.collapsed;loadPayLogs(p.id,i)"></td>
                       </tr>
-                      <tr class="rowShow grayStrip" >
+                      <tr class="rowShow grayStrip" *ngIf="p.collapsed && selectedIndex == i">
                         <td class="custmtd" colspan="8">
                           <div class="tablediv">
-                            <h5>Biller Details</h5>
-                            <div class="mb-1">
+                            <h5>Transaction Details</h5>
+                            <!-- <div class="mb-1">
                               <div class="span_width">Short Name</div> <span> : </span> &nbsp;
                               <div class="bold_span"></div>
-                            </div>
-                            <div class="mb-1">
-                              <div class="span_width">GL/Expense Code</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
-                            </div>
-                            <div class="mb-1">
-                                <div class="span_width">Consumer No</div> <span> : </span> &nbsp;
-                                <div class="bold_span"></div>
-                              </div>
+                            </div> -->
+                           
                             <div class="mb-1">
                               <div class="span_width">Bill Date</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span">{{p.billdate}}</div>
                             </div>
                             <div class="mb-1">
                               <div class="span_width">Due Date</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span">{{p.duedate}}</div>
                             </div>
-                            <div class="mb-1" >
-                              <div class="span_width">UTR</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
-                            </div>
-                            <div class="mb-1">
-                              <div class="span_width">Location</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
-                             
-                            </div>
+                          
+                           
                             <div class="mb-1">
                               <div class="span_width">Bill No</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span" tooltip="{{p.billnumber}}" placement="top" show-delay="500">{{p.billnumber}}</div>
                             </div>
                             <div class="mb-1">
                               <div class="span_width">Card No</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span">{{p.cardno}}</div>
                             </div>
                             <div class="mb-1">
-                              <div class="span_width">Bu Code Bu Name</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="span_width">Cut-Off Date</div> <span> : </span> &nbsp;
+                              <div class="bold_span">{{p.cutoffdate}}</div>
                             </div>
                             <div class="mb-1">
-                              <div class="span_width">Circle</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="span_width">Batch</div> <span> : </span> &nbsp;
+                              <div class="bold_span" *ngIf="p.cutofftime=='12:00 PM'">Batch 1</div>
+                              <div class="bold_span" *ngIf="p.cutofftime=='02:00 PM'">Batch 2</div>
+                              <div class="bold_span" *ngIf="p.cutofftime=='05:00 PM'">Batch 3</div>
+                              <div class="bold_span" *ngIf="p.cutofftime=='12:00 AM'">Batch 4</div>
+                            </div>
+                            <div class="mb-1">
+                              <div class="span_width">CRN</div> <span> : </span> &nbsp;
+                              <div class="bold_span">{{p.crn}}</div>
+                            </div>
+                            <div class="mb-1" >
+                              <div class="span_width">UTR</div> <span> : </span> &nbsp;
+                              <div class="bold_span" tooltip="{{p.utr}}" placement="top" show-delay="500">{{p.utr}}</div>
+                            </div>
+                            <div class="mb-1">
+                              <div class="span_width">File Name</div> <span> : </span> &nbsp;
+                              <div class="bold_span">{{p.uploadfilename}}</div>
                             </div>
         
                           </div>
                           <div class="tablediv table2">
-                            <h5>Contact Details</h5>
-                            
+                            <h5>Biller Details</h5>
+                            <div class="mb-1">
+                              <div class="span_width">GL/Expense Code</div> <span> : </span> &nbsp;
+                              <div class="bold_span">{{p.glexpensecode}}</div>
+                            </div>
+                            <div class="mb-1">
+                                <div class="span_width">{{p.parameter1}}</div> <span> : </span> &nbsp;
+                                <div class="bold_span">{{p.consumerno}}</div>
+                              </div>
                             <div class="mb-1">
                               <div class="span_width">Mobile No</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span">{{p.contactno}}</div>
                             </div>
-                            <div class="mb-1">
-                              <div class="span_width">Address</div> <span> : </span> &nbsp;
-                              <span class="bold_span" tooltip="" placement="top" show-delay="500"></span>
-                            </div>
+                          
                             <div>
                               <div class="span_width">Email</div> <span> : </span> &nbsp;
-                              <span class="bold_span" tooltip="" placement="top" show-delay="500"></span>
+                              <span class="bold_span" tooltip="{{p.email}}" placement="top" show-delay="500">{{p.email}}</span>
+                            </div>
+                            <div class="mb-1">
+                              <div class="span_width">Location</div> <span> : </span> &nbsp;
+                              <div class="bold_span" tooltip="{{p.statename}}" placement="top" show-delay="500">{{p.statename}}</div>
+                            </div>
+                            <div class="mb-1">
+                              <div class="span_width" *ngIf="p.bucode_buname.length>0">{{p.displaynamebu}}</div> <span *ngIf="p.bucode_buname.length>0"> : </span> &nbsp;
+                              <div class="bold_span" *ngIf="p.bucode_buname.length>0" tooltip="{{p.bucode_buname}}" placement="top" show-delay="500">{{p.bucode_buname}}</div>
+                            </div>
+                            <div class="mb-1">
+                              <div class="span_width" *ngIf="p.circle.length>0">{{p.displaynamecircle}}</div> <span *ngIf="p.circle.length>0"> : </span> &nbsp;
+                              <div class="bold_span" *ngIf="p.circle.length>0" tooltip="{{p.circle}}" placement="top" show-delay="500">{{p.circle}}</div>
                             </div>
                             <h5>Bank Details</h5>
                             <div class="mb-1">
                               <div class="span_width">Account No</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span">{{p.accountno}}</div>
                             </div>
                             <div class="mb-1">
                               <div class="span_width">Bank Name</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span">{{p.bankname}}</div>
                             </div>
                             <div class="mb-1">
                               <div class="span_width">Branch Name</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span">{{p.branchname}}</div>
                             </div>
                           </div>
                           <div class="tablediv noborder table3">
                             <h5>Other Details</h5>
-                            <div class="mb-1">
-                              <div class="span_width">CRN</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
-                            </div>
-                            <div class="mb-1">
-                              <div class="span_width">File Name</div> <span> : </span> &nbsp;
-                              <div class="bold_span">Unitary</div>
-                            </div>
+                            
                             <div class="mb-1">
                               <div class="span_width">Initiated by</div> <span> : </span> &nbsp;
-                              <div class="bold_span"></div>
+                              <div class="bold_span">{{p.initiatedfname}} {{p.initiatedlname}}</div>
                             </div>
                             <div class="mb-1">
                               <div class="span_width">Initiated on</div> <span> : </span> &nbsp;
                               <div class="bold_span" tooltip="" placement="top"
-                              show-delay="500"></div>
+                              show-delay="500">{{p.initiateddate}} | {{p.initiatedtime}}</div>
                             </div>
-                            <ng-container>
+                            <ng-container *ngFor="let approvers of approverDetails">
                             <div class="mb-1">
-                                <div class="span_width">Approved by </div>  <span> : </span> &nbsp;
-                                <div class="bold_span"></div>
+                              <div class="span_width" *ngIf="p.transstatus=='Pending'">Approver By</div> <span *ngIf="p.transstatus=='Pending'">:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <div class="span_width" *ngIf="p.transstatus=='Approved'">Approver By</div> <span *ngIf="p.transstatus=='Approved'">:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <div class="span_width" *ngIf="p.transstatus=='Rejected'">Rejected By</div> <span *ngIf="p.transstatus=='Rejected'">:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                              <div class="bold_span" *ngIf="grouplength<=0">{{approvers.approvedby}}</div>
+                              <div class="bold_span" *ngIf="grouplength>0">{{approvers.approvedby}}({{approvers.group}})</div>
                               </div>
                               <div class="mb-1">
-                                <div class="span_width">Approved on  </div>  <span> : </span> &nbsp;
-                                <div class="bold_span"></div>
+                                <div class="span_width" *ngIf="p.transstatus=='Pending'">Approver on</div> <span *ngIf="p.transstatus=='Pending'">:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <div class="span_width" *ngIf="p.transstatus=='Approved'">Approved on</div> <span *ngIf="p.transstatus=='Approved'">:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <div class="span_width" *ngIf="p.transstatus=='Rejected'">Rejected on</div> <span *ngIf="p.transstatus=='Rejected'">:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <div class="bold_span">{{approvers.approveddate}} | {{approvers.approvedtime}}</div>
                               </div>
                             </ng-container>
                           </div>
                         </td>
                       </tr>
-                      <tr class="rowShow grayStrip">
+                      <tr class="rowShow grayStrip" *ngIf="p.collapsed && selectedIndex == i">
                         <td colspan="8">
-                            <span class="text-left"><label style="color: #64289d;">Comment : &nbsp;</label></span>
-                          <span class="pull-right">
+                            <span class="text-left" *ngIf="p.transstatus=='Rejected'"><label style="color: #64289d;">Comment : &nbsp;{{p.regcmt}}</label></span>
+                          <!-- <span class="pull-right">
                           <a ><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           
                           <a (click)="closeModalDialog1()"><img src="assets/img/page.png"></a>
-                        </span>
-                        <!-- <span class="pull-right"><a (click)="getpaymentlogs(payment.card_debited_date,payment.payment_status_time,payment.rejection_reason)"><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                         
-                          <a (click)="getextradetails(payment.late_pay_charges,promt_pay_incentives,remarks,meter_reading)"><img src="assets/img/page.png"></a>
                         </span> -->
+                        <span class="pull-right"><a (click)="sendPaymentStatus(p.carddebiteddate,p.carddebitedtime,p.paymentstatus,p.utrdate,p.utrtime,p.utr,p.refundreason)"><img src="assets/img/popup.png" style="width:25px;"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <!-- <a data-toggle="modal" href="javascript:void(0)" id="openBtn"><img src="assets/img/attach.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                         
+                          <!-- <a (click)="getextradetails(payment.late_pay_charges,promt_pay_incentives,remarks,meter_reading)"><img src="assets/img/page.png"></a> -->
+                        </span>
                         </td>
                       </tr>
                        
@@ -444,37 +316,28 @@
                                       <tbody>
                                         <tr>
                                           <td>Card Debited</td>
-                                          <!-- <td *ngIf="payment.transaction_status=='Approved'">{{carddebitdate}}</td>
-                                          <td *ngIf="payment.transaction_status=='Approved'">{{carddebittime}}</td>
-                                          <td *ngIf="payment.transaction_status=='Pending' || payment.transaction_status=='Rejected'">--</td>
-                                          <td *ngIf="payment.transaction_status=='Pending' || payment.transaction_status=='Rejected'">--</td> -->
+                                          <td *ngIf="p.transstatus=='Approved'">{{carddebitdate}}</td>
+                                          <td *ngIf="p.transstatus=='Approved'">{{carddebittime}}</td>
+                                          <td *ngIf="p.transstatus=='Pending' || p.transstatus=='Rejected'">--</td>
+                                          <td *ngIf="p.transstatus=='Pending' || p.transstatus=='Rejected'">--</td>
                                         </tr>
                                         <tr>
-                                          <td>Payment Success</td>
-                                          <!-- <td *ngIf="paymentstatus=='Payment Success'">{{paysuccessdate}}</td>
-                                          <td *ngIf="paymentstatus=='Payment Success'">{{paysuccesstime}}</td>
-                                          <td *ngIf="paymentstatus=='Payment Failed' ||paymentstatus=='Payment Returned' || paymentstatus=='Pending' || paymentstatus=='Rejected'">--</td>
-                                          <td *ngIf="paymentstatus=='Payment Failed' || paymentstatus=='Payment Returned' || paymentstatus=='Pending' || paymentstatus=='Rejected'">--</td> -->
+                                          <td>UTR</td>
+                                          <td>{{paysuccessdate}}</td>
+                                          <td>{{paysuccesstime}}</td>
+                                       
                                         </tr>
                                         <tr>
-                                          <td>Payment Failed</td>
-                                          <!-- <td *ngIf="paymentstatus=='Payment Failed'">{{paysuccessdate}}</td>
-                                          <td *ngIf="paymentstatus=='Payment Failed'">{{paysuccesstime}}</td>
-                                          <td *ngIf="paymentstatus=='Payment Success' || paymentstatus=='Payment Returned' || paymentstatus=='Pending' || paymentstatus=='Rejected'">--</td>
-                                          <td *ngIf="paymentstatus=='Payment Success' || paymentstatus=='Payment Returned' || paymentstatus=='Pending' || paymentstatus=='Rejected'">--</td> -->
+                                          <td>Payment Returned</td>
+                                          <td>{{payfaildate}}</td>
+                                          <td>{{payfailtime}}</td>
+                                       
                                         </tr>
-                                        <tr>
-                                          <td>Card Refunded</td>
-                                         
-                                        <!-- <td *ngIf="paymentstatus=='Payment Returned'">{{paysuccessdate}}</td>
-                                        <td *ngIf="paymentstatus=='Payment Returned'">{{paysuccesstime}}</td>
-                                        <td *ngIf="paymentstatus=='Payment Success' || paymentstatus=='Payment Failed' || paymentstatus=='Pending' || paymentstatus=='Rejected'">--</td>
-                                        <td *ngIf="paymentstatus=='Payment Success' || paymentstatus=='Payment Failed' || paymentstatus=='Pending' || paymentstatus=='Rejected'">--</td> -->
-                                        </tr>
+                                      
                                         <tr>
                                           <td>Refund Reason</td>
-                                          <!-- <td *ngIf="paymentstatus=='Payment Returned'" colspan="2">{{rejectreason}}</td>
-                                          <td *ngIf="paymentstatus=='Payment Success' || paymentstatus=='Payment Failed' || paymentstatus=='Pending' || paymentstatus=='Rejected'" colspan="2">--</td> -->
+                                          <td colspan="2">{{rejectreason}}</td>
+                                      
                                         </tr>
                                       </tbody>
                                     </table>

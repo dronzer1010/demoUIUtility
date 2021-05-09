@@ -63,7 +63,7 @@ export class RmheaderComponent implements OnInit {
         this.clickGroupEvent()
       }else if(this.pathroute=='/rmrulevalidation'){
         this.clickRuleEvent()
-      }else if(this.pathroute=='/rmorganisation' || this.pathroute.includes('rmorganisationdetail') ||this.pathroute.includes('rmbills') || this.pathroute.includes('rmuserreports') || this.pathroute.includes('rmcards')){
+      }else if(this.pathroute=='/rmorganisation' || this.pathroute.includes('rmorganisationdetail') ||this.pathroute.includes('rmbills') || this.pathroute.includes('rmuserreports') || this.pathroute.includes('rmcards') || this.pathroute.includes('rm-directpay-billers')){
         this.clickOrgEvent()
       }else if(this.pathroute=='/rmprofile' || this.pathroute=='/rmrepository' || this.pathroute=='/rmnotificationmatrix' || this.pathroute=='/rmsample-bills' || this.pathroute=='/rmtemplates'){
 this.clickNotEvent()

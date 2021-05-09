@@ -86,11 +86,13 @@ totalPages:number;
 startIndex:number;
 endIndex:number;
 pageNumber:number=1;
-pageSize:number=300;
+pageSize:number=1000;
 totalsupplier:number=0;
 supplyList: any = [];
 supplylists: any = [];
 pages:any;
+orgList: any = [];
+orgname:any=""
   constructor(private excelservice : ExcelService,private loaderService: LoaderService,private billservice:BillerserviceService,private rmservice:RmservicesService,private route: ActivatedRoute,private toastr: ToastrService,private http: Http,public datepipe: DatePipe) { }
 
   ngOnInit() {
@@ -98,6 +100,19 @@ pages:any;
     
 
     this.filterorgid = this.route.snapshot.paramMap.get('id');
+    this.rmservice.getAllOrganizations().then(resp => {
+      this.orgList = resp.data;
+     console.log(this.orgList)
+     for(let data of this.orgList){
+      if(data['OrgId']==this.filterorgid){
+        this.orgname=data['CompanyName']
+      }else{
+       // console.log("No Orgid")
+      }
+    }
+    });
+
+   
 
     this.loadPaginatedSuppliers(this.filterorgid,this.dateformat,this.pageNumber,this.pageSize);
 
@@ -174,23 +189,25 @@ pages:any;
     if(items['item_id']==2){
       this.display='block';
     }else if(items['item_id']==1){
-      for(let data of this.approveRejBiller){
+      for(let data of this.supplyList){
         var obj={
-          Biller:data['biller_name'],
-          Consumer_No:data['consumer_no'],
+          UtilityName:data['utilitynmae'],
+          Biller:data['name'],
+          Consumer_No:data['consumerno'],
           Status:data['status'],
-          Short_Name:data['short_name'],
-          GL_Expense_Code:data['gl_expense_code'],
-          Bill_Date:data['bill_date'],
-          Due_Date:data['due_date'],
-          State:data['state'],
-          Reference_no_1:data['bu'],
+         Location:data['location'],
+          GL_Expense_Code:data['glexpensecode'],
+          Reference_no_1:data['bucode'],
           Reference_no_2:data['circle'],
-          Contact:data['contact_no'],
-          Bill_Address:data['contact_address'],
+          Contact:data['contact'],
           Email:data['email'],
-          Initiated_by:data['created_by'],
-          Initiated_On:data['created_on'],
+          BankAccountNo:data['accno'],
+          IFSC:data['ifsc'],
+          BankName:data['bank'],
+          Branch:data['branch'],
+          UploadFileName:data['uploadfilename'],
+          Initiated_by:data['initiatedby'],
+          Initiated_On:`${data['initiateddate']}|${data['initiatedtime']}`,
 
   
         }
@@ -204,7 +221,7 @@ pages:any;
 
   getApproverDetails(id,index){
     this.selectedIndex = index;
-    this.billservice.suplogs(id).then(resp=>{
+    this.billservice.billapprlogs(id).then(resp=>{
       console.log(resp)
       if(resp!=null){
       this.approverdetails=resp['data']
@@ -268,7 +285,7 @@ pages:any;
     this.startIndex=startIndex;
     this.endIndex=endIndex;
     this.pages=pages;
-    console.log(this.totalPages+" "+this.start+" "+this.last+" "+this.startIndex+" "+this.endIndex+" "+this.pages);
+    //console.log(this.totalPages+" "+this.start+" "+this.last+" "+this.startIndex+" "+this.endIndex+" "+this.pages);
     console.log(data['data']);
     this.supplyList = data['data'];
    // this.spinner.hide()

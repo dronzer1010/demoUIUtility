@@ -82,6 +82,9 @@ import { AddBulkBillerComponent } from './customcomponents/add-bulk-biller/add-b
 import { AddBulkBillPaymentComponent } from './customcomponents/add-bulk-bill-payment/add-bulk-bill-payment.component';
 import { RmdirpaypaymentsComponent } from './rmcomponents/rmdirpaypayments/rmdirpaypayments.component';
 import { RmdirpaybillersComponent } from './rmcomponents/rmdirpaybillers/rmdirpaybillers.component';
+import { AuthcodesetupComponent } from './firstloginComponents/authcodesetup/authcodesetup.component';
+import { FirstTimeOtpComponent } from './firstloginComponents/first-time-otp/first-time-otp.component';
+import { FirstTimeSetPasswordComponent } from './firstloginComponents/first-time-set-password/first-time-set-password.component';
 const appRoutes: Routes = [ 
     { path:'main',component:UserhomeComponent,
     children:[
@@ -145,6 +148,9 @@ const appRoutes: Routes = [
     {path:'firstlogin',component:AccountsetupComponent},
     {path:'refund-review',component:RefundviewComponent},
     { path : 'useruploadback', component: BackusrupComponent},
+    { path : 'authcode-setup', component: AuthcodesetupComponent},
+    { path : 'first-time-otp', component: FirstTimeOtpComponent},
+    { path : 'first-time-set-pwd', component: FirstTimeSetPasswordComponent},
     { path : 'grpregback', component: BackgrpregComponent},
     { path: 'rm-ifsc-verify', component: RmifscComponent ,canActivate:[AuthGuard]},
     { path: 'rmreportname', component: RmreportnameComponent ,canActivate:[AuthGuard]},
