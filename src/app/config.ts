@@ -19,10 +19,14 @@ export class Config{
   //  NGrock URL
  // this.utilityapiUrl="http://0c55bf5c6a4c.ngrok.io/"
 
+ this.backurl="http://localhost:8080"
+
    // this.backurl="http://71f2b37904bb.ngrok.io" //ngrok
  //this.backurl="http://utilityrest.ap-south-1.elasticbeanstalk.com" //test
-this.backurl="https://utility-rest.aquapay.in" //live
+//this.backurl="https://utility-rest.aquapay.in" //live
      //   this.loginurl="http://9f96f8bcd809.ngrok.io/" //ngrok
+
+
 
   // this.loginurl="http://13.233.114.106:4000/"//test
    this.loginurl="https://single-signon.aquapay.in:4000/"//live
